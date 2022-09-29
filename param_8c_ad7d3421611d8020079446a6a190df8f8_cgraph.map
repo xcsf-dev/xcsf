@@ -1,20 +1,21 @@
 <map id="param_json_import_general" name="param_json_import_general">
-<area shape="rect" id="node1" title="Sets the general parameters from a cJSON object." alt="" coords="5,292,187,319"/>
-<area shape="rect" id="node2" href="$param_8c.html#af3da5d5549f174e35653ca6834e16c96" title=" " alt="" coords="255,124,412,151"/>
-<area shape="rect" id="node3" href="$param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="260,175,407,217"/>
-<area shape="rect" id="node14" href="$param_8c.html#addd4cd1ef9faf5c05ad450d905bde1fc" title=" " alt="" coords="258,241,409,268"/>
-<area shape="rect" id="node15" href="$param_8c.html#a9f0e1a7a7a073f46fcfbf6634b8b32da" title="Sets the number of OMP threads." alt="" coords="235,292,432,319"/>
-<area shape="rect" id="node16" href="$param_8c.html#a9bffca041153cd16843fee676ac47b75" title=" " alt="" coords="260,343,407,369"/>
-<area shape="rect" id="node17" href="$param_8c.html#a1468ad94460124bbd3c0982f5a8c5d0a" title=" " alt="" coords="266,393,401,420"/>
-<area shape="rect" id="node18" href="$param_8c.html#aa8c87e81df977c35fe8c02cb0c59636f" title=" " alt="" coords="262,444,405,471"/>
-<area shape="rect" id="node4" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="489,157,591,184"/>
-<area shape="rect" id="node13" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="480,208,600,235"/>
-<area shape="rect" id="node5" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="648,5,760,32"/>
-<area shape="rect" id="node6" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="661,56,747,83"/>
-<area shape="rect" id="node7" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="669,107,739,133"/>
-<area shape="rect" id="node8" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="665,157,743,184"/>
-<area shape="rect" id="node9" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="808,233,887,260"/>
-<area shape="rect" id="node10" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="658,309,750,336"/>
-<area shape="rect" id="node12" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="663,259,745,285"/>
-<area shape="rect" id="node11" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="815,309,880,336"/>
+<area shape="rect" id="node1" title="Sets the general parameters from a cJSON object." alt="" coords="5,267,187,293"/>
+<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="290,73,377,100"/>
+<area shape="rect" id="node3" href="$param_8c.html#a8a701e38369c61ee86e1572eae56cd04" title=" " alt="" coords="255,124,412,151"/>
+<area shape="rect" id="node4" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="260,175,407,217"/>
+<area shape="rect" id="node15" href="$param_8c.html#a388a95e329f834d2771efb09acc84d60" title=" " alt="" coords="258,241,409,268"/>
+<area shape="rect" id="node16" href="$param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c" title="Sets the number of OMP threads." alt="" coords="235,292,432,319"/>
+<area shape="rect" id="node17" href="$param_8c.html#a0b53049abf12592f085fa578c9f4546d" title=" " alt="" coords="260,343,407,369"/>
+<area shape="rect" id="node18" href="$param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7" title=" " alt="" coords="266,393,401,420"/>
+<area shape="rect" id="node19" href="$param_8c.html#a389d74d2c11c8cd13d9cf2a895026cf7" title=" " alt="" coords="262,444,405,471"/>
+<area shape="rect" id="node5" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="489,157,591,184"/>
+<area shape="rect" id="node14" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="480,208,600,235"/>
+<area shape="rect" id="node6" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="648,5,760,32"/>
+<area shape="rect" id="node7" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="661,56,747,83"/>
+<area shape="rect" id="node8" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="669,107,739,133"/>
+<area shape="rect" id="node9" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="665,157,743,184"/>
+<area shape="rect" id="node10" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="808,233,887,260"/>
+<area shape="rect" id="node11" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="658,309,750,336"/>
+<area shape="rect" id="node13" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="663,259,745,285"/>
+<area shape="rect" id="node12" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="815,309,880,336"/>
 </map>

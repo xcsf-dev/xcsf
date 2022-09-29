@@ -1,6 +1,6 @@
 <map id="param_set_loss_func" name="param_set_loss_func">
 <area shape="rect" id="node1" title=" " alt="" coords="5,157,152,184"/>
-<area shape="rect" id="node2" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="200,157,303,184"/>
+<area shape="rect" id="node2" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="200,157,303,184"/>
 <area shape="rect" id="node3" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="351,5,463,32"/>
 <area shape="rect" id="node4" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="364,56,449,83"/>
 <area shape="rect" id="node5" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="371,107,442,133"/>

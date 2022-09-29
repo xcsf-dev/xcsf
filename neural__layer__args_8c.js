@@ -9,7 +9,7 @@ var neural__layer__args_8c =
     [ "layer_args_json_export_inputs", "neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2", null ],
     [ "layer_args_json_export_scale", "neural__layer__args_8c.html#a1130173f486e5e1b647a65ff0822aebc", null ],
     [ "layer_args_json_export_sgd", "neural__layer__args_8c.html#a686e3f11eb7bb524effd5ddb75bdbd34", null ],
-    [ "layer_args_json_import", "neural__layer__args_8c.html#abc0a9e83a53e871f873bf08af74e7a29", null ],
+    [ "layer_args_json_import", "neural__layer__args_8c.html#a3b9aa19f760cc83a0a56abd6264e314e", null ],
     [ "layer_args_json_import_activation", "neural__layer__args_8c.html#af7388e196c27ab190bb7bb6848a7a456", null ],
     [ "layer_args_json_import_evo", "neural__layer__args_8c.html#a511a92070d5a53700d9650c1705b96ab", null ],
     [ "layer_args_json_import_inputs", "neural__layer__args_8c.html#a22a018ccf2e332aafeaa450968b96ed1", null ],

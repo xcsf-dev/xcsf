@@ -4,7 +4,7 @@ var dgp_8h =
     [ "Graph", "structGraph.html", "structGraph" ],
     [ "graph_args_init", "dgp_8h.html#a6b7a635ba70d5560f6b3ce23433fe56b", null ],
     [ "graph_args_json_export", "dgp_8h.html#a198a40a55adefa4b97666309231694c3", null ],
-    [ "graph_args_json_import", "dgp_8h.html#a3208cc6d02deae06dd2faea89f32f873", null ],
+    [ "graph_args_json_import", "dgp_8h.html#ae834119f454807d1ce8864535b907f53", null ],
     [ "graph_args_load", "dgp_8h.html#a4e160f3ae49e0876bd5d9d03cff31a79", null ],
     [ "graph_args_save", "dgp_8h.html#a0a55dcba4f8e944721e7dad5c03fcaa7", null ],
     [ "graph_copy", "dgp_8h.html#a3c327dd571aed17fc3683aa112fbd405", null ],

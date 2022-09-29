@@ -65,7 +65,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
+<g id="a_node10"><a xlink:href="loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
 <polygon fill="none" stroke="black" points="113.5,-133.5 113.5,-152.5 190.5,-152.5 190.5,-133.5 113.5,-133.5"/>
 <text text-anchor="middle" x="152" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_set_func</text>
 </a>

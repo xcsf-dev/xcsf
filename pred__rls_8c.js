@@ -10,7 +10,7 @@ var pred__rls_8c =
     [ "pred_rls_load", "pred__rls_8c.html#a8d82d194af63bd7feb392c8b8fc17d6c", null ],
     [ "pred_rls_mutate", "pred__rls_8c.html#af83df202f9ceb8362465fef7629aa254", null ],
     [ "pred_rls_param_json_export", "pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b", null ],
-    [ "pred_rls_param_json_import", "pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da", null ],
+    [ "pred_rls_param_json_import", "pred__rls_8c.html#addc89af1656f21fec298ad5f04d2573d", null ],
     [ "pred_rls_print", "pred__rls_8c.html#aa5526cf7cff8a24e3f3d65e924cb47ec", null ],
     [ "pred_rls_save", "pred__rls_8c.html#afae7e84466de607530e838e1322d9dca", null ],
     [ "pred_rls_size", "pred__rls_8c.html#a4107d40787ef2ee662c58dc4c122b90f", null ],

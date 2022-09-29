@@ -1,6 +1,6 @@
 <map id="loss_type_as_int" name="loss_type_as_int">
 <area shape="rect" id="node1" title="Returns the integer representation of a loss type given a name." alt="" coords="845,31,965,57"/>
-<area shape="rect" id="node2" href="$param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="651,23,797,65"/>
+<area shape="rect" id="node2" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="651,23,797,65"/>
 <area shape="rect" id="node3" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="421,5,603,32"/>
 <area shape="rect" id="node7" href="$classXCS.html#a049260ddd3681d8f475d4102d3a93cb4" title=" " alt="" coords="443,56,581,83"/>
 <area shape="rect" id="node4" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,5,373,32"/>

@@ -2,6 +2,7 @@ var classXCS =
 [
     [ "XCS", "classXCS.html#af1010afd63843f86ad1dd81fade9bd72", null ],
     [ "ae_to_classifier", "classXCS.html#ad73009d926d395ee03bf7586f194fcbe", null ],
+    [ "catch_error", "classXCS.html#a44b546a4ee6d9e43e1e28852bb1de5e6", null ],
     [ "decision", "classXCS.html#ac6003941812bd2c70ea443dd63bd59d0", null ],
     [ "dict_to_json", "classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11", null ],
     [ "end_step", "classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d", null ],

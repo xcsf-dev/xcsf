@@ -12,270 +12,285 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Sets the general parameters from a cJSON object.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-114.5 0,-133.5 136,-133.5 136,-114.5 0,-114.5"/>
-<text text-anchor="middle" x="68" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_json_import_general</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-133.5 0,-152.5 136,-152.5 136,-133.5 0,-133.5"/>
+<text text-anchor="middle" x="68" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_json_import_general</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="param_8c.html#af3da5d5549f174e35653ca6834e16c96" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="187,-240.5 187,-259.5 305,-259.5 305,-240.5 187,-240.5"/>
-<text text-anchor="middle" x="246" y="-247.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_huber_delta</text>
+<g id="a_node2"><a xlink:href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7" target="_top" xlink:title="Catches parameter value errors.">
+<polygon fill="none" stroke="black" points="213.5,-278.5 213.5,-297.5 278.5,-297.5 278.5,-278.5 213.5,-278.5"/>
+<text text-anchor="middle" x="246" y="-285.5" font-family="Helvetica,sans-Serif" font-size="10.00">catch_error</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M75.46,-133.7C90.04,-154.8 127.72,-205.08 172,-231 175.86,-233.26 179.98,-235.25 184.23,-237.01"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="183.1,-240.32 193.69,-240.5 185.52,-233.75 183.1,-240.32"/>
+<path fill="none" stroke="midnightblue" d="M74.02,-152.63C86.88,-176.35 123.48,-237.89 172,-269 181.45,-275.06 192.76,-279.19 203.63,-282.01"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="202.88,-285.43 213.41,-284.24 204.44,-278.6 202.88,-285.43"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="191,-191 191,-221 301,-221 301,-191 191,-191"/>
-<text text-anchor="start" x="199" y="-209" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_loss_func</text>
-<text text-anchor="middle" x="246" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
+<g id="a_node3"><a xlink:href="param_8c.html#a8a701e38369c61ee86e1572eae56cd04" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="187,-240.5 187,-259.5 305,-259.5 305,-240.5 187,-240.5"/>
+<text text-anchor="middle" x="246" y="-247.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_huber_delta</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M84.27,-133.57C104.01,-145.67 139.68,-166.66 172,-181 176.97,-183.21 182.21,-185.34 187.49,-187.38"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="186.43,-190.71 197.02,-190.92 188.86,-184.15 186.43,-190.71"/>
+<path fill="none" stroke="midnightblue" d="M77.33,-152.55C93.65,-170.65 131.75,-210.01 172,-231 176.34,-233.27 180.98,-235.27 185.72,-237.05"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="184.97,-240.49 195.56,-240.39 187.21,-233.87 184.97,-240.49"/>
 </g>
-<!-- Node14 -->
-<g id="node14" class="node">
-<title>Node14</title>
-<g id="a_node14"><a xlink:href="param_8c.html#addd4cd1ef9faf5c05ad450d905bde1fc" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="189.5,-152.5 189.5,-171.5 302.5,-171.5 302.5,-152.5 189.5,-152.5"/>
-<text text-anchor="middle" x="246" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_max_trials</text>
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="param_8c.html#ac445df670c4171f1830eeb60967a03ad" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="191,-191 191,-221 301,-221 301,-191 191,-191"/>
+<text text-anchor="start" x="199" y="-209" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_loss_func</text>
+<text text-anchor="middle" x="246" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node14 -->
-<g id="edge14" class="edge">
-<title>Node1&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M113.41,-133.59C136.95,-138.67 166.06,-144.96 190.9,-150.32"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="190.39,-153.79 200.91,-152.48 191.87,-146.95 190.39,-153.79"/>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M94.34,-152.54C115.15,-160.32 145.42,-171.55 172,-181 178.05,-183.15 184.39,-185.37 190.7,-187.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="189.95,-191.01 200.55,-190.96 192.24,-184.39 189.95,-191.01"/>
 </g>
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="param_8c.html#a9f0e1a7a7a073f46fcfbf6634b8b32da" target="_top" xlink:title="Sets the number of OMP threads.">
-<polygon fill="none" stroke="black" points="172,-114.5 172,-133.5 320,-133.5 320,-114.5 172,-114.5"/>
-<text text-anchor="middle" x="246" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_omp_num_threads</text>
+<g id="a_node15"><a xlink:href="param_8c.html#a388a95e329f834d2771efb09acc84d60" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="189.5,-152.5 189.5,-171.5 302.5,-171.5 302.5,-152.5 189.5,-152.5"/>
+<text text-anchor="middle" x="246" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_max_trials</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node15 -->
 <g id="edge15" class="edge">
 <title>Node1&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M136.04,-124C144.49,-124 153.21,-124 161.87,-124"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="161.99,-127.5 171.99,-124 161.99,-120.5 161.99,-127.5"/>
+<path fill="none" stroke="midnightblue" d="M136.04,-150.24C150.19,-151.76 165.11,-153.38 179.21,-154.9"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="178.99,-158.39 189.31,-155.99 179.74,-151.43 178.99,-158.39"/>
 </g>
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="param_8c.html#a9bffca041153cd16843fee676ac47b75" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="191,-76.5 191,-95.5 301,-95.5 301,-76.5 191,-76.5"/>
-<text text-anchor="middle" x="246" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_perf_trials</text>
+<g id="a_node16"><a xlink:href="param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c" target="_top" xlink:title="Sets the number of OMP threads.">
+<polygon fill="none" stroke="black" points="172,-114.5 172,-133.5 320,-133.5 320,-114.5 172,-114.5"/>
+<text text-anchor="middle" x="246" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_omp_num_threads</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node16 -->
 <g id="edge16" class="edge">
 <title>Node1&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M113.41,-114.41C136.95,-109.33 166.06,-103.04 190.9,-97.68"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="191.87,-101.05 200.91,-95.52 190.39,-94.21 191.87,-101.05"/>
+<path fill="none" stroke="midnightblue" d="M136.04,-135.76C144.49,-134.85 153.21,-133.91 161.87,-132.97"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="162.42,-136.44 171.99,-131.88 161.67,-129.48 162.42,-136.44"/>
 </g>
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="param_8c.html#a1468ad94460124bbd3c0982f5a8c5d0a" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="195.5,-38.5 195.5,-57.5 296.5,-57.5 296.5,-38.5 195.5,-38.5"/>
-<text text-anchor="middle" x="246" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_pop_init</text>
+<g id="a_node17"><a xlink:href="param_8c.html#a0b53049abf12592f085fa578c9f4546d" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="191,-76.5 191,-95.5 301,-95.5 301,-76.5 191,-76.5"/>
+<text text-anchor="middle" x="246" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_perf_trials</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node17 -->
 <g id="edge17" class="edge">
 <title>Node1&#45;&gt;Node17</title>
-<path fill="none" stroke="midnightblue" d="M83.43,-114.48C102.85,-102.03 138.79,-80.27 172,-67 177.99,-64.61 184.37,-62.44 190.77,-60.48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="192.16,-63.73 200.8,-57.6 190.23,-57 192.16,-63.73"/>
+<path fill="none" stroke="midnightblue" d="M92.91,-133.41C113.64,-125.29 144.54,-113.62 172,-105 179.56,-102.63 187.61,-100.32 195.52,-98.17"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="196.63,-101.5 205.4,-95.55 194.83,-94.73 196.63,-101.5"/>
 </g>
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="param_8c.html#aa8c87e81df977c35fe8c02cb0c59636f" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="192.5,-0.5 192.5,-19.5 299.5,-19.5 299.5,-0.5 192.5,-0.5"/>
-<text text-anchor="middle" x="246" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_pop_size</text>
+<g id="a_node18"><a xlink:href="param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="195.5,-38.5 195.5,-57.5 296.5,-57.5 296.5,-38.5 195.5,-38.5"/>
+<text text-anchor="middle" x="246" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_pop_init</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node18 -->
 <g id="edge18" class="edge">
 <title>Node1&#45;&gt;Node18</title>
-<path fill="none" stroke="midnightblue" d="M76.67,-114.26C92.4,-94.96 130.37,-51.73 172,-29 176.16,-26.73 180.61,-24.72 185.18,-22.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="186.38,-26.23 194.66,-19.61 184.07,-19.62 186.38,-26.23"/>
+<path fill="none" stroke="midnightblue" d="M79.24,-133.31C96.82,-117.2 134.49,-84.89 172,-67 176.95,-64.64 182.23,-62.54 187.61,-60.69"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="188.86,-63.96 197.33,-57.6 186.74,-57.29 188.86,-63.96"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
-<polygon fill="none" stroke="black" points="362.5,-215.5 362.5,-234.5 439.5,-234.5 439.5,-215.5 362.5,-215.5"/>
-<text text-anchor="middle" x="401" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_set_func</text>
+<!-- Node19 -->
+<g id="node19" class="node">
+<title>Node19</title>
+<g id="a_node19"><a xlink:href="param_8c.html#a389d74d2c11c8cd13d9cf2a895026cf7" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="192.5,-0.5 192.5,-19.5 299.5,-19.5 299.5,-0.5 192.5,-0.5"/>
+<text text-anchor="middle" x="246" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_pop_size</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M301.37,-212.75C317.86,-214.8 335.85,-217.03 351.89,-219.03"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="351.77,-222.54 362.12,-220.3 352.63,-215.59 351.77,-222.54"/>
-</g>
-<!-- Node13 -->
-<g id="node13" class="node">
-<title>Node13</title>
-<g id="a_node13"><a xlink:href="loss_8c.html#a6b76e413b2123f456c6656f0555208e1" target="_top" xlink:title="Returns the integer representation of a loss type given a name.">
-<polygon fill="none" stroke="black" points="356,-177.5 356,-196.5 446,-196.5 446,-177.5 356,-177.5"/>
-<text text-anchor="middle" x="401" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_type_as_int</text>
-</a>
-</g>
-</g>
-<!-- Node3&#45;&gt;Node13 -->
-<g id="edge13" class="edge">
-<title>Node3&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M301.37,-199.25C315.75,-197.46 331.27,-195.54 345.64,-193.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="346.38,-197.19 355.87,-192.48 345.52,-190.24 346.38,-197.19"/>
+<!-- Node1&#45;&gt;Node19 -->
+<g id="edge19" class="edge">
+<title>Node1&#45;&gt;Node19</title>
+<path fill="none" stroke="midnightblue" d="M74.87,-133.33C88.81,-111.23 126.16,-56.81 172,-29 175.59,-26.82 179.43,-24.89 183.39,-23.18"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="184.73,-26.42 192.81,-19.57 182.22,-19.88 184.73,-26.42"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" target="_top" xlink:title="Binary logistic log loss for binary&#45;class classification.">
-<polygon fill="none" stroke="black" points="482,-329.5 482,-348.5 566,-348.5 566,-329.5 482,-329.5"/>
-<text text-anchor="middle" x="524" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_binary_log</text>
+<g id="a_node5"><a xlink:href="loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
+<polygon fill="none" stroke="black" points="362.5,-215.5 362.5,-234.5 439.5,-234.5 439.5,-215.5 362.5,-215.5"/>
+<text text-anchor="middle" x="401" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_set_func</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M407.96,-234.55C419.96,-253.14 448.76,-294.6 482,-320 484.07,-321.58 486.3,-323.08 488.6,-324.48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="487.26,-327.73 497.72,-329.4 490.59,-321.57 487.26,-327.73"/>
+<path fill="none" stroke="midnightblue" d="M301.37,-212.75C317.86,-214.8 335.85,-217.03 351.89,-219.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="351.77,-222.54 362.12,-220.3 352.63,-215.59 351.77,-222.54"/>
+</g>
+<!-- Node14 -->
+<g id="node14" class="node">
+<title>Node14</title>
+<g id="a_node14"><a xlink:href="loss_8c.html#a6b76e413b2123f456c6656f0555208e1" target="_top" xlink:title="Returns the integer representation of a loss type given a name.">
+<polygon fill="none" stroke="black" points="356,-177.5 356,-196.5 446,-196.5 446,-177.5 356,-177.5"/>
+<text text-anchor="middle" x="401" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_type_as_int</text>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node14 -->
+<g id="edge14" class="edge">
+<title>Node4&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M301.37,-199.25C315.75,-197.46 331.27,-195.54 345.64,-193.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="346.38,-197.19 355.87,-192.48 345.52,-190.24 346.38,-197.19"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" target="_top" xlink:title="Huber loss function.">
+<g id="a_node6"><a xlink:href="loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" target="_top" xlink:title="Binary logistic log loss for binary&#45;class classification.">
+<polygon fill="none" stroke="black" points="482,-329.5 482,-348.5 566,-348.5 566,-329.5 482,-329.5"/>
+<text text-anchor="middle" x="524" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_binary_log</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M407.96,-234.55C419.96,-253.14 448.76,-294.6 482,-320 484.07,-321.58 486.3,-323.08 488.6,-324.48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="487.26,-327.73 497.72,-329.4 490.59,-321.57 487.26,-327.73"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" target="_top" xlink:title="Huber loss function.">
 <polygon fill="none" stroke="black" points="492,-291.5 492,-310.5 556,-310.5 556,-291.5 492,-291.5"/>
 <text text-anchor="middle" x="524" y="-298.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_huber</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node4&#45;&gt;Node6</title>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node5&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M414,-234.62C429.24,-246.6 456.64,-267.26 482,-282 485.01,-283.75 488.2,-285.46 491.43,-287.1"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="489.96,-290.27 500.49,-291.48 493.01,-283.97 489.96,-290.27"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="loss_8c.html#a5b0fc07896aaa302b61213c450874d49" target="_top" xlink:title="Logistic log loss for multi&#45;class classification.">
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="loss_8c.html#a5b0fc07896aaa302b61213c450874d49" target="_top" xlink:title="Logistic log loss for multi&#45;class classification.">
 <polygon fill="none" stroke="black" points="497.5,-253.5 497.5,-272.5 550.5,-272.5 550.5,-253.5 497.5,-253.5"/>
 <text text-anchor="middle" x="524" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_log</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node4&#45;&gt;Node7</title>
+<!-- Node5&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node5&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M432.53,-234.59C449.27,-239.85 470.1,-246.39 487.56,-251.87"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="486.8,-255.3 497.39,-254.96 488.89,-248.62 486.8,-255.3"/>
 </g>
-<!-- Node8 -->
-<g id="node8" class="node">
-<title>Node8</title>
-<g id="a_node8"><a xlink:href="loss_8c.html#a7f1e236d219a5f551408639674b4a24a" target="_top" xlink:title="Mean absolute error loss function.">
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="loss_8c.html#a7f1e236d219a5f551408639674b4a24a" target="_top" xlink:title="Mean absolute error loss function.">
 <polygon fill="none" stroke="black" points="494.5,-215.5 494.5,-234.5 553.5,-234.5 553.5,-215.5 494.5,-215.5"/>
 <text text-anchor="middle" x="524" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_mae</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node8 -->
-<g id="edge7" class="edge">
-<title>Node4&#45;&gt;Node8</title>
+<!-- Node5&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node5&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M439.62,-225C453.8,-225 469.95,-225 484.23,-225"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="484.25,-228.5 494.25,-225 484.25,-221.5 484.25,-228.5"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" target="_top" xlink:title="Mean squared error loss function.">
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:href="loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" target="_top" xlink:title="Mean squared error loss function.">
 <polygon fill="none" stroke="black" points="602,-158.5 602,-177.5 661,-177.5 661,-158.5 602,-158.5"/>
 <text text-anchor="middle" x="631.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_mse</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node9 -->
-<g id="edge8" class="edge">
-<title>Node4&#45;&gt;Node9</title>
+<!-- Node5&#45;&gt;Node10 -->
+<g id="edge9" class="edge">
+<title>Node5&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M439.73,-215.59C481.77,-205.1 549.39,-188.23 591.82,-177.65"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="592.91,-180.98 601.77,-175.17 591.22,-174.19 592.91,-180.98"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node">
-<title>Node10</title>
-<g id="a_node10"><a xlink:href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23" target="_top" xlink:title="One&#45;hot classification error.">
+<!-- Node11 -->
+<g id="node11" class="node">
+<title>Node11</title>
+<g id="a_node11"><a xlink:href="loss_8c.html#a38e786a5c46be2519aae23287c92cc23" target="_top" xlink:title="One&#45;hot classification error.">
 <polygon fill="none" stroke="black" points="489.5,-101.5 489.5,-120.5 558.5,-120.5 558.5,-101.5 489.5,-101.5"/>
 <text text-anchor="middle" x="524" y="-108.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_onehot</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node10 -->
-<g id="edge9" class="edge">
-<title>Node4&#45;&gt;Node10</title>
+<!-- Node5&#45;&gt;Node11 -->
+<g id="edge10" class="edge">
+<title>Node5&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M432.21,-215.44C437.21,-212.93 442.05,-209.82 446,-206 472.88,-180.03 455.46,-156.32 482,-130 483.42,-128.59 484.96,-127.27 486.59,-126.05"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="488.65,-128.89 495.27,-120.61 484.94,-122.95 488.65,-128.89"/>
 </g>
-<!-- Node12 -->
-<g id="node12" class="node">
-<title>Node12</title>
-<g id="a_node12"><a xlink:href="loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" target="_top" xlink:title="Root mean squared error loss function.">
+<!-- Node13 -->
+<g id="node13" class="node">
+<title>Node13</title>
+<g id="a_node13"><a xlink:href="loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" target="_top" xlink:title="Root mean squared error loss function.">
 <polygon fill="none" stroke="black" points="493,-139.5 493,-158.5 555,-158.5 555,-139.5 493,-139.5"/>
 <text text-anchor="middle" x="524" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_rmse</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node12 -->
-<g id="edge11" class="edge">
-<title>Node4&#45;&gt;Node12</title>
+<!-- Node5&#45;&gt;Node13 -->
+<g id="edge12" class="edge">
+<title>Node5&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M428.33,-215.33C434.34,-212.67 440.55,-209.53 446,-206 464.22,-194.2 464.54,-185.89 482,-173 486.29,-169.84 491.02,-166.74 495.7,-163.88"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="497.66,-166.79 504.51,-158.72 494.12,-160.76 497.66,-166.79"/>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node">
-<title>Node11</title>
-<g id="a_node11"><a xlink:href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274" target="_top" xlink:title="Returns the index of the largest element in vector X.">
+<!-- Node12 -->
+<g id="node12" class="node">
+<title>Node12</title>
+<g id="a_node12"><a xlink:href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274" target="_top" xlink:title="Returns the index of the largest element in vector X.">
 <polygon fill="none" stroke="black" points="607,-101.5 607,-120.5 656,-120.5 656,-101.5 607,-101.5"/>
 <text text-anchor="middle" x="631.5" y="-108.5" font-family="Helvetica,sans-Serif" font-size="10.00">argmax</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge10" class="edge">
-<title>Node10&#45;&gt;Node11</title>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge11" class="edge">
+<title>Node11&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M558.67,-111C570.8,-111 584.48,-111 596.62,-111"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="596.82,-114.5 606.82,-111 596.82,-107.5 596.82,-114.5"/>
 </g>
-<!-- Node12&#45;&gt;Node9 -->
-<g id="edge12" class="edge">
-<title>Node12&#45;&gt;Node9</title>
+<!-- Node13&#45;&gt;Node10 -->
+<g id="edge13" class="edge">
+<title>Node13&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M555.23,-154.44C566.53,-156.48 579.53,-158.82 591.52,-160.98"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="591.25,-164.49 601.72,-162.82 592.49,-157.6 591.25,-164.49"/>
 </g>

@@ -13,7 +13,7 @@ var act__neural_8h =
     [ "act_neural_load", "act__neural_8h.html#a241289b5c61dec98b854ee24fdf16d67", null ],
     [ "act_neural_mutate", "act__neural_8h.html#af4f2ea0a36b3c72e3c80b7d5903458a8", null ],
     [ "act_neural_param_defaults", "act__neural_8h.html#ae9c1117ca77c9dbe5b509c508483d56b", null ],
-    [ "act_neural_param_json_import", "act__neural_8h.html#a8733352425cce2fa68d995b3a991b057", null ],
+    [ "act_neural_param_json_import", "act__neural_8h.html#af2696c8b843a0a6a9c09df4b988df39a", null ],
     [ "act_neural_print", "act__neural_8h.html#a63ce7b4880f83e8db3f13e3457d96a6c", null ],
     [ "act_neural_save", "act__neural_8h.html#af726a520296e74a5e31fb6c6eb6006a6", null ],
     [ "act_neural_update", "act__neural_8h.html#a823672e09b0861a562d28452e2d45d2c", null ],

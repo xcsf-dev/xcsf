@@ -80,7 +80,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
+<g id="a_node5"><a xlink:href="loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
 <polygon fill="none" stroke="black" points="650,-142.5 650,-161.5 727,-161.5 727,-142.5 650,-142.5"/>
 <text text-anchor="middle" x="688.5" y="-149.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_set_func</text>
 </a>
@@ -125,7 +125,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" target="_top" xlink:title=" ">
+<g id="a_node19"><a xlink:href="param_8c.html#ac445df670c4171f1830eeb60967a03ad" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="497,-115 497,-145 607,-145 607,-115 497,-115"/>
 <text text-anchor="start" x="505" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">param_set_loss_func</text>
 <text text-anchor="middle" x="552" y="-122" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>

@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('param_8h.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">param.h File Reference</div>  </div>
@@ -104,18 +105,28 @@ $(document).ready(function(){initNavTree('param_8h.html',''); initResizable(); }
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for param.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h__incl.svg" width="1168" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h__incl.svg" width="1168" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h__dep__incl.svg" width="1078" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h__dep__incl.svg" width="1078" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="param_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae561a947f534ab7552dfdde45e815a74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ae561a947f534ab7552dfdde45e815a74">PARAM_INVALID</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="memdesc:ae561a947f534ab7552dfdde45e815a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code for invalid parameter.  <a href="param_8h.html#ae561a947f534ab7552dfdde45e815a74">More...</a><br /></td></tr>
+<tr class="separator:ae561a947f534ab7552dfdde45e815a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90c3975df37791f01ad4852f61ba1650"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a90c3975df37791f01ad4852f61ba1650">PARAM_NOT_FOUND</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="memdesc:a90c3975df37791f01ad4852f61ba1650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code for unable to find parameter.  <a href="param_8h.html#a90c3975df37791f01ad4852f61ba1650">More...</a><br /></td></tr>
+<tr class="separator:a90c3975df37791f01ad4852f61ba1650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4b33bfebb79eab0f51a1bd808797bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aaa4b33bfebb79eab0f51a1bd808797bb">PARAM_FOUND</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memdesc:aaa4b33bfebb79eab0f51a1bd808797bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code for a found parameter.  <a href="param_8h.html#aaa4b33bfebb79eab0f51a1bd808797bb">More...</a><br /></td></tr>
+<tr class="separator:aaa4b33bfebb79eab0f51a1bd808797bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a92d92fc270b6ed2e2637ccb590eb15d5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a92d92fc270b6ed2e2637ccb590eb15d5">param_json_export</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
@@ -138,72 +149,127 @@ Functions</h2></td></tr>
 <tr class="memitem:aeee8da56faaeace4ed44adc45a42d359"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aeee8da56faaeace4ed44adc45a42d359">param_save</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, FILE *fp)</td></tr>
 <tr class="memdesc:aeee8da56faaeace4ed44adc45a42d359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure to a file.  <a href="param_8h.html#aeee8da56faaeace4ed44adc45a42d359">More...</a><br /></td></tr>
 <tr class="separator:aeee8da56faaeace4ed44adc45a42d359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f0e1a7a7a073f46fcfbf6634b8b32da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a9f0e1a7a7a073f46fcfbf6634b8b32da">param_set_omp_num_threads</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="memdesc:a9f0e1a7a7a073f46fcfbf6634b8b32da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of OMP threads.  <a href="param_8h.html#a9f0e1a7a7a073f46fcfbf6634b8b32da">More...</a><br /></td></tr>
-<tr class="separator:a9f0e1a7a7a073f46fcfbf6634b8b32da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1468ad94460124bbd3c0982f5a8c5d0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a1468ad94460124bbd3c0982f5a8c5d0a">param_set_pop_init</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
-<tr class="separator:a1468ad94460124bbd3c0982f5a8c5d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd4cd1ef9faf5c05ad450d905bde1fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#addd4cd1ef9faf5c05ad450d905bde1fc">param_set_max_trials</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:addd4cd1ef9faf5c05ad450d905bde1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bffca041153cd16843fee676ac47b75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a9bffca041153cd16843fee676ac47b75">param_set_perf_trials</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:a9bffca041153cd16843fee676ac47b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8c87e81df977c35fe8c02cb0c59636f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aa8c87e81df977c35fe8c02cb0c59636f">param_set_pop_size</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:aa8c87e81df977c35fe8c02cb0c59636f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a98b432d0cdc32b5f333d918b243b13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a7a98b432d0cdc32b5f333d918b243b13">param_set_loss_func_string</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const char *a)</td></tr>
-<tr class="separator:a7a98b432d0cdc32b5f333d918b243b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ab1b36bfc8ed140a530b64bd851a05c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a7ab1b36bfc8ed140a530b64bd851a05c">param_set_omp_num_threads</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="memdesc:a7ab1b36bfc8ed140a530b64bd851a05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of OMP threads.  <a href="param_8h.html#a7ab1b36bfc8ed140a530b64bd851a05c">More...</a><br /></td></tr>
+<tr class="separator:a7ab1b36bfc8ed140a530b64bd851a05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe9a688ddf3a0df2b976bdedf1ab66b7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#afe9a688ddf3a0df2b976bdedf1ab66b7">param_set_pop_init</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:afe9a688ddf3a0df2b976bdedf1ab66b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388a95e329f834d2771efb09acc84d60"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a388a95e329f834d2771efb09acc84d60">param_set_max_trials</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a388a95e329f834d2771efb09acc84d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b53049abf12592f085fa578c9f4546d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a0b53049abf12592f085fa578c9f4546d">param_set_perf_trials</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a0b53049abf12592f085fa578c9f4546d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389d74d2c11c8cd13d9cf2a895026cf7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a389d74d2c11c8cd13d9cf2a895026cf7">param_set_pop_size</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a389d74d2c11c8cd13d9cf2a895026cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac445df670c4171f1830eeb60967a03ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ac445df670c4171f1830eeb60967a03ad">param_set_loss_func_string</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const char *a)</td></tr>
+<tr class="separator:ac445df670c4171f1830eeb60967a03ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a802ad715416c4b9ac967c43f51399d75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a802ad715416c4b9ac967c43f51399d75">param_set_loss_func</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
 <tr class="separator:a802ad715416c4b9ac967c43f51399d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeb70dd4bf601eb772406ed52d9911ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#adeb70dd4bf601eb772406ed52d9911ab">param_set_stateful</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
-<tr class="separator:adeb70dd4bf601eb772406ed52d9911ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c7f760ecd35ae43a3120cfb9e55bff2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a4c7f760ecd35ae43a3120cfb9e55bff2">param_set_compaction</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
-<tr class="separator:a4c7f760ecd35ae43a3120cfb9e55bff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3da5d5549f174e35653ca6834e16c96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#af3da5d5549f174e35653ca6834e16c96">param_set_huber_delta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:af3da5d5549f174e35653ca6834e16c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4926a3ec09cbe9dc1feace3a2e87376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ae4926a3ec09cbe9dc1feace3a2e87376">param_set_gamma</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:ae4926a3ec09cbe9dc1feace3a2e87376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe3e53803e5cdb2d9c812a0025c68449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#abe3e53803e5cdb2d9c812a0025c68449">param_set_teletransportation</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:abe3e53803e5cdb2d9c812a0025c68449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d623cf9e14e6a9a450f6f2f7f20376e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a2d623cf9e14e6a9a450f6f2f7f20376e">param_set_p_explore</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:a2d623cf9e14e6a9a450f6f2f7f20376e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182ee50f5c048bc54246480e1098d8f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a182ee50f5c048bc54246480e1098d8f2">param_set_alpha</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:a182ee50f5c048bc54246480e1098d8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af77999a550e9301daff82311b7c610e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#af77999a550e9301daff82311b7c610e6">param_set_beta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:af77999a550e9301daff82311b7c610e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fac691b5fd2e113223368bd70927259"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a9fac691b5fd2e113223368bd70927259">param_set_delta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:a9fac691b5fd2e113223368bd70927259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa456227887cdbc6101fd041edd3c47d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aaa456227887cdbc6101fd041edd3c47d">param_set_e0</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:aaa456227887cdbc6101fd041edd3c47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60297014c75d27b96d36bac6eb00e569"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a60297014c75d27b96d36bac6eb00e569">param_set_init_error</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:a60297014c75d27b96d36bac6eb00e569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe1d8c81dd7d8a229c53c0f0324612e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#afe1d8c81dd7d8a229c53c0f0324612e1">param_set_init_fitness</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:afe1d8c81dd7d8a229c53c0f0324612e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac94d05c5e4828498e7006e2ab31ce050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ac94d05c5e4828498e7006e2ab31ce050">param_set_nu</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
-<tr class="separator:ac94d05c5e4828498e7006e2ab31ce050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcfac120f601c97790b51a8169146ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#afcfac120f601c97790b51a8169146ab4">param_set_theta_del</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:afcfac120f601c97790b51a8169146ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef1c757a3e9cfe6fe3fdf42e667f6f60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aef1c757a3e9cfe6fe3fdf42e667f6f60">param_set_m_probation</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:aef1c757a3e9cfe6fe3fdf42e667f6f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d8681adea9f23f7f0fe437edad2a10d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a2d8681adea9f23f7f0fe437edad2a10d">param_set_set_subsumption</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
-<tr class="separator:a2d8681adea9f23f7f0fe437edad2a10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c265c2d45caf36ed96e1da113f9f971"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a5c265c2d45caf36ed96e1da113f9f971">param_set_theta_sub</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:a5c265c2d45caf36ed96e1da113f9f971"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58e52d66d93a41c3f298b78bf4c9c34c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a58e52d66d93a41c3f298b78bf4c9c34c">param_set_x_dim</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:a58e52d66d93a41c3f298b78bf4c9c34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a966c3e54f2e1977dd7b4776723efa2b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a966c3e54f2e1977dd7b4776723efa2b4">param_set_explore</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
-<tr class="separator:a966c3e54f2e1977dd7b4776723efa2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18f68adfb73dad5267d0074b02fbdf50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a18f68adfb73dad5267d0074b02fbdf50">param_set_y_dim</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:a18f68adfb73dad5267d0074b02fbdf50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc268a6c862be5031bc63ab4d299e05b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#afc268a6c862be5031bc63ab4d299e05b">param_set_n_actions</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
-<tr class="separator:afc268a6c862be5031bc63ab4d299e05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c592b2427a801cb0eda3fee504d38c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a21c592b2427a801cb0eda3fee504d38c">param_set_stateful</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:a21c592b2427a801cb0eda3fee504d38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a967e1c12f2eab4d5ed33fe28fb49a379"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a967e1c12f2eab4d5ed33fe28fb49a379">param_set_compaction</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:a967e1c12f2eab4d5ed33fe28fb49a379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a701e38369c61ee86e1572eae56cd04"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a8a701e38369c61ee86e1572eae56cd04">param_set_huber_delta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a8a701e38369c61ee86e1572eae56cd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8141b90d111aad2e2ea30102bb0805"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a8d8141b90d111aad2e2ea30102bb0805">param_set_gamma</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a8d8141b90d111aad2e2ea30102bb0805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a926dea96f312414ab1caf1d3e284f696"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a926dea96f312414ab1caf1d3e284f696">param_set_teletransportation</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a926dea96f312414ab1caf1d3e284f696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c004ce6cdca4dfecfa34dea70b2619"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#aa8c004ce6cdca4dfecfa34dea70b2619">param_set_p_explore</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:aa8c004ce6cdca4dfecfa34dea70b2619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf299ae8e850666d58305bb50fe056c9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#acf299ae8e850666d58305bb50fe056c9">param_set_alpha</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:acf299ae8e850666d58305bb50fe056c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d38692b0d27a08662a86830c29ab727"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a2d38692b0d27a08662a86830c29ab727">param_set_beta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a2d38692b0d27a08662a86830c29ab727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82f114a1523967276c78a391c71bf99"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ae82f114a1523967276c78a391c71bf99">param_set_delta</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:ae82f114a1523967276c78a391c71bf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a1284127fce6d44749e9e3b17ae980"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a01a1284127fce6d44749e9e3b17ae980">param_set_e0</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a01a1284127fce6d44749e9e3b17ae980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9b2470f356ee620ac6d6b8e384c882"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a9a9b2470f356ee620ac6d6b8e384c882">param_set_init_error</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a9a9b2470f356ee620ac6d6b8e384c882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c53a7e10246bdeec2df8463b5a4da45"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a7c53a7e10246bdeec2df8463b5a4da45">param_set_init_fitness</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a7c53a7e10246bdeec2df8463b5a4da45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13e7d4b4ec0812cbadeec790bb3b75fb"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a13e7d4b4ec0812cbadeec790bb3b75fb">param_set_nu</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double a)</td></tr>
+<tr class="separator:a13e7d4b4ec0812cbadeec790bb3b75fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8cd76a96bdd278cbd0fa1be38eecb73"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ab8cd76a96bdd278cbd0fa1be38eecb73">param_set_theta_del</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:ab8cd76a96bdd278cbd0fa1be38eecb73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550d91f8aaa6157a28a268064c718c8e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a550d91f8aaa6157a28a268064c718c8e">param_set_m_probation</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a550d91f8aaa6157a28a268064c718c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2cfd50d3d5b606fdf60e38139f2a8d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a2c2cfd50d3d5b606fdf60e38139f2a8d">param_set_set_subsumption</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:a2c2cfd50d3d5b606fdf60e38139f2a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc99ec312507b8f99f37cf87e3ab8a56"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#afc99ec312507b8f99f37cf87e3ab8a56">param_set_theta_sub</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:afc99ec312507b8f99f37cf87e3ab8a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5cca726a15c57daed5e2edbed5de528"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#ae5cca726a15c57daed5e2edbed5de528">param_set_x_dim</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:ae5cca726a15c57daed5e2edbed5de528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429d77deb33cf59f7e63ab7f258b176c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a429d77deb33cf59f7e63ab7f258b176c">param_set_explore</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const bool a)</td></tr>
+<tr class="separator:a429d77deb33cf59f7e63ab7f258b176c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5cac72b8e4061a76f365e19a05da2a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#a6b5cac72b8e4061a76f365e19a05da2a">param_set_y_dim</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:a6b5cac72b8e4061a76f365e19a05da2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa2456db9cee78f53e3298b904ad2fc"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="param_8h.html#abfa2456db9cee78f53e3298b904ad2fc">param_set_n_actions</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int a)</td></tr>
+<tr class="separator:abfa2456db9cee78f53e3298b904ad2fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for setting and printing parameters. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2022. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="param_8h_source.html">param.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aaa4b33bfebb79eab0f51a1bd808797bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4b33bfebb79eab0f51a1bd808797bb">&#9670;&nbsp;</a></span>PARAM_FOUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PARAM_FOUND&#160;&#160;&#160;(1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Code for a found parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="param_8h_source.html#l00031">31</a> of file <a class="el" href="param_8h_source.html">param.h</a>.</p>
+
+</div>
+</div>
+<a id="ae561a947f534ab7552dfdde45e815a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae561a947f534ab7552dfdde45e815a74">&#9670;&nbsp;</a></span>PARAM_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PARAM_INVALID&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Code for invalid parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="param_8h_source.html#l00029">29</a> of file <a class="el" href="param_8h_source.html">param.h</a>.</p>
+
+</div>
+</div>
+<a id="a90c3975df37791f01ad4852f61ba1650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90c3975df37791f01ad4852f61ba1650">&#9670;&nbsp;</a></span>PARAM_NOT_FOUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PARAM_NOT_FOUND&#160;&#160;&#160;(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Code for unable to find parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="param_8h_source.html#l00030">30</a> of file <a class="el" href="param_8h_source.html">param.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="acde6664d083676244bfc1105b1712984"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acde6664d083676244bfc1105b1712984">&#9670;&nbsp;</a></span>param_free()</h2>
 
@@ -222,20 +288,18 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00088">88</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00184">action_param_free()</a>, <a class="el" href="condition_8c_source.html#l00372">cond_param_free()</a>, and <a class="el" href="prediction_8c_source.html#l00260">pred_param_free()</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00184">action_param_free()</a>, <a class="el" href="condition_8c_source.html#l00365">cond_param_free()</a>, and <a class="el" href="prediction_8c_source.html#l00252">pred_param_free()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_acde6664d083676244bfc1105b1712984_cgraph.svg" width="434" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_acde6664d083676244bfc1105b1712984_cgraph.svg" width="434" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_acde6664d083676244bfc1105b1712984_icgraph.svg" width="196" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_acde6664d083676244bfc1105b1712984_icgraph.svg" width="196" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -291,9 +355,9 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00043">43</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00092">action_param_defaults()</a>, <a class="el" href="condition_8c_source.html#l00167">cond_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="loss_8h_source.html#l00028">LOSS_MAE</a>, <a class="el" href="param_8c_source.html#l00607">param_set_alpha()</a>, <a class="el" href="param_8c_source.html#l00621">param_set_beta()</a>, <a class="el" href="param_8c_source.html#l00551">param_set_compaction()</a>, <a class="el" href="param_8c_source.html#l00635">param_set_delta()</a>, <a class="el" href="param_8c_source.html#l00649">param_set_e0()</a>, <a class="el" href="param_8c_source.html#l00568">param_set_gamma()</a>, <a class="el" href="param_8c_source.html#l00557">param_set_huber_delta()</a>, <a class="el" href="param_8c_source.html#l00660">param_set_init_error()</a>, <a class="el" href="param_8c_source.html#l00671">param_set_init_fitness()</a>, <a class="el" href="param_8c_source.html#l00530">param_set_loss_func()</a>, <a class="el" href="param_8c_source.html#l00704">param_set_m_probation()</a>, <a class="el" href="param_8c_source.html#l00490">param_set_max_trials()</a>, <a class="el" href="param_8c_source.html#l00760">param_set_n_actions()</a>, <a class="el" href="param_8c_source.html#l00682">param_set_nu()</a>, <a class="el" href="param_8c_source.html#l00467">param_set_omp_num_threads()</a>, <a class="el" href="param_8c_source.html#l00593">param_set_p_explore()</a>, <a class="el" href="param_8c_source.html#l00501">param_set_perf_trials()</a>, <a class="el" href="param_8c_source.html#l00484">param_set_pop_init()</a>, <a class="el" href="param_8c_source.html#l00512">param_set_pop_size()</a>, <a class="el" href="param_8c_source.html#l00715">param_set_set_subsumption()</a>, <a class="el" href="param_8c_source.html#l00545">param_set_stateful()</a>, <a class="el" href="param_8c_source.html#l00582">param_set_teletransportation()</a>, <a class="el" href="param_8c_source.html#l00693">param_set_theta_del()</a>, <a class="el" href="param_8c_source.html#l00721">param_set_theta_sub()</a>, <a class="el" href="param_8c_source.html#l00732">param_set_x_dim()</a>, <a class="el" href="param_8c_source.html#l00749">param_set_y_dim()</a>, and <a class="el" href="prediction_8c_source.html#l00121">pred_param_defaults()</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00091">action_param_defaults()</a>, <a class="el" href="condition_8c_source.html#l00166">cond_param_defaults()</a>, <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, <a class="el" href="loss_8h_source.html#l00029">LOSS_MAE</a>, <a class="el" href="param_8c_source.html#l00676">param_set_alpha()</a>, <a class="el" href="param_8c_source.html#l00686">param_set_beta()</a>, <a class="el" href="param_8c_source.html#l00629">param_set_compaction()</a>, <a class="el" href="param_8c_source.html#l00696">param_set_delta()</a>, <a class="el" href="param_8c_source.html#l00706">param_set_e0()</a>, <a class="el" href="param_8c_source.html#l00646">param_set_gamma()</a>, <a class="el" href="param_8c_source.html#l00636">param_set_huber_delta()</a>, <a class="el" href="param_8c_source.html#l00716">param_set_init_error()</a>, <a class="el" href="param_8c_source.html#l00726">param_set_init_fitness()</a>, <a class="el" href="param_8c_source.html#l00611">param_set_loss_func()</a>, <a class="el" href="param_8c_source.html#l00756">param_set_m_probation()</a>, <a class="el" href="param_8c_source.html#l00568">param_set_max_trials()</a>, <a class="el" href="param_8c_source.html#l00810">param_set_n_actions()</a>, <a class="el" href="param_8c_source.html#l00736">param_set_nu()</a>, <a class="el" href="param_8c_source.html#l00548">param_set_omp_num_threads()</a>, <a class="el" href="param_8c_source.html#l00666">param_set_p_explore()</a>, <a class="el" href="param_8c_source.html#l00578">param_set_perf_trials()</a>, <a class="el" href="param_8c_source.html#l00561">param_set_pop_init()</a>, <a class="el" href="param_8c_source.html#l00588">param_set_pop_size()</a>, <a class="el" href="param_8c_source.html#l00766">param_set_set_subsumption()</a>, <a class="el" href="param_8c_source.html#l00622">param_set_stateful()</a>, <a class="el" href="param_8c_source.html#l00656">param_set_teletransportation()</a>, <a class="el" href="param_8c_source.html#l00746">param_set_theta_del()</a>, <a class="el" href="param_8c_source.html#l00773">param_set_theta_sub()</a>, <a class="el" href="param_8c_source.html#l00783">param_set_x_dim()</a>, <a class="el" href="param_8c_source.html#l00800">param_set_y_dim()</a>, and <a class="el" href="prediction_8c_source.html#l00120">pred_param_defaults()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="env__csv_8c_source.html#l00160">env_csv_init()</a>, <a class="el" href="env__maze_8c_source.html#l00100">env_maze_init()</a>, <a class="el" href="env__mux_8c_source.html#l00044">env_mux_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00071">XCS::XCS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="env__csv_8c_source.html#l00160">env_csv_init()</a>, <a class="el" href="env__maze_8c_source.html#l00100">env_maze_init()</a>, <a class="el" href="env__mux_8c_source.html#l00044">env_mux_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00072">XCS::XCS()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -303,8 +367,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac8218a170803be0bcd974764e7494b0e_icgraph.svg" width="462" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac8218a170803be0bcd974764e7494b0e_icgraph.svg" width="462" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -336,20 +399,18 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00105">105</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00104">action_param_json_export()</a>, <a class="el" href="condition_8c_source.html#l00232">cond_param_json_export()</a>, <a class="el" href="ea_8c_source.html#l00256">ea_param_json_export()</a>, <a class="el" href="loss_8h_source.html#l00034">LOSS_HUBER</a>, <a class="el" href="loss_8c_source.html#l00194">loss_type_as_string()</a>, <a class="el" href="prediction_8c_source.html#l00139">pred_param_json_export()</a>, <a class="el" href="condition_8h_source.html#l00036">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00038">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_NEURAL</a>, <a class="el" href="xcsf_8h_source.html#l00040">VERSION_BUILD</a>, <a class="el" href="xcsf_8h_source.html#l00038">VERSION_MAJOR</a>, and <a class="el" href="xcsf_8h_source.html#l00039">VERSION_MINOR</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00103">action_param_json_export()</a>, <a class="el" href="condition_8c_source.html#l00232">cond_param_json_export()</a>, <a class="el" href="ea_8c_source.html#l00256">ea_param_json_export()</a>, <a class="el" href="loss_8h_source.html#l00035">LOSS_HUBER</a>, <a class="el" href="loss_8c_source.html#l00194">loss_type_as_string()</a>, <a class="el" href="prediction_8c_source.html#l00138">pred_param_json_export()</a>, <a class="el" href="condition_8h_source.html#l00037">RULE_TYPE_DGP</a>, <a class="el" href="condition_8h_source.html#l00039">RULE_TYPE_NETWORK</a>, <a class="el" href="condition_8h_source.html#l00038">RULE_TYPE_NEURAL</a>, <a class="el" href="xcsf_8h_source.html#l00040">VERSION_BUILD</a>, <a class="el" href="xcsf_8h_source.html#l00038">VERSION_MAJOR</a>, and <a class="el" href="xcsf_8h_source.html#l00039">VERSION_MINOR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01089">XCS::json_parameters()</a>, and <a class="el" href="param_8c_source.html#l00349">param_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01149">XCS::json_parameters()</a>, and <a class="el" href="param_8c_source.html#l00429">param_print()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a92d92fc270b6ed2e2637ccb590eb15d5_cgraph.svg" width="1196" height="854"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a92d92fc270b6ed2e2637ccb590eb15d5_cgraph.svg" width="1196" height="854"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a92d92fc270b6ed2e2637ccb590eb15d5_icgraph.svg" width="527" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a92d92fc270b6ed2e2637ccb590eb15d5_icgraph.svg" width="527" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -389,22 +450,21 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00305">305</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00385">385</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00132">action_param_json_import()</a>, <a class="el" href="condition_8c_source.html#l00281">cond_param_json_import()</a>, <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, <a class="el" href="param_8c_source.html#l00214">param_json_import_multi()</a>, <a class="el" href="param_8c_source.html#l00239">param_json_import_subsump()</a>, <a class="el" href="prediction_8c_source.html#l00180">pred_param_json_import()</a>, and <a class="el" href="utils_8c_source.html#l00109">utils_json_parse_check()</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>, <a class="el" href="param_8c_source.html#l00310">param_json_import_action()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, <a class="el" href="param_8c_source.html#l00335">param_json_import_condition()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, <a class="el" href="param_8c_source.html#l00219">param_json_import_multi()</a>, <a class="el" href="param_8c_source.html#l00360">param_json_import_prediction()</a>, <a class="el" href="param_8c_source.html#l00244">param_json_import_subsump()</a>, and <a class="el" href="utils_8c_source.html#l00109">utils_json_parse_check()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="config_8c_source.html#l00050">config_read()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a130260988988535419aee8abe51986c1_cgraph.svg" width="1318" height="2712"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a130260988988535419aee8abe51986c1_cgraph.svg" width="1560" height="2562"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a130260988988535419aee8abe51986c1_icgraph.svg" width="379" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a130260988988535419aee8abe51986c1_icgraph.svg" width="379" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -445,22 +505,20 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00412">412</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00492">492</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00170">action_param_load()</a>, <a class="el" href="condition_8c_source.html#l00350">cond_param_load()</a>, <a class="el" href="ea_8c_source.html#l00348">ea_param_load()</a>, <a class="el" href="loss_8c_source.html#l00158">loss_set_func()</a>, and <a class="el" href="prediction_8c_source.html#l00240">pred_param_load()</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00170">action_param_load()</a>, <a class="el" href="condition_8c_source.html#l00343">cond_param_load()</a>, <a class="el" href="ea_8c_source.html#l00353">ea_param_load()</a>, <a class="el" href="loss_8c_source.html#l00159">loss_set_func()</a>, and <a class="el" href="prediction_8c_source.html#l00232">pred_param_load()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae7f8932981ba2f49027da90acfd121b1_cgraph.svg" width="603" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae7f8932981ba2f49027da90acfd121b1_cgraph.svg" width="603" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae7f8932981ba2f49027da90acfd121b1_icgraph.svg" width="358" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae7f8932981ba2f49027da90acfd121b1_icgraph.svg" width="358" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -489,22 +547,20 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00349">349</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00429">429</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
 <p class="reference">References <a class="el" href="param_8c_source.html#l00105">param_json_export()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00166">XCS::print_params()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00035">main()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00170">XCS::print_params()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_cgraph.svg" width="1335" height="854"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_cgraph.svg" width="1335" height="854"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_icgraph.svg" width="283" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1e92bde5285ed6ded96ba4af5fd27bd2_icgraph.svg" width="283" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -545,34 +601,32 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00363">363</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00443">443</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="action_8c_source.html#l00154">action_param_save()</a>, <a class="el" href="condition_8c_source.html#l00326">cond_param_save()</a>, <a class="el" href="ea_8c_source.html#l00326">ea_param_save()</a>, and <a class="el" href="prediction_8c_source.html#l00218">pred_param_save()</a>.</p>
+<p class="reference">References <a class="el" href="action_8c_source.html#l00154">action_param_save()</a>, <a class="el" href="condition_8c_source.html#l00319">cond_param_save()</a>, <a class="el" href="ea_8c_source.html#l00331">ea_param_save()</a>, and <a class="el" href="prediction_8c_source.html#l00210">pred_param_save()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcsf_8c_source.html#l00086">xcsf_save()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aeee8da56faaeace4ed44adc45a42d359_cgraph.svg" width="628" height="215"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aeee8da56faaeace4ed44adc45a42d359_cgraph.svg" width="628" height="215"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aeee8da56faaeace4ed44adc45a42d359_icgraph.svg" width="370" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aeee8da56faaeace4ed44adc45a42d359_icgraph.svg" width="370" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a182ee50f5c048bc54246480e1098d8f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a182ee50f5c048bc54246480e1098d8f2">&#9670;&nbsp;</a></span>param_set_alpha()</h2>
+<a id="acf299ae8e850666d58305bb50fe056c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf299ae8e850666d58305bb50fe056c9">&#9670;&nbsp;</a></span>param_set_alpha()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_alpha </td>
+          <td class="memname">const char* param_set_alpha </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -591,26 +645,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00607">607</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00676">676</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00909">XCS::set_alpha()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00964">XCS::set_alpha()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a182ee50f5c048bc54246480e1098d8f2_icgraph.svg" width="746" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_acf299ae8e850666d58305bb50fe056c9_icgraph.svg" width="746" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="af77999a550e9301daff82311b7c610e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af77999a550e9301daff82311b7c610e6">&#9670;&nbsp;</a></span>param_set_beta()</h2>
+<a id="a2d38692b0d27a08662a86830c29ab727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d38692b0d27a08662a86830c29ab727">&#9670;&nbsp;</a></span>param_set_beta()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_beta </td>
+          <td class="memname">const char* param_set_beta </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -629,26 +682,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00621">621</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00686">686</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00915">XCS::set_beta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00970">XCS::set_beta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_af77999a550e9301daff82311b7c610e6_icgraph.svg" width="739" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a2d38692b0d27a08662a86830c29ab727_icgraph.svg" width="739" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a4c7f760ecd35ae43a3120cfb9e55bff2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c7f760ecd35ae43a3120cfb9e55bff2">&#9670;&nbsp;</a></span>param_set_compaction()</h2>
+<a id="a967e1c12f2eab4d5ed33fe28fb49a379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a967e1c12f2eab4d5ed33fe28fb49a379">&#9670;&nbsp;</a></span>param_set_compaction()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_compaction </td>
+          <td class="memname">const char* param_set_compaction </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -667,26 +719,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00551">551</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00629">629</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00987">XCS::set_compaction()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01042">XCS::set_compaction()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a4c7f760ecd35ae43a3120cfb9e55bff2_icgraph.svg" width="783" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a967e1c12f2eab4d5ed33fe28fb49a379_icgraph.svg" width="783" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a9fac691b5fd2e113223368bd70927259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fac691b5fd2e113223368bd70927259">&#9670;&nbsp;</a></span>param_set_delta()</h2>
+<a id="ae82f114a1523967276c78a391c71bf99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae82f114a1523967276c78a391c71bf99">&#9670;&nbsp;</a></span>param_set_delta()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_delta </td>
+          <td class="memname">const char* param_set_delta </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -705,26 +757,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00635">635</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00696">696</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00921">XCS::set_delta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00976">XCS::set_delta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a9fac691b5fd2e113223368bd70927259_icgraph.svg" width="743" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae82f114a1523967276c78a391c71bf99_icgraph.svg" width="743" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="aaa456227887cdbc6101fd041edd3c47d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa456227887cdbc6101fd041edd3c47d">&#9670;&nbsp;</a></span>param_set_e0()</h2>
+<a id="a01a1284127fce6d44749e9e3b17ae980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a1284127fce6d44749e9e3b17ae980">&#9670;&nbsp;</a></span>param_set_e0()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_e0 </td>
+          <td class="memname">const char* param_set_e0 </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -743,26 +795,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00649">649</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00706">706</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00927">XCS::set_e0()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00982">XCS::set_e0()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aaa456227887cdbc6101fd041edd3c47d_icgraph.svg" width="728" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a01a1284127fce6d44749e9e3b17ae980_icgraph.svg" width="728" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a966c3e54f2e1977dd7b4776723efa2b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a966c3e54f2e1977dd7b4776723efa2b4">&#9670;&nbsp;</a></span>param_set_explore()</h2>
+<a id="a429d77deb33cf59f7e63ab7f258b176c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a429d77deb33cf59f7e63ab7f258b176c">&#9670;&nbsp;</a></span>param_set_explore()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_explore </td>
+          <td class="memname">const char* param_set_explore </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -781,26 +833,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00743">743</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00793">793</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00274">XCS::decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, <a class="el" href="xcs__rl_8c_source.html#l00043">xcs_rl_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00123">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00281">XCS::decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, <a class="el" href="xcs__rl_8c_source.html#l00043">xcs_rl_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00123">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a966c3e54f2e1977dd7b4776723efa2b4_icgraph.svg" width="703" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a429d77deb33cf59f7e63ab7f258b176c_icgraph.svg" width="703" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ae4926a3ec09cbe9dc1feace3a2e87376"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4926a3ec09cbe9dc1feace3a2e87376">&#9670;&nbsp;</a></span>param_set_gamma()</h2>
+<a id="a8d8141b90d111aad2e2ea30102bb0805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d8141b90d111aad2e2ea30102bb0805">&#9670;&nbsp;</a></span>param_set_gamma()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_gamma </td>
+          <td class="memname">const char* param_set_gamma </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -819,26 +871,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00568">568</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00646">646</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00214">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00993">XCS::set_gamma()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00219">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01048">XCS::set_gamma()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae4926a3ec09cbe9dc1feace3a2e87376_icgraph.svg" width="775" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a8d8141b90d111aad2e2ea30102bb0805_icgraph.svg" width="775" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="af3da5d5549f174e35653ca6834e16c96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3da5d5549f174e35653ca6834e16c96">&#9670;&nbsp;</a></span>param_set_huber_delta()</h2>
+<a id="a8a701e38369c61ee86e1572eae56cd04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a701e38369c61ee86e1572eae56cd04">&#9670;&nbsp;</a></span>param_set_huber_delta()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_huber_delta </td>
+          <td class="memname">const char* param_set_huber_delta </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -857,26 +908,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00557">557</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00636">636</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00903">XCS::set_huber_delta()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00958">XCS::set_huber_delta()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_af3da5d5549f174e35653ca6834e16c96_icgraph.svg" width="814" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a8a701e38369c61ee86e1572eae56cd04_icgraph.svg" width="814" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a60297014c75d27b96d36bac6eb00e569"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60297014c75d27b96d36bac6eb00e569">&#9670;&nbsp;</a></span>param_set_init_error()</h2>
+<a id="a9a9b2470f356ee620ac6d6b8e384c882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9b2470f356ee620ac6d6b8e384c882">&#9670;&nbsp;</a></span>param_set_init_error()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_init_error </td>
+          <td class="memname">const char* param_set_init_error </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -895,26 +946,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00660">660</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00716">716</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00933">XCS::set_init_error()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00988">XCS::set_init_error()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a60297014c75d27b96d36bac6eb00e569_icgraph.svg" width="764" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a9a9b2470f356ee620ac6d6b8e384c882_icgraph.svg" width="764" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="afe1d8c81dd7d8a229c53c0f0324612e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe1d8c81dd7d8a229c53c0f0324612e1">&#9670;&nbsp;</a></span>param_set_init_fitness()</h2>
+<a id="a7c53a7e10246bdeec2df8463b5a4da45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c53a7e10246bdeec2df8463b5a4da45">&#9670;&nbsp;</a></span>param_set_init_fitness()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_init_fitness </td>
+          <td class="memname">const char* param_set_init_fitness </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -933,13 +984,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00671">671</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00726">726</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00939">XCS::set_init_fitness()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00994">XCS::set_init_fitness()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_afe1d8c81dd7d8a229c53c0f0324612e1_icgraph.svg" width="778" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a7c53a7e10246bdeec2df8463b5a4da45_icgraph.svg" width="778" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -971,34 +1022,32 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00530">530</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00611">611</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="loss_8h_source.html#l00035">LOSS_NUM</a>, and <a class="el" href="loss_8c_source.html#l00158">loss_set_func()</a>.</p>
+<p class="reference">References <a class="el" href="loss_8h_source.html#l00036">LOSS_NUM</a>, and <a class="el" href="loss_8c_source.html#l00159">loss_set_func()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, and <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a802ad715416c4b9ac967c43f51399d75_cgraph.svg" width="595" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a802ad715416c4b9ac967c43f51399d75_cgraph.svg" width="595" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a802ad715416c4b9ac967c43f51399d75_icgraph.svg" width="762" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a802ad715416c4b9ac967c43f51399d75_icgraph.svg" width="762" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a7a98b432d0cdc32b5f333d918b243b13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a98b432d0cdc32b5f333d918b243b13">&#9670;&nbsp;</a></span>param_set_loss_func_string()</h2>
+<a id="ac445df670c4171f1830eeb60967a03ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac445df670c4171f1830eeb60967a03ad">&#9670;&nbsp;</a></span>param_set_loss_func_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_loss_func_string </td>
+          <td class="memname">int param_set_loss_func_string </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1017,34 +1066,32 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00523">523</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00598">598</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">References <a class="el" href="loss_8c_source.html#l00158">loss_set_func()</a>, and <a class="el" href="loss_8c_source.html#l00223">loss_type_as_int()</a>.</p>
+<p class="reference">References <a class="el" href="loss_8h_source.html#l00028">LOSS_INVALID</a>, <a class="el" href="loss_8c_source.html#l00159">loss_set_func()</a>, <a class="el" href="loss_8c_source.html#l00223">loss_type_as_int()</a>, <a class="el" href="param_8h_source.html#l00031">PARAM_FOUND</a>, and <a class="el" href="param_8h_source.html#l00029">PARAM_INVALID</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00897">XCS::set_loss_func()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00947">XCS::set_loss_func()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a7a98b432d0cdc32b5f333d918b243b13_cgraph.svg" width="612" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac445df670c4171f1830eeb60967a03ad_cgraph.svg" width="612" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a7a98b432d0cdc32b5f333d918b243b13_icgraph.svg" width="803" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac445df670c4171f1830eeb60967a03ad_icgraph.svg" width="803" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="aef1c757a3e9cfe6fe3fdf42e667f6f60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef1c757a3e9cfe6fe3fdf42e667f6f60">&#9670;&nbsp;</a></span>param_set_m_probation()</h2>
+<a id="a550d91f8aaa6157a28a268064c718c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550d91f8aaa6157a28a268064c718c8e">&#9670;&nbsp;</a></span>param_set_m_probation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_m_probation </td>
+          <td class="memname">const char* param_set_m_probation </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1063,26 +1110,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00704">704</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00756">756</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00951">XCS::set_m_probation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01006">XCS::set_m_probation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aef1c757a3e9cfe6fe3fdf42e667f6f60_icgraph.svg" width="791" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a550d91f8aaa6157a28a268064c718c8e_icgraph.svg" width="791" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="addd4cd1ef9faf5c05ad450d905bde1fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addd4cd1ef9faf5c05ad450d905bde1fc">&#9670;&nbsp;</a></span>param_set_max_trials()</h2>
+<a id="a388a95e329f834d2771efb09acc84d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a388a95e329f834d2771efb09acc84d60">&#9670;&nbsp;</a></span>param_set_max_trials()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_max_trials </td>
+          <td class="memname">const char* param_set_max_trials </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1101,26 +1148,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00490">490</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00568">568</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00879">XCS::set_max_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00929">XCS::set_max_trials()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_addd4cd1ef9faf5c05ad450d905bde1fc_icgraph.svg" width="807" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a388a95e329f834d2771efb09acc84d60_icgraph.svg" width="807" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="afc268a6c862be5031bc63ab4d299e05b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc268a6c862be5031bc63ab4d299e05b">&#9670;&nbsp;</a></span>param_set_n_actions()</h2>
+<a id="abfa2456db9cee78f53e3298b904ad2fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa2456db9cee78f53e3298b904ad2fc">&#9670;&nbsp;</a></span>param_set_n_actions()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_n_actions </td>
+          <td class="memname">const char* param_set_n_actions </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1139,26 +1185,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00760">760</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00810">810</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00072">XCS::XCS()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_afc268a6c862be5031bc63ab4d299e05b_icgraph.svg" width="656" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_abfa2456db9cee78f53e3298b904ad2fc_icgraph.svg" width="656" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ac94d05c5e4828498e7006e2ab31ce050"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac94d05c5e4828498e7006e2ab31ce050">&#9670;&nbsp;</a></span>param_set_nu()</h2>
+<a id="a13e7d4b4ec0812cbadeec790bb3b75fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13e7d4b4ec0812cbadeec790bb3b75fb">&#9670;&nbsp;</a></span>param_set_nu()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_nu </td>
+          <td class="memname">const char* param_set_nu </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1177,26 +1223,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00682">682</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00736">736</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00945">XCS::set_nu()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01000">XCS::set_nu()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ac94d05c5e4828498e7006e2ab31ce050_icgraph.svg" width="728" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a13e7d4b4ec0812cbadeec790bb3b75fb_icgraph.svg" width="728" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a9f0e1a7a7a073f46fcfbf6634b8b32da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f0e1a7a7a073f46fcfbf6634b8b32da">&#9670;&nbsp;</a></span>param_set_omp_num_threads()</h2>
+<a id="a7ab1b36bfc8ed140a530b64bd851a05c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ab1b36bfc8ed140a530b64bd851a05c">&#9670;&nbsp;</a></span>param_set_omp_num_threads()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_omp_num_threads </td>
+          <td class="memname">const char* param_set_omp_num_threads </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1223,27 +1269,28 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>NULL if successful; or an error message. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00467">467</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00548">548</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00867">XCS::set_omp_num_threads()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00917">XCS::set_omp_num_threads()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a9f0e1a7a7a073f46fcfbf6634b8b32da_icgraph.svg" width="863" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a7ab1b36bfc8ed140a530b64bd851a05c_icgraph.svg" width="863" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a2d623cf9e14e6a9a450f6f2f7f20376e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d623cf9e14e6a9a450f6f2f7f20376e">&#9670;&nbsp;</a></span>param_set_p_explore()</h2>
+<a id="aa8c004ce6cdca4dfecfa34dea70b2619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c004ce6cdca4dfecfa34dea70b2619">&#9670;&nbsp;</a></span>param_set_p_explore()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_p_explore </td>
+          <td class="memname">const char* param_set_p_explore </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1262,26 +1309,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00593">593</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00666">666</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00214">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00999">XCS::set_p_explore()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00219">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01054">XCS::set_p_explore()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a2d623cf9e14e6a9a450f6f2f7f20376e_icgraph.svg" width="788" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aa8c004ce6cdca4dfecfa34dea70b2619_icgraph.svg" width="788" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a9bffca041153cd16843fee676ac47b75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bffca041153cd16843fee676ac47b75">&#9670;&nbsp;</a></span>param_set_perf_trials()</h2>
+<a id="a0b53049abf12592f085fa578c9f4546d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b53049abf12592f085fa578c9f4546d">&#9670;&nbsp;</a></span>param_set_perf_trials()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_perf_trials </td>
+          <td class="memname">const char* param_set_perf_trials </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1300,26 +1346,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00501">501</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00578">578</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00885">XCS::set_perf_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00935">XCS::set_perf_trials()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a9bffca041153cd16843fee676ac47b75_icgraph.svg" width="803" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a0b53049abf12592f085fa578c9f4546d_icgraph.svg" width="803" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a1468ad94460124bbd3c0982f5a8c5d0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1468ad94460124bbd3c0982f5a8c5d0a">&#9670;&nbsp;</a></span>param_set_pop_init()</h2>
+<a id="afe9a688ddf3a0df2b976bdedf1ab66b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe9a688ddf3a0df2b976bdedf1ab66b7">&#9670;&nbsp;</a></span>param_set_pop_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_pop_init </td>
+          <td class="memname">const char* param_set_pop_init </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1338,26 +1384,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00484">484</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00561">561</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00873">XCS::set_pop_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00923">XCS::set_pop_init()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a1468ad94460124bbd3c0982f5a8c5d0a_icgraph.svg" width="791" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_afe9a688ddf3a0df2b976bdedf1ab66b7_icgraph.svg" width="791" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="aa8c87e81df977c35fe8c02cb0c59636f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8c87e81df977c35fe8c02cb0c59636f">&#9670;&nbsp;</a></span>param_set_pop_size()</h2>
+<a id="a389d74d2c11c8cd13d9cf2a895026cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a389d74d2c11c8cd13d9cf2a895026cf7">&#9670;&nbsp;</a></span>param_set_pop_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_pop_size </td>
+          <td class="memname">const char* param_set_pop_size </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1376,26 +1422,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00512">512</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00588">588</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00891">XCS::set_pop_max_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00172">param_json_import_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00941">XCS::set_pop_max_size()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_aa8c87e81df977c35fe8c02cb0c59636f_icgraph.svg" width="799" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a389d74d2c11c8cd13d9cf2a895026cf7_icgraph.svg" width="799" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a2d8681adea9f23f7f0fe437edad2a10d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d8681adea9f23f7f0fe437edad2a10d">&#9670;&nbsp;</a></span>param_set_set_subsumption()</h2>
+<a id="a2c2cfd50d3d5b606fdf60e38139f2a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c2cfd50d3d5b606fdf60e38139f2a8d">&#9670;&nbsp;</a></span>param_set_set_subsumption()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_set_subsumption </td>
+          <td class="memname">const char* param_set_set_subsumption </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1414,26 +1459,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00715">715</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00766">766</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00239">param_json_import_subsump()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00969">XCS::set_set_subsumption()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00244">param_json_import_subsump()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01024">XCS::set_set_subsumption()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a2d8681adea9f23f7f0fe437edad2a10d_icgraph.svg" width="856" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a2c2cfd50d3d5b606fdf60e38139f2a8d_icgraph.svg" width="856" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="adeb70dd4bf601eb772406ed52d9911ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adeb70dd4bf601eb772406ed52d9911ab">&#9670;&nbsp;</a></span>param_set_stateful()</h2>
+<a id="a21c592b2427a801cb0eda3fee504d38c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c592b2427a801cb0eda3fee504d38c">&#9670;&nbsp;</a></span>param_set_stateful()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_stateful </td>
+          <td class="memname">const char* param_set_stateful </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1452,26 +1497,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00545">545</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00622">622</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00981">XCS::set_stateful()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01036">XCS::set_stateful()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_adeb70dd4bf601eb772406ed52d9911ab_icgraph.svg" width="758" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a21c592b2427a801cb0eda3fee504d38c_icgraph.svg" width="758" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="abe3e53803e5cdb2d9c812a0025c68449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe3e53803e5cdb2d9c812a0025c68449">&#9670;&nbsp;</a></span>param_set_teletransportation()</h2>
+<a id="a926dea96f312414ab1caf1d3e284f696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926dea96f312414ab1caf1d3e284f696">&#9670;&nbsp;</a></span>param_set_teletransportation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_teletransportation </td>
+          <td class="memname">const char* param_set_teletransportation </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1490,26 +1535,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00582">582</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00656">656</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00214">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00975">XCS::set_teletransportation()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00219">param_json_import_multi()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01030">XCS::set_teletransportation()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_abe3e53803e5cdb2d9c812a0025c68449_icgraph.svg" width="848" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a926dea96f312414ab1caf1d3e284f696_icgraph.svg" width="848" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="afcfac120f601c97790b51a8169146ab4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcfac120f601c97790b51a8169146ab4">&#9670;&nbsp;</a></span>param_set_theta_del()</h2>
+<a id="ab8cd76a96bdd278cbd0fa1be38eecb73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8cd76a96bdd278cbd0fa1be38eecb73">&#9670;&nbsp;</a></span>param_set_theta_del()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_theta_del </td>
+          <td class="memname">const char* param_set_theta_del </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1528,26 +1573,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00693">693</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00746">746</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00261">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00957">XCS::set_theta_del()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00266">param_json_import_cl_general()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01012">XCS::set_theta_del()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_afcfac120f601c97790b51a8169146ab4_icgraph.svg" width="767" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ab8cd76a96bdd278cbd0fa1be38eecb73_icgraph.svg" width="767" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a5c265c2d45caf36ed96e1da113f9f971"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c265c2d45caf36ed96e1da113f9f971">&#9670;&nbsp;</a></span>param_set_theta_sub()</h2>
+<a id="afc99ec312507b8f99f37cf87e3ab8a56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc99ec312507b8f99f37cf87e3ab8a56">&#9670;&nbsp;</a></span>param_set_theta_sub()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_theta_sub </td>
+          <td class="memname">const char* param_set_theta_sub </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1566,26 +1611,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00721">721</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00773">773</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00239">param_json_import_subsump()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00963">XCS::set_theta_sub()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="param_8c_source.html#l00244">param_json_import_subsump()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01018">XCS::set_theta_sub()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a5c265c2d45caf36ed96e1da113f9f971_icgraph.svg" width="814" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_afc99ec312507b8f99f37cf87e3ab8a56_icgraph.svg" width="814" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a58e52d66d93a41c3f298b78bf4c9c34c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58e52d66d93a41c3f298b78bf4c9c34c">&#9670;&nbsp;</a></span>param_set_x_dim()</h2>
+<a id="ae5cca726a15c57daed5e2edbed5de528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5cca726a15c57daed5e2edbed5de528">&#9670;&nbsp;</a></span>param_set_x_dim()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_x_dim </td>
+          <td class="memname">const char* param_set_x_dim </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1604,26 +1649,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00732">732</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00783">783</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00072">XCS::XCS()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a58e52d66d93a41c3f298b78bf4c9c34c_icgraph.svg" width="635" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_ae5cca726a15c57daed5e2edbed5de528_icgraph.svg" width="635" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a18f68adfb73dad5267d0074b02fbdf50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18f68adfb73dad5267d0074b02fbdf50">&#9670;&nbsp;</a></span>param_set_y_dim()</h2>
+<a id="a6b5cac72b8e4061a76f365e19a05da2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b5cac72b8e4061a76f365e19a05da2a">&#9670;&nbsp;</a></span>param_set_y_dim()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void param_set_y_dim </td>
+          <td class="memname">const char* param_set_y_dim </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structXCSF.html">XCSF</a> *&#160;</td>
           <td class="paramname"><em>xcsf</em>, </td>
@@ -1642,13 +1687,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00749">749</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="param_8c_source.html#l00800">800</a> of file <a class="el" href="param_8c_source.html">param.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, and <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00043">param_init()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00072">XCS::XCS()</a>, and <a class="el" href="xcsf_8c_source.html#l00167">xcsf_ae_to_classifier()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a18f68adfb73dad5267d0074b02fbdf50_icgraph.svg" width="740" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="param_8h_a6b5cac72b8e4061a76f365e19a05da2a_icgraph.svg" width="740" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 

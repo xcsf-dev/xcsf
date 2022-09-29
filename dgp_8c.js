@@ -12,7 +12,7 @@ var dgp_8c =
     [ "function_string", "dgp_8c.html#adacd704e517eabb4de2b9c586169ad45", null ],
     [ "graph_args_init", "dgp_8c.html#a6b7a635ba70d5560f6b3ce23433fe56b", null ],
     [ "graph_args_json_export", "dgp_8c.html#a198a40a55adefa4b97666309231694c3", null ],
-    [ "graph_args_json_import", "dgp_8c.html#a3208cc6d02deae06dd2faea89f32f873", null ],
+    [ "graph_args_json_import", "dgp_8c.html#ae834119f454807d1ce8864535b907f53", null ],
     [ "graph_args_load", "dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79", null ],
     [ "graph_args_save", "dgp_8c.html#a0a55dcba4f8e944721e7dad5c03fcaa7", null ],
     [ "graph_copy", "dgp_8c.html#a3c327dd571aed17fc3683aa112fbd405", null ],

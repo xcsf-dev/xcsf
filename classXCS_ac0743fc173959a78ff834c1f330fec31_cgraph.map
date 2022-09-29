@@ -1,4 +1,5 @@
 <map id="XCS::set_omp_num_threads" name="XCS::set_omp_num_threads">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$param_8c.html#a9f0e1a7a7a073f46fcfbf6634b8b32da" title="Sets the number of OMP threads." alt="" coords="244,5,441,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,196,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a44b546a4ee6d9e43e1e28852bb1de5e6" title=" " alt="" coords="281,5,404,32"/>
+<area shape="rect" id="node3" href="$param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c" title="Sets the number of OMP threads." alt="" coords="244,56,441,83"/>
 </map>

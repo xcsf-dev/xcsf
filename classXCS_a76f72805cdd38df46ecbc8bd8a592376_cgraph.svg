@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Sets the prediction type and initialisation arguments.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-249.5 0,-268.5 104,-268.5 104,-249.5 0,-249.5"/>
-<text text-anchor="middle" x="52" y="-256.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_prediction</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-189.5 0,-208.5 104,-208.5 104,-189.5 0,-189.5"/>
+<text text-anchor="middle" x="52" y="-196.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_prediction</text>
 </a>
 </g>
 </g>
@@ -29,13 +29,13 @@
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M68.51,-268.67C94.25,-284.73 145.97,-316.99 176.47,-336.01"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="174.86,-339.14 185.2,-341.46 178.57,-333.2 174.86,-339.14"/>
+<path fill="none" stroke="midnightblue" d="M62.23,-208.51C86.65,-233.67 153.21,-302.26 184.21,-334.21"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="181.8,-336.76 191.28,-341.5 186.82,-331.88 181.8,-336.76"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="prediction_8c.html#a3da29e38981e8b98ec136766a79d074a" target="_top" xlink:title="Sets the prediction parameters from a cJSON object.">
+<g id="a_node5"><a xlink:href="prediction_8c.html#a7f976ef5c24c68e48493bdec31567021" target="_top" xlink:title="Sets the prediction parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="140,-189.5 140,-208.5 263,-208.5 263,-189.5 140,-189.5"/>
 <text text-anchor="middle" x="201.5" y="-196.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_json_import</text>
 </a>
@@ -44,8 +44,23 @@
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M76.37,-249.49C100.93,-239.5 139.77,-223.7 167.46,-212.44"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="168.8,-215.67 176.75,-208.66 166.17,-209.19 168.8,-215.67"/>
+<path fill="none" stroke="midnightblue" d="M104.17,-199C112.43,-199 121.1,-199 129.71,-199"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="129.78,-202.5 139.78,-199 129.78,-195.5 129.78,-202.5"/>
+</g>
+<!-- Node28 -->
+<g id="node28" class="node">
+<title>Node28</title>
+<g id="a_node28"><a xlink:href="classXCS.html#a6659e0b11f57ef97da5d5b91226338a5" target="_top" xlink:title="Sets the prediction type.">
+<polygon fill="none" stroke="black" points="149.5,-108.5 149.5,-127.5 253.5,-127.5 253.5,-108.5 149.5,-108.5"/>
+<text text-anchor="middle" x="201.5" y="-115.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_prediction</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node28 -->
+<g id="edge28" class="edge">
+<title>Node1&#45;&gt;Node28</title>
+<path fill="none" stroke="midnightblue" d="M70.5,-189.39C96.11,-175.32 144.02,-149.02 173.98,-132.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="175.94,-135.48 183.02,-127.6 172.57,-129.34 175.94,-135.48"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -80,7 +95,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="pred__neural_8c.html#aaf2d30b8d2123b423b251f88f7c772ff" target="_top" xlink:title="Sets the neural network parameters from a cJSON object.">
+<g id="a_node6"><a xlink:href="pred__neural_8c.html#a913efbfb988539a1c6f7de2cf43cea5c" target="_top" xlink:title="Sets the neural network parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="299,-292 299,-322 421,-322 421,-292 299,-292"/>
 <text text-anchor="start" x="307" y="-310" font-family="Helvetica,sans-Serif" font-size="10.00">pred_neural_param_json</text>
 <text text-anchor="middle" x="360" y="-299" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>
@@ -96,7 +111,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="pred__nlms_8c.html#a8964c1670f4fb4a398a842d154aab033" target="_top" xlink:title="Sets the NLMS parameters from a cJSON object.">
+<g id="a_node20"><a xlink:href="pred__nlms_8c.html#ad710d595ff04564a4925d0d83129853d" target="_top" xlink:title="Sets the NLMS parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="301.5,-184 301.5,-214 418.5,-214 418.5,-184 301.5,-184"/>
 <text text-anchor="start" x="309.5" y="-202" font-family="Helvetica,sans-Serif" font-size="10.00">pred_nlms_param_json</text>
 <text text-anchor="middle" x="360" y="-191" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>
@@ -112,32 +127,16 @@
 <!-- Node25 -->
 <g id="node25" class="node">
 <title>Node25</title>
-<g id="a_node25"><a xlink:href="prediction_8c.html#afec8e5a7f4efd4c6d1b484a0522e8da6" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="305,-15 305,-45 415,-45 415,-15 305,-15"/>
-<text text-anchor="start" x="313" y="-33" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_set_type</text>
-<text text-anchor="middle" x="360" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
-</a>
-</g>
-</g>
-<!-- Node5&#45;&gt;Node25 -->
-<g id="edge24" class="edge">
-<title>Node5&#45;&gt;Node25</title>
-<path fill="none" stroke="midnightblue" d="M211.21,-189.29C228.04,-170.55 266.27,-128.15 299,-93 311.58,-79.49 325.83,-64.52 337.28,-52.56"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="339.96,-54.82 344.35,-45.19 334.91,-49.98 339.96,-54.82"/>
-</g>
-<!-- Node27 -->
-<g id="node27" class="node">
-<title>Node27</title>
-<g id="a_node27"><a xlink:href="pred__rls_8c.html#a4756fe786b86ecce9a4a9040daff97da" target="_top" xlink:title="Sets the RLS parameters from a cJSON object.">
+<g id="a_node25"><a xlink:href="pred__rls_8c.html#addc89af1656f21fec298ad5f04d2573d" target="_top" xlink:title="Sets the RLS parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="306.5,-102 306.5,-132 413.5,-132 413.5,-102 306.5,-102"/>
 <text text-anchor="start" x="314.5" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00">pred_rls_param_json</text>
 <text text-anchor="middle" x="360" y="-109" font-family="Helvetica,sans-Serif" font-size="10.00">_import</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node27 -->
-<g id="edge26" class="edge">
-<title>Node5&#45;&gt;Node27</title>
+<!-- Node5&#45;&gt;Node25 -->
+<g id="edge24" class="edge">
+<title>Node5&#45;&gt;Node25</title>
 <path fill="none" stroke="midnightblue" d="M220.76,-189.43C245.27,-176.59 289.41,-153.46 321.23,-136.79"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="323.02,-139.8 330.26,-132.06 319.77,-133.6 323.02,-139.8"/>
 </g>
@@ -174,7 +173,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="neural__layer__args_8c.html#abc0a9e83a53e871f873bf08af74e7a29" target="_top" xlink:title="Sets the layer parameters from a cJSON object.">
+<g id="a_node9"><a xlink:href="neural__layer__args_8c.html#a3b9aa19f760cc83a0a56abd6264e314e" target="_top" xlink:title="Sets the layer parameters from a cJSON object.">
 <polygon fill="none" stroke="black" points="468,-316.5 468,-335.5 585,-335.5 585,-316.5 468,-316.5"/>
 <text text-anchor="middle" x="526.5" y="-323.5" font-family="Helvetica,sans-Serif" font-size="10.00">layer_args_json_import</text>
 </a>
@@ -400,57 +399,73 @@
 <path fill="none" stroke="midnightblue" d="M390.75,-183.87C409.45,-174.74 434.27,-163.3 457,-155 463.39,-152.67 470.2,-150.46 476.95,-148.43"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="478.13,-151.73 486.76,-145.59 476.18,-145.01 478.13,-151.73"/>
 </g>
+<!-- Node25&#45;&gt;Node24 -->
+<g id="edge27" class="edge">
+<title>Node25&#45;&gt;Node24</title>
+<path fill="none" stroke="midnightblue" d="M413.5,-123.06C429.93,-124.96 448.19,-127.07 465.12,-129.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="465.12,-132.55 475.46,-130.22 465.93,-125.6 465.12,-132.55"/>
+</g>
 <!-- Node26 -->
 <g id="node26" class="node">
 <title>Node26</title>
-<g id="a_node26"><a xlink:href="prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" target="_top" xlink:title="Returns the integer representation of a prediction type given a name.">
-<polygon fill="none" stroke="black" points="469.5,-0.5 469.5,-19.5 583.5,-19.5 583.5,-0.5 469.5,-0.5"/>
-<text text-anchor="middle" x="526.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">prediction_type_as_int</text>
+<g id="a_node26"><a xlink:href="prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="465,-88.5 465,-107.5 588,-107.5 588,-88.5 465,-88.5"/>
+<text text-anchor="middle" x="526.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_set_lambda</text>
 </a>
 </g>
 </g>
 <!-- Node25&#45;&gt;Node26 -->
 <g id="edge25" class="edge">
 <title>Node25&#45;&gt;Node26</title>
-<path fill="none" stroke="midnightblue" d="M415.32,-23.4C429.39,-21.69 444.69,-19.82 459.29,-18.05"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="459.76,-21.52 469.27,-16.84 458.92,-14.57 459.76,-21.52"/>
-</g>
-<!-- Node27&#45;&gt;Node24 -->
-<g id="edge29" class="edge">
-<title>Node27&#45;&gt;Node24</title>
-<path fill="none" stroke="midnightblue" d="M413.5,-123.06C429.93,-124.96 448.19,-127.07 465.12,-129.03"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="465.12,-132.55 475.46,-130.22 465.93,-125.6 465.12,-132.55"/>
-</g>
-<!-- Node28 -->
-<g id="node28" class="node">
-<title>Node28</title>
-<g id="a_node28"><a xlink:href="prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="465,-88.5 465,-107.5 588,-107.5 588,-88.5 465,-88.5"/>
-<text text-anchor="middle" x="526.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_set_lambda</text>
-</a>
-</g>
-</g>
-<!-- Node27&#45;&gt;Node28 -->
-<g id="edge27" class="edge">
-<title>Node27&#45;&gt;Node28</title>
 <path fill="none" stroke="midnightblue" d="M413.5,-110.94C426.67,-109.42 441.01,-107.76 454.9,-106.15"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="455.37,-109.62 464.91,-105 454.57,-102.67 455.37,-109.62"/>
 </g>
-<!-- Node29 -->
-<g id="node29" class="node">
-<title>Node29</title>
-<g id="a_node29"><a xlink:href="prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" target="_top" xlink:title=" ">
+<!-- Node27 -->
+<g id="node27" class="node">
+<title>Node27</title>
+<g id="a_node27"><a xlink:href="prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="469,-39 469,-69 584,-69 584,-39 469,-39"/>
 <text text-anchor="start" x="477" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_set_scale</text>
 <text text-anchor="middle" x="526.5" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">_factor</text>
 </a>
 </g>
 </g>
-<!-- Node27&#45;&gt;Node29 -->
-<g id="edge28" class="edge">
-<title>Node27&#45;&gt;Node29</title>
+<!-- Node25&#45;&gt;Node27 -->
+<g id="edge26" class="edge">
+<title>Node25&#45;&gt;Node27</title>
 <path fill="none" stroke="midnightblue" d="M398.29,-101.97C416.03,-94.89 437.57,-86.39 457,-79 462.53,-76.9 468.33,-74.73 474.11,-72.58"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="475.6,-75.77 483.78,-69.02 473.18,-69.2 475.6,-75.77"/>
+</g>
+<!-- Node29 -->
+<g id="node29" class="node">
+<title>Node29</title>
+<g id="a_node29"><a xlink:href="prediction_8c.html#a7b02fcc0ce8541afd47d014eba280570" target="_top" xlink:title=" ">
+<polygon fill="none" stroke="black" points="305,-15 305,-45 415,-45 415,-15 305,-15"/>
+<text text-anchor="start" x="313" y="-33" font-family="Helvetica,sans-Serif" font-size="10.00">pred_param_set_type</text>
+<text text-anchor="middle" x="360" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">_string</text>
+</a>
+</g>
+</g>
+<!-- Node28&#45;&gt;Node29 -->
+<g id="edge29" class="edge">
+<title>Node28&#45;&gt;Node29</title>
+<path fill="none" stroke="midnightblue" d="M219.55,-108.41C244.31,-94.49 290.82,-68.34 323.29,-50.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="325.05,-53.11 332.05,-45.16 321.62,-47.01 325.05,-53.11"/>
+</g>
+<!-- Node30 -->
+<g id="node30" class="node">
+<title>Node30</title>
+<g id="a_node30"><a xlink:href="prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" target="_top" xlink:title="Returns the integer representation of a prediction type given a name.">
+<polygon fill="none" stroke="black" points="469.5,-0.5 469.5,-19.5 583.5,-19.5 583.5,-0.5 469.5,-0.5"/>
+<text text-anchor="middle" x="526.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">prediction_type_as_int</text>
+</a>
+</g>
+</g>
+<!-- Node29&#45;&gt;Node30 -->
+<g id="edge30" class="edge">
+<title>Node29&#45;&gt;Node30</title>
+<path fill="none" stroke="midnightblue" d="M415.32,-23.4C429.39,-21.69 444.69,-19.82 459.29,-18.05"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="459.76,-21.52 469.27,-16.84 458.92,-14.57 459.76,-21.52"/>
 </g>
 </g>
 </svg>

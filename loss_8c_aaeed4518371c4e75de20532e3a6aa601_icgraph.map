@@ -1,10 +1,10 @@
 <map id="loss_mse" name="loss_mse">
 <area shape="rect" id="node1" title="Mean squared error loss function." alt="" coords="1144,271,1223,297"/>
 <area shape="rect" id="node2" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="1013,245,1096,272"/>
-<area shape="rect" id="node3" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="863,271,965,297"/>
+<area shape="rect" id="node3" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="863,271,965,297"/>
 <area shape="rect" id="node4" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="697,133,786,160"/>
 <area shape="rect" id="node8" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="668,271,815,297"/>
-<area shape="rect" id="node17" href="$param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="668,333,815,374"/>
+<area shape="rect" id="node17" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="668,333,815,374"/>
 <area shape="rect" id="node5" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="490,56,569,83"/>
 <area shape="rect" id="node6" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="275,5,357,32"/>
 <area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,157,56,184"/>

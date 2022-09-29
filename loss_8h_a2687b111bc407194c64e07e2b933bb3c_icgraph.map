@@ -1,9 +1,9 @@
 <map id="loss_binary_log" name="loss_binary_log">
 <area shape="rect" id="node1" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="1013,255,1125,281"/>
-<area shape="rect" id="node2" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="863,255,965,281"/>
+<area shape="rect" id="node2" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="863,255,965,281"/>
 <area shape="rect" id="node3" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="697,128,786,155"/>
 <area shape="rect" id="node7" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="668,255,815,281"/>
-<area shape="rect" id="node16" href="$param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="668,327,815,369"/>
+<area shape="rect" id="node16" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="668,327,815,369"/>
 <area shape="rect" id="node4" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="490,56,569,83"/>
 <area shape="rect" id="node5" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="275,5,357,32"/>
 <area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,157,56,184"/>

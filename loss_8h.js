@@ -2,11 +2,13 @@ var loss_8h =
 [
     [ "LOSS_BINARY_LOG", "loss_8h.html#a7bcfbc96f60579fe3e5e8c6e4c4c0ab0", null ],
     [ "LOSS_HUBER", "loss_8h.html#afe9b6f9fcfbd2379bcb572349971eff1", null ],
+    [ "LOSS_INVALID", "loss_8h.html#affd0d57c90039eed1ce83bc689ffa866", null ],
     [ "LOSS_LOG", "loss_8h.html#adc3eb97e60129b1d917b328bfbfa8147", null ],
     [ "LOSS_MAE", "loss_8h.html#ab933ef973a4fd9946b854f98a024a617", null ],
     [ "LOSS_MSE", "loss_8h.html#a1a23cb399abaa46c19c1c28243b13f39", null ],
     [ "LOSS_NUM", "loss_8h.html#a728f99aca96a717a7f936eb7ed77b451", null ],
     [ "LOSS_ONEHOT", "loss_8h.html#afc96973c51cdcaa901061bd532081681", null ],
+    [ "LOSS_OPTIONS", "loss_8h.html#abdd65069e9f2aa3b460f71c5e6ff96dd", null ],
     [ "LOSS_RMSE", "loss_8h.html#a0c448064834bdb151c405371b3c3faca", null ],
     [ "LOSS_STRING_BINARY_LOG", "loss_8h.html#ad64ee14d6ef0982d6e64c0c5e37f9e6e", null ],
     [ "LOSS_STRING_HUBER", "loss_8h.html#a767a4dc6d99122dbb9c226777fe4d6a8", null ],
@@ -22,7 +24,7 @@ var loss_8h =
     [ "loss_mse", "loss_8h.html#aaeed4518371c4e75de20532e3a6aa601", null ],
     [ "loss_onehot", "loss_8h.html#a38e786a5c46be2519aae23287c92cc23", null ],
     [ "loss_rmse", "loss_8h.html#a3278a1ba45bd0ccbf39e25bde1562f8f", null ],
-    [ "loss_set_func", "loss_8h.html#a440b847b0f4edd503b919d3bebecd66c", null ],
+    [ "loss_set_func", "loss_8h.html#abd279ef66e8491bb524ee192a45e0e34", null ],
     [ "loss_type_as_int", "loss_8h.html#a6b76e413b2123f456c6656f0555208e1", null ],
     [ "loss_type_as_string", "loss_8h.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe", null ]
 ];

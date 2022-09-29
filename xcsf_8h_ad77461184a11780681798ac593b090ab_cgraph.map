@@ -3,9 +3,9 @@
 <area shape="rect" id="node2" href="$pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95" title="Frees the prediction array." alt="" coords="259,157,325,184"/>
 <area shape="rect" id="node3" href="$pa_8c.html#ae7c4749400527115da6903f9337ac58b" title="Initialises the prediction array." alt="" coords="262,208,322,235"/>
 <area shape="rect" id="node4" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="219,259,365,285"/>
-<area shape="rect" id="node14" href="$param_8c.html#a18f68adfb73dad5267d0074b02fbdf50" title=" " alt="" coords="229,309,355,336"/>
+<area shape="rect" id="node14" href="$param_8c.html#a6b5cac72b8e4061a76f365e19a05da2a" title=" " alt="" coords="229,309,355,336"/>
 <area shape="rect" id="node15" href="$pred__neural_8c.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="199,411,385,437"/>
-<area shape="rect" id="node5" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="435,183,538,209"/>
+<area shape="rect" id="node5" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="435,183,538,209"/>
 <area shape="rect" id="node6" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="588,5,700,32"/>
 <area shape="rect" id="node7" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="601,56,687,83"/>
 <area shape="rect" id="node8" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="609,107,679,133"/>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
+<g id="a_node2"><a xlink:href="loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" target="_top" xlink:title="Sets the XCSF error function to the implemented function.">
 <polygon fill="none" stroke="black" points="146,-114.5 146,-133.5 223,-133.5 223,-114.5 146,-114.5"/>
 <text text-anchor="middle" x="184.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">loss_set_func</text>
 </a>

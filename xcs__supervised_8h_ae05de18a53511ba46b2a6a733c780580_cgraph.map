@@ -1,6 +1,6 @@
 <map id="xcs_supervised_score" name="xcs_supervised_score">
 <area shape="rect" id="node1" title="Calculates the XCSF error for the input data." alt="" coords="5,655,157,681"/>
-<area shape="rect" id="node2" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="210,629,342,656"/>
+<area shape="rect" id="node2" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="210,629,342,656"/>
 <area shape="rect" id="node3" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="205,680,347,707"/>
 <area shape="rect" id="node4" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="403,208,482,235"/>
 <area shape="rect" id="node5" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="405,259,480,285"/>

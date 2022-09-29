@@ -4,10 +4,10 @@
 <area shape="rect" id="node4" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="1055,225,1147,252"/>
 <area shape="rect" id="node24" href="$pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c" title="Returns the highest value in the prediction array." alt="" coords="1055,280,1147,307"/>
 <area shape="rect" id="node3" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="863,175,984,201"/>
-<area shape="rect" id="node5" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="872,225,975,252"/>
+<area shape="rect" id="node5" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="872,225,975,252"/>
 <area shape="rect" id="node6" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="697,101,786,128"/>
 <area shape="rect" id="node10" href="$param_8c.html#a802ad715416c4b9ac967c43f51399d75" title=" " alt="" coords="668,196,815,223"/>
-<area shape="rect" id="node19" href="$param_8c.html#a7a98b432d0cdc32b5f333d918b243b13" title=" " alt="" coords="668,247,815,289"/>
+<area shape="rect" id="node19" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="668,247,815,289"/>
 <area shape="rect" id="node7" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="490,56,569,83"/>
 <area shape="rect" id="node8" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="275,5,357,32"/>
 <area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,233,56,260"/>

@@ -1,5 +1,6 @@
 <map id="param_json_import_subsump" name="param_json_import_subsump">
-<area shape="rect" id="node1" title="Sets the subsumption parameters from a cJSON object." alt="" coords="5,31,197,57"/>
-<area shape="rect" id="node2" href="$param_8c.html#a2d8681adea9f23f7f0fe437edad2a10d" title=" " alt="" coords="245,5,435,32"/>
-<area shape="rect" id="node3" href="$param_8c.html#a5c265c2d45caf36ed96e1da113f9f971" title=" " alt="" coords="267,56,413,83"/>
+<area shape="rect" id="node1" title="Sets the subsumption parameters from a cJSON object." alt="" coords="5,56,197,83"/>
+<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="297,5,383,32"/>
+<area shape="rect" id="node3" href="$param_8c.html#a2c2cfd50d3d5b606fdf60e38139f2a8d" title=" " alt="" coords="245,56,435,83"/>
+<area shape="rect" id="node4" href="$param_8c.html#afc99ec312507b8f99f37cf87e3ab8a56" title=" " alt="" coords="267,107,413,133"/>
 </map>

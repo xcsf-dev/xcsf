@@ -15,7 +15,7 @@ var cond__ternary_8c =
     [ "cond_ternary_mutate", "cond__ternary_8c.html#a76eeeef8b9d7a232d1f5bf2ff917547a", null ],
     [ "cond_ternary_param_defaults", "cond__ternary_8c.html#ae43a7aeb5fd85f6620d8f56359db587d", null ],
     [ "cond_ternary_param_json_export", "cond__ternary_8c.html#a3e242bc5b35ada8f04d551d9c0a5062f", null ],
-    [ "cond_ternary_param_json_import", "cond__ternary_8c.html#acc0d446f6079b76f436e4f9be08f78d6", null ],
+    [ "cond_ternary_param_json_import", "cond__ternary_8c.html#a767df473e45580612c5682c90b48b737", null ],
     [ "cond_ternary_print", "cond__ternary_8c.html#a93a81c8f3036fb17e9351619993817a2", null ],
     [ "cond_ternary_rand", "cond__ternary_8c.html#af4ab5fc103586a5f8d9488d47f45a99f", null ],
     [ "cond_ternary_save", "cond__ternary_8c.html#ad1e17fdabeaec326f8bce5227a86e87e", null ],

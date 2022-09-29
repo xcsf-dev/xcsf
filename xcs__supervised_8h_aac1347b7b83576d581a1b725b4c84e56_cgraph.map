@@ -1,7 +1,7 @@
 <map id="xcs_supervised_fit" name="xcs_supervised_fit">
 <area shape="rect" id="node1" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="5,1031,136,1057"/>
 <area shape="rect" id="node2" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="543,1351,649,1377"/>
-<area shape="rect" id="node12" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="199,1081,331,1108"/>
+<area shape="rect" id="node12" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="199,1081,331,1108"/>
 <area shape="rect" id="node13" href="$perf_8c.html#ac15feab73f15fadd432e0615ada25fd6" title="Displays the current training and test performance." alt="" coords="227,1132,303,1159"/>
 <area shape="rect" id="node14" href="$xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5" title="Selects a data sample for training or testing." alt="" coords="184,309,347,336"/>
 <area shape="rect" id="node17" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="195,727,336,753"/>

@@ -6,7 +6,7 @@
 <area shape="rect" id="node5" href="$env_8h.html#aaa4a7e6e6b8db660fe0815b756cc6711" title="Returns the maximum payoff value possible in the environment." alt="" coords="145,551,264,577"/>
 <area shape="rect" id="node6" href="$env_8h.html#a9d66a98c84c8121e2bc735d66759c551" title="Returns whether the environment is a multistep problem." alt="" coords="153,601,256,628"/>
 <area shape="rect" id="node7" href="$env_8h.html#a0e62c90c09c60cf8afd4f2dd47743f92" title="Resets the environment." alt="" coords="165,652,244,679"/>
-<area shape="rect" id="node8" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="139,703,271,729"/>
+<area shape="rect" id="node8" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="139,703,271,729"/>
 <area shape="rect" id="node9" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="149,1604,261,1631"/>
 <area shape="rect" id="node51" href="$xcs__rl_8c.html#aee0c56c15edc80945cda6de450e3ceb7" title="Ends a step in a reinforcement learning trial." alt="" coords="146,804,263,831"/>
 <area shape="rect" id="node54" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="148,753,261,780"/>

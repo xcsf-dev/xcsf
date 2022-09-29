@@ -1,6 +1,6 @@
 <map id="xcs_supervised_score_n" name="xcs_supervised_score_n">
 <area shape="rect" id="node1" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="5,397,172,424"/>
-<area shape="rect" id="node2" href="$param_8c.html#a966c3e54f2e1977dd7b4776723efa2b4" title=" " alt="" coords="435,397,567,424"/>
+<area shape="rect" id="node2" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="435,397,567,424"/>
 <area shape="rect" id="node3" href="$xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5" title="Selects a data sample for training or testing." alt="" coords="220,144,383,171"/>
 <area shape="rect" id="node6" href="$xcs__supervised_8c.html#ae05de18a53511ba46b2a6a733c780580" title="Calculates the XCSF error for the input data." alt="" coords="225,423,377,449"/>
 <area shape="rect" id="node7" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="431,473,572,500"/>

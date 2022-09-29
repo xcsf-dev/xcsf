@@ -15,7 +15,7 @@ var cond__neural_8c =
     [ "cond_neural_mutate", "cond__neural_8c.html#aaf16e02a92526865dc7a972b60e252a3", null ],
     [ "cond_neural_neurons", "cond__neural_8c.html#a139c52a0af8f5535597d0cb6a6be1abe", null ],
     [ "cond_neural_param_defaults", "cond__neural_8c.html#a935ca37ecd32e1b791066e3bc0f7536e", null ],
-    [ "cond_neural_param_json_import", "cond__neural_8c.html#a36aaa09b20127f91f09523074191d3ac", null ],
+    [ "cond_neural_param_json_import", "cond__neural_8c.html#a9255c78753af68c08b204d56737f3586", null ],
     [ "cond_neural_print", "cond__neural_8c.html#ad1218afacd3efb2cfe911de3f2daa280", null ],
     [ "cond_neural_save", "cond__neural_8c.html#a3af6e916fb0d2a25b57d9d2535c76f3d", null ],
     [ "cond_neural_size", "cond__neural_8c.html#a8260336517fc59e70eb1227d49447ebf", null ],

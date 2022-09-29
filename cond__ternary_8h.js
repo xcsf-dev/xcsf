@@ -14,7 +14,7 @@ var cond__ternary_8h =
     [ "cond_ternary_mutate", "cond__ternary_8h.html#a76eeeef8b9d7a232d1f5bf2ff917547a", null ],
     [ "cond_ternary_param_defaults", "cond__ternary_8h.html#ae43a7aeb5fd85f6620d8f56359db587d", null ],
     [ "cond_ternary_param_json_export", "cond__ternary_8h.html#a3e242bc5b35ada8f04d551d9c0a5062f", null ],
-    [ "cond_ternary_param_json_import", "cond__ternary_8h.html#acc0d446f6079b76f436e4f9be08f78d6", null ],
+    [ "cond_ternary_param_json_import", "cond__ternary_8h.html#a767df473e45580612c5682c90b48b737", null ],
     [ "cond_ternary_print", "cond__ternary_8h.html#a93a81c8f3036fb17e9351619993817a2", null ],
     [ "cond_ternary_save", "cond__ternary_8h.html#ad1e17fdabeaec326f8bce5227a86e87e", null ],
     [ "cond_ternary_size", "cond__ternary_8h.html#a0904e47c72abf4cff2a6ff1239962255", null ],

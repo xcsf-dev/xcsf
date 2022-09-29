@@ -20,7 +20,7 @@
 <area shape="rect" id="node19" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="424,613,555,640"/>
 <area shape="rect" id="node23" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="427,461,551,488"/>
 <area shape="rect" id="node26" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="434,512,545,539"/>
-<area shape="rect" id="node27" href="$loss_8c.html#a440b847b0f4edd503b919d3bebecd66c" title="Sets the XCSF error function to the implemented function." alt="" coords="438,740,541,767"/>
+<area shape="rect" id="node27" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="438,740,541,767"/>
 <area shape="rect" id="node36" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="429,563,550,589"/>
 <area shape="rect" id="node20" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="605,563,718,589"/>
 <area shape="rect" id="node21" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="768,537,879,564"/>

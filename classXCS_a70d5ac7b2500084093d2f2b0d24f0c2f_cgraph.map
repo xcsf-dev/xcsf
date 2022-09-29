@@ -1,0 +1,4 @@
+<map id="XCS::load_input" name="XCS::load_input">
+<area shape="rect" id="node1" title="Loads an input data structure for fitting." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#aef1e4c62e78f82a058d0008d2b308735" title="Returns the current system error." alt="" coords="171,5,255,32"/>
+</map>

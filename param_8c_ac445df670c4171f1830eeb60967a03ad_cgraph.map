@@ -1,0 +1,13 @@
+<map id="param_set_loss_func_string" name="param_set_loss_func_string">
+<area shape="rect" id="node1" title=" " alt="" coords="5,175,152,217"/>
+<area shape="rect" id="node2" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="209,157,311,184"/>
+<area shape="rect" id="node11" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="200,208,320,235"/>
+<area shape="rect" id="node3" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="368,5,480,32"/>
+<area shape="rect" id="node4" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="381,56,467,83"/>
+<area shape="rect" id="node5" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="389,107,459,133"/>
+<area shape="rect" id="node6" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="385,157,463,184"/>
+<area shape="rect" id="node7" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="528,233,607,260"/>
+<area shape="rect" id="node8" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="378,309,470,336"/>
+<area shape="rect" id="node10" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="383,259,465,285"/>
+<area shape="rect" id="node9" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="535,309,600,336"/>
+</map>

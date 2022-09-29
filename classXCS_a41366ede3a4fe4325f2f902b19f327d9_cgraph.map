@@ -1,4 +1,5 @@
 <map id="XCS::set_teletransportation" name="XCS::set_teletransportation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$param_8c.html#abe3e53803e5cdb2d9c812a0025c68449" title=" " alt="" coords="236,5,427,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,188,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a44b546a4ee6d9e43e1e28852bb1de5e6" title=" " alt="" coords="270,5,393,32"/>
+<area shape="rect" id="node3" href="$param_8c.html#a926dea96f312414ab1caf1d3e284f696" title=" " alt="" coords="236,56,427,83"/>
 </map>
