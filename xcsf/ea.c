@@ -405,10 +405,8 @@ ea_type_as_int(const char *type)
 const char *
 ea_param_set_select_size(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "EA SELECT_SIZE too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "EA SELECT_SIZE too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid EA SELECT_SIZE. Range: [0,1]";
     }
     xcsf->ea->select_size = a;
     return NULL;
@@ -427,10 +425,8 @@ ea_param_set_theta(struct XCSF *xcsf, const double a)
 const char *
 ea_param_set_p_crossover(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "EA P_CROSSOVER too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "EA P_CROSSOVER too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid EA P_CROSSOVER. Range: [0,1]";
     }
     xcsf->ea->p_crossover = a;
     return NULL;
@@ -449,10 +445,8 @@ ea_param_set_lambda(struct XCSF *xcsf, const int a)
 const char *
 ea_param_set_err_reduc(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "EA ERR_REDUC too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "EA ERR_REDUC too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid EA ERR_REDUC. Range: [0,1]";
     }
     xcsf->ea->err_reduc = a;
     return NULL;
@@ -461,10 +455,8 @@ ea_param_set_err_reduc(struct XCSF *xcsf, const double a)
 const char *
 ea_param_set_fit_reduc(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "EA FIT_REDUC too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "EA FIT_REDUC too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid EA FIT_REDUC. Range: [0,1]";
     }
     xcsf->ea->fit_reduc = a;
     return NULL;

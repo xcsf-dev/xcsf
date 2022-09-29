@@ -547,10 +547,8 @@ param_load(struct XCSF *xcsf, FILE *fp)
 const char *
 param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 {
-    if (a < 1) {
-        return "OMP_NUM_THREADS too small. Range: [1,1000]";
-    } else if (a > 1000) {
-        return "OMP_NUM_THREADS too large. Range: [1,1000]";
+    if (a < 1 || a > 1000) {
+        return "Invalid OMP_NUM_THREADS. Range: [1,1000]";
     }
     xcsf->OMP_NUM_THREADS = a;
 #ifdef PARALLEL
@@ -612,15 +610,11 @@ param_set_loss_func_string(struct XCSF *xcsf, const char *a)
 void
 param_set_loss_func(struct XCSF *xcsf, const int a)
 {
-    if (a < 0) {
-        printf("Warning: tried to set LOSS_FUNC too small\n");
-        xcsf->LOSS_FUNC = 0;
-    } else if (a >= LOSS_NUM) {
-        printf("Warning: tried to set LOSS_FUNC too large\n");
-        xcsf->LOSS_FUNC = LOSS_NUM - 1;
-    } else {
-        xcsf->LOSS_FUNC = a;
+    if (a < 0 || a >= LOSS_NUM) {
+        printf("param_set_loss_func(): invalid LOSS_FUNC: %d\n", a);
+        exit(EXIT_FAILURE);
     }
+    xcsf->LOSS_FUNC = a;
     loss_set_func(xcsf);
 }
 
@@ -651,10 +645,8 @@ param_set_huber_delta(struct XCSF *xcsf, const double a)
 const char *
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "GAMMA too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "GAMMA too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid GAMMA. Range: [0,1]";
     }
     xcsf->GAMMA = a;
     return NULL;
@@ -673,10 +665,8 @@ param_set_teletransportation(struct XCSF *xcsf, const int a)
 const char *
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "P_EXPLORE too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "P_EXPLORE too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid P_EXPLORE. Range: [0,1]";
     }
     xcsf->P_EXPLORE = a;
     return NULL;
@@ -685,10 +675,8 @@ param_set_p_explore(struct XCSF *xcsf, const double a)
 const char *
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "ALPHA too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "ALPHA too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid ALPHA. Range: [0,1]";
     }
     xcsf->ALPHA = a;
     return NULL;
@@ -697,10 +685,8 @@ param_set_alpha(struct XCSF *xcsf, const double a)
 const char *
 param_set_beta(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "BETA too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "BETA too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid BETA. Range: [0,1]";
     }
     xcsf->BETA = a;
     return NULL;
@@ -709,10 +695,8 @@ param_set_beta(struct XCSF *xcsf, const double a)
 const char *
 param_set_delta(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        return "DELTA too small. Range: [0,1]";
-    } else if (a > 1) {
-        return "DELTA too large. Range: [0,1]";
+    if (a < 0 || a > 1) {
+        return "Invalid DELTA. Range: [0,1]";
     }
     xcsf->DELTA = a;
     return NULL;
