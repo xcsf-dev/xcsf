@@ -72,6 +72,9 @@ class XCS
     XCS(const int x_dim, const int y_dim, const int n_actions)
     {
         param_init(&xcs, x_dim, y_dim, n_actions);
+        catch_error(param_set_n_actions(&xcs, n_actions));
+        catch_error(param_set_x_dim(&xcs, x_dim));
+        catch_error(param_set_y_dim(&xcs, y_dim));
         xcsf_init(&xcs);
         state = NULL;
         action = 0;
@@ -901,18 +904,6 @@ class XCS
     }
 
     void
-    set_omp_num_threads(const int a)
-    {
-        param_set_omp_num_threads(&xcs, a);
-    }
-
-    void
-    set_pop_init(const bool a)
-    {
-        param_set_pop_init(&xcs, a);
-    }
-
-    void
     catch_error(const char *ret)
     {
         if (ret != NULL) {
@@ -920,6 +911,18 @@ class XCS
             msg << ret << std::endl;
             throw std::invalid_argument(msg.str());
         }
+    }
+
+    void
+    set_omp_num_threads(const int a)
+    {
+        catch_error(param_set_omp_num_threads(&xcs, a));
+    }
+
+    void
+    set_pop_init(const bool a)
+    {
+        catch_error(param_set_pop_init(&xcs, a));
     }
 
     void
@@ -931,7 +934,7 @@ class XCS
     void
     set_perf_trials(const int a)
     {
-        param_set_perf_trials(&xcs, a);
+        catch_error(param_set_perf_trials(&xcs, a));
     }
 
     void
@@ -954,7 +957,7 @@ class XCS
     void
     set_huber_delta(const double a)
     {
-        param_set_huber_delta(&xcs, a);
+        catch_error(param_set_huber_delta(&xcs, a));
     }
 
     void
@@ -972,73 +975,73 @@ class XCS
     void
     set_delta(const double a)
     {
-        param_set_delta(&xcs, a);
+        catch_error(param_set_delta(&xcs, a));
     }
 
     void
     set_e0(const double a)
     {
-        param_set_e0(&xcs, a);
+        catch_error(param_set_e0(&xcs, a));
     }
 
     void
     set_init_error(const double a)
     {
-        param_set_init_error(&xcs, a);
+        catch_error(param_set_init_error(&xcs, a));
     }
 
     void
     set_init_fitness(const double a)
     {
-        param_set_init_fitness(&xcs, a);
+        catch_error(param_set_init_fitness(&xcs, a));
     }
 
     void
     set_nu(const double a)
     {
-        param_set_nu(&xcs, a);
+        catch_error(param_set_nu(&xcs, a));
     }
 
     void
     set_m_probation(const int a)
     {
-        param_set_m_probation(&xcs, a);
+        catch_error(param_set_m_probation(&xcs, a));
     }
 
     void
     set_theta_del(const int a)
     {
-        param_set_theta_del(&xcs, a);
+        catch_error(param_set_theta_del(&xcs, a));
     }
 
     void
     set_theta_sub(const int a)
     {
-        param_set_theta_sub(&xcs, a);
+        catch_error(param_set_theta_sub(&xcs, a));
     }
 
     void
     set_set_subsumption(const bool a)
     {
-        param_set_set_subsumption(&xcs, a);
+        catch_error(param_set_set_subsumption(&xcs, a));
     }
 
     void
     set_teletransportation(const int a)
     {
-        param_set_teletransportation(&xcs, a);
+        catch_error(param_set_teletransportation(&xcs, a));
     }
 
     void
     set_stateful(const bool a)
     {
-        param_set_stateful(&xcs, a);
+        catch_error(param_set_stateful(&xcs, a));
     }
 
     void
     set_compaction(const bool a)
     {
-        param_set_compaction(&xcs, a);
+        catch_error(param_set_compaction(&xcs, a));
     }
 
     void
@@ -1067,49 +1070,49 @@ class XCS
     void
     set_ea_select_size(const double a)
     {
-        ea_param_set_select_size(&xcs, a);
+        catch_error(ea_param_set_select_size(&xcs, a));
     }
 
     void
     set_theta_ea(const double a)
     {
-        ea_param_set_theta(&xcs, a);
+        catch_error(ea_param_set_theta(&xcs, a));
     }
 
     void
     set_lambda(const int a)
     {
-        ea_param_set_lambda(&xcs, a);
+        catch_error(ea_param_set_lambda(&xcs, a));
     }
 
     void
     set_p_crossover(const double a)
     {
-        ea_param_set_p_crossover(&xcs, a);
+        catch_error(ea_param_set_p_crossover(&xcs, a));
     }
 
     void
     set_err_reduc(const double a)
     {
-        ea_param_set_err_reduc(&xcs, a);
+        catch_error(ea_param_set_err_reduc(&xcs, a));
     }
 
     void
     set_fit_reduc(const double a)
     {
-        ea_param_set_fit_reduc(&xcs, a);
+        catch_error(ea_param_set_fit_reduc(&xcs, a));
     }
 
     void
     set_ea_subsumption(const bool a)
     {
-        ea_param_set_subsumption(&xcs, a);
+        catch_error(ea_param_set_subsumption(&xcs, a));
     }
 
     void
     set_ea_pred_reset(const bool a)
     {
-        ea_param_set_pred_reset(&xcs, a);
+        catch_error(ea_param_set_pred_reset(&xcs, a));
     }
 
     void

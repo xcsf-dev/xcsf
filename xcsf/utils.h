@@ -124,3 +124,16 @@ float_to_binary(const double f, char *binary, const int bits)
         }
     }
 }
+
+/**
+ * @brief Catches parameter value errors.
+ * @param [in] ret String return type from JSON import.
+ */
+static inline void
+catch_error(const char *ret)
+{
+    if (ret != NULL) {
+        printf("%s\n", ret);
+        exit(EXIT_FAILURE);
+    }
+}

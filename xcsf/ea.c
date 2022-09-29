@@ -292,28 +292,28 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
             }
         } else if (strncmp(iter->string, "select_size\0", 12) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_select_size(xcsf, iter->valuedouble);
+            catch_error(ea_param_set_select_size(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "theta_ea\0", 9) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_theta(xcsf, iter->valuedouble);
+            catch_error(ea_param_set_theta(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "lambda\0", 7) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_lambda(xcsf, iter->valueint);
+            catch_error(ea_param_set_lambda(xcsf, iter->valueint));
         } else if (strncmp(iter->string, "p_crossover\0", 12) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_p_crossover(xcsf, iter->valuedouble);
+            catch_error(ea_param_set_p_crossover(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "err_reduc\0", 10) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_err_reduc(xcsf, iter->valuedouble);
+            catch_error(ea_param_set_err_reduc(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "fit_reduc\0", 10) == 0 &&
                    cJSON_IsNumber(iter)) {
-            ea_param_set_fit_reduc(xcsf, iter->valuedouble);
+            catch_error(ea_param_set_fit_reduc(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "subsumption\0", 12) == 0 &&
                    cJSON_IsBool(iter)) {
-            ea_param_set_subsumption(xcsf, iter->valueint);
+            catch_error(ea_param_set_subsumption(xcsf, iter->valueint));
         } else if (strncmp(iter->string, "pred_reset\0", 11) == 0 &&
                    cJSON_IsBool(iter)) {
-            ea_param_set_pred_reset(xcsf, iter->valueint);
+            catch_error(ea_param_set_pred_reset(xcsf, iter->valueint));
         } else {
             printf("Error importing EA parameter %s\n", iter->string);
             exit(EXIT_FAILURE);
@@ -402,94 +402,78 @@ ea_type_as_int(const char *type)
 
 /* parameter setters */
 
-void
+const char *
 ea_param_set_select_size(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        printf("Warning: tried to set EA SELECT_SIZE too small\n");
-        xcsf->ea->select_size = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA SELECT_SIZE too large\n");
-        xcsf->ea->select_size = 1;
-    } else {
-        xcsf->ea->select_size = a;
+    if (a < 0 || a > 1) {
+        return "Invalid EA SELECT_SIZE. Range: [0,1]";
     }
+    xcsf->ea->select_size = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_theta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set EA THETA too small\n");
-        xcsf->ea->theta = 0;
-    } else {
-        xcsf->ea->theta = a;
+        return "EA THETA must be >= 0";
     }
+    xcsf->ea->theta = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_p_crossover(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        printf("Warning: tried to set EA P_CROSSOVER too small\n");
-        xcsf->ea->p_crossover = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA P_CROSSOVER too large\n");
-        xcsf->ea->p_crossover = 1;
-    } else {
-        xcsf->ea->p_crossover = a;
+    if (a < 0 || a > 1) {
+        return "Invalid EA P_CROSSOVER. Range: [0,1]";
     }
+    xcsf->ea->p_crossover = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_lambda(struct XCSF *xcsf, const int a)
 {
-    if (a < 1) {
-        printf("Warning: tried to set EA LAMBDA too small\n");
-        xcsf->ea->lambda = 1;
-    } else {
-        xcsf->ea->lambda = a;
+    if (a < 2) {
+        return "EA LAMBDA must be >= 2";
     }
+    xcsf->ea->lambda = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_err_reduc(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        printf("Warning: tried to set EA ERR_REDUC too small\n");
-        xcsf->ea->err_reduc = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA ERR_REDUC too large\n");
-        xcsf->ea->err_reduc = 1;
-    } else {
-        xcsf->ea->err_reduc = a;
+    if (a < 0 || a > 1) {
+        return "Invalid EA ERR_REDUC. Range: [0,1]";
     }
+    xcsf->ea->err_reduc = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_fit_reduc(struct XCSF *xcsf, const double a)
 {
-    if (a < 0) {
-        printf("Warning: tried to set EA FIT_REDUC too small\n");
-        xcsf->ea->fit_reduc = 0;
-    } else if (a > 1) {
-        printf("Warning: tried to set EA FIT_REDUC too large\n");
-        xcsf->ea->fit_reduc = 1;
-    } else {
-        xcsf->ea->fit_reduc = a;
+    if (a < 0 || a > 1) {
+        return "Invalid EA FIT_REDUC. Range: [0,1]";
     }
+    xcsf->ea->fit_reduc = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_subsumption(struct XCSF *xcsf, const bool a)
 {
     xcsf->ea->subsumption = a;
+    return NULL;
 }
 
-void
+const char *
 ea_param_set_pred_reset(struct XCSF *xcsf, const bool a)
 {
     xcsf->ea->pred_reset = a;
+    return NULL;
 }
 
 int
