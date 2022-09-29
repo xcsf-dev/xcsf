@@ -75,28 +75,28 @@ ea_type_as_int(const char *type);
 
 /* parameter setters */
 
-void
+const char *
 ea_param_set_select_size(struct XCSF *xcsf, const double a);
 
-void
+const char *
 ea_param_set_theta(struct XCSF *xcsf, const double a);
 
-void
+const char *
 ea_param_set_p_crossover(struct XCSF *xcsf, const double a);
 
-void
+const char *
 ea_param_set_lambda(struct XCSF *xcsf, const int a);
 
-void
+const char *
 ea_param_set_err_reduc(struct XCSF *xcsf, const double a);
 
-void
+const char *
 ea_param_set_fit_reduc(struct XCSF *xcsf, const double a);
 
-void
+const char *
 ea_param_set_subsumption(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 ea_param_set_pred_reset(struct XCSF *xcsf, const bool a);
 
 int

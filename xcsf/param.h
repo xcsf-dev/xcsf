@@ -54,16 +54,16 @@ param_save(const struct XCSF *xcsf, FILE *fp);
 
 /* setters */
 
-void
+const char *
 param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_pop_init(struct XCSF *xcsf, const bool a);
 
 const char *
 param_set_max_trials(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_perf_trials(struct XCSF *xcsf, const int a);
 
 const char *
@@ -75,19 +75,19 @@ param_set_loss_func_string(struct XCSF *xcsf, const char *a);
 void
 param_set_loss_func(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_stateful(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_compaction(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_huber_delta(struct XCSF *xcsf, const double a);
 
 const char *
 param_set_gamma(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_teletransportation(struct XCSF *xcsf, const int a);
 
 const char *
@@ -99,41 +99,41 @@ param_set_alpha(struct XCSF *xcsf, const double a);
 const char *
 param_set_beta(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_delta(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_e0(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_init_error(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_init_fitness(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_nu(struct XCSF *xcsf, const double a);
 
-void
+const char *
 param_set_theta_del(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_m_probation(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_set_subsumption(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_theta_sub(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_x_dim(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_explore(struct XCSF *xcsf, const bool a);
 
-void
+const char *
 param_set_y_dim(struct XCSF *xcsf, const int a);
 
-void
+const char *
 param_set_n_actions(struct XCSF *xcsf, const int a);
