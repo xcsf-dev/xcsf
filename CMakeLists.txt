@@ -102,8 +102,8 @@ if(UNIX
       CACHE PATH "RANLIB" FORCE)
 endif()
 
-set(CMAKE_C_FLAGS_DEBUG "-g3")
-set(CMAKE_CXX_FLAGS_DEBUG "-g3")
+set(CMAKE_C_FLAGS_DEBUG "-g3 -fsanitize=address")
+set(CMAKE_CXX_FLAGS_DEBUG "-g3 -fsanitize=address")
 
 set(CMAKE_C_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
