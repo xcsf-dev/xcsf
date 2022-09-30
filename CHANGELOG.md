@@ -4,6 +4,7 @@
 
 Changes:
 *    Python library throws exceptions rather than hard exiting where possible.
+*    Fix minor memory leak when printing parameters.
 
 ## Version 1.2.3 (Sep 23, 2022)
 
