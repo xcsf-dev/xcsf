@@ -1,6 +1,6 @@
 # Changelog
 
-## Post 1.2.3
+## Version 1.2.4 (Oct 1, 2022)
 
 Changes:
 *    Python library throws exceptions rather than hard exiting where possible.
