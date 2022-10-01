@@ -1,9 +1,0 @@
-<map id="catch_error" name="catch_error">
-<area shape="rect" id="node1" title="Catches parameter value errors." alt="" coords="651,71,737,98"/>
-<area shape="rect" id="node2" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="437,5,587,47"/>
-<area shape="rect" id="node6" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="421,71,603,98"/>
-<area shape="rect" id="node7" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="429,122,595,149"/>
-<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,71,373,98"/>
-<area shape="rect" id="node4" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,71,193,98"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,71,56,98"/>
-</map>
