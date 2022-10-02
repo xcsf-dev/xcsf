@@ -43,7 +43,7 @@
 #define LOSS_STRING_ONEHOT ("onehot\0") //!< One-hot classification error
 #define LOSS_STRING_HUBER ("huber\0") //!< Huber loss
 
-#define LOSS_OPTIONS ("mae, mse, rmse, log, binary_log, one_hot, huber")
+#define LOSS_OPTIONS "mae, mse, rmse, log, binary_log, one_hot, huber"
 
 double
 loss_huber(const struct XCSF *xcsf, const double *pred, const double *y);

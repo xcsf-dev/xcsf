@@ -32,7 +32,7 @@
 #define EA_STRING_ROULETTE ("roulette\0") //!< Roulette
 #define EA_STRING_TOURNAMENT ("tournament\0") //!< Tournament
 
-#define EA_SELECT_OPTIONS ("roulette, tournament") //!< Valid EA types
+#define EA_SELECT_OPTIONS "roulette, tournament" //!< Valid EA types
 
 /**
  * @brief Parameters for operating the evolutionary algorithm.

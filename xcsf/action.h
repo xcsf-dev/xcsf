@@ -32,7 +32,7 @@
 #define ACT_STRING_INTEGER ("integer\0") //!< Integer
 #define ACT_STRING_NEURAL ("neural\0") //!< Neural
 
-#define ACT_TYPE_OPTIONS ("integer, neural")
+#define ACT_TYPE_OPTIONS "integer, neural"
 
 /**
  * @brief Parameters for initialising and operating actions.

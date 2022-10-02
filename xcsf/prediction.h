@@ -41,8 +41,8 @@
 #define PRED_STRING_NEURAL ("neural\0") //!< Neural
 
 #define PRED_TYPE_OPTIONS                                                      \
-    ("constant, nlms_linear, nlms_quadratic, rls_linear, rls_quadratic, "      \
-     "neural")
+    "constant, nlms_linear, nlms_quadratic, rls_linear, rls_quadratic, "       \
+    "neural"
 
 /**
  * @brief Parameters for initialising and operating predictions.
