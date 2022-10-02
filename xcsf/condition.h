@@ -51,8 +51,8 @@
 #define COND_STRING_RULE_NETWORK ("rule_network\0") //!< Rule network
 
 #define COND_TYPE_OPTIONS                                                      \
-    ("dummy, hyperrectangle_csr, hyperrectangle_ubr, hyperellipsoid, neural, " \
-     "tree_gp, dgp, ternary, rule_dgp, rule_neural, rule_network")
+    "dummy, hyperrectangle_csr, hyperrectangle_ubr, hyperellipsoid, neural, "  \
+    "tree_gp, dgp, ternary, rule_dgp, rule_neural, rule_network"
 
 /**
  * @brief Parameters for initialising and operating conditions.

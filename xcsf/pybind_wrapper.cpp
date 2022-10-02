@@ -1247,106 +1247,245 @@ PYBIND11_MODULE(xcsf, m)
         &XCS::set_prediction;
 
     py::class_<XCS>(m, "XCS")
-        .def(py::init<const int, const int, const int>())
-        .def("condition", condition1)
-        .def("condition", condition2)
-        .def("action", action1)
-        .def("action", action2)
-        .def("prediction", prediction1)
-        .def("prediction", prediction2)
-        .def("fit", fit1)
-        .def("fit", fit2)
-        .def("fit", fit3)
-        .def("score", score1)
-        .def("score", score2)
-        .def("error", error1)
-        .def("error", error2)
-        .def("predict", &XCS::predict)
-        .def("save", &XCS::save)
-        .def("load", &XCS::load)
-        .def("store", &XCS::store)
-        .def("retrieve", &XCS::retrieve)
-        .def("version_major", &XCS::version_major)
-        .def("version_minor", &XCS::version_minor)
-        .def("version_build", &XCS::version_build)
-        .def("init_trial", &XCS::init_trial)
-        .def("end_trial", &XCS::end_trial)
-        .def("init_step", &XCS::init_step)
-        .def("end_step", &XCS::end_step)
-        .def("decision", &XCS::decision)
-        .def("update", &XCS::update)
-        .def("seed", &XCS::seed)
+        .def(py::init<const int, const int, const int>(),
+             "Creates a new XCSF class.", py::arg("x_dim"), py::arg("y_dim"),
+             py::arg("n_actions"))
+        .def("condition", condition1,
+             "Sets the condition type. Options: {" COND_TYPE_OPTIONS "}.",
+             py::arg("type"))
+        .def("condition", condition2,
+             "Sets the condition type and args. Options: {" COND_TYPE_OPTIONS
+             "}.",
+             py::arg("type"), py::arg("args"))
+        .def("action", action1,
+             "Sets the action type. Options: {" ACT_TYPE_OPTIONS "}.",
+             py::arg("type"))
+        .def("action", action2,
+             "Sets the action type and args. Options: {" ACT_TYPE_OPTIONS "}.",
+             py::arg("type"), py::arg("args"))
+        .def("prediction", prediction1,
+             "Sets the prediction type. Options: {" PRED_TYPE_OPTIONS "}.",
+             py::arg("type"))
+        .def("prediction", prediction2,
+             "Sets the prediction type and args. Options: {" PRED_TYPE_OPTIONS
+             "}.",
+             py::arg("type"), py::arg("args"))
+        .def("fit", fit1,
+             "Creates/updates an action set for a given (state, action, "
+             "reward). state shape must be: (x_dim, ).",
+             py::arg("state"), py::arg("action"), py::arg("reward"))
+        .def("fit", fit2,
+             "Executes MAX_TRIALS number of XCSF learning iterations using the "
+             "provided training data. X_train shape must be: (n_samples, "
+             "x_dim). y_train shape must be: (n_samples, y_dim).",
+             py::arg("X_train"), py::arg("y_train"), py::arg("shuffle"))
+        .def("fit", fit3,
+             "Executes MAX_TRIALS number of XCSF learning iterations using the "
+             "provided training data and test iterations using the test data. "
+             "X_train shape must be: (n_samples, x_dim). y_train shape must "
+             "be: (n_samples, y_dim). X_test shape must be: (n_samples, "
+             "x_dim). y_test shape must be: (n_samples, y_dim).",
+             py::arg("X_train"), py::arg("y_train"), py::arg("X_test"),
+             py::arg("y_test"), py::arg("shuffle"))
+        .def("score", score1,
+             "Returns the error over one sequential pass of the provided data. "
+             "X_val shape must be: (n_samples, x_dim). y_val shape must be: "
+             "(n_samples, y_dim).",
+             py::arg("X_val"), py::arg("y_val"))
+        .def("score", score2,
+             "Returns the error using at most N random samples from the "
+             "provided data. X_val shape must be: (n_samples, x_dim). y_val "
+             "shape must be: (n_samples, y_dim).",
+             py::arg("X_val"), py::arg("y_val"), py::arg("N"))
+        .def("error", error1,
+             "Returns a moving average of the system error, updated with step "
+             "size BETA.")
+        .def("error", error2,
+             "Returns the reinforcement learning system prediction error.",
+             py::arg("reward"), py::arg("done"), py::arg("max_p"))
+        .def("predict", &XCS::predict,
+             "Returns the XCSF prediction array for the provided input. X_test "
+             "shape must be: (n_samples, x_dim). Returns an array of shape: "
+             "(n_samples, y_dim).",
+             py::arg("X_test"))
+        .def("save", &XCS::save,
+             "Saves the current state of XCSF to persistent storage.",
+             py::arg("filename"))
+        .def("load", &XCS::load,
+             "Loads the current state of XCSF from persistent storage.",
+             py::arg("filename"))
+        .def("store", &XCS::store,
+             "Stores the current XCSF population in memory for later "
+             "retrieval, overwriting any previously stored population.")
+        .def("retrieve", &XCS::retrieve,
+             "Retrieves the previously stored XCSF population from memory.")
+        .def("version_major", &XCS::version_major,
+             "Returns the version major number.")
+        .def("version_minor", &XCS::version_minor,
+             "Returns the version minor number.")
+        .def("version_build", &XCS::version_build,
+             "Returns the version build number.")
+        .def("init_trial", &XCS::init_trial, "Initialises a multi-step trial.")
+        .def("end_trial", &XCS::end_trial, "Ends a multi-step trial.")
+        .def("init_step", &XCS::init_step,
+             "Initialises a step in a multi-step trial.")
+        .def("end_step", &XCS::end_step, "Ends a step in a multi-step trial.")
+        .def("decision", &XCS::decision,
+             "Constructs the match set and selects an action to perform for "
+             "reinforcement learning. state shape must be: (x_dim, )",
+             py::arg("state"), py::arg("explore"))
+        .def("update", &XCS::update,
+             "Creates the action set using the previously selected action.",
+             py::arg("reward"), py::arg("done"))
+        .def("seed", &XCS::seed, "Sets the random number seed.",
+             py::arg("seed"))
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
-                      &XCS::set_omp_num_threads)
-        .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init)
-        .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials)
+                      &XCS::set_omp_num_threads, "Number of CPU cores to use.")
+        .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init,
+                      "Whether to seed the population with random rules.")
+        .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials,
+                      "Number of problem instances to run in one experiment.")
         .def_property("PERF_TRIALS", &XCS::get_perf_trials,
-                      &XCS::set_perf_trials)
+                      &XCS::set_perf_trials,
+                      "Number of problem instances to avg performance output.")
         .def_property("POP_SIZE", &XCS::get_pop_max_size,
-                      &XCS::set_pop_max_size)
-        .def_property("LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func)
+                      &XCS::set_pop_max_size,
+                      "Maximum number of micro-classifiers in the population.")
+        .def_property(
+            "LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func,
+            "Which loss/error function to apply. Options: {" LOSS_OPTIONS "}.")
         .def_property("HUBER_DELTA", &XCS::get_huber_delta,
-                      &XCS::set_huber_delta)
-        .def_property("ALPHA", &XCS::get_alpha, &XCS::set_alpha)
-        .def_property("BETA", &XCS::get_beta, &XCS::set_beta)
-        .def_property("DELTA", &XCS::get_delta, &XCS::set_delta)
-        .def_property("E0", &XCS::get_e0, &XCS::set_e0)
-        .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful)
-        .def_property("COMPACTION", &XCS::get_compaction, &XCS::set_compaction)
-        .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error)
+                      &XCS::set_huber_delta,
+                      "Delta parameter for Huber loss calculation.")
+        .def_property(
+            "ALPHA", &XCS::get_alpha, &XCS::set_alpha,
+            "Linear coefficient used to calculate classifier accuracy.")
+        .def_property(
+            "BETA", &XCS::get_beta, &XCS::set_beta,
+            "Learning rate for updating error, fitness, and set size.")
+        .def_property("DELTA", &XCS::get_delta, &XCS::set_delta,
+                      "Fraction of population to increase deletion vote.")
+        .def_property(
+            "E0", &XCS::get_e0, &XCS::set_e0,
+            "Target error under which classifier accuracy is set to 1.")
+        .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful,
+                      "Whether classifiers should retain state across trials.")
+        .def_property("COMPACTION", &XCS::get_compaction, &XCS::set_compaction,
+                      "if sys err < E0: largest of 2 roulette spins deleted.")
+        .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error,
+                      "Initial classifier error value.")
         .def_property("INIT_FITNESS", &XCS::get_init_fitness,
-                      &XCS::set_init_fitness)
-        .def_property("NU", &XCS::get_nu, &XCS::set_nu)
+                      &XCS::set_init_fitness,
+                      "Initial classifier fitness value.")
+        .def_property("NU", &XCS::get_nu, &XCS::set_nu,
+                      "Exponent used in calculating classifier accuracy.")
         .def_property("M_PROBATION", &XCS::get_m_probation,
-                      &XCS::set_m_probation)
-        .def_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del)
-        .def_property("THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub)
+                      &XCS::set_m_probation,
+                      "Trials since creation a cl must match at least 1 input.")
+        .def_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del,
+                      "Min experience before fitness used during deletion.")
+        .def_property(
+            "THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub,
+            "Minimum experience of a classifier to become a subsumer.")
         .def_property("SET_SUBSUMPTION", &XCS::get_set_subsumption,
-                      &XCS::set_set_subsumption)
+                      &XCS::set_set_subsumption,
+                      "Whether to perform match set subsumption.")
         .def_property("TELETRANSPORTATION", &XCS::get_teletransportation,
-                      &XCS::set_teletransportation)
-        .def_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma)
-        .def_property("P_EXPLORE", &XCS::get_p_explore, &XCS::set_p_explore)
+                      &XCS::set_teletransportation,
+                      "Maximum steps for a multi-step problem.")
+        .def_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma,
+                      "Discount factor for multi-step reward.")
+        .def_property("P_EXPLORE", &XCS::get_p_explore, &XCS::set_p_explore,
+                      "Probability of exploring vs. exploiting.")
         .def_property("EA_SELECT_TYPE", &XCS::get_ea_select_type,
-                      &XCS::set_ea_select_type)
+                      &XCS::set_ea_select_type,
+                      "EA parental selection type. Options: {" EA_SELECT_OPTIONS
+                      "}.")
         .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
-                      &XCS::set_ea_select_size)
-        .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea)
+                      &XCS::set_ea_select_size,
+                      "Fraction of set size for tournaments.")
+        .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea,
+                      "Average match set time between EA invocations.")
         .def_property("P_CROSSOVER", &XCS::get_p_crossover,
-                      &XCS::set_p_crossover)
-        .def_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda)
-        .def_property("ERR_REDUC", &XCS::get_err_reduc, &XCS::set_err_reduc)
-        .def_property("FIT_REDUC", &XCS::get_fit_reduc, &XCS::set_fit_reduc)
+                      &XCS::set_p_crossover,
+                      "Probability of applying crossover.")
+        .def_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda,
+                      "Number of offspring to create each EA invocation.")
+        .def_property("ERR_REDUC", &XCS::get_err_reduc, &XCS::set_err_reduc,
+                      "Amount to reduce an offspring's error.")
+        .def_property("FIT_REDUC", &XCS::get_fit_reduc, &XCS::set_fit_reduc,
+                      "Amount to reduce an offspring's fitness.")
         .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption,
-                      &XCS::set_ea_subsumption)
+                      &XCS::set_ea_subsumption,
+                      "Whether to try and subsume offspring classifiers.")
         .def_property("EA_PRED_RESET", &XCS::get_ea_pred_reset,
-                      &XCS::set_ea_pred_reset)
-        .def("time", &XCS::get_time)
-        .def("x_dim", &XCS::get_x_dim)
-        .def("y_dim", &XCS::get_y_dim)
-        .def("n_actions", &XCS::get_n_actions)
-        .def("pset_size", &XCS::get_pset_size)
-        .def("pset_num", &XCS::get_pset_num)
-        .def("pset_mean_cond_size", &XCS::get_pset_mean_cond_size)
-        .def("pset_mean_pred_size", &XCS::get_pset_mean_pred_size)
-        .def("pset_mean_pred_eta", &XCS::get_pset_mean_pred_eta)
-        .def("pset_mean_pred_neurons", &XCS::get_pset_mean_pred_neurons)
-        .def("pset_mean_pred_layers", &XCS::get_pset_mean_pred_layers)
-        .def("pset_mean_pred_connections", &XCS::get_pset_mean_pred_connections)
-        .def("pset_mean_cond_neurons", &XCS::get_pset_mean_cond_neurons)
-        .def("pset_mean_cond_layers", &XCS::get_pset_mean_cond_layers)
-        .def("pset_mean_cond_connections", &XCS::get_pset_mean_cond_connections)
-        .def("mset_size", &XCS::get_mset_size)
-        .def("aset_size", &XCS::get_aset_size)
-        .def("mfrac", &XCS::get_mfrac)
-        .def("print_pset", &XCS::print_pset)
-        .def("print_params", &XCS::print_params)
-        .def("pred_expand", &XCS::pred_expand)
-        .def("ae_to_classifier", &XCS::ae_to_classifier)
-        .def("json", &XCS::json_export)
-        .def("json_write", &XCS::json_write)
-        .def("json_read", &XCS::json_read)
-        .def("json_parameters", &XCS::json_parameters)
-        .def("json_insert_cl", &XCS::json_insert_cl)
-        .def("json_insert", &XCS::json_insert);
+                      &XCS::set_ea_pred_reset,
+                      "Whether to reset or copy offspring predictions.")
+        .def("time", &XCS::get_time, "Returns the current EA time.")
+        .def("x_dim", &XCS::get_x_dim, "Returns the x_dim.")
+        .def("y_dim", &XCS::get_y_dim, "Returns the y_dim.")
+        .def("n_actions", &XCS::get_n_actions, "Returns the number of actions.")
+        .def("pset_size", &XCS::get_pset_size,
+             "Returns the number of macro-classifiers in the population.")
+        .def("pset_num", &XCS::get_pset_num,
+             "Returns the number of micro-classifiers in the population.")
+        .def("pset_mean_cond_size", &XCS::get_pset_mean_cond_size,
+             "Returns the average condition size of classifiers in the "
+             "population.")
+        .def("pset_mean_pred_size", &XCS::get_pset_mean_pred_size,
+             "Returns the average prediction size of classifiers in the "
+             "population.")
+        .def("pset_mean_pred_eta", &XCS::get_pset_mean_pred_eta,
+             "Returns the mean eta for a prediction layer.", py::arg("layer"))
+        .def("pset_mean_pred_neurons", &XCS::get_pset_mean_pred_neurons,
+             "Returns the mean number of neurons for a prediction layer.",
+             py::arg("layer"))
+        .def("pset_mean_pred_layers", &XCS::get_pset_mean_pred_layers,
+             "Returns the mean number of layers in the prediction networks.")
+        .def("pset_mean_pred_connections", &XCS::get_pset_mean_pred_connections,
+             "Returns the mean number of connections for a prediction layer.",
+             py::arg("layer"))
+        .def("pset_mean_cond_neurons", &XCS::get_pset_mean_cond_neurons,
+             "Returns the mean number of neurons for a condition layer.",
+             py::arg("layer"))
+        .def("pset_mean_cond_layers", &XCS::get_pset_mean_cond_layers,
+             "Returns the mean number of layers in the condition networks.")
+        .def("pset_mean_cond_connections", &XCS::get_pset_mean_cond_connections,
+             "Returns the mean number of connections for a condition layer.",
+             py::arg("layer"))
+        .def("mset_size", &XCS::get_mset_size,
+             "Returns the average match set size.")
+        .def("aset_size", &XCS::get_aset_size,
+             "Returns the average action set size.")
+        .def("mfrac", &XCS::get_mfrac,
+             "Returns the mean fraction of inputs matched by the best rule.")
+        .def("print_pset", &XCS::print_pset, "Prints the current population.",
+             py::arg("print_condition"), py::arg("print_action"),
+             py::arg("print_prediction"))
+        .def("print_params", &XCS::print_params,
+             "Prints the XCSF parameters and their current values.")
+        .def("pred_expand", &XCS::pred_expand,
+             "Inserts a new hidden layer before the output layer within all "
+             "prediction neural networks in the population.")
+        .def("ae_to_classifier", &XCS::ae_to_classifier,
+             "Switches from autoencoding to classification.", py::arg("y_dim"),
+             py::arg("n_del"))
+        .def("json", &XCS::json_export,
+             "Returns a JSON formatted string representing the population set.",
+             py::arg("return_condition"), py::arg("return_action"),
+             py::arg("return_prediction"))
+        .def("json_write", &XCS::json_write,
+             "Writes the current population set to a file in JSON.",
+             py::arg("filename"))
+        .def("json_read", &XCS::json_read,
+             "Reads classifiers from a JSON file and adds to the population.",
+             py::arg("filename"))
+        .def("json_parameters", &XCS::json_parameters,
+             "Returns a JSON formatted string representing the parameters.")
+        .def("json_insert_cl", &XCS::json_insert_cl,
+             "Creates a classifier from JSON and inserts into the population.",
+             py::arg("json_str"))
+        .def("json_insert", &XCS::json_insert,
+             "Creates classifiers from JSON and inserts into the population.",
+             py::arg("json_str"));
 }
