@@ -102,8 +102,8 @@ if(UNIX
       CACHE PATH "RANLIB" FORCE)
 endif()
 
-set(CMAKE_C_FLAGS_DEBUG "-g3 -fsanitize=address")
-set(CMAKE_CXX_FLAGS_DEBUG "-g3 -fsanitize=address")
+set(CMAKE_C_FLAGS_DEBUG "-g3")
+set(CMAKE_CXX_FLAGS_DEBUG "-g3")
 
 set(CMAKE_C_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -118,6 +118,13 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -flto")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -funroll-loops")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -funroll-loops")
+
+option(SANITIZE "Build with sanitizers" OFF)
+if(SANITIZE)
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address")
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=undefined")
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fno-omit-frame-pointer")
+endif()
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU")
   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -ffat-lto-objects")
