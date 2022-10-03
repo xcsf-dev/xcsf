@@ -17,7 +17,7 @@
  * @file neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2021.
+ * @date 2012--2022.
  * @brief An implementation of a multi-layer perceptron neural network.
  */
 
@@ -403,7 +403,7 @@ neural_print(const struct Net *net, const bool print_weights)
  * @param [in] return_weights Whether to return the weights in each layer.
  * @return String encoded in json format.
  */
-const char *
+char *
 neural_json_export(const struct Net *net, const bool return_weights)
 {
     cJSON *json = cJSON_CreateObject();
@@ -418,7 +418,7 @@ neural_json_export(const struct Net *net, const bool return_weights)
         iter = iter->prev;
         ++i;
     }
-    const char *string = cJSON_Print(json);
+    char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
 }

@@ -3,6 +3,7 @@
 ## Post 1.2.4
 
 *    Add docstrings and variable names to Python library.
+*    Fix minor memory leak when printing parameters.
 
 ## Version 1.2.4 (Oct 1, 2022)
 

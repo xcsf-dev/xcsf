@@ -17,7 +17,7 @@
  * @file neural_layer_recurrent.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief An implementation of a recurrent layer of perceptrons.
  * @details Fully-connected, stateful, and with a step of 1.
  */
@@ -455,11 +455,17 @@ neural_layer_recurrent_json_export(const struct Layer *l,
     cJSON_AddNumberToObject(json, "eta", l->eta);
     cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    cJSON *il = cJSON_Parse(layer_weight_json(l->input_layer, return_weights));
+    char *weights_str = layer_weight_json(l->input_layer, return_weights);
+    cJSON *il = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "input_layer", il);
-    cJSON *sl = cJSON_Parse(layer_weight_json(l->self_layer, return_weights));
+    weights_str = layer_weight_json(l->self_layer, return_weights);
+    cJSON *sl = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "self_layer", sl);
-    cJSON *ol = cJSON_Parse(layer_weight_json(l->output_layer, return_weights));
+    weights_str = layer_weight_json(l->output_layer, return_weights);
+    cJSON *ol = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "output_layer", ol);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
