@@ -48,7 +48,9 @@ repos:
     rev: v0.6.13
     hooks:
       - id: cmake-format
+        args: ["--line-width=90"]
       - id: cmake-lint
+        args: ["--line-width=90"]
 
   # Upgrade old Python syntax
   - repo: https://github.com/asottile/pyupgrade
