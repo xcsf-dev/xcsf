@@ -1,7 +1,8 @@
 # Changelog
 
-## Post 1.2.4
+## Version 1.2.5 (Oct 3, 2022)
 
+Changes:
 *    Add docstrings and variable names to Python library.
 *    Fix minor memory leak when printing parameters.
 
