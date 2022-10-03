@@ -7,7 +7,7 @@ var neural_8h =
     [ "neural_free", "neural_8h.html#a9c3e1da0425d0fc17daa12c21e4799ca", null ],
     [ "neural_init", "neural_8h.html#ad70aee7c40f698d4be45e3d419051c2f", null ],
     [ "neural_insert", "neural_8h.html#afab574137fbf9da9a286d020917c8295", null ],
-    [ "neural_json_export", "neural_8h.html#a99f4af43712739691174e770a9090ca2", null ],
+    [ "neural_json_export", "neural_8h.html#af29acbba461eb214eac4d0924f783120", null ],
     [ "neural_json_import", "neural_8h.html#a86c9af5cafd26d9fbbb798743312bb53", null ],
     [ "neural_learn", "neural_8h.html#a2090e03e5cc8444408ce1cf834bd01c1", null ],
     [ "neural_load", "neural_8h.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08", null ],

@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.4</span>
+   &#160;<span id="projectnumber">1.2.5</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -165,9 +165,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab5c47a049b73e0a95b0ff56bd8085583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#ab5c47a049b73e0a95b0ff56bd8085583">neural_print</a> (const struct <a class="el" href="structNet.html">Net</a> *net, const bool print_weights)</td></tr>
 <tr class="memdesc:ab5c47a049b73e0a95b0ff56bd8085583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a neural network.  <a href="neural_8c.html#ab5c47a049b73e0a95b0ff56bd8085583">More...</a><br /></td></tr>
 <tr class="separator:ab5c47a049b73e0a95b0ff56bd8085583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99f4af43712739691174e770a9090ca2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#a99f4af43712739691174e770a9090ca2">neural_json_export</a> (const struct <a class="el" href="structNet.html">Net</a> *net, const bool return_weights)</td></tr>
-<tr class="memdesc:a99f4af43712739691174e770a9090ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a neural network.  <a href="neural_8c.html#a99f4af43712739691174e770a9090ca2">More...</a><br /></td></tr>
-<tr class="separator:a99f4af43712739691174e770a9090ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af29acbba461eb214eac4d0924f783120"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#af29acbba461eb214eac4d0924f783120">neural_json_export</a> (const struct <a class="el" href="structNet.html">Net</a> *net, const bool return_weights)</td></tr>
+<tr class="memdesc:af29acbba461eb214eac4d0924f783120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a json formatted string representation of a neural network.  <a href="neural_8c.html#af29acbba461eb214eac4d0924f783120">More...</a><br /></td></tr>
+<tr class="separator:af29acbba461eb214eac4d0924f783120"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86c9af5cafd26d9fbbb798743312bb53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53">neural_json_import</a> (struct <a class="el" href="structNet.html">Net</a> *net, const struct <a class="el" href="structArgsLayer.html">ArgsLayer</a> *arg, const cJSON *json)</td></tr>
 <tr class="memdesc:a86c9af5cafd26d9fbbb798743312bb53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a neural network from a cJSON object.  <a href="neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53">More...</a><br /></td></tr>
 <tr class="separator:a86c9af5cafd26d9fbbb798743312bb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,7 +185,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>An implementation of a multi-layer perceptron neural network. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2012&ndash;2021. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2012&ndash;2022. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -437,14 +437,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a99f4af43712739691174e770a9090ca2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99f4af43712739691174e770a9090ca2">&#9670;&nbsp;</a></span>neural_json_export()</h2>
+<a id="af29acbba461eb214eac4d0924f783120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af29acbba461eb214eac4d0924f783120">&#9670;&nbsp;</a></span>neural_json_export()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* neural_json_export </td>
+          <td class="memname">char* neural_json_export </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structNet.html">Net</a> *&#160;</td>
           <td class="paramname"><em>net</em>, </td>
@@ -481,13 +481,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_cgraph.svg" width="314" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af29acbba461eb214eac4d0924f783120_cgraph.svg" width="314" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_a99f4af43712739691174e770a9090ca2_icgraph.svg" width="556" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="neural_8c_af29acbba461eb214eac4d0924f783120_icgraph.svg" width="556" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -537,7 +537,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="neural_8c_source.html#l00433">433</a> of file <a class="el" href="neural_8c_source.html">neural.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00252">act_neural_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00332">cond_neural_json_import()</a>, <a class="el" href="pred__neural_8c_source.html#l00412">pred_neural_json_import()</a>, and <a class="el" href="rule__neural_8c_source.html#l00179">rule_neural_cond_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00254">act_neural_json_import()</a>, <a class="el" href="cond__neural_8c_source.html#l00334">cond_neural_json_import()</a>, <a class="el" href="pred__neural_8c_source.html#l00414">pred_neural_json_import()</a>, and <a class="el" href="rule__neural_8c_source.html#l00181">rule_neural_cond_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -750,7 +750,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="neural_8h_source.html#l00053">Net::head</a>, <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00193">layer_output()</a>, and <a class="el" href="neural_8h_source.html#l00051">Net::n_outputs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__neural_8c_source.html#l00118">cond_neural_match()</a>, <a class="el" href="pred__neural_8c_source.html#l00106">pred_neural_compute()</a>, <a class="el" href="rule__neural_8c_source.html#l00236">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__neural_8c_source.html#l00118">cond_neural_match()</a>, <a class="el" href="pred__neural_8c_source.html#l00106">pred_neural_compute()</a>, <a class="el" href="rule__neural_8c_source.html#l00238">rule_neural_act_compute()</a>, and <a class="el" href="rule__neural_8c_source.html#l00089">rule_neural_cond_match()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1047,7 +1047,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="neural_8h_source.html#l00040">Llist::layer</a>, <a class="el" href="neural__layer_8h_source.html#l00283">layer_rand()</a>, <a class="el" href="neural_8h_source.html#l00041">Llist::prev</a>, and <a class="el" href="neural_8h_source.html#l00054">Net::tail</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00152">act_neural_cover()</a>, <a class="el" href="cond__neural_8c_source.html#l00086">cond_neural_cover()</a>, and <a class="el" href="rule__neural_8c_source.html#l00225">rule_neural_act_cover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="act__neural_8c_source.html#l00152">act_neural_cover()</a>, <a class="el" href="cond__neural_8c_source.html#l00086">cond_neural_cover()</a>, and <a class="el" href="rule__neural_8c_source.html#l00227">rule_neural_act_cover()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

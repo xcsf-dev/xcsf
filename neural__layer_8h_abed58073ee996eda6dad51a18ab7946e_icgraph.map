@@ -1,6 +1,6 @@
 <map id="layer_json_export" name="layer_json_export">
 <area shape="rect" id="node1" title="Returns a json formatted string representation of a layer." alt="" coords="599,107,723,133"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="420,107,551,133"/>
+<area shape="rect" id="node2" href="$neural_8c.html#af29acbba461eb214eac4d0924f783120" title="Returns a json formatted string representation of a neural network." alt="" coords="420,107,551,133"/>
 <area shape="rect" id="node3" href="$act__neural_8c.html#af5dd183fdacf478efeac81b6921ffa86" title="Returns a json formatted string representation of a neural action." alt="" coords="211,5,367,32"/>
 <area shape="rect" id="node5" href="$cond__neural_8c.html#a4145d0d67f9d079a3656e6ec7f262baa" title="Returns a json formatted string representation of a neural condition." alt="" coords="205,56,372,83"/>
 <area shape="rect" id="node7" href="$neural_8c.html#ab5c47a049b73e0a95b0ff56bd8085583" title="Prints a neural network." alt="" coords="244,107,333,133"/>

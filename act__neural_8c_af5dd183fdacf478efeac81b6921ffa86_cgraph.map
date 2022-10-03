@@ -1,5 +1,5 @@
 <map id="act_neural_json_export" name="act_neural_json_export">
 <area shape="rect" id="node1" title="Returns a json formatted string representation of a neural action." alt="" coords="5,5,161,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a99f4af43712739691174e770a9090ca2" title="Returns a json formatted string representation of a neural network." alt="" coords="209,5,340,32"/>
+<area shape="rect" id="node2" href="$neural_8c.html#af29acbba461eb214eac4d0924f783120" title="Returns a json formatted string representation of a neural network." alt="" coords="209,5,340,32"/>
 <area shape="rect" id="node3" href="$neural__layer_8h.html#abed58073ee996eda6dad51a18ab7946e" title="Returns a json formatted string representation of a layer." alt="" coords="388,5,512,32"/>
 </map>
