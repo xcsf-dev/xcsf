@@ -17,7 +17,7 @@
  * @file neural_layer_convolutional.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief An implementation of a 2D convolutional layer.
  */
 
@@ -525,7 +525,9 @@ neural_layer_convolutional_json_export(const struct Layer *l,
     cJSON_AddNumberToObject(json, "eta", l->eta);
     cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    cJSON *weights = cJSON_Parse(layer_weight_json(l, return_weights));
+    char *weights_str = layer_weight_json(l, return_weights);
+    cJSON *weights = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "weights", weights);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);

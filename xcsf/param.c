@@ -140,9 +140,10 @@ param_json_export(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "m_probation", xcsf->M_PROBATION);
     cJSON_AddBoolToObject(json, "stateful", xcsf->STATEFUL);
     cJSON_AddBoolToObject(json, "compaction", xcsf->COMPACTION);
-    char *ea_param = ea_param_json_export(xcsf);
-    cJSON_AddItemToObject(json, "ea", cJSON_Parse(ea_param));
-    free(ea_param);
+    char *ea_param_str = ea_param_json_export(xcsf);
+    cJSON *ea_params = cJSON_Parse(ea_param_str);
+    cJSON_AddItemToObject(json, "ea", ea_params);
+    free(ea_param_str);
     switch (xcsf->cond->type) {
         case RULE_TYPE_DGP:
         case RULE_TYPE_NEURAL:
@@ -150,21 +151,21 @@ param_json_export(const struct XCSF *xcsf)
             break;
         default:
             if (xcsf->n_actions > 1) {
-                char *action_param = action_param_json_export(xcsf);
-                cJSON *act_params = cJSON_Parse(action_param);
+                char *act_param_str = action_param_json_export(xcsf);
+                cJSON *act_params = cJSON_Parse(act_param_str);
                 cJSON_AddItemToObject(json, "action", act_params);
-                free(action_param);
+                free(act_param_str);
             }
             break;
     }
-    char *cond_param = cond_param_json_export(xcsf);
-    cJSON *cond_params = cJSON_Parse(cond_param);
+    char *cond_param_str = cond_param_json_export(xcsf);
+    cJSON *cond_params = cJSON_Parse(cond_param_str);
     cJSON_AddItemToObject(json, "condition", cond_params);
-    free(cond_param);
-    char *pred_param = pred_param_json_export(xcsf);
-    cJSON *pred_params = cJSON_Parse(pred_param);
+    free(cond_param_str);
+    char *pred_param_str = pred_param_json_export(xcsf);
+    cJSON *pred_params = cJSON_Parse(pred_param_str);
     cJSON_AddItemToObject(json, "prediction", pred_params);
-    free(pred_param);
+    free(pred_param_str);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;

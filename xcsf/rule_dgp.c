@@ -17,7 +17,7 @@
  * @file rule_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2022.
  * @brief Dynamical GP graph rule (condition + action) functions.
  */
 
@@ -158,7 +158,9 @@ rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
     const struct RuleDGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "rule_dgp");
-    cJSON *graph = cJSON_Parse(graph_json_export(&cond->dgp));
+    char *graph_str = graph_json_export(&cond->dgp);
+    cJSON *graph = cJSON_Parse(graph_str);
+    free(graph_str);
     cJSON_AddItemToObject(json, "graph", graph);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);

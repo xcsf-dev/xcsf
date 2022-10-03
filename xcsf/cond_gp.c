@@ -244,7 +244,9 @@ cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c)
     const struct CondGP *cond = c->cond;
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json, "type", "tree_gp");
-    cJSON *tree = cJSON_Parse(tree_json_export(&cond->gp, xcsf->cond->targs));
+    char *tree_str = tree_json_export(&cond->gp, xcsf->cond->targs);
+    cJSON *tree = cJSON_Parse(tree_str);
+    free(tree_str);
     cJSON_AddItemToObject(json, "tree", tree);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);

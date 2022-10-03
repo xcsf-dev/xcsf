@@ -17,7 +17,7 @@
  * @file neural_layer_lstm.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2022.
  * @brief An implementation of a long short-term memory layer.
  * @details Stateful, and with a step of 1.
  * Typically the output activation is TANH and recurrent activation LOGISTIC.
@@ -598,21 +598,37 @@ neural_layer_lstm_json_export(const struct Layer *l, const bool return_weights)
     cJSON_AddNumberToObject(json, "eta", l->eta);
     cJSON *mutation = cJSON_CreateDoubleArray(l->mu, N_MU);
     cJSON_AddItemToObject(json, "mutation", mutation);
-    cJSON *uf = cJSON_Parse(layer_weight_json(l->uf, return_weights));
+    char *weights_str = layer_weight_json(l->uf, return_weights);
+    cJSON *uf = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "uf_layer", uf);
-    cJSON *ui = cJSON_Parse(layer_weight_json(l->ui, return_weights));
+    weights_str = layer_weight_json(l->ui, return_weights);
+    cJSON *ui = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "ui_layer", ui);
-    cJSON *ug = cJSON_Parse(layer_weight_json(l->ug, return_weights));
+    weights_str = layer_weight_json(l->ug, return_weights);
+    cJSON *ug = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "ug_layer", ug);
-    cJSON *uo = cJSON_Parse(layer_weight_json(l->uo, return_weights));
+    weights_str = layer_weight_json(l->uo, return_weights);
+    cJSON *uo = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "uo_layer", uo);
-    cJSON *wf = cJSON_Parse(layer_weight_json(l->wf, return_weights));
+    weights_str = layer_weight_json(l->wf, return_weights);
+    cJSON *wf = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "wf_layer", wf);
-    cJSON *wi = cJSON_Parse(layer_weight_json(l->wi, return_weights));
+    weights_str = layer_weight_json(l->wi, return_weights);
+    cJSON *wi = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "wi_layer", wi);
-    cJSON *wg = cJSON_Parse(layer_weight_json(l->wg, return_weights));
+    weights_str = layer_weight_json(l->wg, return_weights);
+    cJSON *wg = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "wg_layer", wg);
-    cJSON *wo = cJSON_Parse(layer_weight_json(l->wo, return_weights));
+    weights_str = layer_weight_json(l->wo, return_weights);
+    cJSON *wo = cJSON_Parse(weights_str);
+    free(weights_str);
     cJSON_AddItemToObject(json, "wo_layer", wo);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
