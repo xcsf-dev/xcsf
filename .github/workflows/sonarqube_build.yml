@@ -63,7 +63,7 @@ jobs:
           -Dsonar.cfamily.build-wrapper-output=build/bw-output
           -Dsonar.cfamily.cache.enabled=false
           -Dsonar.cfamily.threads=1
-          -Dsonar.coverage.exclusions=**
+          -Dsonar.coverage.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.sourceEncoding=UTF-8
           -Dsonar.coverageReportPaths=coverage.xml
