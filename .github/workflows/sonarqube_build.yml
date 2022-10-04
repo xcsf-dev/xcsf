@@ -29,7 +29,6 @@ jobs:
         run: |
           sudo apt install lcov gcovr
           cmake .. -DCMAKE_BUILD_TYPE=Debug -DXCSF_PYLIB=OFF -DENABLE_TESTS=ON -DPARALLEL=ON -DUSE_GCOV=ON
-          cp ../.sonar-project.properties ./sonar-project.properties
           wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
           unzip -q build-wrapper-linux-x86.zip
           cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so ./build-wrapper-linux-x86/libinterceptor-haswell.so
