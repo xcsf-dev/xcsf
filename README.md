@@ -19,3 +19,5 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 [![Codiga](https://api.codiga.io/project/2064/status/svg)](https://app.codiga.io/public/project/2064/xcsf/dashboard)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
+
+[![codecov](https://codecov.io/gh/rpreen/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/rpreen/xcsf)
