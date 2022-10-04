@@ -48,6 +48,10 @@ jobs:
       - name: Setup sonarqube
         uses: warchant/setup-sonar-scanner@v3
 
+      - name: Sonarqube coverage
+        run: |
+          gcovr --sonarqube > coverage.xml
+
       - name: Run sonarqube
         run: sonar-scanner
           -Dsonar.host.url=https://sonarcloud.io/
@@ -62,5 +66,5 @@ jobs:
           -Dsonar.coverage.exclusions=**
           -Dsonar.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.sourceEncoding=UTF-8
-          -Dsonar.coverageReportPaths=report.xml
+          -Dsonar.coverageReportPaths=coverage.xml
 ...
