@@ -27,7 +27,8 @@ jobs:
       - name: Configure and Build
         working-directory: build
         run: |
-          cmake .. -DCMAKE_BUILD_TYPE=Debug -DXCSF_PYLIB=OFF -DENABLE_TESTS=OFF -DPARALLEL=ON
+          sudo apt install lcov gcovr
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DXCSF_PYLIB=OFF -DENABLE_TESTS=ON -DPARALLEL=ON -DUSE_GCOV=ON
           cp ../.sonar-project.properties ./sonar-project.properties
           wget -q https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
           unzip -q build-wrapper-linux-x86.zip
@@ -51,4 +52,14 @@ jobs:
           -Dsonar.coverage.exclusions=**
           -Dsonar.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.sourceEncoding=UTF-8
+
+      - name: Report code coverage
+        run: |
+          lcov --directory . --capture --output-file lcov.info
+          lcov --remove lcov.info '/usr/*' '*/extlib/*' '*/lib/*' '*/test/*' --output-file coverage.info
+          lcov --list coverage.info;
+          gcovr -r ../ -x > report.xml
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov
 ...
