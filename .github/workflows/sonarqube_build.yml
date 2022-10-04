@@ -40,7 +40,7 @@ jobs:
           lcov --directory . --capture --output-file lcov.info
           lcov --remove lcov.info '/usr/*' '*/extlib/*' '*/lib/*' '*/test/*' --output-file coverage.info
           lcov --list coverage.info;
-          gcovr -r ../ -x > report.xml
+          gcovr -r ./ -x > report.xml
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov
