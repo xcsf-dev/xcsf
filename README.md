@@ -7,8 +7,8 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 *******************************************************************************
 
 [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0)
-[![Linux Build](https://img.shields.io/github/workflow/status/rpreen/xcsf/Ubuntu%20build?logo=linux&logoColor=white&style=flat&label=Ubuntu)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22Ubuntu+build%22)
-[![MacOS Build](https://img.shields.io/github/workflow/status/rpreen/xcsf/macOS%20build?logo=apple&logoColor=white&style=flat&label=macOS)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22macOS+build%22)
+[![Linux Build](https://img.shields.io/github/actions/workflow/status/rpreen/xcsf/ubuntu_build.yml?branch=master&logo=linux&logoColor=white&style=flat&label=Ubuntu)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22Ubuntu+build%22)
+[![MacOS Build](https://img.shields.io/github/actions/workflow/status/rpreen/xcsf/macOS_build.yml?branch=master&logo=apple&logoColor=white&style=flat&label=macOS)](https://github.com/rpreen/xcsf/actions?query=workflow%3A%22macOS+build%22)
 [![Windows Build](https://img.shields.io/appveyor/build/rpreen/xcsf?logo=windows&logoColor=white&style=flat&label=Windows)](https://ci.appveyor.com/project/rpreen/xcsf)
 [![Latest Version](https://img.shields.io/github/v/release/rpreen/xcsf?style=flat)](https://github.com/rpreen/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
