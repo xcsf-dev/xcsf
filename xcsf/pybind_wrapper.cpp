@@ -412,7 +412,7 @@ class XCS
             err << "2-D arrays are required. Perhaps reshape your data.";
             throw std::invalid_argument(err.str());
         }
-        const double *input = (double *) buf_x.ptr;
+        const double *input = reinterpret_cast<double *>(buf_x.ptr);
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
         xcs_supervised_predict(&xcs, input, output, n_samples, cover);
@@ -438,7 +438,8 @@ class XCS
                   << std::endl;
             throw std::invalid_argument(error.str());
         }
-        return get_predictions(X, (double *) buf_c.ptr);
+        const double *cov = reinterpret_cast<double *>(buf_c.ptr);
+        return get_predictions(X, cov);
     }
 
     /**
