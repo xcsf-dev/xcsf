@@ -406,11 +406,11 @@ class XCS
         const py::buffer_info buf_x = X.request();
         const int n_samples = buf_x.shape[0];
         if (buf_x.shape[1] != xcs.x_dim) {
-            std::ostringstream error;
-            error << "predict(): x_dim (" << buf_x.shape[1]
-                  << ") is not equal to: " << xcs.x_dim << std::endl;
-            error << "2-D arrays are required. Perhaps reshape your data.";
-            throw std::invalid_argument(error.str());
+            std::ostringstream err;
+            err << "predict(): x_dim (" << buf_x.shape[1]
+                << ") is not equal to: " << xcs.x_dim << std::endl;
+            err << "2-D arrays are required. Perhaps reshape your data.";
+            throw std::invalid_argument(err.str());
         }
         const double *input = (double *) buf_x.ptr;
         double *output =
