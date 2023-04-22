@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2020--2022.
+ * @date 2020--2023.
  * @brief Python library wrapper functions.
  */
 
@@ -396,26 +396,61 @@ class XCS
     /**
      * @brief Returns the XCSF prediction array for the provided input.
      * @param [in] X The input variables.
+     * @param [in] cover If cover is not NULL and the match set is empty, the
+     * prediction array will be set to this value instead of covering.
      * @return The prediction array values.
      */
     py::array_t<double>
-    predict(const py::array_t<double> X)
+    get_predictions(const py::array_t<double> X, const double *cover)
     {
         const py::buffer_info buf_x = X.request();
         const int n_samples = buf_x.shape[0];
         if (buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
-            error << "predict(): x_dim is not equal to: " << xcs.x_dim
-                  << std::endl;
+            error << "predict(): x_dim (" << buf_x.shape[1]
+                  << ") is not equal to: " << xcs.x_dim << std::endl;
             error << "2-D arrays are required. Perhaps reshape your data.";
             throw std::invalid_argument(error.str());
         }
         const double *input = (double *) buf_x.ptr;
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
-        xcs_supervised_predict(&xcs, input, output, n_samples);
+        xcs_supervised_predict(&xcs, input, output, n_samples, cover);
         return py::array_t<double>(
             std::vector<ptrdiff_t>{ n_samples, xcs.pa_size }, output);
+    }
+
+    /**
+     * @brief Returns the XCSF prediction array for the provided input.
+     * @param [in] X The input variables.
+     * @param [in] cover If the match set is empty, the prediction array will
+     * be set to this value instead of covering.
+     * @return The prediction array values.
+     */
+    py::array_t<double>
+    predict(const py::array_t<double> X, const py::array_t<double> cover)
+    {
+        const py::buffer_info buf_c = cover.request();
+        if (buf_c.shape[0] != xcs.y_dim) {
+            std::ostringstream error;
+            error << "predict(): cover dim (" << buf_c.shape[0]
+                  << ") is not equal to y_dim (" << xcs.y_dim << ")"
+                  << std::endl;
+            throw std::invalid_argument(error.str());
+        }
+        return get_predictions(X, (double *) buf_c.ptr);
+    }
+
+    /**
+     * @brief Returns the XCSF prediction array for the provided input,
+     * and executes covering for samples where the match set is empty.
+     * @param [in] X The input variables.
+     * @return The prediction array values.
+     */
+    py::array_t<double>
+    predict(const py::array_t<double> X)
+    {
+        return get_predictions(X, NULL);
     }
 
     /**
@@ -440,11 +475,12 @@ class XCS
     double
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
     {
+        const double *cover = NULL;
         load_input(test_data, X, Y);
         if (N > 1) {
-            return xcs_supervised_score_n(&xcs, test_data, N);
+            return xcs_supervised_score_n(&xcs, test_data, N, cover);
         }
-        return xcs_supervised_score(&xcs, test_data);
+        return xcs_supervised_score(&xcs, test_data, cover);
     }
 
     /* GETTERS */
@@ -1234,6 +1270,12 @@ PYBIND11_MODULE(xcsf, m)
                           const py::array_t<double> test_Y, const int N) =
         &XCS::score;
 
+    py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
+        &XCS::predict;
+    py::array_t<double> (XCS::*predict2)(const py::array_t<double> test_X,
+                                         const py::array_t<double> cover) =
+        &XCS::predict;
+
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
@@ -1306,11 +1348,19 @@ PYBIND11_MODULE(xcsf, m)
         .def("error", error2,
              "Returns the reinforcement learning system prediction error.",
              py::arg("reward"), py::arg("done"), py::arg("max_p"))
-        .def("predict", &XCS::predict,
+        .def("predict", predict1,
              "Returns the XCSF prediction array for the provided input. X_test "
              "shape must be: (n_samples, x_dim). Returns an array of shape: "
-             "(n_samples, y_dim).",
+             "(n_samples, y_dim). Covering will be invoked for samples where "
+             "the match set is empty.",
              py::arg("X_test"))
+        .def("predict", predict2,
+             "Returns the XCSF prediction array for the provided input. X_test "
+             "shape must be: (n_samples, x_dim). Returns an array of shape: "
+             "(n_samples, y_dim). If the match set is empty for a sample, the "
+             "value of the cover array will be used instead of covering. "
+             "cover must be an array of shape: y_dim.",
+             py::arg("X_test"), py::arg("cover"))
         .def("save", &XCS::save,
              "Saves the current state of XCSF to persistent storage.",
              py::arg("filename"))

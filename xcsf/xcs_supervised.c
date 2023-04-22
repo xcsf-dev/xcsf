@@ -17,7 +17,7 @@
  * @file xcs_supervised.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2023.
  * @brief Supervised regression learning functions.
  */
 
@@ -52,14 +52,30 @@ xcs_supervised_sample(const struct Input *data, const int cnt,
  * @param [in] xcsf The XCSF data structure.
  * @param [in] x The feature variables.
  * @param [in] y The labelled variables.
+ * @param [in] cover If cover is not NULL and the match set is empty, the
+ * prediction array will be set to this value instead of covering.
  */
 static void
-xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y)
+xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y,
+                     const double *cover)
 {
     clset_init(&xcsf->mset);
     clset_init(&xcsf->kset);
-    clset_match(xcsf, x);
-    pa_build(xcsf, x);
+    if (cover != NULL) {
+        // no coverage is to be performed
+        clset_match(xcsf, x, false);
+        if (xcsf->mset.size < 1) {
+            // empty match set, return the specified array
+            memcpy(xcsf->pa, cover, sizeof(double) * xcsf->pa_size);
+        } else {
+            // non-empty match set, build prediction as usual
+            pa_build(xcsf, x);
+        }
+    } else {
+        // perform covering if required
+        clset_match(xcsf, x, true);
+        pa_build(xcsf, x);
+    }
     if (xcsf->explore) {
         clset_update(xcsf, &xcsf->mset, x, y, true);
         ea(xcsf, &xcsf->mset);
@@ -93,7 +109,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
         const double *x = &train_data->x[row * train_data->x_dim];
         const double *y = &train_data->y[row * train_data->y_dim];
         param_set_explore(xcsf, true);
-        xcs_supervised_trial(xcsf, x, y);
+        xcs_supervised_trial(xcsf, x, y, NULL);
         const double error = (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         werr += error;
         err += error;
@@ -104,7 +120,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
             param_set_explore(xcsf, false);
-            xcs_supervised_trial(xcsf, x, y);
+            xcs_supervised_trial(xcsf, x, y, NULL);
             wterr += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
         }
         perf_print(xcsf, &werr, &wterr, cnt);
@@ -118,14 +134,16 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
  * @param [in] x The input feature variables.
  * @param [out] pred The calculated XCSF predictions.
  * @param [in] n_samples The number of instances.
+ * @param [in] cover If cover is not NULL and the match set is empty, the
+ * prediction array will be set to this value instead of covering.
  */
 void
 xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
-                       const int n_samples)
+                       const int n_samples, const double *cover)
 {
     param_set_explore(xcsf, false);
     for (int row = 0; row < n_samples; ++row) {
-        xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL);
+        xcs_supervised_trial(xcsf, &x[row * xcsf->x_dim], NULL, cover);
         memcpy(&pred[row * xcsf->pa_size], xcsf->pa,
                sizeof(double) * xcsf->pa_size);
     }
@@ -135,17 +153,20 @@ xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
  * @brief Calculates the XCSF error for the input data.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] data The input data to calculate the error.
+ * @param [in] cover If cover is not NULL and the match set is empty, the
+ * prediction array will be set to this value instead of covering.
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct Input *data)
+xcs_supervised_score(struct XCSF *xcsf, const struct Input *data,
+                     const double *cover)
 {
     param_set_explore(xcsf, false);
     double err = 0;
     for (int row = 0; row < data->n_samples; ++row) {
         const double *x = &data->x[row * data->x_dim];
         const double *y = &data->y[row * data->y_dim];
-        xcs_supervised_trial(xcsf, x, y);
+        xcs_supervised_trial(xcsf, x, y, cover);
         err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
     }
     return err / data->n_samples;
@@ -156,13 +177,16 @@ xcs_supervised_score(struct XCSF *xcsf, const struct Input *data)
  * @param [in] xcsf The XCSF data structure.
  * @param [in] data The input data to calculate the error.
  * @param [in] N The maximum number of samples to draw randomly for scoring.
+ * @param [in] cover If cover is not NULL and the match set is empty, the
+ * prediction array will be set to this value instead of covering.
  * @return The average XCSF error using the loss function.
  */
 double
-xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N)
+xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N,
+                       const double *cover)
 {
     if (N > data->n_samples) {
-        return xcs_supervised_score(xcsf, data);
+        return xcs_supervised_score(xcsf, data, cover);
     }
     param_set_explore(xcsf, false);
     double err = 0;
@@ -170,7 +194,7 @@ xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N)
         const int row = xcs_supervised_sample(data, i, true);
         const double *x = &data->x[row * data->x_dim];
         const double *y = &data->y[row * data->y_dim];
-        xcs_supervised_trial(xcsf, x, y);
+        xcs_supervised_trial(xcsf, x, y, cover);
         err += (xcsf->loss_ptr)(xcsf, xcsf->pa, y);
     }
     return err / N;
