@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15":[3,0,44,4],
+"env__mux_8c_source.html":[3,0,44],
+"env__mux_8h.html":[3,0,45],
+"env__mux_8h.html#a0a745693c6aed35b7c5ae6f6d90acd95":[3,0,45,2],
 "env__mux_8h.html#a162e03be4ac761b07078a4e3135fff9d":[3,0,45,3],
 "env__mux_8h.html#a24d0271ca8746410b855204e5ed8932a":[3,0,45,1],
 "env__mux_8h.html#a784e6dffd97314274169edff53339efc":[3,0,45,8],
@@ -10,8 +14,8 @@ var NAVTREEINDEX4 =
 "env__mux_8h.html#ae2680600180dd48f82e4522eb2f6b628":[3,0,45,6],
 "env__mux_8h_source.html":[3,0,45],
 "files.html":[3,0],
-"functions.html":[2,3,0],
 "functions.html":[2,3,0,0],
+"functions.html":[2,3,0],
 "functions_a.html":[2,3,0,1],
 "functions_b.html":[2,3,0,2],
 "functions_c.html":[2,3,0,3],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "namespacexcsf_1_1utils_1_1types.html#af3b11963a00bc6b12da571969b601de3":[1,0,0,0,0,14],
 "namespacexcsf_1_1utils_1_1viz.html":[1,0,0,0,1],
 "neural_8c.html":[3,0,53],
-"neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575":[3,0,53,11],
-"neural_8c.html#a1c1c06446fc719b8293aade2ded8433c":[3,0,53,15],
-"neural_8c.html#a462b490af8481803fd34af3c728f057d":[3,0,53,9],
-"neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9":[3,0,53,20],
-"neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79":[3,0,53,1]
+"neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575":[3,0,53,11]
 };

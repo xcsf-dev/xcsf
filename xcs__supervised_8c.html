@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.5</span>
+   &#160;<span id="projectnumber">1.2.6</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -121,27 +121,27 @@ Functions</h2></td></tr>
 <tr class="memitem:ad7cd5a443870a2cd32b124942dc81ff5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5">xcs_supervised_sample</a> (const struct <a class="el" href="structInput.html">Input</a> *data, const int cnt, const bool shuffle)</td></tr>
 <tr class="memdesc:ad7cd5a443870a2cd32b124942dc81ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects a data sample for training or testing.  <a href="xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5">More...</a><br /></td></tr>
 <tr class="separator:ad7cd5a443870a2cd32b124942dc81ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a836aae9ec3055625d1c464d41746a7b9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9">xcs_supervised_trial</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, const double *y)</td></tr>
-<tr class="memdesc:a836aae9ec3055625d1c464d41746a7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a single <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> trial.  <a href="xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9">More...</a><br /></td></tr>
-<tr class="separator:a836aae9ec3055625d1c464d41746a7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e376723db7b6786507d5ea6add9f650"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650">xcs_supervised_trial</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, const double *y, const double *cover)</td></tr>
+<tr class="memdesc:a8e376723db7b6786507d5ea6add9f650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a single <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> trial.  <a href="xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650">More...</a><br /></td></tr>
+<tr class="separator:a8e376723db7b6786507d5ea6add9f650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac1347b7b83576d581a1b725b4c84e56"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56">xcs_supervised_fit</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *train_data, const struct <a class="el" href="structInput.html">Input</a> *test_data, const bool shuffle)</td></tr>
 <tr class="memdesc:aac1347b7b83576d581a1b725b4c84e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes MAX_TRIALS number of <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> learning iterations using the training data and test iterations using the test data.  <a href="xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56">More...</a><br /></td></tr>
 <tr class="separator:aac1347b7b83576d581a1b725b4c84e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc51452fdb0be0e27fd3ebfe6041474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a2dc51452fdb0be0e27fd3ebfe6041474">xcs_supervised_predict</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, double *pred, const int n_samples)</td></tr>
-<tr class="memdesc:a2dc51452fdb0be0e27fd3ebfe6041474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> predictions for the provided input.  <a href="xcs__supervised_8c.html#a2dc51452fdb0be0e27fd3ebfe6041474">More...</a><br /></td></tr>
-<tr class="separator:a2dc51452fdb0be0e27fd3ebfe6041474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae05de18a53511ba46b2a6a733c780580"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#ae05de18a53511ba46b2a6a733c780580">xcs_supervised_score</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *data)</td></tr>
-<tr class="memdesc:ae05de18a53511ba46b2a6a733c780580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error for the input data.  <a href="xcs__supervised_8c.html#ae05de18a53511ba46b2a6a733c780580">More...</a><br /></td></tr>
-<tr class="separator:ae05de18a53511ba46b2a6a733c780580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56ec80025279785376a569ec0130c29f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a56ec80025279785376a569ec0130c29f">xcs_supervised_score_n</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *data, const int N)</td></tr>
-<tr class="memdesc:a56ec80025279785376a569ec0130c29f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error for a subsample of the input data.  <a href="xcs__supervised_8c.html#a56ec80025279785376a569ec0130c29f">More...</a><br /></td></tr>
-<tr class="separator:a56ec80025279785376a569ec0130c29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4791c1daf0baaa6615f70332657aadb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb">xcs_supervised_predict</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, double *pred, const int n_samples, const double *cover)</td></tr>
+<tr class="memdesc:ae4791c1daf0baaa6615f70332657aadb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> predictions for the provided input.  <a href="xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb">More...</a><br /></td></tr>
+<tr class="separator:ae4791c1daf0baaa6615f70332657aadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a535e3dbbf0f80e64a4e9b1c700e51f40"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40">xcs_supervised_score</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *data, const double *cover)</td></tr>
+<tr class="memdesc:a535e3dbbf0f80e64a4e9b1c700e51f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error for the input data.  <a href="xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40">More...</a><br /></td></tr>
+<tr class="separator:a535e3dbbf0f80e64a4e9b1c700e51f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab2bb39625aea84c716901a95a4326e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e">xcs_supervised_score_n</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *data, const int N, const double *cover)</td></tr>
+<tr class="memdesc:a9ab2bb39625aea84c716901a95a4326e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error for a subsample of the input data.  <a href="xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e">More...</a><br /></td></tr>
+<tr class="separator:a9ab2bb39625aea84c716901a95a4326e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Supervised regression learning functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2020. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2023. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -195,9 +195,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> training error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00081">81</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00097">97</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00285">clset_pset_init()</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="perf_8c_source.html#l00034">perf_print()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00285">clset_pset_init()</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="perf_8c_source.html#l00034">perf_print()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00369">XCS::fit()</a>, and <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
 <div class="dynheader">
@@ -215,8 +215,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a2dc51452fdb0be0e27fd3ebfe6041474"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dc51452fdb0be0e27fd3ebfe6041474">&#9670;&nbsp;</a></span>xcs_supervised_predict()</h2>
+<a id="ae4791c1daf0baaa6615f70332657aadb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4791c1daf0baaa6615f70332657aadb">&#9670;&nbsp;</a></span>xcs_supervised_predict()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +243,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_samples</em>&#160;</td>
+          <td class="paramname"><em>n_samples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>cover</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -260,25 +266,26 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>The input feature variables. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pred</td><td>The calculated <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> predictions. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n_samples</td><td>The number of instances. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cover</td><td>If cover is not NULL and the match set is empty, the prediction array will be set to this value instead of covering. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00123">123</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00141">141</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00402">XCS::predict()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00428">XCS::get_predictions()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a2dc51452fdb0be0e27fd3ebfe6041474_cgraph.svg" width="1534" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ae4791c1daf0baaa6615f70332657aadb_cgraph.svg" width="1534" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a2dc51452fdb0be0e27fd3ebfe6041474_icgraph.svg" width="315" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ae4791c1daf0baaa6615f70332657aadb_icgraph.svg" width="510" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -339,7 +346,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, and <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00097">xcs_supervised_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -349,14 +356,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ad7cd5a443870a2cd32b124942dc81ff5_icgraph.svg" width="527" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ad7cd5a443870a2cd32b124942dc81ff5_icgraph.svg" width="690" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ae05de18a53511ba46b2a6a733c780580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae05de18a53511ba46b2a6a733c780580">&#9670;&nbsp;</a></span>xcs_supervised_score()</h2>
+<a id="a535e3dbbf0f80e64a4e9b1c700e51f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a535e3dbbf0f80e64a4e9b1c700e51f40">&#9670;&nbsp;</a></span>xcs_supervised_score()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,7 +378,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const struct <a class="el" href="structInput.html">Input</a> *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>cover</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -386,33 +399,34 @@ Here is the caller graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The input data to calculate the error. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cover</td><td>If cover is not NULL and the match set is empty, the prediction array will be set to this value instead of covering. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00141">141</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00161">161</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00441">XCS::score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00483">XCS::get_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ae05de18a53511ba46b2a6a733c780580_cgraph.svg" width="1527" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a535e3dbbf0f80e64a4e9b1c700e51f40_cgraph.svg" width="1527" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_ae05de18a53511ba46b2a6a733c780580_icgraph.svg" width="516" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a535e3dbbf0f80e64a4e9b1c700e51f40_icgraph.svg" width="679" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a56ec80025279785376a569ec0130c29f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56ec80025279785376a569ec0130c29f">&#9670;&nbsp;</a></span>xcs_supervised_score_n()</h2>
+<a id="a9ab2bb39625aea84c716901a95a4326e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ab2bb39625aea84c716901a95a4326e">&#9670;&nbsp;</a></span>xcs_supervised_score_n()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -433,7 +447,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>N</em>&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>cover</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -449,33 +469,34 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The input data to calculate the error. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>The maximum number of samples to draw randomly for scoring. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cover</td><td>If cover is not NULL and the match set is empty, the prediction array will be set to this value instead of covering. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00162">162</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00185">185</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00148">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00802">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00144">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00146">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00161">xcs_supervised_score()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00145">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00147">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00441">XCS::score()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00483">XCS::get_score()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a56ec80025279785376a569ec0130c29f_cgraph.svg" width="1752" height="1646"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a9ab2bb39625aea84c716901a95a4326e_cgraph.svg" width="1752" height="1646"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a56ec80025279785376a569ec0130c29f_icgraph.svg" width="316" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a9ab2bb39625aea84c716901a95a4326e_icgraph.svg" width="479" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a836aae9ec3055625d1c464d41746a7b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a836aae9ec3055625d1c464d41746a7b9">&#9670;&nbsp;</a></span>xcs_supervised_trial()</h2>
+<a id="a8e376723db7b6786507d5ea6add9f650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e376723db7b6786507d5ea6add9f650">&#9670;&nbsp;</a></span>xcs_supervised_trial()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -499,7 +520,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>cover</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -520,25 +547,26 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>The feature variables. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>The labelled variables. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cover</td><td>If cover is not NULL and the match set is empty, the prediction array will be set to this value instead of covering. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00057">57</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00059">59</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
 <p class="reference">References <a class="el" href="clset_8c_source.html#l00546">clset_free()</a>, <a class="el" href="clset_8c_source.html#l00302">clset_init()</a>, <a class="el" href="clset_8c_source.html#l00564">clset_kill()</a>, <a class="el" href="clset_8c_source.html#l00330">clset_match()</a>, <a class="el" href="clset_8c_source.html#l00422">clset_update()</a>, <a class="el" href="ea_8c_source.html#l00199">ea()</a>, and <a class="el" href="pa_8c_source.html#l00061">pa_build()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00123">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00162">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00097">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00161">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a836aae9ec3055625d1c464d41746a7b9_cgraph.svg" width="1327" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a8e376723db7b6786507d5ea6add9f650_cgraph.svg" width="1327" height="1422"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a836aae9ec3055625d1c464d41746a7b9_icgraph.svg" width="712" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a8e376723db7b6786507d5ea6add9f650_icgraph.svg" width="875" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 

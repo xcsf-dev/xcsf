@@ -1,5 +1,9 @@
 var NAVTREEINDEX5 =
 {
+"neural_8c.html#a1c1c06446fc719b8293aade2ded8433c":[3,0,53,15],
+"neural_8c.html#a462b490af8481803fd34af3c728f057d":[3,0,53,9],
+"neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9":[3,0,53,20],
+"neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79":[3,0,53,1],
 "neural_8c.html#a700dd0e8ee581681b32f1ffe5c7c709b":[3,0,53,10],
 "neural_8c.html#a76c99d66af7b4eb556b71a86f099b7a0":[3,0,53,18],
 "neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08":[3,0,53,8],
@@ -245,9 +249,5 @@ var NAVTREEINDEX5 =
 "neural__layer__avgpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97":[3,0,61,0],
 "neural__layer__avgpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f":[3,0,61,15],
 "neural__layer__avgpool_8c.html#a8305189ab187aae459aa3c4715674459":[3,0,61,3],
-"neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523":[3,0,61,7],
-"neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6":[3,0,61,2],
-"neural__layer__avgpool_8c.html#acd8d298ed28774c848e032a98c33e783":[3,0,61,6],
-"neural__layer__avgpool_8c.html#ad83b2e12d8d0a4ba9fc33001fb02c5e3":[3,0,61,13],
-"neural__layer__avgpool_8c.html#ae8d15c9104ace1d2e7d9b2657da90088":[3,0,61,10]
+"neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523":[3,0,61,7]
 };

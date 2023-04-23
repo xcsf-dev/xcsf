@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.5</span>
+   &#160;<span id="projectnumber">1.2.6</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -153,9 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5e05b1d84c921f8f83e90d636b2f59fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd">clset_pset_enforce_limit</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf)</td></tr>
 <tr class="memdesc:a5e05b1d84c921f8f83e90d636b2f59fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enforces the maximum population size limit.  <a href="clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd">More...</a><br /></td></tr>
 <tr class="separator:a5e05b1d84c921f8f83e90d636b2f59fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a101813e8460677fdb33f08e0226dce9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#a101813e8460677fdb33f08e0226dce9b">clset_match</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x)</td></tr>
-<tr class="memdesc:a101813e8460677fdb33f08e0226dce9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the match set - forward propagates conditions and actions.  <a href="clset_8c.html#a101813e8460677fdb33f08e0226dce9b">More...</a><br /></td></tr>
-<tr class="separator:a101813e8460677fdb33f08e0226dce9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad49ee472743937e1cfdd58cc41fcaead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead">clset_match</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, const bool cover)</td></tr>
+<tr class="memdesc:ad49ee472743937e1cfdd58cc41fcaead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the match set - forward propagates conditions and actions.  <a href="clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead">More...</a><br /></td></tr>
+<tr class="separator:ad49ee472743937e1cfdd58cc41fcaead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b2fe42823bdd24cdea0e1ec3468e1f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clset_8c.html#a6b2fe42823bdd24cdea0e1ec3468e1f8">clset_action</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const int action)</td></tr>
 <tr class="memdesc:a6b2fe42823bdd24cdea0e1ec3468e1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the action set from the match set.  <a href="clset_8c.html#a6b2fe42823bdd24cdea0e1ec3468e1f8">More...</a><br /></td></tr>
 <tr class="separator:a6b2fe42823bdd24cdea0e1ec3468e1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,7 +212,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Functions operating on sets of classifiers. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2021. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2023. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="clset_8c_source.html">clset.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -342,7 +342,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_af1f8c646fef336390c16b4ba0572ff6f_icgraph.svg" width="1191" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_af1f8c646fef336390c16b4ba0572ff6f_icgraph.svg" width="1354" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -391,7 +391,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a64d33e6235c57f30a4a3ec82f18e57d6_icgraph.svg" width="1552" height="560"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a64d33e6235c57f30a4a3ec82f18e57d6_icgraph.svg" width="1715" height="560"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -454,7 +454,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aa1b7f7f1ccebf6e4e030333304fe3f51_icgraph.svg" width="991" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aa1b7f7f1ccebf6e4e030333304fe3f51_icgraph.svg" width="1154" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -488,11 +488,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00174">xcs_rl_end_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00174">xcs_rl_end_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ae5d75dfda0a2d2bb81386ccf08a1b5de_icgraph.svg" width="839" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ae5d75dfda0a2d2bb81386ccf08a1b5de_icgraph.svg" width="1002" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -526,11 +526,11 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00604">clset_pset_load()</a>, <a class="el" href="xcs__rl_8c_source.html#l00160">xcs_rl_init_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>, and <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00604">clset_pset_load()</a>, <a class="el" href="xcs__rl_8c_source.html#l00160">xcs_rl_init_step()</a>, <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00037">xcsf_init()</a>, <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>, and <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a9af546abf9de1bc840d605e949d3ef47_icgraph.svg" width="835" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a9af546abf9de1bc840d605e949d3ef47_icgraph.svg" width="998" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -597,7 +597,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00486">cl_json_export()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00489">clset_print()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01134">XCS::json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="clset_8c_source.html#l00489">clset_print()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01207">XCS::json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -652,7 +652,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="cl_8c_source.html#l00608">cl_json_import()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, and <a class="el" href="clset_8c_source.html#l00314">clset_pset_enforce_limit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01172">XCS::json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01159">XCS::json_insert_cl()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l01245">XCS::json_insert()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01232">XCS::json_insert_cl()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -707,7 +707,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00223">cl_free()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00054">xcsf_free()</a>, <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>, <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>, and <a class="el" href="xcsf_8c_source.html#l00191">xcsf_store_pset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00148">xcs_rl_end_trial()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8c_source.html#l00054">xcsf_free()</a>, <a class="el" href="xcsf_8c_source.html#l00110">xcsf_load()</a>, <a class="el" href="xcsf_8c_source.html#l00209">xcsf_retrieve_pset()</a>, and <a class="el" href="xcsf_8c_source.html#l00191">xcsf_store_pset()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -717,14 +717,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a236baf24659360891f944761f88a30f4_icgraph.svg" width="834" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a236baf24659360891f944761f88a30f4_icgraph.svg" width="996" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a101813e8460677fdb33f08e0226dce9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a101813e8460677fdb33f08e0226dce9b">&#9670;&nbsp;</a></span>clset_match()</h2>
+<a id="ad49ee472743937e1cfdd58cc41fcaead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad49ee472743937e1cfdd58cc41fcaead">&#9670;&nbsp;</a></span>clset_match()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -739,7 +739,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>x</em>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>cover</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -750,10 +756,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Constructs the match set - forward propagates conditions and actions. </p>
-<p>Processes the matching conditions and actions for each classifier in the population. If a classifier matches, it is added to the match set. Covering is performed if any actions are unrepresented. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Processes the matching conditions and actions for each classifier in the population. If a classifier matches, it is added to the match set. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>The input state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cover</td><td>Whether to check action set coverage. </td></tr>
   </table>
   </dd>
 </dl>
@@ -762,17 +769,17 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00304">cl_action()</a>, <a class="el" href="cl_8c_source.html#l00290">cl_m()</a>, <a class="el" href="cl_8c_source.html#l00257">cl_match()</a>, <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>, <a class="el" href="clset_8c_source.html#l00159">clset_cover()</a>, <a class="el" href="clset_8c_source.html#l00667">clset_mfrac()</a>, and <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00250">xcs_rl_decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00250">xcs_rl_decision()</a>, <a class="el" href="xcs__rl_8c_source.html#l00104">xcs_rl_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a101813e8460677fdb33f08e0226dce9b_cgraph.svg" width="1087" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ad49ee472743937e1cfdd58cc41fcaead_cgraph.svg" width="1087" height="696"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a101813e8460677fdb33f08e0226dce9b_icgraph.svg" width="854" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ad49ee472743937e1cfdd58cc41fcaead_icgraph.svg" width="1016" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -818,7 +825,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00399">cl_cond_size()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00619">XCS::get_pset_mean_cond_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00692">XCS::get_pset_mean_cond_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -874,7 +881,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00411">cl_pred_size()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, and <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00625">XCS::get_pset_mean_pred_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00698">XCS::get_pset_mean_pred_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -929,7 +936,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a2948f1764d173335c2c53783077b52ae_icgraph.svg" width="968" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a2948f1764d173335c2c53783077b52ae_icgraph.svg" width="1131" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -974,7 +981,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ab7cb042e6b9a34ee1d7a81ed91b1a42d_icgraph.svg" width="992" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ab7cb042e6b9a34ee1d7a81ed91b1a42d_icgraph.svg" width="1155" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1102,7 +1109,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a106a72afb7785af1d1b639736a6340be_icgraph.svg" width="1402" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a106a72afb7785af1d1b639736a6340be_icgraph.svg" width="1564" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1146,7 +1153,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a5e05b1d84c921f8f83e90d636b2f59fd_icgraph.svg" width="1247" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a5e05b1d84c921f8f83e90d636b2f59fd_icgraph.svg" width="1410" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1180,7 +1187,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00129">cl_rand()</a>, and <a class="el" href="clset_8c_source.html#l00397">clset_add()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00081">xcs_supervised_fit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00126">xcs_rl_init_trial()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00097">xcs_supervised_fit()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1310,7 +1317,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a7e9703db2e290a5b852b1112f52f4803_icgraph.svg" width="1614" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a7e9703db2e290a5b852b1112f52f4803_icgraph.svg" width="1776" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1380,7 +1387,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a7ddb1248094ce9b41cf314b833798b29_icgraph.svg" width="1582" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a7ddb1248094ce9b41cf314b833798b29_icgraph.svg" width="1744" height="350"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1485,7 +1492,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aae63a99d65c81ec1f83ae8a4ba8ac70a_icgraph.svg" width="962" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aae63a99d65c81ec1f83ae8a4ba8ac70a_icgraph.svg" width="1124" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1548,7 +1555,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a4777af2f15c4a7b5abeecb35e7e8b6b3_icgraph.svg" width="1035" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a4777af2f15c4a7b5abeecb35e7e8b6b3_icgraph.svg" width="1198" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1587,7 +1594,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a27da8860873485883cc85edfac13da87_icgraph.svg" width="1730" height="442"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a27da8860873485883cc85edfac13da87_icgraph.svg" width="1892" height="418"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1634,7 +1641,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ad2bced61b3addd5c4d95dd3460338e0b_icgraph.svg" width="1131" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_ad2bced61b3addd5c4d95dd3460338e0b_icgraph.svg" width="1294" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1700,7 +1707,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="cl_8c_source.html#l00183">cl_update()</a>, <a class="el" href="clset_8c_source.html#l00230">clset_subsumption()</a>, <a class="el" href="clset_8c_source.html#l00205">clset_update_fit()</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00079">Set::num</a>, and <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00195">xcs_rl_update()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00057">xcs_supervised_trial()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00195">xcs_rl_update()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1710,7 +1717,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a27aedca23d7c37f4ca0f44845e9805c7_icgraph.svg" width="856" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a27aedca23d7c37f4ca0f44845e9805c7_icgraph.svg" width="1019" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1773,7 +1780,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aa969b49afc6d934a12ea41e41514b360_icgraph.svg" width="1019" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_aa969b49afc6d934a12ea41e41514b360_icgraph.svg" width="1182" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1811,7 +1818,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a3bb797f21eed0cdf6fc54b36692e213f_icgraph.svg" width="1186" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="clset_8c_a3bb797f21eed0cdf6fc54b36692e213f_icgraph.svg" width="1348" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 

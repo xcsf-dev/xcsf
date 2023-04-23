@@ -2334,7 +2334,7 @@
 <!-- Node202 -->
 <g id="node127" class="node">
 <title>Node202</title>
-<g id="a_node127"><a xlink:href="clset_8c.html#a101813e8460677fdb33f08e0226dce9b" target="_top" xlink:title="Constructs the match set &#45; forward propagates conditions and actions.">
+<g id="a_node127"><a xlink:href="clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" target="_top" xlink:title="Constructs the match set &#45; forward propagates conditions and actions.">
 <polygon fill="none" stroke="black" points="534,-1342 534,-1361 604,-1361 604,-1342 534,-1342"/>
 <text text-anchor="middle" x="569" y="-1349" font-family="Helvetica,sans-Serif" font-size="10.00">clset_match</text>
 </a>
@@ -3196,7 +3196,7 @@
 <!-- Node296 -->
 <g id="node183" class="node">
 <title>Node296</title>
-<g id="a_node183"><a xlink:href="xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" target="_top" xlink:title="Executes a single XCSF trial.">
+<g id="a_node183"><a xlink:href="xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" target="_top" xlink:title="Executes a single XCSF trial.">
 <polygon fill="none" stroke="black" points="333,-1095 333,-1114 439,-1114 439,-1095 333,-1095"/>
 <text text-anchor="middle" x="386" y="-1102" font-family="Helvetica,sans-Serif" font-size="10.00">xcs_supervised_trial</text>
 </a>

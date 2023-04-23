@@ -7,7 +7,7 @@
 <area shape="rect" id="node15" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="317,1121,449,1148"/>
 <area shape="rect" id="node16" href="$perf_8c.html#ac15feab73f15fadd432e0615ada25fd6" title="Displays the current training and test performance." alt="" coords="345,1172,421,1198"/>
 <area shape="rect" id="node17" href="$xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5" title="Selects a data sample for training or testing." alt="" coords="301,817,464,844"/>
-<area shape="rect" id="node20" href="$xcs__supervised_8c.html#a836aae9ec3055625d1c464d41746a7b9" title="Executes a single XCSF trial." alt="" coords="312,868,453,894"/>
+<area shape="rect" id="node20" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="312,868,453,894"/>
 <area shape="rect" id="node6" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="867,1238,923,1265"/>
 <area shape="rect" id="node7" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="1052,1390,1116,1417"/>
 <area shape="rect" id="node14" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="1240,1020,1319,1046"/>
@@ -22,7 +22,7 @@
 <area shape="rect" id="node21" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="521,817,599,844"/>
 <area shape="rect" id="node22" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="523,868,597,894"/>
 <area shape="rect" id="node23" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="523,918,597,945"/>
-<area shape="rect" id="node28" href="$clset_8c.html#a101813e8460677fdb33f08e0226dce9b" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="513,1020,607,1046"/>
+<area shape="rect" id="node28" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="513,1020,607,1046"/>
 <area shape="rect" id="node52" href="$clset_8c.html#a27aedca23d7c37f4ca0f44845e9805c7" title="Provides reinforcement to the set and performs set subsumption." alt="" coords="512,386,608,413"/>
 <area shape="rect" id="node67" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="694,716,733,742"/>
 <area shape="rect" id="node89" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="525,108,595,134"/>

@@ -1,0 +1,13 @@
+<map id="xcs_supervised_trial" name="xcs_supervised_trial">
+<area shape="rect" id="node1" title="Executes a single XCSF trial." alt="" coords="728,132,869,159"/>
+<area shape="rect" id="node2" href="$xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="535,56,666,83"/>
+<area shape="rect" id="node5" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="521,107,680,133"/>
+<area shape="rect" id="node8" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="525,157,677,184"/>
+<area shape="rect" id="node11" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="307,208,473,235"/>
+<area shape="rect" id="node3" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="355,5,425,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="365,56,415,83"/>
+<area shape="rect" id="node6" href="$classXCS.html#a213bbab8324b5a60482e87f18a9ceaee" title="Returns the XCSF prediction array for the provided input." alt="" coords="317,107,463,133"/>
+<area shape="rect" id="node7" href="$classXCS.html#aa29ac60a35ac4874b65bb22deca6df0c" title="Returns the XCSF prediction array for the provided input." alt="" coords="153,107,250,133"/>
+<area shape="rect" id="node9" href="$classXCS.html#abe2ecac1d31f36659f70eb3ff9665bef" title="Returns the error using N random samples from the provided data." alt="" coords="144,183,259,209"/>
+<area shape="rect" id="node10" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="5,183,96,209"/>
+</map>
