@@ -17,7 +17,7 @@
  * @file clset.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2023.
  * @brief Functions operating on sets of classifiers.
  */
 
@@ -62,7 +62,7 @@ void
 clset_kill(const struct XCSF *xcsf, struct Set *set);
 
 void
-clset_match(struct XCSF *xcsf, const double *x);
+clset_match(struct XCSF *xcsf, const double *x, const bool cover);
 
 void
 clset_pset_enforce_limit(struct XCSF *xcsf);

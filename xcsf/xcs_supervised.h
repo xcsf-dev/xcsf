@@ -17,7 +17,7 @@
  * @file xcs_supervised.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2023.
  * @brief Supervised regression learning functions.
  */
 
@@ -30,12 +30,13 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
                    const struct Input *test_data, const bool shuffle);
 
 double
-xcs_supervised_score(struct XCSF *xcsf, const struct Input *data);
+xcs_supervised_score(struct XCSF *xcsf, const struct Input *data,
+                     const double *cover);
 
 double
-xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data,
-                       const int N);
+xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N,
+                       const double *cover);
 
 void
 xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
-                       const int n_samples);
+                       const int n_samples, const double *cover);

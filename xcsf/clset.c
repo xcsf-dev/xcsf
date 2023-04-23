@@ -17,7 +17,7 @@
  * @file clset.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2023.
  * @brief Functions operating on sets of classifiers.
  */
 
@@ -322,12 +322,12 @@ clset_pset_enforce_limit(struct XCSF *xcsf)
  * @brief Constructs the match set - forward propagates conditions and actions.
  * @details Processes the matching conditions and actions for each classifier
  * in the population. If a classifier matches, it is added to the match set.
- * Covering is performed if any actions are unrepresented.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] x The input state.
+ * @param [in] cover Whether to check action set coverage.
  */
 void
-clset_match(struct XCSF *xcsf, const double *x)
+clset_match(struct XCSF *xcsf, const double *x, const bool cover)
 {
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
@@ -361,7 +361,7 @@ clset_match(struct XCSF *xcsf, const double *x)
     }
 #endif
     // perform covering if all actions are not represented
-    if (xcsf->n_actions > 1 || xcsf->mset.size < 1) {
+    if (cover && (xcsf->n_actions > 1 || xcsf->mset.size < 1)) {
         clset_cover(xcsf, x);
     }
     // update statistics

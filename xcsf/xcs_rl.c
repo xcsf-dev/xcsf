@@ -17,7 +17,7 @@
  * @file xcs_rl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2023.
  * @brief Reinforcement learning functions.
  * @details A trial consists of one or more steps.
  */
@@ -106,7 +106,7 @@ xcs_rl_fit(struct XCSF *xcsf, const double *state, const int action,
 {
     xcs_rl_init_trial(xcsf);
     xcs_rl_init_step(xcsf);
-    clset_match(xcsf, state);
+    clset_match(xcsf, state, true);
     pa_build(xcsf, state);
     const double prediction = pa_val(xcsf, action);
     const double error = (xcsf->loss_ptr)(xcsf, &prediction, &reward);
@@ -249,7 +249,7 @@ xcs_rl_error(struct XCSF *xcsf, const int action, const double reward,
 int
 xcs_rl_decision(struct XCSF *xcsf, const double *state)
 {
-    clset_match(xcsf, state);
+    clset_match(xcsf, state, true);
     pa_build(xcsf, state);
     if (xcsf->explore && rand_uniform(0, 1) < xcsf->P_EXPLORE) {
         return pa_rand_action(xcsf);

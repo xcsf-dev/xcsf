@@ -1,5 +1,8 @@
 # Changelog
 
+Changes:
+*    Add an optional argument to the Python predict function that specifies the value to return for a sample if the match set is empty instead of invoking covering.
+
 ## Version 1.2.5 (Oct 3, 2022)
 
 Changes:
