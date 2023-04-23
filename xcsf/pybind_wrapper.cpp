@@ -432,11 +432,10 @@ class XCS
     {
         const py::buffer_info buf_c = cover.request();
         if (buf_c.shape[0] != xcs.y_dim) {
-            std::ostringstream error;
-            error << "predict(): cover dim (" << buf_c.shape[0]
-                  << ") is not equal to y_dim (" << xcs.y_dim << ")"
-                  << std::endl;
-            throw std::invalid_argument(error.str());
+            std::ostringstream err;
+            err << "predict(): cover dim (" << buf_c.shape[0]
+                << ") is not equal to y_dim (" << xcs.y_dim << ")" << std::endl;
+            throw std::invalid_argument(err.str());
         }
         const double *cov = reinterpret_cast<double *>(buf_c.ptr);
         return get_predictions(X, cov);
