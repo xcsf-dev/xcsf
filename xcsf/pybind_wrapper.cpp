@@ -394,6 +394,30 @@ class XCS
     }
 
     /**
+     * @brief Returns the values specified in the cover array.
+     * @param [in] cover The values to return for covering.
+     * @return The cover array values.
+     */
+    double *
+    get_cover(const py::array_t<double> cover)
+    {
+        const py::buffer_info buf_c = cover.request();
+        if (buf_c.ndim != 1) {
+            std::ostringstream err;
+            err << "cover must be an array of shape (1, " << xcs.y_dim << ")"
+                << std::endl;
+            throw std::invalid_argument(err.str());
+        }
+        if (buf_c.shape[0] != xcs.y_dim || buf_c.shape[1] != 0) {
+            std::ostringstream err;
+            err << "cover shape (" << buf_c.shape[1] << ", " << buf_c.shape[0]
+                << ") but expected (0, " << xcs.y_dim << ")" << std::endl;
+            throw std::invalid_argument(err.str());
+        }
+        return reinterpret_cast<double *>(buf_c.ptr);
+    }
+
+    /**
      * @brief Returns the XCSF prediction array for the provided input.
      * @param [in] X The input variables.
      * @param [in] cover If cover is not NULL and the match set is empty, the
@@ -430,14 +454,7 @@ class XCS
     py::array_t<double>
     predict(const py::array_t<double> X, const py::array_t<double> cover)
     {
-        const py::buffer_info buf_c = cover.request();
-        if (buf_c.shape[0] != xcs.y_dim) {
-            std::ostringstream err;
-            err << "predict(): cover dim (" << buf_c.shape[0]
-                << ") is not equal to y_dim (" << xcs.y_dim << ")" << std::endl;
-            throw std::invalid_argument(err.str());
-        }
-        const double *cov = reinterpret_cast<double *>(buf_c.ptr);
+        const double *cov = get_cover(cover);
         return get_predictions(X, cov);
     }
 
@@ -458,17 +475,49 @@ class XCS
      * @param [in] X The input values to use for scoring.
      * @param [in] Y The true output values to use for scoring.
      * @param [in] N The maximum number of samples to draw randomly for scoring.
+     * @param [in] cover If the match set is empty, the prediction array will
+     * be set to this value instead of covering.
      * @return The average XCSF error using the loss function.
      */
     double
-    score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
+    get_score(const py::array_t<double> X, const py::array_t<double> Y,
+              const int N, const double *cover)
     {
-        const double *cover = NULL;
         load_input(test_data, X, Y);
         if (N > 1) {
             return xcs_supervised_score_n(&xcs, test_data, N, cover);
         }
         return xcs_supervised_score(&xcs, test_data, cover);
+    }
+
+    /**
+     * @brief Returns the error using N random samples from the provided data.
+     * @param [in] X The input values to use for scoring.
+     * @param [in] Y The true output values to use for scoring.
+     * @param [in] N The maximum number of samples to draw randomly for scoring.
+     * @return The average XCSF error using the loss function.
+     */
+    double
+    score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
+    {
+        return get_score(X, Y, N, NULL);
+    }
+
+    /**
+     * @brief Returns the error using N random samples from the provided data.
+     * @param [in] X The input values to use for scoring.
+     * @param [in] Y The true output values to use for scoring.
+     * @param [in] N The maximum number of samples to draw randomly for scoring.
+     * @param [in] cover If the match set is empty, the prediction array will
+     * be set to this value instead of covering.
+     * @return The average XCSF error using the loss function.
+     */
+    double
+    score(const py::array_t<double> X, const py::array_t<double> Y, const int N,
+          const py::array_t<double> cover)
+    {
+        const double *cov = get_cover(cover);
+        return get_score(X, Y, N, cov);
     }
 
     /* GETTERS */
@@ -1258,6 +1307,14 @@ PYBIND11_MODULE(xcsf, m)
                                          const py::array_t<double> cover) =
         &XCS::predict;
 
+    double (XCS::*score1)(const py::array_t<double> X,
+                          const py::array_t<double> Y, const int N) =
+        &XCS::score;
+
+    double (XCS::*score2)(const py::array_t<double> X,
+                          const py::array_t<double> Y, const int N,
+                          const py::array_t<double> cover) = &XCS::score;
+
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
@@ -1314,11 +1371,17 @@ PYBIND11_MODULE(xcsf, m)
              "x_dim). y_test shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("X_test"),
              py::arg("y_test"), py::arg("shuffle"))
-        .def("score", &XCS::score,
+        .def("score", score1,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
              "shape must be: (n_samples, y_dim).",
              py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0)
+        .def("score", score2,
+             "Returns the error using at most N random samples from the "
+             "provided data. X_val shape must be: (n_samples, x_dim). y_val "
+             "shape must be: (n_samples, y_dim).",
+             py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0,
+             py::arg("cover"))
         .def("error", error1,
              "Returns a moving average of the system error, updated with step "
              "size BETA.")
