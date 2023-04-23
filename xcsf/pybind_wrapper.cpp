@@ -454,18 +454,6 @@ class XCS
     }
 
     /**
-     * @brief Returns the error over one sequential pass of the provided data.
-     * @param [in] X The input values to use for scoring.
-     * @param [in] Y The true output values to use for scoring.
-     * @return The average XCSF error using the loss function.
-     */
-    double
-    score(const py::array_t<double> X, const py::array_t<double> Y)
-    {
-        return score(X, Y, 0);
-    }
-
-    /**
      * @brief Returns the error using N random samples from the provided data.
      * @param [in] X The input values to use for scoring.
      * @param [in] Y The true output values to use for scoring.
@@ -1264,12 +1252,6 @@ PYBIND11_MODULE(xcsf, m)
                         const py::array_t<double>, const py::array_t<double>,
                         const bool) = &XCS::fit;
 
-    double (XCS::*score1)(const py::array_t<double> test_X,
-                          const py::array_t<double> test_Y) = &XCS::score;
-    double (XCS::*score2)(const py::array_t<double> test_X,
-                          const py::array_t<double> test_Y, const int N) =
-        &XCS::score;
-
     py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
         &XCS::predict;
     py::array_t<double> (XCS::*predict2)(const py::array_t<double> test_X,
@@ -1332,16 +1314,11 @@ PYBIND11_MODULE(xcsf, m)
              "x_dim). y_test shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("X_test"),
              py::arg("y_test"), py::arg("shuffle"))
-        .def("score", score1,
-             "Returns the error over one sequential pass of the provided data. "
-             "X_val shape must be: (n_samples, x_dim). y_val shape must be: "
-             "(n_samples, y_dim).",
-             py::arg("X_val"), py::arg("y_val"))
-        .def("score", score2,
+        .def("score", &XCS::score,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
              "shape must be: (n_samples, y_dim).",
-             py::arg("X_val"), py::arg("y_val"), py::arg("N"))
+             py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0)
         .def("error", error1,
              "Returns a moving average of the system error, updated with step "
              "size BETA.")
