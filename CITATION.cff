@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 title: XCSF
-version: 1.2.5
-doi: 10.5281/zenodo.7139881
-date-released: 2022-10-03
+version: 1.2.6
+doi:
+date-released: 2023-04-23
 license: GPL-3.0
 repository-code: https://github.com/rpreen/xcsf
 languages:

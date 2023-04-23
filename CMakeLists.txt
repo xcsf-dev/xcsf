@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -21,7 +21,7 @@ set(PROJECT_VENDOR "Richard Preen")
 set(PROJECT_CONTACT "rpreen@gmail.com")
 set(PROJECT_URL "https://github.com/rpreen/xcsf")
 set(PROJECT_DESCRIPTION "XCSF: Learning Classifier System")
-set(PROJECT_VERSION "1.2.5")
+set(PROJECT_VERSION "1.2.6")
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)

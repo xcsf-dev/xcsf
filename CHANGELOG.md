@@ -1,7 +1,9 @@
 # Changelog
 
+## Version 1.2.6 (Apr 23, 2023)
+
 Changes:
-*    Add an optional argument to the Python predict function that specifies the value to return for a sample if the match set is empty instead of invoking covering.
+*    Add an optional argument to the Python predict/score functions that specifies the value to return for a sample if the match set is empty instead of invoking covering.
 
 ## Version 1.2.5 (Oct 3, 2022)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="xcsf",
-    version="1.2.5",
+    version="1.2.6",
     license="GPL-3.0",
     maintainer="Richard Preen",
     maintainer_email="rpreen@gmail.com",
