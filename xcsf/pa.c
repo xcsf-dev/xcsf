@@ -74,7 +74,8 @@ pa_build(const struct XCSF *xcsf, const double *x)
             iter = iter->next;
         }
     }
-    #pragma omp parallel for reduction(+ : pa[:xcsf->pa_size], nr[:xcsf->pa_size])
+    #pragma omp parallel for reduction(+ : pa[ : xcsf->pa_size],               \
+                                           nr[ : xcsf->pa_size])
     for (int i = 0; i < set->size; ++i) {
         if (clist[i] != NULL) {
             const double *pred = cl_predict(xcsf, clist[i], x);
