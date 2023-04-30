@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -172,10 +172,7 @@ class Maze:
 ###################
 
 # initialise XCSF for reinforcement learning
-X_DIM: Final[int] = 8
-Y_DIM: Final[int] = 1
-N_ACTIONS: Final[int] = 8
-xcs: xcsf.XCS = xcsf.XCS(X_DIM, Y_DIM, N_ACTIONS)
+xcs = xcsf.XCS(x_dim=8, y_dim=1, n_actions=8)
 
 xcs.OMP_NUM_THREADS = 8
 xcs.POP_SIZE = 1000

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -121,8 +121,7 @@ MAX_PAYOFF: Final[float] = mux.max_payoff
 # Initialise XCSF
 ###################
 
-# constructor = (x_dim, y_dim, n_actions)
-xcs: xcsf.XCS = xcsf.XCS(X_DIM, 1, N_ACTIONS)
+xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=1, n_actions=N_ACTIONS)
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_SIZE = 5000  # maximum population size

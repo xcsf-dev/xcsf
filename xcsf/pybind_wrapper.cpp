@@ -195,15 +195,14 @@ class XCS
 
     /**
      * @brief Prints the current population.
-     * @param [in] print_cond Whether to print the condition.
-     * @param [in] print_act Whether to print the action.
-     * @param [in] print_pred Whether to print the prediction.
+     * @param [in] condition Whether to print the condition.
+     * @param [in] action Whether to print the action.
+     * @param [in] prediction Whether to print the prediction.
      */
     void
-    print_pset(const bool print_cond, const bool print_act,
-               const bool print_pred)
+    print_pset(const bool condition, const bool action, const bool prediction)
     {
-        xcsf_print_pset(&xcs, print_cond, print_act, print_pred);
+        xcsf_print_pset(&xcs, condition, action, prediction);
     }
 
     /* Reinforcement learning */
@@ -1198,18 +1197,17 @@ class XCS
 
     /**
      * @brief Returns a JSON formatted string representing the population set.
-     * @param [in] return_cond Whether to return the condition.
-     * @param [in] return_act Whether to return the action.
-     * @param [in] return_pred Whether to return the prediction.
+     * @param [in] condition Whether to return the condition.
+     * @param [in] action Whether to return the action.
+     * @param [in] prediction Whether to return the prediction.
      * @return String encoded in json format.
      */
     const char *
-    json_export(const bool return_cond, const bool return_act,
-                const bool return_pred)
+    json_export(const bool condition, const bool action, const bool prediction)
     {
         if (xcs.pset.list != NULL) {
-            return clset_json_export(&xcs, &xcs.pset, return_cond, return_act,
-                                     return_pred);
+            return clset_json_export(&xcs, &xcs.pset, condition, action,
+                                     prediction);
         }
         return "null";
     }
@@ -1362,7 +1360,7 @@ PYBIND11_MODULE(xcsf, m)
              "Executes MAX_TRIALS number of XCSF learning iterations using the "
              "provided training data. X_train shape must be: (n_samples, "
              "x_dim). y_train shape must be: (n_samples, y_dim).",
-             py::arg("X_train"), py::arg("y_train"), py::arg("shuffle"))
+             py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true)
         .def("fit", fit3,
              "Executes MAX_TRIALS number of XCSF learning iterations using the "
              "provided training data and test iterations using the test data. "
@@ -1370,7 +1368,7 @@ PYBIND11_MODULE(xcsf, m)
              "be: (n_samples, y_dim). X_test shape must be: (n_samples, "
              "x_dim). y_test shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("X_test"),
-             py::arg("y_test"), py::arg("shuffle"))
+             py::arg("y_test"), py::arg("shuffle") = true)
         .def("score", score1,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
@@ -1553,8 +1551,8 @@ PYBIND11_MODULE(xcsf, m)
         .def("mfrac", &XCS::get_mfrac,
              "Returns the mean fraction of inputs matched by the best rule.")
         .def("print_pset", &XCS::print_pset, "Prints the current population.",
-             py::arg("print_condition"), py::arg("print_action"),
-             py::arg("print_prediction"))
+             py::arg("condition") = true, py::arg("action") = true,
+             py::arg("prediction") = true)
         .def("print_params", &XCS::print_params,
              "Prints the XCSF parameters and their current values.")
         .def("pred_expand", &XCS::pred_expand,
@@ -1565,8 +1563,8 @@ PYBIND11_MODULE(xcsf, m)
              py::arg("n_del"))
         .def("json", &XCS::json_export,
              "Returns a JSON formatted string representing the population set.",
-             py::arg("return_condition"), py::arg("return_action"),
-             py::arg("return_prediction"))
+             py::arg("condition") = true, py::arg("action") = true,
+             py::arg("prediction") = true)
         .def("json_write", &XCS::json_write,
              "Writes the current population set to a file in JSON.",
              py::arg("filename"))
