@@ -407,10 +407,10 @@ class XCS
                 << std::endl;
             throw std::invalid_argument(err.str());
         }
-        if (buf_c.shape[0] != xcs.y_dim || buf_c.shape[1] != 0) {
+        if (buf_c.shape[0] != xcs.y_dim) {
             std::ostringstream err;
-            err << "cover shape (" << buf_c.shape[1] << ", " << buf_c.shape[0]
-                << ") but expected (0, " << xcs.y_dim << ")" << std::endl;
+            err << "cover length = " << buf_c.shape[0] << " but expected "
+                << xcs.y_dim << std::endl;
             throw std::invalid_argument(err.str());
         }
         return reinterpret_cast<double *>(buf_c.ptr);
