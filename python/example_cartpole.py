@@ -33,7 +33,10 @@ from typing import Final
 
 import gymnasium as gym
 import imageio
+import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import rcParams
+from tqdm import tqdm
 
 import xcsf
 
@@ -204,4 +207,26 @@ ep_score, ep_steps = episode(ep, SAVE_GIF)
 env.close()
 
 if SAVE_GIF:
-    imageio.mimsave("animation.gif", frames)
+    # add score and episode nr
+    rcParams["font.family"] = "monospace"
+    bbox = dict(boxstyle="round", fc="0.8")
+    annotated_frames = list()
+    bar = tqdm(total=len(frames), position=0, leave=True)
+    for i in range(len(frames)):
+        fig = plt.figure(dpi=90)
+        fig.set_size_inches(3, 3)
+        ax = fig.add_subplot(111)
+        plt.imshow(frames[i])
+        plt.axis("off")
+        strial = str(ftrial[i])
+        sscore = str(int(fscore[i]))
+        text = f"episode = {strial:3s}, score = {sscore:3s}"
+        ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
+        fig.canvas.draw()
+        annotated_frames.append(np.asarray(fig.canvas.renderer.buffer_rgba()))
+        plt.close(fig)
+        bar.refresh()
+        bar.update(1)
+    bar.close()
+    # write gif
+    imageio.mimsave("animation.gif", annotated_frames, duration=30)
