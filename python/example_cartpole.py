@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2020--2021 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2020--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,11 @@
 
 """
 This example demonstrates the use of experience replay with XCSF to solve the
-cart-pole problem from the OpenAI Gym.
+cart-pole problem from the OpenAI gymnasium.
+
+$ pip install gymnasium[classic-control]
+
+Note: These hyperparameters do not result in consistently optimal performance.
 """
 
 from __future__ import annotations
@@ -27,10 +31,9 @@ import random
 from collections import deque
 from typing import Final
 
-import gym
-import matplotlib.pyplot as plt
+import gymnasium as gym
+import imageio
 import numpy as np
-from matplotlib import animation, rcParams
 
 import xcsf
 
@@ -38,7 +41,7 @@ import xcsf
 # Initialise OpenAI Gym problem environment
 ############################################
 
-env = gym.make("CartPole-v0")
+env = gym.make("CartPole-v1", render_mode="rgb_array")
 X_DIM: Final[int] = env.observation_space.shape[0]
 N_ACTIONS: Final[int] = env.action_space.n
 
@@ -48,38 +51,14 @@ frames: list[list[float]] = []
 fscore: list[float] = []
 ftrial: list[int] = []
 
-
-def save_frames_as_gif(path: str = "./", filename: str = "animation.gif") -> None:
-    """Save animation as gif."""
-    rcParams["font.family"] = "monospace"
-    fig = plt.figure(dpi=90)
-    fig.set_size_inches(3, 3)
-    ax = fig.add_subplot(111)
-    patch = plt.imshow(frames[0])
-    bbox = dict(boxstyle="round", fc="0.8")
-    plt.axis("off")
-
-    def animate(i: int) -> None:
-        patch.set_data(frames[i])
-        strial = str(ftrial[i])
-        sscore = str(int(fscore[i]))
-        text = f"episode = {strial:3s}, score = {sscore:3s}"
-        ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
-
-    anim = animation.FuncAnimation(
-        plt.gcf(), animate, frames=len(frames), interval=100, blit=False
-    )
-    anim.save(path + filename, writer="imagemagick", fps=30)
-
-
 ###################
 # Initialise XCSF
 ###################
 
-# constructor = (x_dim, y_dim, n_actions)
-xcs: xcsf.XCS = xcsf.XCS(X_DIM, N_ACTIONS, 1)  # Supervised: i.e, single action
+# Supervised: i.e, single action, [A] = [M]
+xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=N_ACTIONS, n_actions=1)
 
-xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
+xcs.OMP_NUM_THREADS = 12  # number of CPU cores to use
 xcs.POP_INIT = False  # use covering to initialise
 xcs.MAX_TRIALS = 1  # one trial per fit
 xcs.POP_SIZE = 200  # maximum population size
@@ -144,7 +123,7 @@ def replay(replay_size: int = 5000) -> None:
             y_target += GAMMA * np.max(prediction_array)
         target = xcs.predict(state.reshape(1, -1))[0]
         target[action] = y_target
-        xcs.fit(state.reshape(1, -1), target.reshape(1, -1), True)
+        xcs.fit(state.reshape(1, -1), target.reshape(1, -1), shuffle=True)
 
 
 def egreedy_action(state: np.ndarray) -> int:
@@ -159,12 +138,13 @@ def egreedy_action(state: np.ndarray) -> int:
 
 def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
     """Executes a single episode, saving to memory buffer"""
-    episode_score: int = 0
+    episode_score: float = 0
     episode_steps: int = 0
-    state: np.ndarray = env.reset()
+    state: np.ndarray = env.reset()[0]
     while True:
         action = egreedy_action(state)
-        next_state, reward, done, _ = env.step(action)
+        next_state, reward, terminated, truncated, _ = env.step(action)
+        done = terminated or truncated
         episode_steps += 1
         episode_score += reward
         memory.append((state, action, reward, next_state, done))
@@ -224,10 +204,4 @@ ep_score, ep_steps = episode(ep, SAVE_GIF)
 env.close()
 
 if SAVE_GIF:
-    print("Creating gif. This may take a while...")
-    save_frames_as_gif()
-    print("To crop and optimise gif:")
-    print(
-        "gifsicle -O3 --colors=64 --use-col=web --lossy=100 "
-        "--crop 0,10-270,220 --output out.gif animation.gif"
-    )
+    imageio.mimsave("animation.gif", frames)
