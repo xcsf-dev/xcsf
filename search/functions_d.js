@@ -149,6 +149,6 @@ var searchData=
   ['prediction_5ftype_5fas_5fint_2748',['prediction_type_as_int',['../prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd',1,'prediction_type_as_int(const char *type):&#160;prediction.c'],['../prediction_8h.html#a5f5a019c886d5bdf8bf9a3876a5a95bd',1,'prediction_type_as_int(const char *type):&#160;prediction.c']]],
   ['prediction_5ftype_5fas_5fstring_2749',['prediction_type_as_string',['../prediction_8c.html#a085a8402296bdeab95f54299040e6e0e',1,'prediction_type_as_string(const int type):&#160;prediction.c'],['../prediction_8h.html#a085a8402296bdeab95f54299040e6e0e',1,'prediction_type_as_string(const int type):&#160;prediction.c']]],
   ['print_5fparams_2750',['print_params',['../classXCS.html#a7731d72fe05a86f0d9bc67939fd56182',1,'XCS']]],
-  ['print_5fpset_2751',['print_pset',['../classXCS.html#a7af3631a2e50a3c2a22774d60600014d',1,'XCS']]],
+  ['print_5fpset_2751',['print_pset',['../classXCS.html#a9feecf1cfbc0910bd334031105732952',1,'XCS']]],
   ['pybind11_5fmodule_2752',['PYBIND11_MODULE',['../pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5',1,'pybind_wrapper.cpp']]]
 ];
