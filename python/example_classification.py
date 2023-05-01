@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -228,12 +228,12 @@ val_trial: int = 0  # number of trials at validation minimum
 bar = tqdm(total=N)  # progress bar
 for i in range(N):
     # train
-    train_err[i] = xcs.fit(X_train, y_train, True)  # True = shuffle
+    train_err[i] = xcs.fit(X_train, y_train, shuffle=True)
     trials[i] = xcs.time()  # number of learning trials so far
     psize[i] = xcs.pset_size()  # current population size
     msize[i] = xcs.mset_size()  # avg match set size
     # checkpoint lowest validation error
-    val_err[i] = xcs.score(X_val, y_val, 1000)  # use maximum of 1000 samples
+    val_err[i] = xcs.score(X_val, y_val, N=1000)  # use maximum of 1000 samples
     if val_err[i] < val_min:
         xcs.store()
         val_min = val_err[i]

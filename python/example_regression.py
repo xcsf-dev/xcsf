@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2019--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@ print(f"y_test shape = {np.shape(y_test)}")
 # Initialise XCSF
 ###################
 
-xcs: xcsf.XCS = xcsf.XCS(X_DIM, Y_DIM, 1)  # initialise for supervised learning
+xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=Y_DIM, n_actions=1)  # supervised learning
 
 xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
 xcs.POP_SIZE = 500  # maximum population size
@@ -156,7 +156,7 @@ val_trial: int = 0  # trial number the system was checkpointed
 bar = tqdm(total=N)  # progress bar
 for i in range(N):
     # train
-    train_mse[i] = xcs.fit(X_train, y_train, True)  # True = shuffle
+    train_mse[i] = xcs.fit(X_train, y_train, shuffle=True)
     trials[i] = xcs.time()  # number of trials so far
     psize[i] = xcs.pset_size()  # current population size
     msize[i] = xcs.mset_size()  # avg match set size
@@ -237,7 +237,7 @@ print(f"MLP Regressor Test MSE = {mlp_mse:.4f}")
 pred = xcs.predict(X_test[:10])
 print("*****************************")
 print("first 10 predictions = ")
-print(pred[:10])
+print(pred)
 print("*****************************")
 print("first 10 answers = ")
 print(y_test[:10])

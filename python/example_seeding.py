@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2023 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ from typing import Final
 
 import xcsf
 
-xcs = xcsf.XCS(8, 1, 2)  # (x_dim, y_dim, n_actions)
+xcs = xcsf.XCS(x_dim=8, y_dim=1, n_actions=2)
 xcs.condition("hyperrectangle_csr")
 xcs.action("integer")
 xcs.prediction("nlms_linear")
@@ -64,4 +64,4 @@ json_str = json.dumps(classifier)  # dictionary to JSON
 # limit.
 xcs.json_insert_cl(json_str)  # insert in [P]
 
-xcs.print_pset(True, True, True)
+xcs.print_pset()
