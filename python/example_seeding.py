@@ -28,7 +28,7 @@ from typing import Final
 
 import xcsf
 
-xcs = xcsf.XCS(X_dim=8, y_dim=1, n_actions=2)
+xcs = xcsf.XCS(x_dim=8, y_dim=1, n_actions=2)
 xcs.condition("hyperrectangle_csr")
 xcs.action("integer")
 xcs.prediction("nlms_linear")
