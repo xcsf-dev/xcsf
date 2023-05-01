@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.2.7 (May 1, 2023)
+
+Changes:
+*    Add defaults to Python API calls to allow a cleaner syntax.
+*    Fix an input check on the cover parameter in predict/score.
+*    Update Python cartpole example to latest version and refresh other examples.
+
 ## Version 1.2.6 (Apr 23, 2023)
 
 Changes:
