@@ -26,10 +26,12 @@
     #define _hypot hypot
 #endif
 
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -517,6 +519,56 @@ class XCS
     {
         const double *cov = get_cover(cover);
         return get_score(X, Y, N, cov);
+    }
+
+    /**
+     * @brief Implements pickle file writing.
+     * @defails Uses a temporary binary file.
+     * @return The pickled XCSF.
+     */
+    py::bytes
+    serialize() const
+    {
+        // Write XCSF to a temporary binary file
+        const char *filename = "_tmp_pickle.bin";
+        xcsf_save(&xcs, filename);
+        // Read the binary file into bytes
+        std::ifstream file(filename, std::ios::binary);
+        std::string state((std::istreambuf_iterator<char>(file)),
+                          std::istreambuf_iterator<char>());
+        file.close();
+        // Delete the temporary file
+        if (std::remove(filename) != 0) {
+            perror("Error deleting temporary pickle file");
+        }
+        // Return the binary data as bytes
+        return py::bytes(state);
+    }
+
+    /**
+     * @brief Implements pickle file reading.
+     * @defails Uses a temporary binary file.
+     * @param state The pickled state of a saved XCSF.
+     */
+    static XCS
+    deserialize(const py::bytes &state)
+    {
+        // Write the XCSF bytes to a temporary binary file
+        const char *filename = "_tmp_pickle.bin";
+        std::ofstream file(filename, std::ios::binary);
+        file.write(state.cast<std::string>().c_str(),
+                   state.cast<std::string>().size());
+        file.close();
+        // Create a new XCSF instance
+        XCS xcs(1, 1, 1);
+        // Load XCSF
+        xcsf_load(&xcs.xcs, filename);
+        // Delete the temporary file
+        if (std::remove(filename) != 0) {
+            perror("Error deleting temporary pickle file");
+        }
+        // Return the deserialized XCSF
+        return xcs;
     }
 
     /* GETTERS */
@@ -1578,5 +1630,8 @@ PYBIND11_MODULE(xcsf, m)
              py::arg("json_str"))
         .def("json_insert", &XCS::json_insert,
              "Creates classifiers from JSON and inserts into the population.",
-             py::arg("json_str"));
+             py::arg("json_str"))
+        .def(py::pickle(
+            [](const XCS &obj) { return obj.serialize(); },
+            [](const py::bytes &state) { return XCS::deserialize(state); }));
 }
