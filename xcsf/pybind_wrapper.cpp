@@ -1265,13 +1265,37 @@ class XCS
     }
 
     /**
-     * @brief Returns a JSON formatted string representing the parameters.
-     * @return String encoded in json format.
+     * @brief Returns a dictionary of parameters.
+     * @param deep For sklearn compatibility.
+     * @return Parameter dictionary.
      */
-    const char *
-    json_parameters()
+    py::dict
+    get_params(const bool deep)
     {
-        return param_json_export(&xcs);
+        (void) deep;
+        const char *json_str = param_json_export(&xcs);
+        py::module json = py::module::import("json");
+        py::object parsed_json = json.attr("loads")(json_str);
+        py::dict result(parsed_json);
+        return result;
+    }
+
+    /**
+     * @brief Sets parameter values.
+     * @param kwargs Parameters and their values.
+     * @details Will NOT set x_dim, y_dim, n_actions.
+     * @return XCSF.
+     */
+    XCS &
+    set_params(py::kwargs kwargs)
+    {
+        py::dict kwargs_dict(kwargs);
+        py::module json_module = py::module::import("json");
+        py::object json_dumps = json_module.attr("dumps")(kwargs_dict);
+        std::string json_str = json_dumps.cast<std::string>();
+        const char *json_params = json_str.c_str();
+        param_json_import(&xcs, json_params);
+        return *this;
     }
 
     /**
@@ -1623,8 +1647,9 @@ PYBIND11_MODULE(xcsf, m)
         .def("json_read", &XCS::json_read,
              "Reads classifiers from a JSON file and adds to the population.",
              py::arg("filename"))
-        .def("json_parameters", &XCS::json_parameters,
-             "Returns a JSON formatted string representing the parameters.")
+        .def("get_params", &XCS::get_params, py::arg("deep") = true,
+             "Returns a dictionary of parameters and their values.")
+        .def("set_params", &XCS::set_params, "Sets parameters.")
         .def("json_insert_cl", &XCS::json_insert_cl,
              "Creates a classifier from JSON and inserts into the population.",
              py::arg("json_str"))
