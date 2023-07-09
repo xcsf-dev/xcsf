@@ -408,6 +408,7 @@ tree_load(struct GPTree *gp, FILE *fp)
         exit(EXIT_FAILURE);
     }
     gp->tree = malloc(sizeof(int) * gp->len);
+    gp->mu = malloc(sizeof(double) * N_MU);
     s += fread(gp->tree, sizeof(int), gp->len, fp);
     s += fread(gp->mu, sizeof(double), N_MU, fp);
     return s;
