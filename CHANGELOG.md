@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.2.8 (Jul 9, 2023)
+
+Changes:
+*    Add support for pickle to Python library ([#72](https://github.com/rpreen/xcsf/pull/72))
+
 ## Version 1.2.7 (May 1, 2023)
 
 Changes:
