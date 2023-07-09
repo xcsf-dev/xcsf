@@ -8,25 +8,25 @@ Changes:
 ## Version 1.2.7 (May 1, 2023)
 
 Changes:
-*    Add defaults to Python API calls to allow a cleaner syntax.
-*    Fix an input check on the cover parameter in predict/score.
-*    Update Python cartpole example to latest version and refresh other examples.
+*    Add defaults to Python API calls to allow a cleaner syntax ([#60](https://github.com/rpreen/xcsf/pull/60))
+*    Fix an input check on the cover parameter in predict/score ([#60](https://github.com/rpreen/xcsf/pull/60))
+*    Update Python cartpole example to latest version and refresh other examples ([#60](https://github.com/rpreen/xcsf/pull/60))
 
 ## Version 1.2.6 (Apr 23, 2023)
 
 Changes:
-*    Add an optional argument to the Python predict/score functions that specifies the value to return for a sample if the match set is empty instead of invoking covering.
+*    Add an optional argument to the Python predict/score functions that specifies the value to return for a sample if the match set is empty instead of invoking covering ([#59](https://github.com/rpreen/xcsf/pull/59))
 
 ## Version 1.2.5 (Oct 3, 2022)
 
 Changes:
-*    Add docstrings and variable names to Python library.
-*    Fix minor memory leak when printing parameters.
+*    Add docstrings and variable names to Python library ([#43](https://github.com/rpreen/xcsf/pull/43))
+*    Fix minor memory leak when printing parameters ([#44](https://github.com/rpreen/xcsf/pull/44))
 
 ## Version 1.2.4 (Oct 1, 2022)
 
 Changes:
-*    Python library throws exceptions rather than hard exiting where possible.
+*    Python library throws exceptions rather than hard exiting where possible ([#41](https://github.com/rpreen/xcsf/pull/42), [#41](https://github.com/rpreen/xcsf/pull/42))
 *    Fix minor memory leak when printing parameters.
 
 ## Version 1.2.3 (Sep 23, 2022)
@@ -37,7 +37,7 @@ Changes:
 ## Version 1.2.2 (Sep 20, 2022)
 
 Changes:
-*    Best action selection now breaks ties randomly.
+*    Best action selection now breaks ties randomly ([#39](https://github.com/rpreen/xcsf/pull/39))
 
 ## Version 1.2.1 (Sep 3, 2022)
 
@@ -50,8 +50,8 @@ Changes:
 *    Added extra JSON parsing input checks.
 *    Cleaned up Python examples.
 *    Added Jupyter notebook examples.
-*    Renamed hyperrectangle conditions with hyperrectangle_csr.
-*    Added unordered-bound hyperrectangle conditions with hyperrectangle_ubr.
+*    Renamed hyperrectangle conditions with hyperrectangle_csr ([#35](https://github.com/rpreen/xcsf/pull/35))
+*    Added unordered-bound hyperrectangle conditions with hyperrectangle_ubr ([#35](https://github.com/rpreen/xcsf/pull/35))
 
 ## Version 1.1.6 (Dec 27, 2021)
 
@@ -82,7 +82,7 @@ Changes:
 *    Added functions returning/printing classifiers in JSON.
 *    Added functions returning/printing parameters in JSON.
 *    Added Python classes for visualising tree and graph conditions.
-*    Fixed Python read/write `EA_SELECT_TYPE` asymmetry.
+*    Fixed Python read/write `EA_SELECT_TYPE` asymmetry ([#16](https://github.com/rpreen/xcsf/pull/16))
 *    Cleaned up Python interface and added input checks.
 *    Moved ini config to a subdirectory.
 *    Main executable building now optional.
@@ -93,7 +93,7 @@ Changes:
 
 Changes:
 *    Clean up - move to wiki.
-*    Addition of set seed function.
+*    Addition of set seed function ([#14](https://github.com/rpreen/xcsf/pull/14))
 *    Minor bug fix to action/match set numerosity.
 *    Neural layers print more detailed information.
 
