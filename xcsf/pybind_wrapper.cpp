@@ -523,7 +523,7 @@ class XCS
 
     /**
      * @brief Implements pickle file writing.
-     * @defails Writes to a binary file named using current time.
+     * @defails Uses a temporary binary file.
      * @return The pickled XCSF.
      */
     py::bytes
@@ -547,7 +547,7 @@ class XCS
 
     /**
      * @brief Implements pickle file reading.
-     * @defails Reads from the saved binary file.
+     * @defails Uses a temporary binary file.
      * @param state The pickled state of a saved XCSF.
      */
     static XCS
