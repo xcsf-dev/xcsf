@@ -605,6 +605,7 @@ graph_load(struct Graph *dgp, FILE *fp)
     dgp->tmp_input = malloc(sizeof(double) * dgp->max_k);
     dgp->function = malloc(sizeof(int) * dgp->n);
     dgp->connectivity = malloc(sizeof(int) * dgp->klen);
+    dgp->mu = malloc(sizeof(double) * N_MU);
     s += fread(dgp->state, sizeof(double), dgp->n, fp);
     s += fread(dgp->initial_state, sizeof(double), dgp->n, fp);
     s += fread(dgp->function, sizeof(int), dgp->n, fp);
