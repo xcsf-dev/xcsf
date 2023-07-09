@@ -26,7 +26,7 @@ Changes:
 ## Version 1.2.4 (Oct 1, 2022)
 
 Changes:
-*    Python library throws exceptions rather than hard exiting where possible ([#41](https://github.com/rpreen/xcsf/pull/42), [#41](https://github.com/rpreen/xcsf/pull/42))
+*    Python library throws exceptions rather than hard exiting where possible ([#41](https://github.com/rpreen/xcsf/pull/41), [#42](https://github.com/rpreen/xcsf/pull/42))
 *    Fix minor memory leak when printing parameters.
 
 ## Version 1.2.3 (Sep 23, 2022)
