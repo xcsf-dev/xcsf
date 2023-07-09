@@ -191,7 +191,7 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_pop_size(xcsf, json->valueint));
-    } else if (strncmp(json->string, "max_trials\0", 10) == 0 &&
+    } else if (strncmp(json->string, "max_trials\0", 11) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_max_trials(xcsf, json->valueint));
     } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
