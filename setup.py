@@ -60,6 +60,9 @@ class CMakeBuild(build_ext):
             "--config",
             "Release",
         ]
+        if platform.system() == "Darwin":  # set to force CI to use GCC
+            cmake_args[2] = "-DCMAKE_C_COMPILER=gcc-11"
+            cmake_args[3] = "-DCMAKE_CXX_COMPILER=g++-11"
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
             cmake_args += ["-GMinGW Makefiles"]
