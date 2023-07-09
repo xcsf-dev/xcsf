@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2.9 (Jul 9, 2023)
+
+Changes:
+*    Fix deserialization of tree-GP and DGP conditions ([#74](https://github.com/rpreen/xcsf/pull/74))
+*    Update libraries ([#75](https://github.com/rpreen/xcsf/pull/75))
+
 ## Version 1.2.8 (Jul 9, 2023)
 
 Changes:
