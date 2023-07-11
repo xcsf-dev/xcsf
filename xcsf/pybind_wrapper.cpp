@@ -612,6 +612,12 @@ class XCS
         return xcs.OMP_NUM_THREADS;
     }
 
+    int
+    get_random_state(void)
+    {
+        return xcs.RANDOM_STATE;
+    }
+
     bool
     get_pop_init(void)
     {
@@ -1067,6 +1073,12 @@ class XCS
     }
 
     void
+    set_random_state(const int a)
+    {
+        catch_error(param_set_random_state(&xcs, a));
+    }
+
+    void
     set_pop_init(const bool a)
     {
         catch_error(param_set_pop_init(&xcs, a));
@@ -1262,12 +1274,6 @@ class XCS
         catch_error(ea_param_set_pred_reset(&xcs, a));
     }
 
-    void
-    seed(const uint32_t seed)
-    {
-        rand_init_seed(seed);
-    }
-
     /* JSON */
 
     /**
@@ -1364,7 +1370,6 @@ PYBIND11_MODULE(xcsf, m)
     m.doc() = "XCSF learning classifier: rule-based online evolutionary "
               "machine learning.\nFor details on how to use this module see: "
               "https://github.com/rpreen/xcsf/wiki/Python-Library-Usage";
-    rand_init();
 
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
@@ -1503,10 +1508,10 @@ PYBIND11_MODULE(xcsf, m)
         .def("update", &XCS::update,
              "Creates the action set using the previously selected action.",
              py::arg("reward"), py::arg("done"))
-        .def("seed", &XCS::seed, "Sets the random number seed.",
-             py::arg("seed"))
         .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
                       &XCS::set_omp_num_threads, "Number of CPU cores to use.")
+        .def_property("RANDOM_STATE", &XCS::get_random_state,
+                      &XCS::set_random_state, "Random seed; 0 = None")
         .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init,
                       "Whether to seed the population with random rules.")
         .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials,
