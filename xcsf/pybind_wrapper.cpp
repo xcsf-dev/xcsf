@@ -334,8 +334,8 @@ class XCS
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
-        std::vector<long int> x_shape = buf_x.shape;
-        std::vector<long int> y_shape = buf_y.shape;
+        std::vector<long int> x_shape = (std::vector<long int>) buf_x.shape;
+        std::vector<long int> y_shape = (std::vector<long int>) buf_y.shape;
         size_t n_x_dim = x_shape.size();
         size_t n_y_dim = y_shape.size();
         if (n_x_dim < 1 || n_x_dim > 2) {
