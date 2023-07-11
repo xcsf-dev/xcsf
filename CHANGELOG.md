@@ -4,6 +4,7 @@
 
 Changes:
 *   Accept 1-D flattened Python inputs in fit/score/predict ([#81](https://github.com/rpreen/xcsf/pull/81))
+*   Fix setting max trials via JSON ([#83](https://github.com/rpreen/xcsf/pull/83))
 
 ## Version 1.2.9 (Jul 9, 2023)
 
