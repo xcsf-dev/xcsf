@@ -1,5 +1,11 @@
 # Changelog
 
+## Development
+
+Changes:
+*   Accept flattened (1-D) Python inputs ([#80](https://github.com/rpreen/xcsf/pull/80))
+*   Fix setting max trials from JSON ([#80](https://github.com/rpreen/xcsf/pull/80))
+
 ## Version 1.2.9 (Jul 9, 2023)
 
 Changes:
