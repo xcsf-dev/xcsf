@@ -334,26 +334,41 @@ class XCS
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
-        if (buf_x.shape[0] != buf_y.shape[0]) {
-            std::string error =
-                "load_input(): X and Y n_samples are not equal.";
+        std::vector<long int> x_shape = buf_x.shape;
+        std::vector<long int> y_shape = buf_y.shape;
+        size_t n_x_dim = x_shape.size();
+        size_t n_y_dim = y_shape.size();
+        if (n_x_dim < 1 || n_x_dim > 2) {
+            std::string error = "load_input(): X must be 1 or 2-D array";
             throw std::invalid_argument(error);
         }
-        if (buf_x.shape[1] != xcs.x_dim) {
+        if (n_y_dim < 1 || n_y_dim > 2) {
+            std::string error = "load_input(): Y must be 1 or 2-D array";
+            throw std::invalid_argument(error);
+        }
+        if (buf_x.shape[0] != buf_y.shape[0]) {
+            std::string error = "load_input(): X and Y n_samples are not equal";
+            throw std::invalid_argument(error);
+        }
+        if (n_x_dim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
-            error << "load_input(): x_dim != " << xcs.x_dim << std::endl;
-            error << "2-D arrays are required. Perhaps reshape your data.";
+            error << "load_input():";
+            error << " received x_dim: (" << buf_x.shape[1] << ")";
+            error << " but expected (" << xcs.x_dim << ")" << std::endl;
+            error << "Perhaps reshape your data.";
             throw std::invalid_argument(error.str());
         }
-        if (buf_y.shape[1] != xcs.y_dim) {
+        if (n_y_dim > 1 && buf_y.shape[1] != xcs.y_dim) {
             std::ostringstream error;
-            error << "load_input(): y_dim != " << xcs.y_dim << std::endl;
-            error << "2-D arrays are required. Perhaps reshape your data.";
+            error << "load_input():";
+            error << " received y_dim: (" << buf_y.shape[1] << ")";
+            error << " but expected (" << xcs.y_dim << ")" << std::endl;
+            error << "Perhaps reshape your data.";
             throw std::invalid_argument(error.str());
         }
         data->n_samples = buf_x.shape[0];
-        data->x_dim = buf_x.shape[1];
-        data->y_dim = buf_y.shape[1];
+        data->x_dim = xcs.x_dim;
+        data->y_dim = xcs.y_dim;
         data->x = (double *) buf_x.ptr;
         data->y = (double *) buf_y.ptr;
     }
@@ -429,14 +444,21 @@ class XCS
     get_predictions(const py::array_t<double> X, const double *cover)
     {
         const py::buffer_info buf_x = X.request();
-        const int n_samples = buf_x.shape[0];
-        if (buf_x.shape[1] != xcs.x_dim) {
-            std::ostringstream err;
-            err << "predict(): x_dim (" << buf_x.shape[1]
-                << ") is not equal to: " << xcs.x_dim << std::endl;
-            err << "2-D arrays are required. Perhaps reshape your data.";
-            throw std::invalid_argument(err.str());
+        std::vector<long int> x_shape = buf_x.shape;
+        size_t n_x_dim = x_shape.size();
+        if (n_x_dim < 1 || n_x_dim > 2) {
+            std::string error = "predict(): X must be 1 or 2-D array";
+            throw std::invalid_argument(error);
         }
+        if (n_x_dim > 1 && buf_x.shape[1] != xcs.x_dim) {
+            std::ostringstream error;
+            error << "predict():";
+            error << " received x_dim: (" << buf_x.shape[1] << ")";
+            error << " but expected (" << xcs.x_dim << ")" << std::endl;
+            error << "Perhaps reshape your data.";
+            throw std::invalid_argument(error.str());
+        }
+        const int n_samples = buf_x.shape[0];
         const double *input = reinterpret_cast<double *>(buf_x.ptr);
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
@@ -523,7 +545,7 @@ class XCS
 
     /**
      * @brief Implements pickle file writing.
-     * @defails Uses a temporary binary file.
+     * @details Uses a temporary binary file.
      * @return The pickled XCSF.
      */
     py::bytes
@@ -547,7 +569,7 @@ class XCS
 
     /**
      * @brief Implements pickle file reading.
-     * @defails Uses a temporary binary file.
+     * @details Uses a temporary binary file.
      * @param state The pickled state of a saved XCSF.
      */
     static XCS
