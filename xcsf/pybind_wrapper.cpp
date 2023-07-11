@@ -1313,9 +1313,8 @@ class XCS
      * @brief Sets parameter values.
      * @param kwargs Parameters and their values.
      * @details Will NOT set x_dim, y_dim, n_actions.
-     * @return XCSF.
      */
-    XCS &
+    void
     set_params(py::kwargs kwargs)
     {
         py::dict kwargs_dict(kwargs);
@@ -1324,7 +1323,6 @@ class XCS
         std::string json_str = json_dumps.cast<std::string>();
         const char *json_params = json_str.c_str();
         param_json_import(&xcs, json_params);
-        return *this;
     }
 
     /**
