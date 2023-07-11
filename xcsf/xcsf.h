@@ -131,6 +131,7 @@ struct XCSF {
     int THETA_DEL; //!< Min experience before fitness used during deletion
     int M_PROBATION; //!< Trials since creation a cl must match at least 1 input
     int THETA_SUB; //!< Minimum experience of a classifier to become a subsumer
+    int RANDOM_STATE; //!< Random number seed
     bool POP_INIT; //!< Pop initially empty or filled with random conditions
     bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
     bool STATEFUL; //!< Whether classifiers should retain state across trials

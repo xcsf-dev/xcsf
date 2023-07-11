@@ -56,6 +56,7 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
     param_set_x_dim(xcsf, x_dim);
     param_set_y_dim(xcsf, y_dim);
     param_set_omp_num_threads(xcsf, 8);
+    param_set_random_state(xcsf, 0);
     param_set_pop_init(xcsf, true);
     param_set_max_trials(xcsf, 100000);
     param_set_perf_trials(xcsf, 1000);
@@ -112,6 +113,7 @@ param_json_export(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "y_dim", xcsf->y_dim);
     cJSON_AddNumberToObject(json, "n_actions", xcsf->n_actions);
     cJSON_AddNumberToObject(json, "omp_num_threads", xcsf->OMP_NUM_THREADS);
+    cJSON_AddNumberToObject(json, "random_state", xcsf->RANDOM_STATE);
     cJSON_AddBoolToObject(json, "pop_init", xcsf->POP_INIT);
     cJSON_AddNumberToObject(json, "max_trials", xcsf->MAX_TRIALS);
     cJSON_AddNumberToObject(json, "perf_trials", xcsf->PERF_TRIALS);
@@ -188,6 +190,9 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
     } else if (strncmp(json->string, "omp_num_threads\0", 16) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_omp_num_threads(xcsf, json->valueint));
+    } else if (strncmp(json->string, "random_state\0", 13) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_random_state(xcsf, json->valueint));
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_pop_size(xcsf, json->valueint));
@@ -462,6 +467,7 @@ param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fwrite(&xcsf->n_actions, sizeof(int), 1, fp);
     s += fwrite(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
+    s += fwrite(&xcsf->RANDOM_STATE, sizeof(int), 1, fp);
     s += fwrite(&xcsf->POP_INIT, sizeof(bool), 1, fp);
     s += fwrite(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fwrite(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
@@ -515,6 +521,7 @@ param_load(struct XCSF *xcsf, FILE *fp)
         exit(EXIT_FAILURE);
     }
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
+    s += fread(&xcsf->RANDOM_STATE, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_INIT, sizeof(bool), 1, fp);
     s += fread(&xcsf->MAX_TRIALS, sizeof(int), 1, fp);
     s += fread(&xcsf->PERF_TRIALS, sizeof(int), 1, fp);
@@ -563,6 +570,18 @@ param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 #ifdef PARALLEL
     omp_set_num_threads(xcsf->OMP_NUM_THREADS);
 #endif
+    return NULL;
+}
+
+const char *
+param_set_random_state(struct XCSF *xcsf, const int a)
+{
+    xcsf->RANDOM_STATE = a;
+    if (a > 0) {
+        rand_init_seed(a);
+    } else {
+        rand_init();
+    }
     return NULL;
 }
 

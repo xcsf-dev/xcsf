@@ -58,6 +58,9 @@ const char *
 param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 
 const char *
+param_set_random_state(struct XCSF *xcsf, const int a);
+
+const char *
 param_set_pop_init(struct XCSF *xcsf, const bool a);
 
 const char *

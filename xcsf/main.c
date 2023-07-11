@@ -40,7 +40,6 @@ main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));
-    rand_init();
     env_init(xcsf, argv); // initialise environment and default parameters
     if (argc > 3) { // load parameter config
         config_read(xcsf, argv[3]);
