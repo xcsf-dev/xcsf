@@ -1,5 +1,10 @@
 # Changelog
 
+## Development
+
+Changes:
+*   Accept 1-D flattened Python inputs in fit/score/predict ([#81](https://github.com/rpreen/xcsf/pull/81))
+
 ## Version 1.2.9 (Jul 9, 2023)
 
 Changes:
