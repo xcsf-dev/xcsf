@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -182,11 +182,17 @@ param_json_export(const struct XCSF *xcsf)
 static bool
 param_json_import_general(struct XCSF *xcsf, const cJSON *json)
 {
-    if (strncmp(json->string, "version\0", 8) == 0 ||
-        strncmp(json->string, "x_dim\0", 6) == 0 ||
-        strncmp(json->string, "y_dim\0", 6) == 0 ||
-        strncmp(json->string, "n_actions\0", 10) == 0) {
-        return true; // set internally
+    if (strncmp(json->string, "version\0", 8) == 0) {
+        return true;
+    } else if (strncmp(json->string, "x_dim\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_x_dim(xcsf, json->valueint));
+    } else if (strncmp(json->string, "y_dim\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_y_dim(xcsf, json->valueint));
+    } else if (strncmp(json->string, "n_actions\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_n_actions(xcsf, json->valueint));
     } else if (strncmp(json->string, "omp_num_threads\0", 16) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_omp_num_threads(xcsf, json->valueint));

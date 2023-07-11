@@ -63,20 +63,16 @@ class XCS
     double payoff; //!< Current reward for RL
     struct Input *train_data; //!< Training data for supervised learning
     struct Input *test_data; //!< Test data for supervised learning
+    bool first_fit; //!< Whether this is the first execution of fit()
+    py::dict params; //!< Dictionary of parameters and their values
 
   public:
     /**
-     * @brief Constructor.
-     * @param [in] x_dim The dimensionality of the input variables.
-     * @param [in] y_dim The dimensionality of the prediction variables.
-     * @param [in] n_actions The total number of possible actions.
+     * @brief Default Constructor.
      */
-    XCS(const int x_dim, const int y_dim, const int n_actions)
+    XCS()
     {
-        param_init(&xcs, x_dim, y_dim, n_actions);
-        catch_error(param_set_n_actions(&xcs, n_actions));
-        catch_error(param_set_x_dim(&xcs, x_dim));
-        catch_error(param_set_y_dim(&xcs, y_dim));
+        param_init(&xcs, 1, 1, 1);
         xcsf_init(&xcs);
         state = NULL;
         action = 0;
@@ -93,6 +89,17 @@ class XCS
         test_data->y_dim = 0;
         test_data->x = NULL;
         test_data->y = NULL;
+        first_fit = true;
+        update_params();
+    }
+
+    /**
+     * @brief Constructor.
+     * @param [in] kwargs Parameters and their values.
+     */
+    XCS(py::kwargs kwargs) : XCS()
+    {
+        set_params(kwargs);
     }
 
     /**
@@ -380,34 +387,20 @@ class XCS
      * @param [in] train_X The input values to use for training.
      * @param [in] train_Y The true output values to use for training.
      * @param [in] shuffle Whether to randomise the instances during training.
+     * @param [in] warm_start Whether to continue with existing population.
      * @return The average XCSF training error using the loss function.
      */
     double
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
-        const bool shuffle)
+        const bool shuffle, const bool warm_start)
     {
+        if (first_fit || warm_start) {
+            xcsf_free(&xcs);
+            xcsf_init(&xcs);
+            first_fit = false;
+        }
         load_input(train_data, train_X, train_Y);
         return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
-    }
-
-    /**
-     * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
-     * provided training data and test iterations using the test data.
-     * @param [in] train_X The input values to use for training.
-     * @param [in] train_Y The true output values to use for training.
-     * @param [in] test_X The input values to use for testing.
-     * @param [in] test_Y The true output values to use for testing.
-     * @param [in] shuffle Whether to randomise the instances during training.
-     * @return The average XCSF training error using the loss function.
-     */
-    double
-    fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
-        const py::array_t<double> test_X, const py::array_t<double> test_Y,
-        const bool shuffle)
-    {
-        load_input(train_data, train_X, train_Y);
-        load_input(test_data, test_X, test_Y);
-        return xcs_supervised_fit(&xcs, train_data, test_data, shuffle);
     }
 
     /**
@@ -583,7 +576,7 @@ class XCS
                    state.cast<std::string>().size());
         file.close();
         // Create a new XCSF instance
-        XCS xcs(1, 1, 1);
+        XCS xcs = XCS();
         // Load XCSF
         xcsf_load(&xcs.xcs, filename);
         // Delete the temporary file
@@ -607,132 +600,6 @@ class XCS
     }
 
     int
-    get_omp_num_threads(void)
-    {
-        return xcs.OMP_NUM_THREADS;
-    }
-
-    int
-    get_random_state(void)
-    {
-        return xcs.RANDOM_STATE;
-    }
-
-    bool
-    get_pop_init(void)
-    {
-        return xcs.POP_INIT;
-    }
-
-    int
-    get_max_trials(void)
-    {
-        return xcs.MAX_TRIALS;
-    }
-
-    int
-    get_perf_trials(void)
-    {
-        return xcs.PERF_TRIALS;
-    }
-
-    int
-    get_pop_max_size(void)
-    {
-        return xcs.POP_SIZE;
-    }
-
-    const char *
-    get_loss_func(void)
-    {
-        return loss_type_as_string(xcs.LOSS_FUNC);
-    }
-
-    double
-    get_huber_delta(void)
-    {
-        return xcs.HUBER_DELTA;
-    }
-
-    double
-    get_alpha(void)
-    {
-        return xcs.ALPHA;
-    }
-
-    double
-    get_beta(void)
-    {
-        return xcs.BETA;
-    }
-
-    double
-    get_delta(void)
-    {
-        return xcs.DELTA;
-    }
-
-    double
-    get_e0(void)
-    {
-        return xcs.E0;
-    }
-
-    double
-    get_init_error(void)
-    {
-        return xcs.INIT_ERROR;
-    }
-
-    double
-    get_init_fitness(void)
-    {
-        return xcs.INIT_FITNESS;
-    }
-
-    double
-    get_nu(void)
-    {
-        return xcs.NU;
-    }
-
-    int
-    get_m_probation(void)
-    {
-        return xcs.M_PROBATION;
-    }
-
-    bool
-    get_stateful(void)
-    {
-        return xcs.STATEFUL;
-    }
-
-    bool
-    get_compaction(void)
-    {
-        return xcs.COMPACTION;
-    }
-
-    int
-    get_theta_del(void)
-    {
-        return xcs.THETA_DEL;
-    }
-
-    int
-    get_theta_sub(void)
-    {
-        return xcs.THETA_SUB;
-    }
-
-    bool
-    get_set_subsumption(void)
-    {
-        return xcs.SET_SUBSUMPTION;
-    }
-
-    int
     get_pset_size(void)
     {
         return xcs.pset.size;
@@ -748,24 +615,6 @@ class XCS
     get_time(void)
     {
         return xcs.time;
-    }
-
-    int
-    get_x_dim(void)
-    {
-        return xcs.x_dim;
-    }
-
-    int
-    get_y_dim(void)
-    {
-        return xcs.y_dim;
-    }
-
-    int
-    get_n_actions(void)
-    {
-        return xcs.n_actions;
     }
 
     double
@@ -840,440 +689,6 @@ class XCS
         return xcs.mfrac;
     }
 
-    int
-    get_teletransportation(void)
-    {
-        return xcs.TELETRANSPORTATION;
-    }
-
-    double
-    get_gamma(void)
-    {
-        return xcs.GAMMA;
-    }
-
-    double
-    get_p_explore(void)
-    {
-        return xcs.P_EXPLORE;
-    }
-
-    const char *
-    get_ea_select_type(void)
-    {
-        return ea_type_as_string(xcs.ea->select_type);
-    }
-
-    double
-    get_ea_select_size(void)
-    {
-        return xcs.ea->select_size;
-    }
-
-    double
-    get_theta_ea(void)
-    {
-        return xcs.ea->theta;
-    }
-
-    int
-    get_lambda(void)
-    {
-        return xcs.ea->lambda;
-    }
-
-    double
-    get_p_crossover(void)
-    {
-        return xcs.ea->p_crossover;
-    }
-
-    double
-    get_err_reduc(void)
-    {
-        return xcs.ea->err_reduc;
-    }
-
-    double
-    get_fit_reduc(void)
-    {
-        return xcs.ea->fit_reduc;
-    }
-
-    bool
-    get_ea_subsumption(void)
-    {
-        return xcs.ea->subsumption;
-    }
-
-    bool
-    get_ea_pred_reset(void)
-    {
-        return xcs.ea->pred_reset;
-    }
-
-    /* SETTERS */
-
-    /**
-     * @brief Sets the condition type.
-     * @param [in] type String representing a name of a condition type.
-     */
-    void
-    set_condition(const std::string &type)
-    {
-        if (cond_param_set_type_string(&xcs, type.c_str()) ==
-            COND_TYPE_INVALID) {
-            std::ostringstream msg;
-            msg << "Invalid condition type: " << type << ". Options: {"
-                << COND_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    /**
-     * @brief Sets the action type.
-     * @param [in] type String representing a name of an action type.
-     */
-    void
-    set_action(const std::string &type)
-    {
-        if (action_param_set_type_string(&xcs, type.c_str()) ==
-            ACT_TYPE_INVALID) {
-            std::ostringstream msg;
-            msg << "Invalid action type: " << type << ". Options: {"
-                << ACT_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    /**
-     * @brief Sets the prediction type.
-     * @param [in] type String representing a name of a prediction type.
-     */
-    void
-    set_prediction(const std::string &type)
-    {
-        if (pred_param_set_type_string(&xcs, type.c_str()) ==
-            PRED_TYPE_INVALID) {
-            std::ostringstream msg;
-            msg << "Invalid prediction type: " << type << ". Options: {"
-                << PRED_TYPE_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    /**
-     * @brief Finds and replaces all occurrences of a substring.
-     * @param [in] subject String to be searched and replaced.
-     * @param [in] search String within the subject to find.
-     * @param [in] replace String to replace the found text with.
-     * @return String.
-     */
-    std::string
-    find_replace_all(std::string subject, const std::string &search,
-                     const std::string &replace)
-    {
-        size_t pos = 0;
-        while ((pos = subject.find(search, pos)) != std::string::npos) {
-            subject.replace(pos, search.length(), replace);
-            pos += replace.length();
-        }
-        return subject;
-    }
-
-    /**
-     * @brief Converts a Python dictionary to a C++ string (JSON).
-     * @param [in] kwargs Python dictionary of argument name:value pairs.
-     * @return JSON string representation of a dictionary.
-     */
-    cJSON *
-    dict_to_json(const py::dict &kwargs)
-    {
-        py::str s = py::str(*kwargs);
-        std::string cs = s.cast<std::string>();
-        cs = find_replace_all(cs, "True", "true");
-        cs = find_replace_all(cs, "False", "false");
-        cs = find_replace_all(cs, "\'", "\"");
-        cJSON *json = cJSON_Parse(cs.c_str());
-        utils_json_parse_check(json);
-        return json;
-    }
-
-    /**
-     * @brief Sets the condition type and initialisation arguments.
-     * @param [in] type String representing a name of a condition type.
-     * @param [in] kwargs Python dictionary of argument name:value pairs.
-     */
-    void
-    set_condition(const std::string &type, const py::dict &kwargs)
-    {
-        set_condition(type);
-        cJSON *args = dict_to_json(kwargs);
-        const char *ret = cond_param_json_import(&xcs, args);
-        if (ret != NULL) {
-            std::ostringstream msg;
-            msg << "Invalid condition parameter: " << ret << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-        cJSON_Delete(args);
-    }
-
-    /**
-     * @brief Sets the action type and initialisation arguments.
-     * @param [in] type String representing a name of a condition type.
-     * @param [in] kwargs Python dictionary of argument name:value pairs.
-     */
-    void
-    set_action(const std::string &type, const py::dict &kwargs)
-    {
-        set_action(type);
-        cJSON *args = dict_to_json(kwargs);
-        const char *ret = action_param_json_import(&xcs, args);
-        if (ret != NULL) {
-            std::ostringstream msg;
-            msg << "Invalid action parameter: " << ret << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-        cJSON_Delete(args);
-    }
-
-    /**
-     * @brief Sets the prediction type and initialisation arguments.
-     * @param [in] type String representing a name of a condition type.
-     * @param [in] kwargs Python dictionary of argument name:value pairs.
-     */
-    void
-    set_prediction(const std::string &type, const py::dict &kwargs)
-    {
-        set_prediction(type);
-        cJSON *args = dict_to_json(kwargs);
-        const char *ret = pred_param_json_import(&xcs, args);
-        if (ret != NULL) {
-            std::ostringstream msg;
-            msg << "Invalid prediction parameter: " << ret << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-        cJSON_Delete(args);
-    }
-
-    void
-    catch_error(const char *ret)
-    {
-        if (ret != NULL) {
-            std::ostringstream msg;
-            msg << ret << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    void
-    set_omp_num_threads(const int a)
-    {
-        catch_error(param_set_omp_num_threads(&xcs, a));
-    }
-
-    void
-    set_random_state(const int a)
-    {
-        catch_error(param_set_random_state(&xcs, a));
-    }
-
-    void
-    set_pop_init(const bool a)
-    {
-        catch_error(param_set_pop_init(&xcs, a));
-    }
-
-    void
-    set_max_trials(const int a)
-    {
-        catch_error(param_set_max_trials(&xcs, a));
-    }
-
-    void
-    set_perf_trials(const int a)
-    {
-        catch_error(param_set_perf_trials(&xcs, a));
-    }
-
-    void
-    set_pop_max_size(const int a)
-    {
-        catch_error(param_set_pop_size(&xcs, a));
-    }
-
-    void
-    set_loss_func(const char *a)
-    {
-        if (param_set_loss_func_string(&xcs, a) == PARAM_INVALID) {
-            std::ostringstream msg;
-            msg << "Invalid loss function: " << a << ". Options: {"
-                << LOSS_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    void
-    set_huber_delta(const double a)
-    {
-        catch_error(param_set_huber_delta(&xcs, a));
-    }
-
-    void
-    set_alpha(const double a)
-    {
-        catch_error(param_set_alpha(&xcs, a));
-    }
-
-    void
-    set_beta(const double a)
-    {
-        catch_error(param_set_beta(&xcs, a));
-    }
-
-    void
-    set_delta(const double a)
-    {
-        catch_error(param_set_delta(&xcs, a));
-    }
-
-    void
-    set_e0(const double a)
-    {
-        catch_error(param_set_e0(&xcs, a));
-    }
-
-    void
-    set_init_error(const double a)
-    {
-        catch_error(param_set_init_error(&xcs, a));
-    }
-
-    void
-    set_init_fitness(const double a)
-    {
-        catch_error(param_set_init_fitness(&xcs, a));
-    }
-
-    void
-    set_nu(const double a)
-    {
-        catch_error(param_set_nu(&xcs, a));
-    }
-
-    void
-    set_m_probation(const int a)
-    {
-        catch_error(param_set_m_probation(&xcs, a));
-    }
-
-    void
-    set_theta_del(const int a)
-    {
-        catch_error(param_set_theta_del(&xcs, a));
-    }
-
-    void
-    set_theta_sub(const int a)
-    {
-        catch_error(param_set_theta_sub(&xcs, a));
-    }
-
-    void
-    set_set_subsumption(const bool a)
-    {
-        catch_error(param_set_set_subsumption(&xcs, a));
-    }
-
-    void
-    set_teletransportation(const int a)
-    {
-        catch_error(param_set_teletransportation(&xcs, a));
-    }
-
-    void
-    set_stateful(const bool a)
-    {
-        catch_error(param_set_stateful(&xcs, a));
-    }
-
-    void
-    set_compaction(const bool a)
-    {
-        catch_error(param_set_compaction(&xcs, a));
-    }
-
-    void
-    set_gamma(const double a)
-    {
-        catch_error(param_set_gamma(&xcs, a));
-    }
-
-    void
-    set_p_explore(const double a)
-    {
-        catch_error(param_set_p_explore(&xcs, a));
-    }
-
-    void
-    set_ea_select_type(const char *a)
-    {
-        if (ea_param_set_type_string(&xcs, a) == EA_SELECT_INVALID) {
-            std::ostringstream msg;
-            msg << "Invalid EA SELECT_TYPE: " << a << ". Options: {"
-                << EA_SELECT_OPTIONS << "}" << std::endl;
-            throw std::invalid_argument(msg.str());
-        }
-    }
-
-    void
-    set_ea_select_size(const double a)
-    {
-        catch_error(ea_param_set_select_size(&xcs, a));
-    }
-
-    void
-    set_theta_ea(const double a)
-    {
-        catch_error(ea_param_set_theta(&xcs, a));
-    }
-
-    void
-    set_lambda(const int a)
-    {
-        catch_error(ea_param_set_lambda(&xcs, a));
-    }
-
-    void
-    set_p_crossover(const double a)
-    {
-        catch_error(ea_param_set_p_crossover(&xcs, a));
-    }
-
-    void
-    set_err_reduc(const double a)
-    {
-        catch_error(ea_param_set_err_reduc(&xcs, a));
-    }
-
-    void
-    set_fit_reduc(const double a)
-    {
-        catch_error(ea_param_set_fit_reduc(&xcs, a));
-    }
-
-    void
-    set_ea_subsumption(const bool a)
-    {
-        catch_error(ea_param_set_subsumption(&xcs, a));
-    }
-
-    void
-    set_ea_pred_reset(const bool a)
-    {
-        catch_error(ea_param_set_pred_reset(&xcs, a));
-    }
-
     /* JSON */
 
     /**
@@ -1294,6 +709,20 @@ class XCS
     }
 
     /**
+     * @brief Updates the Python object's parameter dictionary.
+     */
+    void
+    update_params()
+    {
+        char *json_str = param_json_export(&xcs);
+        py::module json = py::module::import("json");
+        py::object parsed_json = json.attr("loads")(json_str);
+        py::dict result(parsed_json);
+        params = result;
+        free(json_str);
+    }
+
+    /**
      * @brief Returns a dictionary of parameters.
      * @param deep For sklearn compatibility.
      * @return Parameter dictionary.
@@ -1302,11 +731,7 @@ class XCS
     get_params(const bool deep)
     {
         (void) deep;
-        const char *json_str = param_json_export(&xcs);
-        py::module json = py::module::import("json");
-        py::object parsed_json = json.attr("loads")(json_str);
-        py::dict result(parsed_json);
-        return result;
+        return params;
     }
 
     /**
@@ -1323,6 +748,9 @@ class XCS
         std::string json_str = json_dumps.cast<std::string>();
         const char *json_params = json_str.c_str();
         param_json_import(&xcs, json_params);
+        for (const auto &item : kwargs_dict) {
+            params[item.first] = item.second;
+        }
     }
 
     /**
@@ -1396,10 +824,7 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
     double (XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                        const bool) = &XCS::fit;
-    double (XCS::*fit3)(const py::array_t<double>, const py::array_t<double>,
-                        const py::array_t<double>, const py::array_t<double>,
-                        const bool) = &XCS::fit;
+                        const bool, const bool) = &XCS::fit;
 
     py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
         &XCS::predict;
@@ -1418,42 +843,10 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
-    void (XCS::*condition1)(const std::string &) = &XCS::set_condition;
-    void (XCS::*condition2)(const std::string &, const py::dict &) =
-        &XCS::set_condition;
-
-    void (XCS::*action1)(const std::string &) = &XCS::set_action;
-    void (XCS::*action2)(const std::string &, const py::dict &) =
-        &XCS::set_action;
-
-    void (XCS::*prediction1)(const std::string &) = &XCS::set_prediction;
-    void (XCS::*prediction2)(const std::string &, const py::dict &) =
-        &XCS::set_prediction;
-
     py::class_<XCS>(m, "XCS")
-        .def(py::init<const int, const int, const int>(),
-             "Creates a new XCSF class.", py::arg("x_dim"), py::arg("y_dim"),
-             py::arg("n_actions"))
-        .def("condition", condition1,
-             "Sets the condition type. Options: {" COND_TYPE_OPTIONS "}.",
-             py::arg("type"))
-        .def("condition", condition2,
-             "Sets the condition type and args. Options: {" COND_TYPE_OPTIONS
-             "}.",
-             py::arg("type"), py::arg("args"))
-        .def("action", action1,
-             "Sets the action type. Options: {" ACT_TYPE_OPTIONS "}.",
-             py::arg("type"))
-        .def("action", action2,
-             "Sets the action type and args. Options: {" ACT_TYPE_OPTIONS "}.",
-             py::arg("type"), py::arg("args"))
-        .def("prediction", prediction1,
-             "Sets the prediction type. Options: {" PRED_TYPE_OPTIONS "}.",
-             py::arg("type"))
-        .def("prediction", prediction2,
-             "Sets the prediction type and args. Options: {" PRED_TYPE_OPTIONS
-             "}.",
-             py::arg("type"), py::arg("args"))
+        .def(py::init(), "Creates a new XCSF class with default arguments.")
+        .def(py::init<py::kwargs>(),
+             "Creates a new XCSF class with specified arguments.")
         .def("fit", fit1,
              "Creates/updates an action set for a given (state, action, "
              "reward). state shape must be: (x_dim, ).",
@@ -1462,15 +855,8 @@ PYBIND11_MODULE(xcsf, m)
              "Executes MAX_TRIALS number of XCSF learning iterations using the "
              "provided training data. X_train shape must be: (n_samples, "
              "x_dim). y_train shape must be: (n_samples, y_dim).",
-             py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true)
-        .def("fit", fit3,
-             "Executes MAX_TRIALS number of XCSF learning iterations using the "
-             "provided training data and test iterations using the test data. "
-             "X_train shape must be: (n_samples, x_dim). y_train shape must "
-             "be: (n_samples, y_dim). X_test shape must be: (n_samples, "
-             "x_dim). y_test shape must be: (n_samples, y_dim).",
-             py::arg("X_train"), py::arg("y_train"), py::arg("X_test"),
-             py::arg("y_test"), py::arg("shuffle") = true)
+             py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
+             py::arg("warm_start") = true)
         .def("score", score1,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
@@ -1530,94 +916,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("update", &XCS::update,
              "Creates the action set using the previously selected action.",
              py::arg("reward"), py::arg("done"))
-        .def_property("OMP_NUM_THREADS", &XCS::get_omp_num_threads,
-                      &XCS::set_omp_num_threads, "Number of CPU cores to use.")
-        .def_property("RANDOM_STATE", &XCS::get_random_state,
-                      &XCS::set_random_state, "Random seed; 0 = None")
-        .def_property("POP_INIT", &XCS::get_pop_init, &XCS::set_pop_init,
-                      "Whether to seed the population with random rules.")
-        .def_property("MAX_TRIALS", &XCS::get_max_trials, &XCS::set_max_trials,
-                      "Number of problem instances to run in one experiment.")
-        .def_property("PERF_TRIALS", &XCS::get_perf_trials,
-                      &XCS::set_perf_trials,
-                      "Number of problem instances to avg performance output.")
-        .def_property("POP_SIZE", &XCS::get_pop_max_size,
-                      &XCS::set_pop_max_size,
-                      "Maximum number of micro-classifiers in the population.")
-        .def_property(
-            "LOSS_FUNC", &XCS::get_loss_func, &XCS::set_loss_func,
-            "Which loss/error function to apply. Options: {" LOSS_OPTIONS "}.")
-        .def_property("HUBER_DELTA", &XCS::get_huber_delta,
-                      &XCS::set_huber_delta,
-                      "Delta parameter for Huber loss calculation.")
-        .def_property(
-            "ALPHA", &XCS::get_alpha, &XCS::set_alpha,
-            "Linear coefficient used to calculate classifier accuracy.")
-        .def_property(
-            "BETA", &XCS::get_beta, &XCS::set_beta,
-            "Learning rate for updating error, fitness, and set size.")
-        .def_property("DELTA", &XCS::get_delta, &XCS::set_delta,
-                      "Fraction of population to increase deletion vote.")
-        .def_property(
-            "E0", &XCS::get_e0, &XCS::set_e0,
-            "Target error under which classifier accuracy is set to 1.")
-        .def_property("STATEFUL", &XCS::get_stateful, &XCS::set_stateful,
-                      "Whether classifiers should retain state across trials.")
-        .def_property("COMPACTION", &XCS::get_compaction, &XCS::set_compaction,
-                      "if sys err < E0: largest of 2 roulette spins deleted.")
-        .def_property("INIT_ERROR", &XCS::get_init_error, &XCS::set_init_error,
-                      "Initial classifier error value.")
-        .def_property("INIT_FITNESS", &XCS::get_init_fitness,
-                      &XCS::set_init_fitness,
-                      "Initial classifier fitness value.")
-        .def_property("NU", &XCS::get_nu, &XCS::set_nu,
-                      "Exponent used in calculating classifier accuracy.")
-        .def_property("M_PROBATION", &XCS::get_m_probation,
-                      &XCS::set_m_probation,
-                      "Trials since creation a cl must match at least 1 input.")
-        .def_property("THETA_DEL", &XCS::get_theta_del, &XCS::set_theta_del,
-                      "Min experience before fitness used during deletion.")
-        .def_property(
-            "THETA_SUB", &XCS::get_theta_sub, &XCS::set_theta_sub,
-            "Minimum experience of a classifier to become a subsumer.")
-        .def_property("SET_SUBSUMPTION", &XCS::get_set_subsumption,
-                      &XCS::set_set_subsumption,
-                      "Whether to perform match set subsumption.")
-        .def_property("TELETRANSPORTATION", &XCS::get_teletransportation,
-                      &XCS::set_teletransportation,
-                      "Maximum steps for a multi-step problem.")
-        .def_property("GAMMA", &XCS::get_gamma, &XCS::set_gamma,
-                      "Discount factor for multi-step reward.")
-        .def_property("P_EXPLORE", &XCS::get_p_explore, &XCS::set_p_explore,
-                      "Probability of exploring vs. exploiting.")
-        .def_property("EA_SELECT_TYPE", &XCS::get_ea_select_type,
-                      &XCS::set_ea_select_type,
-                      "EA parental selection type. Options: {" EA_SELECT_OPTIONS
-                      "}.")
-        .def_property("EA_SELECT_SIZE", &XCS::get_ea_select_size,
-                      &XCS::set_ea_select_size,
-                      "Fraction of set size for tournaments.")
-        .def_property("THETA_EA", &XCS::get_theta_ea, &XCS::set_theta_ea,
-                      "Average match set time between EA invocations.")
-        .def_property("P_CROSSOVER", &XCS::get_p_crossover,
-                      &XCS::set_p_crossover,
-                      "Probability of applying crossover.")
-        .def_property("LAMBDA", &XCS::get_lambda, &XCS::set_lambda,
-                      "Number of offspring to create each EA invocation.")
-        .def_property("ERR_REDUC", &XCS::get_err_reduc, &XCS::set_err_reduc,
-                      "Amount to reduce an offspring's error.")
-        .def_property("FIT_REDUC", &XCS::get_fit_reduc, &XCS::set_fit_reduc,
-                      "Amount to reduce an offspring's fitness.")
-        .def_property("EA_SUBSUMPTION", &XCS::get_ea_subsumption,
-                      &XCS::set_ea_subsumption,
-                      "Whether to try and subsume offspring classifiers.")
-        .def_property("EA_PRED_RESET", &XCS::get_ea_pred_reset,
-                      &XCS::set_ea_pred_reset,
-                      "Whether to reset or copy offspring predictions.")
         .def("time", &XCS::get_time, "Returns the current EA time.")
-        .def("x_dim", &XCS::get_x_dim, "Returns the x_dim.")
-        .def("y_dim", &XCS::get_y_dim, "Returns the y_dim.")
-        .def("n_actions", &XCS::get_n_actions, "Returns the number of actions.")
         .def("pset_size", &XCS::get_pset_size,
              "Returns the number of macro-classifiers in the population.")
         .def("pset_num", &XCS::get_pset_num,
