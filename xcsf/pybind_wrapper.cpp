@@ -334,8 +334,9 @@ class XCS
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
-        std::vector<long int> x_shape = (std::vector<long int>) buf_x.shape;
-        std::vector<long int> y_shape = (std::vector<long int>) buf_y.shape;
+        // recast necessary because Windows shape is long long int
+        std::vector<long int> x_shape(buf_x.shape.begin(), buf_x.shape.end());
+        std::vector<long int> y_shape(buf_y.shape.begin(), buf_y.shape.end());
         size_t n_x_dim = x_shape.size();
         size_t n_y_dim = y_shape.size();
         if (n_x_dim < 1 || n_x_dim > 2) {
@@ -444,7 +445,7 @@ class XCS
     get_predictions(const py::array_t<double> X, const double *cover)
     {
         const py::buffer_info buf_x = X.request();
-        std::vector<long int> x_shape = buf_x.shape;
+        std::vector<long int> x_shape(buf_x.shape.begin(), buf_x.shape.end());
         size_t n_x_dim = x_shape.size();
         if (n_x_dim < 1 || n_x_dim > 2) {
             std::string error = "predict(): X must be 1 or 2-D array";
