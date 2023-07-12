@@ -69,7 +69,6 @@ model = xcsf.XCS(
             "layer_0": {
                 "type": "connected",
                 "activation": "relu",
-                "n_inputs": 4,
                 "n_init": 10,
                 "evolve_weights": True,
                 "evolve_functions": False,
@@ -85,7 +84,6 @@ model = xcsf.XCS(
             "layer_1": {
                 "type": "connected",
                 "activation": "softplus",
-                "n_inputs": 10,
                 "n_init": 1,
                 "evolve_weights": True,
                 "evolve_functions": False,
@@ -140,8 +138,9 @@ if False:
 
 if True:
     # grid search XCSF
-    parameters = {"beta": [0.1, 0.5]}
-    grid_search = GridSearchCV(model, parameters)
+    # parameters = {"beta": [0.1, 0.5]}
+    parameters = {"ea": [{"lambda": 2}, {"lambda": 10}, {"lambda": 50}]}
+    grid_search = GridSearchCV(model, parameters)  # 5 folds as default
     grid_search.fit(X, y)
     print("Best parameters: ", grid_search.best_params_)
     print("Best score: ", grid_search.best_score_)
