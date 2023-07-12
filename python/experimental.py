@@ -131,9 +131,17 @@ if False:
 
 if True:
     # grid search XCSF
-    # parameters = {"beta": [0.1, 0.5]}
-    parameters = {"ea": [{"lambda": 2}, {"lambda": 10}, {"lambda": 50}]}
+    parameters = {"beta": [0.1, 0.5]}
+    # parameters = {"ea": [{"lambda": 2}, {"lambda": 10}, {"lambda": 50}]}
     grid_search = GridSearchCV(model, parameters, scoring="neg_mean_squared_error")
     grid_search.fit(X, y)
+    results = grid_search.cv_results_
+    for mean_score, std_score, params in zip(
+        results["mean_test_score"], results["std_test_score"], results["params"]
+    ):
+        print("Mean Score:", -mean_score)
+        print("Standard Deviation:", std_score)
+        print("Parameters:", params)
+        print("------------------------")
     print("Best parameters: ", grid_search.best_params_)
     print("Best score: ", -grid_search.best_score_)
