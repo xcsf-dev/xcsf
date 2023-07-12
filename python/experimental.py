@@ -133,7 +133,7 @@ if True:
     # grid search XCSF
     # parameters = {"beta": [0.1, 0.5]}
     parameters = {"ea": [{"lambda": 2}, {"lambda": 10}, {"lambda": 50}]}
-    grid_search = GridSearchCV(model, parameters)  # 5 folds as default
+    grid_search = GridSearchCV(model, parameters, scoring="neg_mean_squared_error")
     grid_search.fit(X, y)
     print("Best parameters: ", grid_search.best_params_)
-    print("Best score: ", grid_search.best_score_)
+    print("Best score: ", -grid_search.best_score_)
