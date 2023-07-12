@@ -468,13 +468,11 @@ class XCS
     get_predictions(const py::array_t<double> X, const double *cover)
     {
         const py::buffer_info buf_x = X.request();
-        std::vector<long int> x_shape(buf_x.shape.begin(), buf_x.shape.end());
-        size_t n_x_dim = x_shape.size();
-        if (n_x_dim < 1 || n_x_dim > 2) {
+        if (buf_x.ndim < 1 || buf_x.ndim > 2) {
             std::string error = "predict(): X must be 1 or 2-D array";
             throw std::invalid_argument(error);
         }
-        if (n_x_dim > 1 && buf_x.shape[1] != xcs.x_dim) {
+        if (buf_x.ndim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
             error << "predict():";
             error << " received x_dim: (" << buf_x.shape[1] << ")";
