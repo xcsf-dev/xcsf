@@ -337,7 +337,7 @@ class XCS
      * @param [in] y1 Size of second output dimension.
      */
     void
-    set_dims(size_t n_x_dim, int x1, size_t n_y_dim, int y1)
+    set_dims(int n_x_dim, int x1, int n_y_dim, int y1)
     {
         py::dict kwargs;
         kwargs["n_actions"] = 1;
@@ -372,16 +372,11 @@ class XCS
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
-        // recast necessary because Windows shape is long long int
-        std::vector<long int> x_shape(buf_x.shape.begin(), buf_x.shape.end());
-        std::vector<long int> y_shape(buf_y.shape.begin(), buf_y.shape.end());
-        size_t n_x_dim = x_shape.size();
-        size_t n_y_dim = y_shape.size();
-        if (n_x_dim < 1 || n_x_dim > 2) {
+        if (buf_x.ndim < 1 || buf_x.ndim > 2) {
             std::string error = "load_input(): X must be 1 or 2-D array";
             throw std::invalid_argument(error);
         }
-        if (n_y_dim < 1 || n_y_dim > 2) {
+        if (buf_y.ndim < 1 || buf_y.ndim > 2) {
             std::string error = "load_input(): Y must be 1 or 2-D array";
             throw std::invalid_argument(error);
         }
@@ -390,9 +385,9 @@ class XCS
             throw std::invalid_argument(error);
         }
         if (first_fit) { // automatically set x_dim, y_dim, n_actions
-            set_dims(n_x_dim, buf_x.shape[1], n_y_dim, buf_y.shape[1]);
+            set_dims(buf_x.ndim, buf_x.shape[1], buf_y.ndim, buf_y.shape[1]);
         }
-        if (n_x_dim > 1 && buf_x.shape[1] != xcs.x_dim) {
+        if (buf_x.ndim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
             error << "load_input():";
             error << " received x_dim: (" << buf_x.shape[1] << ")";
@@ -400,7 +395,7 @@ class XCS
             error << "Perhaps reshape your data.";
             throw std::invalid_argument(error.str());
         }
-        if (n_y_dim > 1 && buf_y.shape[1] != xcs.y_dim) {
+        if (buf_y.ndim > 1 && buf_y.shape[1] != xcs.y_dim) {
             std::ostringstream error;
             error << "load_input():";
             error << " received y_dim: (" << buf_y.shape[1] << ")";
