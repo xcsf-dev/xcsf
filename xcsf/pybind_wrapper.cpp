@@ -858,7 +858,7 @@ PYBIND11_MODULE(xcsf, m)
              "provided training data. X_train shape must be: (n_samples, "
              "x_dim). y_train shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
-             py::arg("warm_start") = true)
+             py::arg("warm_start") = false)
         .def("score", score1,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
