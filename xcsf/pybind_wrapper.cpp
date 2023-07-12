@@ -388,19 +388,20 @@ class XCS
      * @param [in] train_Y The true output values to use for training.
      * @param [in] shuffle Whether to randomise the instances during training.
      * @param [in] warm_start Whether to continue with existing population.
-     * @return The average XCSF training error using the loss function.
+     * @return The fitted XCSF model.
      */
-    double
+    XCS &
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
         const bool shuffle, const bool warm_start)
     {
-        if (first_fit || warm_start) {
+        if (first_fit || !warm_start) {
             xcsf_free(&xcs);
             xcsf_init(&xcs);
             first_fit = false;
         }
         load_input(train_data, train_X, train_Y);
-        return xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+        xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+        return *this;
     }
 
     /**
@@ -737,9 +738,9 @@ class XCS
     /**
      * @brief Sets parameter values.
      * @param kwargs Parameters and their values.
-     * @details Will NOT set x_dim, y_dim, n_actions.
+     * @return The XCSF object.
      */
-    void
+    XCS &
     set_params(py::kwargs kwargs)
     {
         py::dict kwargs_dict(kwargs);
@@ -751,6 +752,7 @@ class XCS
         for (const auto &item : kwargs_dict) {
             params[item.first] = item.second;
         }
+        return *this;
     }
 
     /**
@@ -823,8 +825,8 @@ PYBIND11_MODULE(xcsf, m)
 
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
-    double (XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                        const bool, const bool) = &XCS::fit;
+    XCS &(XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
+                      const bool, const bool) = &XCS::fit;
 
     py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
         &XCS::predict;
