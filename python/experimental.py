@@ -15,14 +15,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-X_DIM = 4
-Y_DIM = 1
-N_ACTIONS = 1
-
 model = xcsf.XCS(
-    x_dim=X_DIM,
-    y_dim=Y_DIM,
-    n_actions=N_ACTIONS,
     omp_num_threads=12,
     random_state=1,
     pop_init=True,

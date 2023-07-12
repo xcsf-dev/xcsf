@@ -330,14 +330,45 @@ class XCS
     /* Supervised learning */
 
     /**
+     * @brief Sets XCSF input and output dimensions.
+     * @param [in] n_x_dim Number of input dimensions.
+     * @param [in] x1 Size of second input dimension.
+     * @param [in] n_y_dim Number of output dimensions.
+     * @param [in] y1 Size of second output dimension.
+     */
+    void
+    set_dims(size_t n_x_dim, int x1, size_t n_y_dim, int y1)
+    {
+        py::dict kwargs;
+        kwargs["n_actions"] = 1;
+        if (n_x_dim > 1) {
+            kwargs["x_dim"] = x1;
+        } else {
+            kwargs["x_dim"] = 1;
+        }
+        if (n_y_dim > 1) {
+            kwargs["y_dim"] = y1;
+        } else {
+            kwargs["y_dim"] = 1;
+        }
+        // update external params dict
+        for (const auto &item : kwargs) {
+            params[item.first] = item.second;
+        }
+        // flush param update to make sure neural nets resize
+        set_params(params);
+    }
+
+    /**
      * @brief Loads an input data structure for fitting.
      * @param [in,out] data Input data structure used to point to the data.
      * @param [in] X Vector of features with shape (n_samples, x_dim).
      * @param [in] Y Vector of truth values with shape (n_samples, y_dim).
+     * @param [in] first_fit Whether this is the first call to fit().
      */
     void
     load_input(struct Input *data, const py::array_t<double> X,
-               const py::array_t<double> Y)
+               const py::array_t<double> Y, const bool first_fit)
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
@@ -357,6 +388,9 @@ class XCS
         if (buf_x.shape[0] != buf_y.shape[0]) {
             std::string error = "load_input(): X and Y n_samples are not equal";
             throw std::invalid_argument(error);
+        }
+        if (first_fit) { // automatically set x_dim, y_dim, n_actions
+            set_dims(n_x_dim, buf_x.shape[1], n_y_dim, buf_y.shape[1]);
         }
         if (n_x_dim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
@@ -394,12 +428,12 @@ class XCS
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
         const bool shuffle, const bool warm_start)
     {
+        load_input(train_data, train_X, train_Y, first_fit);
         if (first_fit || !warm_start) {
             xcsf_free(&xcs);
             xcsf_init(&xcs);
             first_fit = false;
         }
-        load_input(train_data, train_X, train_Y);
         xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
         return *this;
     }
@@ -501,7 +535,7 @@ class XCS
     get_score(const py::array_t<double> X, const py::array_t<double> Y,
               const int N, const double *cover)
     {
-        load_input(test_data, X, Y);
+        load_input(test_data, X, Y, false);
         if (N > 1) {
             return xcs_supervised_score_n(&xcs, test_data, N, cover);
         }
