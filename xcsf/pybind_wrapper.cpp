@@ -65,6 +65,12 @@ class XCS
     struct Input *test_data; //!< Test data for supervised learning
     bool first_fit; //!< Whether this is the first execution of fit()
     py::dict params; //!< Dictionary of parameters and their values
+    py::list metric_train_error;
+    py::list metric_trials;
+    py::list metric_psize;
+    py::list metric_msize;
+    py::list metric_mfrac;
+    int metric_counter;
 
   public:
     /**
@@ -88,6 +94,7 @@ class XCS
         test_data->x = NULL;
         test_data->y = NULL;
         first_fit = true;
+        metric_counter = 0;
         param_init(&xcs, 1, 1, 1);
         update_params();
     }
@@ -424,6 +431,7 @@ class XCS
      * @param [in] train_Y The true output values to use for training.
      * @param [in] shuffle Whether to randomise the instances during training.
      * @param [in] warm_start Whether to continue with existing population.
+     * @param [in] kwargs Keyword arguments.
      * @return The fitted XCSF model.
      */
     XCS &
@@ -438,7 +446,23 @@ class XCS
             xcsf_free(&xcs);
             xcsf_init(&xcs);
         }
-        xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+        // break up the learning into epochs to track metrics
+        const int n = floor(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
+        const int MAX_TRIALS = xcs.MAX_TRIALS;
+        xcs.MAX_TRIALS = xcs.PERF_TRIALS;
+        for (int i = 0; i < n; ++i) {
+            double err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            metric_train_error.append(err);
+            int trial_cnt = metric_counter * xcs.PERF_TRIALS;
+            metric_trials.append(trial_cnt);
+            metric_psize.append(xcs.pset.size);
+            metric_msize.append(xcs.mset.size);
+            metric_mfrac.append(xcs.mfrac);
+            printf("%d, %.5f, %d, %.2f, %.2f\n", trial_cnt, err, xcs.pset.size,
+                   xcs.mset_size, xcs.mfrac);
+            ++metric_counter;
+        }
+        xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
     }
 
@@ -640,6 +664,18 @@ class XCS
     error(void)
     {
         return xcs.error;
+    }
+
+    py::dict
+    get_metrics(void)
+    {
+        py::dict metrics;
+        metrics["train_error"] = metric_train_error;
+        metrics["trials"] = metric_trials;
+        metrics["psize"] = metric_psize;
+        metrics["msize"] = metric_msize;
+        metrics["mfrac"] = metric_mfrac;
+        return metrics;
     }
 
     int
@@ -961,6 +997,8 @@ PYBIND11_MODULE(xcsf, m)
              "Creates the action set using the previously selected action.",
              py::arg("reward"), py::arg("done"))
         .def("time", &XCS::get_time, "Returns the current EA time.")
+        .def("get_metrics", &XCS::get_metrics,
+             "Returns a dictionary of performance metrics.")
         .def("pset_size", &XCS::get_pset_size,
              "Returns the number of macro-classifiers in the population.")
         .def("pset_num", &XCS::get_pset_num,
