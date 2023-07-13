@@ -35,15 +35,10 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler, minmax_scale
-from tqdm import tqdm
 
 import xcsf
 
 np.set_printoptions(suppress=True)
-
-###############################
-# Load training and test data
-###############################
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
@@ -69,10 +64,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
 # 10% of training for validation
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
 
-# get number of input and output variables
-X_DIM: Final[int] = np.shape(X_train)[1]
-Y_DIM: Final[int] = np.shape(y_train)[1]
-
 print(f"X_train shape = {np.shape(X_train)}")
 print(f"y_train shape = {np.shape(y_train)}")
 print(f"X_val shape = {np.shape(X_val)}")
@@ -80,116 +71,108 @@ print(f"y_val shape = {np.shape(y_val)}")
 print(f"X_test shape = {np.shape(X_test)}")
 print(f"y_test shape = {np.shape(y_test)}")
 
-###################
 # Initialise XCSF
-###################
 
-xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=Y_DIM, n_actions=1)  # supervised learning
+MAX_TRIALS: Final[int] = 200000
+E0: Final[float] = 0.005
 
-xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
-xcs.POP_SIZE = 500  # maximum population size
-xcs.MAX_TRIALS = 1000  # number of trials per fit()
-xcs.LOSS_FUNC = "mse"  # mean squared error
-xcs.E0 = 0.005  # target error
-xcs.ALPHA = 1  # accuracy offset
-xcs.NU = 20  # accuracy slope
-xcs.THETA_EA = 50  # EA invocation frequency
-xcs.THETA_DEL = 50  # min experience before fitness used in deletion
-xcs.BETA = 0.1  # update rate for error, etc.
-xcs.action("integer")  # (dummy) integer actions
-
-TREE_ARGS: Final[dict] = {
-    "min_constant": 0,  # minimum value of a constant
-    "max_constant": 1,  # maximum value of a constant
-    "n_constants": 100,  # number of (global) constants
-    "init_depth": 5,  # initial tree depth
-    "max_len": 10000,  # maximum initial length
-}
-xcs.condition("tree_gp", TREE_ARGS)  # GP tree conditions
-
-PREDICTION_LAYERS: Final[dict] = {
-    "layer_0": {  # hidden layer
-        "type": "connected",
-        "activation": "relu",
-        "sgd_weights": True,
-        "evolve_weights": True,
-        "evolve_connect": True,
-        "evolve_eta": True,
-        "eta": 0.1,
-        "eta_min": 0.000001,
-        "momentum": 0.9,
-        "n_init": 10,
-        "n_max": 10,
+xcs = xcsf.XCS(
+    omp_num_threads=12,
+    random_state=1,
+    pop_init=True,
+    max_trials=MAX_TRIALS,
+    perf_trials=5000,
+    pop_size=500,
+    loss_func="mse",
+    set_subsumption=False,
+    theta_sub=100,
+    e0=E0,
+    alpha=1,
+    nu=20,
+    beta=0.1,
+    delta=0.1,
+    theta_del=50,
+    init_fitness=0.01,
+    init_error=0,
+    m_probation=10000,
+    stateful=True,
+    compaction=False,
+    ea={
+        "select_type": "roulette",
+        "theta_ea": 50,
+        "lambda": 2,
+        "p_crossover": 0.8,
+        "err_reduc": 1,
+        "fit_reduc": 0.1,
+        "subsumption": False,
+        "pred_reset": False,
     },
-    "layer_1": {  # output layer
-        "type": "connected",
-        "activation": "softplus",
-        "sgd_weights": True,
-        "evolve_weights": True,
-        "evolve_connect": True,
-        "evolve_eta": True,
-        "eta": 0.1,
-        "eta_min": 0.000001,
-        "momentum": 0.9,
-        "n_init": Y_DIM,
+    condition={
+        "type": "tree_gp",
+        "args": {
+            "min_constant": 0,
+            "max_constant": 1,
+            "n_constants": 100,
+            "init_depth": 5,
+            "max_len": 10000,
+        },
     },
-}
-xcs.prediction("neural", PREDICTION_LAYERS)  # neural network predictions
+    prediction={
+        "type": "neural",
+        "args": {
+            "layer_0": {
+                "type": "connected",
+                "activation": "relu",
+                "n_init": 10,
+                "evolve_weights": True,
+                "evolve_functions": False,
+                "evolve_connect": True,
+                "evolve_neurons": False,
+                "sgd_weights": True,
+                "eta": 0.1,
+                "evolve_eta": True,
+                "eta_min": 1e-06,
+                "momentum": 0.9,
+                "decay": 0,
+            },
+            "layer_1": {
+                "type": "connected",
+                "activation": "softplus",
+                "n_init": 1,
+                "evolve_weights": True,
+                "evolve_functions": False,
+                "evolve_connect": True,
+                "evolve_neurons": False,
+                "sgd_weights": True,
+                "eta": 0.1,
+                "evolve_eta": True,
+                "eta_min": 1e-06,
+                "momentum": 0.9,
+                "decay": 0,
+            },
+        },
+    },
+)
 
-xcs.print_params()
+xcs.fit(X_train, y_train, shuffle=True)  # , validation_data=(X_val, y_val)
 
-#################
-# Run experiment
-#################
 
-N: Final[int] = 200  # 200,000 trials
-trials: np.ndarray = np.zeros(N)
-psize: np.ndarray = np.zeros(N)
-msize: np.ndarray = np.zeros(N)
-train_mse: np.ndarray = np.zeros(N)
-val_mse: np.ndarray = np.zeros(N)
-
-VAL_PERIOD: Final[int] = 10  # validation mean moving average length
-val_min: float = 999999  # minimum validation error
-val_trial: int = 0  # trial number the system was checkpointed
-
-bar = tqdm(total=N)  # progress bar
-for i in range(N):
-    # train
-    train_mse[i] = xcs.fit(X_train, y_train, shuffle=True)
-    trials[i] = xcs.time()  # number of trials so far
-    psize[i] = xcs.pset_size()  # current population size
-    msize[i] = xcs.mset_size()  # avg match set size
-    # validate
-    val_mse[i] = xcs.score(X_val, y_val)
-    if i > VAL_PERIOD:  # simple moving average of mean validation error
-        val_mean = np.mean(val_mse[i - VAL_PERIOD : i])
-        if val_mean < val_min:  # checkpoint lowest validation error
-            xcs.store()
-            val_min = val_mean
-            val_trial = trials[i]
-    status = (  # update status
-        f"trials={trials[i]:.0f} "
-        f"train_mse={train_mse[i]:.5f} "
-        f"val_mse={val_mse[i]:.5f} "
-        f"psize={psize[i]:.1f} "
-        f"msize={msize[i]:.1f}"
-    )
-    bar.set_description(status)
-    bar.refresh()
-    bar.update(1)
-bar.close()
+metrics: dict = xcs.get_metrics()
+trials = metrics["trials"]
+psize = metrics["psize"]
+msize = metrics["msize"]
+train_mse = metrics["train_error"]
 
 # plot XCSF learning performance
 plt.figure(figsize=(10, 6))
 plt.plot(trials, train_mse, label="Train MSE")
-plt.plot(trials, val_mse, label="Validation MSE")
+# plt.plot(trials, val_mse, label="Validation MSE")
 plt.grid(linestyle="dotted", linewidth=1)
-plt.axhline(y=xcs.E0, xmin=0, xmax=1, linestyle="dashed", color="k")
+plt.axhline(y=E0, xmin=0, xmax=1, linestyle="dashed", color="k")
 plt.title("XCSF Training Performance", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
 plt.ylabel("Mean Squared Error", fontsize=12)
-plt.xlim([0, N * xcs.MAX_TRIALS])
+plt.xlim([0, MAX_TRIALS])
 plt.legend()
 plt.show()
 
@@ -199,8 +182,8 @@ plt.show()
 
 # final XCSF test score
 print("*****************************")
-print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
-xcs.retrieve()
+# print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
+# xcs.retrieve()
 xcsf_pred = xcs.predict(X_test)
 xcsf_mse = mean_squared_error(xcsf_pred, y_test)
 print(f"XCSF Test MSE = {xcsf_mse:.4f}")
