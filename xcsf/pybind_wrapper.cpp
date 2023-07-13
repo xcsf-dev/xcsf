@@ -72,8 +72,6 @@ class XCS
      */
     XCS()
     {
-        param_init(&xcs, 1, 1, 1);
-        xcsf_init(&xcs);
         state = NULL;
         action = 0;
         payoff = 0;
@@ -90,6 +88,7 @@ class XCS
         test_data->x = NULL;
         test_data->y = NULL;
         first_fit = true;
+        param_init(&xcs, 1, 1, 1);
         update_params();
     }
 
@@ -239,6 +238,10 @@ class XCS
             throw std::invalid_argument(error.str());
         }
         state = (double *) buf.ptr;
+        if (first_fit) {
+            first_fit = false;
+            xcsf_init(&xcs);
+        }
         return xcs_rl_fit(&xcs, state, action, reward);
     }
 
@@ -248,6 +251,10 @@ class XCS
     void
     init_trial(void)
     {
+        if (first_fit) {
+            first_fit = false;
+            xcsf_init(&xcs);
+        }
         xcs_rl_init_trial(&xcs);
     }
 
@@ -424,10 +431,12 @@ class XCS
         const bool shuffle, const bool warm_start)
     {
         load_input(train_data, train_X, train_Y, first_fit);
-        if (first_fit || !warm_start) {
+        if (first_fit) {
+            first_fit = false;
+            xcsf_init(&xcs);
+        } else if (!warm_start) {
             xcsf_free(&xcs);
             xcsf_init(&xcs);
-            first_fit = false;
         }
         xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
         return *this;
@@ -504,15 +513,18 @@ class XCS
     }
 
     /**
-     * @brief Returns the XCSF prediction array for the provided input,
-     * and executes covering for samples where the match set is empty.
+     * @brief Returns the XCSF prediction array for the provided input.
+     * If the match set is empty, the prediction array will be zeros.
      * @param [in] X The input variables.
      * @return The prediction array values.
      */
     py::array_t<double>
     predict(const py::array_t<double> X)
     {
-        return get_predictions(X, NULL);
+        double *cov = (double *) calloc(xcs.x_dim, sizeof(double));
+        py::array_t<double> predictions = get_predictions(X, cov);
+        free(cov);
+        return predictions;
     }
 
     /**
@@ -545,7 +557,10 @@ class XCS
     double
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
     {
-        return get_score(X, Y, N, NULL);
+        double *cov = (double *) calloc(xcs.x_dim, sizeof(double));
+        double score = get_score(X, Y, N, cov);
+        free(cov);
+        return score;
     }
 
     /**

@@ -35,6 +35,8 @@ from tqdm import tqdm
 
 import xcsf
 
+random.seed(1)
+
 
 class Maze:
     """
@@ -171,25 +173,54 @@ class Maze:
 # Initialise XCSF
 ###################
 
-# initialise XCSF for reinforcement learning
-xcs = xcsf.XCS(x_dim=8, y_dim=1, n_actions=8)
+PERF_TRIALS: Final[float] = 50  # display frequency
+TELETRANSPORTATION: Final[int] = 50  # reset after this many steps
 
-xcs.OMP_NUM_THREADS = 8
-xcs.POP_SIZE = 1000
-xcs.PERF_TRIALS = 50
-xcs.E0 = 0.001  # target error
-xcs.BETA = 0.2  # classifier parameter update rate
-xcs.THETA_EA = 25  # EA frequency
-xcs.ALPHA = 0.1  # accuracy offset
-xcs.NU = 5  # accuracy slope
-xcs.EA_SUBSUMPTION = True
-xcs.SET_SUBSUMPTION = True
-xcs.THETA_SUB = 100  # minimum experience of a subsumer
-xcs.action("integer")  # integer actions
-xcs.condition("ternary", {"bits": 2})  # ternary conditions: 2-bits per float
-xcs.prediction("rls_linear")  # linear recursive least squares predictions
+xcs = xcsf.XCS(
+    x_dim=8,
+    y_dim=1,
+    n_actions=8,
+    alpha=0.1,
+    beta=0.2,
+    delta=0.1,
+    e0=0.001,
+    init_error=0,
+    init_fitness=0.01,
+    m_probation=10000,
+    nu=5,
+    omp_num_threads=12,
+    perf_trials=PERF_TRIALS,
+    pop_init=False,
+    pop_size=1000,
+    random_state=1,
+    set_subsumption=True,
+    theta_del=50,
+    theta_sub=100,
+    ea={
+        "select_type": "roulette",
+        "theta_ea": 50,
+        "lambda": 2,
+        "p_crossover": 0.8,
+        "err_reduc": 1,
+        "fit_reduc": 0.1,
+        "subsumption": True,
+        "pred_reset": False,
+    },
+    action={
+        "type": "integer",
+    },
+    condition={
+        "type": "ternary",
+        "args": {
+            "bits": 2,
+        },
+    },
+    prediction={
+        "type": "rls_linear",
+    },
+)
 
-xcs.print_params()
+print(xcs.get_params())
 
 #####################
 # Execute experiment
@@ -209,7 +240,7 @@ def trial(env: Maze, explore: bool) -> tuple[int, float]:
     cnt: int = 0
     state: np.ndarray = env.reset()
     xcs.init_trial()
-    while cnt < xcs.TELETRANSPORTATION:
+    while cnt < TELETRANSPORTATION:
         xcs.init_step()
         action = xcs.decision(state, explore)
         next_state, reward, done = env.step(action)
@@ -228,14 +259,14 @@ def run_experiment(env: Maze) -> None:
     """Executes a single experiment."""
     bar = tqdm(total=N)  # progress bar
     for i in range(N):
-        for _ in range(xcs.PERF_TRIALS):
+        for _ in range(PERF_TRIALS):
             trial(env, True)  # explore
             cnt, err = trial(env, False)  # exploit
             steps[i] += cnt
             error[i] += err
-        steps[i] /= float(xcs.PERF_TRIALS)
-        error[i] /= float(xcs.PERF_TRIALS)
-        trials[i] = (i + 1) * xcs.PERF_TRIALS
+        steps[i] /= float(PERF_TRIALS)
+        error[i] /= float(PERF_TRIALS)
+        trials[i] = (i + 1) * PERF_TRIALS
         psize[i] = xcs.pset_size()  # current population size
         msize[i] = xcs.mset_size()  # avg match set size
         status = (  # update status
@@ -260,7 +291,7 @@ def plot_performance(env: Maze):
     plt.title(env.name, fontsize=14)
     plt.ylabel("Steps to Goal", fontsize=12)
     plt.xlabel("Trials", fontsize=12)
-    plt.xlim([0, N * xcs.PERF_TRIALS])
+    plt.xlim([0, N * PERF_TRIALS])
     plt.show()
 
 
@@ -331,7 +362,7 @@ def visualise(xoff: int, yoff: int) -> None:
     agent.pendown()
     screen.tracer(True)
     xcs.init_trial()
-    for _ in range(xcs.TELETRANSPORTATION):
+    for _ in range(TELETRANSPORTATION):
         xcs.init_step()
         action = xcs.decision(state, False)
         next_state, reward, done = maze.step(action)

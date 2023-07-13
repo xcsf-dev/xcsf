@@ -121,28 +121,59 @@ MAX_PAYOFF: Final[float] = mux.max_payoff
 # Initialise XCSF
 ###################
 
-xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=1, n_actions=N_ACTIONS)
+xcs: xcsf.XCS = xcsf.XCS(
+    x_dim=X_DIM,
+    y_dim=1,
+    n_actions=N_ACTIONS,
+    alpha=0.1,
+    beta=0.2,
+    delta=0.1,
+    e0=0.01,
+    init_error=0,
+    init_fitness=0.01,
+    m_probation=10000,
+    nu=5,
+    omp_num_threads=12,
+    perf_trials=1000,
+    pop_init=False,
+    pop_size=5000,
+    random_state=1,
+    set_subsumption=True,
+    theta_del=20,
+    theta_sub=100,
+    ea={
+        "select_type": "tournament",
+        "select_size": 0.4,
+        "theta_ea": 25,
+        "lambda": 2,
+        "p_crossover": 0.8,
+        "err_reduc": 0.25,
+        "fit_reduc": 0.1,
+        "subsumption": True,
+        "pred_reset": False,
+    },
+    action={
+        "type": "integer",
+    },
+    condition={
+        "type": "hyperrectangle_ubr",
+        "args": {
+            "min": 0.0,
+            "max": 1.0,
+            "spread_min": 1.0,
+        },
+    },
+    prediction={
+        "type": "nlms_linear",
+        "args": {
+            "eta": 1.0,
+            "eta_min": 0.0001,
+            "evolve_eta": True,
+        },
+    },
+)
 
-xcs.OMP_NUM_THREADS = 8  # number of CPU cores to use
-xcs.POP_SIZE = 5000  # maximum population size
-xcs.POP_INIT = False  # use covering to initialise
-xcs.E0 = 0.01  # target error
-xcs.BETA = 0.2  # classifier parameter update rate
-xcs.THETA_EA = 25  # EA frequency
-xcs.ALPHA = 0.1  # accuracy offset
-xcs.NU = 5  # accuracy slope
-xcs.THETA_SUB = 20  # minimum experience of a subsumer
-xcs.ERR_REDUC = 0.25
-xcs.FIT_REDUC = 0.1
-xcs.EA_SELECT_TYPE = "tournament"
-xcs.EA_SELECT_SIZE = 0.4
-xcs.EA_SUBSUMPTION = False
-xcs.SET_SUBSUMPTION = False
-xcs.action("integer")
-xcs.condition("hyperrectangle_ubr", {"min": 0, "max": 1, "spread_min": 1.0})
-xcs.prediction("nlms_linear", {"eta": 1, "eta_min": 0.0001, "evolve_eta": True})
-
-xcs.print_params()
+print(xcs.get_params())
 
 #####################
 # Execute experiment
