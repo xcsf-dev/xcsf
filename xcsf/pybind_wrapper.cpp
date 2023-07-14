@@ -961,9 +961,9 @@ PYBIND11_MODULE(xcsf, m)
              py::arg("warm_start") = false, py::arg("verbose") = true)
         .def("score", &XCS::score,
              "Returns the error using at most N random samples from the "
-             "provided data. X_val shape must be: (n_samples, x_dim). y_val "
+             "provided data. X shape must be: (n_samples, x_dim). y "
              "shape must be: (n_samples, y_dim).",
-             py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0,
+             py::arg("X"), py::arg("y"), py::arg("N") = 0,
              py::arg("cover") = py::none())
         .def("error", error1,
              "Returns a moving average of the system error, updated with step "
