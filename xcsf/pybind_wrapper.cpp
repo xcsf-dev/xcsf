@@ -547,12 +547,29 @@ class XCS
     }
 
     /**
+     * @brief Sets the XCSF cover array to values given, or zeros.
+     * @param [in] cover The values to use instead of covering.
+     */
+    void
+    set_cover(const py::object &cover)
+    {
+        if (cover.is_none()) {
+            memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+        } else {
+            py::array_t<double> cover_arr = cover.cast<py::array_t<double>>();
+            xcs.cover = get_cover(cover_arr);
+        }
+    }
+
+    /**
      * @brief Returns the XCSF prediction array for the provided input.
      * @param [in] X The input variables.
+     * @param [in] cover If the match set is empty, the prediction array will
+     * be set to this value instead of covering.
      * @return The prediction array values.
      */
     py::array_t<double>
-    get_predictions(const py::array_t<double> X)
+    predict(const py::array_t<double> X, const py::object &cover)
     {
         const py::buffer_info buf_x = X.request();
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
@@ -571,36 +588,10 @@ class XCS
         const double *input = reinterpret_cast<double *>(buf_x.ptr);
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
+        set_cover(cover);
         xcs_supervised_predict(&xcs, input, output, n_samples, xcs.cover);
         return py::array_t<double>(
             std::vector<ptrdiff_t>{ n_samples, xcs.pa_size }, output);
-    }
-
-    /**
-     * @brief Returns the XCSF prediction array for the provided input.
-     * @param [in] X The input variables.
-     * @param [in] cover If the match set is empty, the prediction array will
-     * be set to this value instead of covering.
-     * @return The prediction array values.
-     */
-    py::array_t<double>
-    predict(const py::array_t<double> X, const py::array_t<double> cover)
-    {
-        xcs.cover = get_cover(cover);
-        return get_predictions(X);
-    }
-
-    /**
-     * @brief Returns the XCSF prediction array for the provided input.
-     * If the match set is empty, the prediction array will be zeros.
-     * @param [in] X The input variables.
-     * @return The prediction array values.
-     */
-    py::array_t<double>
-    predict(const py::array_t<double> X)
-    {
-        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
-        return get_predictions(X);
     }
 
     /**
@@ -616,16 +607,8 @@ class XCS
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N,
           const py::object &cover)
     {
-        // set cover values
-        if (cover.is_none()) {
-            memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
-        } else {
-            py::array_t<double> cover_arr = cover.cast<py::array_t<double>>();
-            xcs.cover = get_cover(cover_arr);
-        }
-        // load data
+        set_cover(cover);
         load_input(test_data, X, Y, false);
-        // return score
         if (N > 1) {
             return xcs_supervised_score_n(&xcs, test_data, N, xcs.cover);
         }
@@ -936,12 +919,6 @@ PYBIND11_MODULE(xcsf, m)
                       const bool, const bool, const bool, py::kwargs) =
         &XCS::fit;
 
-    py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
-        &XCS::predict;
-    py::array_t<double> (XCS::*predict2)(const py::array_t<double> test_X,
-                                         const py::array_t<double> cover) =
-        &XCS::predict;
-
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
@@ -959,31 +936,28 @@ PYBIND11_MODULE(xcsf, m)
              "x_dim). y_train shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
              py::arg("warm_start") = false, py::arg("verbose") = true)
-        .def("score", &XCS::score,
-             "Returns the error using at most N random samples from the "
-             "provided data. X shape must be: (n_samples, x_dim). y "
-             "shape must be: (n_samples, y_dim).",
-             py::arg("X"), py::arg("y"), py::arg("N") = 0,
-             py::arg("cover") = py::none())
+        .def(
+            "score", &XCS::score,
+            "Returns the error using at most N random samples from the "
+            "provided data. N=0 uses all. X shape must be: (n_samples, x_dim). "
+            "y shape must be: (n_samples, y_dim). If the match set is empty "
+            "for a sample, the value of the cover array will be used "
+            "otherwise zeros.",
+            py::arg("X"), py::arg("y"), py::arg("N") = 0,
+            py::arg("cover") = py::none())
         .def("error", error1,
              "Returns a moving average of the system error, updated with step "
              "size BETA.")
         .def("error", error2,
              "Returns the reinforcement learning system prediction error.",
              py::arg("reward"), py::arg("done"), py::arg("max_p"))
-        .def("predict", predict1,
-             "Returns the XCSF prediction array for the provided input. X_test "
-             "shape must be: (n_samples, x_dim). Returns an array of shape: "
-             "(n_samples, y_dim). Covering will be invoked for samples where "
-             "the match set is empty.",
-             py::arg("X_test"))
-        .def("predict", predict2,
-             "Returns the XCSF prediction array for the provided input. X_test "
+        .def("predict", &XCS::predict,
+             "Returns the XCSF prediction array for the provided input. X "
              "shape must be: (n_samples, x_dim). Returns an array of shape: "
              "(n_samples, y_dim). If the match set is empty for a sample, the "
-             "value of the cover array will be used instead of covering. "
-             "cover must be an array of shape: y_dim.",
-             py::arg("X_test"), py::arg("cover"))
+             "value of the cover array will be used, otherwise zeros. "
+             "Cover must be an array of shape: y_dim.",
+             py::arg("X"), py::arg("cover") = py::none())
         .def("save", &XCS::save,
              "Saves the current state of XCSF to persistent storage.",
              py::arg("filename"))
