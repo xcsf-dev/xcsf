@@ -104,6 +104,7 @@ struct XCSF {
     double *pa; //!< Prediction array (stores fitness weighted predictions)
     double *nr; //!< Prediction array (stores total fitness)
     double *prev_state; //!< Environment state on the previous step
+    double *cover; //!< Values to return for a prediction instead of covering
     int time; //!< Current number of EA executions
     int pa_size; //!< Prediction array size
     int x_dim; //!< Number of problem input variables

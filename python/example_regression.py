@@ -40,6 +40,8 @@ import xcsf
 
 np.set_printoptions(suppress=True)
 
+RANDOM_STATE: Final[int] = 1  # random number seed
+
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
 
@@ -59,10 +61,14 @@ if len(np.shape(y)) == 1:
     y = y.reshape(-1, 1)
 
 # split into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.1, random_state=RANDOM_STATE
+)
 
 # 10% of training for validation
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1)
+X_train, X_val, y_train, y_val = train_test_split(
+    X_train, y_train, test_size=0.1, random_state=RANDOM_STATE
+)
 
 print(f"X_train shape = {np.shape(X_train)}")
 print(f"y_train shape = {np.shape(y_train)}")
@@ -78,7 +84,7 @@ E0: Final[float] = 0.005
 
 xcs = xcsf.XCS(
     omp_num_threads=12,
-    random_state=1,
+    random_state=RANDOM_STATE,
     pop_init=True,
     max_trials=MAX_TRIALS,
     perf_trials=5000,
@@ -154,19 +160,20 @@ xcs = xcsf.XCS(
     },
 )
 
-xcs.fit(X_train, y_train, shuffle=True)  # , validation_data=(X_val, y_val)
+xcs.fit(X_train, y_train, validation_data=(X_val, y_val))
 
 
 metrics: dict = xcs.get_metrics()
 trials = metrics["trials"]
 psize = metrics["psize"]
 msize = metrics["msize"]
-train_mse = metrics["train_error"]
+train_mse = metrics["train"]
+val_mse = metrics["val"]
 
 # plot XCSF learning performance
 plt.figure(figsize=(10, 6))
 plt.plot(trials, train_mse, label="Train MSE")
-# plt.plot(trials, val_mse, label="Validation MSE")
+plt.plot(trials, val_mse, label="Validation MSE")
 plt.grid(linestyle="dotted", linewidth=1)
 plt.axhline(y=E0, xmin=0, xmax=1, linestyle="dashed", color="k")
 plt.title("XCSF Training Performance", fontsize=14)

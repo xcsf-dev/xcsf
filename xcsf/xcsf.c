@@ -44,6 +44,7 @@ xcsf_init(struct XCSF *xcsf)
     clset_init(&xcsf->pset);
     clset_init(&xcsf->prev_pset);
     pa_init(xcsf);
+    xcsf->cover = calloc(xcsf->pa_size, sizeof(double));
 }
 
 /**
@@ -60,6 +61,7 @@ xcsf_free(struct XCSF *xcsf)
     xcsf->mfrac = 0;
     clset_kill(xcsf, &xcsf->pset);
     clset_kill(xcsf, &xcsf->prev_pset);
+    free(xcsf->cover);
 }
 
 /**

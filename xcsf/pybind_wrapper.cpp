@@ -67,7 +67,8 @@ class XCS
     struct Input *test_data; //!< Test data for supervised learning
     bool first_fit; //!< Whether this is the first execution of fit()
     py::dict params; //!< Dictionary of parameters and their values
-    py::list metric_train_error;
+    py::list metric_train;
+    py::list metric_val;
     py::list metric_trials;
     py::list metric_psize;
     py::list metric_msize;
@@ -429,18 +430,22 @@ class XCS
     /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
-     * @param [in] train_X The input values to use for training.
-     * @param [in] train_Y The true output values to use for training.
+     * @param [in] X_train The input values to use for training.
+     * @param [in] y_train The true output values to use for training.
      * @param [in] shuffle Whether to randomise the instances during training.
      * @param [in] warm_start Whether to continue with existing population.
+     * @param [in] verbose Whether to print learning metrics.
      * @param [in] kwargs Keyword arguments.
      * @return The fitted XCSF model.
      */
     XCS &
-    fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
-        const bool shuffle, const bool warm_start, const bool verbose)
+    fit(const py::array_t<double> X_train, const py::array_t<double> y_train,
+        const bool shuffle, const bool warm_start, const bool verbose,
+        py::kwargs kwargs)
     {
-        load_input(train_data, train_X, train_Y, first_fit);
+        // load training data
+        load_input(train_data, X_train, y_train, first_fit);
+        // initialise XCSF as necessary
         if (first_fit) {
             first_fit = false;
             xcsf_init(&xcs);
@@ -448,15 +453,37 @@ class XCS
             xcsf_free(&xcs);
             xcsf_init(&xcs);
         }
+        // load validation data
+        struct Input *val_data = NULL;
+        if (kwargs.contains("validation_data")) {
+            py::tuple validation_data =
+                kwargs["validation_data"].cast<py::tuple>();
+            if (validation_data) {
+                py::array_t<double> X_val =
+                    validation_data[0].cast<py::array_t<double>>();
+                py::array_t<double> y_val =
+                    validation_data[1].cast<py::array_t<double>>();
+                load_input(test_data, X_val, y_val, first_fit);
+                val_data = test_data;
+            }
+        }
+        // use zeros for validation predictions instead of covering
+        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
         // break up the learning into epochs to track metrics
         const int n = floor(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = xcs.PERF_TRIALS;
         auto total_duration = 0;
+        double train_err = 0;
+        double val_err = 0;
+        // fit XCSF
         for (int i = 0; i < n; ++i) {
             int trial_cnt = metric_counter * xcs.PERF_TRIALS;
             auto start = std::chrono::high_resolution_clock::now();
-            double err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            train_err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            if (val_data != NULL) {
+                val_err = xcs_supervised_score(&xcs, val_data, xcs.cover);
+            }
             auto end = std::chrono::high_resolution_clock::now();
             auto duration =
                 std::chrono::duration_cast<std::chrono::milliseconds>(end -
@@ -464,14 +491,24 @@ class XCS
                     .count();
             total_duration += duration;
             if (verbose) {
-                std::cout << "trials=" << trial_cnt << " ms=" << duration
-                          << " train=" << std::fixed << std::setprecision(5)
-                          << err << " pset=" << xcs.pset.size
-                          << " mset=" << std::fixed << std::setprecision(2)
-                          << xcs.mset_size << " mfrac=" << std::fixed
-                          << std::setprecision(2) << xcs.mfrac << std::endl;
+                std::ostringstream status;
+                status << "trials=" << trial_cnt << " ms=" << duration
+                       << " train=" << std::fixed << std::setprecision(5)
+                       << train_err;
+                if (val_data != NULL) {
+                    status << " val=" << std::fixed << std::setprecision(5)
+                           << val_err;
+                }
+                status << " pset=" << xcs.pset.size << " mset=" << std::fixed
+                       << std::setprecision(2) << xcs.mset_size
+                       << " mfrac=" << std::fixed << std::setprecision(2)
+                       << xcs.mfrac;
+                std::string display = status.str();
+                std::cout << display << std::endl;
             }
-            metric_train_error.append(err);
+            // update metrics
+            metric_train.append(train_err);
+            metric_val.append(val_err);
             metric_trials.append(trial_cnt);
             metric_psize.append(xcs.pset.size);
             metric_msize.append(xcs.mset_size);
@@ -512,12 +549,10 @@ class XCS
     /**
      * @brief Returns the XCSF prediction array for the provided input.
      * @param [in] X The input variables.
-     * @param [in] cover If cover is not NULL and the match set is empty, the
-     * prediction array will be set to this value instead of covering.
      * @return The prediction array values.
      */
     py::array_t<double>
-    get_predictions(const py::array_t<double> X, const double *cover)
+    get_predictions(const py::array_t<double> X)
     {
         const py::buffer_info buf_x = X.request();
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
@@ -536,7 +571,7 @@ class XCS
         const double *input = reinterpret_cast<double *>(buf_x.ptr);
         double *output =
             (double *) malloc(sizeof(double) * n_samples * xcs.pa_size);
-        xcs_supervised_predict(&xcs, input, output, n_samples, cover);
+        xcs_supervised_predict(&xcs, input, output, n_samples, xcs.cover);
         return py::array_t<double>(
             std::vector<ptrdiff_t>{ n_samples, xcs.pa_size }, output);
     }
@@ -551,8 +586,8 @@ class XCS
     py::array_t<double>
     predict(const py::array_t<double> X, const py::array_t<double> cover)
     {
-        const double *cov = get_cover(cover);
-        return get_predictions(X, cov);
+        xcs.cover = get_cover(cover);
+        return get_predictions(X);
     }
 
     /**
@@ -564,10 +599,8 @@ class XCS
     py::array_t<double>
     predict(const py::array_t<double> X)
     {
-        double *cov = (double *) calloc(xcs.x_dim, sizeof(double));
-        py::array_t<double> predictions = get_predictions(X, cov);
-        free(cov);
-        return predictions;
+        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+        return get_predictions(X);
     }
 
     /**
@@ -581,13 +614,13 @@ class XCS
      */
     double
     get_score(const py::array_t<double> X, const py::array_t<double> Y,
-              const int N, const double *cover)
+              const int N)
     {
         load_input(test_data, X, Y, false);
         if (N > 1) {
-            return xcs_supervised_score_n(&xcs, test_data, N, cover);
+            return xcs_supervised_score_n(&xcs, test_data, N, xcs.cover);
         }
-        return xcs_supervised_score(&xcs, test_data, cover);
+        return xcs_supervised_score(&xcs, test_data, xcs.cover);
     }
 
     /**
@@ -600,10 +633,8 @@ class XCS
     double
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
     {
-        double *cov = (double *) calloc(xcs.x_dim, sizeof(double));
-        double score = get_score(X, Y, N, cov);
-        free(cov);
-        return score;
+        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+        return get_score(X, Y, N);
     }
 
     /**
@@ -619,8 +650,8 @@ class XCS
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N,
           const py::array_t<double> cover)
     {
-        const double *cov = get_cover(cover);
-        return get_score(X, Y, N, cov);
+        xcs.cover = get_cover(cover);
+        return get_score(X, Y, N);
     }
 
     /**
@@ -689,7 +720,8 @@ class XCS
     get_metrics(void)
     {
         py::dict metrics;
-        metrics["train_error"] = metric_train_error;
+        metrics["train"] = metric_train;
+        metrics["val"] = metric_val;
         metrics["trials"] = metric_trials;
         metrics["psize"] = metric_psize;
         metrics["msize"] = metric_msize;
@@ -923,7 +955,8 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
     XCS &(XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                      const bool, const bool, const bool) = &XCS::fit;
+                      const bool, const bool, const bool, py::kwargs) =
+        &XCS::fit;
 
     py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
         &XCS::predict;
