@@ -26,8 +26,10 @@
     #define _hypot hypot
 #endif
 
+#include <chrono>
 #include <cstdio>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
@@ -436,7 +438,7 @@ class XCS
      */
     XCS &
     fit(const py::array_t<double> train_X, const py::array_t<double> train_Y,
-        const bool shuffle, const bool warm_start)
+        const bool shuffle, const bool warm_start, const bool verbose)
     {
         load_input(train_data, train_X, train_Y, first_fit);
         if (first_fit) {
@@ -450,17 +452,34 @@ class XCS
         const int n = floor(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = xcs.PERF_TRIALS;
+        auto total_duration = 0;
         for (int i = 0; i < n; ++i) {
-            double err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
-            metric_train_error.append(err);
             int trial_cnt = metric_counter * xcs.PERF_TRIALS;
+            auto start = std::chrono::high_resolution_clock::now();
+            double err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duration =
+                std::chrono::duration_cast<std::chrono::milliseconds>(end -
+                                                                      start)
+                    .count();
+            total_duration += duration;
+            if (verbose) {
+                std::cout << "trials=" << trial_cnt << " ms=" << duration
+                          << " train=" << std::fixed << std::setprecision(5)
+                          << err << " pset=" << xcs.pset.size
+                          << " mset=" << std::fixed << std::setprecision(2)
+                          << xcs.mset_size << " mfrac=" << std::fixed
+                          << std::setprecision(2) << xcs.mfrac << std::endl;
+            }
+            metric_train_error.append(err);
             metric_trials.append(trial_cnt);
             metric_psize.append(xcs.pset.size);
-            metric_msize.append(xcs.mset.size);
+            metric_msize.append(xcs.mset_size);
             metric_mfrac.append(xcs.mfrac);
-            printf("%d, %.5f, %d, %.2f, %.2f\n", trial_cnt, err, xcs.pset.size,
-                   xcs.mset_size, xcs.mfrac);
             ++metric_counter;
+        }
+        if (verbose) {
+            std::cout << "time=" << total_duration << "ms" << std::endl;
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
@@ -904,7 +923,7 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
     XCS &(XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                      const bool, const bool) = &XCS::fit;
+                      const bool, const bool, const bool) = &XCS::fit;
 
     py::array_t<double> (XCS::*predict1)(const py::array_t<double> test_X) =
         &XCS::predict;
@@ -936,7 +955,7 @@ PYBIND11_MODULE(xcsf, m)
              "provided training data. X_train shape must be: (n_samples, "
              "x_dim). y_train shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
-             py::arg("warm_start") = false)
+             py::arg("warm_start") = false, py::arg("verbose") = true)
         .def("score", score1,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
