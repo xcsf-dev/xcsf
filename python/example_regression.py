@@ -25,6 +25,7 @@ such that [A] = [M].
 
 from __future__ import annotations
 
+import json
 from typing import Final
 
 import matplotlib.pyplot as plt
@@ -159,6 +160,8 @@ xcs = xcsf.XCS(
         },
     },
 )
+
+print(json.dumps(xcs.get_params(), indent=4))
 
 xcs.fit(X_train, y_train, validation_data=(X_val, y_val))
 

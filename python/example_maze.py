@@ -23,6 +23,7 @@ to solve discrete mazes loaded from a specified input file.
 
 from __future__ import annotations
 
+import json
 import os
 import random
 import sys
@@ -220,7 +221,7 @@ xcs = xcsf.XCS(
     },
 )
 
-print(xcs.get_params())
+print(json.dumps(xcs.get_params(), indent=4))
 
 #####################
 # Execute experiment

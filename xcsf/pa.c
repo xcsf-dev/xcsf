@@ -48,6 +48,7 @@ pa_init(struct XCSF *xcsf)
     xcsf->pa_size = xcsf->n_actions * xcsf->y_dim;
     xcsf->pa = malloc(sizeof(double) * xcsf->pa_size);
     xcsf->nr = malloc(sizeof(double) * xcsf->pa_size);
+    xcsf->cover = calloc(xcsf->pa_size, sizeof(double));
 }
 
 /**
@@ -190,4 +191,5 @@ pa_free(const struct XCSF *xcsf)
 {
     free(xcsf->pa);
     free(xcsf->nr);
+    free(xcsf->cover);
 }

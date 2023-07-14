@@ -58,8 +58,7 @@ main(int argc, char **argv)
     } else { // reinforcement learning - maze or mux
         xcs_rl_exp(xcsf);
     }
-    pa_free(xcsf); // clean up
-    env_free(xcsf);
+    env_free(xcsf); // clean up
     xcsf_free(xcsf);
     param_free(xcsf);
     free(xcsf);

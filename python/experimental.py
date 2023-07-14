@@ -1,4 +1,6 @@
 """Experimental stuff."""
+import json
+
 from sklearn import svm
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.datasets import load_iris
@@ -93,12 +95,14 @@ model = xcsf.XCS(
     },
 )
 
+print(json.dumps(model.get_params(), indent=4))
+
 if False:
     # model fitting and scoring
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     train_score = model.score(X_train, y_train)
-    test_score = model.score(X_test, y_test)
+    test_score = model.score(X_test, y_test, cover=[0.5])
     print(f"{train_score} :: {test_score}")
 
 if False:
