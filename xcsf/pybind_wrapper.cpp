@@ -609,49 +609,27 @@ class XCS
      * @param [in] Y The true output values to use for scoring.
      * @param [in] N The maximum number of samples to draw randomly for scoring.
      * @param [in] cover If the match set is empty, the prediction array will
-     * be set to this value instead of covering.
-     * @return The average XCSF error using the loss function.
-     */
-    double
-    get_score(const py::array_t<double> X, const py::array_t<double> Y,
-              const int N)
-    {
-        load_input(test_data, X, Y, false);
-        if (N > 1) {
-            return xcs_supervised_score_n(&xcs, test_data, N, xcs.cover);
-        }
-        return xcs_supervised_score(&xcs, test_data, xcs.cover);
-    }
-
-    /**
-     * @brief Returns the error using N random samples from the provided data.
-     * @param [in] X The input values to use for scoring.
-     * @param [in] Y The true output values to use for scoring.
-     * @param [in] N The maximum number of samples to draw randomly for scoring.
-     * @return The average XCSF error using the loss function.
-     */
-    double
-    score(const py::array_t<double> X, const py::array_t<double> Y, const int N)
-    {
-        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
-        return get_score(X, Y, N);
-    }
-
-    /**
-     * @brief Returns the error using N random samples from the provided data.
-     * @param [in] X The input values to use for scoring.
-     * @param [in] Y The true output values to use for scoring.
-     * @param [in] N The maximum number of samples to draw randomly for scoring.
-     * @param [in] cover If the match set is empty, the prediction array will
-     * be set to this value instead of covering.
+     * be set to this value, otherwise it is set to zeros.
      * @return The average XCSF error using the loss function.
      */
     double
     score(const py::array_t<double> X, const py::array_t<double> Y, const int N,
-          const py::array_t<double> cover)
+          const py::object &cover)
     {
-        xcs.cover = get_cover(cover);
-        return get_score(X, Y, N);
+        // set cover values
+        if (cover.is_none()) {
+            memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+        } else {
+            py::array_t<double> cover_arr = cover.cast<py::array_t<double>>();
+            xcs.cover = get_cover(cover_arr);
+        }
+        // load data
+        load_input(test_data, X, Y, false);
+        // return score
+        if (N > 1) {
+            return xcs_supervised_score_n(&xcs, test_data, N, xcs.cover);
+        }
+        return xcs_supervised_score(&xcs, test_data, xcs.cover);
     }
 
     /**
@@ -964,14 +942,6 @@ PYBIND11_MODULE(xcsf, m)
                                          const py::array_t<double> cover) =
         &XCS::predict;
 
-    double (XCS::*score1)(const py::array_t<double> X,
-                          const py::array_t<double> Y, const int N) =
-        &XCS::score;
-
-    double (XCS::*score2)(const py::array_t<double> X,
-                          const py::array_t<double> Y, const int N,
-                          const py::array_t<double> cover) = &XCS::score;
-
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
@@ -989,17 +959,12 @@ PYBIND11_MODULE(xcsf, m)
              "x_dim). y_train shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
              py::arg("warm_start") = false, py::arg("verbose") = true)
-        .def("score", score1,
-             "Returns the error using at most N random samples from the "
-             "provided data. X_val shape must be: (n_samples, x_dim). y_val "
-             "shape must be: (n_samples, y_dim).",
-             py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0)
-        .def("score", score2,
+        .def("score", &XCS::score,
              "Returns the error using at most N random samples from the "
              "provided data. X_val shape must be: (n_samples, x_dim). y_val "
              "shape must be: (n_samples, y_dim).",
              py::arg("X_val"), py::arg("y_val"), py::arg("N") = 0,
-             py::arg("cover"))
+             py::arg("cover") = py::none())
         .def("error", error1,
              "Returns a moving average of the system error, updated with step "
              "size BETA.")
