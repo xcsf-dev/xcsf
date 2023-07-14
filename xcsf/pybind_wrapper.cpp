@@ -112,36 +112,6 @@ class XCS
     }
 
     /**
-     * @brief Returns the XCSF major version number.
-     * @return Major version number.
-     */
-    int
-    version_major(void)
-    {
-        return VERSION_MAJOR;
-    }
-
-    /**
-     * @brief Returns the XCSF minor version number.
-     * @return Minor version number.
-     */
-    int
-    version_minor(void)
-    {
-        return VERSION_MINOR;
-    }
-
-    /**
-     * @brief Returns the XCSF build version number.
-     * @return Build version number.
-     */
-    int
-    version_build(void)
-    {
-        return VERSION_BUILD;
-    }
-
-    /**
      * @brief Writes the entire current state of XCSF to a file.
      * @param [in] filename String containing the name of the output file.
      * @return The total number of elements written.
@@ -969,12 +939,6 @@ PYBIND11_MODULE(xcsf, m)
              "retrieval, overwriting any previously stored population.")
         .def("retrieve", &XCS::retrieve,
              "Retrieves the previously stored XCSF population from memory.")
-        .def("version_major", &XCS::version_major,
-             "Returns the version major number.")
-        .def("version_minor", &XCS::version_minor,
-             "Returns the version minor number.")
-        .def("version_build", &XCS::version_build,
-             "Returns the version build number.")
         .def("init_trial", &XCS::init_trial, "Initialises a multi-step trial.")
         .def("end_trial", &XCS::end_trial, "Ends a multi-step trial.")
         .def("init_step", &XCS::init_step,
