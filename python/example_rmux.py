@@ -24,6 +24,7 @@ conditions, linear least squares predictions, and integer actions.
 
 from __future__ import annotations
 
+import json
 import random
 from typing import Final
 
@@ -173,7 +174,7 @@ xcs: xcsf.XCS = xcsf.XCS(
     },
 )
 
-print(xcs.get_params())
+print(json.dumps(xcs.get_params(), indent=4))
 
 #####################
 # Execute experiment

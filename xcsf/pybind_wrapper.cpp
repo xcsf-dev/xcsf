@@ -65,7 +65,6 @@ class XCS
     double payoff; //!< Current reward for RL
     struct Input *train_data; //!< Training data for supervised learning
     struct Input *test_data; //!< Test data for supervised learning
-    bool first_fit; //!< Whether this is the first execution of fit()
     py::dict params; //!< Dictionary of parameters and their values
     py::list metric_train;
     py::list metric_val;
@@ -96,10 +95,10 @@ class XCS
         test_data->y_dim = 0;
         test_data->x = NULL;
         test_data->y = NULL;
-        first_fit = true;
         metric_counter = 0;
         param_init(&xcs, 1, 1, 1);
         update_params();
+        xcsf_init(&xcs);
     }
 
     /**
@@ -109,6 +108,8 @@ class XCS
     XCS(py::kwargs kwargs) : XCS()
     {
         set_params(kwargs);
+        xcsf_free(&xcs);
+        xcsf_init(&xcs);
     }
 
     /**
@@ -218,10 +219,6 @@ class XCS
             throw std::invalid_argument(error.str());
         }
         state = (double *) buf.ptr;
-        if (first_fit) {
-            first_fit = false;
-            xcsf_init(&xcs);
-        }
         return xcs_rl_fit(&xcs, state, action, reward);
     }
 
@@ -231,10 +228,6 @@ class XCS
     void
     init_trial(void)
     {
-        if (first_fit) {
-            first_fit = false;
-            xcsf_init(&xcs);
-        }
         xcs_rl_init_trial(&xcs);
     }
 
@@ -351,11 +344,10 @@ class XCS
      * @param [in,out] data Input data structure used to point to the data.
      * @param [in] X Vector of features with shape (n_samples, x_dim).
      * @param [in] Y Vector of truth values with shape (n_samples, y_dim).
-     * @param [in] first_fit Whether this is the first call to fit().
      */
     void
     load_input(struct Input *data, const py::array_t<double> X,
-               const py::array_t<double> Y, const bool first_fit)
+               const py::array_t<double> Y)
     {
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
@@ -370,9 +362,6 @@ class XCS
         if (buf_x.shape[0] != buf_y.shape[0]) {
             std::string error = "load_input(): X and Y n_samples are not equal";
             throw std::invalid_argument(error);
-        }
-        if (first_fit) { // automatically set x_dim, y_dim, n_actions
-            set_dims(buf_x.ndim, buf_x.shape[1], buf_y.ndim, buf_y.shape[1]);
         }
         if (buf_x.ndim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
@@ -413,16 +402,13 @@ class XCS
         const bool shuffle, const bool warm_start, const bool verbose,
         py::kwargs kwargs)
     {
-        // load training data
-        load_input(train_data, X_train, y_train, first_fit);
-        // initialise XCSF as necessary
-        if (first_fit) {
-            first_fit = false;
-            xcsf_init(&xcs);
-        } else if (!warm_start) {
+        // re-initialise XCSF as necessary
+        if (!warm_start) {
             xcsf_free(&xcs);
             xcsf_init(&xcs);
         }
+        // load training data
+        load_input(train_data, X_train, y_train);
         // load validation data
         struct Input *val_data = NULL;
         if (kwargs.contains("validation_data")) {
@@ -433,14 +419,14 @@ class XCS
                     validation_data[0].cast<py::array_t<double>>();
                 py::array_t<double> y_val =
                     validation_data[1].cast<py::array_t<double>>();
-                load_input(test_data, X_val, y_val, first_fit);
+                load_input(test_data, X_val, y_val);
                 val_data = test_data;
             }
         }
         // use zeros for validation predictions instead of covering
         memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
         // break up the learning into epochs to track metrics
-        const int n = floor(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
+        const int n = ceil(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = xcs.PERF_TRIALS;
         auto total_duration = 0;
@@ -578,7 +564,7 @@ class XCS
           const py::object &cover)
     {
         set_cover(cover);
-        load_input(test_data, X, Y, false);
+        load_input(test_data, X, Y);
         if (N > 1) {
             return xcs_supervised_score_n(&xcs, test_data, N, xcs.cover);
         }

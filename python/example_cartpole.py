@@ -27,6 +27,7 @@ Note: These hyperparameters do not result in consistently optimal performance.
 
 from __future__ import annotations
 
+import json
 import random
 from collections import deque
 from typing import Final
@@ -40,13 +41,17 @@ from tqdm import tqdm
 
 import xcsf
 
+RANDOM_STATE: Final[int] = 0
+random.seed(RANDOM_STATE)
+np.random.seed(RANDOM_STATE)
+
 ############################################
 # Initialise OpenAI Gym problem environment
 ############################################
 
 env = gym.make("CartPole-v1", render_mode="rgb_array")
-X_DIM: Final[int] = env.observation_space.shape[0]
-N_ACTIONS: Final[int] = env.action_space.n
+X_DIM: Final[int] = int(env.observation_space.shape[0])
+N_ACTIONS: Final[int] = int(env.action_space.n)
 
 SAVE_GIF: Final[bool] = False  # for creating a gif
 SAVE_GIF_EPISODES: Final[int] = 50
@@ -58,43 +63,44 @@ ftrial: list[int] = []
 # Initialise XCSF
 ###################
 
-# Supervised: i.e, single action, [A] = [M]
-xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=N_ACTIONS, n_actions=1)
-
-xcs.OMP_NUM_THREADS = 12  # number of CPU cores to use
-xcs.POP_INIT = False  # use covering to initialise
-xcs.MAX_TRIALS = 1  # one trial per fit
-xcs.POP_SIZE = 200  # maximum population size
-xcs.E0 = 0.001  # target error
-xcs.BETA = 0.05  # classifier parameter update rate
-xcs.ALPHA = 1  # accuracy offset
-xcs.NU = 5  # accuracy slope
-xcs.EA_SUBSUMPTION = False
-xcs.SET_SUBSUMPTION = False
-xcs.THETA_EA = 100  # EA invocation frequency
-xcs.THETA_DEL = 100  # min experience before fitness used for deletion
-
-condition_layers: Final[dict] = {
-    "layer_0": {  # hidden layer
-        "type": "connected",
-        "activation": "selu",
-        "evolve_weights": True,
-        "evolve_neurons": True,
-        "n_init": 1,
-        "n_max": 100,
-        "max_neuron_grow": 1,
+xcs = xcsf.XCS(
+    x_dim=X_DIM,
+    y_dim=N_ACTIONS,
+    n_actions=1,
+    omp_num_threads=12,
+    random_state=RANDOM_STATE,
+    pop_init=False,
+    max_trials=1,  # one trial per fit()
+    perf_trials=1,
+    pop_size=200,
+    loss_func="mse",
+    e0=0.001,
+    alpha=1,
+    beta=0.05,
+    condition={
+        "type": "neural",
+        "args": {
+            "layer_0": {  # hidden layer
+                "type": "connected",
+                "activation": "selu",
+                "evolve_weights": True,
+                "evolve_neurons": True,
+                "n_init": 1,
+                "n_max": 100,
+                "max_neuron_grow": 1,
+            },
+            "layer_1": {  # output layer
+                "type": "connected",
+                "activation": "linear",
+                "evolve_weights": True,
+                "n_init": 1,
+            },
+        },
     },
-    "layer_1": {  # output layer
-        "type": "connected",
-        "activation": "linear",
-        "evolve_weights": True,
-        "n_init": 1,
+    prediction={
+        "type": "rls_quadratic",
     },
-}
-
-xcs.condition("neural", condition_layers)  # neural network conditions
-xcs.action("integer")  # (dummy) integer actions
-xcs.prediction("rls_quadratic")  # Quadratic RLS
+)
 
 GAMMA: Final[float] = 0.95  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring
@@ -102,7 +108,7 @@ EPSILON_MIN: Final[float] = 0.1  # the minimum exploration rate
 EPSILON_DECAY: Final[float] = 0.98  # the decay of exploration after each batch replay
 REPLAY_TIME: Final[int] = 1  # perform replay update every n episodes
 
-xcs.print_params()
+print(json.dumps(xcs.get_params(), indent=4))
 
 #####################
 # Execute experiment
@@ -126,7 +132,9 @@ def replay(replay_size: int = 5000) -> None:
             y_target += GAMMA * np.max(prediction_array)
         target = xcs.predict(state.reshape(1, -1))[0]
         target[action] = y_target
-        xcs.fit(state.reshape(1, -1), target.reshape(1, -1), shuffle=True)
+        xcs.fit(
+            state.reshape(1, -1), target.reshape(1, -1), warm_start=True, verbose=False
+        )
 
 
 def egreedy_action(state: np.ndarray) -> int:

@@ -41,7 +41,7 @@ import xcsf
 
 np.set_printoptions(suppress=True)
 
-RANDOM_STATE: Final[int] = 1  # random number seed
+RANDOM_STATE: Final[int] = 10  # random number seed
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
@@ -78,12 +78,18 @@ print(f"y_val shape = {np.shape(y_val)}")
 print(f"X_test shape = {np.shape(X_test)}")
 print(f"y_test shape = {np.shape(y_test)}")
 
+X_DIM: Final[int] = np.shape(X_train)[1]
+Y_DIM: Final[int] = np.shape(y_train)[1]
+
 # Initialise XCSF
 
 MAX_TRIALS: Final[int] = 200000
 E0: Final[float] = 0.005
 
 xcs = xcsf.XCS(
+    x_dim=X_DIM,
+    y_dim=Y_DIM,
+    n_actions=1,
     omp_num_threads=12,
     random_state=RANDOM_STATE,
     pop_init=True,
@@ -164,7 +170,6 @@ xcs = xcsf.XCS(
 print(json.dumps(xcs.get_params(), indent=4))
 
 xcs.fit(X_train, y_train, validation_data=(X_val, y_val))
-
 
 metrics: dict = xcs.get_metrics()
 trials = metrics["trials"]
