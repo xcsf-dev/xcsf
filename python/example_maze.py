@@ -36,7 +36,8 @@ from tqdm import tqdm
 
 import xcsf
 
-random.seed(1)
+RANDOM_STATE: Final[int] = 1
+random.seed(RANDOM_STATE)
 
 
 class Maze:
@@ -193,7 +194,7 @@ xcs = xcsf.XCS(
     perf_trials=PERF_TRIALS,
     pop_init=False,
     pop_size=1000,
-    random_state=1,
+    random_state=RANDOM_STATE,
     set_subsumption=True,
     theta_del=50,
     theta_sub=100,
