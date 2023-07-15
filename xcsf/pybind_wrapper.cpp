@@ -387,6 +387,29 @@ class XCS
     }
 
     /**
+     * @brief Returns a formatted string for displaying time.
+     * @param [in] ms Time in milliseconds.
+     * @return String representation of time.
+     */
+    std::string
+    fmt_duration(std::chrono::milliseconds ms)
+    {
+        using namespace std::chrono;
+        auto secs = duration_cast<seconds>(ms);
+        ms -= duration_cast<milliseconds>(secs);
+        auto mins = duration_cast<minutes>(secs);
+        secs -= duration_cast<seconds>(mins);
+        auto hour = duration_cast<hours>(mins);
+        mins -= duration_cast<minutes>(hour);
+        std::stringstream ss;
+        ss << std::setfill('0') << std::setw(2) << hour.count();
+        ss << ":" << std::setfill('0') << std::setw(2) << mins.count();
+        ss << ":" << std::setfill('0') << std::setw(2) << secs.count();
+        ss << "." << std::setfill('0') << std::setw(3) << ms.count();
+        return ss.str();
+    }
+
+    /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
      * @param [in] X_train The input values to use for training.
@@ -429,12 +452,11 @@ class XCS
         const int n = ceil(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = xcs.PERF_TRIALS;
-        auto total_duration = 0;
+        std::chrono::milliseconds total_duration(0);
         double train_err = 0;
         double val_err = 0;
         // fit XCSF
         for (int i = 0; i < n; ++i) {
-            int trial_cnt = metric_counter * xcs.PERF_TRIALS;
             auto start = std::chrono::high_resolution_clock::now();
             train_err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
             if (val_data != NULL) {
@@ -443,14 +465,15 @@ class XCS
             auto end = std::chrono::high_resolution_clock::now();
             auto duration =
                 std::chrono::duration_cast<std::chrono::milliseconds>(end -
-                                                                      start)
-                    .count();
+                                                                      start);
             total_duration += duration;
+            int trial_cnt = metric_counter * xcs.PERF_TRIALS;
+            // display status
             if (verbose) {
                 std::ostringstream status;
-                status << "trials=" << trial_cnt << " ms=" << duration
-                       << " train=" << std::fixed << std::setprecision(5)
-                       << train_err;
+                status << "time=" << fmt_duration(duration)
+                       << " trials=" << trial_cnt << " train=" << std::fixed
+                       << std::setprecision(5) << train_err;
                 if (val_data != NULL) {
                     status << " val=" << std::fixed << std::setprecision(5)
                            << val_err;
@@ -472,7 +495,7 @@ class XCS
             ++metric_counter;
         }
         if (verbose) {
-            std::cout << "time=" << total_duration << "ms" << std::endl;
+            std::cout << "time=" << fmt_duration(total_duration) << std::endl;
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
