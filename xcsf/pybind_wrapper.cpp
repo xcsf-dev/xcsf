@@ -53,6 +53,8 @@ extern "C" {
 #include "xcs_supervised.h"
 }
 
+#include "pybind_callback.h"
+
 /**
  * @brief Python XCSF class data structure.
  */
@@ -477,6 +479,28 @@ class XCS
     }
 
     /**
+     * @brief Executes callbacks and returns whether to terminate.
+     * @param [in] callbacks The callbacks to perform.
+     * @param [in] verbose Whether to print info.
+     * @return Whether to terminate early.
+     */
+    bool
+    do_callbacks(py::list callbacks, bool verbose)
+    {
+        py::dict metrics = get_metrics();
+        for (py::handle item : callbacks) {
+            if (py::isinstance<EarlyStoppingCallback>(item)) {
+                EarlyStoppingCallback &earlystop =
+                    py::cast<EarlyStoppingCallback &>(item);
+                if (earlystop.should_stop(&xcs, metrics, verbose)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
      * @param [in] X_train The input values to use for training.
@@ -490,7 +514,7 @@ class XCS
     XCS &
     fit(const py::array_t<double> X_train, const py::array_t<double> y_train,
         const bool shuffle, const bool warm_start, const bool verbose,
-        py::kwargs kwargs)
+        py::object callbacks, py::kwargs kwargs)
     {
         using namespace std::chrono;
         if (!warm_start) { // re-initialise XCSF as necessary
@@ -499,6 +523,11 @@ class XCS
         }
         load_input(train_data, X_train, y_train);
         load_validation_data(kwargs);
+        // get callbacks
+        py::list calls;
+        if (py::isinstance<py::list>(callbacks)) {
+            calls = callbacks.cast<py::list>();
+        }
         // break up the learning into epochs to track metrics
         const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
@@ -517,6 +546,9 @@ class XCS
             update_metrics(train, val);
             if (verbose) {
                 print_status(fmt_duration(time));
+            }
+            if (do_callbacks(calls, verbose)) {
+                break;
             }
         }
         if (verbose) {
@@ -920,11 +952,17 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
     XCS &(XCS::*fit2)(const py::array_t<double>, const py::array_t<double>,
-                      const bool, const bool, const bool, py::kwargs) =
-        &XCS::fit;
+                      const bool, const bool, const bool, py::object,
+                      py::kwargs) = &XCS::fit;
 
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
+
+    py::class_<EarlyStoppingCallback>(m, "EarlyStoppingCallback")
+        .def(py::init<py::str, int, bool>(),
+             "Creates a callback for terminating the fit function early.",
+             py::arg("monitor"), py::arg("patience") = 0,
+             py::arg("restore_best") = false);
 
     py::class_<XCS>(m, "XCS")
         .def(py::init(), "Creates a new XCSF class with default arguments.")
@@ -939,7 +977,8 @@ PYBIND11_MODULE(xcsf, m)
              "provided training data. X_train shape must be: (n_samples, "
              "x_dim). y_train shape must be: (n_samples, y_dim).",
              py::arg("X_train"), py::arg("y_train"), py::arg("shuffle") = true,
-             py::arg("warm_start") = false, py::arg("verbose") = true)
+             py::arg("warm_start") = false, py::arg("verbose") = true,
+             py::arg("callbacks") = py::none())
         .def(
             "score", &XCS::score,
             "Returns the error using at most N random samples from the "

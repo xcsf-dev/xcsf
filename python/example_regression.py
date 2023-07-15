@@ -169,7 +169,13 @@ xcs = xcsf.XCS(
 
 print(json.dumps(xcs.get_params(), indent=4))
 
-xcs.fit(X_train, y_train, validation_data=(X_val, y_val))
+callback = xcsf.EarlyStoppingCallback(
+    monitor="val",  # which metric to monitor: {"train", "val"}
+    patience=20000,  # terminate when current trial minus this is more than best trial
+    restore_best=True,  # whether to restore best population set
+)
+
+xcs.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=[callback])
 
 metrics: dict = xcs.get_metrics()
 trials = metrics["trials"]

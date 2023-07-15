@@ -162,7 +162,7 @@ endif()
 # ##############################################################################
 
 if(XCSF_PYLIB)
-  set(XCSF_PY_SOURCES pybind_wrapper.cpp)
+  set(XCSF_PY_SOURCES pybind_wrapper.cpp pybind_callback.h)
   pybind11_add_module(xcsf ${XCSF_PY_SOURCES})
   if(PARALLEL AND OpenMP_FOUND)
     target_link_libraries(xcsf PUBLIC OpenMP::OpenMP_CXX)
