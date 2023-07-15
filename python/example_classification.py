@@ -283,7 +283,7 @@ for _ in range(N):
     bar.update(1)
 bar.close()
 
-metricst = xcs.get_metrics()
+metrics = xcs.get_metrics()
 trials = metrics["trials"]
 psize = metrics["psize"]
 msize = metrics["msize"]
