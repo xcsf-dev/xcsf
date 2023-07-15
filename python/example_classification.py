@@ -283,13 +283,6 @@ for _ in range(N):
     bar.update(1)
 bar.close()
 
-metrics = xcs.get_metrics()
-trials = metrics["trials"]
-psize = metrics["psize"]
-msize = metrics["msize"]
-train_err = metrics["train"]
-val_err = metrics["val"]
-
 ##################################
 # final XCSF test score
 ##################################
@@ -306,6 +299,13 @@ print(classification_report(inv_y_test, inv_pred, digits=4))
 ##################################
 # plot XCSF learning performance
 ##################################
+
+metrics = xcs.get_metrics()
+trials = metrics["trials"]
+psize = metrics["psize"]
+msize = metrics["msize"]
+train_err = metrics["train"]
+val_err = metrics["val"]
 
 plt.figure(figsize=(10, 6))
 plt.plot(trials, train_err, label="Train Error")
