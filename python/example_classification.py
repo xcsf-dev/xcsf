@@ -286,6 +286,7 @@ bar.close()
 ##################################
 # final XCSF test score
 ##################################
+
 print("*****************************")
 print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
 xcs.retrieve()
