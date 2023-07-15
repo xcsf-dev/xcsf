@@ -449,9 +449,9 @@ class XCS
         // use zeros for validation predictions instead of covering
         memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
         // break up the learning into epochs to track metrics
-        const int n = ceil(xcs.MAX_TRIALS / xcs.PERF_TRIALS);
+        const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
-        xcs.MAX_TRIALS = xcs.PERF_TRIALS;
+        xcs.MAX_TRIALS = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
         std::chrono::milliseconds total_duration(0);
         double train_err = 0;
         double val_err = 0;

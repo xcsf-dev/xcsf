@@ -71,7 +71,6 @@ xcs = xcsf.XCS(
     random_state=RANDOM_STATE,
     pop_init=False,
     max_trials=1,  # one trial per fit()
-    perf_trials=1,
     pop_size=200,
     loss_func="mse",
     e0=0.001,

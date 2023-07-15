@@ -21,19 +21,28 @@ This example demonstrates the insertion of a human-defined classifier
 into the XCSF population set.
 """
 
-from __future__ import annotations
-
 import json
-from typing import Final
+
+import numpy as np
 
 import xcsf
 
-xcs = xcsf.XCS(x_dim=8, y_dim=1, n_actions=2)
-xcs.condition("hyperrectangle_csr")
-xcs.action("integer")
-xcs.prediction("nlms_linear")
+RANDOM_STATE = 1
+np.random.seed(RANDOM_STATE)
 
-classifier: Final[dict] = {
+xcs = xcsf.XCS(
+    x_dim=8,
+    y_dim=1,
+    n_actions=1,
+    random_state=RANDOM_STATE,
+    max_trials=1,
+    pop_init=False,  # start with an empty population set
+    action={"type": "integer"},
+    condition={"type": "hyperrectangle_csr"},
+    prediction={"type": "nlms_linear"},
+)
+
+classifier = {
     "error": 10,  # each of these properties are optional
     "fitness": 1.01,
     "accuracy": 2,
@@ -49,7 +58,7 @@ classifier: Final[dict] = {
         "spread": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
         "mutation": [0.2],  # this parameter still self-adapts
     },
-    "action": {"type": "integer", "action": 1, "mutation": [0.28]}
+    "action": {"type": "integer", "action": 0, "mutation": [0.28]}
     # prediction is absent and therefore initialised as normal
 }
 
@@ -63,5 +72,20 @@ json_str = json.dumps(classifier)  # dictionary to JSON
 # roulette wheel deletion mechanism will be invoked to maintain the population
 # limit.
 xcs.json_insert_cl(json_str)  # insert in [P]
+
+print("******************************")
+print("BEFORE FITTING")
+print("******************************")
+
+xcs.print_pset()
+
+print("******************************")
+print("AFTER FITTING")
+print("******************************")
+
+X = np.asarray([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]).reshape(1, -1)
+y = np.random.random(1)
+
+xcs.fit(X, y, warm_start=True)  # use existing population
 
 xcs.print_pset()
