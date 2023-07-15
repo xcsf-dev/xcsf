@@ -203,8 +203,6 @@ plt.show()
 
 # final XCSF test score
 print("*****************************")
-# print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
-# xcs.retrieve()
 xcsf_pred = xcs.predict(X_test)
 xcsf_mse = mean_squared_error(xcsf_pred, y_test)
 print(f"XCSF Test MSE = {xcsf_mse:.4f}")
