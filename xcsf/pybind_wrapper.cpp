@@ -479,7 +479,7 @@ class XCS
                            << val_err;
                 }
                 status << " pset=" << xcs.pset.size << " mset=" << std::fixed
-                       << std::setprecision(2) << xcs.mset_size
+                       << std::setprecision(1) << xcs.mset_size
                        << " mfrac=" << std::fixed << std::setprecision(2)
                        << xcs.mfrac;
                 std::string display = status.str();

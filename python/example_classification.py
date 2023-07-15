@@ -35,6 +35,7 @@ from sklearn.datasets import fetch_openml
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+from tqdm import tqdm
 
 import xcsf
 
@@ -157,8 +158,8 @@ LAYER_CONNECTED: Final[dict] = {
     "n_max": N_MAX,
 }
 
-MAX_TRIALS: Final[int] = 100000
-E0: Final[float] = 0.01
+MAX_TRIALS: Final[int] = 1000  # number of trials per fit()
+E0: Final[float] = 0.01  # target error
 
 xcs = xcsf.XCS(
     x_dim=X_DIM,
@@ -246,9 +247,43 @@ print(json.dumps(xcs.get_params(), indent=4))
 # Run experiment
 ##################################
 
-xcs.fit(X_train, y_train, validation_data=(X_val, y_val))
+# In this example, training is divided into multiple fit() calls in order
+# maintain control within Python.
+# See the regression example for a simpler scheme with a single call to fit().
 
-metrics: dict = xcs.get_metrics()
+N: Final[int] = 100  # 100,000 trials
+val_min: float = 1000  # minimum validation error observed
+val_trial: int = 0  # number of trials at validation minimum
+
+bar = tqdm(total=N)  # progress bar
+for _ in range(N):
+    xcs.fit(
+        X_train,
+        y_train,
+        shuffle=True,  # randomly draw samples
+        verbose=False,  # silence output
+        warm_start=True,  # use existing population
+        validation_data=(X_val, y_val),
+    )
+    metrics = xcs.get_metrics()
+    # checkpoint lowest validation error
+    if metrics["val"][-1] < val_min:
+        xcs.store()
+        val_min = metrics["val"][-1]
+        val_trial = metrics["trials"][-1]
+    status = (  # update status
+        f"trials={metrics['trials'][-1]:.0f} "
+        f"train_err={metrics['train'][-1]:.5f} "
+        f"val_err={metrics['val'][-1]:.5f} "
+        f"psize={metrics['psize'][-1]:.1f} "
+        f"msize={metrics['msize'][-1]:.1f}"
+    )
+    bar.set_description(status)
+    bar.refresh()
+    bar.update(1)
+bar.close()
+
+metricst = xcs.get_metrics()
 trials = metrics["trials"]
 psize = metrics["psize"]
 msize = metrics["msize"]
@@ -259,8 +294,8 @@ val_err = metrics["val"]
 # final XCSF test score
 ##################################
 print("*****************************")
-# print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
-# xcs.retrieve()
+print(f"Restoring system from trial {val_trial:.0f} with val_mse={val_min:.5f}")
+xcs.retrieve()
 pred = xcs.predict(X_test)  # soft max predictions
 pred = np.argmax(pred, axis=1)  # select most likely class
 pred = onehot_encoder.fit_transform(pred.reshape(-1, 1))
@@ -280,6 +315,6 @@ plt.axhline(y=E0, xmin=0, xmax=1, linestyle="dashed", color="k")
 plt.title("XCSF Training Performance", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
 plt.ylabel("Mean Squared Error", fontsize=12)
-plt.xlim([0, MAX_TRIALS])
+plt.xlim([0, N * MAX_TRIALS])
 plt.legend()
 plt.show()
