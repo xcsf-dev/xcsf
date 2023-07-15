@@ -247,7 +247,7 @@ print(json.dumps(xcs.get_params(), indent=4))
 # Run experiment
 ##################################
 
-# In this example, training is divided into multiple fit() calls in order
+# In this example, training is divided into multiple fit() calls in order to
 # maintain control within Python.
 # See the regression example for a simpler scheme with a single call to fit().
 
