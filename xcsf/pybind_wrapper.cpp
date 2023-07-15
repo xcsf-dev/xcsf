@@ -65,10 +65,11 @@ class XCS
     double payoff; //!< Current reward for RL
     struct Input *train_data; //!< Training data for supervised learning
     struct Input *test_data; //!< Test data for supervised learning
+    struct Input *val_data; //!< Validation data
     py::dict params; //!< Dictionary of parameters and their values
     py::list metric_train;
     py::list metric_val;
-    py::list metric_trials;
+    py::list metric_trial;
     py::list metric_psize;
     py::list metric_msize;
     py::list metric_mfrac;
@@ -95,6 +96,7 @@ class XCS
         test_data->y_dim = 0;
         test_data->x = NULL;
         test_data->y = NULL;
+        val_data = NULL;
         metric_counter = 0;
         param_init(&xcs, 1, 1, 1);
         update_params();
@@ -410,6 +412,71 @@ class XCS
     }
 
     /**
+     * @brief Prints the current performance metrics.
+     * @param [in] time String representing the time taken to fit.
+     */
+    void
+    print_status(std::string time)
+    {
+        double trial = py::cast<double>(metric_trial[metric_trial.size() - 1]);
+        double train = py::cast<double>(metric_train[metric_train.size() - 1]);
+        double psize = py::cast<double>(metric_psize[metric_psize.size() - 1]);
+        double msize = py::cast<double>(metric_msize[metric_msize.size() - 1]);
+        double mfrac = py::cast<double>(metric_mfrac[metric_mfrac.size() - 1]);
+        std::ostringstream status;
+        status << "time=" << time;
+        status << " trials=" << trial;
+        status << " train=" << std::fixed << std::setprecision(5) << train;
+        if (val_data != NULL) {
+            double val = py::cast<double>(metric_val[metric_val.size() - 1]);
+            status << " val=" << std::fixed << std::setprecision(5) << val;
+        }
+        status << " pset=" << psize;
+        status << " mset=" << std::fixed << std::setprecision(1) << msize;
+        status << " mfrac=" << std::fixed << std::setprecision(2) << mfrac;
+        py::print(status.str());
+    }
+
+    /**
+     * @brief Updates performance metrics.
+     * @param [in] train The current training error.
+     * @param [in] val The current validation error.
+     */
+    void
+    update_metrics(const double train, const double val)
+    {
+        const int trial = metric_counter * xcs.MAX_TRIALS;
+        metric_train.append(train);
+        metric_val.append(val);
+        metric_trial.append(trial);
+        metric_psize.append(xcs.pset.size);
+        metric_msize.append(xcs.mset_size);
+        metric_mfrac.append(xcs.mfrac);
+        ++metric_counter;
+    }
+
+    /**
+     * @brief Loads validation data if present in kwargs.
+     * @param [in] kwargs Parameters and their values.
+     */
+    void
+    load_validation_data(py::kwargs kwargs)
+    {
+        val_data = NULL;
+        if (kwargs.contains("validation_data")) {
+            py::tuple data = kwargs["validation_data"].cast<py::tuple>();
+            if (data) {
+                py::array_t<double> X_val = data[0].cast<py::array_t<double>>();
+                py::array_t<double> y_val = data[1].cast<py::array_t<double>>();
+                load_input(test_data, X_val, y_val);
+                val_data = test_data;
+                // use zeros for validation predictions instead of covering
+                memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+            }
+        }
+    }
+
+    /**
      * @brief Executes MAX_TRIALS number of XCSF learning iterations using the
      * provided training data.
      * @param [in] X_train The input values to use for training.
@@ -425,77 +492,35 @@ class XCS
         const bool shuffle, const bool warm_start, const bool verbose,
         py::kwargs kwargs)
     {
-        // re-initialise XCSF as necessary
-        if (!warm_start) {
+        using namespace std::chrono;
+        if (!warm_start) { // re-initialise XCSF as necessary
             xcsf_free(&xcs);
             xcsf_init(&xcs);
         }
-        // load training data
         load_input(train_data, X_train, y_train);
-        // load validation data
-        struct Input *val_data = NULL;
-        if (kwargs.contains("validation_data")) {
-            py::tuple validation_data =
-                kwargs["validation_data"].cast<py::tuple>();
-            if (validation_data) {
-                py::array_t<double> X_val =
-                    validation_data[0].cast<py::array_t<double>>();
-                py::array_t<double> y_val =
-                    validation_data[1].cast<py::array_t<double>>();
-                load_input(test_data, X_val, y_val);
-                val_data = test_data;
-            }
-        }
-        // use zeros for validation predictions instead of covering
-        memset(xcs.cover, 0, sizeof(double) * xcs.pa_size);
+        load_validation_data(kwargs);
         // break up the learning into epochs to track metrics
         const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
-        std::chrono::milliseconds total_duration(0);
-        double train_err = 0;
-        double val_err = 0;
-        // fit XCSF
+        milliseconds total_duration(0);
         for (int i = 0; i < n; ++i) {
-            auto start = std::chrono::high_resolution_clock::now();
-            train_err = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            auto start = high_resolution_clock::now();
+            double train = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            double val = 0;
             if (val_data != NULL) {
-                val_err = xcs_supervised_score(&xcs, val_data, xcs.cover);
+                val = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
-            auto end = std::chrono::high_resolution_clock::now();
-            auto duration =
-                std::chrono::duration_cast<std::chrono::milliseconds>(end -
-                                                                      start);
-            total_duration += duration;
-            int trial_cnt = metric_counter * xcs.PERF_TRIALS;
-            // display status
+            auto end = high_resolution_clock::now();
+            auto time = duration_cast<milliseconds>(end - start);
+            total_duration += time;
+            update_metrics(train, val);
             if (verbose) {
-                std::ostringstream status;
-                status << "time=" << fmt_duration(duration)
-                       << " trials=" << trial_cnt << " train=" << std::fixed
-                       << std::setprecision(5) << train_err;
-                if (val_data != NULL) {
-                    status << " val=" << std::fixed << std::setprecision(5)
-                           << val_err;
-                }
-                status << " pset=" << xcs.pset.size << " mset=" << std::fixed
-                       << std::setprecision(1) << xcs.mset_size
-                       << " mfrac=" << std::fixed << std::setprecision(2)
-                       << xcs.mfrac;
-                std::string display = status.str();
-                std::cout << display << std::endl;
+                print_status(fmt_duration(time));
             }
-            // update metrics
-            metric_train.append(train_err);
-            metric_val.append(val_err);
-            metric_trials.append(trial_cnt);
-            metric_psize.append(xcs.pset.size);
-            metric_msize.append(xcs.mset_size);
-            metric_mfrac.append(xcs.mfrac);
-            ++metric_counter;
         }
         if (verbose) {
-            std::cout << "time=" << fmt_duration(total_duration) << std::endl;
+            py::print("time=", fmt_duration(total_duration));
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
@@ -662,7 +687,7 @@ class XCS
         py::dict metrics;
         metrics["train"] = metric_train;
         metrics["val"] = metric_val;
-        metrics["trials"] = metric_trials;
+        metrics["trials"] = metric_trial;
         metrics["psize"] = metric_psize;
         metrics["msize"] = metric_msize;
         metrics["mfrac"] = metric_mfrac;
