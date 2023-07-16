@@ -170,9 +170,13 @@ xcs = xcsf.XCS(
 print(json.dumps(xcs.get_params(), indent=4))
 
 callback = xcsf.EarlyStoppingCallback(
+    # note: PERF_TRIALS is considered an "epoch" for callbacks
     monitor="val",  # which metric to monitor: {"train", "val"}
-    patience=20000,  # terminate when current trial minus this is more than best trial
-    restore_best=True,  # whether to restore best population set
+    patience=20000,  # trials with no improvement after which training will be stopped
+    restore_best=True,  # whether to make checkpoints and restore best population
+    min_delta=0,  # minimum change to qualify as an improvement
+    start_from=0,  # trials to wait before starting to monitor improvement
+    verbose=True,  # whether to display when checkpoints are made
 )
 
 xcs.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=[callback])

@@ -485,14 +485,14 @@ class XCS
      * @return Whether to terminate early.
      */
     bool
-    do_callbacks(py::list callbacks, bool verbose)
+    do_callbacks(py::list callbacks)
     {
         py::dict metrics = get_metrics();
         for (py::handle item : callbacks) {
             if (py::isinstance<EarlyStoppingCallback>(item)) {
                 EarlyStoppingCallback &earlystop =
                     py::cast<EarlyStoppingCallback &>(item);
-                if (earlystop.should_stop(&xcs, metrics, verbose)) {
+                if (earlystop.should_stop(&xcs, metrics)) {
                     return true;
                 }
             }
@@ -547,7 +547,7 @@ class XCS
             if (verbose) {
                 print_status(fmt_duration(time));
             }
-            if (do_callbacks(calls, verbose)) {
+            if (do_callbacks(calls)) {
                 break;
             }
         }
@@ -959,10 +959,11 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
     py::class_<EarlyStoppingCallback>(m, "EarlyStoppingCallback")
-        .def(py::init<py::str, int, bool>(),
+        .def(py::init<py::str, int, bool, double, int, bool>(),
              "Creates a callback for terminating the fit function early.",
-             py::arg("monitor"), py::arg("patience") = 0,
-             py::arg("restore_best") = false);
+             py::arg("monitor") = "train", py::arg("patience") = 0,
+             py::arg("restore_best") = false, py::arg("min_delta") = 0,
+             py::arg("start_from") = 0, py::arg("verbose"));
 
     py::class_<XCS>(m, "XCS")
         .def(py::init(), "Creates a new XCSF class with default arguments.")

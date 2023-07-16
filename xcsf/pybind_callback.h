@@ -41,64 +41,104 @@ class EarlyStoppingCallback
      * @param [in] kwargs Parameters and their values.
      *
      */
-    EarlyStoppingCallback(py::str monitor, int patience, bool restore) :
-        monitor(monitor), patience(patience), restore(restore)
+    EarlyStoppingCallback(py::str monitor, int patience, bool restore,
+                          double min_delta, int start_from, bool verbose) :
+        monitor(monitor),
+        patience(patience),
+        restore(restore),
+        min_delta(min_delta),
+        start_from(start_from),
+        verbose(verbose)
     {
+        std::ostringstream err;
+        std::string str = monitor.cast<std::string>();
+        if (str != "train" && str != "val") {
+            err << "invalid metric to monitor: " << str << std::endl;
+            throw std::invalid_argument(err.str());
+        }
+        if (patience < 0) {
+            err << "patience must be greater than zero" << std::endl;
+            throw std::invalid_argument(err.str());
+        }
+        if (min_delta < 0) {
+            err << "min_delta must be greater than zero" << std::endl;
+            throw std::invalid_argument(err.str());
+        }
+    }
+
+    /**
+     * @brief Checkpoints XCSF.
+     * @param [in] xcsf The XCSF data structure.
+     */
+    void
+    store(struct XCSF *xcsf)
+    {
+        xcsf_store_pset(xcsf);
+        if (verbose) {
+            std::ostringstream status;
+            status << "checkpoint: ";
+            status << std::fixed << std::setprecision(5) << best_error;
+            status << " error at " << best_trial << " trials";
+            py::print(status.str());
+        }
+    }
+
+    /**
+     * @brief Restores the checkpointed XCSF.
+     * @param [in] xcsf The XCSF data structure.
+     */
+    void
+    retrieve(struct XCSF *xcsf)
+    {
+        xcsf_retrieve_pset(xcsf);
+        if (verbose) {
+            std::ostringstream status;
+            status << "restoring system from trial " << best_trial;
+            status << " with error=";
+            status << std::fixed << std::setprecision(5) << best_error;
+            py::print(status.str());
+        }
     }
 
     /**
      * @brief Checks whether early stopping criteria has been met.
      * @param [in] xcsf The XCSF data structure.
      * @param [in] metrics Dictionary of performance metrics.
-     * @param [in] verbose Whether to print info.
      * @return whether early stopping criteria has been met.
      */
     bool
-    should_stop(struct XCSF *xcsf, py::dict metrics, bool verbose)
+    should_stop(struct XCSF *xcsf, py::dict metrics)
     {
-        if (!metrics.contains(monitor)) {
-            std::ostringstream err;
-            err << "invalid metric to monitor: " << monitor << std::endl;
-            throw std::invalid_argument(err.str());
-        }
         py::list data = metrics[monitor];
         py::list trials = metrics["trials"];
         const double current_error = py::cast<double>(data[data.size() - 1]);
         const int current_trial = py::cast<int>(trials[trials.size() - 1]);
-        if (current_error < best_error) {
+        if (current_trial < start_from) {
+            return false;
+        }
+        if (current_error < best_error - min_delta) {
             best_error = current_error;
             best_trial = current_trial;
             if (restore) {
-                xcsf_store_pset(xcsf);
-                if (verbose) {
-                    std::ostringstream status;
-                    status << "checkpoint: ";
-                    status << std::fixed << std::setprecision(5) << best_error;
-                    status << " error at " << best_trial << " trials";
-                    py::print(status.str());
-                }
+                store(xcsf);
             }
         }
         if (current_trial - patience > best_trial) {
             if (restore) {
-                xcsf_retrieve_pset(xcsf);
-                if (verbose) {
-                    std::ostringstream status;
-                    status << "restoring system from trial " << best_trial;
-                    status << " with error=";
-                    status << std::fixed << std::setprecision(5) << best_error;
-                    py::print(status.str());
-                }
+                retrieve(xcsf);
             }
-            return true; // stop training
+            return true;
         }
-        return false; // continue training
+        return false;
     }
 
   private:
     py::str monitor;
     int patience;
     bool restore;
+    double min_delta;
+    int start_from;
+    bool verbose;
 
     double best_error = std::numeric_limits<double>::max();
     int best_trial = 0;
