@@ -420,7 +420,7 @@ class XCS
      * @param [in] time String representing the time taken to fit.
      */
     void
-    print_status(std::string time)
+    print_status(const std::string &time)
     {
         double trial = py::cast<double>(metric_trial[metric_trial.size() - 1]);
         double train = py::cast<double>(metric_train[metric_train.size() - 1]);
