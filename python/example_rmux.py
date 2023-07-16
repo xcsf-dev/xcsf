@@ -26,7 +26,6 @@ from __future__ import annotations
 
 import json
 import random
-from typing import Final
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,15 +48,15 @@ class Mux:
 
     def __init__(self, binary: bool, n_bits: int, payoff_map: bool) -> None:
         """Constructs a new real-multiplexer problem of maximum size n_bits."""
-        self.binary: Final[bool] = binary  #: whether binary or real mux
-        self.n_bits: Final[int] = n_bits  #: total number of bits
-        self.n_actions: Final[int] = 2  #: total number of actions
+        self.binary: bool = binary  #: whether binary or real mux
+        self.n_bits: int = n_bits  #: total number of bits
+        self.n_actions: int = 2  #: total number of actions
         self.state: np.ndarray = np.zeros(n_bits)  #: current mux state
         self.pos_bits: int = 1  #: number of addressing bits
         while self.pos_bits + pow(2, self.pos_bits) <= self.n_bits:
             self.pos_bits += 1
         self.pos_bits -= 1
-        self.payoff_map: Final[bool] = payoff_map  #: whether to use a payoff map
+        self.payoff_map: bool = payoff_map  #: whether to use a payoff map
         self.max_payoff: float = 1  #: reward for a correct prediction
         if payoff_map:
             self.max_payoff = 0.2 + 0.2 * pow(2, self.pos_bits)
@@ -92,8 +91,8 @@ class Mux:
         """Returns the reward for performing an action."""
         correct: bool = False
         reward: float = 0
-        pos: Final[int] = self.answer_pos()
-        answer: Final[int] = self.answer(pos)
+        pos: int = self.answer_pos()
+        answer: int = self.answer(pos)
         if act == answer:
             correct = True
             if self.payoff_map:
@@ -114,9 +113,9 @@ class Mux:
 
 # Create new real-multiplexer problem
 mux: Mux = Mux(binary=False, n_bits=11, payoff_map=False)
-X_DIM: Final[int] = mux.n_bits
-N_ACTIONS: Final[int] = mux.n_actions
-MAX_PAYOFF: Final[float] = mux.max_payoff
+X_DIM: int = mux.n_bits
+N_ACTIONS: int = mux.n_actions
+MAX_PAYOFF: float = mux.max_payoff
 
 ###################
 # Initialise XCSF
@@ -174,14 +173,14 @@ xcs: xcsf.XCS = xcsf.XCS(
     },
 )
 
-print(json.dumps(xcs.get_params(), indent=4))
+print(json.dumps(xcs.internal_params(), indent=4))
 
 #####################
 # Execute experiment
 #####################
 
-PERF_TRIALS: Final[int] = 1000  # number of trials over which to average performance
-N: Final[int] = 100  # 100,000 trials in total to run
+PERF_TRIALS: int = 1000  # number of trials over which to average performance
+N: int = 100  # 100,000 trials in total to run
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)

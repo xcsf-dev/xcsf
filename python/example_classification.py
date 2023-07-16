@@ -27,7 +27,6 @@ single dummy action is performed such that [A] = [M].
 from __future__ import annotations
 
 import json
-from typing import Final
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -39,7 +38,7 @@ from tqdm import tqdm
 
 import xcsf
 
-RANDOM_STATE: Final[int] = 1
+RANDOM_STATE: int = 1
 np.random.seed(RANDOM_STATE)
 
 ###############################
@@ -49,9 +48,9 @@ np.random.seed(RANDOM_STATE)
 # Load USPS data from https://www.openml.org/d/41082
 # 256 features, 10 classes, 9298 instances
 data = fetch_openml(data_id=41082, parser="auto")
-INPUT_HEIGHT: Final[int] = 16
-INPUT_WIDTH: Final[int] = 16
-INPUT_CHANNELS: Final[int] = 1
+INPUT_HEIGHT: int = 16
+INPUT_WIDTH: int = 16
+INPUT_CHANNELS: int = 1
 
 # numpy
 X = np.asarray(data.data, dtype=np.float64)
@@ -80,8 +79,8 @@ X_train, X_val, y_train, y_val = train_test_split(
 )
 
 # get number of input and output variables
-X_DIM: Final[int] = np.shape(X_train)[1]
-Y_DIM: Final[int] = np.shape(y_train)[1]
+X_DIM: int = np.shape(X_train)[1]
+Y_DIM: int = np.shape(y_train)[1]
 
 print(f"X_train shape = {np.shape(X_train)}")
 print(f"y_train shape = {np.shape(y_train)}")
@@ -94,21 +93,21 @@ print(f"y_test shape = {np.shape(y_test)}")
 # Initialise XCSF
 ###################
 
-ACTIVATION: Final[str] = "selu"
-SGD_WEIGHTS: Final[bool] = True
-EVOLVE_WEIGHTS: Final[bool] = True
-EVOLVE_CONNECT: Final[bool] = True
-EVOLVE_ETA: Final[bool] = True
-EVOLVE_NEURONS: Final[bool] = True
-ETA: Final[float] = 0.01
-ETA_MIN: Final[float] = 0.00001
-MOMENTUM: Final[float] = 0.9
-DECAY: Final[float] = 0
-N_INIT: Final[int] = 16
-N_MAX: Final[int] = 100
-MAX_GROW: Final[int] = 1
+ACTIVATION: str = "selu"
+SGD_WEIGHTS: bool = True
+EVOLVE_WEIGHTS: bool = True
+EVOLVE_CONNECT: bool = True
+EVOLVE_ETA: bool = True
+EVOLVE_NEURONS: bool = True
+ETA: float = 0.01
+ETA_MIN: float = 0.00001
+MOMENTUM: float = 0.9
+DECAY: float = 0
+N_INIT: int = 16
+N_MAX: int = 100
+MAX_GROW: int = 1
 
-LAYER_CONV: Final[dict] = {
+LAYER_CONV: dict = {
     "type": "convolutional",
     "activation": ACTIVATION,
     "sgd_weights": SGD_WEIGHTS,
@@ -131,7 +130,7 @@ LAYER_CONV: Final[dict] = {
     "channels": INPUT_CHANNELS,
 }
 
-LAYER_MAXPOOL: Final[dict] = {
+LAYER_MAXPOOL: dict = {
     "type": "maxpool",
     "stride": 2,
     "size": 2,
@@ -141,7 +140,7 @@ LAYER_MAXPOOL: Final[dict] = {
     "channels": INPUT_CHANNELS,
 }
 
-LAYER_CONNECTED: Final[dict] = {
+LAYER_CONNECTED: dict = {
     "type": "connected",
     "activation": ACTIVATION,
     "sgd_weights": SGD_WEIGHTS,
@@ -158,8 +157,8 @@ LAYER_CONNECTED: Final[dict] = {
     "n_max": N_MAX,
 }
 
-MAX_TRIALS: Final[int] = 1000  # number of trials per fit()
-E0: Final[float] = 0.01  # target error
+MAX_TRIALS: int = 1000  # number of trials per fit()
+E0: float = 0.01  # target error
 
 xcs = xcsf.XCS(
     x_dim=X_DIM,
@@ -241,7 +240,7 @@ xcs = xcsf.XCS(
     },
 )
 
-print(json.dumps(xcs.get_params(), indent=4))
+print(json.dumps(xcs.internal_params(), indent=4))
 
 ##################################
 # Run experiment
@@ -251,7 +250,7 @@ print(json.dumps(xcs.get_params(), indent=4))
 # maintain control within Python.
 # See the regression example for a simpler scheme with a single call to fit().
 
-N: Final[int] = 200  # 200,000 trials
+N: int = 200  # 200,000 trials
 val_min: float = 1000  # minimum validation error observed
 val_trial: int = 0  # number of trials at validation minimum
 

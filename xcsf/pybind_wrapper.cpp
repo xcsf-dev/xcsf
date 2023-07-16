@@ -865,7 +865,7 @@ class XCS
     /**
      * @brief Returns a dictionary of parameters.
      * @param deep For sklearn compatibility.
-     * @return Parameter dictionary.
+     * @return External parameter dictionary.
      */
     py::dict
     get_params(const bool deep)
@@ -892,6 +892,20 @@ class XCS
             params[item.first] = item.second;
         }
         return *this;
+    }
+
+    /**
+     * @brief Returns a dictionary of the internal parameters.
+     * @return Internal parameter dictionary.
+     */
+    py::dict
+    internal_params()
+    {
+        char *json_str = param_json_export(&xcs);
+        py::module json_module = py::module::import("json");
+        py::dict internal_params = json_module.attr("loads")(json_str);
+        free(json_str);
+        return internal_params;
     }
 
     /**
@@ -1092,6 +1106,7 @@ PYBIND11_MODULE(xcsf, m)
         .def("json_insert", &XCS::json_insert,
              "Creates classifiers from JSON and inserts into the population.",
              py::arg("json_str"))
+        .def("internal_params", &XCS::internal_params, "Gets internal params.")
         .def(py::pickle(
             [](const XCS &obj) { return obj.serialize(); },
             [](const py::bytes &state) { return XCS::deserialize(state); }));

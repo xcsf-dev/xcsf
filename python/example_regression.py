@@ -26,7 +26,6 @@ such that [A] = [M].
 from __future__ import annotations
 
 import json
-from typing import Final
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -41,7 +40,7 @@ import xcsf
 
 np.set_printoptions(suppress=True)
 
-RANDOM_STATE: Final[int] = 5  # random number seed
+RANDOM_STATE: int = 5
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
@@ -78,13 +77,13 @@ print(f"y_val shape = {np.shape(y_val)}")
 print(f"X_test shape = {np.shape(X_test)}")
 print(f"y_test shape = {np.shape(y_test)}")
 
-X_DIM: Final[int] = np.shape(X_train)[1]
-Y_DIM: Final[int] = np.shape(y_train)[1]
+X_DIM: int = np.shape(X_train)[1]
+Y_DIM: int = np.shape(y_train)[1]
 
 # Initialise XCSF
 
-MAX_TRIALS: Final[int] = 200000
-E0: Final[float] = 0.005
+MAX_TRIALS: int = 200000
+E0: float = 0.005
 
 xcs = xcsf.XCS(
     x_dim=X_DIM,
@@ -167,7 +166,7 @@ xcs = xcsf.XCS(
     },
 )
 
-print(json.dumps(xcs.get_params(), indent=4))
+print(json.dumps(xcs.internal_params(), indent=4))
 
 callback = xcsf.EarlyStoppingCallback(
     # note: PERF_TRIALS is considered an "epoch" for callbacks

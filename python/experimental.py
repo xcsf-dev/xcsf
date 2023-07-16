@@ -98,7 +98,7 @@ model = xcsf.XCS(
     },
 )
 
-print(json.dumps(model.get_params(), indent=4))
+print(json.dumps(model.internal_params(), indent=4))
 
 if False:
     # model fitting and scoring

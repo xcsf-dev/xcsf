@@ -30,7 +30,6 @@ from __future__ import annotations
 import json
 import random
 from collections import deque
-from typing import Final
 
 import gymnasium as gym
 import imageio
@@ -41,7 +40,7 @@ from tqdm import tqdm
 
 import xcsf
 
-RANDOM_STATE: Final[int] = 0
+RANDOM_STATE: int = 0
 random.seed(RANDOM_STATE)
 np.random.seed(RANDOM_STATE)
 
@@ -50,11 +49,11 @@ np.random.seed(RANDOM_STATE)
 ############################################
 
 env = gym.make("CartPole-v1", render_mode="rgb_array")
-X_DIM: Final[int] = int(env.observation_space.shape[0])
-N_ACTIONS: Final[int] = int(env.action_space.n)
+X_DIM: int = int(env.observation_space.shape[0])
+N_ACTIONS: int = int(env.action_space.n)
 
-SAVE_GIF: Final[bool] = False  # for creating a gif
-SAVE_GIF_EPISODES: Final[int] = 50
+SAVE_GIF: bool = False  # for creating a gif
+SAVE_GIF_EPISODES: int = 50
 frames: list[list[float]] = []
 fscore: list[float] = []
 ftrial: list[int] = []
@@ -101,28 +100,28 @@ xcs = xcsf.XCS(
     },
 )
 
-GAMMA: Final[float] = 0.95  # discount rate for delayed reward
+GAMMA: float = 0.95  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring
-EPSILON_MIN: Final[float] = 0.1  # the minimum exploration rate
-EPSILON_DECAY: Final[float] = 0.98  # the decay of exploration after each batch replay
-REPLAY_TIME: Final[int] = 1  # perform replay update every n episodes
+EPSILON_MIN: float = 0.1  # the minimum exploration rate
+EPSILON_DECAY: float = 0.98  # the decay of exploration after each batch replay
+REPLAY_TIME: int = 1  # perform replay update every n episodes
 
-print(json.dumps(xcs.get_params(), indent=4))
+print(json.dumps(xcs.internal_params(), indent=4))
 
 #####################
 # Execute experiment
 #####################
 
 total_steps: int = 0  # total number of steps performed
-MAX_EPISODES: Final[int] = 2000  # maximum number of episodes to run
-N: Final[int] = 100  # number of episodes to average performance
+MAX_EPISODES: int = 2000  # maximum number of episodes to run
+N: int = 100  # number of episodes to average performance
 memory: deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
 scores: deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
 def replay(replay_size: int = 5000) -> None:
     """Performs experience replay updates"""
-    batch_size: Final[int] = min(len(memory), replay_size)
+    batch_size: int = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward

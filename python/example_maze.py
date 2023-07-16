@@ -28,7 +28,6 @@ import os
 import random
 import sys
 from turtle import Screen, Turtle
-from typing import Final
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -36,7 +35,7 @@ from tqdm import tqdm
 
 import xcsf
 
-RANDOM_STATE: Final[int] = 1
+RANDOM_STATE: int = 1
 random.seed(RANDOM_STATE)
 
 
@@ -56,7 +55,7 @@ class Maze:
     Some mazes require a form of memory to be solved optimally.
     """
 
-    OPTIMAL: Final[dict] = {
+    OPTIMAL: dict = {
         "woods1": 1.7,
         "woods2": 1.7,
         "woods14": 9.5,
@@ -73,13 +72,13 @@ class Maze:
         "mazef3": 3.375,
         "mazef4": 4.5,
     }
-    MAX_PAYOFF: Final[float] = 1  #: reward for finding the goal
-    X_MOVES: Final[list[int]] = [0, 1, 1, 1, 0, -1, -1, -1]  #: x-axis moves
-    Y_MOVES: Final[list[int]] = [-1, -1, 0, 1, 1, 1, 0, -1]  #: y-axis moves
+    MAX_PAYOFF: float = 1  #: reward for finding the goal
+    X_MOVES: list[int] = [0, 1, 1, 1, 0, -1, -1, -1]  #: x-axis moves
+    Y_MOVES: list[int] = [-1, -1, 0, 1, 1, 1, 0, -1]  #: y-axis moves
 
     def __init__(self, filename: str) -> None:
         """Constructs a new maze problem."""
-        self.name: Final[str] = filename  #: maze name
+        self.name: str = filename  #: maze name
         self.maze: list[list[str]] = []  #: maze as read from the input file
         line: list[str] = []
         path = os.path.normpath("../env/maze/" + filename + ".txt")
@@ -93,8 +92,8 @@ class Maze:
                     line = []
                 else:
                     line.append(c)
-        self.x_size: Final[int] = len(self.maze[0])  #: maze width
-        self.y_size: Final[int] = len(self.maze)  #: maze height
+        self.x_size: int = len(self.maze[0])  #: maze width
+        self.y_size: int = len(self.maze)  #: maze height
         self.state: np.ndarray = np.zeros(8)  #: current maze state
         self.x_pos: int = 0  #: current x position within the maze
         self.y_pos: int = 0  #: current y position within the maze
@@ -111,7 +110,7 @@ class Maze:
 
     def sensor(self, x_pos: int, y_pos: int) -> float:
         """Returns the real-number representation of a discrete maze cell."""
-        s: Final[str] = self.maze[y_pos][x_pos]
+        s: str = self.maze[y_pos][x_pos]
         if s == "*":
             return 0.1
         if s == "O":
@@ -145,11 +144,11 @@ class Maze:
         if act < 0 or act > 7:
             print("invalid maze action")
             sys.exit()
-        x_vec: Final[int] = Maze.X_MOVES[act]
-        y_vec: Final[int] = Maze.Y_MOVES[act]
+        x_vec: int = Maze.X_MOVES[act]
+        y_vec: int = Maze.Y_MOVES[act]
         x_new: int = ((self.x_pos + x_vec) % self.x_size + self.x_size) % self.x_size
         y_new: int = ((self.y_pos + y_vec) % self.y_size + self.y_size) % self.y_size
-        s: Final[str] = self.maze[y_new][x_new]
+        s: str = self.maze[y_new][x_new]
         if s in ("O", "Q"):
             return np.copy(self.state), 0, False
         self.x_pos = x_new
@@ -175,8 +174,8 @@ class Maze:
 # Initialise XCSF
 ###################
 
-PERF_TRIALS: Final[float] = 50  # display frequency
-TELETRANSPORTATION: Final[int] = 50  # reset after this many steps
+PERF_TRIALS: float = 50  # display frequency
+TELETRANSPORTATION: int = 50  # reset after this many steps
 
 xcs = xcsf.XCS(
     x_dim=8,
@@ -222,13 +221,13 @@ xcs = xcsf.XCS(
     },
 )
 
-print(json.dumps(xcs.get_params(), indent=4))
+print(json.dumps(xcs.internal_params(), indent=4))
 
 #####################
 # Execute experiment
 #####################
 
-N: Final[int] = 40  # 2,000 trials
+N: int = 40  # 2,000 trials
 trials: np.ndarray = np.zeros(N)
 psize: np.ndarray = np.zeros(N)
 msize: np.ndarray = np.zeros(N)
@@ -305,11 +304,11 @@ plot_performance(maze)
 # Visualise some maze runs
 #################################
 
-GRID_WIDTH: Final[int] = maze.x_size
-GRID_HEIGHT: Final[int] = maze.y_size
-CELL_SIZE: Final[int] = 20
-WIDTH: Final[int] = 1400
-HEIGHT: Final[int] = 720
+GRID_WIDTH: int = maze.x_size
+GRID_HEIGHT: int = maze.y_size
+CELL_SIZE: int = 20
+WIDTH: int = 1400
+HEIGHT: int = 720
 screen = Screen()
 screen.setup(WIDTH + 4, HEIGHT + 8)
 screen.setworldcoordinates(0, 0, WIDTH, HEIGHT)
@@ -379,8 +378,8 @@ def visualise(xoff: int, yoff: int) -> None:
 
 def draw_runs() -> None:
     """Draw some runs through the maze."""
-    grid_xoff: Final[int] = GRID_WIDTH * CELL_SIZE
-    grid_yoff: Final[int] = GRID_HEIGHT * CELL_SIZE
+    grid_xoff: int = GRID_WIDTH * CELL_SIZE
+    grid_yoff: int = GRID_HEIGHT * CELL_SIZE
     for i in range(8):
         for j in range(4):
             xoff = i * (grid_xoff + CELL_SIZE)
