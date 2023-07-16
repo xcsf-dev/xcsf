@@ -14,11 +14,11 @@
  */
 
 /**
- * @file pa_test.cpp
+ * @file serialization_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2022.
- * @brief Prediction array tests.
+ * @date 2023.
+ * @brief Serialization tests.
  */
 
 #include "../lib/doctest/doctest/doctest.h"
@@ -34,33 +34,15 @@ extern "C" {
 #include <string.h>
 }
 
-TEST_CASE("PA")
+TEST_CASE("Serialization")
 {
     struct XCSF xcsf;
-    param_init(&xcsf, 5, 1, 5);
+    param_init(&xcsf, 4, 1, 1);
     rand_init_seed(2);
-
-    // test best action
-    double pa1[5] = { 0.214, 0.6423, 0.111, 0.775, 0.445 };
-    xcsf.pa = pa1;
-    int action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 3);
-
-    double pa2[5] = { 0.214, 0.9423, 0.111, 0.775, 0.445 };
-    xcsf.pa = pa2;
-    action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 1);
-
-    double pa3[5] = { 0.6423, 0.6423, 0.6423, 0.6423, 0.445 };
-    xcsf.pa = pa3;
-    action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 1);
-
-    action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 2);
-
-    action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 0);
-
+    xcsf_init(&xcsf);
+    size_t s = xcsf_save(&xcsf, "temp.bin");
+    size_t r = xcsf_load(&xcsf, "temp.bin");
+    CHECK_EQ(s, r);
+    xcsf_free(&xcsf);
     param_free(&xcsf);
 }
