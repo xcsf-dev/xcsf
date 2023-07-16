@@ -44,6 +44,7 @@ xcsf_init(struct XCSF *xcsf)
     clset_init(&xcsf->pset);
     clset_init(&xcsf->prev_pset);
     pa_init(xcsf);
+    clset_pset_init(xcsf);
 }
 
 /**

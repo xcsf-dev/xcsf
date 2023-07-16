@@ -137,6 +137,7 @@ struct XCSF {
     bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
     bool STATEFUL; //!< Whether classifiers should retain state across trials
     bool COMPACTION; //!< if sys err < E0: largest of 2 roulette spins deleted
+    char *population_file; //!< Name of a JSON file containing an initial pop
 };
 
 /**

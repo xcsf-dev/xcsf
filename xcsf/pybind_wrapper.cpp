@@ -135,7 +135,9 @@ class XCS
     size_t
     load(const char *filename)
     {
-        return xcsf_load(&xcs, filename);
+        size_t s = xcsf_load(&xcs, filename);
+        update_params();
+        return s;
     }
 
     /**
@@ -693,6 +695,8 @@ class XCS
         XCS xcs = XCS();
         // Load XCSF
         xcsf_load(&xcs.xcs, filename);
+        // Update object params
+        xcs.update_params();
         // Delete the temporary file
         if (std::remove(filename) != 0) {
             perror("Error deleting temporary pickle file");
@@ -890,7 +894,7 @@ class XCS
     {
         cJSON *json = cJSON_Parse(json_str.c_str());
         utils_json_parse_check(json);
-        clset_json_insert(&xcs, json);
+        clset_json_insert_cl(&xcs, json);
         cJSON_Delete(json);
     }
 
@@ -901,20 +905,7 @@ class XCS
     void
     json_insert(const std::string &json_str)
     {
-        cJSON *json = cJSON_Parse(json_str.c_str());
-        utils_json_parse_check(json);
-        if (json->child != NULL && cJSON_IsArray(json->child)) {
-            cJSON *tail = json->child->child; // insert inverted for consistency
-            tail->prev = NULL; // this should have been set by cJSON!
-            while (tail->next != NULL) {
-                tail = tail->next;
-            }
-            while (tail != NULL) {
-                clset_json_insert(&xcs, tail);
-                tail = tail->prev;
-            }
-        }
-        cJSON_Delete(json);
+        clset_json_insert(&xcs, json_str.c_str());
     }
 
     /**

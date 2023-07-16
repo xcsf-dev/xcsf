@@ -30,17 +30,9 @@ import xcsf
 RANDOM_STATE = 1
 np.random.seed(RANDOM_STATE)
 
-xcs = xcsf.XCS(
-    x_dim=8,
-    y_dim=1,
-    n_actions=1,
-    random_state=RANDOM_STATE,
-    max_trials=1,
-    pop_init=False,  # start with an empty population set
-    action={"type": "integer"},
-    condition={"type": "hyperrectangle_csr"},
-    prediction={"type": "nlms_linear"},
-)
+##############################################################################
+# Human-designed classifier.
+##############################################################################
 
 classifier = {
     "error": 10,  # each of these properties are optional
@@ -62,6 +54,36 @@ classifier = {
     # prediction is absent and therefore initialised as normal
 }
 
+##############################################################################
+# Write a population set file to demonstrate initialisation from a file.
+# Note: an existing population can be saved with xcs.json_write("pset.json")
+##############################################################################
+
+with open("pset.json", "w", encoding="utf-8") as file:
+    pset = {"classifiers": [classifier]}
+    json.dump(pset, file)
+
+##############################################################################
+# Initialise XCSF.
+##############################################################################
+
+xcs = xcsf.XCS(
+    x_dim=8,
+    y_dim=1,
+    n_actions=1,
+    random_state=RANDOM_STATE,
+    population_file="pset.json",  # optional population set file
+    max_trials=1,
+    pop_init=False,  # don't add any extra random classifiers
+    action={"type": "integer"},
+    condition={"type": "hyperrectangle_csr"},
+    prediction={"type": "nlms_linear"},
+)
+
+##############################################################################
+# Add the human-designed classifier again, this time manually.
+##############################################################################
+
 json_str = json.dumps(classifier)  # dictionary to JSON
 
 # The json_insert_cl() function can be used to insert a single new classifier
@@ -73,19 +95,27 @@ json_str = json.dumps(classifier)  # dictionary to JSON
 # limit.
 xcs.json_insert_cl(json_str)  # insert in [P]
 
+##############################################################################
+
 print("******************************")
 print("BEFORE FITTING")
 print("******************************")
 
 xcs.print_pset()
 
-print("******************************")
-print("AFTER FITTING")
-print("******************************")
+##############################################################################
+# Fit a single sample.
+##############################################################################
 
 X = np.asarray([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]).reshape(1, -1)
 y = np.random.random(1)
 
 xcs.fit(X, y, warm_start=True)  # use existing population
+
+##############################################################################
+
+print("******************************")
+print("AFTER FITTING")
+print("******************************")
 
 xcs.print_pset()

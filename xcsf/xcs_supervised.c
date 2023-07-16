@@ -97,9 +97,6 @@ double
 xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
                    const struct Input *test_data, const bool shuffle)
 {
-    if (xcsf->time == 0) {
-        clset_pset_init(xcsf);
-    }
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
