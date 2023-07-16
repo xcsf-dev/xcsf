@@ -41,7 +41,7 @@ import xcsf
 
 np.set_printoptions(suppress=True)
 
-RANDOM_STATE: Final[int] = 10  # random number seed
+RANDOM_STATE: Final[int] = 5  # random number seed
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
