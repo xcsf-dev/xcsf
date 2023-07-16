@@ -109,7 +109,7 @@ class XCS
      * @brief Constructor.
      * @param [in] kwargs Parameters and their values.
      */
-    XCS(py::kwargs kwargs) : XCS()
+    explicit XCS(py::kwargs kwargs) : XCS()
     {
         set_params(kwargs);
         xcsf_free(&xcs);
