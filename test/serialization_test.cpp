@@ -43,6 +43,9 @@ TEST_CASE("Serialization")
     size_t s = xcsf_save(&xcsf, "temp.bin");
     size_t r = xcsf_load(&xcsf, "temp.bin");
     CHECK_EQ(s, r);
+    char *json_str = param_json_export(&xcsf);
+    param_json_import(&xcsf, json_str);
+    free(json_str);
     xcsf_free(&xcsf);
     param_free(&xcsf);
 }
