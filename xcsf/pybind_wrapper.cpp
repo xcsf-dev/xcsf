@@ -86,13 +86,13 @@ class XCS
         state = NULL;
         action = 0;
         payoff = 0;
-        train_data = (struct Input *) malloc(sizeof(struct Input));
+        train_data = new struct Input;
         train_data->n_samples = 0;
         train_data->x_dim = 0;
         train_data->y_dim = 0;
         train_data->x = NULL;
         train_data->y = NULL;
-        test_data = (struct Input *) malloc(sizeof(struct Input));
+        test_data = new struct Input;
         test_data->n_samples = 0;
         test_data->x_dim = 0;
         test_data->y_dim = 0;
