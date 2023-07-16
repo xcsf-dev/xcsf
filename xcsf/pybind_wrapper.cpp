@@ -83,6 +83,27 @@ class XCS
      */
     XCS()
     {
+        reset();
+        xcsf_init(&xcs);
+    }
+
+    /**
+     * @brief Constructor.
+     * @param [in] kwargs Parameters and their values.
+     */
+    XCS(py::kwargs kwargs)
+    {
+        reset();
+        set_params(kwargs);
+        xcsf_init(&xcs);
+    }
+
+    /**
+     * @brief Resets basic constructor variables.
+     */
+    void
+    reset(void)
+    {
         state = NULL;
         action = 0;
         payoff = 0;
@@ -102,18 +123,6 @@ class XCS
         metric_counter = 0;
         param_init(&xcs, 1, 1, 1);
         update_params();
-        xcsf_init(&xcs);
-    }
-
-    /**
-     * @brief Constructor.
-     * @param [in] kwargs Parameters and their values.
-     */
-    explicit XCS(py::kwargs kwargs) : XCS()
-    {
-        set_params(kwargs);
-        xcsf_free(&xcs);
-        xcsf_init(&xcs);
     }
 
     /**

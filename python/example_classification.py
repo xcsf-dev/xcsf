@@ -104,7 +104,7 @@ ETA: Final[float] = 0.01
 ETA_MIN: Final[float] = 0.00001
 MOMENTUM: Final[float] = 0.9
 DECAY: Final[float] = 0
-N_INIT: Final[int] = 5
+N_INIT: Final[int] = 16
 N_MAX: Final[int] = 100
 MAX_GROW: Final[int] = 1
 
@@ -167,7 +167,7 @@ xcs = xcsf.XCS(
     n_actions=1,
     omp_num_threads=12,
     random_state=RANDOM_STATE,
-    pop_size=500,
+    pop_size=100,
     max_trials=MAX_TRIALS,
     perf_trials=1000,
     loss_func="onehot",  # one-hot encoding classification error
@@ -251,7 +251,7 @@ print(json.dumps(xcs.get_params(), indent=4))
 # maintain control within Python.
 # See the regression example for a simpler scheme with a single call to fit().
 
-N: Final[int] = 100  # 100,000 trials
+N: Final[int] = 200  # 200,000 trials
 val_min: float = 1000  # minimum validation error observed
 val_trial: int = 0  # number of trials at validation minimum
 
