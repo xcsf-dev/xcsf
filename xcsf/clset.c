@@ -286,12 +286,12 @@ clset_load_pop_file(struct XCSF *xcsf)
         exit(EXIT_FAILURE);
     }
     fseek(f, 0, SEEK_END);
-    const long len = ftell(f);
+    const long len = 1 + ftell(f);
     fseek(f, 0, SEEK_SET);
-    char *json_buffer = malloc(sizeof(char) * (len + 1));
-    const size_t s = fread(json_buffer, sizeof(char), len, f);
+    char *json_buffer = malloc(sizeof(char) * len);
+    const size_t s = fread(json_buffer, sizeof(char), len - 1, f);
     fclose(f);
-    json_buffer[len] = '\0';
+    json_buffer[len - 1] = '\0';
     if (s == 0) {
         printf("Error opening JSON file: %s\n", xcsf->population_file);
         exit(EXIT_FAILURE);
