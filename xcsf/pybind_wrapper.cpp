@@ -536,14 +536,14 @@ class XCS
         xcs.MAX_TRIALS = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
         milliseconds total_duration(0);
         for (int i = 0; i < n; ++i) {
-            auto start = high_resolution_clock::now();
+            const auto start = high_resolution_clock::now();
             double train = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
             double val = 0;
             if (val_data != NULL) {
                 val = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
-            auto end = high_resolution_clock::now();
-            auto time = duration_cast<milliseconds>(end - start);
+            const auto end = high_resolution_clock::now();
+            const auto time = duration_cast<milliseconds>(end - start);
             total_duration += time;
             update_metrics(train, val);
             if (verbose) {

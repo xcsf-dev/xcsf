@@ -32,6 +32,8 @@
     #include <omp.h>
 #endif
 
+#define MAX_LEN 512 //!< Maximum length of a population filename
+
 /**
  * @brief Initialises default XCSF parameters.
  * @param [in] xcsf The XCSF data structure.
@@ -474,7 +476,7 @@ size_t
 param_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    size_t len = strlen(xcsf->population_file);
+    size_t len = strnlen(xcsf->population_file, MAX_LEN);
     s += fwrite(&len, sizeof(size_t), 1, fp);
     s += fwrite(xcsf->population_file, sizeof(char), len, fp);
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
@@ -614,7 +616,7 @@ const char *
 param_set_population_file(struct XCSF *xcsf, const char *a)
 {
     free(xcsf->population_file);
-    size_t length = strlen(a) + 1;
+    size_t length = strnlen(a, MAX_LEN) + 1;
     xcsf->population_file = malloc(sizeof(char) * length);
     strncpy(xcsf->population_file, a, length);
     return NULL;
