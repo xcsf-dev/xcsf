@@ -297,6 +297,7 @@ clset_load_pop_file(struct XCSF *xcsf)
     json_buffer[len] = '\0';
     fclose(f);
     clset_json_insert(xcsf, json_buffer);
+    free(json_buffer);
 }
 
 /**
