@@ -197,7 +197,29 @@ TEST_CASE("PRED_RLS")
     CHECK_EQ(new_pred->n_weights, src_pred->n_weights);
     CHECK(check_array_eq(new_pred->weights, src_pred->weights,
                          src_pred->n_weights));
+    free(json_str);
+
+    /* test save */
+    FILE *fp = fopen("temp.bin", "wb");
+    size_t s = pred_rls_save(&xcsf, &c, fp);
+    fclose(fp);
+
+    /* test load */
+    fp = fopen("temp.bin", "rb");
+    size_t r = pred_rls_load(&xcsf, &c, fp);
+    CHECK_EQ(s, r);
+
+    /* parameter export */
+    json_str = pred_rls_param_json_export(&xcsf);
+
+    /* parameter import */
+    json = cJSON_Parse(json_str);
+    char *json_rtn = pred_rls_param_json_import(&xcsf, json->child);
+    CHECK(json_rtn == NULL);
 
     /* clean up */
+    free(json_str);
+    free(json_rtn);
+    pred_rls_free(&xcsf, &new_cl);
     param_free(&xcsf);
 }
