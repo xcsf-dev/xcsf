@@ -18,6 +18,7 @@
 #
 
 set(XCSF_TESTS
+    clset_test.cpp
     cond_ellipsoid_test.cpp
     cond_rectangle_test.cpp
     cond_ternary_test.cpp
