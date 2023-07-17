@@ -32,15 +32,11 @@ import random
 from collections import deque
 
 import gymnasium as gym
-import imageio
-import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import rcParams
-from tqdm import tqdm
 
 import xcsf
 
-RANDOM_STATE: int = 0
+RANDOM_STATE: int = 10
 random.seed(RANDOM_STATE)
 np.random.seed(RANDOM_STATE)
 
@@ -49,14 +45,10 @@ np.random.seed(RANDOM_STATE)
 ############################################
 
 env = gym.make("CartPole-v1", render_mode="rgb_array")
+env.reset(seed=RANDOM_STATE)
+
 X_DIM: int = int(env.observation_space.shape[0])
 N_ACTIONS: int = int(env.action_space.n)
-
-SAVE_GIF: bool = False  # for creating a gif
-SAVE_GIF_EPISODES: int = 50
-frames: list[list[float]] = []
-fscore: list[float] = []
-ftrial: list[int] = []
 
 ###################
 # Initialise XCSF
@@ -71,10 +63,15 @@ xcs = xcsf.XCS(
     pop_init=False,
     max_trials=1,  # one trial per fit()
     pop_size=200,
-    loss_func="mse",
+    theta_del=100,
     e0=0.001,
     alpha=1,
     beta=0.05,
+    ea={
+        "select_type": "roulette",
+        "theta_ea": 100,
+        "lambda": 2,
+    },
     condition={
         "type": "neural",
         "args": {
@@ -145,7 +142,7 @@ def egreedy_action(state: np.ndarray) -> int:
     return int(np.random.choice(best_actions))
 
 
-def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
+def episode() -> tuple[float, int]:
     """Executes a single episode, saving to memory buffer"""
     episode_score: float = 0
     episode_steps: int = 0
@@ -157,16 +154,7 @@ def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
         episode_steps += 1
         episode_score += reward
         memory.append((state, action, reward, next_state, done))
-        if create_gif:
-            frames.append(env.render(mode="rgb_array"))
-            fscore.append(episode_score)
-            ftrial.append(episode_nr)
         if done:
-            if create_gif:
-                for _ in range(100):
-                    frames.append(frames[-1])
-                    fscore.append(fscore[-1])
-                    ftrial.append(ftrial[-1])
             break
         state = next_state
     return episode_score, episode_steps
@@ -174,11 +162,8 @@ def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
 
 # learning episodes
 for ep in range(MAX_EPISODES):
-    gif: bool = False
-    if SAVE_GIF and ep % SAVE_GIF_EPISODES == 0:
-        gif = True
     # execute a single episode
-    ep_score, ep_steps = episode(ep, gif)
+    ep_score, ep_steps = episode()
     # perform experience replay updates
     if ep % REPLAY_TIME == 0:
         replay()
@@ -207,32 +192,7 @@ for ep in range(MAX_EPISODES):
 
 # final exploit episode
 epsilon = 0
-ep_score, ep_steps = episode(ep, SAVE_GIF)
+ep_score, ep_steps = episode()
 
 # close Gym
 env.close()
-
-if SAVE_GIF:
-    # add score and episode nr
-    rcParams["font.family"] = "monospace"
-    bbox = dict(boxstyle="round", fc="0.8")
-    annotated_frames = list()
-    bar = tqdm(total=len(frames), position=0, leave=True)
-    for i in range(len(frames)):
-        fig = plt.figure(dpi=90)
-        fig.set_size_inches(3, 3)
-        ax = fig.add_subplot(111)
-        plt.imshow(frames[i])
-        plt.axis("off")
-        strial = str(ftrial[i])
-        sscore = str(int(fscore[i]))
-        text = f"episode = {strial:3s}, score = {sscore:3s}"
-        ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
-        fig.canvas.draw()
-        annotated_frames.append(np.asarray(fig.canvas.renderer.buffer_rgba()))
-        plt.close(fig)
-        bar.refresh()
-        bar.update(1)
-    bar.close()
-    # write gif
-    imageio.mimsave("animation.gif", annotated_frames, duration=30)
