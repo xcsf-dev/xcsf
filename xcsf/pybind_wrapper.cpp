@@ -437,7 +437,7 @@ class XCS
         double msize = py::cast<double>(metric_msize[metric_msize.size() - 1]);
         double mfrac = py::cast<double>(metric_mfrac[metric_mfrac.size() - 1]);
         std::ostringstream status;
-        status << "time=" << time;
+        status << time;
         status << " trials=" << trial;
         status << " train=" << std::fixed << std::setprecision(5) << train;
         if (val_data != NULL) {
@@ -580,7 +580,7 @@ class XCS
         callbacks_finish(calls);
         if (verbose) {
             std::ostringstream status;
-            status << "time=" << fmt_duration(total_duration);
+            status << fmt_duration(total_duration);
             py::print(status.str());
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
