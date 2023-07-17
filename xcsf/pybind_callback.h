@@ -73,6 +73,7 @@ class EarlyStoppingCallback
     void
     store(struct XCSF *xcsf)
     {
+        do_restore = true;
         xcsf_store_pset(xcsf);
         if (verbose) {
             std::ostringstream status;
@@ -90,6 +91,7 @@ class EarlyStoppingCallback
     void
     retrieve(struct XCSF *xcsf)
     {
+        do_restore = false;
         xcsf_retrieve_pset(xcsf);
         if (verbose) {
             std::ostringstream status;
@@ -132,6 +134,18 @@ class EarlyStoppingCallback
         return false;
     }
 
+    /**
+     * @brief Executes any tasks at the end of fitting.
+     * @param [in] xcsf The XCSF data structure.
+     */
+    void
+    finish(struct XCSF *xcsf)
+    {
+        if (restore && do_restore) {
+            retrieve(xcsf);
+        }
+    }
+
   private:
     py::str monitor;
     int patience;
@@ -142,4 +156,5 @@ class EarlyStoppingCallback
 
     double best_error = std::numeric_limits<double>::max();
     int best_trial = 0;
+    bool do_restore = false;
 };

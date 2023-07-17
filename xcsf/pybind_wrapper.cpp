@@ -496,7 +496,7 @@ class XCS
      * @return Whether to terminate early.
      */
     bool
-    do_callbacks(py::list callbacks)
+    callbacks_check(py::list callbacks)
     {
         py::dict metrics = get_metrics();
         for (py::handle item : callbacks) {
@@ -509,6 +509,23 @@ class XCS
             }
         }
         return false;
+    }
+
+    /**
+     * @brief Executes callback finish.
+     * @param [in] callbacks The callbacks to perform.
+     * @param [in] verbose Whether to print info.
+     */
+    void
+    callbacks_finish(py::list callbacks)
+    {
+        for (py::handle item : callbacks) {
+            if (py::isinstance<EarlyStoppingCallback>(item)) {
+                EarlyStoppingCallback &earlystop =
+                    py::cast<EarlyStoppingCallback &>(item);
+                earlystop.finish(&xcs);
+            }
+        }
     }
 
     /**
@@ -558,10 +575,11 @@ class XCS
             if (verbose) {
                 print_status(fmt_duration(time));
             }
-            if (do_callbacks(calls)) {
+            if (callbacks_check(calls)) {
                 break;
             }
         }
+        callbacks_finish(calls);
         if (verbose) {
             std::ostringstream status;
             status << "time=" << fmt_duration(total_duration);
