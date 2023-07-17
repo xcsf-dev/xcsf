@@ -563,7 +563,9 @@ class XCS
             }
         }
         if (verbose) {
-            py::print("time=", fmt_duration(total_duration));
+            std::ostringstream status;
+            status << "time=" << fmt_duration(total_duration);
+            py::print(status.str());
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
