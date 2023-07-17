@@ -492,7 +492,6 @@ class XCS
     /**
      * @brief Executes callbacks and returns whether to terminate.
      * @param [in] callbacks The callbacks to perform.
-     * @param [in] verbose Whether to print info.
      * @return Whether to terminate early.
      */
     bool
@@ -514,7 +513,6 @@ class XCS
     /**
      * @brief Executes callback finish.
      * @param [in] callbacks The callbacks to perform.
-     * @param [in] verbose Whether to print info.
      */
     void
     callbacks_finish(py::list callbacks)
