@@ -36,35 +36,36 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
-from sklearn.preprocessing import StandardScaler, minmax_scale
+from sklearn.preprocessing import StandardScaler
 
 import xcsf
 
 np.set_printoptions(suppress=True)
 
-RANDOM_STATE: int = 10101
+RANDOM_STATE: int = 101
 
 ###########################################################
 # Load data
 ###########################################################
 
-# Load data from https://www.openml.org/d/189
-data = fetch_openml(data_id=189)
+# Loads the kin8nm dataset from: https://www.openml.org/d/189
+data = fetch_openml(data_id=189, as_frame=True, parser="auto")
 
 # numpy
 X = np.asarray(data.data, dtype=np.float64)
 y = np.asarray(data.target, dtype=np.float64)
 
 # normalise inputs (zero mean and unit variance)
-scaler = StandardScaler()
-scaler.fit_transform(X)
+feature_scaler = StandardScaler()
+X = feature_scaler.fit_transform(X)
 
-# scale outputs [0,1]
-y = minmax_scale(y, feature_range=(0, 1))
-
-# reshape into 2D arrays
-if len(np.shape(y)) == 1:
+# reshape outputs into 2D arrays
+if y.ndim == 1:
     y = y.reshape(-1, 1)
+
+# normalise outputs (zero mean and unit variance)
+output_scaler = StandardScaler()
+y = output_scaler.fit_transform(y)
 
 # split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(
@@ -91,7 +92,7 @@ Y_DIM: int = np.shape(y_train)[1]
 ###########################################################
 
 MAX_TRIALS: int = 200000
-E0: float = 0.003
+E0: float = 0.1
 
 xcs = xcsf.XCS(
     x_dim=X_DIM,
@@ -142,7 +143,7 @@ xcs = xcsf.XCS(
         "args": {
             "layer_0": {
                 "type": "connected",
-                "activation": "relu",
+                "activation": "selu",
                 "n_init": 40,
                 "evolve_weights": True,
                 "evolve_functions": False,
@@ -157,7 +158,7 @@ xcs = xcsf.XCS(
             },
             "layer_1": {
                 "type": "connected",
-                "activation": "softplus",
+                "activation": "selu",
                 "n_init": 1,
                 "evolve_weights": True,
                 "evolve_functions": False,
@@ -197,20 +198,15 @@ xcs.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=[callback])
 ###########################################################
 
 metrics: dict = xcs.get_metrics()
-trials = metrics["trials"]
-psize = metrics["psize"]
-msize = metrics["msize"]
-train_mse = metrics["train"]
-val_mse = metrics["val"]
-
 plt.figure(figsize=(10, 6))
-plt.plot(trials, train_mse, label="Train MSE")
-plt.plot(trials, val_mse, label="Validation MSE")
+plt.plot(metrics["trials"], metrics["train"], label="Train MSE")
+plt.plot(metrics["trials"], metrics["val"], label="Validation MSE")
 plt.grid(linestyle="dotted", linewidth=1)
 plt.axhline(y=E0, xmin=0, xmax=1, linestyle="dashed", color="k")
 plt.title("XCSF Training Performance", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
 plt.ylabel("Mean Squared Error", fontsize=12)
+plt.ylim([0, 0.5])
 plt.xlim([0, MAX_TRIALS])
 plt.legend()
 plt.show()
