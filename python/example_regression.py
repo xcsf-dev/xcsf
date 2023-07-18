@@ -91,7 +91,7 @@ Y_DIM: int = np.shape(y_train)[1]
 ###########################################################
 
 MAX_TRIALS: int = 200000
-E0: float = 0.005
+E0: float = 0.003
 
 xcs = xcsf.XCS(
     x_dim=X_DIM,
@@ -143,7 +143,7 @@ xcs = xcsf.XCS(
             "layer_0": {
                 "type": "connected",
                 "activation": "relu",
-                "n_init": 10,
+                "n_init": 40,
                 "evolve_weights": True,
                 "evolve_functions": False,
                 "evolve_connect": True,
@@ -238,7 +238,7 @@ regressors.append(LinearRegression())
 regressors.append(
     MLPRegressor(
         random_state=RANDOM_STATE,
-        hidden_layer_sizes=(10,),
+        hidden_layer_sizes=(40,),
         activation="relu",
         solver="adam",
         learning_rate="adaptive",
