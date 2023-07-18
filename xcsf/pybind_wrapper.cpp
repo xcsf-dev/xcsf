@@ -444,7 +444,7 @@ class XCS
             double val = py::cast<double>(metric_val[metric_val.size() - 1]);
             status << " val=" << std::fixed << std::setprecision(5) << val;
         }
-        status << " pset=" << psize;
+        status << " pset=" << std::fixed << std::setprecision(1) << psize;
         status << " mset=" << std::fixed << std::setprecision(1) << msize;
         status << " mfrac=" << std::fixed << std::setprecision(2) << mfrac;
         py::print(status.str());
