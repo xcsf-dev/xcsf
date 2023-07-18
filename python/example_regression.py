@@ -30,6 +30,8 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
@@ -40,7 +42,11 @@ import xcsf
 
 np.set_printoptions(suppress=True)
 
-RANDOM_STATE: int = 5
+RANDOM_STATE: int = 10101
+
+###########################################################
+# Load data
+###########################################################
 
 # Load data from https://www.openml.org/d/189
 data = fetch_openml(data_id=189)
@@ -80,7 +86,9 @@ print(f"y_test shape = {np.shape(y_test)}")
 X_DIM: int = np.shape(X_train)[1]
 Y_DIM: int = np.shape(y_train)[1]
 
+###########################################################
 # Initialise XCSF
+###########################################################
 
 MAX_TRIALS: int = 200000
 E0: float = 0.005
@@ -168,6 +176,10 @@ xcs = xcsf.XCS(
 
 print(json.dumps(xcs.internal_params(), indent=4))
 
+###########################################################
+# Fit XCSF
+###########################################################
+
 callback = xcsf.EarlyStoppingCallback(
     # note: PERF_TRIALS is considered an "epoch" for callbacks
     monitor="val",  # which metric to monitor: {"train", "val"}
@@ -180,6 +192,10 @@ callback = xcsf.EarlyStoppingCallback(
 
 xcs.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=[callback])
 
+###########################################################
+# Plot XCSF learning performance
+###########################################################
+
 metrics: dict = xcs.get_metrics()
 trials = metrics["trials"]
 psize = metrics["psize"]
@@ -187,7 +203,6 @@ msize = metrics["msize"]
 train_mse = metrics["train"]
 val_mse = metrics["val"]
 
-# plot XCSF learning performance
 plt.figure(figsize=(10, 6))
 plt.plot(trials, train_mse, label="Train MSE")
 plt.plot(trials, val_mse, label="Validation MSE")
@@ -200,49 +215,46 @@ plt.xlim([0, MAX_TRIALS])
 plt.legend()
 plt.show()
 
-############################
-# Compare with alternatives
-############################
+###########################################################
+# Final XCSF test score
+###########################################################
 
-# final XCSF test score
 print("*****************************")
 xcsf_pred = xcs.predict(X_test)
 xcsf_mse = mean_squared_error(xcsf_pred, y_test)
 print(f"XCSF Test MSE = {xcsf_mse:.4f}")
 
-# compare with linear regression
-lm = LinearRegression()
-lm.fit(X_train, y_train)
-lm_pred = lm.predict(X_test)
-lm_mse = mean_squared_error(lm_pred, y_test)
-print(f"Linear regression Test MSE = {lm_mse:.4f}")
+###########################################################
+# Compare with alternatives
+###########################################################
 
-# compare with MLP regressor
 X_train = np.vstack((X_train, X_val))
 y_train = np.vstack((y_train, y_val))
-mlp = MLPRegressor(
-    hidden_layer_sizes=(10,),
-    activation="relu",
-    solver="adam",
-    learning_rate="adaptive",
-    learning_rate_init=0.01,
-    max_iter=1000,
-    alpha=0.01,
-    validation_fraction=0.1,
+
+regressors = []
+
+regressors.append(LinearRegression())
+
+regressors.append(
+    MLPRegressor(
+        random_state=RANDOM_STATE,
+        hidden_layer_sizes=(10,),
+        activation="relu",
+        solver="adam",
+        learning_rate="adaptive",
+        learning_rate_init=0.01,
+        max_iter=1000,
+        alpha=0.01,
+        validation_fraction=0.1,
+    )
 )
-mlp.fit(X_train, y_train.ravel())
-mlp_pred = mlp.predict(X_test)
-mlp_mse = mean_squared_error(mlp_pred, y_test)
-print(f"MLP Regressor Test MSE = {mlp_mse:.4f}")
 
-#####################################
-# Show some predictions vs. answers
-#####################################
+regressors.append(RandomForestRegressor(random_state=RANDOM_STATE))
 
-pred = xcs.predict(X_test[:10])
-print("*****************************")
-print("first 10 predictions = ")
-print(pred)
-print("*****************************")
-print("first 10 answers = ")
-print(y_test[:10])
+regressors.append(GaussianProcessRegressor(random_state=RANDOM_STATE))
+
+for model in regressors:
+    model.fit(X_train, y_train.ravel())
+    pred = model.predict(X_test)
+    mse = mean_squared_error(pred, y_test)
+    print(f"{model.__class__.__name__} Test MSE = {mse:.4f}")
