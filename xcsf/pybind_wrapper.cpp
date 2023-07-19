@@ -26,6 +26,7 @@
     #define _hypot hypot
 #endif
 
+#include <chrono>
 #include <cstdio>
 #include <fstream>
 #include <iomanip>
@@ -407,12 +408,17 @@ class XCS
     std::string
     get_timestamp()
     {
-        time_t now = time(0);
-        struct tm tstruct;
-        char buf[80];
-        tstruct = *localtime(&now);
-        strftime(buf, sizeof(buf), "%Y-%m-%d.%H:%M:%S", &tstruct);
-        return buf;
+        using namespace std::chrono;
+        auto now = system_clock::now();
+        std::time_t current = system_clock::to_time_t(now);
+        std::tm local = *std::localtime(&current);
+        char buffer[20];
+        std::strftime(buffer, sizeof(buffer), "%Y-%m-%dT%H:%M:%S", &local);
+        auto dur = now.time_since_epoch();
+        auto ms = duration_cast<milliseconds>(dur) % 1000;
+        std::ostringstream oss;
+        oss << buffer << '.' << std::setfill('0') << std::setw(3) << ms.count();
+        return oss.str();
     }
 
     /**
@@ -561,10 +567,10 @@ class XCS
                 print_status();
             }
         }
-        callbacks_finish(calls);
         if (verbose) {
             print_status();
         }
+        callbacks_finish(calls);
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
     }
