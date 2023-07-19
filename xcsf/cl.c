@@ -508,7 +508,7 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
         cJSON_AddItemToObject(json, "condition", condition);
         free(json_str);
     }
-    if (return_act) {
+    if (return_act && xcsf->n_actions > 1) {
         json_str = act_json_export(xcsf, c);
         cJSON *action = cJSON_Parse(json_str);
         cJSON_AddItemToObject(json, "action", action);
