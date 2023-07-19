@@ -90,4 +90,7 @@ clset_json_export(const struct XCSF *xcsf, const struct Set *set,
                   const bool return_pred);
 
 void
-clset_json_insert(struct XCSF *xcsf, const cJSON *json);
+clset_json_insert_cl(struct XCSF *xcsf, const cJSON *json);
+
+void
+clset_json_insert(struct XCSF *xcsf, const char *json_str);

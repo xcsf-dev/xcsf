@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -27,6 +27,7 @@
 #include "../lib/cJSON/cJSON.h"
 #include "../lib/dSFMT/dSFMT.h"
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -136,4 +137,23 @@ catch_error(const char *ret)
         printf("%s\n", ret);
         exit(EXIT_FAILURE);
     }
+}
+
+/**
+ * @brief Checks whether two double arrays are approximately equal.
+ * @param [in] arr1 Array.
+ * @param [in] arr2 Array.
+ * @param [in] size Length of the arrays.
+ * @return Whether the arrays are equal.
+ */
+static inline bool
+check_array_eq(const double *arr1, const double *arr2, int size)
+{
+    const double tol = 1e-5;
+    for (int i = 0; i < size; ++i) {
+        if (arr1[i] < arr2[i] - tol || arr1[i] > arr2[i] + tol) {
+            return false;
+        }
+    }
+    return true;
 }

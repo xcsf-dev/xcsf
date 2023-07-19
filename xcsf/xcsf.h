@@ -36,8 +36,8 @@
 #include <string.h>
 
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
-static const int VERSION_MINOR = 2; //!< XCSF minor version number
-static const int VERSION_BUILD = 9; //!< XCSF build version number
+static const int VERSION_MINOR = 3; //!< XCSF minor version number
+static const int VERSION_BUILD = 0; //!< XCSF build version number
 
 /**
  * @brief Classifier data structure.
@@ -104,6 +104,7 @@ struct XCSF {
     double *pa; //!< Prediction array (stores fitness weighted predictions)
     double *nr; //!< Prediction array (stores total fitness)
     double *prev_state; //!< Environment state on the previous step
+    double *cover; //!< Values to return for a prediction instead of covering
     int time; //!< Current number of EA executions
     int pa_size; //!< Prediction array size
     int x_dim; //!< Number of problem input variables
@@ -136,6 +137,7 @@ struct XCSF {
     bool SET_SUBSUMPTION; //!< Whether to perform match set subsumption
     bool STATEFUL; //!< Whether classifiers should retain state across trials
     bool COMPACTION; //!< if sys err < E0: largest of 2 roulette spins deleted
+    char *population_file; //!< Name of a JSON file containing an initial pop
 };
 
 /**

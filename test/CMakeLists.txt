@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2020--2022 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2020--2023 Richard Preen <rpreen@gmail.com>
 #
 # Copyright (C) 2021 David Pätzel
 #
@@ -18,6 +18,7 @@
 #
 
 set(XCSF_TESTS
+    clset_test.cpp
     cond_ellipsoid_test.cpp
     cond_rectangle_test.cpp
     cond_ternary_test.cpp
@@ -31,6 +32,7 @@ set(XCSF_TESTS
     pa_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
+    serialization_test.cpp
     util_test.cpp
     unit_tests.cpp)
 

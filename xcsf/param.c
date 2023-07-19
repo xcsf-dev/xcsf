@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -31,6 +31,8 @@
 #ifdef PARALLEL
     #include <omp.h>
 #endif
+
+#define MAX_LEN 512 //!< Maximum length of a population filename
 
 /**
  * @brief Initialises default XCSF parameters.
@@ -52,6 +54,8 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
     xcsf->act = malloc(sizeof(struct ArgsAct));
     xcsf->cond = malloc(sizeof(struct ArgsCond));
     xcsf->pred = malloc(sizeof(struct ArgsPred));
+    xcsf->population_file = malloc(sizeof(char));
+    xcsf->population_file[0] = '\0';
     param_set_n_actions(xcsf, n_actions);
     param_set_x_dim(xcsf, x_dim);
     param_set_y_dim(xcsf, y_dim);
@@ -88,6 +92,9 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
 void
 param_free(struct XCSF *xcsf)
 {
+    if (xcsf->population_file != NULL) {
+        free(xcsf->population_file);
+    }
     action_param_free(xcsf);
     cond_param_free(xcsf);
     pred_param_free(xcsf);
@@ -114,6 +121,9 @@ param_json_export(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "n_actions", xcsf->n_actions);
     cJSON_AddNumberToObject(json, "omp_num_threads", xcsf->OMP_NUM_THREADS);
     cJSON_AddNumberToObject(json, "random_state", xcsf->RANDOM_STATE);
+    if (xcsf->population_file != NULL) {
+        cJSON_AddStringToObject(json, "population_file", xcsf->population_file);
+    }
     cJSON_AddBoolToObject(json, "pop_init", xcsf->POP_INIT);
     cJSON_AddNumberToObject(json, "max_trials", xcsf->MAX_TRIALS);
     cJSON_AddNumberToObject(json, "perf_trials", xcsf->PERF_TRIALS);
@@ -182,17 +192,26 @@ param_json_export(const struct XCSF *xcsf)
 static bool
 param_json_import_general(struct XCSF *xcsf, const cJSON *json)
 {
-    if (strncmp(json->string, "version\0", 8) == 0 ||
-        strncmp(json->string, "x_dim\0", 6) == 0 ||
-        strncmp(json->string, "y_dim\0", 6) == 0 ||
-        strncmp(json->string, "n_actions\0", 10) == 0) {
-        return true; // set internally
+    if (strncmp(json->string, "version\0", 8) == 0) {
+        return true;
+    } else if (strncmp(json->string, "x_dim\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_x_dim(xcsf, json->valueint));
+    } else if (strncmp(json->string, "y_dim\0", 6) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_y_dim(xcsf, json->valueint));
+    } else if (strncmp(json->string, "n_actions\0", 10) == 0 &&
+               cJSON_IsNumber(json)) {
+        catch_error(param_set_n_actions(xcsf, json->valueint));
     } else if (strncmp(json->string, "omp_num_threads\0", 16) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_omp_num_threads(xcsf, json->valueint));
     } else if (strncmp(json->string, "random_state\0", 13) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_random_state(xcsf, json->valueint));
+    } else if (strncmp(json->string, "population_file\0", 16) == 0 &&
+               cJSON_IsString(json)) {
+        catch_error(param_set_population_file(xcsf, json->valuestring));
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_pop_size(xcsf, json->valueint));
@@ -457,6 +476,9 @@ size_t
 param_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
+    size_t len = strnlen(xcsf->population_file, MAX_LEN);
+    s += fwrite(&len, sizeof(size_t), 1, fp);
+    s += fwrite(xcsf->population_file, sizeof(char), len, fp);
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->error, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mset_size, sizeof(double), 1, fp);
@@ -507,6 +529,11 @@ size_t
 param_load(struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
+    size_t len = 0;
+    s += fread(&len, sizeof(size_t), 1, fp);
+    free(xcsf->population_file);
+    xcsf->population_file = malloc(sizeof(char) * len);
+    s += fread(xcsf->population_file, sizeof(char), len, fp);
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->error, sizeof(double), 1, fp);
     s += fread(&xcsf->mset_size, sizeof(double), 1, fp);
@@ -582,6 +609,16 @@ param_set_random_state(struct XCSF *xcsf, const int a)
     } else {
         rand_init();
     }
+    return NULL;
+}
+
+const char *
+param_set_population_file(struct XCSF *xcsf, const char *a)
+{
+    free(xcsf->population_file);
+    size_t length = strnlen(a, MAX_LEN) + 1;
+    xcsf->population_file = malloc(sizeof(char) * length);
+    strncpy(xcsf->population_file, a, length);
     return NULL;
 }
 

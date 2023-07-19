@@ -17,7 +17,7 @@
  * @file cond_rectangle_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2022.
+ * @date 2020--2023.
  * @brief Hyperrectangle condition tests.
  */
 
@@ -42,6 +42,7 @@ TEST_CASE("COND_RECTANGLE_CSR")
     struct Cl c1;
     rand_init();
     param_init(&xcsf, 5, 1, 1);
+    param_set_random_state(&xcsf, 1);
     cond_param_set_type(&xcsf, COND_TYPE_HYPERRECTANGLE_CSR);
     cond_param_set_min(&xcsf, 0);
     cond_param_set_max(&xcsf, 1);
@@ -58,17 +59,20 @@ TEST_CASE("COND_RECTANGLE_CSR")
                                      0.0464343089, 0.4214295062 };
     const double false_spread[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
                                      0.1036188594, 0.4501471722 };
+
     /* test for true match condition */
     struct CondRectangle *p = (struct CondRectangle *) c1.cond;
     memcpy(p->b1, true_center, sizeof(double) * xcsf.x_dim);
     memcpy(p->b2, true_spread, sizeof(double) * xcsf.x_dim);
     bool match = cond_rectangle_match(&xcsf, &c1, x);
     CHECK_EQ(match, true);
+
     /* test for false match condition */
     memcpy(p->b1, false_center, sizeof(double) * xcsf.x_dim);
     memcpy(p->b2, false_spread, sizeof(double) * xcsf.x_dim);
     match = cond_rectangle_match(&xcsf, &c1, x);
     CHECK_EQ(match, false);
+
     /* test general */
     struct Cl c2;
     cl_init(&xcsf, &c2, 1, 1);
@@ -84,10 +88,44 @@ TEST_CASE("COND_RECTANGLE_CSR")
     CHECK_EQ(general, true);
     general = cond_rectangle_general(&xcsf, &c2, &c1);
     CHECK_EQ(general, false);
+
     /* test covering */
     cond_rectangle_cover(&xcsf, &c2, x);
     match = cond_rectangle_match(&xcsf, &c2, x);
     CHECK_EQ(match, true);
+
+    /* test copy */
+    cond_rectangle_free(&xcsf, &c2);
+    cond_rectangle_copy(&xcsf, &c2, &c1);
+    struct CondRectangle *src_cond = (struct CondRectangle *) c1.cond;
+    struct CondRectangle *dest_cond = (struct CondRectangle *) c2.cond;
+    CHECK(check_array_eq(dest_cond->b1, src_cond->b1, xcsf.x_dim));
+    CHECK(check_array_eq(dest_cond->b2, src_cond->b2, xcsf.x_dim));
+    CHECK(check_array_eq(dest_cond->mu, src_cond->mu, 1));
+
+    /* test size */
+    CHECK_EQ(cond_rectangle_size(&xcsf, &c1), xcsf.x_dim);
+
+    /* test import and export */
+    char *json_str = cond_rectangle_json_export(&xcsf, &c1);
+    struct Cl new_cl;
+    cl_init(&xcsf, &new_cl, 1, 1);
+    cond_rectangle_init(&xcsf, &new_cl);
+    cJSON *json = cJSON_Parse(json_str);
+    cond_rectangle_json_import(&xcsf, &new_cl, json);
+    struct CondRectangle *orig_cond = (struct CondRectangle *) c1.cond;
+    struct CondRectangle *new_cond = (struct CondRectangle *) new_cl.cond;
+    CHECK(check_array_eq(new_cond->b1, orig_cond->b1, xcsf.x_dim));
+    CHECK(check_array_eq(new_cond->b2, orig_cond->b2, xcsf.x_dim));
+    CHECK(check_array_eq(new_cond->mu, orig_cond->mu, 1));
+
+    /* test mutation */
+    CHECK(cond_rectangle_mutate(&xcsf, &c1));
+    CHECK(!check_array_eq(new_cond->b1, orig_cond->b1, xcsf.x_dim));
+    CHECK(!check_array_eq(new_cond->b2, orig_cond->b2, xcsf.x_dim));
+
+    /* test crossover */
+    CHECK(cond_rectangle_crossover(&xcsf, &c1, &c2));
 }
 
 TEST_CASE("COND_RECTANGLE_UBR")
@@ -112,17 +150,20 @@ TEST_CASE("COND_RECTANGLE_UBR")
                                  0.0464343089, 0.4214295062 };
     const double false_b2[5] = { 0.9658827122, 0.7107445754, 0.7048862747,
                                  0.1036188594, 0.4501471722 };
+
     /* test for true match condition */
     struct CondRectangle *p = reinterpret_cast<struct CondRectangle *>(c1.cond);
     memcpy(p->b1, true_b1, sizeof(double) * xcsf.x_dim);
     memcpy(p->b2, true_b2, sizeof(double) * xcsf.x_dim);
     bool match = cond_rectangle_match(&xcsf, &c1, x);
     CHECK_EQ(match, true);
+
     /* test for false match condition */
     memcpy(p->b1, false_b1, sizeof(double) * xcsf.x_dim);
     memcpy(p->b2, false_b2, sizeof(double) * xcsf.x_dim);
     match = cond_rectangle_match(&xcsf, &c1, x);
     CHECK_EQ(match, false);
+
     /* test general */
     struct Cl c2;
     cl_init(&xcsf, &c2, 1, 1);
@@ -139,6 +180,7 @@ TEST_CASE("COND_RECTANGLE_UBR")
     CHECK_EQ(general, true);
     general = cond_rectangle_general(&xcsf, &c2, &c1);
     CHECK_EQ(general, false);
+
     /* test covering */
     cond_rectangle_cover(&xcsf, &c2, x);
     match = cond_rectangle_match(&xcsf, &c2, x);

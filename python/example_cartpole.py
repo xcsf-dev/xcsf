@@ -27,97 +27,98 @@ Note: These hyperparameters do not result in consistently optimal performance.
 
 from __future__ import annotations
 
+import json
 import random
 from collections import deque
-from typing import Final
 
 import gymnasium as gym
-import imageio
-import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import rcParams
-from tqdm import tqdm
 
 import xcsf
+
+RANDOM_STATE: int = 10
+random.seed(RANDOM_STATE)
+np.random.seed(RANDOM_STATE)
 
 ############################################
 # Initialise OpenAI Gym problem environment
 ############################################
 
 env = gym.make("CartPole-v1", render_mode="rgb_array")
-X_DIM: Final[int] = env.observation_space.shape[0]
-N_ACTIONS: Final[int] = env.action_space.n
+env.reset(seed=RANDOM_STATE)
 
-SAVE_GIF: Final[bool] = False  # for creating a gif
-SAVE_GIF_EPISODES: Final[int] = 50
-frames: list[list[float]] = []
-fscore: list[float] = []
-ftrial: list[int] = []
+X_DIM: int = int(env.observation_space.shape[0])
+N_ACTIONS: int = int(env.action_space.n)
 
 ###################
 # Initialise XCSF
 ###################
 
-# Supervised: i.e, single action, [A] = [M]
-xcs: xcsf.XCS = xcsf.XCS(x_dim=X_DIM, y_dim=N_ACTIONS, n_actions=1)
-
-xcs.OMP_NUM_THREADS = 12  # number of CPU cores to use
-xcs.POP_INIT = False  # use covering to initialise
-xcs.MAX_TRIALS = 1  # one trial per fit
-xcs.POP_SIZE = 200  # maximum population size
-xcs.E0 = 0.001  # target error
-xcs.BETA = 0.05  # classifier parameter update rate
-xcs.ALPHA = 1  # accuracy offset
-xcs.NU = 5  # accuracy slope
-xcs.EA_SUBSUMPTION = False
-xcs.SET_SUBSUMPTION = False
-xcs.THETA_EA = 100  # EA invocation frequency
-xcs.THETA_DEL = 100  # min experience before fitness used for deletion
-
-condition_layers: Final[dict] = {
-    "layer_0": {  # hidden layer
-        "type": "connected",
-        "activation": "selu",
-        "evolve_weights": True,
-        "evolve_neurons": True,
-        "n_init": 1,
-        "n_max": 100,
-        "max_neuron_grow": 1,
+xcs = xcsf.XCS(
+    x_dim=X_DIM,
+    y_dim=N_ACTIONS,
+    n_actions=1,
+    omp_num_threads=12,
+    random_state=RANDOM_STATE,
+    pop_init=False,
+    max_trials=1,  # one trial per fit()
+    pop_size=200,
+    theta_del=100,
+    e0=0.001,
+    alpha=1,
+    beta=0.05,
+    ea={
+        "select_type": "roulette",
+        "theta_ea": 100,
+        "lambda": 2,
     },
-    "layer_1": {  # output layer
-        "type": "connected",
-        "activation": "linear",
-        "evolve_weights": True,
-        "n_init": 1,
+    condition={
+        "type": "neural",
+        "args": {
+            "layer_0": {  # hidden layer
+                "type": "connected",
+                "activation": "selu",
+                "evolve_weights": True,
+                "evolve_neurons": True,
+                "n_init": 1,
+                "n_max": 100,
+                "max_neuron_grow": 1,
+            },
+            "layer_1": {  # output layer
+                "type": "connected",
+                "activation": "linear",
+                "evolve_weights": True,
+                "n_init": 1,
+            },
+        },
     },
-}
+    prediction={
+        "type": "rls_quadratic",
+    },
+)
 
-xcs.condition("neural", condition_layers)  # neural network conditions
-xcs.action("integer")  # (dummy) integer actions
-xcs.prediction("rls_quadratic")  # Quadratic RLS
-
-GAMMA: Final[float] = 0.95  # discount rate for delayed reward
+GAMMA: float = 0.95  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring
-EPSILON_MIN: Final[float] = 0.1  # the minimum exploration rate
-EPSILON_DECAY: Final[float] = 0.98  # the decay of exploration after each batch replay
-REPLAY_TIME: Final[int] = 1  # perform replay update every n episodes
+EPSILON_MIN: float = 0.1  # the minimum exploration rate
+EPSILON_DECAY: float = 0.98  # the decay of exploration after each batch replay
+REPLAY_TIME: int = 1  # perform replay update every n episodes
 
-xcs.print_params()
+print(json.dumps(xcs.internal_params(), indent=4))
 
 #####################
 # Execute experiment
 #####################
 
 total_steps: int = 0  # total number of steps performed
-MAX_EPISODES: Final[int] = 2000  # maximum number of episodes to run
-N: Final[int] = 100  # number of episodes to average performance
+MAX_EPISODES: int = 2000  # maximum number of episodes to run
+N: int = 100  # number of episodes to average performance
 memory: deque[tuple[np.ndarray, int, float, np.ndarray, bool]] = deque(maxlen=50000)
 scores: deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
 def replay(replay_size: int = 5000) -> None:
     """Performs experience replay updates"""
-    batch_size: Final[int] = min(len(memory), replay_size)
+    batch_size: int = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
         y_target = reward
@@ -126,7 +127,9 @@ def replay(replay_size: int = 5000) -> None:
             y_target += GAMMA * np.max(prediction_array)
         target = xcs.predict(state.reshape(1, -1))[0]
         target[action] = y_target
-        xcs.fit(state.reshape(1, -1), target.reshape(1, -1), shuffle=True)
+        xcs.fit(
+            state.reshape(1, -1), target.reshape(1, -1), warm_start=True, verbose=False
+        )
 
 
 def egreedy_action(state: np.ndarray) -> int:
@@ -139,7 +142,7 @@ def egreedy_action(state: np.ndarray) -> int:
     return int(np.random.choice(best_actions))
 
 
-def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
+def episode() -> tuple[float, int]:
     """Executes a single episode, saving to memory buffer"""
     episode_score: float = 0
     episode_steps: int = 0
@@ -151,16 +154,7 @@ def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
         episode_steps += 1
         episode_score += reward
         memory.append((state, action, reward, next_state, done))
-        if create_gif:
-            frames.append(env.render(mode="rgb_array"))
-            fscore.append(episode_score)
-            ftrial.append(episode_nr)
         if done:
-            if create_gif:
-                for _ in range(100):
-                    frames.append(frames[-1])
-                    fscore.append(fscore[-1])
-                    ftrial.append(ftrial[-1])
             break
         state = next_state
     return episode_score, episode_steps
@@ -168,11 +162,8 @@ def episode(episode_nr: int, create_gif: bool) -> tuple[float, int]:
 
 # learning episodes
 for ep in range(MAX_EPISODES):
-    gif: bool = False
-    if SAVE_GIF and ep % SAVE_GIF_EPISODES == 0:
-        gif = True
     # execute a single episode
-    ep_score, ep_steps = episode(ep, gif)
+    ep_score, ep_steps = episode()
     # perform experience replay updates
     if ep % REPLAY_TIME == 0:
         replay()
@@ -201,32 +192,7 @@ for ep in range(MAX_EPISODES):
 
 # final exploit episode
 epsilon = 0
-ep_score, ep_steps = episode(ep, SAVE_GIF)
+ep_score, ep_steps = episode()
 
 # close Gym
 env.close()
-
-if SAVE_GIF:
-    # add score and episode nr
-    rcParams["font.family"] = "monospace"
-    bbox = dict(boxstyle="round", fc="0.8")
-    annotated_frames = list()
-    bar = tqdm(total=len(frames), position=0, leave=True)
-    for i in range(len(frames)):
-        fig = plt.figure(dpi=90)
-        fig.set_size_inches(3, 3)
-        ax = fig.add_subplot(111)
-        plt.imshow(frames[i])
-        plt.axis("off")
-        strial = str(ftrial[i])
-        sscore = str(int(fscore[i]))
-        text = f"episode = {strial:3s}, score = {sscore:3s}"
-        ax.annotate(text, xy=(0, 100), xytext=(-40, 1), fontsize=12, bbox=bbox)
-        fig.canvas.draw()
-        annotated_frames.append(np.asarray(fig.canvas.renderer.buffer_rgba()))
-        plt.close(fig)
-        bar.refresh()
-        bar.update(1)
-    bar.close()
-    # write gif
-    imageio.mimsave("animation.gif", annotated_frames, duration=30)

@@ -277,6 +277,29 @@ clset_total_time(const struct Set *set)
     return sum;
 }
 
+void
+clset_load_pop_file(struct XCSF *xcsf)
+{
+    FILE *f = fopen(xcsf->population_file, "rt");
+    if (f == NULL) {
+        printf("Error opening JSON file: %s\n", xcsf->population_file);
+        exit(EXIT_FAILURE);
+    }
+    fseek(f, 0, SEEK_END);
+    const long len = 1 + ftell(f);
+    fseek(f, 0, SEEK_SET);
+    char *json_buffer = malloc(sizeof(char) * len);
+    const size_t s = fread(json_buffer, sizeof(char), len - 1, f);
+    fclose(f);
+    json_buffer[len - 1] = '\0';
+    if (s == 0) {
+        printf("Error opening JSON file: %s\n", xcsf->population_file);
+        exit(EXIT_FAILURE);
+    }
+    clset_json_insert(xcsf, json_buffer);
+    free(json_buffer);
+}
+
 /**
  * @brief Initialises a new population of random classifiers.
  * @param [in] xcsf The XCSF data structure.
@@ -284,6 +307,9 @@ clset_total_time(const struct Set *set)
 void
 clset_pset_init(struct XCSF *xcsf)
 {
+    if (strncmp(xcsf->population_file, "\0", 1) != 0) {
+        clset_load_pop_file(xcsf);
+    }
     if (xcsf->POP_INIT) {
         while (xcsf->pset.num < xcsf->POP_SIZE) {
             struct Cl *new = malloc(sizeof(struct Cl));
@@ -728,13 +754,37 @@ clset_json_export(const struct XCSF *xcsf, const struct Set *set,
 /**
  * @brief Creates a classifier from cJSON and inserts in the population set.
  * @param [in,out] xcsf The XCSF data structure.
- * @param [in] json cJSON object.
+ * @param [in] jsonr cJSON representing a classifier.
  */
 void
-clset_json_insert(struct XCSF *xcsf, const cJSON *json)
+clset_json_insert_cl(struct XCSF *xcsf, const cJSON *json)
 {
     struct Cl *new = malloc(sizeof(struct Cl));
     cl_json_import(xcsf, new, json);
     clset_add(&xcsf->pset, new);
     clset_pset_enforce_limit(xcsf);
+}
+
+/**
+ * @brief Creates classifiers from JSON and inserts into the population.
+ * @param [in,out] xcsf The XCSF data structure.
+ * @param [in] json_str JSON formatted string representing classifiers.
+ */
+void
+clset_json_insert(struct XCSF *xcsf, const char *json_str)
+{
+    cJSON *json = cJSON_Parse(json_str);
+    utils_json_parse_check(json);
+    if (json->child != NULL && cJSON_IsArray(json->child)) {
+        cJSON *tail = json->child->child; // insert inverted for consistency
+        tail->prev = NULL; // this should have been set by cJSON!
+        while (tail->next != NULL) {
+            tail = tail->next;
+        }
+        while (tail != NULL) {
+            clset_json_insert_cl(xcsf, tail);
+            tail = tail->prev;
+        }
+    }
+    cJSON_Delete(json);
 }
