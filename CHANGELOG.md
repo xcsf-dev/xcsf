@@ -6,6 +6,9 @@ Changes:
 *   Accept 1-D flattened Python inputs in fit/score/predict ([#81](https://github.com/rpreen/xcsf/pull/81))
 *   Fix setting max trials via JSON ([#83](https://github.com/rpreen/xcsf/pull/83))
 *   Remove Python `seed()` and add `RANDOM_STATE` parameter for setting seed ([#86](https://github.com/rpreen/xcsf/pull/86))
+*   Major Python API update: sklearn compatibility ([#77](https://github.com/rpreen/xcsf/pull/77))
+*   Add Python callback support with EarlyStoppingCallback ([#77](https://github.com/rpreen/xcsf/pull/77))
+*   Add parameter to read initial population from JSON; also works in stand-alone binary now ([#77](https://github.com/rpreen/xcsf/pull/77))
 
 ## Version 1.2.9 (Jul 9, 2023)
 
