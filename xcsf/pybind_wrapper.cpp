@@ -26,7 +26,6 @@
     #define _hypot hypot
 #endif
 
-#include <chrono>
 #include <cstdio>
 #include <fstream>
 #include <iomanip>
@@ -403,33 +402,24 @@ class XCS
 
     /**
      * @brief Returns a formatted string for displaying time.
-     * @param [in] ms Time in milliseconds.
-     * @return String representation of time.
+     * @return String representation of the current time.
      */
     std::string
-    fmt_duration(std::chrono::milliseconds ms)
+    get_timestamp()
     {
-        using namespace std::chrono;
-        auto secs = duration_cast<seconds>(ms);
-        ms -= duration_cast<milliseconds>(secs);
-        auto mins = duration_cast<minutes>(secs);
-        secs -= duration_cast<seconds>(mins);
-        auto hour = duration_cast<hours>(mins);
-        mins -= duration_cast<minutes>(hour);
-        std::stringstream ss;
-        ss << std::setfill('0') << std::setw(2) << hour.count();
-        ss << ":" << std::setfill('0') << std::setw(2) << mins.count();
-        ss << ":" << std::setfill('0') << std::setw(2) << secs.count();
-        ss << "." << std::setfill('0') << std::setw(3) << ms.count();
-        return ss.str();
+        time_t now = time(0);
+        struct tm tstruct;
+        char buf[80];
+        tstruct = *localtime(&now);
+        strftime(buf, sizeof(buf), "%Y-%m-%d.%H:%M:%S", &tstruct);
+        return buf;
     }
 
     /**
      * @brief Prints the current performance metrics.
-     * @param [in] time String representing the time taken to fit.
      */
     void
-    print_status(const std::string &time)
+    print_status()
     {
         double trial = py::cast<double>(metric_trial[metric_trial.size() - 1]);
         double train = py::cast<double>(metric_train[metric_train.size() - 1]);
@@ -437,7 +427,7 @@ class XCS
         double msize = py::cast<double>(metric_msize[metric_msize.size() - 1]);
         double mfrac = py::cast<double>(metric_mfrac[metric_mfrac.size() - 1]);
         std::ostringstream status;
-        status << time;
+        status << get_timestamp();
         status << " trials=" << trial;
         status << " train=" << std::fixed << std::setprecision(5) << train;
         if (val_data != NULL) {
@@ -542,7 +532,6 @@ class XCS
         const bool shuffle, const bool warm_start, const bool verbose,
         py::object callbacks, py::kwargs kwargs)
     {
-        using namespace std::chrono;
         if (!warm_start) { // re-initialise XCSF as necessary
             xcsf_free(&xcs);
             xcsf_init(&xcs);
@@ -558,30 +547,23 @@ class XCS
         const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
         const int MAX_TRIALS = xcs.MAX_TRIALS;
         xcs.MAX_TRIALS = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
-        milliseconds total_duration(0);
         for (int i = 0; i < n; ++i) {
-            const auto start = high_resolution_clock::now();
             double train = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
             double val = 0;
             if (val_data != NULL) {
                 val = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
-            const auto end = high_resolution_clock::now();
-            const auto time = duration_cast<milliseconds>(end - start);
-            total_duration += time;
             update_metrics(train, val);
-            if (verbose) {
-                print_status(fmt_duration(time));
-            }
             if (callbacks_check(calls)) {
                 break;
+            }
+            if (verbose) {
+                print_status();
             }
         }
         callbacks_finish(calls);
         if (verbose) {
-            std::ostringstream status;
-            status << fmt_duration(total_duration);
-            py::print(status.str());
+            print_status();
         }
         xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
