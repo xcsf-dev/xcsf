@@ -6,8 +6,20 @@ name: Ubuntu build
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - "**/*.json"
+      - "**/*.md"
+      - "**/*.cff"
+      - "**/*.py"
+      - "**/*.ipynb"
   pull_request:
     branches: [master]
+    paths-ignore:
+      - "**/*.json"
+      - "**/*.md"
+      - "**/*.cff"
+      - "**/*.py"
+      - "**/*.ipynb"
 
 jobs:
   build:
