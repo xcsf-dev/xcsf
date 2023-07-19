@@ -54,6 +54,7 @@ extern "C" {
 }
 
 #include "pybind_callback.h"
+#include "pybind_utils.h"
 
 /**
  * @brief Python XCSF class data structure.
@@ -402,26 +403,6 @@ class XCS
     }
 
     /**
-     * @brief Returns a formatted string for displaying time.
-     * @return String representation of the current time.
-     */
-    std::string
-    get_timestamp()
-    {
-        using namespace std::chrono;
-        auto now = system_clock::now();
-        std::time_t current = system_clock::to_time_t(now);
-        std::tm local = *std::localtime(&current);
-        char buffer[20];
-        std::strftime(buffer, sizeof(buffer), "%Y-%m-%dT%H:%M:%S", &local);
-        auto dur = now.time_since_epoch();
-        auto ms = duration_cast<milliseconds>(dur) % 1000;
-        std::ostringstream oss;
-        oss << buffer << '.' << std::setfill('0') << std::setw(3) << ms.count();
-        return oss.str();
-    }
-
-    /**
      * @brief Prints the current performance metrics.
      */
     void
@@ -560,15 +541,12 @@ class XCS
                 val = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
             update_metrics(train, val);
-            if (callbacks_check(calls)) {
-                break;
-            }
             if (verbose) {
                 print_status();
             }
-        }
-        if (verbose) {
-            print_status();
+            if (callbacks_check(calls)) {
+                break;
+            }
         }
         callbacks_finish(calls);
         xcs.MAX_TRIALS = MAX_TRIALS;

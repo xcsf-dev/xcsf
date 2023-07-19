@@ -14,7 +14,7 @@
  */
 
 /**
- * @file pybind_callback.hpp
+ * @file pybind_callback.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
  * @date 2023.
@@ -32,6 +32,8 @@ namespace py = pybind11;
 extern "C" {
 #include "xcsf.h"
 }
+
+#include "pybind_utils.h"
 
 class EarlyStoppingCallback
 {
@@ -77,7 +79,8 @@ class EarlyStoppingCallback
         xcsf_store_pset(xcsf);
         if (verbose) {
             std::ostringstream status;
-            status << "checkpoint: ";
+            status << get_timestamp();
+            status << " checkpoint: ";
             status << std::fixed << std::setprecision(5) << best_error;
             status << " error at " << best_trial << " trials";
             py::print(status.str());
@@ -95,7 +98,8 @@ class EarlyStoppingCallback
         xcsf_retrieve_pset(xcsf);
         if (verbose) {
             std::ostringstream status;
-            status << "restoring system from trial " << best_trial;
+            status << get_timestamp();
+            status << " restoring system from trial " << best_trial;
             status << " with error=";
             status << std::fixed << std::setprecision(5) << best_error;
             py::print(status.str());
