@@ -33,15 +33,22 @@ extern "C" {
 #include "xcsf.h"
 }
 
+#include "pybind_callback.h"
 #include "pybind_utils.h"
 
-class EarlyStoppingCallback
+class EarlyStoppingCallback : public Callback
 {
   public:
     /**
-     * @brief Constructor.
-     * @param [in] kwargs Parameters and their values.
-     *
+     * @brief Constructs a new early stopping callback.
+     * @param [in] monitor Name of the metric to monitor: {"train", "val"}.
+     * @param [in] patience Trials with no improvement after which training will
+     * be stopped.
+     * @param [in] restore Whether to restore the best population.
+     * @param [in] min_delta Minimum change to qualify as an improvement.
+     * @param [in] start_from Trials to wait before starting to monitor
+     * improvement.
+     * @param [in] verbose Whether to display messages when an action is taken.
      */
     EarlyStoppingCallback(py::str monitor, int patience, bool restore,
                           double min_delta, int start_from, bool verbose) :
@@ -59,11 +66,11 @@ class EarlyStoppingCallback
             throw std::invalid_argument(err.str());
         }
         if (patience < 0) {
-            err << "patience must be greater than zero" << std::endl;
+            err << "patience cannot be negative" << std::endl;
             throw std::invalid_argument(err.str());
         }
         if (min_delta < 0) {
-            err << "min_delta must be greater than zero" << std::endl;
+            err << "min_delta cannot be negative" << std::endl;
             throw std::invalid_argument(err.str());
         }
     }
@@ -112,7 +119,7 @@ class EarlyStoppingCallback
      * @return whether early stopping criteria has been met.
      */
     bool
-    should_stop(struct XCSF *xcsf, py::dict metrics)
+    run(struct XCSF *xcsf, py::dict metrics) override
     {
         py::list data = metrics[monitor];
         py::list trials = metrics["trials"];
@@ -129,6 +136,11 @@ class EarlyStoppingCallback
             }
         }
         if (current_trial - patience > best_trial) {
+            if (verbose) {
+                std::ostringstream status;
+                status << get_timestamp() << " EarlyStoppingCallback: stopping";
+                py::print(status.str());
+            }
             if (restore) {
                 retrieve(xcsf);
             }
@@ -142,7 +154,7 @@ class EarlyStoppingCallback
      * @param [in] xcsf The XCSF data structure.
      */
     void
-    finish(struct XCSF *xcsf)
+    finish(struct XCSF *xcsf) override
     {
         if (restore && do_restore) {
             retrieve(xcsf);

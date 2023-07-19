@@ -91,16 +91,18 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y,
  * @param [in] train_data The input data to use for training.
  * @param [in] test_data The input data to use for testing.
  * @param [in] shuffle Whether to randomise the instances during training.
+ * @param [in] trials Number of trials to execute.
  * @return The average XCSF training error using the loss function.
  */
 double
 xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
-                   const struct Input *test_data, const bool shuffle)
+                   const struct Input *test_data, const bool shuffle,
+                   const int trials)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
-    for (int cnt = 0; cnt < xcsf->MAX_TRIALS; ++cnt) {
+    for (int cnt = 0; cnt < trials; ++cnt) {
         // training sample
         int row = xcs_supervised_sample(train_data, cnt, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
@@ -122,7 +124,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
         }
         perf_print(xcsf, &werr, &wterr, cnt);
     }
-    return err / xcsf->MAX_TRIALS;
+    return err / trials;
 }
 
 /**

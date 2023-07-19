@@ -53,6 +53,8 @@ extern "C" {
 #include "xcs_supervised.h"
 }
 
+#include "pybind_callback.h"
+#include "pybind_callback_checkpoint.h"
 #include "pybind_callback_earlystop.h"
 #include "pybind_utils.h"
 
@@ -431,11 +433,12 @@ class XCS
      * @brief Updates performance metrics.
      * @param [in] train The current training error.
      * @param [in] val The current validation error.
+     * @param [in] n_trials Number of trials run.
      */
     void
-    update_metrics(const double train, const double val)
+    update_metrics(const double train, const double val, const int n_trials)
     {
-        const int trial = (1 + metric_counter) * xcs.MAX_TRIALS;
+        const int trial = (1 + metric_counter) * n_trials;
         metric_train.append(train);
         metric_val.append(val);
         metric_trial.append(trial);
@@ -472,19 +475,25 @@ class XCS
      * @return Whether to terminate early.
      */
     bool
-    callbacks_check(py::list callbacks)
+    callbacks_run(py::list callbacks)
     {
+        bool terminate = false;
         py::dict metrics = get_metrics();
         for (py::handle item : callbacks) {
             if (py::isinstance<EarlyStoppingCallback>(item)) {
-                EarlyStoppingCallback &earlystop =
+                EarlyStoppingCallback &es =
                     py::cast<EarlyStoppingCallback &>(item);
-                if (earlystop.should_stop(&xcs, metrics)) {
-                    return true;
+                if (es.run(&xcs, metrics)) {
+                    terminate = true;
+                }
+            } else if (py::isinstance<CheckpointCallback>(item)) {
+                CheckpointCallback &cp = py::cast<CheckpointCallback &>(item);
+                if (cp.run(&xcs, metrics)) {
+                    terminate = true;
                 }
             }
         }
-        return false;
+        return terminate;
     }
 
     /**
@@ -496,9 +505,12 @@ class XCS
     {
         for (py::handle item : callbacks) {
             if (py::isinstance<EarlyStoppingCallback>(item)) {
-                EarlyStoppingCallback &earlystop =
+                EarlyStoppingCallback &es =
                     py::cast<EarlyStoppingCallback &>(item);
-                earlystop.finish(&xcs);
+                es.finish(&xcs);
+            } else if (py::isinstance<CheckpointCallback>(item)) {
+                CheckpointCallback &cp = py::cast<CheckpointCallback &>(item);
+                cp.finish(&xcs);
             }
         }
     }
@@ -532,24 +544,23 @@ class XCS
         }
         // break up the learning into epochs to track metrics
         const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
-        const int MAX_TRIALS = xcs.MAX_TRIALS;
-        xcs.MAX_TRIALS = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
+        const int n_trials = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
         for (int i = 0; i < n; ++i) {
-            double train = xcs_supervised_fit(&xcs, train_data, NULL, shuffle);
+            const double train =
+                xcs_supervised_fit(&xcs, train_data, NULL, shuffle, n_trials);
             double val = 0;
             if (val_data != NULL) {
                 val = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
-            update_metrics(train, val);
+            update_metrics(train, val, n_trials);
             if (verbose) {
                 print_status();
             }
-            if (callbacks_check(calls)) {
+            if (callbacks_run(calls)) {
                 break;
             }
         }
         callbacks_finish(calls);
-        xcs.MAX_TRIALS = MAX_TRIALS;
         return *this;
     }
 
@@ -961,7 +972,14 @@ PYBIND11_MODULE(xcsf, m)
              "Creates a callback for terminating the fit function early.",
              py::arg("monitor") = "train", py::arg("patience") = 0,
              py::arg("restore_best") = false, py::arg("min_delta") = 0,
-             py::arg("start_from") = 0, py::arg("verbose"));
+             py::arg("start_from") = 0, py::arg("verbose") = true);
+
+    py::class_<CheckpointCallback>(m, "CheckpointCallback")
+        .def(py::init<py::str, std::string, bool, int, bool>(),
+             "Creates a callback for automatically saving XCSF.",
+             py::arg("monitor") = "train", py::arg("filename") = "xcsf.bin",
+             py::arg("save_best_only") = false, py::arg("save_freq") = 0,
+             py::arg("verbose") = true);
 
     py::class_<XCS>(m, "XCS")
         .def(py::init(), "Creates a new XCSF class with default arguments.")
