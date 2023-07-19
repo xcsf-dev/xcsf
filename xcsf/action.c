@@ -90,7 +90,7 @@ action_type_as_int(const char *type)
 void
 action_param_defaults(struct XCSF *xcsf)
 {
-    action_param_set_type(xcsf, ACT_TYPE_NEURAL);
+    action_param_set_type(xcsf, ACT_TYPE_INTEGER);
     act_neural_param_defaults(xcsf);
 }
 
