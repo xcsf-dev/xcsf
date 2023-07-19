@@ -7,19 +7,19 @@ on:
   push:
     branches: [master]
     paths-ignore:
-      - "**/*.json"
-      - "**/*.md"
-      - "**/*.cff"
-      - "**/*.py"
-      - "**/*.ipynb"
+      - "**.json"
+      - "**.md"
+      - "**.cff"
+      - "**.py"
+      - "**.ipynb"
   pull_request:
     branches: [master]
     paths-ignore:
-      - "**/*.json"
-      - "**/*.md"
-      - "**/*.cff"
-      - "**/*.py"
-      - "**/*.ipynb"
+      - "**.json"
+      - "**.md"
+      - "**.cff"
+      - "**.py"
+      - "**.ipynb"
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
