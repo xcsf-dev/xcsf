@@ -147,4 +147,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         conv_bias_error += fabs(l->biases[i] - conv_biases[i]);
     }
     CHECK_EQ(doctest::Approx(conv_bias_error), 0);
+    // clean up
+    neural_free(&net);
+    param_free(&xcsf);
 }

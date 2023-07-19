@@ -83,4 +83,8 @@ TEST_CASE("COND_TERNARY")
     cond_ternary_cover(&xcsf, &c2, x);
     match = cond_ternary_match(&xcsf, &c2, x);
     CHECK_EQ(match, true);
+    /* clean up */
+    cond_ternary_free(&xcsf, &c1);
+    cond_ternary_free(&xcsf, &c2);
+    param_free(&xcsf);
 }

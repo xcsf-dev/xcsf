@@ -164,4 +164,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     }
     conv_error /= l->n_outputs; // MSE
     CHECK_EQ(doctest::Approx(conv_error), 0);
+    // clean up
+    neural_free(&net);
+    param_free(&xcsf);
 }

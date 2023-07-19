@@ -64,4 +64,5 @@ TEST_CASE("NEURAL_LAYER_MAXPOOL")
     CHECK_EQ(l->out_c, 1);
     CHECK_EQ(l->n_inputs, 784);
     CHECK_EQ(l->n_outputs, 196);
+    layer_free(l);
 }

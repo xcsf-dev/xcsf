@@ -121,4 +121,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     }
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
+    // clean up
+    neural_free(&net);
+    param_free(&xcsf);
 }

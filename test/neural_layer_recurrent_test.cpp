@@ -112,4 +112,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     }
     neural_layer_recurrent_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
+    // clean up
+    neural_free(&net);
+    param_free(&xcsf);
 }
