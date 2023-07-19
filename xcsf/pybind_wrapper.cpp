@@ -435,7 +435,7 @@ class XCS
     void
     update_metrics(const double train, const double val)
     {
-        const int trial = metric_counter * xcs.MAX_TRIALS;
+        const int trial = (1 + metric_counter) * xcs.MAX_TRIALS;
         metric_train.append(train);
         metric_val.append(val);
         metric_trial.append(trial);
