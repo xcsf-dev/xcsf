@@ -91,6 +91,7 @@ Y_DIM: int = np.shape(y_train)[1]
 # Initialise XCSF
 ###########################################################
 
+PERF_TRIALS: int = 5000
 MAX_TRIALS: int = 200000
 E0: float = 0.1
 
@@ -102,7 +103,7 @@ xcs = xcsf.XCS(
     random_state=RANDOM_STATE,
     pop_init=True,
     max_trials=MAX_TRIALS,
-    perf_trials=5000,
+    perf_trials=PERF_TRIALS,
     pop_size=500,
     loss_func="mse",
     set_subsumption=False,
@@ -207,7 +208,7 @@ plt.title("XCSF Training Performance", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
 plt.ylabel("Mean Squared Error", fontsize=12)
 plt.ylim([0, 0.5])
-plt.xlim([0, MAX_TRIALS])
+plt.xlim([PERF_TRIALS, MAX_TRIALS])
 plt.legend()
 plt.show()
 

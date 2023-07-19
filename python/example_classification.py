@@ -155,6 +155,7 @@ LAYER_CONNECTED: dict = {
     "n_max": N_MAX,
 }
 
+PERF_TRIALS: int = 1000
 MAX_TRIALS: int = 200000
 E0: float = 0.01  # target error
 
@@ -166,7 +167,7 @@ xcs = xcsf.XCS(
     random_state=RANDOM_STATE,
     pop_size=100,
     max_trials=MAX_TRIALS,
-    perf_trials=1000,
+    perf_trials=PERF_TRIALS,
     loss_func="onehot",  # one-hot encoding classification error
     e0=E0,
     alpha=1,
@@ -284,6 +285,5 @@ plt.axhline(y=E0, xmin=0, xmax=1, linestyle="dashed", color="k")
 plt.title("XCSF Training Performance", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
 plt.ylabel("Error", fontsize=12)
-plt.xlim([0, MAX_TRIALS])
 plt.legend()
 plt.show()
