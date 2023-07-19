@@ -53,7 +53,7 @@ extern "C" {
 #include "xcs_supervised.h"
 }
 
-#include "pybind_callback.h"
+#include "pybind_callback_earlystop.h"
 #include "pybind_utils.h"
 
 /**
