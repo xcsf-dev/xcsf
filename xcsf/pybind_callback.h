@@ -14,30 +14,31 @@
  */
 
 /**
- * @file xcs_supervised.h
+ * @file pybind_callback.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
- * @brief Supervised regression learning functions.
+ * @date 2023.
+ * @brief Interface for callbacks.
  */
 
 #pragma once
 
+#include <limits>
+#include <pybind11/numpy.h>
+#include <pybind11/pybind11.h>
+
+namespace py = pybind11;
+
+extern "C" {
 #include "xcsf.h"
+}
 
-double
-xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
-                   const struct Input *test_data, const bool shuffle,
-                   const int trials);
+class Callback
+{
+  public:
+    virtual bool
+    run(struct XCSF *xcsf, py::dict metrics) = 0;
 
-double
-xcs_supervised_score(struct XCSF *xcsf, const struct Input *data,
-                     const double *cover);
-
-double
-xcs_supervised_score_n(struct XCSF *xcsf, const struct Input *data, const int N,
-                       const double *cover);
-
-void
-xcs_supervised_predict(struct XCSF *xcsf, const double *x, double *pred,
-                       const int n_samples, const double *cover);
+    virtual void
+    finish(struct XCSF *xcsf) = 0;
+};

@@ -476,9 +476,9 @@ size_t
 param_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    size_t len = strnlen(xcsf->population_file, MAX_LEN);
+    size_t len = sizeof(xcsf->population_file);
     s += fwrite(&len, sizeof(size_t), 1, fp);
-    s += fwrite(xcsf->population_file, sizeof(char), len, fp);
+    s += fwrite(xcsf->population_file, len, 1, fp);
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
     s += fwrite(&xcsf->error, sizeof(double), 1, fp);
     s += fwrite(&xcsf->mset_size, sizeof(double), 1, fp);
@@ -532,8 +532,8 @@ param_load(struct XCSF *xcsf, FILE *fp)
     size_t len = 0;
     s += fread(&len, sizeof(size_t), 1, fp);
     free(xcsf->population_file);
-    xcsf->population_file = malloc(sizeof(char) * len);
-    s += fread(xcsf->population_file, sizeof(char), len, fp);
+    xcsf->population_file = malloc(len);
+    s += fread(xcsf->population_file, len, 1, fp);
     s += fread(&xcsf->time, sizeof(int), 1, fp);
     s += fread(&xcsf->error, sizeof(double), 1, fp);
     s += fread(&xcsf->mset_size, sizeof(double), 1, fp);
@@ -616,7 +616,7 @@ const char *
 param_set_population_file(struct XCSF *xcsf, const char *a)
 {
     free(xcsf->population_file);
-    size_t length = strnlen(a, MAX_LEN) + 1;
+    size_t length = strnlen(a, sizeof(char) * MAX_LEN) + 1;
     xcsf->population_file = malloc(sizeof(char) * length);
     strncpy(xcsf->population_file, a, length);
     return NULL;
