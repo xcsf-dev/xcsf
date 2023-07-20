@@ -480,17 +480,15 @@ class XCS
         bool terminate = false;
         py::dict metrics = get_metrics();
         for (py::handle item : callbacks) {
-            if (py::isinstance<EarlyStoppingCallback>(item)) {
-                EarlyStoppingCallback &es =
-                    py::cast<EarlyStoppingCallback &>(item);
-                if (es.run(&xcs, metrics)) {
+            if (py::isinstance<Callback>(item)) {
+                Callback *cb = py::cast<Callback *>(item);
+                if (cb->run(&xcs, metrics)) {
                     terminate = true;
                 }
-            } else if (py::isinstance<CheckpointCallback>(item)) {
-                CheckpointCallback &cp = py::cast<CheckpointCallback &>(item);
-                if (cp.run(&xcs, metrics)) {
-                    terminate = true;
-                }
+            } else {
+                std::ostringstream err;
+                err << "unsupported callback" << std::endl;
+                throw std::invalid_argument(err.str());
             }
         }
         return terminate;
@@ -504,13 +502,13 @@ class XCS
     callbacks_finish(py::list callbacks)
     {
         for (py::handle item : callbacks) {
-            if (py::isinstance<EarlyStoppingCallback>(item)) {
-                EarlyStoppingCallback &es =
-                    py::cast<EarlyStoppingCallback &>(item);
-                es.finish(&xcs);
-            } else if (py::isinstance<CheckpointCallback>(item)) {
-                CheckpointCallback &cp = py::cast<CheckpointCallback &>(item);
-                cp.finish(&xcs);
+            if (py::isinstance<Callback>(item)) {
+                Callback *cb = py::cast<Callback *>(item);
+                cb->finish(&xcs);
+            } else {
+                std::ostringstream err;
+                err << "unsupported callback" << std::endl;
+                throw std::invalid_argument(err.str());
             }
         }
     }
@@ -967,14 +965,21 @@ PYBIND11_MODULE(xcsf, m)
     double (XCS::*error1)(void) = &XCS::error;
     double (XCS::*error2)(const double, const bool, const double) = &XCS::error;
 
-    py::class_<EarlyStoppingCallback>(m, "EarlyStoppingCallback")
+    py::class_<Callback, std::unique_ptr<Callback, py::nodelete>>(m,
+                                                                  "Callback");
+
+    py::class_<EarlyStoppingCallback, Callback,
+               std::unique_ptr<EarlyStoppingCallback, py::nodelete>>(
+        m, "EarlyStoppingCallback")
         .def(py::init<py::str, int, bool, double, int, bool>(),
              "Creates a callback for terminating the fit function early.",
              py::arg("monitor") = "train", py::arg("patience") = 0,
              py::arg("restore_best") = false, py::arg("min_delta") = 0,
              py::arg("start_from") = 0, py::arg("verbose") = true);
 
-    py::class_<CheckpointCallback>(m, "CheckpointCallback")
+    py::class_<CheckpointCallback, Callback,
+               std::unique_ptr<CheckpointCallback, py::nodelete>>(
+        m, "CheckpointCallback")
         .def(py::init<py::str, std::string, bool, int, bool>(),
              "Creates a callback for automatically saving XCSF.",
              py::arg("monitor") = "train", py::arg("filename") = "xcsf.bin",
