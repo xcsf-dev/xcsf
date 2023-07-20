@@ -754,7 +754,7 @@ clset_json_export(const struct XCSF *xcsf, const struct Set *set,
 /**
  * @brief Creates a classifier from cJSON and inserts in the population set.
  * @param [in,out] xcsf The XCSF data structure.
- * @param [in] jsonr cJSON representing a classifier.
+ * @param [in] json cJSON representing a classifier.
  */
 void
 clset_json_insert_cl(struct XCSF *xcsf, const cJSON *json)

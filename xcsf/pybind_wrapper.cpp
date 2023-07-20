@@ -521,6 +521,7 @@ class XCS
      * @param [in] shuffle Whether to randomise the instances during training.
      * @param [in] warm_start Whether to continue with existing population.
      * @param [in] verbose Whether to print learning metrics.
+     * @param [in] callbacks List of Callback objects or None.
      * @param [in] kwargs Keyword arguments.
      * @return The fitted XCSF model.
      */
