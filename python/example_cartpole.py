@@ -36,7 +36,7 @@ import numpy as np
 
 import xcsf
 
-RANDOM_STATE: int = 10
+RANDOM_STATE: int = 1010
 random.seed(RANDOM_STATE)
 np.random.seed(RANDOM_STATE)
 
