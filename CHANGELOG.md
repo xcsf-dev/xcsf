@@ -1,6 +1,6 @@
 # Changelog
 
-## Development
+## Version 1.3.0 (Jul 20, 2023)
 
 Changes:
 *   Accept 1-D flattened Python inputs in fit/score/predict ([#81](https://github.com/rpreen/xcsf/pull/81))
@@ -9,6 +9,7 @@ Changes:
 *   Major Python API update: sklearn compatibility ([#77](https://github.com/rpreen/xcsf/pull/77))
 *   Add Python callback support with EarlyStoppingCallback ([#77](https://github.com/rpreen/xcsf/pull/77))
 *   Add parameter to read initial population from JSON; also works in stand-alone binary now ([#77](https://github.com/rpreen/xcsf/pull/77))
+*   Add hyperparameter tuning example ([#77](https://github.com/rpreen/xcsf/pull/77))
 *   Add CheckpointCallback ([#88](https://github.com/rpreen/xcsf/pull/88))
 
 ## Version 1.2.9 (Jul 9, 2023)
