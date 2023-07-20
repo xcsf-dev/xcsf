@@ -10,6 +10,10 @@ var hierarchy =
     [ "ArgsGPTree", "structArgsGPTree.html", null ],
     [ "ArgsLayer", "structArgsLayer.html", null ],
     [ "ArgsPred", "structArgsPred.html", null ],
+    [ "Callback", "classCallback.html", [
+      [ "CheckpointCallback", "classCheckpointCallback.html", null ],
+      [ "EarlyStoppingCallback", "classEarlyStoppingCallback.html", null ]
+    ] ],
     [ "Cl", "structCl.html", null ],
     [ "Clist", "structClist.html", null ],
     [ "CondDGP", "structCondDGP.html", null ],

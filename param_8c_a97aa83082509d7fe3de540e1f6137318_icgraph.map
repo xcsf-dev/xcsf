@@ -1,6 +1,9 @@
 <map id="param_json_import_cl_general" name="param_json_import_cl_general">
-<area shape="rect" id="node1" title="Sets the general classifier parameters from a cJSON object." alt="" coords="421,5,571,47"/>
-<area shape="rect" id="node2" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,13,373,39"/>
-<area shape="rect" id="node3" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,13,193,39"/>
-<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,56,39"/>
+<area shape="rect" id="node1" title="Sets the general classifier parameters from a cJSON object." alt="" coords="519,23,668,65"/>
+<area shape="rect" id="node2" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="339,31,471,57"/>
+<area shape="rect" id="node3" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="183,5,272,32"/>
+<area shape="rect" id="node5" href="$classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25" title="Sets parameter values." alt="" coords="164,56,291,83"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="35,5,86,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4" title="Sets XCSF input and output dimensions." alt="" coords="5,56,116,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="17,107,104,133"/>
 </map>

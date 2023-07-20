@@ -1,6 +1,6 @@
 var xcs__supervised_8c =
 [
-    [ "xcs_supervised_fit", "xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56", null ],
+    [ "xcs_supervised_fit", "xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a", null ],
     [ "xcs_supervised_predict", "xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb", null ],
     [ "xcs_supervised_sample", "xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5", null ],
     [ "xcs_supervised_score", "xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40", null ],

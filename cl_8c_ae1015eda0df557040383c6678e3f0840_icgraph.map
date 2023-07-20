@@ -1,8 +1,16 @@
 <map id="cl_json_import_properties" name="cl_json_import_properties">
-<area shape="rect" id="node1" title="Sets a classifier&#39;s properties from a cJSON object." alt="" coords="677,31,848,57"/>
-<area shape="rect" id="node2" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="523,31,629,57"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="355,31,475,57"/>
-<area shape="rect" id="node4" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="177,5,298,32"/>
-<area shape="rect" id="node6" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="168,56,307,83"/>
-<area shape="rect" id="node5" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node1" title="Sets a classifier&#39;s properties from a cJSON object." alt="" coords="1297,107,1468,133"/>
+<area shape="rect" id="node2" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="1143,107,1249,133"/>
+<area shape="rect" id="node3" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="957,107,1095,133"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="780,81,900,108"/>
+<area shape="rect" id="node14" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="771,132,909,159"/>
+<area shape="rect" id="node5" href="$clset_8c.html#a61a3e73a638afa91d9569f62470fe254" title=" " alt="" coords="589,56,723,83"/>
+<area shape="rect" id="node12" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="595,107,717,133"/>
+<area shape="rect" id="node6" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="431,56,537,83"/>
+<area shape="rect" id="node7" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="308,56,379,83"/>
+<area shape="rect" id="node8" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="182,5,251,32"/>
+<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="191,56,242,83"/>
+<area shape="rect" id="node10" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,107,260,133"/>
+<area shape="rect" id="node11" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,107,125,133"/>
+<area shape="rect" id="node13" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="427,107,541,133"/>
 </map>

@@ -1,26 +1,26 @@
 <map id="main.c" name="main.c">
-<area shape="rect" id="node1" title="Main function for stand&#45;alone binary execution." alt="" coords="421,5,482,32"/>
-<area shape="rect" id="node2" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="704,155,765,181"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="401,229,460,256"/>
-<area shape="rect" id="node4" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="774,304,831,331"/>
-<area shape="rect" id="node17" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="54,155,122,181"/>
-<area shape="rect" id="node18" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="169,80,249,107"/>
-<area shape="rect" id="node20" href="$pa_8h.html" title="Prediction array functions." alt="" coords="274,155,320,181"/>
-<area shape="rect" id="node21" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="324,80,393,107"/>
-<area shape="rect" id="node23" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="418,80,486,107"/>
-<area shape="rect" id="node24" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="510,80,634,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="264,379,327,405"/>
-<area shape="rect" id="node8" title=" " alt="" coords="636,379,697,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="721,379,785,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="31,304,94,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="118,304,177,331"/>
-<area shape="rect" id="node12" title=" " alt="" coords="202,304,280,331"/>
-<area shape="rect" id="node13" title=" " alt="" coords="305,304,369,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="393,304,468,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="492,304,558,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="582,304,647,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="985,379,1137,405"/>
-<area shape="rect" id="node6" title=" " alt="" coords="810,379,960,405"/>
-<area shape="rect" id="node19" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="146,155,198,181"/>
-<area shape="rect" id="node22" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="344,155,402,181"/>
+<area shape="rect" id="node1" title="Main function for stand&#45;alone binary execution." alt="" coords="441,5,503,32"/>
+<area shape="rect" id="node2" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="712,155,773,181"/>
+<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="481,229,540,256"/>
+<area shape="rect" id="node4" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="123,304,181,331"/>
+<area shape="rect" id="node17" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="798,155,866,181"/>
+<area shape="rect" id="node18" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="189,80,269,107"/>
+<area shape="rect" id="node20" href="$pa_8h.html" title="Prediction array functions." alt="" coords="321,155,367,181"/>
+<area shape="rect" id="node21" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="344,80,413,107"/>
+<area shape="rect" id="node23" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="438,80,506,107"/>
+<area shape="rect" id="node24" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="530,80,654,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="545,379,607,405"/>
+<area shape="rect" id="node8" title=" " alt="" coords="681,379,756,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="805,379,867,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,379,69,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="205,304,267,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="292,304,351,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="375,304,454,331"/>
+<area shape="rect" id="node14" title=" " alt="" coords="479,304,543,331"/>
+<area shape="rect" id="node15" title=" " alt="" coords="567,304,633,331"/>
+<area shape="rect" id="node16" title=" " alt="" coords="657,304,722,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="93,379,245,405"/>
+<area shape="rect" id="node6" title=" " alt="" coords="270,379,421,405"/>
+<area shape="rect" id="node19" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="193,155,245,181"/>
+<area shape="rect" id="node22" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="391,155,449,181"/>
 </map>

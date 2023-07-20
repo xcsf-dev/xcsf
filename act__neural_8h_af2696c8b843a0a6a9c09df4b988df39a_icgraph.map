@@ -1,9 +1,11 @@
 <map id="act_neural_param_json_import" name="act_neural_param_json_import">
-<area shape="rect" id="node1" title="Sets the neural network parameters from a cJSON object." alt="" coords="867,23,1023,65"/>
-<area shape="rect" id="node2" href="$action_8c.html#a39f808f6b04ccbc2a2c2a2857e5b845e" title="Sets the action parameters from a cJSON object." alt="" coords="644,31,819,57"/>
-<area shape="rect" id="node3" href="$param_8c.html#a86522321fabfe9b21b98617befc4ffa6" title="Sets the action parameters from a json formatted string." alt="" coords="421,5,596,32"/>
-<area shape="rect" id="node7" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="449,56,568,83"/>
-<area shape="rect" id="node4" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,5,373,32"/>
-<area shape="rect" id="node5" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,5,193,32"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node1" title="Sets the neural network parameters from a cJSON object." alt="" coords="964,23,1120,65"/>
+<area shape="rect" id="node2" href="$action_8c.html#a39f808f6b04ccbc2a2c2a2857e5b845e" title="Sets the action parameters from a cJSON object." alt="" coords="741,31,916,57"/>
+<area shape="rect" id="node3" href="$param_8c.html#a86522321fabfe9b21b98617befc4ffa6" title="Sets the action parameters from a json formatted string." alt="" coords="519,31,693,57"/>
+<area shape="rect" id="node4" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="339,31,471,57"/>
+<area shape="rect" id="node5" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="183,5,272,32"/>
+<area shape="rect" id="node7" href="$classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25" title="Sets parameter values." alt="" coords="164,56,291,83"/>
+<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="35,5,86,32"/>
+<area shape="rect" id="node8" href="$classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4" title="Sets XCSF input and output dimensions." alt="" coords="5,56,116,83"/>
+<area shape="rect" id="node9" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="17,107,104,133"/>
 </map>

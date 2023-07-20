@@ -1,8 +1,10 @@
 <map id="pa_init" name="pa_init">
-<area shape="rect" id="node1" title="Initialises the prediction array." alt="" coords="396,31,456,57"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="203,5,348,32"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="240,56,311,83"/>
-<area shape="rect" id="node3" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="5,5,155,32"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,56,105,83"/>
-<area shape="rect" id="node6" href="$classXCS.html#af1010afd63843f86ad1dd81fade9bd72" title="Constructor." alt="" coords="37,107,123,133"/>
+<area shape="rect" id="node1" title="Initialises the prediction array." alt="" coords="564,56,624,83"/>
+<area shape="rect" id="node2" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="371,19,516,45"/>
+<area shape="rect" id="node4" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="408,81,479,108"/>
+<area shape="rect" id="node3" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="173,5,323,32"/>
+<area shape="rect" id="node5" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="213,56,283,83"/>
+<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="223,107,273,133"/>
+<area shape="rect" id="node7" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="205,157,291,184"/>
+<area shape="rect" id="node8" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,157,125,184"/>
 </map>

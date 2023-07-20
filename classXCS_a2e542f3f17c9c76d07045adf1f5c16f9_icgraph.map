@@ -1,0 +1,5 @@
+<map id="XCS::reset" name="XCS::reset">
+<area shape="rect" id="node1" title="Resets basic constructor variables." alt="" coords="308,5,395,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,5,260,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,5,125,32"/>
+</map>

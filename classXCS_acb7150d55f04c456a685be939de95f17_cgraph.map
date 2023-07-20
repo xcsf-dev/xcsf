@@ -1,0 +1,4 @@
+<map id="XCS::set_cover" name="XCS::set_cover">
+<area shape="rect" id="node1" title="Sets the XCSF cover array to values given, or zeros." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a8e75a08dd6345e617a7ef0ae22859f2a" title="Returns the values specified in the cover array." alt="" coords="168,5,283,32"/>
+</map>

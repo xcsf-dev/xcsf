@@ -1,8 +1,9 @@
 <map id="pred_load" name="pred_load">
-<area shape="rect" id="node1" title="Reads the prediction from a file." alt="" coords="535,31,613,57"/>
-<area shape="rect" id="node2" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="424,31,487,57"/>
-<area shape="rect" id="node3" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="263,31,376,57"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="136,31,215,57"/>
-<area shape="rect" id="node5" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="5,5,88,32"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="21,56,72,83"/>
+<area shape="rect" id="node1" title="Reads the prediction from a file." alt="" coords="572,56,651,83"/>
+<area shape="rect" id="node2" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="461,56,524,83"/>
+<area shape="rect" id="node3" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="300,56,413,83"/>
+<area shape="rect" id="node4" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="173,56,252,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="24,56,107,83"/>
+<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="40,107,91,133"/>
 </map>

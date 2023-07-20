@@ -1,5 +1,4 @@
 <map id="xcs_supervised_predict" name="xcs_supervised_predict">
-<area shape="rect" id="node1" title="Calculates the XCSF predictions for the provided input." alt="" coords="345,5,504,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#a213bbab8324b5a60482e87f18a9ceaee" title="Returns the XCSF prediction array for the provided input." alt="" coords="151,5,297,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#aa29ac60a35ac4874b65bb22deca6df0c" title="Returns the XCSF prediction array for the provided input." alt="" coords="5,5,103,32"/>
+<area shape="rect" id="node1" title="Calculates the XCSF predictions for the provided input." alt="" coords="151,5,309,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="5,5,103,32"/>
 </map>

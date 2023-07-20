@@ -1,5 +1,0 @@
-<map id="xcs_supervised_fit" name="xcs_supervised_fit">
-<area shape="rect" id="node1" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,31,253,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
-<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,56,65,83"/>
-</map>

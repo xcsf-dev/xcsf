@@ -1,0 +1,5 @@
+<map id="XCS::load_validation_data" name="XCS::load_validation_data">
+<area shape="rect" id="node1" title="Loads validation data if present in kwargs." alt="" coords="5,5,181,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f" title="Loads an input data structure for fitting." alt="" coords="229,5,347,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#aef1e4c62e78f82a058d0008d2b308735" title="Returns the current system error." alt="" coords="395,5,479,32"/>
+</map>

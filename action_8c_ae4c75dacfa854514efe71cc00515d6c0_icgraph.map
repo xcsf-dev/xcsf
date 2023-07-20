@@ -1,8 +1,13 @@
 <map id="action_param_json_export" name="action_param_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string of the action parameters." alt="" coords="569,31,744,57"/>
-<area shape="rect" id="node2" href="$param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="389,31,521,57"/>
-<area shape="rect" id="node3" href="$classXCS.html#adb57289e76542083f52f422992e4ee13" title="Returns a JSON formatted string representing the parameters." alt="" coords="187,5,341,32"/>
-<area shape="rect" id="node4" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="219,56,309,83"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="47,31,97,57"/>
-<area shape="rect" id="node6" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="5,81,139,108"/>
+<area shape="rect" id="node1" title="Returns a json formatted string of the action parameters." alt="" coords="868,56,1043,83"/>
+<area shape="rect" id="node2" href="$param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="688,56,820,83"/>
+<area shape="rect" id="node3" href="$classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8" title="Returns a dictionary of the internal parameters." alt="" coords="489,5,640,32"/>
+<area shape="rect" id="node4" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="519,56,610,83"/>
+<area shape="rect" id="node7" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="491,107,638,133"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="349,5,400,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="308,56,441,83"/>
+<area shape="rect" id="node8" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="333,107,416,133"/>
+<area shape="rect" id="node9" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="331,157,418,184"/>
+<area shape="rect" id="node10" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,157,260,184"/>
+<area shape="rect" id="node11" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,157,125,184"/>
 </map>

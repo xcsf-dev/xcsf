@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.7</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -108,8 +108,14 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
-<li>catch_error()
-: <a class="el" href="classXCS.html#a44b546a4ee6d9e43e1e28852bb1de5e6">XCS</a>
+<li>callbacks_finish()
+: <a class="el" href="classXCS.html#a58f5801686a91c3e4b8a8b532cf11537">XCS</a>
+</li>
+<li>callbacks_run()
+: <a class="el" href="classXCS.html#adc4ca8beed8cce8cd70540cee4c6ce3d">XCS</a>
+</li>
+<li>CheckpointCallback()
+: <a class="el" href="classCheckpointCallback.html#a5f9432855b63be8b079b2af10a610a19">CheckpointCallback</a>
 </li>
 </ul>
 
@@ -118,8 +124,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>decision()
 : <a class="el" href="classXCS.html#ac6003941812bd2c70ea443dd63bd59d0">XCS</a>
 </li>
-<li>dict_to_json()
-: <a class="el" href="classXCS.html#a83803dda1df95ab1bd02f3b7ba69fc11">XCS</a>
+<li>deserialize()
+: <a class="el" href="classXCS.html#a71b21201e1a2aef16702a2c308eb6683">XCS</a>
 </li>
 <li>draw()
 : <a class="el" href="classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a291230e10f8beb2f17b243e48a153e96">xcsf.utils.viz.DGPViz</a>
@@ -128,6 +134,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_e"></a>- e -</h3><ul>
+<li>EarlyStoppingCallback()
+: <a class="el" href="classEarlyStoppingCallback.html#ab305faef1ca11c34ce4828ac041d8352">EarlyStoppingCallback</a>
+</li>
 <li>end_step()
 : <a class="el" href="classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d">XCS</a>
 </li>
@@ -141,8 +150,10 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_f"></a>- f -</h3><ul>
-<li>find_replace_all()
-: <a class="el" href="classXCS.html#aa324fa8d2f623753926ed7b32607860b">XCS</a>
+<li>finish()
+: <a class="el" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">Callback</a>
+, <a class="el" href="classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471">CheckpointCallback</a>
+, <a class="el" href="classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23">EarlyStoppingCallback</a>
 </li>
 <li>fit()
 : <a class="el" href="classXCS.html#ac12768292958a714a726b1c029e9616a">XCS</a>
@@ -151,68 +162,14 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
-<li>get_alpha()
-: <a class="el" href="classXCS.html#ad497d3bfba6b07f98c7673f08ce02f9b">XCS</a>
-</li>
 <li>get_aset_size()
 : <a class="el" href="classXCS.html#a37d82ab82948e10d4f4b0426673d86e0">XCS</a>
-</li>
-<li>get_beta()
-: <a class="el" href="classXCS.html#aa0fe9e7314fb9d08fd7616ae5199eb59">XCS</a>
-</li>
-<li>get_compaction()
-: <a class="el" href="classXCS.html#a31f72b8be25ddc0a9953a9e34d70c6b7">XCS</a>
 </li>
 <li>get_cover()
 : <a class="el" href="classXCS.html#a8e75a08dd6345e617a7ef0ae22859f2a">XCS</a>
 </li>
-<li>get_delta()
-: <a class="el" href="classXCS.html#a8f11e2f80b3f3d68e9a1282103d33bba">XCS</a>
-</li>
-<li>get_e0()
-: <a class="el" href="classXCS.html#acbb6aeb1fce46e512525c892893cafea">XCS</a>
-</li>
-<li>get_ea_pred_reset()
-: <a class="el" href="classXCS.html#a9c17e3b572609fbc418a67682a34266f">XCS</a>
-</li>
-<li>get_ea_select_size()
-: <a class="el" href="classXCS.html#abc95c6feb828811d951947ff473e157d">XCS</a>
-</li>
-<li>get_ea_select_type()
-: <a class="el" href="classXCS.html#a9a149de91f7efc1b65cd048e082ed844">XCS</a>
-</li>
-<li>get_ea_subsumption()
-: <a class="el" href="classXCS.html#a4e25e5c99c4b2d5ae7c301ff6dcfb24f">XCS</a>
-</li>
-<li>get_err_reduc()
-: <a class="el" href="classXCS.html#ace215316e5a5459bd541755cc4003126">XCS</a>
-</li>
-<li>get_fit_reduc()
-: <a class="el" href="classXCS.html#a5c990601f7f652662a41fb2ffadde43c">XCS</a>
-</li>
-<li>get_gamma()
-: <a class="el" href="classXCS.html#a415d33f2f0a9bbc327dd94b7689181a5">XCS</a>
-</li>
-<li>get_huber_delta()
-: <a class="el" href="classXCS.html#a670d409e080ac55acf7e49c7ad13ad30">XCS</a>
-</li>
-<li>get_init_error()
-: <a class="el" href="classXCS.html#a1b19827f769f8aba421b2b957f158efa">XCS</a>
-</li>
-<li>get_init_fitness()
-: <a class="el" href="classXCS.html#a0c3813a786f3ef13fba64010808f3ad8">XCS</a>
-</li>
-<li>get_lambda()
-: <a class="el" href="classXCS.html#ac282d3fcfb4172ff17b9a931f37d2b16">XCS</a>
-</li>
-<li>get_loss_func()
-: <a class="el" href="classXCS.html#a4f7e32089d94a997c24b7a424953dabb">XCS</a>
-</li>
-<li>get_m_probation()
-: <a class="el" href="classXCS.html#acf838c3c90cc791010cba4b5d7660d30">XCS</a>
-</li>
-<li>get_max_trials()
-: <a class="el" href="classXCS.html#aa61d26e422587d4e91e8174fe7a50501">XCS</a>
+<li>get_metrics()
+: <a class="el" href="classXCS.html#ad32fb5c339e96a3d9b8375b5e925e153">XCS</a>
 </li>
 <li>get_mfrac()
 : <a class="el" href="classXCS.html#aa6f9edb31af785155a699deac0b08c78">XCS</a>
@@ -220,32 +177,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>get_mset_size()
 : <a class="el" href="classXCS.html#a147d45e2af2b0adc78485a3b7b8d754d">XCS</a>
 </li>
-<li>get_n_actions()
-: <a class="el" href="classXCS.html#a01bde586a3ee9728cb7c45c0bb230df6">XCS</a>
-</li>
-<li>get_nu()
-: <a class="el" href="classXCS.html#accbe600837847502c304b715ba6ca79a">XCS</a>
-</li>
-<li>get_omp_num_threads()
-: <a class="el" href="classXCS.html#adcf58aa3dff2dfbbb2aa9bec4cdec5a7">XCS</a>
-</li>
-<li>get_p_crossover()
-: <a class="el" href="classXCS.html#ad6d8f9134eeccdf17b0ccab6b42e3713">XCS</a>
-</li>
-<li>get_p_explore()
-: <a class="el" href="classXCS.html#af8c9f2328d1f3d280defa2d1da699b91">XCS</a>
-</li>
-<li>get_perf_trials()
-: <a class="el" href="classXCS.html#ab67379e985551a7844c7abb652115e57">XCS</a>
-</li>
-<li>get_pop_init()
-: <a class="el" href="classXCS.html#a3db141a1635a07da02087f519cc61ca8">XCS</a>
-</li>
-<li>get_pop_max_size()
-: <a class="el" href="classXCS.html#af01b1a2feec9fb2bfa1b087ccbd65d6a">XCS</a>
-</li>
-<li>get_predictions()
-: <a class="el" href="classXCS.html#a213bbab8324b5a60482e87f18a9ceaee">XCS</a>
+<li>get_params()
+: <a class="el" href="classXCS.html#af7411b10c34db95b4a070c6bd79a57e2">XCS</a>
 </li>
 <li>get_pset_mean_cond_connections()
 : <a class="el" href="classXCS.html#a0c384ec2ba86bd1038457df1cadd498c">XCS</a>
@@ -280,35 +213,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>get_pset_size()
 : <a class="el" href="classXCS.html#ab77bd7ac701ee13f40e3f951bb6b4f5d">XCS</a>
 </li>
-<li>get_score()
-: <a class="el" href="classXCS.html#abe2ecac1d31f36659f70eb3ff9665bef">XCS</a>
-</li>
-<li>get_set_subsumption()
-: <a class="el" href="classXCS.html#ad73e41be7a4e43968e037bb8308e619d">XCS</a>
-</li>
-<li>get_stateful()
-: <a class="el" href="classXCS.html#a301140f73ccf49325ff43d40210eb50b">XCS</a>
-</li>
-<li>get_teletransportation()
-: <a class="el" href="classXCS.html#a8c67042b503e901a1fc778b8332a5b19">XCS</a>
-</li>
-<li>get_theta_del()
-: <a class="el" href="classXCS.html#aac191e03caba8945f95122fe7f0fb6c7">XCS</a>
-</li>
-<li>get_theta_ea()
-: <a class="el" href="classXCS.html#ac3ac6ccde15e3e32e9e2874681a3a35f">XCS</a>
-</li>
-<li>get_theta_sub()
-: <a class="el" href="classXCS.html#a3106a800b19f722f626ad8f1911b6a5c">XCS</a>
-</li>
 <li>get_time()
 : <a class="el" href="classXCS.html#a11151bf7f544f693b268495bcdab60df">XCS</a>
-</li>
-<li>get_x_dim()
-: <a class="el" href="classXCS.html#a4b927e4811d43869331942ca79bab7d5">XCS</a>
-</li>
-<li>get_y_dim()
-: <a class="el" href="classXCS.html#ac051975fbd076ccc5b66b924ff6ac3b5">XCS</a>
 </li>
 </ul>
 
@@ -319,6 +225,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>init_trial()
 : <a class="el" href="classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef">XCS</a>
+</li>
+<li>internal_params()
+: <a class="el" href="classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8">XCS</a>
 </li>
 </ul>
 
@@ -332,9 +241,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>json_insert_cl()
 : <a class="el" href="classXCS.html#a61361120dbba1dba3ca49b53ded91edb">XCS</a>
-</li>
-<li>json_parameters()
-: <a class="el" href="classXCS.html#adb57289e76542083f52f422992e4ee13">XCS</a>
 </li>
 <li>json_read()
 : <a class="el" href="classXCS.html#a1a882e28a64c4e2b92ae234d79f327de">XCS</a>
@@ -356,6 +262,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>load_input()
 : <a class="el" href="classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f">XCS</a>
 </li>
+<li>load_validation_data()
+: <a class="el" href="classXCS.html#abccf7ccb52a4626d0f8bedccd62c0003">XCS</a>
+</li>
 </ul>
 
 
@@ -364,13 +273,16 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0">XCS</a>
 </li>
 <li>predict()
-: <a class="el" href="classXCS.html#aa29ac60a35ac4874b65bb22deca6df0c">XCS</a>
+: <a class="el" href="classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932">XCS</a>
 </li>
 <li>print_params()
 : <a class="el" href="classXCS.html#a7731d72fe05a86f0d9bc67939fd56182">XCS</a>
 </li>
 <li>print_pset()
 : <a class="el" href="classXCS.html#a9feecf1cfbc0910bd334031105732952">XCS</a>
+</li>
+<li>print_status()
+: <a class="el" href="classXCS.html#abe789636748762a6f5a12e6c63db1e30">XCS</a>
 </li>
 </ul>
 
@@ -382,129 +294,44 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>read_subexpr()
 : <a class="el" href="classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a712b0c4074c1effee7c8bc41f341b14d">xcsf.utils.viz.TreeViz</a>
 </li>
+<li>reset()
+: <a class="el" href="classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9">XCS</a>
+</li>
 <li>retrieve()
-: <a class="el" href="classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66">XCS</a>
+: <a class="el" href="classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59">EarlyStoppingCallback</a>
+, <a class="el" href="classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66">XCS</a>
+</li>
+<li>run()
+: <a class="el" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">Callback</a>
+, <a class="el" href="classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e">CheckpointCallback</a>
+, <a class="el" href="classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c">EarlyStoppingCallback</a>
 </li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>save()
-: <a class="el" href="classXCS.html#a8501483f2f168c56448892cfbb5285ea">XCS</a>
+: <a class="el" href="classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca">CheckpointCallback</a>
+, <a class="el" href="classXCS.html#a8501483f2f168c56448892cfbb5285ea">XCS</a>
 </li>
 <li>score()
-: <a class="el" href="classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d">XCS</a>
+: <a class="el" href="classXCS.html#a2aeb9df5550b79ea97a725e83ef64005">XCS</a>
 </li>
-<li>seed()
-: <a class="el" href="classXCS.html#ae60bbc29681a75e99b261a3e01ea99c5">XCS</a>
+<li>serialize()
+: <a class="el" href="classXCS.html#ac214b881bee8379185c34abb450c1c4b">XCS</a>
 </li>
-<li>set_action()
-: <a class="el" href="classXCS.html#af3b9793a64608f827dabb989bf9b72ef">XCS</a>
+<li>set_cover()
+: <a class="el" href="classXCS.html#acb7150d55f04c456a685be939de95f17">XCS</a>
 </li>
-<li>set_alpha()
-: <a class="el" href="classXCS.html#ac7b42948062e53f85dbb8554c5bb5989">XCS</a>
+<li>set_dims()
+: <a class="el" href="classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4">XCS</a>
 </li>
-<li>set_beta()
-: <a class="el" href="classXCS.html#af41c1ed2dfa947ed08cb6a516288ff17">XCS</a>
-</li>
-<li>set_compaction()
-: <a class="el" href="classXCS.html#ac7d08e052eec2b274e1eaf48ade6ee6a">XCS</a>
-</li>
-<li>set_condition()
-: <a class="el" href="classXCS.html#a3983bb0db5f57917ea83af2b10489d3b">XCS</a>
-</li>
-<li>set_delta()
-: <a class="el" href="classXCS.html#a8323058a309af0a4575ac311729e80e5">XCS</a>
-</li>
-<li>set_e0()
-: <a class="el" href="classXCS.html#a4927f6663a2c79e292a0adcfecc5355d">XCS</a>
-</li>
-<li>set_ea_pred_reset()
-: <a class="el" href="classXCS.html#a0377287c69cdbd61d873bc5e78359696">XCS</a>
-</li>
-<li>set_ea_select_size()
-: <a class="el" href="classXCS.html#aa4849541c607b5a3e8e7e566e5814195">XCS</a>
-</li>
-<li>set_ea_select_type()
-: <a class="el" href="classXCS.html#a98fac3b28ebb3cfe5ccc1b83ab4700ed">XCS</a>
-</li>
-<li>set_ea_subsumption()
-: <a class="el" href="classXCS.html#ab64cf40b82c63095ec42f483e8cebb0a">XCS</a>
-</li>
-<li>set_err_reduc()
-: <a class="el" href="classXCS.html#a92c1e870e6fc22bb9463100c0256072e">XCS</a>
-</li>
-<li>set_fit_reduc()
-: <a class="el" href="classXCS.html#afdf1037ef5ed257d665691be295cfbe1">XCS</a>
-</li>
-<li>set_gamma()
-: <a class="el" href="classXCS.html#a4a1f83e00e5618a02b9387d14d768ef8">XCS</a>
-</li>
-<li>set_huber_delta()
-: <a class="el" href="classXCS.html#aa15cd917c46855c6a24d4b833db79408">XCS</a>
-</li>
-<li>set_init_error()
-: <a class="el" href="classXCS.html#ab48465d2a2e54f821eaf9d427f5a2992">XCS</a>
-</li>
-<li>set_init_fitness()
-: <a class="el" href="classXCS.html#a9c9d3e9bd8d8fc77141499bfd15a88b3">XCS</a>
-</li>
-<li>set_lambda()
-: <a class="el" href="classXCS.html#a2efc40b3f2b4f2a90e5891a9c53557b3">XCS</a>
-</li>
-<li>set_loss_func()
-: <a class="el" href="classXCS.html#a049260ddd3681d8f475d4102d3a93cb4">XCS</a>
-</li>
-<li>set_m_probation()
-: <a class="el" href="classXCS.html#a5e3d3a6897e5d10deded7aa7efb58e85">XCS</a>
-</li>
-<li>set_max_trials()
-: <a class="el" href="classXCS.html#ae6ef2e99a234ca0b04524eeba1e7b54e">XCS</a>
-</li>
-<li>set_nu()
-: <a class="el" href="classXCS.html#aec02ca55ffd5c23e10257e6068754683">XCS</a>
-</li>
-<li>set_omp_num_threads()
-: <a class="el" href="classXCS.html#ac0743fc173959a78ff834c1f330fec31">XCS</a>
-</li>
-<li>set_p_crossover()
-: <a class="el" href="classXCS.html#a37ac9bd0f59f0043efa8c31dda7fd176">XCS</a>
-</li>
-<li>set_p_explore()
-: <a class="el" href="classXCS.html#a0b54ba8728a617726d66e15ad1dec784">XCS</a>
-</li>
-<li>set_perf_trials()
-: <a class="el" href="classXCS.html#a9cbe1bd6887876464812df155fe4dba7">XCS</a>
-</li>
-<li>set_pop_init()
-: <a class="el" href="classXCS.html#af79dd121dcc089fb44058cb3b4f6379c">XCS</a>
-</li>
-<li>set_pop_max_size()
-: <a class="el" href="classXCS.html#a612022921bee1c6c7d3ca565581c6647">XCS</a>
-</li>
-<li>set_prediction()
-: <a class="el" href="classXCS.html#a6659e0b11f57ef97da5d5b91226338a5">XCS</a>
-</li>
-<li>set_set_subsumption()
-: <a class="el" href="classXCS.html#aeefe758ea334d50dbb3f8fab3e6a9ed4">XCS</a>
-</li>
-<li>set_stateful()
-: <a class="el" href="classXCS.html#a4bcd1a4f0650c98a13dc35409566179f">XCS</a>
-</li>
-<li>set_teletransportation()
-: <a class="el" href="classXCS.html#a41366ede3a4fe4325f2f902b19f327d9">XCS</a>
-</li>
-<li>set_theta_del()
-: <a class="el" href="classXCS.html#a3cf8339cd3cde1fa08938824cc919fe8">XCS</a>
-</li>
-<li>set_theta_ea()
-: <a class="el" href="classXCS.html#a5a2c02597816c080b1bb10af8a9611f8">XCS</a>
-</li>
-<li>set_theta_sub()
-: <a class="el" href="classXCS.html#ade8f05749f54ef4e62c721e695657660">XCS</a>
+<li>set_params()
+: <a class="el" href="classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25">XCS</a>
 </li>
 <li>store()
-: <a class="el" href="classXCS.html#a0d5d38e87da92827cee73290b030ff9f">XCS</a>
+: <a class="el" href="classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b">EarlyStoppingCallback</a>
+, <a class="el" href="classXCS.html#a0d5d38e87da92827cee73290b030ff9f">XCS</a>
 </li>
 </ul>
 
@@ -513,25 +340,18 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>update()
 : <a class="el" href="classXCS.html#af8970ba52403714439fda0d4383a390b">XCS</a>
 </li>
-</ul>
-
-
-<h3><a id="index_v"></a>- v -</h3><ul>
-<li>version_build()
-: <a class="el" href="classXCS.html#a0f6de56e2ef395dd537f26ed1b71b5be">XCS</a>
+<li>update_metrics()
+: <a class="el" href="classXCS.html#a96cfb6bc34211569274f4476cd36cd9b">XCS</a>
 </li>
-<li>version_major()
-: <a class="el" href="classXCS.html#a1176e9d5bc2a6d4af8a880f398442224">XCS</a>
-</li>
-<li>version_minor()
-: <a class="el" href="classXCS.html#af9f1c795b5a8d9f82a2e7b132f585031">XCS</a>
+<li>update_params()
+: <a class="el" href="classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c">XCS</a>
 </li>
 </ul>
 
 
 <h3><a id="index_x"></a>- x -</h3><ul>
 <li>XCS()
-: <a class="el" href="classXCS.html#af1010afd63843f86ad1dd81fade9bd72">XCS</a>
+: <a class="el" href="classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4">XCS</a>
 </li>
 </ul>
 </div><!-- contents -->

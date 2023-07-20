@@ -1,27 +1,27 @@
 <map id="clset_neural.c" name="clset_neural.c">
-<area shape="rect" id="node1" title="Functions operating on sets of neural classifiers." alt="" coords="689,5,792,32"/>
-<area shape="rect" id="node2" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="948,80,1051,107"/>
-<area shape="rect" id="node4" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="260,304,317,331"/>
-<area shape="rect" id="node17" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="879,80,922,107"/>
-<area shape="rect" id="node18" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="689,80,792,107"/>
-<area shape="rect" id="node19" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="829,155,914,181"/>
-<area shape="rect" id="node24" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="452,80,552,107"/>
-<area shape="rect" id="node25" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="223,155,312,181"/>
-<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="762,229,821,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="1168,379,1231,405"/>
-<area shape="rect" id="node8" title=" " alt="" coords="357,379,418,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="442,379,506,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="1099,304,1161,331"/>
-<area shape="rect" id="node11" title=" " alt="" coords="823,304,882,331"/>
-<area shape="rect" id="node12" title=" " alt="" coords="907,304,985,331"/>
-<area shape="rect" id="node13" title=" " alt="" coords="1010,304,1074,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="443,304,518,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="543,304,608,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="632,304,697,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="181,379,333,405"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,379,156,405"/>
-<area shape="rect" id="node20" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="443,229,511,256"/>
-<area shape="rect" id="node21" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="565,155,703,181"/>
-<area shape="rect" id="node22" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="336,155,439,181"/>
-<area shape="rect" id="node23" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="253,229,388,256"/>
+<area shape="rect" id="node1" title="Functions operating on sets of neural classifiers." alt="" coords="472,5,575,32"/>
+<area shape="rect" id="node2" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="313,80,416,107"/>
+<area shape="rect" id="node4" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="871,304,928,331"/>
+<area shape="rect" id="node17" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="222,80,265,107"/>
+<area shape="rect" id="node18" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="561,80,664,107"/>
+<area shape="rect" id="node19" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="325,155,410,181"/>
+<area shape="rect" id="node24" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="696,80,796,107"/>
+<area shape="rect" id="node25" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="485,155,575,181"/>
+<area shape="rect" id="node3" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="370,229,429,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="879,379,941,405"/>
+<area shape="rect" id="node8" title=" " alt="" coords="606,379,681,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="705,379,766,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="790,379,854,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="24,304,87,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="111,304,170,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="195,304,273,331"/>
+<area shape="rect" id="node14" title=" " alt="" coords="298,304,362,331"/>
+<area shape="rect" id="node15" title=" " alt="" coords="628,304,693,331"/>
+<area shape="rect" id="node16" title=" " alt="" coords="539,304,604,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1141,379,1293,405"/>
+<area shape="rect" id="node6" title=" " alt="" coords="965,379,1116,405"/>
+<area shape="rect" id="node20" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="701,229,769,256"/>
+<area shape="rect" id="node21" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="879,155,1018,181"/>
+<area shape="rect" id="node22" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="701,155,804,181"/>
+<area shape="rect" id="node23" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="793,229,928,256"/>
 </map>

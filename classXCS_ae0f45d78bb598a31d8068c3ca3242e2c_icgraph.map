@@ -1,0 +1,7 @@
+<map id="XCS::update_params" name="XCS::update_params">
+<area shape="rect" id="node1" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="443,31,589,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="310,5,393,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="308,56,395,83"/>
+<area shape="rect" id="node4" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,56,260,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,56,125,83"/>
+</map>

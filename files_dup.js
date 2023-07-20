@@ -97,6 +97,16 @@ var files_dup =
     [ "pred_rls.h", "pred__rls_8h.html", "pred__rls_8h" ],
     [ "prediction.c", "prediction_8c.html", "prediction_8c" ],
     [ "prediction.h", "prediction_8h.html", "prediction_8h" ],
+    [ "pybind_callback.h", "pybind__callback_8h.html", [
+      [ "Callback", "classCallback.html", "classCallback" ]
+    ] ],
+    [ "pybind_callback_checkpoint.h", "pybind__callback__checkpoint_8h.html", [
+      [ "CheckpointCallback", "classCheckpointCallback.html", "classCheckpointCallback" ]
+    ] ],
+    [ "pybind_callback_earlystop.h", "pybind__callback__earlystop_8h.html", [
+      [ "EarlyStoppingCallback", "classEarlyStoppingCallback.html", "classEarlyStoppingCallback" ]
+    ] ],
+    [ "pybind_utils.h", "pybind__utils_8h.html", "pybind__utils_8h" ],
     [ "pybind_wrapper.cpp", "pybind__wrapper_8cpp.html", "pybind__wrapper_8cpp" ],
     [ "rule_dgp.c", "rule__dgp_8c.html", "rule__dgp_8c" ],
     [ "rule_dgp.h", "rule__dgp_8h.html", "rule__dgp_8h" ],

@@ -1,21 +1,21 @@
 <map id="pred_nlms.c" name="pred_nlms.c">
-<area shape="rect" id="node1" title="Normalised least mean squares prediction functions." alt="" coords="612,5,705,32"/>
-<area shape="rect" id="node2" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="472,80,565,107"/>
-<area shape="rect" id="node5" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="774,304,831,331"/>
-<area shape="rect" id="node18" href="$blas_8h.html" title="Basic linear algebra functions." alt="" coords="722,80,779,107"/>
-<area shape="rect" id="node19" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="588,155,647,181"/>
-<area shape="rect" id="node3" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="474,155,563,181"/>
-<area shape="rect" id="node4" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="448,229,507,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="265,379,327,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="636,379,697,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="721,379,785,405"/>
-<area shape="rect" id="node11" title=" " alt="" coords="31,304,94,331"/>
-<area shape="rect" id="node12" title=" " alt="" coords="119,304,177,331"/>
-<area shape="rect" id="node13" title=" " alt="" coords="202,304,281,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="305,304,369,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="393,304,468,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="493,304,558,331"/>
-<area shape="rect" id="node17" title=" " alt="" coords="582,304,647,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="985,379,1137,405"/>
-<area shape="rect" id="node7" title=" " alt="" coords="810,379,961,405"/>
+<area shape="rect" id="node1" title="Normalised least mean squares prediction functions." alt="" coords="359,5,452,32"/>
+<area shape="rect" id="node2" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="317,80,411,107"/>
+<area shape="rect" id="node5" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="123,304,181,331"/>
+<area shape="rect" id="node18" href="$blas_8h.html" title="Basic linear algebra functions." alt="" coords="486,80,543,107"/>
+<area shape="rect" id="node19" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="467,155,525,181"/>
+<area shape="rect" id="node3" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="302,155,391,181"/>
+<area shape="rect" id="node4" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="433,229,492,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="545,379,607,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="681,379,756,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="805,379,867,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,379,69,405"/>
+<area shape="rect" id="node12" title=" " alt="" coords="205,304,267,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="292,304,351,331"/>
+<area shape="rect" id="node14" title=" " alt="" coords="375,304,454,331"/>
+<area shape="rect" id="node15" title=" " alt="" coords="479,304,543,331"/>
+<area shape="rect" id="node16" title=" " alt="" coords="567,304,633,331"/>
+<area shape="rect" id="node17" title=" " alt="" coords="657,304,722,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="93,379,245,405"/>
+<area shape="rect" id="node7" title=" " alt="" coords="270,379,421,405"/>
 </map>

@@ -1,3 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classxcsf_1_1utils_1_1viz_1_1DGPViz.html" title=" " alt="" coords="5,5,153,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="19,151,73,178"/>
+<area shape="rect" id="node2" href="$classxcsf_1_1utils_1_1types_1_1ConditionCSRArgs.html" title=" " alt="" coords="155,384,326,425"/>
+<area shape="rect" id="node3" href="$classxcsf_1_1utils_1_1types_1_1ConditionDGPArgs.html" title=" " alt="" coords="155,5,326,47"/>
+<area shape="rect" id="node4" href="$classxcsf_1_1utils_1_1types_1_1ConditionGPArgs.html" title=" " alt="" coords="155,71,326,112"/>
+<area shape="rect" id="node5" href="$classxcsf_1_1utils_1_1types_1_1ConditionTernaryArgs.html" title=" " alt="" coords="155,136,326,177"/>
+<area shape="rect" id="node6" href="$classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html" title=" " alt="" coords="135,202,347,229"/>
+<area shape="rect" id="node7" href="$classxcsf_1_1utils_1_1types_1_1PredictionNLMSArgs.html" title=" " alt="" coords="154,253,327,295"/>
+<area shape="rect" id="node8" href="$classxcsf_1_1utils_1_1types_1_1PredictionRLSArgs.html" title=" " alt="" coords="154,319,327,360"/>
+<area shape="rect" id="node9" title=" " alt="" coords="23,202,69,229"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,253,87,279"/>
 </map>

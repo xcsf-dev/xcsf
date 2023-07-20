@@ -1,6 +1,0 @@
-<map id="XCS::dict_to_json" name="XCS::dict_to_json">
-<area shape="rect" id="node1" title="Converts a Python dictionary to a C++ string (JSON)." alt="" coords="192,56,320,83"/>
-<area shape="rect" id="node2" href="$classXCS.html#a1298087e3a06734561965359b4d74468" title="Sets the action type and initialisation arguments." alt="" coords="15,5,134,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#ab16720d21296ba0832318f67e55522e3" title="Sets the condition type and initialisation arguments." alt="" coords="7,56,142,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a76f72805cdd38df46ecbc8bd8a592376" title="Sets the prediction type and initialisation arguments." alt="" coords="5,107,144,133"/>
-</map>

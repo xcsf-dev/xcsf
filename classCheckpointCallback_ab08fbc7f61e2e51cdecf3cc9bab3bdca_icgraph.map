@@ -1,0 +1,5 @@
+<map id="CheckpointCallback::save" name="CheckpointCallback::save">
+<area shape="rect" id="node1" title="Saves the state of XCSF." alt="" coords="219,35,357,76"/>
+<area shape="rect" id="node2" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="19,5,157,47"/>
+<area shape="rect" id="node3" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="5,71,171,98"/>
+</map>

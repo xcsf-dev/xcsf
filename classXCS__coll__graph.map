@@ -1,5 +1,5 @@
 <map id="XCS" name="XCS">
-<area shape="rect" id="node1" title="Python XCSF class data structure." alt="" coords="319,540,369,567"/>
+<area shape="rect" id="node1" title="Python XCSF class data structure." alt="" coords="319,555,369,581"/>
 <area shape="rect" id="node2" href="$structXCSF.html" title="XCSF data structure." alt="" coords="275,436,333,463"/>
 <area shape="rect" id="node3" href="$structArgsCond.html" title="Parameters for initialising and operating conditions." alt="" coords="200,273,280,300"/>
 <area shape="rect" id="node4" href="$structArgsLayer.html" title="Parameters for initialising a neural network layer." alt="" coords="38,184,119,211"/>

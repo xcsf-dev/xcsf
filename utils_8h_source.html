@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.7</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -114,96 +114,110 @@ $(document).ready(function(){initNavTree('utils_8h_source.html',''); initResizab
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;../lib/cJSON/cJSON.h&quot;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;../lib/dSFMT/dSFMT.h&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="utils_8h.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> mu, <span class="keyword">const</span> <span class="keywordtype">double</span> sigma);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="utils_8h.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<a class="code" href="utils_8h.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="utils_8h.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<a class="code" href="utils_8h.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a>(<span class="keyword">const</span> uint32_t seed);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<a class="code" href="utils_8h.html#ab88f9e76233791f1e21ef22ba3a958b0">utils_json_parse_check</a>(<span class="keyword">const</span> cJSON *json);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">double</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">   59</a></span>&#160;<a class="code" href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">clamp</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> a, <span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> (a &lt; min) ? min : (a &gt; max) ? max : a;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">   72</a></span>&#160;<a class="code" href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">clamp_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> (a &lt; min) ? min : (a &gt; max) ? max : a;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">   85</a></span>&#160;<a class="code" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *X, <span class="keyword">const</span> <span class="keywordtype">int</span> N)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (N &lt; 1) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        printf(<span class="stringliteral">&quot;argmax() error: N &lt; 1\n&quot;</span>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        exit(EXIT_FAILURE);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">int</span> max_i = 0;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">double</span> max = X[0];</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; N; ++i) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> (X[i] &gt; max) {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            max_i = i;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            max = X[i];</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> max_i;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">  109</a></span>&#160;<a class="code" href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">float_to_binary</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> f, <span class="keywordtype">char</span> *binary, <span class="keyword">const</span> <span class="keywordtype">int</span> bits)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (f &gt;= 1) {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            binary[i] = <span class="charliteral">&#39;1&#39;</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (f &lt;= 0) {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            binary[i] = <span class="charliteral">&#39;0&#39;</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordtype">int</span> a = (int) (f * pow(2, bits));</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            binary[bits - 1 - i] = (a % 2) + <span class="charliteral">&#39;0&#39;</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            a /= 2;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">  133</a></span>&#160;<a class="code" href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">catch_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *ret)</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">if</span> (ret != NULL) {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, ret);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        exit(EXIT_FAILURE);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
-<div class="ttc" id="autils_8h_html_a1c96b0520a47b6a4a106973bdbc9c871"><div class="ttname"><a href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">clamp_int</a></div><div class="ttdeci">static int clamp_int(const int a, const int min, const int max)</div><div class="ttdoc">Returns an integer clamped within the specified range.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00072">utils.h:72</a></div></div>
-<div class="ttc" id="autils_8h_html_a234dd9ca33bcf1fba3e675bc900abc88"><div class="ttname"><a href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">clamp</a></div><div class="ttdeci">static double clamp(const double a, const double min, const double max)</div><div class="ttdoc">Returns a float clamped within the specified range.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00059">utils.h:59</a></div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="utils_8h.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> mu, <span class="keyword">const</span> <span class="keywordtype">double</span> sigma);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="utils_8h.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="utils_8h.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="utils_8h.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<a class="code" href="utils_8h.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a>(<span class="keyword">const</span> uint32_t seed);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="utils_8h.html#ab88f9e76233791f1e21ef22ba3a958b0">utils_json_parse_check</a>(<span class="keyword">const</span> cJSON *json);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">double</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">   60</a></span>&#160;<a class="code" href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">clamp</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> a, <span class="keyword">const</span> <span class="keywordtype">double</span> min, <span class="keyword">const</span> <span class="keywordtype">double</span> max)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> (a &lt; min) ? min : (a &gt; max) ? max : a;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">   73</a></span>&#160;<a class="code" href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">clamp_int</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> a, <span class="keyword">const</span> <span class="keywordtype">int</span> min, <span class="keyword">const</span> <span class="keywordtype">int</span> max)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> (a &lt; min) ? min : (a &gt; max) ? max : a;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">   86</a></span>&#160;<a class="code" href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *X, <span class="keyword">const</span> <span class="keywordtype">int</span> N)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (N &lt; 1) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        printf(<span class="stringliteral">&quot;argmax() error: N &lt; 1\n&quot;</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">int</span> max_i = 0;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">double</span> max = X[0];</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; N; ++i) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> (X[i] &gt; max) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            max_i = i;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            max = X[i];</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> max_i;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">  110</a></span>&#160;<a class="code" href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">float_to_binary</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> f, <span class="keywordtype">char</span> *binary, <span class="keyword">const</span> <span class="keywordtype">int</span> bits)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span> (f &gt;= 1) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            binary[i] = <span class="charliteral">&#39;1&#39;</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (f &lt;= 0) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            binary[i] = <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordtype">int</span> a = (int) (f * pow(2, bits));</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; bits; ++i) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            binary[bits - 1 - i] = (a % 2) + <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            a /= 2;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">  134</a></span>&#160;<a class="code" href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">catch_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *ret)</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">if</span> (ret != NULL) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, ret);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        exit(EXIT_FAILURE);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="utils_8h.html#aa0b869adcb51cf80d69296c7d9ceb515">  150</a></span>&#160;<a class="code" href="utils_8h.html#aa0b869adcb51cf80d69296c7d9ceb515">check_array_eq</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *arr1, <span class="keyword">const</span> <span class="keywordtype">double</span> *arr2, <span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> tol = 1e-5;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; ++i) {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (arr1[i] &lt; arr2[i] - tol || arr1[i] &gt; arr2[i] + tol) {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
+<div class="ttc" id="autils_8h_html_a1c96b0520a47b6a4a106973bdbc9c871"><div class="ttname"><a href="utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871">clamp_int</a></div><div class="ttdeci">static int clamp_int(const int a, const int min, const int max)</div><div class="ttdoc">Returns an integer clamped within the specified range.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00073">utils.h:73</a></div></div>
+<div class="ttc" id="autils_8h_html_a234dd9ca33bcf1fba3e675bc900abc88"><div class="ttname"><a href="utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88">clamp</a></div><div class="ttdeci">static double clamp(const double a, const double min, const double max)</div><div class="ttdoc">Returns a float clamped within the specified range.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00060">utils.h:60</a></div></div>
 <div class="ttc" id="autils_8h_html_a5e6304fd9b177f36684d4bb00af49f91"><div class="ttname"><a href="utils_8h.html#a5e6304fd9b177f36684d4bb00af49f91">rand_uniform_int</a></div><div class="ttdeci">int rand_uniform_int(const int min, const int max)</div><div class="ttdoc">Returns a uniform random integer [min,max] not inclusive of max.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00074">utils.c:74</a></div></div>
 <div class="ttc" id="autils_8h_html_a6a36d869b4a218a3f55cd19067f62c0f"><div class="ttname"><a href="utils_8h.html#a6a36d869b4a218a3f55cd19067f62c0f">rand_normal</a></div><div class="ttdeci">double rand_normal(const double mu, const double sigma)</div><div class="ttdoc">Returns a random Gaussian with specified mean and standard deviation.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00087">utils.c:87</a></div></div>
 <div class="ttc" id="autils_8h_html_a972761ba8f47a6c3e7396a7c685158fc"><div class="ttname"><a href="utils_8h.html#a972761ba8f47a6c3e7396a7c685158fc">rand_uniform</a></div><div class="ttdeci">double rand_uniform(const double min, const double max)</div><div class="ttdoc">Returns a uniform random float [min,max].</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00062">utils.c:62</a></div></div>
+<div class="ttc" id="autils_8h_html_aa0b869adcb51cf80d69296c7d9ceb515"><div class="ttname"><a href="utils_8h.html#aa0b869adcb51cf80d69296c7d9ceb515">check_array_eq</a></div><div class="ttdeci">static bool check_array_eq(const double *arr1, const double *arr2, int size)</div><div class="ttdoc">Checks whether two double arrays are approximately equal.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00150">utils.h:150</a></div></div>
 <div class="ttc" id="autils_8h_html_ab74192959d5c945feaf0a630b58fd123"><div class="ttname"><a href="utils_8h.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a></div><div class="ttdeci">void rand_init(void)</div><div class="ttdoc">Initialises the pseudo-random number generator.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00034">utils.c:34</a></div></div>
 <div class="ttc" id="autils_8h_html_ab88f9e76233791f1e21ef22ba3a958b0"><div class="ttname"><a href="utils_8h.html#ab88f9e76233791f1e21ef22ba3a958b0">utils_json_parse_check</a></div><div class="ttdeci">void utils_json_parse_check(const cJSON *json)</div><div class="ttdoc">Checks whether JSON parsed correctly.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00109">utils.c:109</a></div></div>
-<div class="ttc" id="autils_8h_html_ac0f9e38a3bca200fe25abd29ce3672cc"><div class="ttname"><a href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">float_to_binary</a></div><div class="ttdeci">static void float_to_binary(const double f, char *binary, const int bits)</div><div class="ttdoc">Generates a binary string from a float.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00109">utils.h:109</a></div></div>
+<div class="ttc" id="autils_8h_html_ac0f9e38a3bca200fe25abd29ce3672cc"><div class="ttname"><a href="utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc">float_to_binary</a></div><div class="ttdeci">static void float_to_binary(const double f, char *binary, const int bits)</div><div class="ttdoc">Generates a binary string from a float.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00110">utils.h:110</a></div></div>
 <div class="ttc" id="autils_8h_html_ad163bbefbbb9754feb94f468cab51b3a"><div class="ttname"><a href="utils_8h.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a></div><div class="ttdeci">void rand_init_seed(const uint32_t seed)</div><div class="ttdoc">Initialises the pseudo-random number generator with a fixed seed.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8c_source.html#l00050">utils.c:50</a></div></div>
-<div class="ttc" id="autils_8h_html_ad4c1cfaf547c968379d68470354816b7"><div class="ttname"><a href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">catch_error</a></div><div class="ttdeci">static void catch_error(const char *ret)</div><div class="ttdoc">Catches parameter value errors.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00133">utils.h:133</a></div></div>
-<div class="ttc" id="autils_8h_html_ae85373ce85c9be81cf1456fb58478274"><div class="ttname"><a href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a></div><div class="ttdeci">static int argmax(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00085">utils.h:85</a></div></div>
+<div class="ttc" id="autils_8h_html_ad4c1cfaf547c968379d68470354816b7"><div class="ttname"><a href="utils_8h.html#ad4c1cfaf547c968379d68470354816b7">catch_error</a></div><div class="ttdeci">static void catch_error(const char *ret)</div><div class="ttdoc">Catches parameter value errors.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00134">utils.h:134</a></div></div>
+<div class="ttc" id="autils_8h_html_ae85373ce85c9be81cf1456fb58478274"><div class="ttname"><a href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274">argmax</a></div><div class="ttdeci">static int argmax(const double *X, const int N)</div><div class="ttdoc">Returns the index of the largest element in vector X.</div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00086">utils.h:86</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

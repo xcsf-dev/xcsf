@@ -1,5 +1,0 @@
-<map id="XCS::set_condition" name="XCS::set_condition">
-<area shape="rect" id="node1" title="Sets the condition type." alt="" coords="5,13,140,39"/>
-<area shape="rect" id="node2" href="$condition_8c.html#aab417c59d2fd802e55463b7f928c9c09" title=" " alt="" coords="188,5,339,47"/>
-<area shape="rect" id="node3" href="$condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="387,13,535,39"/>
-</map>

@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.2.7</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -173,6 +173,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a905034b1c538cffd5da51fd6a3c735bb"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#a905034b1c538cffd5da51fd6a3c735bb">prev_state</a></td></tr>
 <tr class="memdesc:a905034b1c538cffd5da51fd6a3c735bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Environment state on the previous step.  <a href="structXCSF.html#a905034b1c538cffd5da51fd6a3c735bb">More...</a><br /></td></tr>
 <tr class="separator:a905034b1c538cffd5da51fd6a3c735bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab206634a0b563f5af9a7ac005363e3d"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#aab206634a0b563f5af9a7ac005363e3d">cover</a></td></tr>
+<tr class="memdesc:aab206634a0b563f5af9a7ac005363e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Values to return for a prediction instead of covering.  <a href="structXCSF.html#aab206634a0b563f5af9a7ac005363e3d">More...</a><br /></td></tr>
+<tr class="separator:aab206634a0b563f5af9a7ac005363e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0405c64106260871074d7dc21d2b4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#abe0405c64106260871074d7dc21d2b4e">time</a></td></tr>
 <tr class="memdesc:abe0405c64106260871074d7dc21d2b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current number of EA executions.  <a href="structXCSF.html#abe0405c64106260871074d7dc21d2b4e">More...</a><br /></td></tr>
 <tr class="separator:abe0405c64106260871074d7dc21d2b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,6 +254,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:ad5e368101793c1a242ffa38c81d45b3b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#ad5e368101793c1a242ffa38c81d45b3b">THETA_SUB</a></td></tr>
 <tr class="memdesc:ad5e368101793c1a242ffa38c81d45b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum experience of a classifier to become a subsumer.  <a href="structXCSF.html#ad5e368101793c1a242ffa38c81d45b3b">More...</a><br /></td></tr>
 <tr class="separator:ad5e368101793c1a242ffa38c81d45b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07a0377e0b1b2f163c371a9661f0f7c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#a07a0377e0b1b2f163c371a9661f0f7c7">RANDOM_STATE</a></td></tr>
+<tr class="memdesc:a07a0377e0b1b2f163c371a9661f0f7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number seed.  <a href="structXCSF.html#a07a0377e0b1b2f163c371a9661f0f7c7">More...</a><br /></td></tr>
+<tr class="separator:a07a0377e0b1b2f163c371a9661f0f7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6432eff765a5ff43b406048ebc3d0fa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#a6432eff765a5ff43b406048ebc3d0fa5">POP_INIT</a></td></tr>
 <tr class="memdesc:a6432eff765a5ff43b406048ebc3d0fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop initially empty or filled with random conditions.  <a href="structXCSF.html#a6432eff765a5ff43b406048ebc3d0fa5">More...</a><br /></td></tr>
 <tr class="separator:a6432eff765a5ff43b406048ebc3d0fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,6 +269,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a75d84b91eb141d20b16b84e791e4c1f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#a75d84b91eb141d20b16b84e791e4c1f8">COMPACTION</a></td></tr>
 <tr class="memdesc:a75d84b91eb141d20b16b84e791e4c1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">if sys err &lt; E0: largest of 2 roulette spins deleted  <a href="structXCSF.html#a75d84b91eb141d20b16b84e791e4c1f8">More...</a><br /></td></tr>
 <tr class="separator:a75d84b91eb141d20b16b84e791e4c1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c6e82bdbeb2ecc1d9c9f18225c61960"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structXCSF.html#a7c6e82bdbeb2ecc1d9c9f18225c61960">population_file</a></td></tr>
+<tr class="memdesc:a7c6e82bdbeb2ecc1d9c9f18225c61960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of a JSON file containing an initial pop.  <a href="structXCSF.html#a7c6e82bdbeb2ecc1d9c9f18225c61960">More...</a><br /></td></tr>
+<tr class="separator:a7c6e82bdbeb2ecc1d9c9f18225c61960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </p>
@@ -301,9 +310,7 @@ Data Fields</h2></td></tr>
 
 <p>Linear coefficient used to calculate classifier accuracy. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00117">117</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00577">XCS::get_alpha()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00118">118</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -341,7 +348,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00100">100</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00751">XCS::get_aset_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00815">XCS::get_aset_size()</a>.</p>
 
 </div>
 </div>
@@ -359,9 +366,7 @@ Data Fields</h2></td></tr>
 
 <p>Learning rate for updating error, fitness, and set size. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00118">118</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00583">XCS::get_beta()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00119">119</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -379,9 +384,7 @@ Data Fields</h2></td></tr>
 
 <p>if sys err &lt; E0: largest of 2 roulette spins deleted </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00137">137</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00631">XCS::get_compaction()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00139">139</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -403,6 +406,26 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a id="aab206634a0b563f5af9a7ac005363e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab206634a0b563f5af9a7ac005363e3d">&#9670;&nbsp;</a></span>cover</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* XCSF::cover</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Values to return for a prediction instead of covering. </p>
+
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00107">107</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00529">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00456">XCS::load_validation_data()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00613">XCS::predict()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00648">XCS::score()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00595">XCS::set_cover()</a>.</p>
+
+</div>
+</div>
 <a id="a8f4b8bebee13b0cf90fc13c1d32d8d02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f4b8bebee13b0cf90fc13c1d32d8d02">&#9670;&nbsp;</a></span>DELTA</h2>
 
@@ -417,9 +440,7 @@ Data Fields</h2></td></tr>
 
 <p>Fraction of population to increase deletion vote. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00119">119</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00589">XCS::get_delta()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00120">120</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -437,9 +458,7 @@ Data Fields</h2></td></tr>
 
 <p>Target error under which classifier accuracy is set to 1. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00120">120</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00595">XCS::get_e0()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00121">121</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -458,8 +477,6 @@ Data Fields</h2></td></tr>
 <p>EA parameters. </p>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00095">95</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00829">XCS::get_ea_pred_reset()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00787">XCS::get_ea_select_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00781">XCS::get_ea_select_type()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00823">XCS::get_ea_subsumption()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00811">XCS::get_err_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00817">XCS::get_fit_reduc()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00799">XCS::get_lambda()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00805">XCS::get_p_crossover()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00793">XCS::get_theta_ea()</a>.</p>
 
 </div>
 </div>
@@ -515,7 +532,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00098">98</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00529">XCS::error()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00718">XCS::error()</a>.</p>
 
 </div>
 </div>
@@ -533,7 +550,7 @@ Data Fields</h2></td></tr>
 
 <p>Whether the system is currently exploring or exploiting. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00112">112</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00113">113</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -551,9 +568,7 @@ Data Fields</h2></td></tr>
 
 <p>Discount factor for multi-step reward. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00115">115</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00769">XCS::get_gamma()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00116">116</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -571,9 +586,7 @@ Data Fields</h2></td></tr>
 
 <p>Delta parameter for Huber loss calculation. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00124">124</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00571">XCS::get_huber_delta()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00125">125</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -591,9 +604,7 @@ Data Fields</h2></td></tr>
 
 <p>Initial classifier error value. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00121">121</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00601">XCS::get_init_error()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00122">122</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -611,9 +622,7 @@ Data Fields</h2></td></tr>
 
 <p>Initial classifier fitness value. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00122">122</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00607">XCS::get_init_fitness()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00123">123</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -649,9 +658,7 @@ Data Fields</h2></td></tr>
 
 <p>Which loss/error function to apply. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00129">129</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00565">XCS::get_loss_func()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00130">130</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -669,7 +676,7 @@ Data Fields</h2></td></tr>
 
 <p>Error function. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00113">113</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00114">114</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -687,9 +694,7 @@ Data Fields</h2></td></tr>
 
 <p>Trials since creation a cl must match at least 1 input. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00132">132</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00619">XCS::get_m_probation()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00133">133</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -707,9 +712,9 @@ Data Fields</h2></td></tr>
 
 <p>Number of problem instances to run in one experiment. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00126">126</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00127">127</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00547">XCS::get_max_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00529">XCS::fit()</a>.</p>
 
 </div>
 </div>
@@ -729,7 +734,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00101">101</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00757">XCS::get_mfrac()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00821">XCS::get_mfrac()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00439">XCS::update_metrics()</a>.</p>
 
 </div>
 </div>
@@ -767,7 +772,7 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00099">99</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00745">XCS::get_mset_size()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00809">XCS::get_mset_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00439">XCS::update_metrics()</a>.</p>
 
 </div>
 </div>
@@ -785,9 +790,9 @@ Data Fields</h2></td></tr>
 
 <p>Number of class labels / actions. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00111">111</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00112">112</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">XCS::fit()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00685">XCS::get_n_actions()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00225">XCS::fit()</a>.</p>
 
 </div>
 </div>
@@ -823,9 +828,7 @@ Data Fields</h2></td></tr>
 
 <p>Exponent used in calculating classifier accuracy. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00123">123</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00613">XCS::get_nu()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00124">124</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -843,9 +846,7 @@ Data Fields</h2></td></tr>
 
 <p>Number of threads for parallel processing. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00125">125</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00535">XCS::get_omp_num_threads()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00126">126</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -863,9 +864,7 @@ Data Fields</h2></td></tr>
 
 <p>Probability of exploring vs. exploiting. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00116">116</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00775">XCS::get_p_explore()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00117">117</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -901,9 +900,9 @@ Data Fields</h2></td></tr>
 
 <p>Prediction array size. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00108">108</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00109">109</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00427">XCS::get_predictions()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00456">XCS::load_validation_data()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00613">XCS::predict()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00595">XCS::set_cover()</a>.</p>
 
 </div>
 </div>
@@ -921,9 +920,9 @@ Data Fields</h2></td></tr>
 
 <p>Number of problem instances to avg performance output. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00127">127</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00128">128</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00553">XCS::get_perf_trials()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00529">XCS::fit()</a>.</p>
 
 </div>
 </div>
@@ -941,9 +940,7 @@ Data Fields</h2></td></tr>
 
 <p>Pop initially empty or filled with random conditions. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00134">134</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00541">XCS::get_pop_init()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00136">136</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -961,9 +958,25 @@ Data Fields</h2></td></tr>
 
 <p>Maximum number of micro-classifiers in the population. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00128">128</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00129">129</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00559">XCS::get_pop_max_size()</a>.</p>
+</div>
+</div>
+<a id="a7c6e82bdbeb2ecc1d9c9f18225c61960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c6e82bdbeb2ecc1d9c9f18225c61960">&#9670;&nbsp;</a></span>population_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* XCSF::population_file</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Name of a JSON file containing an initial pop. </p>
+
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00140">140</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1104,25 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00079">79</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00727">XCS::get_pset_mean_cond_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00739">XCS::get_pset_mean_cond_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00733">XCS::get_pset_mean_cond_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00691">XCS::get_pset_mean_cond_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00715">XCS::get_pset_mean_pred_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00703">XCS::get_pset_mean_pred_eta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00721">XCS::get_pset_mean_pred_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00709">XCS::get_pset_mean_pred_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00697">XCS::get_pset_mean_pred_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00661">XCS::get_pset_num()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00655">XCS::get_pset_size()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l01206">XCS::json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00791">XCS::get_pset_mean_cond_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00803">XCS::get_pset_mean_cond_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00797">XCS::get_pset_mean_cond_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00755">XCS::get_pset_mean_cond_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00779">XCS::get_pset_mean_pred_connections()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00767">XCS::get_pset_mean_pred_eta()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00785">XCS::get_pset_mean_pred_layers()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00773">XCS::get_pset_mean_pred_neurons()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00761">XCS::get_pset_mean_pred_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00743">XCS::get_pset_num()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00737">XCS::get_pset_size()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00836">XCS::json_export()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00439">XCS::update_metrics()</a>.</p>
+
+</div>
+</div>
+<a id="a07a0377e0b1b2f163c371a9661f0f7c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07a0377e0b1b2f163c371a9661f0f7c7">&#9670;&nbsp;</a></span>RANDOM_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int XCSF::RANDOM_STATE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Random number seed. </p>
+
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00135">135</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1109,9 +1140,7 @@ Data Fields</h2></td></tr>
 
 <p>Whether to perform match set subsumption. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00135">135</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00649">XCS::get_set_subsumption()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00137">137</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1129,9 +1158,7 @@ Data Fields</h2></td></tr>
 
 <p>Whether classifiers should retain state across trials. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00136">136</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00625">XCS::get_stateful()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00138">138</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1149,9 +1176,7 @@ Data Fields</h2></td></tr>
 
 <p>Maximum steps for a multi-step problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00130">130</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00763">XCS::get_teletransportation()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00131">131</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1169,9 +1194,7 @@ Data Fields</h2></td></tr>
 
 <p>Min experience before fitness used during deletion. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00131">131</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00637">XCS::get_theta_del()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00132">132</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1189,9 +1212,7 @@ Data Fields</h2></td></tr>
 
 <p>Minimum experience of a classifier to become a subsumer. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00133">133</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00643">XCS::get_theta_sub()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00134">134</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
 </div>
 </div>
@@ -1209,9 +1230,9 @@ Data Fields</h2></td></tr>
 
 <p>Current number of EA executions. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00107">107</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00108">108</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00667">XCS::get_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00749">XCS::get_time()</a>.</p>
 
 </div>
 </div>
@@ -1229,9 +1250,9 @@ Data Fields</h2></td></tr>
 
 <p>Number of problem input variables. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00109">109</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00110">110</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00280">XCS::decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00218">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00427">XCS::get_predictions()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00673">XCS::get_x_dim()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00330">XCS::load_input()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00287">XCS::decision()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00225">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00367">XCS::load_input()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00613">XCS::predict()</a>.</p>
 
 </div>
 </div>
@@ -1249,9 +1270,9 @@ Data Fields</h2></td></tr>
 
 <p>Number of problem output variables. </p>
 
-<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00110">110</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcsf_8h_source.html#l00111">111</a> of file <a class="el" href="xcsf_8h_source.html">xcsf.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00401">XCS::get_cover()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00679">XCS::get_y_dim()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00330">XCS::load_input()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00572">XCS::get_cover()</a>, and <a class="el" href="pybind__wrapper_8cpp_source.html#l00367">XCS::load_input()</a>.</p>
 
 </div>
 </div>

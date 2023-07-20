@@ -20,17 +20,17 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="clset_8c.html#a9f71f62cb4c5216fb3a3e76a6b3df82f" target="_top" xlink:title="Creates a classifier from cJSON and inserts in the population set.">
-<polygon fill="none" stroke="black" points="154.5,-158.5 154.5,-177.5 244.5,-177.5 244.5,-158.5 154.5,-158.5"/>
-<text text-anchor="middle" x="199.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_json_insert</text>
+<g id="a_node2"><a xlink:href="clset_8c.html#af6dd68a382ba6513d94925542da41f38" target="_top" xlink:title="Creates a classifier from cJSON and inserts in the population set.">
+<polygon fill="none" stroke="black" points="148,-158.5 148,-177.5 251,-177.5 251,-158.5 148,-158.5"/>
+<text text-anchor="middle" x="199.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00">clset_json_insert_cl</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M104.3,-155.7C117.21,-157.38 131.11,-159.2 144.17,-160.9"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="144.05,-164.42 154.42,-162.24 144.96,-157.48 144.05,-164.42"/>
+<path fill="none" stroke="midnightblue" d="M104.3,-155.7C115.07,-157.11 126.54,-158.6 137.62,-160.05"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="137.3,-163.54 147.67,-161.36 138.2,-156.6 137.3,-163.54"/>
 </g>
 <!-- Node35 -->
 <g id="node35" class="node">
@@ -74,8 +74,8 @@
 <!-- Node2&#45;&gt;Node23 -->
 <g id="edge22" class="edge">
 <title>Node2&#45;&gt;Node23</title>
-<path fill="none" stroke="midnightblue" d="M244.54,-167.42C333.3,-166.25 532.37,-163.62 616.64,-162.51"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="616.85,-166.01 626.8,-162.38 616.76,-159.01 616.85,-166.01"/>
+<path fill="none" stroke="midnightblue" d="M251.37,-167.33C343.12,-166.12 534.4,-163.6 616.59,-162.51"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="616.8,-166.01 626.76,-162.38 616.71,-159.01 616.8,-166.01"/>
 </g>
 <!-- Node24 -->
 <g id="node24" class="node">

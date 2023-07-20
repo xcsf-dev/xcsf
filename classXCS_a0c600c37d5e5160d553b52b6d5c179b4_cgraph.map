@@ -1,0 +1,121 @@
+<map id="XCS::set_dims" name="XCS::set_dims">
+<area shape="rect" id="node1" title="Sets XCSF input and output dimensions." alt="" coords="5,1668,116,1695"/>
+<area shape="rect" id="node2" href="$classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25" title="Sets parameter values." alt="" coords="164,1668,291,1695"/>
+<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="339,1668,471,1695"/>
+<area shape="rect" id="node4" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="539,1668,693,1695"/>
+<area shape="rect" id="node16" href="$param_8c.html#a86522321fabfe9b21b98617befc4ffa6" title="Sets the action parameters from a json formatted string." alt="" coords="529,2064,703,2091"/>
+<area shape="rect" id="node34" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="541,302,691,343"/>
+<area shape="rect" id="node46" href="$param_8c.html#a94f5495282a36944cade334e52c3c5cd" title="Sets the condition parameters from a json formatted string." alt="" coords="521,2152,711,2179"/>
+<area shape="rect" id="node74" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="525,892,707,919"/>
+<area shape="rect" id="node99" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="533,1288,699,1315"/>
+<area shape="rect" id="node103" href="$param_8c.html#ab62861b770fc9aea05efcc26279ee9e5" title="Sets the prediction parameters from a json formatted string." alt="" coords="519,1955,713,1981"/>
+<area shape="rect" id="node116" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="520,1415,712,1441"/>
+<area shape="rect" id="node119" href="$utils_8c.html#ab88f9e76233791f1e21ef22ba3a958b0" title="Checks whether JSON parsed correctly." alt="" coords="537,2203,695,2229"/>
+<area shape="rect" id="node5" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="817,1187,903,1213"/>
+<area shape="rect" id="node6" href="$ea_8c.html#a542e7edec79442b8ea67b549de8c20f4" title=" " alt="" coords="777,1744,943,1771"/>
+<area shape="rect" id="node7" href="$ea_8c.html#a6991ded81cd5f8092edd273f14b51656" title=" " alt="" coords="779,1795,941,1821"/>
+<area shape="rect" id="node8" href="$ea_8c.html#a3cd269c31d0c8746945c5702b0ff2878" title=" " alt="" coords="783,1845,937,1872"/>
+<area shape="rect" id="node9" href="$ea_8c.html#aa13da4ecefb72f2ea73ac3305978fbd9" title=" " alt="" coords="769,1896,951,1923"/>
+<area shape="rect" id="node10" href="$ea_8c.html#a8dddce688fce5036e42a02cb5f81c16a" title=" " alt="" coords="774,1491,946,1517"/>
+<area shape="rect" id="node11" href="$ea_8c.html#af8835dfc61b17259355a8857b834a085" title=" " alt="" coords="771,1541,949,1568"/>
+<area shape="rect" id="node12" href="$ea_8c.html#a01bfae90b944b75fb043898949cffc93" title=" " alt="" coords="767,1592,953,1619"/>
+<area shape="rect" id="node13" href="$ea_8c.html#a4f787e4f40ad089a2d7ed89705921669" title=" " alt="" coords="790,1643,930,1669"/>
+<area shape="rect" id="node14" href="$ea_8c.html#aae5494ed1288e31cd5ff702ecdb9d02b" title=" " alt="" coords="773,1693,947,1720"/>
+<area shape="rect" id="node15" href="$ea_8c.html#aa0505eb5ed3eb60094e9aa48bec5c02f" title="Returns the integer representation of an EA selection type." alt="" coords="1047,1693,1158,1720"/>
+<area shape="rect" id="node17" href="$action_8c.html#a39f808f6b04ccbc2a2c2a2857e5b845e" title="Sets the action parameters from a cJSON object." alt="" coords="773,2064,947,2091"/>
+<area shape="rect" id="node32" href="$action_8c.html#aa39e0957258c0608cff224da76500d62" title=" " alt="" coords="781,2115,939,2157"/>
+<area shape="rect" id="node18" href="$act__neural_8c.html#af2696c8b843a0a6a9c09df4b988df39a" title="Sets the neural network parameters from a cJSON object." alt="" coords="1025,2071,1181,2113"/>
+<area shape="rect" id="node19" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="1287,2129,1398,2156"/>
+<area shape="rect" id="node20" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="1289,2180,1396,2207"/>
+<area shape="rect" id="node21" href="$neural__layer__args_8c.html#a3b9aa19f760cc83a0a56abd6264e314e" title="Sets the layer parameters from a cJSON object." alt="" coords="1265,2028,1421,2055"/>
+<area shape="rect" id="node29" href="$neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="1275,2079,1410,2105"/>
+<area shape="rect" id="node22" href="$neural__layer__args_8c.html#af7388e196c27ab190bb7bb6848a7a456" title="Sets the layer activation from a cJSON object." alt="" coords="1504,1962,1660,2003"/>
+<area shape="rect" id="node24" href="$neural__layer__args_8c.html#a511a92070d5a53700d9650c1705b96ab" title="Sets the layer evolutionary parameters from a cJSON object." alt="" coords="1490,2028,1674,2055"/>
+<area shape="rect" id="node25" href="$neural__layer__args_8c.html#a22a018ccf2e332aafeaa450968b96ed1" title="Sets the layer input parameters from a cJSON object." alt="" coords="1504,2079,1660,2121"/>
+<area shape="rect" id="node26" href="$neural__layer__args_8c.html#ab5d03fe4bb8549b5321c9bda9c514161" title="Sets the layer scaling parameters from a cJSON object." alt="" coords="1504,1794,1660,1835"/>
+<area shape="rect" id="node27" href="$neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2" title="Sets the layer SGD parameters from a cJSON object." alt="" coords="1490,1860,1674,1887"/>
+<area shape="rect" id="node28" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="1520,1911,1644,1937"/>
+<area shape="rect" id="node23" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="1725,1969,1888,1996"/>
+<area shape="rect" id="node30" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="1515,2145,1649,2186"/>
+<area shape="rect" id="node31" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1729,2152,1884,2179"/>
+<area shape="rect" id="node33" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="1037,2137,1168,2164"/>
+<area shape="rect" id="node35" href="$param_8c.html#acf299ae8e850666d58305bb50fe056c9" title=" " alt="" coords="799,5,921,32"/>
+<area shape="rect" id="node36" href="$param_8c.html#a2d38692b0d27a08662a86830c29ab727" title=" " alt="" coords="803,56,917,83"/>
+<area shape="rect" id="node37" href="$param_8c.html#a967e1c12f2eab4d5ed33fe28fb49a379" title=" " alt="" coords="781,107,939,133"/>
+<area shape="rect" id="node38" href="$param_8c.html#ae82f114a1523967276c78a391c71bf99" title=" " alt="" coords="801,157,919,184"/>
+<area shape="rect" id="node39" href="$param_8c.html#a01a1284127fce6d44749e9e3b17ae980" title=" " alt="" coords="808,208,912,235"/>
+<area shape="rect" id="node40" href="$param_8c.html#a9a9b2470f356ee620ac6d6b8e384c882" title=" " alt="" coords="790,259,930,285"/>
+<area shape="rect" id="node41" href="$param_8c.html#a7c53a7e10246bdeec2df8463b5a4da45" title=" " alt="" coords="783,309,937,336"/>
+<area shape="rect" id="node42" href="$param_8c.html#a550d91f8aaa6157a28a268064c718c8e" title=" " alt="" coords="779,360,941,387"/>
+<area shape="rect" id="node43" href="$param_8c.html#a13e7d4b4ec0812cbadeec790bb3b75fb" title=" " alt="" coords="808,411,912,437"/>
+<area shape="rect" id="node44" href="$param_8c.html#a21c592b2427a801cb0eda3fee504d38c" title=" " alt="" coords="793,461,927,488"/>
+<area shape="rect" id="node45" href="$param_8c.html#ab8cd76a96bdd278cbd0fa1be38eecb73" title=" " alt="" coords="789,512,931,539"/>
+<area shape="rect" id="node47" href="$condition_8c.html#a05cc17fed48d042eaefd1e22582b24c6" title="Sets the condition parameters from a cJSON object." alt="" coords="777,2377,943,2404"/>
+<area shape="rect" id="node72" href="$condition_8c.html#aab417c59d2fd802e55463b7f928c9c09" title=" " alt="" coords="785,2181,935,2222"/>
+<area shape="rect" id="node48" href="$cond__dgp_8c.html#ad79eb421a4ca47cbad5eaf194b9c2a4e" title="Sets the DGP parameters from a cJSON object." alt="" coords="1027,2337,1179,2378"/>
+<area shape="rect" id="node54" href="$cond__gp_8c.html#a98843961b5ca747608752353a5d0edae" title="Sets the tree GP parameters from a cJSON object." alt="" coords="1030,2421,1175,2462"/>
+<area shape="rect" id="node63" href="$cond__neural_8c.html#a9255c78753af68c08b204d56737f3586" title="Sets the neural network parameters from a cJSON object." alt="" coords="1019,2239,1186,2281"/>
+<area shape="rect" id="node64" href="$condition_8c.html#a720cc103a0bb61677a3e918bddc4e6a4" title="Sets the center&#45;spread parameters from a cJSON object." alt="" coords="1007,2609,1199,2636"/>
+<area shape="rect" id="node69" href="$cond__ternary_8c.html#a767df473e45580612c5682c90b48b737" title="Sets the ternary parameters from a cJSON object." alt="" coords="1033,2754,1173,2795"/>
+<area shape="rect" id="node49" href="$dgp_8c.html#ae834119f454807d1ce8864535b907f53" title="Sets the DGP graph parameters from a cJSON object." alt="" coords="1263,2327,1423,2353"/>
+<area shape="rect" id="node50" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="1499,2210,1665,2251"/>
+<area shape="rect" id="node51" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="1498,2276,1666,2303"/>
+<area shape="rect" id="node52" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="1499,2327,1665,2353"/>
+<area shape="rect" id="node53" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="1514,2377,1650,2404"/>
+<area shape="rect" id="node55" href="$gp_8c.html#ab1a2a5d4c1921eeb8d76a3fae68b2d13" title="Builds global constants used by GP trees." alt="" coords="1261,2428,1425,2455"/>
+<area shape="rect" id="node57" href="$gp_8c.html#a7ee1efc093c4c4d9d52dd962c9d00595" title="Sets the GP tree parameters from a cJSON object." alt="" coords="1267,2508,1418,2535"/>
+<area shape="rect" id="node56" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1533,2428,1631,2455"/>
+<area shape="rect" id="node58" href="$gp_8c.html#ab912e7b472f6fdc6bf9a7565bac8f063" title=" " alt="" coords="1514,2530,1650,2571"/>
+<area shape="rect" id="node59" href="$gp_8c.html#a7ce902011f75d08acceed528c688a3d0" title=" " alt="" coords="1510,2596,1654,2623"/>
+<area shape="rect" id="node60" href="$gp_8c.html#a31aa4c7ee72dd3c66fa9fb093d3d8519" title=" " alt="" coords="1498,2647,1666,2673"/>
+<area shape="rect" id="node61" href="$gp_8c.html#ace8b76bf8fcb4b48723dd94efae893c9" title=" " alt="" coords="1512,2697,1652,2724"/>
+<area shape="rect" id="node62" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="1487,2479,1677,2505"/>
+<area shape="rect" id="node65" href="$condition_8c.html#afba6bf151b5efdac267a5acea6ec6f98" title=" " alt="" coords="1271,2711,1414,2737"/>
+<area shape="rect" id="node66" href="$condition_8c.html#a96145ee4b72dff5896f1d441501f788b" title=" " alt="" coords="1267,2559,1418,2585"/>
+<area shape="rect" id="node67" href="$condition_8c.html#a76bc79f6e7f0ad3c034ef9c66b987dfd" title=" " alt="" coords="1269,2609,1416,2636"/>
+<area shape="rect" id="node68" href="$condition_8c.html#a508893aeed24ea2c0eab380f49b05f8b" title=" " alt="" coords="1247,2660,1439,2687"/>
+<area shape="rect" id="node70" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="1269,2761,1416,2788"/>
+<area shape="rect" id="node71" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="1248,2812,1437,2839"/>
+<area shape="rect" id="node73" href="$condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="1029,2188,1177,2215"/>
+<area shape="rect" id="node75" href="$param_8c.html#a8a701e38369c61ee86e1572eae56cd04" title=" " alt="" coords="781,968,939,995"/>
+<area shape="rect" id="node76" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="787,1019,933,1061"/>
+<area shape="rect" id="node87" href="$param_8c.html#a388a95e329f834d2771efb09acc84d60" title=" " alt="" coords="785,1085,935,1112"/>
+<area shape="rect" id="node88" href="$param_8c.html#abfa2456db9cee78f53e3298b904ad2fc" title=" " alt="" coords="787,1136,933,1163"/>
+<area shape="rect" id="node89" href="$param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c" title="Sets the number of OMP threads." alt="" coords="761,563,959,589"/>
+<area shape="rect" id="node90" href="$param_8c.html#a0b53049abf12592f085fa578c9f4546d" title=" " alt="" coords="787,613,933,640"/>
+<area shape="rect" id="node91" href="$param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7" title=" " alt="" coords="793,664,927,691"/>
+<area shape="rect" id="node92" href="$param_8c.html#a389d74d2c11c8cd13d9cf2a895026cf7" title=" " alt="" coords="789,715,931,741"/>
+<area shape="rect" id="node93" href="$param_8c.html#a0fda68ee143dd886c3f2023fd1c67dc3" title=" " alt="" coords="773,765,947,792"/>
+<area shape="rect" id="node94" href="$param_8c.html#a43677e3953256d8fdffd8758a0363c2b" title=" " alt="" coords="775,816,945,843"/>
+<area shape="rect" id="node97" href="$param_8c.html#ae5cca726a15c57daed5e2edbed5de528" title=" " alt="" coords="797,867,923,893"/>
+<area shape="rect" id="node98" href="$param_8c.html#a6b5cac72b8e4061a76f365e19a05da2a" title=" " alt="" coords="797,917,923,944"/>
+<area shape="rect" id="node77" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="1051,1001,1154,1028"/>
+<area shape="rect" id="node86" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="1043,1052,1163,1079"/>
+<area shape="rect" id="node78" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="1287,1153,1399,1180"/>
+<area shape="rect" id="node79" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="1300,849,1385,876"/>
+<area shape="rect" id="node80" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="1307,900,1378,927"/>
+<area shape="rect" id="node81" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="1303,951,1382,977"/>
+<area shape="rect" id="node82" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="1543,1027,1621,1053"/>
+<area shape="rect" id="node83" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="1297,1103,1389,1129"/>
+<area shape="rect" id="node85" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="1301,1052,1384,1079"/>
+<area shape="rect" id="node84" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="1549,1103,1615,1129"/>
+<area shape="rect" id="node95" href="$utils_8c.html#ab74192959d5c945feaf0a630b58fd123" title="Initialises the pseudo&#45;random number generator." alt="" coords="1067,791,1138,817"/>
+<area shape="rect" id="node96" href="$utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a" title="Initialises the pseudo&#45;random number generator with a fixed seed." alt="" coords="1049,841,1156,868"/>
+<area shape="rect" id="node100" href="$param_8c.html#a8d8141b90d111aad2e2ea30102bb0805" title=" " alt="" coords="793,1237,927,1264"/>
+<area shape="rect" id="node101" href="$param_8c.html#aa8c004ce6cdca4dfecfa34dea70b2619" title=" " alt="" coords="787,1288,933,1315"/>
+<area shape="rect" id="node102" href="$param_8c.html#a926dea96f312414ab1caf1d3e284f696" title=" " alt="" coords="765,1339,955,1365"/>
+<area shape="rect" id="node104" href="$prediction_8c.html#a7f976ef5c24c68e48493bdec31567021" title="Sets the prediction parameters from a cJSON object." alt="" coords="778,2013,942,2040"/>
+<area shape="rect" id="node114" href="$prediction_8c.html#a7b02fcc0ce8541afd47d014eba280570" title=" " alt="" coords="787,1947,933,1989"/>
+<area shape="rect" id="node105" href="$pred__neural_8c.html#a913efbfb988539a1c6f7de2cf43cea5c" title="Sets the neural network parameters from a cJSON object." alt="" coords="1021,2006,1184,2047"/>
+<area shape="rect" id="node106" href="$pred__nlms_8c.html#ad710d595ff04564a4925d0d83129853d" title="Sets the NLMS parameters from a cJSON object." alt="" coords="1025,1841,1181,1882"/>
+<area shape="rect" id="node111" href="$pred__rls_8c.html#addc89af1656f21fec298ad5f04d2573d" title="Sets the RLS parameters from a cJSON object." alt="" coords="1031,1917,1174,1958"/>
+<area shape="rect" id="node107" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="1273,1809,1413,1836"/>
+<area shape="rect" id="node108" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="1259,1708,1427,1735"/>
+<area shape="rect" id="node109" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="1250,1759,1435,1785"/>
+<area shape="rect" id="node110" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="1275,1860,1411,1887"/>
+<area shape="rect" id="node112" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="1261,1911,1425,1937"/>
+<area shape="rect" id="node113" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="1266,1962,1419,2003"/>
+<area shape="rect" id="node115" href="$prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="1027,1789,1179,1816"/>
+<area shape="rect" id="node117" href="$param_8c.html#a2c2cfd50d3d5b606fdf60e38139f2a8d" title=" " alt="" coords="765,1389,955,1416"/>
+<area shape="rect" id="node118" href="$param_8c.html#afc99ec312507b8f99f37cf87e3ab8a56" title=" " alt="" coords="787,1440,933,1467"/>
+</map>

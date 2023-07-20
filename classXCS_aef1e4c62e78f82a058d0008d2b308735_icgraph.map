@@ -1,9 +1,10 @@
 <map id="XCS::error" name="XCS::error">
-<area shape="rect" id="node1" title="Returns the current system error." alt="" coords="472,56,556,83"/>
-<area shape="rect" id="node2" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="312,5,419,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="331,56,400,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f" title="Loads an input data structure for fitting." alt="" coords="307,107,424,133"/>
-<area shape="rect" id="node5" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="167,81,236,108"/>
-<area shape="rect" id="node6" href="$classXCS.html#abe2ecac1d31f36659f70eb3ff9665bef" title="Returns the error using N random samples from the provided data." alt="" coords="144,132,259,159"/>
-<area shape="rect" id="node7" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="5,132,96,159"/>
+<area shape="rect" id="node1" title="Returns the current system error." alt="" coords="512,81,596,108"/>
+<area shape="rect" id="node2" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="352,5,459,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="371,56,440,83"/>
+<area shape="rect" id="node4" href="$classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f" title="Loads an input data structure for fitting." alt="" coords="347,107,464,133"/>
+<area shape="rect" id="node8" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="357,157,454,184"/>
+<area shape="rect" id="node5" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,81,75,108"/>
+<area shape="rect" id="node6" href="$classXCS.html#abccf7ccb52a4626d0f8bedccd62c0003" title="Loads validation data if present in kwargs." alt="" coords="123,107,299,133"/>
+<area shape="rect" id="node7" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="165,157,256,184"/>
 </map>

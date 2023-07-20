@@ -1,7 +1,11 @@
 <map id="tree_args_save" name="tree_args_save">
-<area shape="rect" id="node1" title="Saves Tree GP parameters." alt="" coords="588,5,699,32"/>
-<area shape="rect" id="node2" href="$condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5" title="Saves condition parameters." alt="" coords="412,5,540,32"/>
-<area shape="rect" id="node3" href="$param_8c.html#aeee8da56faaeace4ed44adc45a42d359" title="Writes the XCSF data structure to a file." alt="" coords="271,5,364,32"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="140,5,223,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="5,5,92,32"/>
+<area shape="rect" id="node1" title="Saves Tree GP parameters." alt="" coords="853,64,964,91"/>
+<area shape="rect" id="node2" href="$condition_8c.html#a8f670b7aa04f9e43ec146e1a7b3917a5" title="Saves condition parameters." alt="" coords="677,64,805,91"/>
+<area shape="rect" id="node3" href="$param_8c.html#aeee8da56faaeace4ed44adc45a42d359" title="Writes the XCSF data structure to a file." alt="" coords="536,64,629,91"/>
+<area shape="rect" id="node4" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="405,64,488,91"/>
+<area shape="rect" id="node5" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="245,5,331,32"/>
+<area shape="rect" id="node6" href="$classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca" title="Saves the state of XCSF." alt="" coords="219,57,357,98"/>
+<area shape="rect" id="node9" href="$classXCS.html#ac214b881bee8379185c34abb450c1c4b" title="Implements pickle file writing." alt="" coords="235,123,341,149"/>
+<area shape="rect" id="node7" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="19,27,157,69"/>
+<area shape="rect" id="node8" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="5,93,171,120"/>
 </map>

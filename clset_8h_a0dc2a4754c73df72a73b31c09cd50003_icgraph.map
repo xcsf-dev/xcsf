@@ -1,12 +1,8 @@
 <map id="clset_pset_init" name="clset_pset_init">
-<area shape="rect" id="node1" title="Initialises a new population of random classifiers." alt="" coords="567,132,673,159"/>
-<area shape="rect" id="node2" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="399,81,508,108"/>
-<area shape="rect" id="node9" href="$xcs__supervised_8c.html#aac1347b7b83576d581a1b725b4c84e56" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="388,157,519,184"/>
-<area shape="rect" id="node3" href="$classXCS.html#adbfb8e127ef8a800a661d284dda3f2ef" title="Initialises a reinforcement learning trial." alt="" coords="237,5,340,32"/>
-<area shape="rect" id="node4" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="251,56,326,83"/>
-<area shape="rect" id="node6" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="246,107,331,133"/>
-<area shape="rect" id="node5" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="112,56,181,83"/>
-<area shape="rect" id="node7" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="104,107,189,133"/>
-<area shape="rect" id="node8" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,132,56,159"/>
-<area shape="rect" id="node10" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="254,208,323,235"/>
+<area shape="rect" id="node1" title="Initialises a new population of random classifiers." alt="" coords="427,56,533,83"/>
+<area shape="rect" id="node2" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="308,56,379,83"/>
+<area shape="rect" id="node3" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="182,5,251,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="191,56,242,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,107,260,133"/>
+<area shape="rect" id="node6" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,107,125,133"/>
 </map>

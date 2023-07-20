@@ -1,10 +1,11 @@
 <map id="layer_args_load" name="layer_args_load">
-<area shape="rect" id="node1" title="Loads neural network layer parameters." alt="" coords="579,56,692,83"/>
-<area shape="rect" id="node2" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="400,5,531,32"/>
-<area shape="rect" id="node7" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="403,56,527,83"/>
-<area shape="rect" id="node8" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="405,107,526,133"/>
-<area shape="rect" id="node3" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="263,56,352,83"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="136,56,215,83"/>
-<area shape="rect" id="node5" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="5,31,88,57"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="21,81,72,108"/>
+<area shape="rect" id="node1" title="Loads neural network layer parameters." alt="" coords="616,56,729,83"/>
+<area shape="rect" id="node2" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="437,5,568,32"/>
+<area shape="rect" id="node8" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="441,56,565,83"/>
+<area shape="rect" id="node9" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="442,107,563,133"/>
+<area shape="rect" id="node3" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="300,56,389,83"/>
+<area shape="rect" id="node4" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="173,56,252,83"/>
+<area shape="rect" id="node5" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node6" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="24,56,107,83"/>
+<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="40,107,91,133"/>
 </map>

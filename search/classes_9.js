@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ruledgp_1750',['RuleDGP',['../structRuleDGP.html',1,'']]],
-  ['ruleneural_1751',['RuleNeural',['../structRuleNeural.html',1,'']]]
+  ['ruledgp_1732',['RuleDGP',['../structRuleDGP.html',1,'']]],
+  ['ruleneural_1733',['RuleNeural',['../structRuleNeural.html',1,'']]]
 ];

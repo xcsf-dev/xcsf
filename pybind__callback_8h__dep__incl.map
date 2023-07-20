@@ -1,0 +1,6 @@
+<map id="pybind_callback.h" name="pybind_callback.h">
+<area shape="rect" id="node1" title="Interface for callbacks." alt="" coords="176,5,303,32"/>
+<area shape="rect" id="node2" href="$pybind__callback__checkpoint_8h.html" title="Checkpoint callback for Python library." alt="" coords="5,80,201,107"/>
+<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="171,155,308,181"/>
+<area shape="rect" id="node4" href="$pybind__callback__earlystop_8h.html" title="Early stopping callback for Python library." alt="" coords="277,80,463,107"/>
+</map>

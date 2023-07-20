@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structCl.html" title="Classifier data structure." alt="" coords="5,5,44,32"/>
+<area shape="rect" id="node1" href="$classCallback.html" title=" " alt="" coords="5,31,79,57"/>
+<area shape="rect" id="node2" href="$classCheckpointCallback.html" title=" " alt="" coords="135,5,273,32"/>
+<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html" title=" " alt="" coords="127,56,281,83"/>
 </map>

@@ -1,0 +1,4 @@
+<map id="XCS::callbacks_finish" name="XCS::callbacks_finish">
+<area shape="rect" id="node1" title="Executes callback finish." alt="" coords="123,5,273,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
+</map>

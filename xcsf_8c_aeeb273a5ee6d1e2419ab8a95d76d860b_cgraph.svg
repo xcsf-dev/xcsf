@@ -12,8 +12,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Frees XCSF population sets.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-38.5 0,-57.5 57,-57.5 57,-38.5 0,-38.5"/>
-<text text-anchor="middle" x="28.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_free</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-19.5 0,-38.5 57,-38.5 57,-19.5 0,-19.5"/>
+<text text-anchor="middle" x="28.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_free</text>
 </a>
 </g>
 </g>
@@ -29,8 +29,23 @@
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M57.48,-48C65.48,-48 74.32,-48 82.76,-48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="82.77,-51.5 92.77,-48 82.77,-44.5 82.77,-51.5"/>
+<path fill="none" stroke="midnightblue" d="M57.48,-34.91C65.48,-36.6 74.32,-38.46 82.76,-40.24"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="82.26,-43.71 92.77,-42.36 83.7,-36.87 82.26,-43.71"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="pa_8c.html#ac5cf37aa0da4e57fc2a38138fa35dc95" target="_top" xlink:title="Frees the prediction array.">
+<polygon fill="none" stroke="black" points="96,-0.5 96,-19.5 145,-19.5 145,-0.5 96,-0.5"/>
+<text text-anchor="middle" x="120.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pa_free</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M57.48,-23.09C66.5,-21.19 76.59,-19.06 85.97,-17.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="86.72,-20.5 95.78,-15.01 85.27,-13.65 86.72,-20.5"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">

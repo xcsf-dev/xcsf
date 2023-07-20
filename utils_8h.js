@@ -2,6 +2,7 @@ var utils_8h =
 [
     [ "argmax", "utils_8h.html#ae85373ce85c9be81cf1456fb58478274", null ],
     [ "catch_error", "utils_8h.html#ad4c1cfaf547c968379d68470354816b7", null ],
+    [ "check_array_eq", "utils_8h.html#aa0b869adcb51cf80d69296c7d9ceb515", null ],
     [ "clamp", "utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88", null ],
     [ "clamp_int", "utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871", null ],
     [ "float_to_binary", "utils_8h.html#ac0f9e38a3bca200fe25abd29ce3672cc", null ],

@@ -1,8 +1,9 @@
 <map id="utils.h" name="utils.h">
-<area shape="rect" id="node1" title="Utility functions for random number handling, etc." alt="" coords="359,5,417,32"/>
+<area shape="rect" id="node1" title="Utility functions for random number handling, etc." alt="" coords="406,5,463,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,157,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="182,80,333,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="357,80,419,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="444,80,505,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="529,80,593,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="444,80,519,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="543,80,604,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="628,80,692,107"/>
 </map>

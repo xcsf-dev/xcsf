@@ -1,5 +1,6 @@
 var param_8c =
 [
+    [ "MAX_LEN", "param_8c.html#aabf4f709c8199e41cf279c77112345fe", null ],
     [ "param_free", "param_8c.html#acde6664d083676244bfc1105b1712984", null ],
     [ "param_init", "param_8c.html#ac8218a170803be0bcd974764e7494b0e", null ],
     [ "param_json_export", "param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5", null ],
@@ -35,6 +36,8 @@ var param_8c =
     [ "param_set_perf_trials", "param_8c.html#a0b53049abf12592f085fa578c9f4546d", null ],
     [ "param_set_pop_init", "param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7", null ],
     [ "param_set_pop_size", "param_8c.html#a389d74d2c11c8cd13d9cf2a895026cf7", null ],
+    [ "param_set_population_file", "param_8c.html#a0fda68ee143dd886c3f2023fd1c67dc3", null ],
+    [ "param_set_random_state", "param_8c.html#a43677e3953256d8fdffd8758a0363c2b", null ],
     [ "param_set_set_subsumption", "param_8c.html#a2c2cfd50d3d5b606fdf60e38139f2a8d", null ],
     [ "param_set_stateful", "param_8c.html#a21c592b2427a801cb0eda3fee504d38c", null ],
     [ "param_set_teletransportation", "param_8c.html#a926dea96f312414ab1caf1d3e284f696", null ],

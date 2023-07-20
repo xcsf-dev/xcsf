@@ -1,11 +1,14 @@
 <map id="catch_error" name="catch_error">
-<area shape="rect" id="node1" title="Catches parameter value errors." alt="" coords="661,123,748,149"/>
-<area shape="rect" id="node2" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="441,5,594,32"/>
-<area shape="rect" id="node6" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="443,57,592,98"/>
-<area shape="rect" id="node7" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="427,123,608,149"/>
-<area shape="rect" id="node8" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="434,173,601,200"/>
-<area shape="rect" id="node9" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="421,224,613,251"/>
-<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="241,123,373,149"/>
-<area shape="rect" id="node4" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="104,123,193,149"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,123,56,149"/>
+<area shape="rect" id="node1" title="Catches parameter value errors." alt="" coords="759,123,845,149"/>
+<area shape="rect" id="node2" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="538,5,691,32"/>
+<area shape="rect" id="node9" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="540,57,689,98"/>
+<area shape="rect" id="node10" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="524,123,705,149"/>
+<area shape="rect" id="node11" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="531,173,698,200"/>
+<area shape="rect" id="node12" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="519,224,711,251"/>
+<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="339,123,471,149"/>
+<area shape="rect" id="node4" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="183,97,272,124"/>
+<area shape="rect" id="node6" href="$classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25" title="Sets parameter values." alt="" coords="164,148,291,175"/>
+<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="35,97,86,124"/>
+<area shape="rect" id="node7" href="$classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4" title="Sets XCSF input and output dimensions." alt="" coords="5,148,116,175"/>
+<area shape="rect" id="node8" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="17,199,104,225"/>
 </map>

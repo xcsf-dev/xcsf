@@ -1,0 +1,4 @@
+<map id="XCS::update_metrics" name="XCS::update_metrics">
+<area shape="rect" id="node1" title="Updates performance metrics." alt="" coords="123,5,269,32"/>
+<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
+</map>

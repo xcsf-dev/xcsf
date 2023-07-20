@@ -1,4 +1,7 @@
 <map id="xcsf_retrieve_pset" name="xcsf_retrieve_pset">
-<area shape="rect" id="node1" title="Retrieves the previously stored population." alt="" coords="155,5,284,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node1" title="Retrieves the previously stored population." alt="" coords="436,71,565,98"/>
+<area shape="rect" id="node2" href="$classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59" title="Retrieves best XCSF population in memory." alt="" coords="233,35,388,76"/>
+<area shape="rect" id="node5" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="260,101,361,127"/>
+<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23" title="Executes any tasks at the end of fitting." alt="" coords="18,5,173,47"/>
+<area shape="rect" id="node4" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,71,185,98"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="XCS::load_input" name="XCS::load_input">
-<area shape="rect" id="node1" title="Loads an input data structure for fitting." alt="" coords="307,31,424,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a3f8168ffade2d933d0971625200f1d92" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="167,5,236,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#abe2ecac1d31f36659f70eb3ff9665bef" title="Returns the error using N random samples from the provided data." alt="" coords="144,56,259,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a4bb9f3f8613abf7ba95837a03bbb931d" title="Returns the error using N random samples from the provided data." alt="" coords="5,56,96,83"/>
+<area shape="rect" id="node1" title="Loads an input data structure for fitting." alt="" coords="347,31,464,57"/>
+<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
+<area shape="rect" id="node3" href="$classXCS.html#abccf7ccb52a4626d0f8bedccd62c0003" title="Loads validation data if present in kwargs." alt="" coords="123,31,299,57"/>
+<area shape="rect" id="node4" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="165,81,256,108"/>
 </map>

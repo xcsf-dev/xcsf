@@ -11,9 +11,9 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="structPredNLMS.html" target="_top" xlink:title="Normalised least mean squares prediction data structure.">
+<g id="a_node1"><a xlink:href="structPredNeural.html" target="_top" xlink:title="Multi&#45;layer perceptron neural network prediction data structure.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 65,-19.5 65,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="32.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">PredNLMS</text>
+<text text-anchor="middle" x="32.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">PredNeural</text>
 </a>
 </g>
 </g>

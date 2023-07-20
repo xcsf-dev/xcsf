@@ -1,4 +1,6 @@
 <map id="xcsf_store_pset" name="xcsf_store_pset">
-<area shape="rect" id="node1" title="Stores the current population." alt="" coords="140,5,255,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="5,5,92,32"/>
+<area shape="rect" id="node1" title="Stores the current population." alt="" coords="436,42,551,69"/>
+<area shape="rect" id="node2" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="233,5,388,47"/>
+<area shape="rect" id="node4" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="267,71,354,98"/>
+<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,13,185,39"/>
 </map>
