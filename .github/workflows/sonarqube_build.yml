@@ -7,19 +7,23 @@ on:
   push:
     branches: [master]
     paths-ignore:
-      - "**.json"
-      - "**.md"
-      - "**.cff"
-      - "**.py"
-      - "**.ipynb"
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
   pull_request:
     branches: [master]
     paths-ignore:
-      - "**.json"
-      - "**.md"
-      - "**.cff"
-      - "**.py"
-      - "**.ipynb"
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
