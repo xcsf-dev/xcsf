@@ -142,6 +142,51 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     CHECK_EQ(l2->eta_max, l->eta_max);
     CHECK_EQ(l2->max_neuron_grow, l->max_neuron_grow);
     CHECK_EQ(l2->decay, l->decay);
+    for (int i = 0; i < l->uf->n_weights; ++i) {
+        CHECK(l->uf->weights[i] == l2->uf->weights[i]);
+    }
+    for (int i = 0; i < l->ui->n_weights; ++i) {
+        CHECK(l->ui->weights[i] == l2->ui->weights[i]);
+    }
+    for (int i = 0; i < l->ug->n_weights; ++i) {
+        CHECK(l->ug->weights[i] == l2->ug->weights[i]);
+    }
+    for (int i = 0; i < l->wf->n_weights; ++i) {
+        CHECK(l->wf->weights[i] == l2->wf->weights[i]);
+    }
+    for (int i = 0; i < l->wi->n_weights; ++i) {
+        CHECK(l->wi->weights[i] == l2->wi->weights[i]);
+    }
+    for (int i = 0; i < l->wg->n_weights; ++i) {
+        CHECK(l->wg->weights[i] == l2->wg->weights[i]);
+    }
+    for (int i = 0; i < l->wo->n_weights; ++i) {
+        CHECK(l->wo->weights[i] == l2->wo->weights[i]);
+    }
+
+    /* test randomisation */
+    neural_layer_lstm_rand(l);
+    for (int i = 0; i < l->uf->n_weights; ++i) {
+        CHECK(l->uf->weights[i] != l2->uf->weights[i]);
+    }
+    for (int i = 0; i < l->ui->n_weights; ++i) {
+        CHECK(l->ui->weights[i] != l2->ui->weights[i]);
+    }
+    for (int i = 0; i < l->ug->n_weights; ++i) {
+        CHECK(l->ug->weights[i] != l2->ug->weights[i]);
+    }
+    for (int i = 0; i < l->wf->n_weights; ++i) {
+        CHECK(l->wf->weights[i] != l2->wf->weights[i]);
+    }
+    for (int i = 0; i < l->wi->n_weights; ++i) {
+        CHECK(l->wi->weights[i] != l2->wi->weights[i]);
+    }
+    for (int i = 0; i < l->wg->n_weights; ++i) {
+        CHECK(l->wg->weights[i] != l2->wg->weights[i]);
+    }
+    for (int i = 0; i < l->wo->n_weights; ++i) {
+        CHECK(l->wo->weights[i] != l2->wo->weights[i]);
+    }
 
     /* smoke test export */
     neural_layer_lstm_json_export(l, true);
