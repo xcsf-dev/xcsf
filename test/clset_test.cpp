@@ -47,7 +47,7 @@ double x[20] = { 0.7566081103, 0.3125093674, 0.3449376898, 0.3677518467,
 
 double y[4] = { 0.1, 0.2, 0.3, 0.4 };
 
-double expected[5] = { 0.834349, 0.835580, 0.804209, 0.887659, 0.868236 };
+double expected[5] = { 0.341521, 0.342378, 0.294014, 0.520393, 0.6206 };
 
 TEST_CASE("CLSET")
 {
@@ -66,10 +66,10 @@ TEST_CASE("CLSET")
     train_data.y = y;
     double *cover = (double *) calloc(y_dim, sizeof(double));
     // fit()
-    xcs_supervised_fit(&xcsf, &train_data, NULL, true, 10);
+    xcs_supervised_fit(&xcsf, &train_data, NULL, true, 100);
     // score()
     double score = xcs_supervised_score(&xcsf, &train_data, cover);
-    CHECK_EQ(doctest::Approx(score), 0.494685);
+    CHECK_EQ(doctest::Approx(score), 0.129257);
     // predict()
     double *output =
         (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);
