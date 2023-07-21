@@ -27,6 +27,7 @@ extern "C" {
 #include "../xcsf/pa.h"
 #include "../xcsf/param.h"
 #include "../xcsf/utils.h"
+#include "../xcsf/xcs_supervised.h"
 #include "../xcsf/xcsf.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -34,12 +35,50 @@ extern "C" {
 #include <string.h>
 }
 
+const int n_samples = 5;
+const int x_dim = 4;
+const int y_dim = 1;
+
+double x[20] = { 0.7566081103, 0.3125093674, 0.3449376898, 0.3677518467,
+                 0.7276272381, 0.2457498699, 0.2704867908, 0.0000000000,
+                 0.8586376463, 0.2309959724, 0.5802303236, 0.9674486498,
+                 0.5587937197, 0.6346787906, 0.0464343089, 0.4214295062,
+                 0.7107445754, 0.7048862747, 0.1036188594, 0.4501471722 };
+
+double y[4] = { 0.1, 0.2, 0.3, 0.4 };
+
+double expected[5] = { 0.834349, 0.835580, 0.804209, 0.887659, 0.868236 };
+
 TEST_CASE("CLSET")
 {
+    /* Test initialisation */
     struct XCSF xcsf;
-    param_init(&xcsf, 4, 1, 1);
+    param_init(&xcsf, x_dim, y_dim, 1);
     rand_init_seed(2);
     xcsf_init(&xcsf);
+
+    /* Smoke test */
+    struct Input train_data;
+    train_data.n_samples = n_samples;
+    train_data.x_dim = x_dim;
+    train_data.y_dim = y_dim;
+    train_data.x = x;
+    train_data.y = y;
+    double *cover = (double *) calloc(y_dim, sizeof(double));
+    // fit()
+    xcs_supervised_fit(&xcsf, &train_data, NULL, true, 10);
+    // score()
+    double score = xcs_supervised_score(&xcsf, &train_data, cover);
+    CHECK_EQ(doctest::Approx(score), 0.494685);
+    // predict()
+    double *output =
+        (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);
+    xcs_supervised_predict(&xcsf, x, output, n_samples, cover);
+    for (int i = 0; i < n_samples; i++) {
+        CHECK_EQ(doctest::Approx(output[i]), expected[i]);
+    }
+
+    /* Test clean up */
     xcsf_free(&xcsf);
     param_free(&xcsf);
 }
