@@ -60,11 +60,12 @@ TEST_CASE("NEURAL_ACTIVATIONS")
     CHECK_EQ(neural_gradient(COS, x), doctest::Approx(-0.783327));
 
     /* Test string to int conversion */
-    const int activations[NUM_ACTIVATIONS] = { LOGISTIC, RELU, TANH, LINEAR,
-                                               GAUSSIAN, SIN,  COS,  SOFT_PLUS,
-                                               LEAKY,    SELU, LOGGY };
+    const int activations[NUM_ACTIVATIONS + 1] = {
+        LOGISTIC, RELU,      TANH,  LINEAR, GAUSSIAN, SIN,
+        COS,      SOFT_PLUS, LEAKY, SELU,   LOGGY,    SOFT_MAX
+    };
 
-    for (int i = 0; i < NUM_ACTIVATIONS; ++i) {
+    for (int i = 0; i < NUM_ACTIVATIONS + 1; ++i) {
         const int a = activations[i];
         const char *str = neural_activation_string(a);
         const int integer = neural_activation_as_int(str);
