@@ -125,6 +125,12 @@ TEST_CASE("COND_DGP")
     CHECK(check_array_eq_int(new_cond->dgp.function, orig_cond->dgp.function,
                              orig_cond->dgp.n));
 
+    /* Smoke test arg import and export */
+    json_str = cond_dgp_param_json_export(&xcsf);
+    json = cJSON_Parse(json_str);
+    char *json_rtn = cond_dgp_param_json_import(&xcsf, json->child);
+    CHECK(json_rtn == NULL);
+
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = cond_dgp_save(&xcsf, &c1, fp);
