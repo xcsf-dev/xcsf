@@ -157,3 +157,21 @@ check_array_eq(const double *arr1, const double *arr2, int size)
     }
     return true;
 }
+
+/**
+ * @brief Checks whether two integer arrays are equal.
+ * @param [in] arr1 Array.
+ * @param [in] arr2 Array.
+ * @param [in] size Length of the arrays.
+ * @return Whether the arrays are equal.
+ */
+static inline bool
+check_array_eq_int(const int *arr1, const int *arr2, int size)
+{
+    for (int i = 0; i < size; ++i) {
+        if (arr1[i] != arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
