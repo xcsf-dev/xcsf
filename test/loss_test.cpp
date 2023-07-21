@@ -21,6 +21,9 @@
  * @brief Loss function tests.
  */
 
+#include <cstdlib>
+#include <stdexcept>
+
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
@@ -93,4 +96,21 @@ TEST_CASE("LOSS FUNCTIONS")
     CHECK_EQ(xcsf.HUBER_DELTA, 1);
     error = (xcsf.loss_ptr)(&xcsf, p, y);
     CHECK_EQ(doctest::Approx(error), 0.07132315);
+
+    // Test string to int conversion
+    const int losses[LOSS_NUM] = { LOSS_MAE,  LOSS_MSE,        LOSS_RMSE,
+                                   LOSS_LOG,  LOSS_BINARY_LOG, LOSS_ONEHOT,
+                                   LOSS_HUBER };
+    for (int i = 0; i < LOSS_NUM; ++i) {
+        const int loss = losses[i];
+        const char *str = loss_type_as_string(loss);
+        const int integer = loss_type_as_int(str);
+        CHECK_EQ(integer, loss);
+    }
+
+    // Test invalid loss type
+    int inv = loss_type_as_int("jsfsdf");
+    CHECK_EQ(inv, LOSS_INVALID);
+
+    // loss_type_as_string(LOSS_INVALID);
 }
