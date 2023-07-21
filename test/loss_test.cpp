@@ -84,10 +84,15 @@ TEST_CASE("LOSS FUNCTIONS")
     CHECK_EQ(doctest::Approx(error), 9.07707219);
 
     // Test ONEHOT
+    const double yh[2] = { 1, 0 };
+    const double phc[2] = { 0.9, 0.1 };
+    const double phw[2] = { 0.3, 0.7 };
     param_set_loss_func(&xcsf, LOSS_ONEHOT);
     CHECK_EQ(xcsf.LOSS_FUNC, LOSS_ONEHOT);
-    error = (xcsf.loss_ptr)(&xcsf, p, y);
-    CHECK_EQ(doctest::Approx(error), 1);
+    error = (xcsf.loss_ptr)(&xcsf, phw, yh);
+    CHECK_EQ(doctest::Approx(error), 1); // incorrect
+    error = (xcsf.loss_ptr)(&xcsf, phc, yh);
+    CHECK_EQ(doctest::Approx(error), 0); // correct
 
     // Test HUBER
     param_set_loss_func(&xcsf, LOSS_HUBER);
@@ -109,7 +114,11 @@ TEST_CASE("LOSS FUNCTIONS")
     }
 
     // Test invalid loss type
-    int inv = loss_type_as_int("jsfsdf");
+    xcsf.LOSS_FUNC = 9999;
+    int inv = loss_set_func(&xcsf);
+    CHECK_EQ(inv, LOSS_INVALID);
+
+    inv = loss_type_as_int("jsfsdf");
     CHECK_EQ(inv, LOSS_INVALID);
 
     // loss_type_as_string(LOSS_INVALID);
