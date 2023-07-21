@@ -17,7 +17,7 @@
  * @file neural_layer_lstm_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2023.
  * @brief Long short-term memory layer tests.
  */
 
@@ -49,6 +49,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     struct Layer *l;
     rand_init();
     param_init(&xcsf, 1, 1, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
     neural_init(&net);
     struct ArgsLayer args;
@@ -63,12 +64,14 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     args.momentum = 0.9;
     args.decay = 0;
     args.sgd_weights = true;
+    args.evolve_connect = true;
     l = layer_init(&args);
     neural_push(&net, l);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
     CHECK_EQ(l->max_outputs, 1);
     CHECK_EQ(l->n_weights, 8);
+
     /* test forward passing input */
     const double x[1] = { 0.90598097 };
     const double orig_weights[8] = { 0.1866107,   -0.6872276,  1.0366809,
@@ -100,6 +103,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     // third time
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.37268567);
+
     /* test one backward pass of input */
     const double y[1] = { 0.946146918 };
     for (int i = 0; i < l->n_outputs; ++i) {
@@ -110,6 +114,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     // forward pass
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.4196390756);
+
     /* test convergence on one input */
     for (int i = 0; i < 400; ++i) {
         neural_layer_lstm_forward(l, &net, x);
@@ -121,6 +126,35 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     }
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
+
+    /* test copy */
+    struct Layer *l2 = neural_layer_lstm_copy(l);
+    CHECK_EQ(l2->options, l->options);
+    CHECK_EQ(l2->n_biases, l->n_biases);
+    CHECK_EQ(l2->n_active, l->n_active);
+    CHECK_EQ(l2->n_weights, l->n_weights);
+    CHECK_EQ(l2->function, l->function);
+    CHECK_EQ(l2->recurrent_function, l->recurrent_function);
+    CHECK_EQ(l2->n_inputs, l->n_inputs);
+    CHECK_EQ(l2->n_outputs, l->n_outputs);
+    CHECK_EQ(l2->max_outputs, l->max_outputs);
+    CHECK_EQ(l2->momentum, l->momentum);
+    CHECK_EQ(l2->eta_max, l->eta_max);
+    CHECK_EQ(l2->max_neuron_grow, l->max_neuron_grow);
+    CHECK_EQ(l2->decay, l->decay);
+
+    /* smoke test export */
+    neural_layer_lstm_json_export(l, true);
+
+    /* test serialization */
+    FILE *fp = fopen("temp.bin", "wb");
+    size_t w = neural_layer_lstm_save(l, fp);
+    fclose(fp);
+    fp = fopen("temp.bin", "rb");
+    size_t r = neural_layer_lstm_load(l, fp);
+    CHECK_EQ(w, r);
+    fclose(fp);
+
     // clean up
     neural_free(&net);
     param_free(&xcsf);
