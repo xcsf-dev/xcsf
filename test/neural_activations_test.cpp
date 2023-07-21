@@ -24,12 +24,7 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
-#include "../xcsf/neural.h"
 #include "../xcsf/neural_activations.h"
-#include "../xcsf/neural_layer.h"
-#include "../xcsf/param.h"
-#include "../xcsf/utils.h"
-#include "../xcsf/xcsf.h"
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -39,12 +34,6 @@ extern "C" {
 
 TEST_CASE("NEURAL_ACTIVATIONS")
 {
-    /* Test initialisation */
-    struct XCSF xcsf;
-    param_init(&xcsf, 5, 1, 1);
-    param_set_random_state(&xcsf, 1);
-    xcsf_init(&xcsf);
-
     /* Test activations and gradients */
     const double x = 0.9;
     CHECK_EQ(neural_activate(LOGISTIC, x), doctest::Approx(0.71095));
@@ -99,8 +88,4 @@ TEST_CASE("NEURAL_ACTIVATIONS")
     for (int i = 0; i < x_dim; ++i) {
         CHECK_EQ(delta[i], doctest::Approx(gradient[i]));
     }
-
-    /* Test clean up */
-    xcsf_free(&xcsf);
-    param_free(&xcsf);
 }
