@@ -49,6 +49,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     struct Layer *l;
     rand_init();
     param_init(&xcsf, 1, 1, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
     neural_init(&net);
     struct ArgsLayer args;
@@ -62,12 +63,17 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     args.momentum = 0.9;
     args.decay = 0;
     args.sgd_weights = true;
+    args.evolve_neurons = true;
+    args.evolve_connect = true;
+    args.evolve_weights = true;
+    args.evolve_functions = true;
     l = layer_init(&args);
     neural_push(&net, l);
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
     CHECK_EQ(l->max_outputs, 1);
+
     /* test forward passing input */
     const double x[1] = { 0.90598097 };
     const double orig_weights[2] = { -0.0735234, -1 };
@@ -90,6 +96,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.39353347);
     CHECK_EQ(doctest::Approx(output_error), 0);
+
     /* test one backward pass of input */
     const double y[1] = { 0.946146918 };
     for (int i = 0; i < l->n_outputs; ++i) {
@@ -101,7 +108,8 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.3988695229);
     CHECK_EQ(doctest::Approx(output_error), 0);
-    /* test convergence on one input */
+
+    /* Test convergence on one input */
     for (int i = 0; i < 400; ++i) {
         neural_layer_recurrent_forward(l, &net, x);
         for (int j = 0; j < l->n_outputs; ++j) {
@@ -112,7 +120,71 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     }
     neural_layer_recurrent_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), y[0]);
-    // clean up
+
+    /* Test mutation */
+    double *lw = (double *) malloc(sizeof(double) * l->input_layer->n_weights);
+    memcpy(lw, l->input_layer->weights,
+           sizeof(double) * l->input_layer->n_weights);
+    CHECK(neural_layer_recurrent_mutate(l));
+    for (int i = 0; i < l->input_layer->n_weights; ++i) {
+        CHECK(l->input_layer->weights[i] != lw[i]);
+    }
+
+    /* Test copy */
+    struct Layer *l2 = neural_layer_recurrent_copy(l);
+    CHECK_EQ(l2->options, l->options);
+    CHECK_EQ(l2->n_active, l->n_active);
+    CHECK_EQ(l2->function, l->function);
+    CHECK_EQ(l2->recurrent_function, l->recurrent_function);
+    CHECK_EQ(l2->n_inputs, l->n_inputs);
+    CHECK_EQ(l2->n_outputs, l->n_outputs);
+    CHECK_EQ(l2->max_outputs, l->max_outputs);
+    CHECK_EQ(l2->momentum, l->momentum);
+    CHECK_EQ(l2->eta_max, l->eta_max);
+    CHECK_EQ(l2->max_neuron_grow, l->max_neuron_grow);
+    CHECK_EQ(l2->decay, l->decay);
+    CHECK_EQ(l2->input_layer->n_biases, l->input_layer->n_biases);
+    CHECK_EQ(l2->input_layer->n_weights, l->input_layer->n_weights);
+    CHECK_EQ(l2->self_layer->n_biases, l->self_layer->n_biases);
+    CHECK_EQ(l2->self_layer->n_weights, l->self_layer->n_weights);
+    CHECK_EQ(l2->output_layer->n_biases, l->output_layer->n_biases);
+    CHECK_EQ(l2->output_layer->n_weights, l->output_layer->n_weights);
+    for (int i = 0; i < l->input_layer->n_weights; ++i) {
+        CHECK(l->input_layer->weights[i] == l2->input_layer->weights[i]);
+    }
+    for (int i = 0; i < l->self_layer->n_weights; ++i) {
+        CHECK(l->self_layer->weights[i] == l2->self_layer->weights[i]);
+    }
+    for (int i = 0; i < l->output_layer->n_weights; ++i) {
+        CHECK(l->output_layer->weights[i] == l2->output_layer->weights[i]);
+    }
+
+    /* Test randomisation */
+    neural_layer_recurrent_rand(l);
+    for (int i = 0; i < l->input_layer->n_weights; ++i) {
+        CHECK(l->input_layer->weights[i] != l2->input_layer->weights[i]);
+    }
+    for (int i = 0; i < l->self_layer->n_weights; ++i) {
+        CHECK(l->self_layer->weights[i] != l2->self_layer->weights[i]);
+    }
+    for (int i = 0; i < l->output_layer->n_weights; ++i) {
+        CHECK(l->output_layer->weights[i] != l2->output_layer->weights[i]);
+    }
+
+    /* Smoke test export */
+    char *json_str = neural_layer_recurrent_json_export(l, true);
+    CHECK(json_str != NULL);
+
+    /* Test serialization */
+    FILE *fp = fopen("temp.bin", "wb");
+    size_t w = neural_layer_recurrent_save(l, fp);
+    fclose(fp);
+    fp = fopen("temp.bin", "rb");
+    size_t r = neural_layer_recurrent_load(l, fp);
+    CHECK_EQ(w, r);
+    fclose(fp);
+
+    /* Clean up */
     neural_free(&net);
     param_free(&xcsf);
 }

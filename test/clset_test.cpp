@@ -65,11 +65,15 @@ TEST_CASE("CLSET")
     train_data.x = x;
     train_data.y = y;
     double *cover = (double *) calloc(y_dim, sizeof(double));
-    // fit()
+    // fit() with only train data
     xcs_supervised_fit(&xcsf, &train_data, NULL, true, 100);
     // score()
     double score = xcs_supervised_score(&xcsf, &train_data, cover);
     CHECK_EQ(doctest::Approx(score), 0.129257);
+    score = xcs_supervised_score_n(&xcsf, &train_data, 10, cover);
+    CHECK_EQ(doctest::Approx(score), 0.129257);
+    score = xcs_supervised_score_n(&xcsf, &train_data, 2, cover);
+    CHECK_EQ(doctest::Approx(score), 0.00598594);
     // predict()
     double *output =
         (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);
@@ -77,6 +81,10 @@ TEST_CASE("CLSET")
     for (int i = 0; i < n_samples; i++) {
         CHECK_EQ(doctest::Approx(output[i]), expected[i]);
     }
+    // fit() with train and test data
+    xcs_supervised_fit(&xcsf, &train_data, &train_data, true, 100);
+    score = xcs_supervised_score(&xcsf, &train_data, cover);
+    CHECK_EQ(doctest::Approx(score), 0.0306502);
 
     /* Test clean up */
     xcsf_free(&xcsf);

@@ -70,6 +70,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     CHECK_EQ(l->n_weights, 20);
     CHECK_EQ(l->eta, 0.1);
     CHECK_EQ(l->momentum, 0.9);
+
     /* test one forward pass of input */
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
                            -0.0814486626, 0.0923277094,  0.2779675621,
@@ -92,6 +93,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         output_error += fabs(l->output[i] - output[i]);
     }
     CHECK_EQ(doctest::Approx(output_error), 0);
+
     /* test one backward pass of input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
     const double new_weights[20] = {
@@ -117,6 +119,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         bias_error += fabs(l->biases[i] - new_biases[i]);
     }
     CHECK_EQ(doctest::Approx(bias_error), 0);
+
     /* test convergence on one input */
     const double conv_weights[20] = {
         0.4127301724,  -0.4103118294, 0.1330195938,  -1.2445235759,
@@ -147,7 +150,12 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         conv_bias_error += fabs(l->biases[i] - conv_biases[i]);
     }
     CHECK_EQ(doctest::Approx(conv_bias_error), 0);
-    // clean up
+
+    /* Smoke test export */
+    char *json_str = neural_layer_connected_json_export(l, true);
+    CHECK(json_str != NULL);
+
+    /* clean up */
     neural_free(&net);
     param_free(&xcsf);
 }
