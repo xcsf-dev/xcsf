@@ -19,6 +19,7 @@
 
 set(XCSF_TESTS
     act_integer_test.cpp
+    cl_test.cpp
     clset_test.cpp
     cond_gp_test.cpp
     cond_dgp_test.cpp
