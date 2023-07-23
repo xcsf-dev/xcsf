@@ -17,7 +17,7 @@
  * @file neural_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2023.
  * @brief Neural network tests.
  */
 
@@ -42,7 +42,7 @@ extern "C" {
 
 TEST_CASE("NEURAL")
 {
-    /* test one forward pass of input through two layers*/
+    /* Test one forward pass of input through two layers*/
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
@@ -92,7 +92,8 @@ TEST_CASE("NEURAL")
         output_error += fabs(neural_output(&net, i) - output[i]);
     }
     CHECK_EQ(doctest::Approx(output_error), 0);
-    /* test convergence on one input */
+
+    /* Test convergence on one input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
     for (int i = 0; i < 200; ++i) {
         neural_propagate(&net, x, false);
@@ -100,4 +101,7 @@ TEST_CASE("NEURAL")
     }
     CHECK_EQ(doctest::Approx(neural_output(&net, 0)), y[0]);
     CHECK_EQ(doctest::Approx(neural_output(&net, 1)), y[1]);
+
+    /* Test clean up */
+    layer_free(l);
 }

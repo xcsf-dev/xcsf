@@ -29,6 +29,7 @@ set(XCSF_TESTS
     loss_test.cpp
     neural_activations_test.cpp
     neural_layer_args_test.cpp
+    neural_layer_test.cpp
     neural_layer_connected_test.cpp
     neural_layer_convolutional_test.cpp
     neural_layer_lstm_test.cpp

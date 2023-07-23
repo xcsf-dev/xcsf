@@ -61,6 +61,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     args.momentum = 0.9;
     args.decay = 0;
     args.sgd_weights = true;
+    layer_args_validate(&args);
     l = layer_init(&args);
     neural_push(&net, l);
     CHECK_EQ(l->function, LOGISTIC);
