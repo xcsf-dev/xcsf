@@ -5,6 +5,7 @@
 Changes:
 *   Add tests.
 *   Fix a bug serialising initial population set filename.
+*   Fix a bug copying convolutional layer momentum.
 
 ## Version 1.3.0 (Jul 20, 2023)
 

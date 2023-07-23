@@ -229,6 +229,8 @@ neural_layer_convolutional_copy(const struct Layer *src)
     l->max_outputs = src->max_outputs;
     l->max_neuron_grow = src->max_neuron_grow;
     l->n_biases = src->n_biases;
+    l->momentum = src->momentum;
+    l->decay = src->decay;
     l->eta = src->eta;
     l->eta_max = src->eta_max;
     l->eta_min = src->eta_min;
