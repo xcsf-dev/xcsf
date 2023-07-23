@@ -17,9 +17,11 @@
  * @file image.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2023.
  * @brief Image handling functions.
  */
+
+#include "image.h"
 
 static void
 col2im_add_pixel(double *im, const int height, const int width, int row,

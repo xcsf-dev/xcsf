@@ -277,7 +277,7 @@ clset_total_time(const struct Set *set)
     return sum;
 }
 
-void
+static void
 clset_load_pop_file(struct XCSF *xcsf)
 {
     FILE *f = fopen(xcsf->population_file, "rt");
