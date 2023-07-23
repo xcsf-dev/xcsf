@@ -17,7 +17,7 @@
  * @file neural_layer_convolutional_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2023.
  * @brief Convolutional neural network layer tests.
  */
 
@@ -42,7 +42,7 @@ extern "C" {
 
 TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
 {
-    /* test initialisation */
+    /* Test initialisation */
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
@@ -80,7 +80,8 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     CHECK_EQ(l->n_weights, 18);
     CHECK_EQ(l->eta, 0.1);
     CHECK_EQ(l->momentum, 0.9);
-    /* test one forward pass of input */
+
+    /* Test one forward pass of input */
     const double orig_weights[18] = { -0.3494757, 0.37103638,  0.43885502,
                                       0.11762521, 0.35432652,  0.17391846,
                                       0.46650133, -0.00751933, 0.01440367,
@@ -125,7 +126,8 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
         }
     }
     CHECK_EQ(doctest::Approx(output_error), 0);
-    /* test convergence on one input */
+
+    /* Test convergence on one input */
     const double y[32] = { 0.,         0.,         0.,         0.,
                            0.,         0.,         0.24233836, 0.21147227,
                            0.82006556, 0.68110734, 0.7897921,  0.,
@@ -164,7 +166,67 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     }
     conv_error /= l->n_outputs; // MSE
     CHECK_EQ(doctest::Approx(conv_error), 0);
-    // clean up
+
+    /* Test copy */
+    struct Layer *l2 = neural_layer_convolutional_copy(l);
+    CHECK_EQ(l->type, l2->type);
+    CHECK_EQ(l->options, l2->options);
+    CHECK_EQ(l->function, l2->function);
+    CHECK_EQ(l->height, l2->height);
+    CHECK_EQ(l->width, l2->height);
+    CHECK_EQ(l->channels, l2->channels);
+    CHECK_EQ(l->n_filters, l2->n_filters);
+    CHECK_EQ(l->max_outputs, l2->max_outputs);
+    CHECK_EQ(l->stride, l2->stride);
+    CHECK_EQ(l->size, l2->size);
+    CHECK_EQ(l->pad, l2->pad);
+    CHECK_EQ(l->max_neuron_grow, l2->max_neuron_grow);
+    CHECK_EQ(l->eta_max, l2->eta_max);
+    CHECK_EQ(l->eta_min, l2->eta_min);
+    CHECK_EQ(l->momentum, l2->momentum);
+    CHECK_EQ(l->decay, l2->decay);
+    CHECK_EQ(l->n_biases, l2->n_biases);
+    CHECK_EQ(l->n_weights, l2->n_weights);
+    CHECK_EQ(l->n_active, l2->n_active);
+    CHECK_EQ(l->out_h, l2->out_h);
+    CHECK_EQ(l->out_w, l2->out_w);
+    CHECK_EQ(l->out_c, l2->out_c);
+    CHECK_EQ(l->n_inputs, l2->n_inputs);
+    CHECK_EQ(l->n_outputs, l2->n_outputs);
+    CHECK_EQ(l->eta, l2->eta);
+    for (int i = 0; i < l->n_weights; ++i) {
+        CHECK(l->weights[i] == l2->weights[i]);
+        CHECK(l->weight_active[i] == l2->weight_active[i]);
+    }
+    for (int i = 0; i < l->n_biases; ++i) {
+        CHECK(l->biases[i] == l2->biases[i]);
+    }
+    for (int i = 0; i < 6; ++i) {
+        CHECK(l->mu[i] == l2->mu[i]);
+    }
+
+    /* Test randomisation */
+    neural_layer_convolutional_rand(l);
+    for (int i = 0; i < l->n_weights; ++i) {
+        CHECK(l->weights[i] != l2->weights[i]);
+    }
+    for (int i = 0; i < l->n_biases; ++i) {
+        CHECK(l->biases[i] != l2->biases[i]);
+    }
+
+    /* Smoke test export */
+    CHECK(neural_layer_convolutional_json_export(l, true) != NULL);
+
+    /* Test serialization */
+    FILE *fp = fopen("temp.bin", "wb");
+    size_t w = neural_layer_convolutional_save(l, fp);
+    fclose(fp);
+    fp = fopen("temp.bin", "rb");
+    size_t r = neural_layer_convolutional_load(l, fp);
+    CHECK_EQ(w, r);
+    fclose(fp);
+
+    /* Test clean up */
     neural_free(&net);
     param_free(&xcsf);
 }

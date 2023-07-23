@@ -17,7 +17,7 @@
  * @file neural_layer_connected_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2023.
  * @brief Fully-connected neural network layer tests.
  */
 
@@ -42,7 +42,7 @@ extern "C" {
 
 TEST_CASE("NEURAL_LAYER_CONNECTED")
 {
-    /* test initialisation */
+    /* Test initialisation */
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
@@ -71,7 +71,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     CHECK_EQ(l->eta, 0.1);
     CHECK_EQ(l->momentum, 0.9);
 
-    /* test one forward pass of input */
+    /* Test one forward pass of input */
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
                            -0.0814486626, 0.0923277094,  0.2779675621,
                            -0.3109822596, -0.6788371120, -0.0714929928,
@@ -94,7 +94,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     }
     CHECK_EQ(doctest::Approx(output_error), 0);
 
-    /* test one backward pass of input */
+    /* Test one backward pass of input */
     const double y[2] = { 0.7343893899, 0.2289711363 };
     const double new_weights[20] = {
         0.3331291764,  -0.4444682297, 0.1035280986,  -1.2580527083,
@@ -120,7 +120,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     }
     CHECK_EQ(doctest::Approx(bias_error), 0);
 
-    /* test convergence on one input */
+    /* Test convergence on one input */
     const double conv_weights[20] = {
         0.4127301724,  -0.4103118294, 0.1330195938,  -1.2445235759,
         2.7887911379,  0.1771601713,  -1.1687384133, -0.0887861801,
@@ -151,11 +151,51 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     }
     CHECK_EQ(doctest::Approx(conv_bias_error), 0);
 
+    /* Test copy */
+    struct Layer *l2 = neural_layer_connected_copy(l);
+    CHECK_EQ(l->type, l2->type);
+    CHECK_EQ(l->options, l2->options);
+    CHECK_EQ(l->function, l2->function);
+    CHECK_EQ(l->out_w, l2->out_w);
+    CHECK_EQ(l->out_h, l2->out_h);
+    CHECK_EQ(l->out_c, l2->out_c);
+    CHECK_EQ(l->max_outputs, l2->max_outputs);
+    CHECK_EQ(l->max_neuron_grow, l2->max_neuron_grow);
+    CHECK_EQ(l->eta_max, l2->eta_max);
+    CHECK_EQ(l->eta_min, l2->eta_min);
+    CHECK_EQ(l->momentum, l2->momentum);
+    CHECK_EQ(l->decay, l2->decay);
+    CHECK_EQ(l->n_biases, l2->n_biases);
+    CHECK_EQ(l->n_weights, l2->n_weights);
+    CHECK_EQ(l->n_active, l2->n_active);
+    CHECK_EQ(l->n_inputs, l2->n_inputs);
+    CHECK_EQ(l->n_outputs, l2->n_outputs);
+    CHECK_EQ(l->eta, l2->eta);
+    for (int i = 0; i < l->n_weights; ++i) {
+        CHECK(l->weights[i] == l2->weights[i]);
+        CHECK(l->weight_active[i] == l2->weight_active[i]);
+    }
+    for (int i = 0; i < l->n_biases; ++i) {
+        CHECK(l->biases[i] == l2->biases[i]);
+    }
+    for (int i = 0; i < 6; ++i) {
+        CHECK(l->mu[i] == l2->mu[i]);
+    }
+
+    /* Test randomisation */
+    neural_layer_connected_rand(l);
+    for (int i = 0; i < l->n_weights; ++i) {
+        CHECK(l->weights[i] != l2->weights[i]);
+    }
+    for (int i = 0; i < l->n_biases; ++i) {
+        CHECK(l->biases[i] != l2->biases[i]);
+    }
+
     /* Smoke test export */
     char *json_str = neural_layer_connected_json_export(l, true);
     CHECK(json_str != NULL);
 
-    /* clean up */
+    /* Clean up */
     neural_free(&net);
     param_free(&xcsf);
 }
