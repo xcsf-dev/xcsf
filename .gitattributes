@@ -1,3 +1,5 @@
 * text=auto
 # Remove IPython notebooks from language statistics
 *.ipynb linguist-detectable=false
+# Remove tests from language statistics
+test/* linguist-detectable=false
