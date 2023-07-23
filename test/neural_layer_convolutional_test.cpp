@@ -48,6 +48,7 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     struct Layer *l;
     rand_init();
     param_init(&xcsf, 10, 2, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
     neural_init(&net);
     struct ArgsLayer args;
@@ -65,6 +66,10 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     args.eta = 0.1;
     args.momentum = 0.9;
     args.sgd_weights = true;
+    args.evolve_neurons = true;
+    args.max_neuron_grow = 1;
+    args.n_max = 10;
+    layer_args_validate(&args);
     l = layer_init(&args);
     neural_push(&net, l);
     CHECK_EQ(l->function, RELU);
@@ -115,11 +120,13 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     neural_layer_convolutional_forward(l, &net, x);
     double output_error = 0;
     index = 0;
+
+    const double *out = neural_layer_convolutional_output(l);
     for (int k = 0; k < l->out_h; ++k) {
         for (int j = 0; j < l->out_w; ++j) {
             for (int i = 0; i < l->out_c; ++i) {
                 const double layer_output_i =
-                    l->output[j + l->out_w * (k + l->out_h * i)];
+                    out[j + l->out_w * (k + l->out_h * i)];
                 output_error += fabs(layer_output_i - output[index]);
                 ++index;
             }
@@ -213,6 +220,37 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     for (int i = 0; i < l->n_biases; ++i) {
         CHECK(l->biases[i] != l2->biases[i]);
     }
+
+    /* Test mutation */
+    args.evolve_functions = true;
+    args.evolve_weights = true;
+    args.evolve_connect = true;
+    args.evolve_eta = true;
+    l->options = layer_args_opt(&args);
+    for (int i = 0; i < 6; ++i) {
+        l->mu[i] = 1;
+    }
+    int func = l->function;
+    double eta = l->eta;
+    int n_filters = l->n_filters;
+    int n_weights = l->n_weights;
+    int n_biases = l->n_biases;
+    double *wc = (double *) malloc(sizeof(double) * l->n_weights);
+    double *bc = (double *) malloc(sizeof(double) * l->n_biases);
+    memcpy(wc, l->weights, sizeof(double) * l->n_weights);
+    memcpy(bc, l->biases, sizeof(double) * l->n_biases);
+    CHECK(neural_layer_convolutional_mutate(l));
+    int n = n_weights ? (n_weights < l->n_weights) : l->n_weights;
+    for (int i = 0; i < n; ++i) {
+        CHECK(l->weights[i] != wc[i]);
+    }
+    n = n_biases ? (n_biases < l->n_biases) : l->n_biases;
+    for (int i = 0; i < n; ++i) {
+        CHECK(l->biases[i] != bc[i]);
+    }
+    CHECK(l->eta != eta);
+    CHECK(l->function != func);
+    CHECK(l->n_filters != n_filters);
 
     /* Smoke test export */
     CHECK(neural_layer_convolutional_json_export(l, true) != NULL);
