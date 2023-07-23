@@ -106,6 +106,15 @@ TEST_CASE("NEURAL")
     char *str = neural_json_export(&net, true);
     CHECK(str != NULL);
 
+    /* Test serialization */
+    FILE *fp = fopen("temp.bin", "wb");
+    size_t w = neural_save(&net, fp);
+    fclose(fp);
+    fp = fopen("temp.bin", "rb");
+    size_t r = neural_load(&net, fp);
+    CHECK_EQ(w, r);
+    fclose(fp);
+
     /* Test clean up */
     layer_free(l);
 }
