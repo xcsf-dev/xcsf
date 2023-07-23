@@ -102,6 +102,10 @@ TEST_CASE("NEURAL")
     CHECK_EQ(doctest::Approx(neural_output(&net, 0)), y[0]);
     CHECK_EQ(doctest::Approx(neural_output(&net, 1)), y[1]);
 
+    /* Smoke test export */
+    char *str = neural_json_export(&net, true);
+    CHECK(str != NULL);
+
     /* Test clean up */
     layer_free(l);
 }
