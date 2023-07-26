@@ -17,7 +17,7 @@
  * @file neural_layer_args.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2022.
+ * @date 2020--2023.
  * @brief Functions operating on neural network arguments/constants.
  */
 
@@ -202,12 +202,12 @@ static bool
 layer_args_json_import_sgd(struct ArgsLayer *args, const cJSON *json)
 {
     if (strncmp(json->string, "sgd_weights\0", 12) == 0 && cJSON_IsBool(json)) {
-        args->sgd_weights = json->valueint;
+        args->sgd_weights = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "eta\0", 4) == 0 && cJSON_IsNumber(json)) {
         args->eta = json->valuedouble;
     } else if (strncmp(json->string, "evolve_eta\0", 11) == 0 &&
                cJSON_IsBool(json)) {
-        args->evolve_eta = json->valueint;
+        args->evolve_eta = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "eta_min\0", 8) == 0 &&
                cJSON_IsNumber(json)) {
         args->eta_min = json->valuedouble;
@@ -252,16 +252,16 @@ layer_args_json_import_evo(struct ArgsLayer *args, const cJSON *json)
 {
     if (strncmp(json->string, "evolve_weights\0", 15) == 0 &&
         cJSON_IsBool(json)) {
-        args->evolve_weights = json->valueint;
+        args->evolve_weights = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "evolve_functions\0", 17) == 0 &&
                cJSON_IsBool(json)) {
-        args->evolve_functions = json->valueint;
+        args->evolve_functions = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "evolve_connect\0", 15) == 0 &&
                cJSON_IsBool(json)) {
-        args->evolve_connect = json->valueint;
+        args->evolve_connect = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "evolve_neurons\0", 15) == 0 &&
                cJSON_IsBool(json)) {
-        args->evolve_neurons = json->valueint;
+        args->evolve_neurons = true ? json->type == cJSON_True : false;
     } else if (strncmp(json->string, "n_max\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
         args->n_max = json->valueint;

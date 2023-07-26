@@ -17,7 +17,7 @@
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -310,10 +310,12 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
             catch_error(ea_param_set_fit_reduc(xcsf, iter->valuedouble));
         } else if (strncmp(iter->string, "subsumption\0", 12) == 0 &&
                    cJSON_IsBool(iter)) {
-            catch_error(ea_param_set_subsumption(xcsf, iter->valueint));
+            const bool sub = true ? iter->type == cJSON_True : false;
+            catch_error(ea_param_set_subsumption(xcsf, sub));
         } else if (strncmp(iter->string, "pred_reset\0", 11) == 0 &&
                    cJSON_IsBool(iter)) {
-            catch_error(ea_param_set_pred_reset(xcsf, iter->valueint));
+            const bool reset = true ? iter->type == cJSON_True : false;
+            catch_error(ea_param_set_pred_reset(xcsf, reset));
         } else {
             printf("Error importing EA parameter %s\n", iter->string);
             exit(EXIT_FAILURE);

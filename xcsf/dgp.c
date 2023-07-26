@@ -17,7 +17,7 @@
  * @file dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2023.
  * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
@@ -666,7 +666,8 @@ graph_args_json_import(struct ArgsDGP *args, cJSON *json)
             graph_param_set_n(args, iter->valueint);
         } else if (strncmp(iter->string, "evolve_cycles\0", 14) == 0 &&
                    cJSON_IsBool(iter)) {
-            graph_param_set_evolve_cycles(args, iter->valueint);
+            const bool evolve = true ? iter->type == cJSON_True : false;
+            graph_param_set_evolve_cycles(args, evolve);
         } else {
             return iter->string;
         }

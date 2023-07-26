@@ -17,7 +17,7 @@
  * @file cl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2023.
  * @brief Functions operating on classifiers.
  */
 
@@ -578,7 +578,7 @@ cl_json_import_current(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "current_match");
     if (item != NULL && cJSON_IsBool(item)) {
-        c->m = item->valueint;
+        c->m = true ? item->type == cJSON_True : false;
     }
     item = cJSON_GetObjectItem(json, "current_action");
     if (item != NULL && cJSON_IsNumber(item)) {

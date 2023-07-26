@@ -24,6 +24,7 @@
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
+#include "../xcsf/clset.h"
 #include "../xcsf/pa.h"
 #include "../xcsf/param.h"
 #include "../xcsf/utils.h"
@@ -35,4 +36,66 @@ extern "C" {
 #include <string.h>
 }
 
-TEST_CASE("CLSET") {}
+TEST_CASE("CLSET")
+{
+    /* Test initialisation */
+    const int x_dim = 4;
+    const int y_dim = 1;
+
+    struct XCSF xcsf;
+    param_init(&xcsf, x_dim, y_dim, 1);
+    param_set_random_state(&xcsf, 2);
+    xcsf_init(&xcsf);
+    clset_pset_init(&xcsf);
+
+    /* Test insert */
+    // insert a classifier
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddNumberToObject(json, "error", 0.1);
+    cJSON_AddNumberToObject(json, "fitness", 0.2);
+    cJSON_AddNumberToObject(json, "set_size", 10);
+    cJSON_AddNumberToObject(json, "numerosity", 20);
+    cJSON_AddNumberToObject(json, "experience", 50);
+    cJSON_AddNumberToObject(json, "time", 100);
+    cJSON_AddNumberToObject(json, "samples_seen", 100);
+    cJSON_AddNumberToObject(json, "samples_matched", 50);
+    cJSON_AddBoolToObject(json, "current_match", true);
+    cJSON_AddNumberToObject(json, "current_action", 1);
+    double pred[1] = { 0.6 };
+    cJSON *p = cJSON_CreateDoubleArray(pred, xcsf.y_dim);
+    cJSON_AddItemToObject(json, "current_prediction", p);
+    clset_json_insert_cl(&xcsf, json);
+    cJSON_Delete(json);
+    // check the classifier
+    struct Cl *c = xcsf.pset.list->cl;
+    CHECK_EQ(c->err, 0.1);
+    CHECK_EQ(c->fit, 0.2);
+    CHECK_EQ(c->size, 10);
+    CHECK_EQ(c->num, 20);
+    CHECK_EQ(c->exp, 50);
+    CHECK_EQ(c->time, 100);
+    CHECK_EQ(c->age, 100);
+    CHECK_EQ(c->mtotal, 50);
+    CHECK(c->m);
+    CHECK_EQ(c->action, 1);
+    for (int i = 0; i < y_dim; ++i) {
+        CHECK_EQ(pred[i], c->prediction[i]);
+    }
+
+    /* Test mean size calculations */
+    const double csize = clset_mean_cond_size(&xcsf, &xcsf.pset);
+    CHECK_EQ(csize, x_dim);
+    const double psize = clset_mean_pred_size(&xcsf, &xcsf.pset);
+    CHECK_EQ(psize, x_dim + 1);
+
+    /* Smoke test export */
+    char *json_str = clset_json_export(&xcsf, &xcsf.pset, true, true, true);
+    CHECK(json_str != NULL);
+
+    /* Smoke test import */
+    clset_json_insert(&xcsf, json_str);
+
+    /* Test clean up */
+    xcsf_free(&xcsf);
+    param_free(&xcsf);
+}

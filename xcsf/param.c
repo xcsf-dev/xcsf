@@ -220,7 +220,8 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         catch_error(param_set_max_trials(xcsf, json->valueint));
     } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
                cJSON_IsBool(json)) {
-        catch_error(param_set_pop_init(xcsf, json->valueint));
+        const bool init = true ? json->type == cJSON_True : false;
+        catch_error(param_set_pop_init(xcsf, init));
     } else if (strncmp(json->string, "perf_trials\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_perf_trials(xcsf, json->valueint));
@@ -278,7 +279,8 @@ param_json_import_subsump(struct XCSF *xcsf, const cJSON *json)
 {
     if (strncmp(json->string, "set_subsumption\0", 16) == 0 &&
         cJSON_IsBool(json)) {
-        catch_error(param_set_set_subsumption(xcsf, json->valueint));
+        const bool sub = true ? json->type == cJSON_True : false;
+        catch_error(param_set_set_subsumption(xcsf, sub));
     } else if (strncmp(json->string, "theta_sub\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
         catch_error(param_set_theta_sub(xcsf, json->valueint));
@@ -324,10 +326,12 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
         catch_error(param_set_m_probation(xcsf, json->valueint));
     } else if (strncmp(json->string, "stateful\0", 9) == 0 &&
                cJSON_IsBool(json)) {
-        catch_error(param_set_stateful(xcsf, json->valueint));
+        const bool stateful = true ? json->type == cJSON_True : false;
+        catch_error(param_set_stateful(xcsf, stateful));
     } else if (strncmp(json->string, "compaction\0", 11) == 0 &&
                cJSON_IsBool(json)) {
-        catch_error(param_set_compaction(xcsf, json->valueint));
+        const bool compact = true ? json->type == cJSON_True : false;
+        catch_error(param_set_compaction(xcsf, compact));
     } else {
         return false;
     }

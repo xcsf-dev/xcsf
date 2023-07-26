@@ -37,6 +37,7 @@ extern "C" {
 
 TEST_CASE("SUPERVISED")
 {
+    /* Test initialisation */
     const int n_samples = 5;
     const int x_dim = 4;
     const int y_dim = 1;
@@ -51,7 +52,6 @@ TEST_CASE("SUPERVISED")
 
     double expected[5] = { 0.361927, 0.362126, 0.314226, 0.463001, 0.413388 };
 
-    /* Test initialisation */
     struct XCSF xcsf;
     param_init(&xcsf, x_dim, y_dim, 1);
     rand_init_seed(2);

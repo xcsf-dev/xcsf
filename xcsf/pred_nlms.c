@@ -17,7 +17,7 @@
  * @file pred_nlms.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Normalised least mean squares prediction functions.
  */
 
@@ -348,7 +348,8 @@ pred_nlms_param_json_import(struct XCSF *xcsf, cJSON *json)
             pred_param_set_eta(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "evolve_eta\0", 11) == 0 &&
                    cJSON_IsBool(iter)) {
-            pred_param_set_evolve_eta(xcsf, iter->valueint);
+            const bool evolve = true ? iter->type == cJSON_True : false;
+            pred_param_set_evolve_eta(xcsf, evolve);
         } else if (strncmp(iter->string, "eta_min\0", 8) == 0 &&
                    cJSON_IsNumber(iter)) {
             pred_param_set_eta_min(xcsf, iter->valuedouble);
