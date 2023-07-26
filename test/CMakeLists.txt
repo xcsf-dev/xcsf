@@ -41,7 +41,8 @@ set(XCSF_TESTS
     pred_rls_test.cpp
     serialization_test.cpp
     util_test.cpp
-    unit_tests.cpp)
+    unit_tests.cpp
+    xcs_supervised_test.cpp)
 
 add_definitions(-DDSFMT_MEXP=19937)
 
