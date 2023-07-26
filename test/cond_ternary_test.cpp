@@ -43,6 +43,7 @@ TEST_CASE("COND_TERNARY")
     struct Cl c1;
     rand_init();
     param_init(&xcsf, 5, 1, 1);
+    param_set_random_state(&xcsf, 10);
     cond_param_set_type(&xcsf, COND_TYPE_TERNARY);
     cond_param_set_bits(&xcsf, 2);
     cl_init(&xcsf, &c1, 1, 1);
