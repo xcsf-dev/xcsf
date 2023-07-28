@@ -1,6 +1,6 @@
 # Changelog
 
-## Development
+## Version 1.3.1 (Jul 28, 2023)
 
 Changes:
 *   Add tests.
