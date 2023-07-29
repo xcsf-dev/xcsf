@@ -13,7 +13,7 @@ See the project [wiki](https://github.com/rpreen/xcsf/wiki) for details on featu
 [![Latest Version](https://img.shields.io/github/v/release/rpreen/xcsf?style=flat)](https://github.com/rpreen/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
-[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://www.codacy.com/gh/rpreen/xcsf/dashboard)
+[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://app.codacy.com/gh/rpreen/xcsf/dashboard)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/rpreen/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/rpreen/xcsf)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![codecov](https://codecov.io/gh/rpreen/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/rpreen/xcsf)
