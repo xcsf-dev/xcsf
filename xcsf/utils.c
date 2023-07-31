@@ -117,3 +117,24 @@ utils_json_parse_check(const cJSON *json)
         exit(EXIT_FAILURE);
     }
 }
+
+/**
+ * @brief Prints a backtrace when receiving a segfault on GNU/Linux.
+ * @param [in] signal Segmentation signal.
+ */
+void
+sigsegv_handler(int signal)
+{
+    (void) signal;
+    void *callstack[50];
+    int frames = backtrace(callstack, sizeof(callstack));
+    char **strs = backtrace_symbols(callstack, frames);
+    printf("backtrace (%d entries)\n", frames);
+    if (strs) {
+        for (int i = 0; i < frames; ++i) {
+            printf("%d/%d: %s\n", i + 1, frames, strs[i]);
+        }
+        free(strs);
+    }
+    exit(EXIT_FAILURE);
+}

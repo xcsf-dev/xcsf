@@ -26,10 +26,15 @@
 
 #include "../lib/cJSON/cJSON.h"
 #include "../lib/dSFMT/dSFMT.h"
+#include <execinfo.h>
 #include <math.h>
+#include <signal.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+void
+sigsegv_handler(int signal);
 
 double
 rand_normal(const double mu, const double sigma);

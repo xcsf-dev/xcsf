@@ -39,6 +39,9 @@ main(int argc, char **argv)
         printf("problem{.csv|size|maze} [config.json] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
+#ifndef WIN32
+    signal(SIGSEGV, sigsegv_handler); // better error logging
+#endif
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));
     env_init(xcsf, argv); // initialise environment and default parameters
     if (argc > 3) { // load parameter config
