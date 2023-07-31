@@ -1,5 +1,10 @@
 # Changelog
 
+## Development
+
+Changes:
+*   Display a backtrace when encountering a segmentation fault on GNU/Linux ([#90](https://github.com/rpreen/xcsf/pull/90))
+
 ## Version 1.3.1 (Jul 28, 2023)
 
 Changes:
