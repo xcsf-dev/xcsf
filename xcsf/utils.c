@@ -126,6 +126,7 @@ void
 sigsegv_handler(int signal)
 {
     (void) signal;
+#ifndef WIN32
     void *callstack[50];
     int frames = backtrace(callstack, sizeof(callstack));
     char **strs = backtrace_symbols(callstack, frames);
@@ -137,4 +138,5 @@ sigsegv_handler(int signal)
         free(strs);
     }
     exit(EXIT_FAILURE);
+#endif
 }
