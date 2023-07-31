@@ -124,7 +124,7 @@ utils_json_parse_check(const cJSON *json)
 void
 print_backtrace(void)
 {
-#ifndef WIN32
+#ifdef __linux__
     void *callstack[100];
     int frames = backtrace(callstack, sizeof(callstack));
     char **strs = backtrace_symbols(callstack, frames);

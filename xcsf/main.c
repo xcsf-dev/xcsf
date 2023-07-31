@@ -39,7 +39,7 @@ main(int argc, char **argv)
         printf("problem{.csv|size|maze} [config.json] [xcs.bin]\n");
         exit(EXIT_FAILURE);
     }
-#ifndef WIN32
+#ifdef __linux__
     signal(SIGSEGV, sigsegv_handler); // better error logging
 #endif
     struct XCSF *xcsf = malloc(sizeof(struct XCSF));

@@ -107,7 +107,7 @@ class XCS
     void
     reset(void)
     {
-#ifndef WIN32
+#ifdef __linux__
         signal(SIGSEGV, sigsegv_handler);
 #endif
         state = NULL;

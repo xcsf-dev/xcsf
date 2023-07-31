@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef WIN32
+#ifdef __linux__
     #include <execinfo.h>
     #include <signal.h>
 #endif
