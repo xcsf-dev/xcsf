@@ -26,12 +26,16 @@
 
 #include "../lib/cJSON/cJSON.h"
 #include "../lib/dSFMT/dSFMT.h"
-#include <execinfo.h>
+
 #include <math.h>
-#include <signal.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifndef WIN32
+    #include <execinfo.h>
+    #include <signal.h>
+#endif
 
 void
 sigsegv_handler(int signal);
