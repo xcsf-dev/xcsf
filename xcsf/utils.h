@@ -40,6 +40,9 @@
 void
 sigsegv_handler(int signal);
 
+void
+print_backtrace(void);
+
 double
 rand_normal(const double mu, const double sigma);
 

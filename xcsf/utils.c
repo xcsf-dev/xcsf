@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2023.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -119,15 +119,13 @@ utils_json_parse_check(const cJSON *json)
 }
 
 /**
- * @brief Prints a backtrace when receiving a segfault on GNU/Linux.
- * @param [in] signal Segmentation signal.
+ * @brief Prints a backtrace on GNU/Linux.
  */
 void
-sigsegv_handler(int signal)
+print_backtrace(void)
 {
-    (void) signal;
 #ifndef WIN32
-    void *callstack[50];
+    void *callstack[100];
     int frames = backtrace(callstack, sizeof(callstack));
     char **strs = backtrace_symbols(callstack, frames);
     printf("backtrace (%d entries)\n", frames);
@@ -137,6 +135,17 @@ sigsegv_handler(int signal)
         }
         free(strs);
     }
-    exit(EXIT_FAILURE);
 #endif
+}
+
+/**
+ * @brief Captures segmentation faults on GNU/Linux.
+ * @param [in] signal Segmentation signal.
+ */
+void
+sigsegv_handler(int signal)
+{
+    (void) signal;
+    print_backtrace();
+    exit(EXIT_FAILURE);
 }
