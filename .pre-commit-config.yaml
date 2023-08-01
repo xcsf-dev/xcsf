@@ -54,14 +54,14 @@ repos:
 
   # Upgrade old Python syntax
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.9.0
+    rev: v3.10.1
     hooks:
       - id: pyupgrade
         args: [--py310-plus]
 
   # Autoremoves unused imports
   - repo: https://github.com/hadialqattan/pycln
-    rev: "v2.1.6"
+    rev: "v2.2.0"
     hooks:
       - id: pycln
         stages: [manual]
@@ -81,7 +81,7 @@ repos:
 
   # Check Python with flake8
   - repo: https://github.com/pycqa/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
       - id: flake8
         args:
