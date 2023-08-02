@@ -27,11 +27,7 @@ var NAVTREE =
   [ "XCSF", "index.html", [
     [ "XCSF learning classifier system", "index.html", null ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
-      ] ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -58,17 +54,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____init_____8py.html",
-"classXCS.html#a4555d7d2d0fe8ab79db5e94954a8cb83",
-"cond__ellipsoid_8h.html#a49d9110d8f02b114d27befc6891c7a9e",
-"condition_8h.html#ad8e7680bba0550635fc9a83360390756",
-"functions_l.html",
-"neural_8h.html#a6466387dd7c533e0f15da4c2127bfd79",
-"neural__layer__connected_8c.html#a24820ae41bc4e935996edadba071f3f3",
-"neural__layer__recurrent_8c.html#ab67b6e38da6db94e4735740f8521d5b1",
-"pred__neural_8c.html#a913efbfb988539a1c6f7de2cf43cea5c",
-"rule__dgp_8h.html#afc876278ab001399d3cd9b2d4a097aa8",
-"structEnvVtbl.html#a584e6c66c8b682da9cb5a8dae7fafb10",
-"utils_8h.html#ad4c1cfaf547c968379d68470354816b7"
+"classXCS.html#a3926256e3e25a65d97087e5cd13df4bf",
+"cond__ellipsoid_8h.html#ab5e78cd23f1657136bd7577b0e20861f",
+"condition_8h.html#af0c3edaf8549aba2b07a05ba30efde4b",
+"functions_s.html",
+"neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e",
+"neural__layer__connected_8h.html#a19cca87ca818b59328b21d4f3d0e9a0e",
+"neural__layer__recurrent_8h.html#a8e1b101a764abf39a150df90177ee9ff",
+"pred__neural_8h.html#a56430e2cbd0ff78b7602723b62737009",
+"rule__neural_8c.html#a84980873859a0e16006ec98443eeeb25",
+"structGraph.html#a9a634d57f7a89c977fd6a0a8daaec1bf",
+"xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

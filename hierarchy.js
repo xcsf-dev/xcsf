@@ -28,15 +28,6 @@ var hierarchy =
     [ "EnvMaze", "structEnvMaze.html", null ],
     [ "EnvMux", "structEnvMux.html", null ],
     [ "EnvVtbl", "structEnvVtbl.html", null ],
-    [ "False", null, [
-      [ "xcsf.utils.types.ConditionCSRArgs", "classxcsf_1_1utils_1_1types_1_1ConditionCSRArgs.html", null ],
-      [ "xcsf.utils.types.ConditionDGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionDGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionTernaryArgs", "classxcsf_1_1utils_1_1types_1_1ConditionTernaryArgs.html", null ],
-      [ "xcsf.utils.types.NeuralLayerArgs", "classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html", null ],
-      [ "xcsf.utils.types.PredictionNLMSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionNLMSArgs.html", null ],
-      [ "xcsf.utils.types.PredictionRLSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionRLSArgs.html", null ]
-    ] ],
     [ "GPTree", "structGPTree.html", null ],
     [ "Graph", "structGraph.html", null ],
     [ "Input", "structInput.html", null ],
@@ -51,25 +42,7 @@ var hierarchy =
     [ "RuleDGP", "structRuleDGP.html", null ],
     [ "RuleNeural", "structRuleNeural.html", null ],
     [ "Set", "structSet.html", null ],
-    [ "total", null, [
-      [ "xcsf.utils.types.ConditionCSRArgs", "classxcsf_1_1utils_1_1types_1_1ConditionCSRArgs.html", null ],
-      [ "xcsf.utils.types.ConditionDGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionDGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionTernaryArgs", "classxcsf_1_1utils_1_1types_1_1ConditionTernaryArgs.html", null ],
-      [ "xcsf.utils.types.NeuralLayerArgs", "classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html", null ],
-      [ "xcsf.utils.types.PredictionNLMSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionNLMSArgs.html", null ],
-      [ "xcsf.utils.types.PredictionRLSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionRLSArgs.html", null ]
-    ] ],
     [ "xcsf.utils.viz.TreeViz", "classxcsf_1_1utils_1_1viz_1_1TreeViz.html", null ],
     [ "XCS", "classXCS.html", null ],
-    [ "XCSF", "structXCSF.html", null ],
-    [ "TypedDict", null, [
-      [ "xcsf.utils.types.ConditionCSRArgs", "classxcsf_1_1utils_1_1types_1_1ConditionCSRArgs.html", null ],
-      [ "xcsf.utils.types.ConditionDGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionDGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionGPArgs.html", null ],
-      [ "xcsf.utils.types.ConditionTernaryArgs", "classxcsf_1_1utils_1_1types_1_1ConditionTernaryArgs.html", null ],
-      [ "xcsf.utils.types.NeuralLayerArgs", "classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html", null ],
-      [ "xcsf.utils.types.PredictionNLMSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionNLMSArgs.html", null ],
-      [ "xcsf.utils.types.PredictionRLSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionRLSArgs.html", null ]
-    ] ]
+    [ "XCSF", "structXCSF.html", null ]
 ];

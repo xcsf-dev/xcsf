@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -109,82 +109,85 @@ $(document).ready(function(){initNavTree('image_8c_source.html',''); initResizab
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="image_8c.html#aad5873f6590465834413dd198919808c">   25</a></span>&#160;<a class="code" href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a>(<span class="keywordtype">double</span> *im, <span class="keyword">const</span> <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> row,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                 <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> pad, <span class="keyword">const</span> <span class="keywordtype">double</span> val)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    row -= pad;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    col -= pad;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (row &lt; 0 || col &lt; 0 || row &gt;= height || col &gt;= width) {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    im[col + width * (row + height * channel)] += val;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">   37</a></span>&#160;<a class="code" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *im, <span class="keyword">const</span> <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> row,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                 <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> pad)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    row -= pad;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    col -= pad;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">if</span> (row &lt; 0 || col &lt; 0 || row &gt;= height || col &gt;= width) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> im[col + width * (row + height * channel)];</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">   61</a></span>&#160;<a class="code" href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">col2im</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *data_col, <span class="keyword">const</span> <span class="keywordtype">int</span> channels, <span class="keyword">const</span> <span class="keywordtype">int</span> height,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;       <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keyword">const</span> <span class="keywordtype">int</span> ksize, <span class="keyword">const</span> <span class="keywordtype">int</span> stride, <span class="keyword">const</span> <span class="keywordtype">int</span> pad,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;       <span class="keywordtype">double</span> *data_im)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> height_col = (height + 2 * pad - ksize) / stride + 1;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> width_col = (width + 2 * pad - ksize) / stride + 1;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> channels_col = channels * ksize * ksize;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; channels_col; ++c) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> w_offset = c % ksize;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> h_offset = (c / ksize) % ksize;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> c_im = c / ksize / ksize;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> h = 0; h &lt; height_col; ++h) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> w = 0; w &lt; width_col; ++w) {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_row = h_offset + h * stride;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_col = w_offset + w * stride;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> col_index = (c * height_col + h) * width_col + w;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">double</span> val = data_col[col_index];</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <a class="code" href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a>(data_im, height, width, im_row, im_col, c_im,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                 pad, val);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">   98</a></span>&#160;<a class="code" href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">im2col</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *data_im, <span class="keyword">const</span> <span class="keywordtype">int</span> channels, <span class="keyword">const</span> <span class="keywordtype">int</span> height,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;       <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keyword">const</span> <span class="keywordtype">int</span> ksize, <span class="keyword">const</span> <span class="keywordtype">int</span> stride, <span class="keyword">const</span> <span class="keywordtype">int</span> pad,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;       <span class="keywordtype">double</span> *data_col)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> height_col = (height + 2 * pad - ksize) / stride + 1;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> width_col = (width + 2 * pad - ksize) / stride + 1;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> channels_col = channels * ksize * ksize;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; channels_col; ++c) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> w_offset = c % ksize;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> h_offset = (c / ksize) % ksize;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> c_im = c / ksize / ksize;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> h = 0; h &lt; height_col; ++h) {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> w = 0; w &lt; width_col; ++w) {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_row = h_offset + h * stride;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_col = w_offset + w * stride;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> col_index = (c * height_col + h) * width_col + w;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                data_col[col_index] = <a class="code" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a>(</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    data_im, height, width, im_row, im_col, c_im, pad);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="ttc" id="aimage_8c_html_a33557bb05f10824eef9cc5775ac17c0d"><div class="ttname"><a href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">im2col</a></div><div class="ttdeci">void im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col)</div><div class="ttdoc">Transforms an image vector to a column vector.</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00098">image.c:98</a></div></div>
-<div class="ttc" id="aimage_8c_html_a35b83d0e813d0341ce6e237a42412cda"><div class="ttname"><a href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a></div><div class="ttdeci">static double im2col_get_pixel(const double *im, const int height, const int width, int row, int col, const int channel, const int pad)</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00037">image.c:37</a></div></div>
-<div class="ttc" id="aimage_8c_html_aad5873f6590465834413dd198919808c"><div class="ttname"><a href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a></div><div class="ttdeci">static void col2im_add_pixel(double *im, const int height, const int width, int row, int col, const int channel, const int pad, const double val)</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00025">image.c:25</a></div></div>
-<div class="ttc" id="aimage_8c_html_ad8cb701532dbd28770e4f90cab4f7073"><div class="ttname"><a href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">col2im</a></div><div class="ttdeci">void col2im(const double *data_col, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_im)</div><div class="ttdoc">Transforms a column vector to an image vector.</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00061">image.c:61</a></div></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="image_8c.html#aad5873f6590465834413dd198919808c">   27</a></span>&#160;<a class="code" href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a>(<span class="keywordtype">double</span> *im, <span class="keyword">const</span> <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> row,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                 <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> pad, <span class="keyword">const</span> <span class="keywordtype">double</span> val)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    row -= pad;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    col -= pad;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span> (row &lt; 0 || col &lt; 0 || row &gt;= height || col &gt;= width) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    im[col + width * (row + height * channel)] += val;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">   39</a></span>&#160;<a class="code" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *im, <span class="keyword">const</span> <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> row,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                 <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, <span class="keyword">const</span> <span class="keywordtype">int</span> pad)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    row -= pad;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    col -= pad;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (row &lt; 0 || col &lt; 0 || row &gt;= height || col &gt;= width) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> im[col + width * (row + height * channel)];</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">   63</a></span>&#160;<a class="code" href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">col2im</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *data_col, <span class="keyword">const</span> <span class="keywordtype">int</span> channels, <span class="keyword">const</span> <span class="keywordtype">int</span> height,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;       <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keyword">const</span> <span class="keywordtype">int</span> ksize, <span class="keyword">const</span> <span class="keywordtype">int</span> stride, <span class="keyword">const</span> <span class="keywordtype">int</span> pad,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;       <span class="keywordtype">double</span> *data_im)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> height_col = (height + 2 * pad - ksize) / stride + 1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> width_col = (width + 2 * pad - ksize) / stride + 1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> channels_col = channels * ksize * ksize;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; channels_col; ++c) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> w_offset = c % ksize;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> h_offset = (c / ksize) % ksize;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> c_im = c / ksize / ksize;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> h = 0; h &lt; height_col; ++h) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> w = 0; w &lt; width_col; ++w) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_row = h_offset + h * stride;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_col = w_offset + w * stride;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> col_index = (c * height_col + h) * width_col + w;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">double</span> val = data_col[col_index];</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <a class="code" href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a>(data_im, height, width, im_row, im_col, c_im,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                 pad, val);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">  100</a></span>&#160;<a class="code" href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">im2col</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> *data_im, <span class="keyword">const</span> <span class="keywordtype">int</span> channels, <span class="keyword">const</span> <span class="keywordtype">int</span> height,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;       <span class="keyword">const</span> <span class="keywordtype">int</span> width, <span class="keyword">const</span> <span class="keywordtype">int</span> ksize, <span class="keyword">const</span> <span class="keywordtype">int</span> stride, <span class="keyword">const</span> <span class="keywordtype">int</span> pad,</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;       <span class="keywordtype">double</span> *data_col)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> height_col = (height + 2 * pad - ksize) / stride + 1;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> width_col = (width + 2 * pad - ksize) / stride + 1;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> channels_col = channels * ksize * ksize;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> c = 0; c &lt; channels_col; ++c) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> w_offset = c % ksize;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> h_offset = (c / ksize) % ksize;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> c_im = c / ksize / ksize;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> h = 0; h &lt; height_col; ++h) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> w = 0; w &lt; width_col; ++w) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_row = h_offset + h * stride;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> im_col = w_offset + w * stride;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">int</span> col_index = (c * height_col + h) * width_col + w;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                data_col[col_index] = <a class="code" href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a>(</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    data_im, height, width, im_row, im_col, c_im, pad);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="ttc" id="aimage_8c_html_a33557bb05f10824eef9cc5775ac17c0d"><div class="ttname"><a href="image_8c.html#a33557bb05f10824eef9cc5775ac17c0d">im2col</a></div><div class="ttdeci">void im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col)</div><div class="ttdoc">Transforms an image vector to a column vector.</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00100">image.c:100</a></div></div>
+<div class="ttc" id="aimage_8c_html_a35b83d0e813d0341ce6e237a42412cda"><div class="ttname"><a href="image_8c.html#a35b83d0e813d0341ce6e237a42412cda">im2col_get_pixel</a></div><div class="ttdeci">static double im2col_get_pixel(const double *im, const int height, const int width, int row, int col, const int channel, const int pad)</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00039">image.c:39</a></div></div>
+<div class="ttc" id="aimage_8c_html_aad5873f6590465834413dd198919808c"><div class="ttname"><a href="image_8c.html#aad5873f6590465834413dd198919808c">col2im_add_pixel</a></div><div class="ttdeci">static void col2im_add_pixel(double *im, const int height, const int width, int row, int col, const int channel, const int pad, const double val)</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00027">image.c:27</a></div></div>
+<div class="ttc" id="aimage_8c_html_ad8cb701532dbd28770e4f90cab4f7073"><div class="ttname"><a href="image_8c.html#ad8cb701532dbd28770e4f90cab4f7073">col2im</a></div><div class="ttdeci">void col2im(const double *data_col, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_im)</div><div class="ttdoc">Transforms a column vector to an image vector.</div><div class="ttdef"><b>Definition:</b> <a href="image_8c_source.html#l00063">image.c:63</a></div></div>
+<div class="ttc" id="aimage_8h_html"><div class="ttname"><a href="image_8h.html">image.h</a></div><div class="ttdoc">Image handling functions.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

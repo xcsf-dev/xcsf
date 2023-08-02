@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classxcsf_1_1utils_1_1viz_1_1TreeViz.h
 <div class="title">xcsf.utils.viz.TreeViz Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Visualises a GP tree with graphviz.  
+ <a href="classxcsf_1_1utils_1_1viz_1_1TreeViz.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -115,8 +118,9 @@ Data Fields</h2></td></tr>
 <tr class="separator:aa82a1bc282566504902455bc1ec23fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">Visualises a GP tree with graphviz.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00028">28</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<div class="textblock"><p>Visualises a GP tree with graphviz. </p>
+
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00031">31</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae093eec0cc41c0e839527c44b0852fff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae093eec0cc41c0e839527c44b0852fff">&#9670;&nbsp;</a></span>__init__()</h2>
@@ -165,16 +169,16 @@ Data Fields</h2></td></tr>
 
 Parameters
 ----------
-tree : List[str]
+tree : list[str]
     List of strings representing a GP tree.
 filename : str
     Name of the output file to save the drawn tree.
 note : str, optional
     Optional string to be added as a note/caption.
-feature_names : List[str], optional
+feature_names : list[str], optional
     Optional list of feature names.
 </pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00031">31</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00034">34</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
 <p class="reference">References <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
 
@@ -207,14 +211,13 @@ feature_names : List[str], optional
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Returns the node label for a symbol.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00062">62</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00065">65</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00148">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00086">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00151">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00089">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a8d91773ee959a8b829712cdd686fa683_icgraph.svg" width="638" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a8d91773ee959a8b829712cdd686fa683_icgraph.svg" width="638" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -235,22 +238,20 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Parses functions.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00072">72</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00075">75</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">References <a class="el" href="viz_8py_source.html#l00056">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00129">xcsf.utils.viz.DGPViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00062">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="viz_8py_source.html#l00138">xcsf.utils.viz.DGPViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>, <a class="el" href="viz_8py_source.html#l00086">xcsf.utils.viz.TreeViz.read_subexpr()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
+<p class="reference">References <a class="el" href="viz_8py_source.html#l00059">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00132">xcsf.utils.viz.DGPViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00065">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="viz_8py_source.html#l00141">xcsf.utils.viz.DGPViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>, <a class="el" href="viz_8py_source.html#l00089">xcsf.utils.viz.TreeViz.read_subexpr()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00086">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00089">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a45ff2d8d6eefa38ba7fb478b4dbf9ae6_cgraph.svg" width="635" height="98"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a45ff2d8d6eefa38ba7fb478b4dbf9ae6_cgraph.svg" width="635" height="98"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a45ff2d8d6eefa38ba7fb478b4dbf9ae6_icgraph.svg" width="408" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a45ff2d8d6eefa38ba7fb478b4dbf9ae6_icgraph.svg" width="408" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -271,22 +272,20 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <pre class="fragment">Parses sub-expressions.</pre> 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00086">86</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00089">89</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">References <a class="el" href="viz_8py_source.html#l00056">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00129">xcsf.utils.viz.DGPViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00062">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="viz_8py_source.html#l00138">xcsf.utils.viz.DGPViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
+<p class="reference">References <a class="el" href="viz_8py_source.html#l00059">xcsf.utils.viz.TreeViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00132">xcsf.utils.viz.DGPViz.gviz</a>, <a class="el" href="viz_8py_source.html#l00065">xcsf.utils.viz.TreeViz.label()</a>, <a class="el" href="viz_8py_source.html#l00141">xcsf.utils.viz.DGPViz.label()</a>, <a class="el" href="gp_8h_source.html#l00047">GPTree.pos</a>, <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="gp_8h_source.html#l00045">GPTree.tree</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a712b0c4074c1effee7c8bc41f341b14d_cgraph.svg" width="635" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a712b0c4074c1effee7c8bc41f341b14d_cgraph.svg" width="635" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a712b0c4074c1effee7c8bc41f341b14d_icgraph.svg" width="408" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classxcsf_1_1utils_1_1viz_1_1TreeViz_a712b0c4074c1effee7c8bc41f341b14d_icgraph.svg" width="408" height="76"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -304,9 +303,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00056">56</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="viz_8py_source.html#l00059">59</a> of file <a class="el" href="viz_8py_source.html">viz.py</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00148">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00072">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00086">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="viz_8py_source.html#l00151">xcsf.utils.viz.DGPViz.draw()</a>, <a class="el" href="viz_8py_source.html#l00075">xcsf.utils.viz.TreeViz.read_function()</a>, and <a class="el" href="viz_8py_source.html#l00089">xcsf.utils.viz.TreeViz.read_subexpr()</a>.</p>
 
 </div>
 </div>

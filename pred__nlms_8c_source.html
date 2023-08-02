@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -342,16 +342,17 @@ $(document).ready(function(){initNavTree('pred__nlms_8c_source.html',''); initRe
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <a class="code" href="prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d">pred_param_set_eta</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;evolve_eta\0&quot;</span>, 11) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                   cJSON_IsBool(iter)) {</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            <a class="code" href="prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512">pred_param_set_evolve_eta</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valueint);</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;eta_min\0&quot;</span>, 8) == 0 &amp;&amp;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                   cJSON_IsNumber(iter)) {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <a class="code" href="prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5">pred_param_set_eta_min</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            <span class="keywordflow">return</span> iter-&gt;string;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        }</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    }</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;}</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">bool</span> evolve = <span class="keyword">true</span> ? iter-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <a class="code" href="prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512">pred_param_set_evolve_eta</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, evolve);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(iter-&gt;string, <span class="stringliteral">&quot;eta_min\0&quot;</span>, 8) == 0 &amp;&amp;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                   cJSON_IsNumber(iter)) {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            <a class="code" href="prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5">pred_param_set_eta_min</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, iter-&gt;valuedouble);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keywordflow">return</span> iter-&gt;string;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        }</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    }</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;}</div>
 <div class="ttc" id="ablas_8c_html_a5241e53bd01ced11592a718674fc4932"><div class="ttname"><a href="blas_8c.html#a5241e53bd01ced11592a718674fc4932">blas_fill</a></div><div class="ttdeci">void blas_fill(const int N, const double ALPHA, double *X, const int INCX)</div><div class="ttdoc">Fills the vector X with the value ALPHA.</div><div class="ttdef"><b>Definition:</b> <a href="blas_8c_source.html#l00181">blas.c:181</a></div></div>
 <div class="ttc" id="ablas_8c_html_a91a7826d9b40de8174cccb1e0ca53795"><div class="ttname"><a href="blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795">blas_dot</a></div><div class="ttdeci">double blas_dot(const int N, const double *X, const int INCX, const double *Y, const int INCY)</div><div class="ttdoc">Computes the dot product of two vectors.</div><div class="ttdef"><b>Definition:</b> <a href="blas_8c_source.html#l00198">blas.c:198</a></div></div>
 <div class="ttc" id="ablas_8c_html_ad4fa7c98f973bedeaf96fa3757229876"><div class="ttname"><a href="blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876">blas_axpy</a></div><div class="ttdeci">void blas_axpy(const int N, const double ALPHA, const double *X, const int INCX, double *Y, const int INCY)</div><div class="ttdoc">Multiplies vector X by the scalar ALPHA and adds it to the vector Y.</div><div class="ttdef"><b>Definition:</b> <a href="blas_8c_source.html#l00138">blas.c:138</a></div></div>

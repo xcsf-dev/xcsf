@@ -2,15 +2,6 @@ var annotated_dup =
 [
     [ "xcsf", "namespacexcsf.html", [
       [ "utils", "namespacexcsf_1_1utils.html", [
-        [ "types", "namespacexcsf_1_1utils_1_1types.html", [
-          [ "ConditionCSRArgs", "classxcsf_1_1utils_1_1types_1_1ConditionCSRArgs.html", null ],
-          [ "ConditionGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionGPArgs.html", null ],
-          [ "ConditionDGPArgs", "classxcsf_1_1utils_1_1types_1_1ConditionDGPArgs.html", null ],
-          [ "ConditionTernaryArgs", "classxcsf_1_1utils_1_1types_1_1ConditionTernaryArgs.html", null ],
-          [ "PredictionNLMSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionNLMSArgs.html", null ],
-          [ "PredictionRLSArgs", "classxcsf_1_1utils_1_1types_1_1PredictionRLSArgs.html", null ],
-          [ "NeuralLayerArgs", "classxcsf_1_1utils_1_1types_1_1NeuralLayerArgs.html", null ]
-        ] ],
         [ "viz", "namespacexcsf_1_1utils_1_1viz.html", [
           [ "TreeViz", "classxcsf_1_1utils_1_1viz_1_1TreeViz.html", "classxcsf_1_1utils_1_1viz_1_1TreeViz" ],
           [ "DGPViz", "classxcsf_1_1utils_1_1viz_1_1DGPViz.html", "classxcsf_1_1utils_1_1viz_1_1DGPViz" ]

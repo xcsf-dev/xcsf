@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -486,7 +486,7 @@ $(document).ready(function(){initNavTree('cl_8c_source.html',''); initResizable(
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;{</div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    <span class="keyword">const</span> cJSON *item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;current_match&quot;</span>);</div>
 <div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsBool(item)) {</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;        c-&gt;<a class="code" href="structCl.html#a9f7b36489d8f805c0ba702761f65d21f">m</a> = item-&gt;valueint;</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;        c-&gt;<a class="code" href="structCl.html#a9f7b36489d8f805c0ba702761f65d21f">m</a> = <span class="keyword">true</span> ? item-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    }</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    item = cJSON_GetObjectItem(json, <span class="stringliteral">&quot;current_action&quot;</span>);</div>
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    <span class="keywordflow">if</span> (item != NULL &amp;&amp; cJSON_IsNumber(item)) {</div>

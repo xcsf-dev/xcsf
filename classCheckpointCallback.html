@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -98,18 +98,19 @@ $(document).ready(function(){initNavTree('classCheckpointCallback.html',''); ini
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classCallback.html" title="Interface for Callbacks.">Callback</a> to save <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> at some frequency.  
+ <a href="classCheckpointCallback.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CheckpointCallback:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback__inherit__graph.svg" width="150" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback__inherit__graph.svg" width="150" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for CheckpointCallback:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback__coll__graph.svg" width="150" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback__coll__graph.svg" width="150" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -126,27 +127,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f1890c788abd4b5a0b2a01060330471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471">finish</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf) override</td></tr>
 <tr class="memdesc:a2f1890c788abd4b5a0b2a01060330471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes any tasks at the end of fitting.  <a href="classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471">More...</a><br /></td></tr>
 <tr class="separator:a2f1890c788abd4b5a0b2a01060330471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCallback')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCallback.html">Callback</a></td></tr>
+<tr class="memitem:a40bd1e30c1d6d25b7bbee583b807504b inherit pub_methods_classCallback"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCallback.html#a40bd1e30c1d6d25b7bbee583b807504b">~Callback</a> ()</td></tr>
+<tr class="separator:a40bd1e30c1d6d25b7bbee583b807504b inherit pub_methods_classCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad36bc312995280395b4bd7d104f2a815"><td class="memItemLeft" align="right" valign="top">py::str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#ad36bc312995280395b4bd7d104f2a815">monitor</a></td></tr>
+<tr class="memdesc:ad36bc312995280395b4bd7d104f2a815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the metric to monitor.  <a href="classCheckpointCallback.html#ad36bc312995280395b4bd7d104f2a815">More...</a><br /></td></tr>
 <tr class="separator:ad36bc312995280395b4bd7d104f2a815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86d027ae85bdefe58f04d7d2ae50e8b0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a86d027ae85bdefe58f04d7d2ae50e8b0">filename</a></td></tr>
+<tr class="memdesc:a86d027ae85bdefe58f04d7d2ae50e8b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the file to save <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a>.  <a href="classCheckpointCallback.html#a86d027ae85bdefe58f04d7d2ae50e8b0">More...</a><br /></td></tr>
 <tr class="separator:a86d027ae85bdefe58f04d7d2ae50e8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ba7bcc6b8330c50c6bf8552a0e0bfd3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a0ba7bcc6b8330c50c6bf8552a0e0bfd3">save_best_only</a></td></tr>
+<tr class="memdesc:a0ba7bcc6b8330c50c6bf8552a0e0bfd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to only save the best population.  <a href="classCheckpointCallback.html#a0ba7bcc6b8330c50c6bf8552a0e0bfd3">More...</a><br /></td></tr>
 <tr class="separator:a0ba7bcc6b8330c50c6bf8552a0e0bfd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a846e1725e4b3261ac19e972a405a7ac9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a846e1725e4b3261ac19e972a405a7ac9">save_freq</a></td></tr>
+<tr class="memdesc:a846e1725e4b3261ac19e972a405a7ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trial frequency to (possibly) make checkpoints.  <a href="classCheckpointCallback.html#a846e1725e4b3261ac19e972a405a7ac9">More...</a><br /></td></tr>
 <tr class="separator:a846e1725e4b3261ac19e972a405a7ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8afd882cee1fb5b731e57dc7c082f3aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a8afd882cee1fb5b731e57dc7c082f3aa">verbose</a></td></tr>
+<tr class="memdesc:a8afd882cee1fb5b731e57dc7c082f3aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to display messages when an action is taken.  <a href="classCheckpointCallback.html#a8afd882cee1fb5b731e57dc7c082f3aa">More...</a><br /></td></tr>
 <tr class="separator:a8afd882cee1fb5b731e57dc7c082f3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bdd0bdca70fb31780f024db6e612ae2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a8bdd0bdca70fb31780f024db6e612ae2">best_error</a> = std::numeric_limits&lt;double&gt;::max()</td></tr>
+<tr class="memdesc:a8bdd0bdca70fb31780f024db6e612ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Best error.  <a href="classCheckpointCallback.html#a8bdd0bdca70fb31780f024db6e612ae2">More...</a><br /></td></tr>
 <tr class="separator:a8bdd0bdca70fb31780f024db6e612ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a267187289058e4ac45ed970588314fe0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCheckpointCallback.html#a267187289058e4ac45ed970588314fe0">save_trial</a> = 0</td></tr>
+<tr class="memdesc:a267187289058e4ac45ed970588314fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trial number the last checkpoint was made.  <a href="classCheckpointCallback.html#a267187289058e4ac45ed970588314fe0">More...</a><br /></td></tr>
 <tr class="separator:a267187289058e4ac45ed970588314fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00039">39</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<div class="textblock"><p><a class="el" href="classCallback.html" title="Interface for Callbacks.">Callback</a> to save <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> at some frequency. </p>
+
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00042">42</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5f9432855b63be8b079b2af10a610a19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f9432855b63be8b079b2af10a610a19">&#9670;&nbsp;</a></span>CheckpointCallback()</h2>
@@ -212,9 +224,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00050">50</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00053">53</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00122">monitor</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">save_freq</a>.</p>
+<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">monitor</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00128">save_freq</a>.</p>
 
 </div>
 </div>
@@ -253,14 +265,13 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">Callback</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00114">114</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00117">117</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00075">save()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00124">save_best_only</a>.</p>
+<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00078">save()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00127">save_best_only</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_a2f1890c788abd4b5a0b2a01060330471_cgraph.svg" width="1182" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_a2f1890c788abd4b5a0b2a01060330471_cgraph.svg" width="1182" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -311,14 +322,13 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">Callback</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">91</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">94</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00128">best_error</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00122">monitor</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00075">save()</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00124">save_best_only</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">save_freq</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00129">save_trial</a>.</p>
+<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00131">best_error</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">monitor</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00078">save()</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00127">save_best_only</a>, <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00128">save_freq</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00132">save_trial</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_a6c387f29b7b99cbec1842f125029736e_cgraph.svg" width="1208" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_a6c387f29b7b99cbec1842f125029736e_cgraph.svg" width="1208" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -355,22 +365,20 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00075">75</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00078">78</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00123">filename</a>, <a class="el" href="pybind__utils_8h_source.html#l00031">get_timestamp()</a>, and <a class="el" href="xcsf_8c_source.html#l00088">xcsf_save()</a>.</p>
+<p class="reference">References <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00126">filename</a>, <a class="el" href="pybind__utils_8h_source.html#l00031">get_timestamp()</a>, and <a class="el" href="xcsf_8c_source.html#l00088">xcsf_save()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00114">finish()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00117">finish()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_ab08fbc7f61e2e51cdecf3cc9bab3bdca_cgraph.svg" width="995" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_ab08fbc7f61e2e51cdecf3cc9bab3bdca_cgraph.svg" width="995" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_ab08fbc7f61e2e51cdecf3cc9bab3bdca_icgraph.svg" width="363" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCheckpointCallback_ab08fbc7f61e2e51cdecf3cc9bab3bdca_icgraph.svg" width="363" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -396,9 +404,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00128">128</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Best error. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00131">131</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 
 </div>
 </div>
@@ -422,9 +432,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00123">123</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Name of the file to save <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a>. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00075">save()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00126">126</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00078">save()</a>.</p>
 
 </div>
 </div>
@@ -448,9 +460,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00122">122</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Name of the metric to monitor. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00050">CheckpointCallback()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">125</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00053">CheckpointCallback()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 
 </div>
 </div>
@@ -474,9 +488,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00124">124</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Whether to only save the best population. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00114">finish()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00127">127</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00117">finish()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 
 </div>
 </div>
@@ -500,9 +516,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00125">125</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Trial frequency to (possibly) make checkpoints. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00050">CheckpointCallback()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00128">128</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00053">CheckpointCallback()</a>, and <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 
 </div>
 </div>
@@ -526,9 +544,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00129">129</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Trial number the last checkpoint was made. </p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00091">run()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00132">132</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00094">run()</a>.</p>
 
 </div>
 </div>
@@ -552,7 +572,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00126">126</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
+<p>Whether to display messages when an action is taken. </p>
+
+<p class="definition">Definition at line <a class="el" href="pybind__callback__checkpoint_8h_source.html#l00129">129</a> of file <a class="el" href="pybind__callback__checkpoint_8h_source.html">pybind_callback_checkpoint.h</a>.</p>
 
 </div>
 </div>

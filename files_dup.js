@@ -114,7 +114,6 @@ var files_dup =
     [ "rule_neural.h", "rule__neural_8h.html", "rule__neural_8h" ],
     [ "sam.c", "sam_8c.html", "sam_8c" ],
     [ "sam.h", "sam_8h.html", "sam_8h" ],
-    [ "types.py", "types_8py.html", "types_8py" ],
     [ "utils.c", "utils_8c.html", "utils_8c" ],
     [ "utils.h", "utils_8h.html", "utils_8h" ],
     [ "viz.py", "viz_8py.html", [

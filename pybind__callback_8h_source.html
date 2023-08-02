@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -121,17 +121,20 @@ $(document).ready(function(){initNavTree('pybind__callback_8h_source.html',''); 
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="xcsf_8h.html">xcsf.h</a>&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classCallback.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCallback.html">Callback</a></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">   40</a></span>&#160;    <a class="code" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">run</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, py::dict metrics) = 0;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">   43</a></span>&#160;    <a class="code" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">finish</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>) = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="ttc" id="aclassCallback_html"><div class="ttname"><a href="classCallback.html">Callback</a></div><div class="ttdef"><b>Definition:</b> <a href="pybind__callback_8h_source.html#l00036">pybind_callback.h:37</a></div></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCallback.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCallback.html">Callback</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCallback.html#a40bd1e30c1d6d25b7bbee583b807504b">   42</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCallback.html#a40bd1e30c1d6d25b7bbee583b807504b">~Callback</a>() {}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">   45</a></span>&#160;    <a class="code" href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">run</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, py::dict metrics) = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">   48</a></span>&#160;    <a class="code" href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">finish</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>) = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="ttc" id="aclassCallback_html"><div class="ttname"><a href="classCallback.html">Callback</a></div><div class="ttdoc">Interface for Callbacks.</div><div class="ttdef"><b>Definition:</b> <a href="pybind__callback_8h_source.html#l00039">pybind_callback.h:40</a></div></div>
 <div class="ttc" id="aclassCallback_html_a37f8adb30ea71174d2f5468c3b21ef09"><div class="ttname"><a href="classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09">Callback::finish</a></div><div class="ttdeci">virtual void finish(struct XCSF *xcsf)=0</div></div>
+<div class="ttc" id="aclassCallback_html_a40bd1e30c1d6d25b7bbee583b807504b"><div class="ttname"><a href="classCallback.html#a40bd1e30c1d6d25b7bbee583b807504b">Callback::~Callback</a></div><div class="ttdeci">virtual ~Callback()</div><div class="ttdef"><b>Definition:</b> <a href="pybind__callback_8h_source.html#l00042">pybind_callback.h:42</a></div></div>
 <div class="ttc" id="aclassCallback_html_a8d81c4ef431e7f334c07c70aad1da0c5"><div class="ttname"><a href="classCallback.html#a8d81c4ef431e7f334c07c70aad1da0c5">Callback::run</a></div><div class="ttdeci">virtual bool run(struct XCSF *xcsf, py::dict metrics)=0</div></div>
 <div class="ttc" id="anamespacexcsf_html"><div class="ttname"><a href="namespacexcsf.html">xcsf</a></div><div class="ttdef"><b>Definition:</b> <a href="____init_____8py_source.html#l00001">__init__.py:1</a></div></div>
 <div class="ttc" id="astructXCSF_html"><div class="ttname"><a href="structXCSF.html">XCSF</a></div><div class="ttdoc">XCSF data structure.</div><div class="ttdef"><b>Definition:</b> <a href="xcsf_8h_source.html#l00085">xcsf.h:85</a></div></div>

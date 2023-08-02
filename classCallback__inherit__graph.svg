@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Interface for Callbacks.">
 <polygon fill="#bfbfbf" stroke="black" points="88.5,-56.5 88.5,-75.5 143.5,-75.5 143.5,-56.5 88.5,-56.5"/>
 <text text-anchor="middle" x="116" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">Callback</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classCheckpointCallback.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classCheckpointCallback.html" target="_top" xlink:title="Callback to save XCSF at some frequency.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 104,-19.5 104,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="52" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">CheckpointCallback</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classEarlyStoppingCallback.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classEarlyStoppingCallback.html" target="_top" xlink:title="Callback to stop training when a certain metric has stopped improving.">
 <polygon fill="none" stroke="black" points="122,-0.5 122,-19.5 238,-19.5 238,-0.5 122,-0.5"/>
 <text text-anchor="middle" x="180" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">EarlyStoppingCallback</text>
 </a>

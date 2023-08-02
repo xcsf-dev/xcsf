@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -260,12 +260,12 @@ $(document).ready(function(){initNavTree('neural__layer__args_8c_source.html',''
 <div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2">  202</a></span>&#160;<a class="code" href="neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2">layer_args_json_import_sgd</a>(<span class="keyword">struct</span> <a class="code" href="structArgsLayer.html">ArgsLayer</a> *args, <span class="keyword">const</span> cJSON *json)</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;{</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;sgd_weights\0&quot;</span>, 12) == 0 &amp;&amp; cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a2085a84724d838c01557ef4496d52677">sgd_weights</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a2085a84724d838c01557ef4496d52677">sgd_weights</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;eta\0&quot;</span>, 4) == 0 &amp;&amp; cJSON_IsNumber(json)) {</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a7c7a0332ed4670431afd82322e9a8d7a">eta</a> = json-&gt;valuedouble;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;evolve_eta\0&quot;</span>, 11) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;               cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a665c724f85b70d35d674457709494aa2">evolve_eta</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a665c724f85b70d35d674457709494aa2">evolve_eta</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;eta_min\0&quot;</span>, 8) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;               cJSON_IsNumber(json)) {</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a8ab3ec1f747657d572764bbfc5a0be79">eta_min</a> = json-&gt;valuedouble;</div>
@@ -299,16 +299,16 @@ $(document).ready(function(){initNavTree('neural__layer__args_8c_source.html',''
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;{</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;evolve_weights\0&quot;</span>, 15) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a04dcc3115bebd31b09db9ae114f065a5">evolve_weights</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a04dcc3115bebd31b09db9ae114f065a5">evolve_weights</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;evolve_functions\0&quot;</span>, 17) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;               cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a297bf90073ea79b3363ac40751b35759">evolve_functions</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a297bf90073ea79b3363ac40751b35759">evolve_functions</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;evolve_connect\0&quot;</span>, 15) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;               cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#af807d5c434327686e5c483fa94b7fe41">evolve_connect</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#af807d5c434327686e5c483fa94b7fe41">evolve_connect</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;evolve_neurons\0&quot;</span>, 15) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;               cJSON_IsBool(json)) {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a0d05d866046095feea58547e81b14697">evolve_neurons</a> = json-&gt;valueint;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#a0d05d866046095feea58547e81b14697">evolve_neurons</a> = <span class="keyword">true</span> ? json-&gt;type == cJSON_True : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strncmp(json-&gt;string, <span class="stringliteral">&quot;n_max\0&quot;</span>, 6) == 0 &amp;&amp;</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;               cJSON_IsNumber(json)) {</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        args-&gt;<a class="code" href="structArgsLayer.html#aa1cba52585ba7011143807efb9012fb3">n_max</a> = json-&gt;valueint;</div>

@@ -1,5 +1,5 @@
 <map id="Callback" name="Callback">
-<area shape="rect" id="node1" title=" " alt="" coords="123,5,197,32"/>
-<area shape="rect" id="node2" href="$classCheckpointCallback.html" title=" " alt="" coords="5,80,144,107"/>
-<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html" title=" " alt="" coords="168,80,323,107"/>
+<area shape="rect" id="node1" title="Interface for Callbacks." alt="" coords="123,5,197,32"/>
+<area shape="rect" id="node2" href="$classCheckpointCallback.html" title="Callback to save XCSF at some frequency." alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html" title="Callback to stop training when a certain metric has stopped improving." alt="" coords="168,80,323,107"/>
 </map>
