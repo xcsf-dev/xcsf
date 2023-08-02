@@ -185,7 +185,6 @@ if(XCSF_PYLIB)
   file(COPY ${PYTHON_EXAMPLES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
   file(COPY "xcsf/utils/" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/utils/)
   file(COPY "xcsf/__init__.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
-  file(COPY "xcsf/__init__.pyi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
 endif()
 
 option(ENABLE_DOXYGEN "Enable Building XCSF Documentation" ON)
