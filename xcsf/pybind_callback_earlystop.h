@@ -166,7 +166,7 @@ class EarlyStoppingCallback : public Callback
 
   private:
     py::str monitor; //!< Name of the metric to monitor
-    int patience; //<! Stop training after this many trials with no improvement
+    int patience; //!< Stop training after this many trials with no improvement
     bool restore; //!< Whether to restore the best population
     double min_delta; //!< Minimum change to qualify as an improvement
     int start_from; //!< Trials to wait before starting to monitor
