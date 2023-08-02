@@ -33,6 +33,9 @@ extern "C" {
 #include "xcsf.h"
 }
 
+/**
+ * @brief Interface for Callbacks.
+ */
 class Callback
 {
   public:

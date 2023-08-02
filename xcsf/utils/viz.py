@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021 Richard Preen <rpreen@gmail.com>
-#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -16,9 +14,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""
-Classes for visualising classifier knowledge representations.
-"""
+##
+# @file viz.py
+# @author Richard Preen <rpreen@gmail.com>
+# @copyright The Authors.
+# @date 2021--2023.
+# @brief Classes for visualising classifier knowledge representations.
+
+"""Classes for visualising classifier knowledge representations."""
 
 from __future__ import annotations
 
@@ -26,7 +29,7 @@ import graphviz
 
 
 class TreeViz:
-    """Visualises a GP tree with graphviz."""
+    """! Visualises a GP tree with graphviz."""
 
     def __init__(
         self,
@@ -40,13 +43,13 @@ class TreeViz:
 
         Parameters
         ----------
-        tree : List[str]
+        tree : list[str]
             List of strings representing a GP tree.
         filename : str
             Name of the output file to save the drawn tree.
         note : str, optional
             Optional string to be added as a note/caption.
-        feature_names : List[str], optional
+        feature_names : list[str], optional
             Optional list of feature names.
         """
         self.feature_names: list[str] | None = feature_names
@@ -97,7 +100,7 @@ class TreeViz:
 
 
 class DGPViz:
-    """Visualises a DGP graph with graphviz."""
+    """! Visualises a DGP graph with graphviz."""
 
     def __init__(
         self,
@@ -117,7 +120,7 @@ class DGPViz:
             Name of the output file to save the drawn graph.
         note : str, optional
             Optional string to be added as a note/caption.
-        feature_names : List[str], optional
+        feature_names : list[str], optional
             Optional list of feature names.
         """
         self.feature_names: list[str] | None = feature_names

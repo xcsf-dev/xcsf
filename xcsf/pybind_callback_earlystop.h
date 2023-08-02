@@ -36,6 +36,9 @@ extern "C" {
 #include "pybind_callback.h"
 #include "pybind_utils.h"
 
+/**
+ * @brief Callback to stop training when a certain metric has stopped improving.
+ */
 class EarlyStoppingCallback : public Callback
 {
   public:
@@ -162,14 +165,14 @@ class EarlyStoppingCallback : public Callback
     }
 
   private:
-    py::str monitor;
-    int patience;
-    bool restore;
-    double min_delta;
-    int start_from;
-    bool verbose;
+    py::str monitor; //!< Name of the metric to monitor
+    int patience; //!< Stop training after this many trials with no improvement
+    bool restore; //!< Whether to restore the best population
+    double min_delta; //!< Minimum change to qualify as an improvement
+    int start_from; //!< Trials to wait before starting to monitor
+    bool verbose; //!< Whether to display messages when an action is taken
 
-    double best_error = std::numeric_limits<double>::max();
-    int best_trial = 0;
-    bool do_restore = false;
+    double best_error = std::numeric_limits<double>::max(); //!< Best error
+    int best_trial = 0; //!< Trial number the best error was observed
+    bool do_restore = false; //!< Whether the population needs to be restored
 };
