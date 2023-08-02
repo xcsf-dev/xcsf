@@ -36,6 +36,9 @@ extern "C" {
 #include "pybind_callback.h"
 #include "pybind_utils.h"
 
+/**
+ * @brief Callback to save XCSF at some frequency.
+ */
 class CheckpointCallback : public Callback
 {
   public:
@@ -119,12 +122,12 @@ class CheckpointCallback : public Callback
     }
 
   private:
-    py::str monitor;
-    std::string filename;
-    bool save_best_only;
-    int save_freq;
-    bool verbose;
+    py::str monitor; //!< Name of the metric to monitor
+    std::string filename; //!< Name of the file to save XCSF
+    bool save_best_only; //!< Whether to only save the best population
+    int save_freq; //!< Trial frequency to (possibly) make checkpoints
+    bool verbose; //!< Whether to display messages when an action is taken
 
-    double best_error = std::numeric_limits<double>::max();
-    int save_trial = 0;
+    double best_error = std::numeric_limits<double>::max(); //!< Best error
+    int save_trial = 0; //!< Trial number the last checkpoint was made
 };
