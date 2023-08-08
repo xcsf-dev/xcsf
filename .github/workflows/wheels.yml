@@ -10,73 +10,9 @@ jobs:
     name: Build wheel for ${{ matrix.python }}-${{ matrix.platform }}
     runs-on: ${{ matrix.os }}
     strategy:
-      # Ensure that a wheel builder finishes even if another fails
       fail-fast: false
       matrix:
-        include:
-          # manylinux builds
-          - os: ubuntu-20.04
-            python: "cp38"
-            platform: manylinux_x86_64
-          - os: ubuntu-20.04
-            python: "cp39"
-            platform: manylinux_x86_64
-          - os: ubuntu-20.04
-            python: "cp310"
-            platform: manylinux_x86_64
-          - os: ubuntu-20.04
-            python: "cp311"
-            platform: manylinux_x86_64
-          # manylinux pypy builds
-          - os: ubuntu-20.04
-            python: "pp38"
-            platform: manylinux_x86_64
-          - os: ubuntu-20.04
-            python: "pp39"
-            platform: manylinux_x86_64
-
-          # MacOS builds
-          - os: macos-11
-            python: "cp38"
-            platform: macosx_*
-          - os: macos-11
-            python: "cp39"
-            platform: macosx_*
-          - os: macos-11
-            python: "cp310"
-            platform: macosx_*
-          - os: macos-11
-            python: "cp311"
-            platform: macosx_*
-          # MacOS PyPy builds
-          - os: macos-11
-            python: "pp38"
-            platform: macosx_x86_64
-          - os: macos-11
-            python: "pp39"
-            platform: macosx_x86_64
-
-          # Windows builds
-          - os: windows-2019
-            python: "cp38"
-            platform: win_amd64
-          - os: windows-2019
-            python: "cp39"
-            platform: win_amd64
-          - os: windows-2019
-            python: "cp310"
-            platform: win_amd64
-          - os: windows-2019
-            python: "cp311"
-            platform: win_amd64
-          # Windows PyPy builds
-          - os: windows-2019
-            python: "pp38"
-            platform: win_amd64
-          - os: windows-2019
-            python: "pp39"
-            platform: win_amd64
-
+        os: [ubuntu-20.04, windows-2019, macOS-11]
 
     steps:
       - name: Checkout xcsf
@@ -84,15 +20,21 @@ jobs:
         with:
           submodules: true
 
+      - name: Setup Python3
+        uses: actions/setup-python@v3
+
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel==2.15.0
+
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.3
+        run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BEFORE_ALL_MACOS: CC=gcc-11 CXX=g++-11
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_BUILD_VERBOSITY: 3
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
 ...
