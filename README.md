@@ -9,11 +9,11 @@ See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for details on fea
 [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0)
 [![Linux Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/ubuntu_build.yml?branch=master&logo=linux&logoColor=white&style=flat&label=Ubuntu)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Ubuntu+build%22)
 [![MacOS Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/macOS_build.yml?branch=master&logo=apple&logoColor=white&style=flat&label=macOS)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22macOS+build%22)
-[![Windows Build](https://img.shields.io/appveyor/build/xcsf-dev/xcsf?logo=windows&logoColor=white&style=flat&label=Windows)](https://ci.appveyor.com/project/xcsf-dev/xcsf)
+[![Windows Build](https://img.shields.io/appveyor/build/rpreen/xcsf-j6qo2?logo=windows&logoColor=white&style=flat&label=Windows)](https://ci.appveyor.com/project/rpreen/xcsf-j6qo2)
 [![Latest Version](https://img.shields.io/github/v/release/xcsf-dev/xcsf?style=flat)](https://github.com/xcsf-dev/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
-[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://app.codacy.com/gh/xcsf-dev/xcsf/dashboard)
+[![Codacy](https://img.shields.io/codacy/grade/2213b9ad4e034482bf058d4598d1618b?logo=codacy&style=flat)](https://app.codacy.com/gh/rpreen/xcsf/dashboard)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/xcsf-dev/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/xcsf-dev/xcsf)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
 [![codecov](https://codecov.io/gh/xcsf-dev/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/xcsf-dev/xcsf)
