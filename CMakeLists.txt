@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.12)
 project(XCSF CXX C)
 set(PROJECT_VENDOR "Richard Preen")
 set(PROJECT_CONTACT "rpreen@gmail.com")
-set(PROJECT_URL "https://github.com/rpreen/xcsf")
+set(PROJECT_URL "https://github.com/xcsf-dev/xcsf")
 set(PROJECT_DESCRIPTION "XCSF: Learning Classifier System")
 set(PROJECT_VERSION "1.3.1")
 

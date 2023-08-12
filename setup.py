@@ -90,7 +90,7 @@ setup(
     description="XCSF learning classifier system: rule-based evolutionary machine learning",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/rpreen/xcsf",
+    url="https://github.com/xcsf-dev/xcsf",
     packages=find_packages(),
     ext_modules=[CMakeExtension("xcsf/xcsf")],
     cmdclass={"build_ext": CMakeBuild},
