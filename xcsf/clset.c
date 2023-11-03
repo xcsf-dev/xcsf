@@ -65,6 +65,10 @@ static void
 clset_pset_roulette(const struct XCSF *xcsf, struct Clist **del,
                     struct Clist **delprev)
 {
+    if (xcsf->pset.list == NULL) {
+        printf("clset_pset_roulette(): error pset is empty\n");
+        exit(EXIT_FAILURE);
+    }
     const double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
     double total_vote = 0;
     struct Clist *iter = xcsf->pset.list;
@@ -355,6 +359,10 @@ clset_pset_enforce_limit(struct XCSF *xcsf)
 void
 clset_match(struct XCSF *xcsf, const double *x, const bool cover)
 {
+    if (xcsf->pset.list == NULL) {
+        printf("clset_match(): error pset is empty\n");
+        exit(EXIT_FAILURE);
+    }
 #ifdef PARALLEL_MATCH
     // prepare for parallel processing of matching conditions
     struct Clist *blist[xcsf->pset.size];
@@ -448,6 +456,10 @@ void
 clset_update(struct XCSF *xcsf, struct Set *set, const double *x,
              const double *y, const bool cur)
 {
+    if (set->list == NULL) {
+        printf("clset_update(): error set is empty\n");
+        exit(EXIT_FAILURE);
+    }
 #ifdef PARALLEL_UPDATE
     struct Clist *blist[set->size];
     struct Clist *iter = set->list;

@@ -76,16 +76,17 @@ jobs:
       - name: Run sonarqube
         run: sonar-scanner
           -Dsonar.host.url=https://sonarcloud.io/
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
           -Dsonar.projectKey=xcsf-dev_xcsf
           -Dsonar.organization=xcsf-dev
           -Dsonar.projectVersion=1.0
           -Dsonar.projectBaseDir=./
           -Dsonar.cfamily.build-wrapper-output=build/bw-output
-          -Dsonar.cfamily.cache.enabled=false
+          -Dsonar.cfamily.analysisCache.mode=server
           -Dsonar.cfamily.threads=1
           -Dsonar.coverage.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.exclusions="python/**,test/**,lib/**,doc/**"
           -Dsonar.sourceEncoding=UTF-8
           -Dsonar.coverageReportPaths=coverage.xml
+          -Dsonar.python.version=3.11
 ...
