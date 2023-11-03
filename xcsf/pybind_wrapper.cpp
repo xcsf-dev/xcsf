@@ -328,36 +328,6 @@ class XCS
     /* Supervised learning */
 
     /**
-     * @brief Sets XCSF input and output dimensions.
-     * @param [in] n_x_dim Number of input dimensions.
-     * @param [in] x1 Size of second input dimension.
-     * @param [in] n_y_dim Number of output dimensions.
-     * @param [in] y1 Size of second output dimension.
-     */
-    void
-    set_dims(int n_x_dim, int x1, int n_y_dim, int y1)
-    {
-        py::dict kwargs;
-        kwargs["n_actions"] = 1;
-        if (n_x_dim > 1) {
-            kwargs["x_dim"] = x1;
-        } else {
-            kwargs["x_dim"] = 1;
-        }
-        if (n_y_dim > 1) {
-            kwargs["y_dim"] = y1;
-        } else {
-            kwargs["y_dim"] = 1;
-        }
-        // update external params dict
-        for (const auto &item : kwargs) {
-            params[item.first] = item.second;
-        }
-        // flush param update to make sure neural nets resize
-        set_params(params);
-    }
-
-    /**
      * @brief Loads an input data structure for fitting.
      * @param [in,out] data Input data structure used to point to the data.
      * @param [in] X Vector of features with shape (n_samples, x_dim).
@@ -853,6 +823,13 @@ class XCS
         py::object parsed_json = json.attr("loads")(json_str);
         py::dict result(parsed_json);
         params = result;
+        // map None types
+        if (params.contains("random_state")) {
+            py::object rs = params["random_state"];
+            if (py::isinstance<py::int_>(rs) && py::int_(rs) < 0) {
+                params["random_state"] = py::none();
+            }
+        }
         free(json_str);
     }
 
@@ -877,14 +854,23 @@ class XCS
     set_params(py::kwargs kwargs)
     {
         py::dict kwargs_dict(kwargs);
+        // update external params dict
+        for (const auto &item : kwargs_dict) {
+            params[item.first] = item.second;
+        }
+        // map None types
+        if (kwargs_dict.contains("random_state")) {
+            py::object rs = kwargs["random_state"];
+            if (rs.is_none()) {
+                kwargs_dict["random_state"] = -1;
+            }
+        }
+        // convert dict to JSON and parse parameters
         py::module json_module = py::module::import("json");
         py::object json_dumps = json_module.attr("dumps")(kwargs_dict);
         std::string json_str = json_dumps.cast<std::string>();
         const char *json_params = json_str.c_str();
         param_json_import(&xcs, json_params);
-        for (const auto &item : kwargs_dict) {
-            params[item.first] = item.second;
-        }
         return *this;
     }
 

@@ -35,7 +35,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: true
@@ -60,8 +60,14 @@ jobs:
           chmod +x codecov
           ./codecov
 
-      - name: Setup sonarqube
-        uses: warchant/setup-sonar-scanner@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup SonarQube
+        uses: warchant/setup-sonar-scanner@v7
 
       - name: Sonarqube coverage
         run: |
@@ -71,8 +77,8 @@ jobs:
         run: sonar-scanner
           -Dsonar.host.url=https://sonarcloud.io/
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.projectKey=rpreen_xcsf
-          -Dsonar.organization=rpreen
+          -Dsonar.projectKey=xcsf-dev_xcsf
+          -Dsonar.organization=xcsf-dev
           -Dsonar.projectVersion=1.0
           -Dsonar.projectBaseDir=./
           -Dsonar.cfamily.build-wrapper-output=build/bw-output
