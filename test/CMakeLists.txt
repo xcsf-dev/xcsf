@@ -35,6 +35,7 @@ set(XCSF_TESTS
     neural_layer_lstm_test.cpp
     neural_layer_maxpool_test.cpp
     neural_layer_recurrent_test.cpp
+    neural_layer_softmax_test.cpp
     neural_test.cpp
     pa_test.cpp
     pred_nlms_test.cpp
