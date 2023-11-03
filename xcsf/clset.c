@@ -65,9 +65,13 @@ static void
 clset_pset_roulette(const struct XCSF *xcsf, struct Clist **del,
                     struct Clist **delprev)
 {
+    struct Clist *iter = xcsf->pset.list;
+    if (iter == NULL) {
+        printf("clset_pset_roulette(): error pset is empty\n");
+        exit(EXIT_FAILURE);
+    }
     const double avg_fit = clset_total_fit(&xcsf->pset) / xcsf->pset.num;
     double total_vote = 0;
-    struct Clist *iter = xcsf->pset.list;
     while (iter != NULL) {
         total_vote += cl_del_vote(xcsf, iter->cl, avg_fit);
         iter = iter->next;
