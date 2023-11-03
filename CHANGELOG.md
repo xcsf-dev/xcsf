@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.4.0 (Nov 03, 2023)
+## Version 1.4.1 (Nov 3, 2023)
 
 Changes:
 *   Make `random_state` parameter sklearn compatible ([#97](https://github.com/xcsf-dev/xcsf/pull/97))
