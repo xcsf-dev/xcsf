@@ -17,7 +17,7 @@ See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for details on fea
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/xcsf-dev/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/xcsf-dev/xcsf)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=xcsf-dev_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=xcsf-dev_xcsf)
 [![codecov](https://codecov.io/gh/xcsf-dev/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/xcsf-dev/xcsf)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=rpreen_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=rpreen_xcsf)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=xcsf-dev_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=xcsf-dev_xcsf)
 
 [![PyPI package](https://img.shields.io/pypi/v/xcsf.svg)](https://pypi.org/project/xcsf)
 [![Python versions](https://img.shields.io/pypi/pyversions/xcsf.svg)](https://pypi.org/project/xcsf)
