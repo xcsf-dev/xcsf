@@ -60,7 +60,7 @@ param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
     param_set_x_dim(xcsf, x_dim);
     param_set_y_dim(xcsf, y_dim);
     param_set_omp_num_threads(xcsf, 8);
-    param_set_random_state(xcsf, 0);
+    param_set_random_state(xcsf, -1);
     param_set_pop_init(xcsf, true);
     param_set_max_trials(xcsf, 100000);
     param_set_perf_trials(xcsf, 1000);
@@ -608,10 +608,10 @@ const char *
 param_set_random_state(struct XCSF *xcsf, const int a)
 {
     xcsf->RANDOM_STATE = a;
-    if (a > 0) {
-        rand_init_seed(a);
-    } else {
+    if (a < 0) {
         rand_init();
+    } else {
+        rand_init_seed(a);
     }
     return NULL;
 }
