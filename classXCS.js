@@ -53,7 +53,6 @@ var classXCS =
     [ "score", "classXCS.html#a2aeb9df5550b79ea97a725e83ef64005", null ],
     [ "serialize", "classXCS.html#ac214b881bee8379185c34abb450c1c4b", null ],
     [ "set_cover", "classXCS.html#acb7150d55f04c456a685be939de95f17", null ],
-    [ "set_dims", "classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4", null ],
     [ "set_params", "classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25", null ],
     [ "store", "classXCS.html#a0d5d38e87da92827cee73290b030ff9f", null ],
     [ "update", "classXCS.html#af8970ba52403714439fda0d4383a390b", null ],

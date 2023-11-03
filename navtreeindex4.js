@@ -1,6 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"functions_s.html":[2,3,0,18],
 "functions_t.html":[2,3,0,19],
 "functions_u.html":[2,3,0,20],
 "functions_v.html":[2,3,0,21],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "neural_8h.html#af4a09366d25068c50d42977482c4fc9e":[3,0,54,21],
 "neural_8h.html#afab574137fbf9da9a286d020917c8295":[3,0,54,6],
 "neural_8h_source.html":[3,0,54],
-"neural__activations_8c.html":[3,0,55]
+"neural__activations_8c.html":[3,0,55],
+"neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e":[3,0,55,0]
 };

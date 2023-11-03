@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.3.1</span>
+   &#160;<span id="projectnumber">1.4.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('param_8c_source.html',''); initResizab
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="param_8c.html#ae5cca726a15c57daed5e2edbed5de528">param_set_x_dim</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, x_dim);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="param_8c.html#a6b5cac72b8e4061a76f365e19a05da2a">param_set_y_dim</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, y_dim);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c">param_set_omp_num_threads</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, 8);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="param_8c.html#a43677e3953256d8fdffd8758a0363c2b">param_set_random_state</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, 0);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="param_8c.html#a43677e3953256d8fdffd8758a0363c2b">param_set_random_state</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, -1);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7">param_set_pop_init</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="param_8c.html#a388a95e329f834d2771efb09acc84d60">param_set_max_trials</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, 100000);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="param_8c.html#a0b53049abf12592f085fa578c9f4546d">param_set_perf_trials</a>(<a class="code" href="namespacexcsf.html">xcsf</a>, 1000);</div>
@@ -615,10 +615,10 @@ $(document).ready(function(){initNavTree('param_8c_source.html',''); initResizab
 <div class="line"><a name="l00608"></a><span class="lineno"><a class="line" href="param_8c.html#a43677e3953256d8fdffd8758a0363c2b">  608</a></span>&#160;<a class="code" href="param_8c.html#a43677e3953256d8fdffd8758a0363c2b">param_set_random_state</a>(<span class="keyword">struct</span> <a class="code" href="structXCSF.html">XCSF</a> *<a class="code" href="namespacexcsf.html">xcsf</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> a)</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;{</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;    <a class="code" href="namespacexcsf.html">xcsf</a>-&gt;RANDOM_STATE = a;</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;    <span class="keywordflow">if</span> (a &gt; 0) {</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        <a class="code" href="utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a>(a);</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;    <span class="keywordflow">if</span> (a &lt; 0) {</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        <a class="code" href="utils_8c.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>();</div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        <a class="code" href="utils_8c.html#ab74192959d5c945feaf0a630b58fd123">rand_init</a>();</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        <a class="code" href="utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a">rand_init_seed</a>(a);</div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;    }</div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;}</div>

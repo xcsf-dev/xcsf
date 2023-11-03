@@ -47,18 +47,18 @@
 <path fill="none" stroke="midnightblue" d="M566.67,-48C558.31,-48 549.63,-48 541.08,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="566.67,-51.5 576.67,-48 566.67,-44.5 566.67,-51.5"/>
 </g>
-<!-- Node17 -->
-<g id="node17" class="node">
-<title>Node17</title>
-<g id="a_node17"><a xlink:href="xcsf_8c.html#ad77461184a11780681798ac593b090ab" target="_top" xlink:title="Switches from autoencoding to classification.">
+<!-- Node16 -->
+<g id="node16" class="node">
+<title>Node16</title>
+<g id="a_node16"><a xlink:href="xcsf_8c.html#ad77461184a11780681798ac593b090ab" target="_top" xlink:title="Switches from autoencoding to classification.">
 <polygon fill="none" stroke="black" points="418.5,-0.5 418.5,-19.5 527.5,-19.5 527.5,-0.5 418.5,-0.5"/>
 <text text-anchor="middle" x="473" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">xcsf_ae_to_classifier</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node17 -->
-<g id="edge19" class="edge">
-<title>Node1&#45;&gt;Node17</title>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge18" class="edge">
+<title>Node1&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M575.51,-35.89C554.76,-30.6 530.77,-24.48 511.33,-19.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="574.85,-39.33 585.4,-38.41 576.58,-32.55 574.85,-39.33"/>
 </g>
@@ -141,16 +141,16 @@
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="26,-105.5 26,-124.5 64,-124.5 64,-105.5 26,-105.5"/>
-<text text-anchor="middle" x="45" y="-112.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
+<polygon fill="none" stroke="black" points="26,-95.5 26,-114.5 64,-114.5 64,-95.5 26,-95.5"/>
+<text text-anchor="middle" x="45" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M138.34,-121.57C114.49,-119.87 83.58,-117.67 64.26,-116.3"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="138.19,-125.07 148.41,-122.29 138.68,-118.09 138.19,-125.07"/>
+<path fill="none" stroke="midnightblue" d="M138.34,-118.87C114.49,-115.29 83.58,-110.64 64.26,-107.74"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="138,-122.36 148.41,-120.38 139.04,-115.43 138,-122.36"/>
 </g>
 <!-- Node6&#45;&gt;Node4 -->
 <g id="edge6" class="edge">
@@ -242,51 +242,36 @@
 <!-- Node13&#45;&gt;Node5 -->
 <g id="edge15" class="edge">
 <title>Node13&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M129.93,-95.76C107.47,-100.91 81.11,-106.95 64.01,-110.87"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="130.96,-99.11 139.92,-93.47 129.39,-92.29 130.96,-99.11"/>
+<path fill="none" stroke="midnightblue" d="M129.93,-92.39C107.47,-95.77 81.11,-99.73 64.01,-102.3"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="130.55,-95.84 139.92,-90.89 129.51,-88.92 130.55,-95.84"/>
 </g>
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="classXCS.html#a0c600c37d5e5160d553b52b6d5c179b4" target="_top" xlink:title="Sets XCSF input and output dimensions.">
-<polygon fill="none" stroke="black" points="3.5,-57.5 3.5,-76.5 86.5,-76.5 86.5,-57.5 3.5,-57.5"/>
-<text text-anchor="middle" x="45" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::set_dims</text>
+<g id="a_node15"><a xlink:href="classXCS.html#a608a50f998819369d28ef9966d6812ca" target="_top" xlink:title="Constructor.">
+<polygon fill="none" stroke="black" points="12.5,-38.5 12.5,-57.5 77.5,-57.5 77.5,-38.5 12.5,-38.5"/>
+<text text-anchor="middle" x="45" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::XCS</text>
 </a>
 </g>
 </g>
 <!-- Node14&#45;&gt;Node15 -->
 <g id="edge17" class="edge">
 <title>Node14&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M115.69,-56.53C105.93,-58 95.96,-59.5 86.72,-60.88"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="116.39,-59.97 125.76,-55.02 115.35,-53.05 116.39,-59.97"/>
+<path fill="none" stroke="midnightblue" d="M115.44,-48C102.43,-48 89.07,-48 77.58,-48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="115.76,-51.5 125.76,-48 115.76,-44.5 115.76,-51.5"/>
 </g>
-<!-- Node16 -->
-<g id="node16" class="node">
-<title>Node16</title>
-<g id="a_node16"><a xlink:href="classXCS.html#a608a50f998819369d28ef9966d6812ca" target="_top" xlink:title="Constructor.">
-<polygon fill="none" stroke="black" points="12.5,-19.5 12.5,-38.5 77.5,-38.5 77.5,-19.5 12.5,-19.5"/>
-<text text-anchor="middle" x="45" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::XCS</text>
-</a>
-</g>
-</g>
-<!-- Node14&#45;&gt;Node16 -->
-<g id="edge18" class="edge">
-<title>Node14&#45;&gt;Node16</title>
-<path fill="none" stroke="midnightblue" d="M115.83,-39.49C102.69,-37.52 89.18,-35.49 77.58,-33.74"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="115.35,-42.95 125.76,-40.98 116.39,-36.03 115.35,-42.95"/>
-</g>
-<!-- Node18 -->
-<g id="node18" class="node">
-<title>Node18</title>
-<g id="a_node18"><a xlink:href="classXCS.html#ad73009d926d395ee03bf7586f194fcbe" target="_top" xlink:title="Switches from autoencoding to classification.">
+<!-- Node17 -->
+<g id="node17" class="node">
+<title>Node17</title>
+<g id="a_node17"><a xlink:href="classXCS.html#ad73009d926d395ee03bf7586f194fcbe" target="_top" xlink:title="Switches from autoencoding to classification.">
 <polygon fill="none" stroke="black" points="257,-0.5 257,-19.5 369,-19.5 369,-0.5 257,-0.5"/>
 <text text-anchor="middle" x="313" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::ae_to_classifier</text>
 </a>
 </g>
 </g>
-<!-- Node17&#45;&gt;Node18 -->
-<g id="edge20" class="edge">
-<title>Node17&#45;&gt;Node18</title>
+<!-- Node16&#45;&gt;Node17 -->
+<g id="edge19" class="edge">
+<title>Node16&#45;&gt;Node17</title>
 <path fill="none" stroke="midnightblue" d="M407.88,-10C395,-10 381.57,-10 369.03,-10"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="408.07,-13.5 418.07,-10 408.07,-6.5 408.07,-13.5"/>
 </g>
