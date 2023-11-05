@@ -130,7 +130,6 @@ neural_layer_dropout_forward(const struct Layer *l, const struct Net *net,
     if (!net->train) {
         memcpy(l->output, input, sizeof(double) * l->n_inputs);
     } else {
-        printf("HERE\n");
         for (int i = 0; i < l->n_inputs; ++i) {
             l->state[i] = rand_uniform(0, 1);
             if (l->state[i] < l->probability) {
