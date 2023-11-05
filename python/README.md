@@ -1,1 +1,1 @@
-See [Python Library Wiki](https://github.com/rpreen/xcsf/wiki/Python-Library-Usage)
+See [Python Library Wiki](https://github.com/xcsf-dev/xcsf/wiki/Python-Library-Usage)
