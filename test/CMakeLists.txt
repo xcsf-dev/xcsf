@@ -32,8 +32,10 @@ set(XCSF_TESTS
     neural_layer_test.cpp
     neural_layer_connected_test.cpp
     neural_layer_convolutional_test.cpp
+    neural_layer_dropout_test.cpp
     neural_layer_lstm_test.cpp
     neural_layer_maxpool_test.cpp
+    neural_layer_noise_test.cpp
     neural_layer_recurrent_test.cpp
     neural_layer_softmax_test.cpp
     neural_test.cpp
