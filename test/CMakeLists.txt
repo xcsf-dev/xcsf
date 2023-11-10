@@ -21,15 +21,15 @@ set(XCSF_TESTS
     act_integer_test.cpp
     cl_test.cpp
     clset_test.cpp
-    cond_gp_test.cpp
     cond_dgp_test.cpp
     cond_ellipsoid_test.cpp
+    cond_gp_test.cpp
+    cond_neural_test.cpp
     cond_rectangle_test.cpp
     cond_ternary_test.cpp
     loss_test.cpp
     neural_activations_test.cpp
     neural_layer_args_test.cpp
-    neural_layer_test.cpp
     neural_layer_connected_test.cpp
     neural_layer_convolutional_test.cpp
     neural_layer_dropout_test.cpp
@@ -38,13 +38,15 @@ set(XCSF_TESTS
     neural_layer_noise_test.cpp
     neural_layer_recurrent_test.cpp
     neural_layer_softmax_test.cpp
+    neural_layer_test.cpp
     neural_test.cpp
     pa_test.cpp
+    pred_neural_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
     serialization_test.cpp
-    util_test.cpp
     unit_tests.cpp
+    util_test.cpp
     xcs_supervised_test.cpp)
 
 add_definitions(-DDSFMT_MEXP=19937)
