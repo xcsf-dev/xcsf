@@ -41,12 +41,13 @@ TEST_CASE("COND_TERNARY")
     /* Test initialisation */
     struct XCSF xcsf;
     struct Cl c1;
-    rand_init();
     param_init(&xcsf, 5, 1, 1);
-    param_set_random_state(&xcsf, 10);
+    param_set_random_state(&xcsf, 1);
+    xcsf_init(&xcsf);
     cond_param_set_type(&xcsf, COND_TYPE_TERNARY);
     cond_param_set_bits(&xcsf, 2);
     cl_init(&xcsf, &c1, 1, 1);
+    condition_set(&xcsf, &c1);
     cond_ternary_init(&xcsf, &c1);
     struct CondTernary *p = (struct CondTernary *) c1.cond;
     CHECK_EQ(p->length, 10);
@@ -77,6 +78,7 @@ TEST_CASE("COND_TERNARY")
     /* test general */
     struct Cl c2;
     cl_init(&xcsf, &c2, 1, 1);
+    condition_set(&xcsf, &c2);
     cond_ternary_init(&xcsf, &c2);
     struct CondTernary *p2 = (struct CondTernary *) c2.cond;
     const char *spec = "0000#101#0";

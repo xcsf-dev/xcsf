@@ -40,12 +40,30 @@ TEST_CASE("Serialization")
     param_init(&xcsf, 4, 1, 1);
     rand_init_seed(2);
     xcsf_init(&xcsf);
+
+    /* test serialisation */
     size_t s = xcsf_save(&xcsf, "temp.bin");
     size_t r = xcsf_load(&xcsf, "temp.bin");
     CHECK_EQ(s, r);
+
+    /* test param export and import */
     char *json_str = param_json_export(&xcsf);
     param_json_import(&xcsf, json_str);
     free(json_str);
+
+    /* test print pset*/
+    CAPTURE(xcsf_print_pset(&xcsf, true, true, true));
+
+    /* test print params */
+    CAPTURE(param_print(&xcsf));
+
+    /* test store */
+    xcsf_store_pset(&xcsf);
+
+    /* test retrieve */
+    xcsf_retrieve_pset(&xcsf);
+
+    /* test clean up */
     xcsf_free(&xcsf);
     param_free(&xcsf);
 }

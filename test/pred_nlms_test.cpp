@@ -42,14 +42,15 @@ TEST_CASE("PRED_NLMS")
     /* test initialisation */
     struct XCSF xcsf;
     struct Cl c;
-    rand_init();
     param_init(&xcsf, 10, 1, 1);
     param_set_random_state(&xcsf, 1);
+    xcsf_init(&xcsf);
     pred_param_set_type(&xcsf, PRED_TYPE_NLMS_LINEAR);
     pred_param_set_x0(&xcsf, 1);
     pred_param_set_evolve_eta(&xcsf, false);
     pred_param_set_eta(&xcsf, 0.1);
     cl_init(&xcsf, &c, 1, 1);
+    prediction_set(&xcsf, &c);
     pred_nlms_init(&xcsf, &c);
     struct PredNLMS *p = (struct PredNLMS *) c.pred;
     CHECK_EQ(p->n, 11);

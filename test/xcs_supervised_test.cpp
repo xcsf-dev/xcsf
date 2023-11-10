@@ -50,11 +50,11 @@ TEST_CASE("SUPERVISED")
 
     double y[5] = { 0.1, 0.2, 0.3, 0.4, 0.5 };
 
-    double expected[5] = { 0.361927, 0.362126, 0.314226, 0.463001, 0.413388 };
+    double expected[5] = { 0.361102, 0.362183, 0.314256, 0.46298, 0.41342 };
 
     struct XCSF xcsf;
     param_init(&xcsf, x_dim, y_dim, 1);
-    rand_init_seed(2);
+    param_set_random_state(&xcsf, 2);
     xcsf_init(&xcsf);
 
     /* Smoke test */
@@ -69,11 +69,11 @@ TEST_CASE("SUPERVISED")
     xcs_supervised_fit(&xcsf, &train_data, NULL, true, 100);
     // score()
     double score = xcs_supervised_score(&xcsf, &train_data, cover);
-    CHECK_EQ(doctest::Approx(score), 0.117578);
+    CHECK_EQ(doctest::Approx(score), 0.11742);
     score = xcs_supervised_score_n(&xcsf, &train_data, 10, cover);
-    CHECK_EQ(doctest::Approx(score), 0.117578);
+    CHECK_EQ(doctest::Approx(score), 0.11742);
     score = xcs_supervised_score_n(&xcsf, &train_data, 2, cover);
-    CHECK_EQ(doctest::Approx(score), 0.014226);
+    CHECK_EQ(doctest::Approx(score), 0.01425);
     // predict()
     double *output =
         (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);
@@ -84,7 +84,7 @@ TEST_CASE("SUPERVISED")
     // fit() with train and test data
     xcs_supervised_fit(&xcsf, &train_data, &train_data, true, 100);
     score = xcs_supervised_score(&xcsf, &train_data, cover);
-    CHECK_EQ(doctest::Approx(score), 0.0367041);
+    CHECK_EQ(doctest::Approx(score), 0.0359);
 
     /* Test clean up */
     xcsf_free(&xcsf);
