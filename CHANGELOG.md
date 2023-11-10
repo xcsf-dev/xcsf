@@ -1,5 +1,10 @@
 # Changelog
 
+## Development
+
+Changes:
+*   Fix a bug serialising initial population set filename ([#104](https://github.com/xcsf-dev/xcsf/pull/104))
+
 ## Version 1.4.1 (Nov 3, 2023)
 
 Changes:
