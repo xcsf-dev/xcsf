@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: XCSF
 version: 1.4.2
-doi:
+doi: 10.5281/zenodo.10108746
 date-released: 2023-11-10
 license: GPL-3.0
 repository-code: https://github.com/xcsf-dev/xcsf
@@ -98,3 +98,6 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.10070213
     description: This is the archived snapshot of XCSF v1.4.1.
+  - type: doi
+    value: 10.5281/zenodo.10108746
+    description: This is the archived snapshot of XCSF v1.4.2.
