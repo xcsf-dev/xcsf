@@ -73,6 +73,15 @@ TEST_CASE("COND_NEURAL")
     /* Test size */
     CHECK_EQ(cond_neural_size(&xcsf, &c1), 150);
 
+    /* Test n layers */
+    CHECK_EQ(cond_neural_layers(&xcsf, &c1), 2);
+
+    /* Test n neurons */
+    CHECK_EQ(cond_neural_neurons(&xcsf, &c1, 0), 10);
+
+    /* Test n connections */
+    CHECK_EQ(cond_neural_connections(&xcsf, &c1, 0), 50);
+
     /* Test crossover */
     CHECK(!cond_neural_crossover(&xcsf, &c1, &c2));
 
@@ -82,12 +91,36 @@ TEST_CASE("COND_NEURAL")
     /* Test mutation */
     CHECK(cond_neural_mutate(&xcsf, &c1));
 
+    /* Test print */
+    CAPTURE(cond_neural_print(&xcsf, &c1));
+
     /* Test export */
     char *json_str = cond_neural_json_export(&xcsf, &c1);
     CHECK(json_str != NULL);
     free(json_str);
 
     /* Test import -- not yet implemented */
+
+    /* Test param import */
+    const char *param_str = "{"
+                            "\"layer_0\": {"
+                            "\"type\": \"connected\","
+                            "\"activation\": \"relu\""
+                            "},"
+                            "\"layer_1\": {"
+                            "\"type\": \"connected\","
+                            "\"activation\": \"linear\""
+                            "}"
+                            "}";
+    cJSON *json = cJSON_Parse(param_str);
+    char *ret = cond_neural_param_json_import(&xcsf, json->child);
+    CHECK(ret == NULL);
+    free(ret);
+    CHECK(xcsf.cond->largs->type == layer_type_as_int("connected"));
+    CHECK(xcsf.cond->largs->function == neural_activation_as_int("relu"));
+    CHECK(xcsf.cond->largs->next->type == layer_type_as_int("connected"));
+    CHECK(xcsf.cond->largs->next->function ==
+          neural_activation_as_int("linear"));
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
