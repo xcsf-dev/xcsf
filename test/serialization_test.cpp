@@ -57,6 +57,12 @@ TEST_CASE("Serialization")
     /* test print params */
     CAPTURE(param_print(&xcsf));
 
+    /* test store */
+    xcsf_store_pset(&xcsf);
+
+    /* test retrieve */
+    xcsf_retrieve_pset(&xcsf);
+
     /* test clean up */
     xcsf_free(&xcsf);
     param_free(&xcsf);

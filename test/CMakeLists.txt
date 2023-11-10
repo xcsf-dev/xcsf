@@ -41,6 +41,7 @@ set(XCSF_TESTS
     neural_layer_test.cpp
     neural_test.cpp
     pa_test.cpp
+    pred_constant_test.cpp
     pred_neural_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp

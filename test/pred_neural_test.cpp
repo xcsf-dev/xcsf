@@ -131,6 +131,9 @@ TEST_CASE("PRED_NEURAL")
     /* Test expand */
     pred_neural_expand(&xcsf, &c);
 
+    /* Test ae to classifier */
+    pred_neural_ae_to_classifier(&xcsf, &c, 1);
+
     /* Clean up */
     xcsf_free(&xcsf);
     param_free(&xcsf);
