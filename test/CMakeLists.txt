@@ -27,6 +27,7 @@ set(XCSF_TESTS
     cond_neural_test.cpp
     cond_rectangle_test.cpp
     cond_ternary_test.cpp
+    condition_test.cpp
     loss_test.cpp
     neural_activations_test.cpp
     neural_layer_args_test.cpp
@@ -45,6 +46,7 @@ set(XCSF_TESTS
     pred_neural_test.cpp
     pred_nlms_test.cpp
     pred_rls_test.cpp
+    prediction_test.cpp
     serialization_test.cpp
     unit_tests.cpp
     util_test.cpp
