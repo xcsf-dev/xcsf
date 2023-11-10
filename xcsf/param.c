@@ -480,7 +480,7 @@ size_t
 param_save(const struct XCSF *xcsf, FILE *fp)
 {
     size_t s = 0;
-    size_t len = strnlen(xcsf->population_file, MAX_LEN);
+    size_t len = strnlen(xcsf->population_file, MAX_LEN) + 1;
     s += fwrite(&len, sizeof(size_t), 1, fp);
     s += fwrite(xcsf->population_file, sizeof(char), len, fp);
     s += fwrite(&xcsf->time, sizeof(int), 1, fp);
@@ -535,6 +535,10 @@ param_load(struct XCSF *xcsf, FILE *fp)
     size_t s = 0;
     size_t len = 0;
     s += fread(&len, sizeof(size_t), 1, fp);
+    if (len < 1) {
+        printf("param_load(): error len < 1\n");
+        exit(EXIT_FAILURE);
+    }
     free(xcsf->population_file);
     xcsf->population_file = malloc(sizeof(char) * len);
     s += fread(xcsf->population_file, sizeof(char), len, fp);
