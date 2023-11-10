@@ -78,12 +78,45 @@ TEST_CASE("PRED_NEURAL")
     /* test size */
     CHECK_EQ(pred_neural_size(&xcsf, &c), 108);
 
+    /* Test n layers */
+    CHECK_EQ(pred_neural_layers(&xcsf, &c), 2);
+
+    /* Test n neurons */
+    CHECK_EQ(pred_neural_neurons(&xcsf, &c, 0), 10);
+
+    /* Test n connections */
+    CHECK_EQ(pred_neural_connections(&xcsf, &c, 0), 98);
+
+    /* Test eta */
+    CHECK_EQ(pred_neural_eta(&xcsf, &c, 0), doctest::Approx(0.00685845));
+
     /* Test export */
     char *json_str = pred_neural_json_export(&xcsf, &c);
     CHECK(json_str != NULL);
     free(json_str);
 
     /* Test import -- not yet implemented */
+
+    /* Test param import */
+    const char *param_str = "{"
+                            "\"layer_0\": {"
+                            "\"type\": \"connected\","
+                            "\"activation\": \"relu\""
+                            "},"
+                            "\"layer_1\": {"
+                            "\"type\": \"connected\","
+                            "\"activation\": \"linear\""
+                            "}"
+                            "}";
+    cJSON *json = cJSON_Parse(param_str);
+    char *ret = pred_neural_param_json_import(&xcsf, json->child);
+    CHECK(ret == NULL);
+    free(ret);
+    CHECK(xcsf.pred->largs->type == layer_type_as_int("connected"));
+    CHECK(xcsf.pred->largs->function == neural_activation_as_int("relu"));
+    CHECK(xcsf.pred->largs->next->type == layer_type_as_int("connected"));
+    CHECK(xcsf.pred->largs->next->function ==
+          neural_activation_as_int("linear"));
 
     /* Test save */
     FILE *fp = fopen("temp.bin", "wb");
@@ -94,6 +127,9 @@ TEST_CASE("PRED_NEURAL")
     fp = fopen("temp.bin", "rb");
     size_t r = pred_neural_load(&xcsf, &c, fp);
     CHECK_EQ(s, r);
+
+    /* Test expand */
+    pred_neural_expand(&xcsf, &c);
 
     /* Clean up */
     xcsf_free(&xcsf);
