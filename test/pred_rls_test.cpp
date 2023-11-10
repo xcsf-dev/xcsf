@@ -49,6 +49,7 @@ TEST_CASE("PRED_RLS")
     pred_param_set_scale_factor(&xcsf, 1000);
     pred_param_set_lambda(&xcsf, 1);
     cl_init(&xcsf, &c, 1, 1);
+    prediction_set(&xcsf, &c);
     pred_rls_init(&xcsf, &c);
     struct PredRLS *p = (struct PredRLS *) c.pred;
     CHECK_EQ(p->n, 11);
@@ -165,6 +166,7 @@ TEST_CASE("PRED_RLS")
     /* test copy */
     struct Cl dest_cl;
     cl_init(&xcsf, &dest_cl, 1, 1);
+    prediction_set(&xcsf, &dest_cl);
     pred_rls_copy(&xcsf, &dest_cl, &c);
     struct PredRLS *dest_pred = (struct PredRLS *) dest_cl.pred;
     struct PredRLS *src_pred = (struct PredRLS *) c.pred;
@@ -189,6 +191,7 @@ TEST_CASE("PRED_RLS")
     char *json_str = pred_rls_json_export(&xcsf, &c);
     struct Cl new_cl;
     cl_init(&xcsf, &new_cl, 1, 1);
+    prediction_set(&xcsf, &new_cl);
     pred_rls_init(&xcsf, &new_cl);
     cJSON *json = cJSON_Parse(json_str);
     pred_rls_json_import(&xcsf, &new_cl, json);

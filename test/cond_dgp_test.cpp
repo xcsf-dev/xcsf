@@ -47,12 +47,14 @@ TEST_CASE("COND_DGP")
     struct XCSF xcsf;
     struct Cl c1;
     struct Cl c2;
-    rand_init();
     param_init(&xcsf, 5, 1, 1);
     param_set_random_state(&xcsf, 1);
+    xcsf_init(&xcsf);
     cond_param_set_type(&xcsf, COND_TYPE_DGP);
     cl_init(&xcsf, &c1, 1, 1);
     cl_init(&xcsf, &c2, 1, 1);
+    condition_set(&xcsf, &c1);
+    condition_set(&xcsf, &c2);
     cond_dgp_init(&xcsf, &c1);
     cond_dgp_init(&xcsf, &c2);
 

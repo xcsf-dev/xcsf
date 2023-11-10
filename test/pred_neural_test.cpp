@@ -47,6 +47,8 @@ TEST_CASE("PRED_NEURAL")
     xcsf_init(&xcsf);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
     cl_init(&xcsf, &c, 1, 1);
+    prediction_set(&xcsf, &c);
+
     pred_neural_init(&xcsf, &c);
 
     /* Test compute */

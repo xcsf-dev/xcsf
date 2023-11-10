@@ -50,6 +50,8 @@ TEST_CASE("PRED_CONSTANT")
     pred_param_set_type(&xcsf, PRED_TYPE_CONSTANT);
     cl_init(&xcsf, &c1, 1, 1);
     cl_init(&xcsf, &c2, 1, 1);
+    prediction_set(&xcsf, &c1);
+    prediction_set(&xcsf, &c2);
 
     /* Test init */
     pred_constant_init(&xcsf, &c1);
@@ -61,9 +63,11 @@ TEST_CASE("PRED_CONSTANT")
     for (int i = 0; i < 50; ++i) {
         for (int j = 0; j < 4; ++j) {
             ++(c1.exp);
+            pred_constant_compute(&xcsf, &c1, &x[j]);
             pred_constant_update(&xcsf, &c1, &x[j], &y[j]);
         }
     }
+    pred_constant_compute(&xcsf, &c1, &x[0]);
     CHECK_EQ(doctest::Approx(c1.prediction[0]), 0.25);
 
     /* test copy */
@@ -99,5 +103,7 @@ TEST_CASE("PRED_CONSTANT")
     fclose(fp);
 
     /* clean up */
+    pred_constant_free(&xcsf, &c1);
+    pred_constant_free(&xcsf, &c2);
     param_free(&xcsf);
 }
