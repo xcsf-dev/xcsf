@@ -3,6 +3,6 @@
 
 ignore:
   - "test/*"
-  - "*_print()"
+  - "*_print(*.*)"
 
 ...
