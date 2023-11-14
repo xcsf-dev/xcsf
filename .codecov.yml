@@ -1,4 +1,8 @@
-
+---
+# Configuration script for https://codecov.io
 
 ignore:
   - "test/*"
+  - "*_print()"
+
+...
