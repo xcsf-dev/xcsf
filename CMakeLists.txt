@@ -21,7 +21,7 @@ set(PROJECT_VENDOR "Richard Preen")
 set(PROJECT_CONTACT "rpreen@gmail.com")
 set(PROJECT_URL "https://github.com/xcsf-dev/xcsf")
 set(PROJECT_DESCRIPTION "XCSF: Learning Classifier System")
-set(PROJECT_VERSION "1.4.2")
+set(PROJECT_VERSION "1.4.3")
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)
