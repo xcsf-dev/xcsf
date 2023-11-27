@@ -17,7 +17,7 @@
  * @file pa.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2023.
  * @brief Prediction array functions.
  */
 
@@ -66,6 +66,7 @@ pa_build(const struct XCSF *xcsf, const double *x)
     double *nr = xcsf->nr;
     pa_reset(xcsf);
 #ifdef PARALLEL_PRED
+    // (parallel) propagate input and compute predictions
     struct Cl *clist[set->size];
     struct Clist *iter = set->list;
     for (int i = 0; i < set->size; ++i) {
@@ -75,22 +76,24 @@ pa_build(const struct XCSF *xcsf, const double *x)
             iter = iter->next;
         }
     }
-    #pragma omp parallel for reduction(+ : pa[ : xcsf->pa_size],               \
-                                           nr[ : xcsf->pa_size])
+    #pragma omp parallel for
     for (int i = 0; i < set->size; ++i) {
         if (clist[i] != NULL) {
-            const double *pred = cl_predict(xcsf, clist[i], x);
-            const double fitness = clist[i]->fit;
-            for (int j = 0; j < xcsf->y_dim; ++j) {
-                pa[clist[i]->action * xcsf->y_dim + j] += pred[j] * fitness;
-                nr[clist[i]->action * xcsf->y_dim + j] += fitness;
-            }
+            cl_predict(xcsf, clist[i], x);
         }
     }
 #else
+    // (series) propagate input and compute predictions
     const struct Clist *iter = set->list;
     while (iter != NULL) {
-        const double *pred = cl_predict(xcsf, iter->cl, x);
+        cl_predict(xcsf, iter->cl, x);
+        iter = iter->next;
+    }
+#endif
+    // compute the prediction array in series for determinism
+    iter = set->list;
+    while (iter != NULL) {
+        const double *pred = iter->cl->prediction;
         const double fitness = iter->cl->fit;
         for (int j = 0; j < xcsf->y_dim; ++j) {
             pa[iter->cl->action * xcsf->y_dim + j] += pred[j] * fitness;
@@ -98,7 +101,6 @@ pa_build(const struct XCSF *xcsf, const double *x)
         }
         iter = iter->next;
     }
-#endif
     for (int i = 0; i < xcsf->n_actions; ++i) {
         for (int j = 0; j < xcsf->y_dim; ++j) {
             const int k = i * xcsf->y_dim + j;

@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.4.3 (Nov 27, 2023)
+
+Changes:
+*   Make predict function deterministic even with parallelism ([#109](https://github.com/xcsf-dev/xcsf/pull/109))
+
 ## Version 1.4.2 (Nov 10, 2023)
 
 Changes:
