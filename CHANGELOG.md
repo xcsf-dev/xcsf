@@ -3,7 +3,7 @@
 ## Development
 
 Changes:
-*   Improve parameter checks ([#112](https://github.com/xcsf-dev/xcsf/pull/112))
+*   Improve parameter checks ([#112](https://github.com/xcsf-dev/xcsf/pull/112), [#114](https://github.com/xcsf-dev/xcsf/pull/114))
 
 ## Version 1.4.3 (Nov 27, 2023)
 

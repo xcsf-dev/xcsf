@@ -346,20 +346,21 @@ param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 static void
 param_json_import_action(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) != 0) {
+    cJSON *token = cJSON_GetObjectItem(json, "type");
+    if (token == NULL) {
         printf("No action type has been specified: cannot set params\n");
         exit(EXIT_FAILURE);
     }
-    if (!cJSON_IsString(json) ||
-        action_param_set_type_string(xcsf, json->valuestring) ==
+    if (!cJSON_IsString(token) ||
+        action_param_set_type_string(xcsf, token->valuestring) ==
             ACT_TYPE_INVALID) {
         printf("Invalid action type\n");
         printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
         exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        const char *ret = action_param_json_import(xcsf, json);
+    token = cJSON_GetObjectItem(json, "args");
+    if (token != NULL) {
+        const char *ret = action_param_json_import(xcsf, token);
         if (ret != NULL) {
             printf("Invalid action parameter %s\n", ret);
             exit(EXIT_FAILURE);
@@ -375,20 +376,21 @@ param_json_import_action(struct XCSF *xcsf, cJSON *json)
 static void
 param_json_import_condition(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) != 0) {
+    cJSON *token = cJSON_GetObjectItem(json, "type");
+    if (token == NULL) {
         printf("No condition type has been specified: cannot set params\n");
         exit(EXIT_FAILURE);
     }
-    if (!cJSON_IsString(json) ||
-        cond_param_set_type_string(xcsf, json->valuestring) ==
+    if (!cJSON_IsString(token) ||
+        cond_param_set_type_string(xcsf, token->valuestring) ==
             COND_TYPE_INVALID) {
         printf("Invalid condition type\n");
         printf("Options: {%s}\n", COND_TYPE_OPTIONS);
         exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        const char *ret = cond_param_json_import(xcsf, json);
+    token = cJSON_GetObjectItem(json, "args");
+    if (token != NULL) {
+        const char *ret = cond_param_json_import(xcsf, token);
         if (ret != NULL) {
             printf("Invalid condition parameter %s\n", ret);
             exit(EXIT_FAILURE);
@@ -404,20 +406,21 @@ param_json_import_condition(struct XCSF *xcsf, cJSON *json)
 static void
 param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
 {
-    if (strncmp(json->string, "type\0", 5) != 0) {
+    cJSON *token = cJSON_GetObjectItem(json, "type");
+    if (token == NULL) {
         printf("No prediction type has been specified: cannot set params\n");
         exit(EXIT_FAILURE);
     }
-    if (!cJSON_IsString(json) ||
-        pred_param_set_type_string(xcsf, json->valuestring) ==
+    if (!cJSON_IsString(token) ||
+        pred_param_set_type_string(xcsf, token->valuestring) ==
             PRED_TYPE_INVALID) {
         printf("Invalid prediction type\n");
         printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
         exit(EXIT_FAILURE);
     }
-    json = json->next;
-    if (json != NULL && strncmp(json->string, "args\0", 5) == 0) {
-        const char *ret = pred_param_json_import(xcsf, json);
+    token = cJSON_GetObjectItem(json, "args");
+    if (token != NULL) {
+        const char *ret = pred_param_json_import(xcsf, token);
         if (ret != NULL) {
             printf("Invalid prediction parameter %s\n", ret);
             exit(EXIT_FAILURE);
@@ -453,15 +456,15 @@ param_json_import(struct XCSF *xcsf, const char *json_str)
             continue;
         }
         if (strncmp(iter->string, "action\0", 7) == 0) {
-            param_json_import_action(xcsf, iter->child);
+            param_json_import_action(xcsf, iter);
             continue;
         }
         if (strncmp(iter->string, "condition\0", 10) == 0) {
-            param_json_import_condition(xcsf, iter->child);
+            param_json_import_condition(xcsf, iter);
             continue;
         }
         if (strncmp(iter->string, "prediction\0", 11) == 0) {
-            param_json_import_prediction(xcsf, iter->child);
+            param_json_import_prediction(xcsf, iter);
             continue;
         }
         printf("Error: unable to import parameter: %s\n", iter->string);
