@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2023.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -32,30 +32,6 @@
  * @brief Self-adaptation method for mutating hyperrectangles.
  */
 static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
-
-/**
- * @brief Returns the relative distance to a hyperrectangle.
- * @details Distance is zero at the center; one on the border; and greater than
- * one outside of the hyperrectangle.
- * @param [in] xcsf XCSF data structure.
- * @param [in] c Classifier whose hyperrectangle distance is to be computed.
- * @param [in] x Input to compute the relative distance.
- * @return The relative distance of an input to the hyperrectangle.
- */
-static double
-cond_rectangle_dist(const struct XCSF *xcsf, const struct Cl *c,
-                    const double *x)
-{
-    const struct CondRectangle *cond = c->cond;
-    double dist = 0;
-    for (int i = 0; i < xcsf->x_dim; ++i) {
-        const double d = fabs((x[i] - cond->b1[i]) / cond->b2[i]);
-        if (d > dist) {
-            dist = d;
-        }
-    }
-    return dist;
-}
 
 /**
  * @brief Creates and initialises a hyperrectangle condition.
@@ -182,7 +158,13 @@ cond_rectangle_match(const struct XCSF *xcsf, const struct Cl *c,
 {
     const struct CondRectangle *cond = c->cond;
     if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
-        return (cond_rectangle_dist(xcsf, c, x) < 1);
+        for (int i = 0; i < xcsf->x_dim; ++i) {
+            const double lb = cond->b1[i] - cond->b2[i];
+            const double ub = cond->b1[i] + cond->b2[i];
+            if (x[i] < lb || x[i] > ub) {
+                return false;
+            }
+        }
     } else { // ubr
         for (int i = 0; i < xcsf->x_dim; ++i) {
             const double lb = fmin(cond->b1[i], cond->b2[i]);
