@@ -42,7 +42,7 @@ jobs:
           submodules: true
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
 
@@ -61,5 +61,5 @@ jobs:
         run: cmake --build . --config Debug -j2
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
 ...
