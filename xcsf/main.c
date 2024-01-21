@@ -17,7 +17,7 @@
  * @file main.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2024.
  * @brief Main function for stand-alone binary execution.
  */
 
@@ -54,7 +54,7 @@ main(int argc, char **argv)
     param_print(xcsf); // print parameters used
     if (strcmp(argv[1], "csv") == 0) { // supervised regression - csv file
         const struct EnvCSV *env = xcsf->env;
-        xcs_supervised_fit(xcsf, env->train_data, env->test_data, true,
+        xcs_supervised_fit(xcsf, env->train_data, env->test_data, true, 0,
                            xcsf->MAX_TRIALS);
     } else { // reinforcement learning - maze or mux
         xcs_rl_exp(xcsf);
