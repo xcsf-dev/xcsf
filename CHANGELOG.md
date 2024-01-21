@@ -5,6 +5,7 @@
 Changes:
 *   Improve parameter checks ([#112](https://github.com/xcsf-dev/xcsf/pull/112), [#114](https://github.com/xcsf-dev/xcsf/pull/114))
 *   Improve hyperrectangle CSR semantics ([#117](https://github.com/xcsf-dev/xcsf/pull/117))
+*   Fix a sampling bug in Python `fit()` when `shuffle=False` ([#122](https://github.com/xcsf-dev/xcsf/pull/122))
 
 ## Version 1.4.3 (Nov 27, 2023)
 
