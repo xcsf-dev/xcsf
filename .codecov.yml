@@ -2,3 +2,4 @@
 
 ignore:
   - "test/*"
+  - "xcsf/main.c"
