@@ -1,6 +1,6 @@
 # Changelog
 
-## Development
+## Version 1.4.4 (Jan 21, 2024)
 
 Changes:
 *   Improve parameter checks ([#112](https://github.com/xcsf-dev/xcsf/pull/112), [#114](https://github.com/xcsf-dev/xcsf/pull/114))
