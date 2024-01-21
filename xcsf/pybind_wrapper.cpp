@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Python library wrapper functions.
  */
 
@@ -515,13 +515,14 @@ class XCS
         const int n = ceil(xcs.MAX_TRIALS / (double) xcs.PERF_TRIALS);
         const int n_trials = std::min(xcs.MAX_TRIALS, xcs.PERF_TRIALS);
         for (int i = 0; i < n; ++i) {
-            const double train =
-                xcs_supervised_fit(&xcs, train_data, NULL, shuffle, n_trials);
-            double val = 0;
+            const int start = i * n_trials;
+            const double train_error = xcs_supervised_fit(
+                &xcs, train_data, NULL, shuffle, start, n_trials);
+            double val_error = 0;
             if (val_data != NULL) {
-                val = xcs_supervised_score(&xcs, val_data, xcs.cover);
+                val_error = xcs_supervised_score(&xcs, val_data, xcs.cover);
             }
-            update_metrics(train, val, n_trials);
+            update_metrics(train_error, val_error, n_trials);
             if (verbose) {
                 print_status();
             }

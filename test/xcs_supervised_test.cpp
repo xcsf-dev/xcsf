@@ -17,7 +17,7 @@
  * @file xcs_supervised_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief High-level supervised learning function tests.
  */
 
@@ -66,7 +66,7 @@ TEST_CASE("SUPERVISED")
     train_data.y = y;
     double *cover = (double *) calloc(y_dim, sizeof(double));
     // fit() with only train data
-    xcs_supervised_fit(&xcsf, &train_data, NULL, true, 100);
+    xcs_supervised_fit(&xcsf, &train_data, NULL, true, 0, 100);
     // score()
     double score = xcs_supervised_score(&xcsf, &train_data, cover);
     CHECK_EQ(doctest::Approx(score), 0.11742);
@@ -82,7 +82,7 @@ TEST_CASE("SUPERVISED")
         CHECK_EQ(doctest::Approx(output[i]), expected[i]);
     }
     // fit() with train and test data
-    xcs_supervised_fit(&xcsf, &train_data, &train_data, true, 100);
+    xcs_supervised_fit(&xcsf, &train_data, &train_data, true, 0, 100);
     score = xcs_supervised_score(&xcsf, &train_data, cover);
     CHECK_EQ(doctest::Approx(score), 0.0359);
 

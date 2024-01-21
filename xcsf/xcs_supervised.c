@@ -17,7 +17,7 @@
  * @file xcs_supervised.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2024.
  * @brief Supervised regression learning functions.
  */
 
@@ -91,20 +91,21 @@ xcs_supervised_trial(struct XCSF *xcsf, const double *x, const double *y,
  * @param [in] train_data The input data to use for training.
  * @param [in] test_data The input data to use for testing.
  * @param [in] shuffle Whether to randomise the instances during training.
+ * @param [in] start Index to begin sampling.
  * @param [in] trials Number of trials to execute.
  * @return The average XCSF training error using the loss function.
  */
 double
 xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
                    const struct Input *test_data, const bool shuffle,
-                   const int trials)
+                   const int start, const int trials)
 {
     double err = 0; // training error: total over all trials
     double werr = 0; // training error: windowed total
     double wterr = 0; // testing error: windowed total
     for (int cnt = 0; cnt < trials; ++cnt) {
         // training sample
-        int row = xcs_supervised_sample(train_data, cnt, shuffle);
+        int row = xcs_supervised_sample(train_data, cnt + start, shuffle);
         const double *x = &train_data->x[row * train_data->x_dim];
         const double *y = &train_data->y[row * train_data->y_dim];
         param_set_explore(xcsf, true);
@@ -115,7 +116,7 @@ xcs_supervised_fit(struct XCSF *xcsf, const struct Input *train_data,
         xcsf->error += (error - xcsf->error) * xcsf->BETA;
         // test sample
         if (test_data != NULL) {
-            row = xcs_supervised_sample(test_data, cnt, shuffle);
+            row = xcs_supervised_sample(test_data, cnt + start, shuffle);
             x = &test_data->x[row * test_data->x_dim];
             y = &test_data->y[row * test_data->y_dim];
             param_set_explore(xcsf, false);
