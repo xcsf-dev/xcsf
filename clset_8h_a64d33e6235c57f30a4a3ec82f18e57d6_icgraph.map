@@ -21,7 +21,7 @@
 <area shape="rect" id="node12" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="748,309,860,336"/>
 <area shape="rect" id="node14" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="733,107,875,133"/>
 <area shape="rect" id="node13" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="553,309,659,336"/>
-<area shape="rect" id="node15" href="$xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="330,208,461,235"/>
+<area shape="rect" id="node15" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="330,208,461,235"/>
 <area shape="rect" id="node17" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="527,5,685,32"/>
 <area shape="rect" id="node19" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="530,107,682,133"/>
 <area shape="rect" id="node21" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="312,56,479,83"/>

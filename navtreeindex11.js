@@ -1,13 +1,12 @@
 var NAVTREEINDEX11 =
 {
-"xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40":[3,0,113,3],
 "xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650":[3,0,113,5],
 "xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e":[3,0,113,4],
 "xcs__supervised_8c.html#ad7cd5a443870a2cd32b124942dc81ff5":[3,0,113,2],
 "xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb":[3,0,113,1],
 "xcs__supervised_8c_source.html":[3,0,113],
 "xcs__supervised_8h.html":[3,0,114],
-"xcs__supervised_8h.html#a52dece2a59f692999f931672cebac18a":[3,0,114,0],
+"xcs__supervised_8h.html#a4b67d2351436bfb520f5707260420f8c":[3,0,114,0],
 "xcs__supervised_8h.html#a535e3dbbf0f80e64a4e9b1c700e51f40":[3,0,114,2],
 "xcs__supervised_8h.html#a9ab2bb39625aea84c716901a95a4326e":[3,0,114,3],
 "xcs__supervised_8h.html#ae4791c1daf0baaa6615f70332657aadb":[3,0,114,1],

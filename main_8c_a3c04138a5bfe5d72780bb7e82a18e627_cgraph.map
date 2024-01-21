@@ -6,7 +6,7 @@
 <area shape="rect" id="node90" href="$param_8c.html#acde6664d083676244bfc1105b1712984" title=" " alt="" coords="721,3052,807,3078"/>
 <area shape="rect" id="node95" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="104,2837,195,2864"/>
 <area shape="rect" id="node113" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="107,3293,192,3320"/>
-<area shape="rect" id="node171" href="$xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="243,3673,374,3700"/>
+<area shape="rect" id="node171" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="243,3673,374,3700"/>
 <area shape="rect" id="node174" href="$xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b" title="Frees XCSF population sets." alt="" coords="111,4669,187,4696"/>
 <area shape="rect" id="node176" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="485,4166,555,4193"/>
 <area shape="rect" id="node187" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="269,4572,348,4598"/>

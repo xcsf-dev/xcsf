@@ -33,7 +33,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">XCSF
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -124,9 +124,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8e376723db7b6786507d5ea6add9f650"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650">xcs_supervised_trial</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, const double *y, const double *cover)</td></tr>
 <tr class="memdesc:a8e376723db7b6786507d5ea6add9f650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a single <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> trial.  <a href="xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650">More...</a><br /></td></tr>
 <tr class="separator:a8e376723db7b6786507d5ea6add9f650"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52dece2a59f692999f931672cebac18a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a">xcs_supervised_fit</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *train_data, const struct <a class="el" href="structInput.html">Input</a> *test_data, const bool shuffle, const int trials)</td></tr>
-<tr class="memdesc:a52dece2a59f692999f931672cebac18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes MAX_TRIALS number of <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> learning iterations using the training data and test iterations using the test data.  <a href="xcs__supervised_8c.html#a52dece2a59f692999f931672cebac18a">More...</a><br /></td></tr>
-<tr class="separator:a52dece2a59f692999f931672cebac18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b67d2351436bfb520f5707260420f8c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c">xcs_supervised_fit</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structInput.html">Input</a> *train_data, const struct <a class="el" href="structInput.html">Input</a> *test_data, const bool shuffle, const int start, const int trials)</td></tr>
+<tr class="memdesc:a4b67d2351436bfb520f5707260420f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes MAX_TRIALS number of <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> learning iterations using the training data and test iterations using the test data.  <a href="xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c">More...</a><br /></td></tr>
+<tr class="separator:a4b67d2351436bfb520f5707260420f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4791c1daf0baaa6615f70332657aadb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb">xcs_supervised_predict</a> (struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const double *x, double *pred, const int n_samples, const double *cover)</td></tr>
 <tr class="memdesc:ae4791c1daf0baaa6615f70332657aadb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> predictions for the provided input.  <a href="xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb">More...</a><br /></td></tr>
 <tr class="separator:ae4791c1daf0baaa6615f70332657aadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,12 +141,12 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Supervised regression learning functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span style="display: none;">.nosp@m.</span>n@gm<span style="display: none;">.nosp@m.</span>ail.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2023. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2024. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a52dece2a59f692999f931672cebac18a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52dece2a59f692999f931672cebac18a">&#9670;&nbsp;</a></span>xcs_supervised_fit()</h2>
+<a id="a4b67d2351436bfb520f5707260420f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b67d2351436bfb520f5707260420f8c">&#9670;&nbsp;</a></span>xcs_supervised_fit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,6 +179,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>trials</em>&#160;</td>
         </tr>
         <tr>
@@ -196,27 +202,28 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">train_data</td><td>The input data to use for training. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">test_data</td><td>The input data to use for testing. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">shuffle</td><td>Whether to randomise the instances during training. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">start</td><td>Index to begin sampling. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trials</td><td>Number of trials to execute. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> training error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00098">98</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00099">99</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00866">param_set_explore()</a>, <a class="el" href="perf_8c_source.html#l00034">perf_print()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00881">param_set_explore()</a>, <a class="el" href="perf_8c_source.html#l00034">perf_print()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00499">XCS::fit()</a>, and <a class="el" href="main_8c_source.html#l00035">main()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a52dece2a59f692999f931672cebac18a_cgraph.svg" width="1527" height="1586"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a4b67d2351436bfb520f5707260420f8c_cgraph.svg" width="1527" height="1586"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a52dece2a59f692999f931672cebac18a_icgraph.svg" width="259" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="xcs__supervised_8c_a4b67d2351436bfb520f5707260420f8c_icgraph.svg" width="259" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -278,11 +285,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00140">140</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00141">141</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="param_8c_source.html#l00866">param_set_explore()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
+<p class="reference">References <a class="el" href="param_8c_source.html#l00881">param_set_explore()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00583">XCS::predict()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00584">XCS::predict()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -353,7 +360,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00151">Input::n_samples</a>, and <a class="el" href="utils_8c_source.html#l00074">rand_uniform_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00098">xcs_supervised_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00184">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00099">xcs_supervised_fit()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -412,11 +419,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00160">160</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00161">161</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00151">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00866">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00151">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00881">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00499">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00618">XCS::score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00184">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00499">XCS::fit()</a>, <a class="el" href="pybind__wrapper_8cpp_source.html#l00619">XCS::score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -482,11 +489,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> error using the loss function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00184">184</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xcs__supervised_8c_source.html#l00185">185</a> of file <a class="el" href="xcs__supervised_8c_source.html">xcs_supervised.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00151">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00866">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00160">xcs_supervised_score()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00151">Input::n_samples</a>, <a class="el" href="param_8c_source.html#l00881">param_set_explore()</a>, <a class="el" href="xcsf_8h_source.html#l00147">Input::x</a>, <a class="el" href="xcsf_8h_source.html#l00149">Input::x_dim</a>, <a class="el" href="xcs__supervised_8c_source.html#l00041">xcs_supervised_sample()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00161">xcs_supervised_score()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>, <a class="el" href="xcsf_8h_source.html#l00148">Input::y</a>, and <a class="el" href="xcsf_8h_source.html#l00150">Input::y_dim</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00618">XCS::score()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pybind__wrapper_8cpp_source.html#l00619">XCS::score()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -563,7 +570,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="clset_8c_source.html#l00572">clset_free()</a>, <a class="el" href="clset_8c_source.html#l00328">clset_init()</a>, <a class="el" href="clset_8c_source.html#l00590">clset_kill()</a>, <a class="el" href="clset_8c_source.html#l00356">clset_match()</a>, <a class="el" href="clset_8c_source.html#l00448">clset_update()</a>, <a class="el" href="ea_8c_source.html#l00199">ea()</a>, and <a class="el" href="pa_8c_source.html#l00062">pa_build()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00098">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00140">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00160">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00184">xcs_supervised_score_n()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xcs__supervised_8c_source.html#l00099">xcs_supervised_fit()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00141">xcs_supervised_predict()</a>, <a class="el" href="xcs__supervised_8c_source.html#l00161">xcs_supervised_score()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00185">xcs_supervised_score_n()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
