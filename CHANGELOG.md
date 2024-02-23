@@ -1,6 +1,6 @@
 # Changelog
 
-## Development
+## Version 1.4.5 (Feb 23, 2024)
 
 Changes:
 *   Remove compilation with `-flto` ([#112](https://github.com/xcsf-dev/xcsf/pull/128))
