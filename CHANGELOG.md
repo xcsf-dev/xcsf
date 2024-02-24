@@ -3,7 +3,7 @@
 ## Version 1.4.5 (Feb 23, 2024)
 
 Changes:
-*   Remove compilation with `-flto` ([#112](https://github.com/xcsf-dev/xcsf/pull/128))
+*   Remove compilation with `-flto` ([#128](https://github.com/xcsf-dev/xcsf/pull/128))
 
 ## Version 1.4.4 (Jan 21, 2024)
 
