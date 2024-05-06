@@ -22,7 +22,6 @@ import os
 import platform
 import subprocess
 import sys
-from pathlib import Path
 
 from setuptools import Extension, find_packages, setup
 from setuptools.command.build_ext import build_ext
@@ -77,9 +76,6 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", "."] + build_args, cwd=self.build_temp
         )
 
-
-this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
 
 setup(
     packages=find_packages(),
