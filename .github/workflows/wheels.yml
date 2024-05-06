@@ -129,4 +129,14 @@ jobs:
         with:
           name: cibw-sdist
           path: dist/*.tar.gz
+
+  upload:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
 ...
