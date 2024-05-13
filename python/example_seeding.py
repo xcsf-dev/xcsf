@@ -50,7 +50,7 @@ classifier = {
         "spread": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
         "mutation": [0.2],  # this parameter still self-adapts
     },
-    "action": {"type": "integer", "action": 0, "mutation": [0.28]}
+    "action": {"type": "integer", "action": 0, "mutation": [0.28]},
     # prediction is absent and therefore initialised as normal
 }
 

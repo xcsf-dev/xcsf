@@ -8,7 +8,7 @@ repos:
 
   # Standard hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
@@ -27,7 +27,7 @@ repos:
 
   # Check for spelling
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
         args: ["-L", "larg"]
@@ -39,9 +39,10 @@ repos:
 
   # Clang format
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v16.0.6
+    rev: v18.1.5
     hooks:
       - id: clang-format
+        types_or: [c++, c, cuda]
 
   # CMake format
   - repo: https://github.com/cheshirekow/cmake-format-precommit
@@ -52,41 +53,17 @@ repos:
       - id: cmake-lint
         args: ["--line-width=90"]
 
-  # Upgrade old Python syntax
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+  # Ruff, the Python auto-correcting linter/formatter written in Rust
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.3
     hooks:
-      - id: pyupgrade
-        args: [--py310-plus]
-
-  # Autoremoves unused imports
-  - repo: https://github.com/hadialqattan/pycln
-    rev: "v2.2.1"
-    hooks:
-      - id: pycln
-        stages: [manual]
-
-  # Sort includes
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-        args: ["--profile", "black"]
+      - id: ruff
+        args: ["--fix", "--show-fixes", "--exclude=__init__.py"]
+      - id: ruff-format
 
   # Black format Python and notebooks
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 24.4.2
     hooks:
       - id: black-jupyter
-
-  # Check Python with flake8
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
-    hooks:
-      - id: flake8
-        args:
-          - --max-line-length=95
-          - --exclude=__init__.py
-          - --ignore=E203
-        additional_dependencies: [flake8-bugbear, pep8-naming]
 ...

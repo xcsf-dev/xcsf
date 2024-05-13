@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-""" Python setup script for installing XCSF. """
+"""Python setup script for installing XCSF."""
 
 import os
 import platform
