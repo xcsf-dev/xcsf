@@ -42,6 +42,7 @@ repos:
     rev: v18.1.5
     hooks:
       - id: clang-format
+        types_or: [c++, c, cuda]
 
   # CMake format
   - repo: https://github.com/cheshirekow/cmake-format-precommit
@@ -61,7 +62,7 @@ repos:
 
   # Autoremoves unused imports
   - repo: https://github.com/hadialqattan/pycln
-    rev: "v2.4.0"
+    rev: v2.4.0
     hooks:
       - id: pycln
         stages: [manual]
