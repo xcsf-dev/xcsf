@@ -337,19 +337,18 @@ class XCS
     load_input(struct Input *data, const py::array_t<double> X,
                const py::array_t<double> Y)
     {
+        // access input
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
+        // check input shape
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
-            std::string error = "load_input(): X must be 1 or 2-D array";
-            throw std::invalid_argument(error);
+            throw std::invalid_argument("X must be 1 or 2-D array");
         }
         if (buf_y.ndim < 1 || buf_y.ndim > 2) {
-            std::string error = "load_input(): Y must be 1 or 2-D array";
-            throw std::invalid_argument(error);
+            throw std::invalid_argument("Y must be 1 or 2-D array");
         }
         if (buf_x.shape[0] != buf_y.shape[0]) {
-            std::string error = "load_input(): X and Y n_samples are not equal";
-            throw std::invalid_argument(error);
+            throw std::invalid_argument("X and Y n_samples are not equal");
         }
         if (buf_x.ndim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
@@ -367,11 +366,12 @@ class XCS
             error << "Perhaps reshape your data.";
             throw std::invalid_argument(error.str());
         }
+        // load input
         data->n_samples = buf_x.shape[0];
         data->x_dim = xcs.x_dim;
         data->y_dim = xcs.y_dim;
-        data->x = (double *) buf_x.ptr;
-        data->y = (double *) buf_y.ptr;
+        data->x = static_cast<double *>(buf_x.ptr);
+        data->y = static_cast<double *>(buf_y.ptr);
     }
 
     /**
@@ -429,6 +429,10 @@ class XCS
         if (kwargs.contains("validation_data")) {
             py::tuple data = kwargs["validation_data"].cast<py::tuple>();
             if (data) {
+                if (data.size() != 2) {
+                    throw std::invalid_argument(
+                        "validation_data must be a tuple with two arrays");
+                }
                 py::array_t<double> X_val = data[0].cast<py::array_t<double>>();
                 py::array_t<double> y_val = data[1].cast<py::array_t<double>>();
                 load_input(test_data, X_val, y_val);
@@ -456,9 +460,7 @@ class XCS
                     terminate = true;
                 }
             } else {
-                std::ostringstream err;
-                err << "unsupported callback" << std::endl;
-                throw std::invalid_argument(err.str());
+                throw std::invalid_argument("unsupported callback");
             }
         }
         return terminate;
@@ -476,9 +478,7 @@ class XCS
                 Callback *cb = py::cast<Callback *>(item);
                 cb->finish(&xcs);
             } else {
-                std::ostringstream err;
-                err << "unsupported callback" << std::endl;
-                throw std::invalid_argument(err.str());
+                throw std::invalid_argument("unsupported callback");
             }
         }
     }
@@ -585,8 +585,7 @@ class XCS
     {
         const py::buffer_info buf_x = X.request();
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
-            std::string error = "predict(): X must be 1 or 2-D array";
-            throw std::invalid_argument(error);
+            throw std::invalid_argument("predict(): X must be 1 or 2-D array");
         }
         if (buf_x.ndim > 1 && buf_x.shape[1] != xcs.x_dim) {
             std::ostringstream error;
