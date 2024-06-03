@@ -941,7 +941,7 @@ PYBIND11_MODULE(xcsf, m)
 {
     m.doc() = "XCSF learning classifier: rule-based online evolutionary "
               "machine learning.\nFor details on how to use this module see: "
-              "https://github.com/rpreen/xcsf/wiki/Python-Library-Usage";
+              "https://github.com/xcsf-dev/xcsf/wiki/Python-Library-Usage";
 
     double (XCS::*fit1)(const py::array_t<double>, const int, const double) =
         &XCS::fit;
