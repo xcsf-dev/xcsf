@@ -50,15 +50,19 @@ jobs:
           cp ./build-wrapper-linux-x86/libinterceptor-x86_64.so ./build-wrapper-linux-x86/libinterceptor-haswell.so
           ./build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all
 
-      - name: Report code coverage
+      - name: Generate coverage report
         run: |
           lcov --directory . --capture --output-file lcov.info
           lcov --remove lcov.info '/usr/*' '*/extlib/*' '*/lib/*' '*/test/*' --output-file coverage.info
           lcov --list coverage.info;
           gcovr -r ./ -x > report.xml
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
 
       - name: Setup Java
         uses: actions/setup-java@v4
