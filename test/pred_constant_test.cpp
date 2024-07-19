@@ -17,7 +17,7 @@
  * @file pred_nlms_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Constant prediction tests.
  */
 
@@ -41,69 +41,69 @@ TEST_CASE("PRED_CONSTANT")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct Cl c1;
-    struct Cl c2;
+    struct Cl *c1 = (struct Cl *) malloc(sizeof(struct Cl));
+    struct Cl *c2 = (struct Cl *) malloc(sizeof(struct Cl));
     param_init(&xcsf, 1, 1, 1);
     param_set_random_state(&xcsf, 1);
     param_set_beta(&xcsf, 0.005);
     xcsf_init(&xcsf);
     pred_param_set_type(&xcsf, PRED_TYPE_CONSTANT);
-    cl_init(&xcsf, &c1, 1, 1);
-    cl_init(&xcsf, &c2, 1, 1);
-    prediction_set(&xcsf, &c1);
-    prediction_set(&xcsf, &c2);
-
-    /* Test init */
-    pred_constant_init(&xcsf, &c1);
-    pred_constant_init(&xcsf, &c2);
+    cl_init(&xcsf, c1, 1, 1);
+    cl_init(&xcsf, c2, 1, 1);
+    cl_rand(&xcsf, c1);
+    cl_rand(&xcsf, c2);
 
     /* test convergence on one input */
     const double x[4] = { 0.1, 0.2, 0.3, 0.4 };
     const double y[4] = { 0.1, 0.2, 0.3, 0.4 };
     for (int i = 0; i < 50; ++i) {
         for (int j = 0; j < 4; ++j) {
-            ++(c1.exp);
-            pred_constant_compute(&xcsf, &c1, &x[j]);
-            pred_constant_update(&xcsf, &c1, &x[j], &y[j]);
+            ++(c1->exp);
+            pred_constant_compute(&xcsf, c1, &x[j]);
+            pred_constant_update(&xcsf, c1, &x[j], &y[j]);
         }
     }
-    pred_constant_compute(&xcsf, &c1, &x[0]);
-    CHECK_EQ(doctest::Approx(c1.prediction[0]), 0.25);
+    pred_constant_compute(&xcsf, c1, &x[0]);
+    CHECK_EQ(doctest::Approx(c1->prediction[0]), 0.25);
 
     /* test copy */
-    pred_constant_copy(&xcsf, &c2, &c1);
+    pred_constant_copy(&xcsf, c2, c1);
 
     /* test print */
-    CAPTURE(pred_constant_print(&xcsf, &c1));
+    CAPTURE(pred_constant_print(&xcsf, c1));
 
     /* test crossover */
-    CHECK(!pred_constant_crossover(&xcsf, &c1, &c2));
+    CHECK(!pred_constant_crossover(&xcsf, c1, c2));
 
     /* test mutation */
-    CHECK(!pred_constant_mutate(&xcsf, &c1));
+    CHECK(!pred_constant_mutate(&xcsf, c1));
 
     /* test size */
-    CHECK_EQ(pred_constant_size(&xcsf, &c1), xcsf.y_dim);
+    CHECK_EQ(pred_constant_size(&xcsf, c1), xcsf.y_dim);
 
     /* test import and export */
-    char *json_str = pred_constant_json_export(&xcsf, &c1);
-    struct Cl new_cl;
-    cl_init(&xcsf, &new_cl, 1, 1);
-    pred_constant_init(&xcsf, &new_cl);
+    char *json_str = pred_constant_json_export(&xcsf, c1);
+    struct Cl *new_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, new_cl, 1, 1);
+    cl_rand(&xcsf, new_cl);
     cJSON *json = cJSON_Parse(json_str);
-    pred_constant_json_import(&xcsf, &new_cl, json);
+    pred_constant_json_import(&xcsf, new_cl, json);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t w = pred_constant_save(&xcsf, &c1, fp);
+    size_t w = pred_constant_save(&xcsf, c1, fp);
     fclose(fp);
     fp = fopen("temp.bin", "rb");
-    size_t r = pred_constant_load(&xcsf, &c2, fp);
+    size_t r = pred_constant_load(&xcsf, c2, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* clean up */
-    pred_constant_free(&xcsf, &c1);
-    pred_constant_free(&xcsf, &c2);
+    cl_free(&xcsf, c1);
+    cl_free(&xcsf, c2);
+    cl_free(&xcsf, new_cl);
+    xcsf_free(&xcsf);
     param_free(&xcsf);
+    free(json_str);
+    cJSON_Delete(json);
 }

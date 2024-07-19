@@ -17,7 +17,7 @@
  * @file pred_neural_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Neural prediction tests.
  */
 
@@ -41,15 +41,14 @@ TEST_CASE("PRED_NEURAL")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Cl c;
     param_init(&xcsf, 10, 1, 1);
-    param_set_random_state(&xcsf, 2);
-    xcsf_init(&xcsf);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
-    cl_init(&xcsf, &c, 1, 1);
-    prediction_set(&xcsf, &c);
+    xcsf_init(&xcsf);
 
-    pred_neural_init(&xcsf, &c);
+    struct Cl *c = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, c, 1, 1);
+    cl_rand(&xcsf, c);
 
     /* Test compute */
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
@@ -57,43 +56,43 @@ TEST_CASE("PRED_NEURAL")
                            -0.3109822596, -0.6788371120, -0.0714929928,
                            -0.1332985280 };
 
-    pred_neural_compute(&xcsf, &c, x);
+    pred_neural_compute(&xcsf, c, x);
 
     /* Test update */
     const double y[1] = { -0.8289711363 };
-    pred_neural_update(&xcsf, &c, x, y);
+    pred_neural_update(&xcsf, c, x, y);
 
     /* Test copy */
-    struct Cl dest_cl;
-    cl_init(&xcsf, &dest_cl, 1, 1);
-    pred_neural_copy(&xcsf, &dest_cl, &c);
+    struct Cl *dest_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, dest_cl, 1, 1);
+    cl_copy(&xcsf, dest_cl, c);
 
     /* Test print */
-    CAPTURE(pred_neural_print(&xcsf, &c));
+    CAPTURE(pred_neural_print(&xcsf, c));
 
     /* Test crossover */
-    CHECK(!pred_neural_crossover(&xcsf, &c, &dest_cl));
+    CHECK(!pred_neural_crossover(&xcsf, c, dest_cl));
 
     /* Test mutation */
-    CHECK(pred_neural_mutate(&xcsf, &c));
+    CHECK(pred_neural_mutate(&xcsf, c));
 
     /* test size */
-    CHECK_EQ(pred_neural_size(&xcsf, &c), 108);
+    CHECK_EQ(pred_neural_size(&xcsf, c), 110);
 
     /* Test n layers */
-    CHECK_EQ(pred_neural_layers(&xcsf, &c), 2);
+    CHECK_EQ(pred_neural_layers(&xcsf, c), 2);
 
     /* Test n neurons */
-    CHECK_EQ(pred_neural_neurons(&xcsf, &c, 0), 10);
+    CHECK_EQ(pred_neural_neurons(&xcsf, c, 0), 10);
 
     /* Test n connections */
-    CHECK_EQ(pred_neural_connections(&xcsf, &c, 0), 98);
+    CHECK_EQ(pred_neural_connections(&xcsf, c, 0), 100);
 
     /* Test eta */
-    CHECK_EQ(pred_neural_eta(&xcsf, &c, 0), doctest::Approx(0.00685845));
+    CHECK_EQ(pred_neural_eta(&xcsf, c, 0), doctest::Approx(0.01));
 
     /* Test export */
-    char *json_str = pred_neural_json_export(&xcsf, &c);
+    char *json_str = pred_neural_json_export(&xcsf, c);
     CHECK(json_str != NULL);
     free(json_str);
 
@@ -114,6 +113,8 @@ TEST_CASE("PRED_NEURAL")
     char *ret = pred_neural_param_json_import(&xcsf, json->child);
     CHECK(ret == NULL);
     free(ret);
+    cJSON_Delete(json);
+
     CHECK(xcsf.pred->largs->type == layer_type_as_int("connected"));
     CHECK(xcsf.pred->largs->function == neural_activation_as_int("relu"));
     CHECK(xcsf.pred->largs->next->type == layer_type_as_int("connected"));
@@ -122,21 +123,24 @@ TEST_CASE("PRED_NEURAL")
 
     /* Test save */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t s = pred_neural_save(&xcsf, &c, fp);
+    size_t s = pred_neural_save(&xcsf, c, fp);
     fclose(fp);
 
     /* Test load */
     fp = fopen("temp.bin", "rb");
-    size_t r = pred_neural_load(&xcsf, &c, fp);
+    pred_neural_free(&xcsf, c); // reuse c
+    size_t r = pred_neural_load(&xcsf, c, fp);
     CHECK_EQ(s, r);
 
     /* Test expand */
-    pred_neural_expand(&xcsf, &c);
+    pred_neural_expand(&xcsf, c);
 
     /* Test ae to classifier */
-    pred_neural_ae_to_classifier(&xcsf, &c, 1);
+    pred_neural_ae_to_classifier(&xcsf, c, 1);
 
     /* Clean up */
+    cl_free(&xcsf, c);
+    cl_free(&xcsf, dest_cl);
     xcsf_free(&xcsf);
     param_free(&xcsf);
 }

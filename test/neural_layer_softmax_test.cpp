@@ -17,7 +17,7 @@
  * @file neural_layer_softmax_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Softmax neural network layer tests.
  */
 
@@ -48,9 +48,10 @@ TEST_CASE("NEURAL_LAYER_SOFTMAX")
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
     neural_init(&net);
     struct ArgsLayer args;
     layer_args_init(&args);
@@ -107,17 +108,24 @@ TEST_CASE("NEURAL_LAYER_SOFTMAX")
     /* Smoke test export */
     char *json_str = neural_layer_softmax_json_export(l, true);
     CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = neural_layer_softmax_save(l, fp);
     fclose(fp);
+
+    struct Layer *load_layer = (struct Layer *) malloc(sizeof(struct Layer));
     fp = fopen("temp.bin", "rb");
-    size_t r = neural_layer_softmax_load(l, fp);
+    size_t r = neural_layer_softmax_load(load_layer, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean */
+    layer_free(l2);
+    free(l2);
+    neural_layer_softmax_free(load_layer);
+    free(load_layer);
     neural_free(&net);
     param_free(&xcsf);
 }

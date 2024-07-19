@@ -17,7 +17,7 @@
  * @file pred_rls_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Recursive least mean squares unit tests.
  */
 
@@ -41,17 +41,19 @@ TEST_CASE("PRED_RLS")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct Cl c;
-    rand_init();
     param_init(&xcsf, 10, 1, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_RLS_LINEAR);
     pred_param_set_x0(&xcsf, 1);
     pred_param_set_scale_factor(&xcsf, 1000);
     pred_param_set_lambda(&xcsf, 1);
-    cl_init(&xcsf, &c, 1, 1);
-    prediction_set(&xcsf, &c);
-    pred_rls_init(&xcsf, &c);
-    struct PredRLS *p = (struct PredRLS *) c.pred;
+    xcsf_init(&xcsf);
+
+    struct Cl *c = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, c, 1, 1);
+    cl_rand(&xcsf, c);
+
+    struct PredRLS *p = (struct PredRLS *) c->pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
 
@@ -66,8 +68,8 @@ TEST_CASE("PRED_RLS")
         -1.5489524535, -2.0932767781, 5.4797621223
     };
     memcpy(p->weights, orig_weights, sizeof(double) * 11);
-    pred_rls_compute(&xcsf, &c, x);
-    CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
+    pred_rls_compute(&xcsf, c, x);
+    CHECK_EQ(doctest::Approx(c->prediction[0]), 0.7343893899);
 
     /* test one backward pass of input */
     const double y[1] = { -0.8289711363 };
@@ -143,7 +145,7 @@ TEST_CASE("PRED_RLS")
         938.8736130242
     };
     memcpy(p->matrix, orig_matrix, sizeof(double) * 121);
-    pred_rls_update(&xcsf, &c, x, y);
+    pred_rls_update(&xcsf, c, x, y);
     double weight_error = 0;
     for (int i = 0; i < 11; ++i) {
         weight_error += fabs(p->weights[i] - new_weights[i]);
@@ -157,59 +159,61 @@ TEST_CASE("PRED_RLS")
 
     /* test convergence on one input */
     for (int i = 0; i < 200; ++i) {
-        pred_rls_compute(&xcsf, &c, x);
-        pred_rls_update(&xcsf, &c, x, y);
+        pred_rls_compute(&xcsf, c, x);
+        pred_rls_update(&xcsf, c, x, y);
     }
-    pred_rls_compute(&xcsf, &c, x);
-    CHECK_EQ(doctest::Approx(c.prediction[0]), y[0]);
+    pred_rls_compute(&xcsf, c, x);
+    CHECK_EQ(doctest::Approx(c->prediction[0]), y[0]);
 
     /* test copy */
-    struct Cl dest_cl;
-    cl_init(&xcsf, &dest_cl, 1, 1);
-    prediction_set(&xcsf, &dest_cl);
-    pred_rls_copy(&xcsf, &dest_cl, &c);
-    struct PredRLS *dest_pred = (struct PredRLS *) dest_cl.pred;
-    struct PredRLS *src_pred = (struct PredRLS *) c.pred;
+    struct Cl *dest_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, dest_cl, 1, 1);
+    cl_copy(&xcsf, dest_cl, c);
+    struct PredRLS *dest_pred = (struct PredRLS *) dest_cl->pred;
+    struct PredRLS *src_pred = (struct PredRLS *) c->pred;
     CHECK_EQ(dest_pred->n, src_pred->n);
     CHECK_EQ(dest_pred->n_weights, src_pred->n_weights);
     CHECK(check_array_eq(dest_pred->weights, src_pred->weights,
                          src_pred->n_weights));
 
     /* test print */
-    CAPTURE(pred_rls_print(&xcsf, &c));
+    CAPTURE(pred_rls_print(&xcsf, c));
 
     /* test crossover */
-    CHECK(!pred_rls_crossover(&xcsf, &c, &dest_cl));
+    CHECK(!pred_rls_crossover(&xcsf, c, dest_cl));
 
     /* test mutation */
-    CHECK(!pred_rls_mutate(&xcsf, &c));
+    CHECK(!pred_rls_mutate(&xcsf, c));
 
     /* test size */
-    CHECK_EQ(pred_rls_size(&xcsf, &c), src_pred->n_weights);
+    CHECK_EQ(pred_rls_size(&xcsf, c), src_pred->n_weights);
 
     /* test import and export */
-    char *json_str = pred_rls_json_export(&xcsf, &c);
-    struct Cl new_cl;
-    cl_init(&xcsf, &new_cl, 1, 1);
-    prediction_set(&xcsf, &new_cl);
-    pred_rls_init(&xcsf, &new_cl);
+    char *json_str = pred_rls_json_export(&xcsf, c);
     cJSON *json = cJSON_Parse(json_str);
-    pred_rls_json_import(&xcsf, &new_cl, json);
-    struct PredRLS *new_pred = (struct PredRLS *) new_cl.pred;
+    free(json_str);
+
+    struct Cl *new_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, new_cl, 1, 1);
+    cl_rand(&xcsf, new_cl);
+    pred_rls_json_import(&xcsf, new_cl, json);
+    cJSON_Delete(json);
+
+    struct PredRLS *new_pred = (struct PredRLS *) new_cl->pred;
     CHECK_EQ(new_pred->n, src_pred->n);
     CHECK_EQ(new_pred->n_weights, src_pred->n_weights);
     CHECK(check_array_eq(new_pred->weights, src_pred->weights,
                          src_pred->n_weights));
-    free(json_str);
 
     /* test save */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t s = pred_rls_save(&xcsf, &c, fp);
+    size_t s = pred_rls_save(&xcsf, c, fp);
     fclose(fp);
 
     /* test load */
     fp = fopen("temp.bin", "rb");
-    size_t r = pred_rls_load(&xcsf, &c, fp);
+    pred_rls_free(&xcsf, c);
+    size_t r = pred_rls_load(&xcsf, c, fp);
     CHECK_EQ(s, r);
 
     /* parameter export */
@@ -219,10 +223,14 @@ TEST_CASE("PRED_RLS")
     json = cJSON_Parse(json_str);
     char *json_rtn = pred_rls_param_json_import(&xcsf, json->child);
     CHECK(json_rtn == NULL);
+    free(json_rtn);
+    free(json_str);
+    cJSON_Delete(json);
 
     /* clean up */
-    free(json_str);
-    free(json_rtn);
-    pred_rls_free(&xcsf, &new_cl);
+    cl_free(&xcsf, c);
+    cl_free(&xcsf, new_cl);
+    cl_free(&xcsf, dest_cl);
     param_free(&xcsf);
+    xcsf_free(&xcsf);
 }

@@ -17,7 +17,7 @@
  * @file neural_layer_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Neural network layer parameter tests.
  */
 
@@ -47,13 +47,10 @@ TEST_CASE("NEURAL_LAYER")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 2);
     param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
-    neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = CONNECTED;
@@ -68,8 +65,10 @@ TEST_CASE("NEURAL_LAYER")
     args.sgd_weights = true;
     args.evolve_neurons = true;
     layer_args_validate(&args);
+
     xcsf_init(&xcsf);
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
 
     /* Test ensuring representation */
     l->n_active = 0;
@@ -107,5 +106,8 @@ TEST_CASE("NEURAL_LAYER")
     }
 
     /* Test clean up */
+    layer_free(l);
+    free(l);
     xcsf_free(&xcsf);
+    param_free(&xcsf);
 }

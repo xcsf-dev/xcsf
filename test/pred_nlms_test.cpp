@@ -17,7 +17,7 @@
  * @file pred_nlms_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Normalised least mean squares unit tests.
  */
 
@@ -41,18 +41,19 @@ TEST_CASE("PRED_NLMS")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct Cl c;
     param_init(&xcsf, 10, 1, 1);
     param_set_random_state(&xcsf, 1);
-    xcsf_init(&xcsf);
     pred_param_set_type(&xcsf, PRED_TYPE_NLMS_LINEAR);
     pred_param_set_x0(&xcsf, 1);
     pred_param_set_evolve_eta(&xcsf, false);
     pred_param_set_eta(&xcsf, 0.1);
-    cl_init(&xcsf, &c, 1, 1);
-    prediction_set(&xcsf, &c);
-    pred_nlms_init(&xcsf, &c);
-    struct PredNLMS *p = (struct PredNLMS *) c.pred;
+    xcsf_init(&xcsf);
+
+    struct Cl *c = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, c, 1, 1);
+    cl_rand(&xcsf, c);
+
+    struct PredNLMS *p = (struct PredNLMS *) c->pred;
     CHECK_EQ(p->n, 11);
     CHECK_EQ(p->n_weights, 11);
 
@@ -67,8 +68,8 @@ TEST_CASE("PRED_NLMS")
         -1.5489524535, -2.0932767781, 5.4797621223
     };
     memcpy(p->weights, orig_weights, sizeof(double) * 11);
-    pred_nlms_compute(&xcsf, &c, x);
-    CHECK_EQ(doctest::Approx(c.prediction[0]), 0.7343893899);
+    pred_nlms_compute(&xcsf, c, x);
+    CHECK_EQ(doctest::Approx(c->prediction[0]), 0.7343893899);
 
     /* test one backward pass of input */
     const double y[1] = { -0.8289711363 };
@@ -77,7 +78,7 @@ TEST_CASE("PRED_NLMS")
         2.8106600460,  0.2162985108,  -1.2426852759, -0.1776037685,
         -1.4952524623, -2.0876212637, 5.4903068165
     };
-    pred_nlms_update(&xcsf, &c, x, y);
+    pred_nlms_update(&xcsf, c, x, y);
     double weight_error = 0;
     for (int i = 0; i < 11; ++i) {
         weight_error += fabs(p->weights[i] - new_weights[i]);
@@ -86,18 +87,18 @@ TEST_CASE("PRED_NLMS")
 
     /* test convergence on one input */
     for (int i = 0; i < 200; ++i) {
-        pred_nlms_compute(&xcsf, &c, x);
-        pred_nlms_update(&xcsf, &c, x, y);
+        pred_nlms_compute(&xcsf, c, x);
+        pred_nlms_update(&xcsf, c, x, y);
     }
-    pred_nlms_compute(&xcsf, &c, x);
-    CHECK_EQ(doctest::Approx(c.prediction[0]), y[0]);
+    pred_nlms_compute(&xcsf, c, x);
+    CHECK_EQ(doctest::Approx(c->prediction[0]), y[0]);
 
     /* test copy */
-    struct Cl dest_cl;
-    cl_init(&xcsf, &dest_cl, 1, 1);
-    pred_nlms_copy(&xcsf, &dest_cl, &c);
-    struct PredNLMS *dest_pred = (struct PredNLMS *) dest_cl.pred;
-    struct PredNLMS *src_pred = (struct PredNLMS *) c.pred;
+    struct Cl *dest_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, dest_cl, 1, 1);
+    cl_copy(&xcsf, dest_cl, c);
+    struct PredNLMS *dest_pred = (struct PredNLMS *) dest_cl->pred;
+    struct PredNLMS *src_pred = (struct PredNLMS *) c->pred;
     CHECK_EQ(dest_pred->eta, src_pred->eta);
     CHECK_EQ(dest_pred->n, src_pred->n);
     CHECK_EQ(dest_pred->n_weights, src_pred->n_weights);
@@ -105,28 +106,28 @@ TEST_CASE("PRED_NLMS")
                          src_pred->n_weights));
 
     /* test print */
-    CAPTURE(pred_nlms_print(&xcsf, &c));
+    CAPTURE(pred_nlms_print(&xcsf, c));
 
     /* test crossover */
-    CHECK(!pred_nlms_crossover(&xcsf, &c, &dest_cl));
+    CHECK(!pred_nlms_crossover(&xcsf, c, dest_cl));
 
     /* test mutation */
     dest_pred->mu[0] = 0.1;
     dest_pred->eta = 0.01;
     xcsf.pred->evolve_eta = true;
-    CHECK(pred_nlms_mutate(&xcsf, &dest_cl));
+    CHECK(pred_nlms_mutate(&xcsf, dest_cl));
 
     /* test size */
-    CHECK_EQ(pred_nlms_size(&xcsf, &c), src_pred->n_weights);
+    CHECK_EQ(pred_nlms_size(&xcsf, c), src_pred->n_weights);
 
     /* test import and export */
-    char *json_str = pred_nlms_json_export(&xcsf, &c);
-    struct Cl new_cl;
-    cl_init(&xcsf, &new_cl, 1, 1);
-    pred_nlms_init(&xcsf, &new_cl);
+    char *json_str = pred_nlms_json_export(&xcsf, c);
+    struct Cl *new_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, new_cl, 1, 1);
+    cl_rand(&xcsf, new_cl);
     cJSON *json = cJSON_Parse(json_str);
-    pred_nlms_json_import(&xcsf, &new_cl, json);
-    struct PredNLMS *new_pred = (struct PredNLMS *) new_cl.pred;
+    pred_nlms_json_import(&xcsf, new_cl, json);
+    struct PredNLMS *new_pred = (struct PredNLMS *) new_cl->pred;
     CHECK_EQ(new_pred->eta, src_pred->eta);
     CHECK_EQ(new_pred->n, src_pred->n);
     CHECK_EQ(new_pred->n_weights, src_pred->n_weights);
@@ -134,5 +135,11 @@ TEST_CASE("PRED_NLMS")
                          src_pred->n_weights));
 
     /* clean up */
+    cl_free(&xcsf, c);
+    cl_free(&xcsf, new_cl);
+    cl_free(&xcsf, dest_cl);
+    xcsf_free(&xcsf);
     param_free(&xcsf);
+    free(json_str);
+    cJSON_Delete(json);
 }

@@ -17,7 +17,7 @@
  * @file neural_layer_softmax_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Dropout neural network layer tests.
  */
 
@@ -46,21 +46,23 @@ TEST_CASE("NEURAL_LAYER_DROPOUT")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
-    param_set_random_state(&xcsf, 2);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
+    struct Net net;
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = DROPOUT;
     args.n_inputs = 3;
     args.probability = 0.5;
     layer_args_validate(&args);
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->n_inputs, 3);
     CHECK_EQ(l->n_outputs, 3);
     CHECK_EQ(l->max_outputs, 3);
@@ -79,7 +81,7 @@ TEST_CASE("NEURAL_LAYER_DROPOUT")
 
     /* Test one forward pass of input when training */
     net.train = true;
-    const double output2[3] = { 0, 1, 0 };
+    const double output2[3] = { 0, 1, 0.6 };
     neural_layer_dropout_forward(l, &net, x);
     out = neural_layer_dropout_output(l);
     for (int i = 0; i < l->n_outputs; ++i) {
@@ -87,7 +89,7 @@ TEST_CASE("NEURAL_LAYER_DROPOUT")
     }
 
     /* Test one backward pass of input */
-    double delta[3] = { 0.2, 0.3, 0.4 };
+    double delta[3] = { 0.2, 0.3, 0 };
     double delta_prev[3] = { 0, 0.3, 0 };
     neural_layer_dropout_backward(l, &net, x, delta);
     for (int i = 0; i < 3; ++i) {
@@ -118,17 +120,22 @@ TEST_CASE("NEURAL_LAYER_DROPOUT")
     /* Smoke test export */
     char *json_str = neural_layer_dropout_json_export(l, true);
     CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = neural_layer_dropout_save(l, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
+    neural_layer_dropout_free(l); // reuse l
     size_t r = neural_layer_dropout_load(l, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean */
+    neural_layer_dropout_free(l2);
+    free(l2);
     neural_free(&net);
     param_free(&xcsf);
 }

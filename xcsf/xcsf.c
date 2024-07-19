@@ -41,6 +41,7 @@ xcsf_init(struct XCSF *xcsf)
     xcsf->mset_size = 0;
     xcsf->aset_size = 0;
     xcsf->mfrac = 0;
+    xcsf->explore = false;
     clset_init(&xcsf->pset);
     clset_init(&xcsf->prev_pset);
     pa_init(xcsf);
@@ -59,6 +60,7 @@ xcsf_free(struct XCSF *xcsf)
     xcsf->mset_size = 0;
     xcsf->aset_size = 0;
     xcsf->mfrac = 0;
+    xcsf->explore = false;
     clset_kill(xcsf, &xcsf->pset);
     clset_kill(xcsf, &xcsf->prev_pset);
     pa_free(xcsf);

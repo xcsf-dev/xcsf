@@ -17,7 +17,7 @@
  * @file neural_layer_recurrent.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2024.
  * @brief An implementation of a recurrent layer of perceptrons.
  * @details Fully-connected, stateful, and with a step of 1.
  */
@@ -78,6 +78,18 @@ free_layer_arrays(const struct Layer *l)
     free(l->state);
     free(l->prev_state);
     free(l->mu);
+}
+
+/**
+ * @brief Allocate memory for the sub-layers.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+malloc_layers(struct Layer *l)
+{
+    l->input_layer = malloc(sizeof(struct Layer));
+    l->self_layer = malloc(sizeof(struct Layer));
+    l->output_layer = malloc(sizeof(struct Layer));
 }
 
 /**
@@ -522,6 +534,7 @@ neural_layer_recurrent_load(struct Layer *l, FILE *fp)
     s += fread(l->mu, sizeof(double), N_MU, fp);
     s += fread(l->state, sizeof(double), l->n_outputs, fp);
     s += fread(l->prev_state, sizeof(double), l->n_outputs, fp);
+    malloc_layers(l);
     s += layer_load(l->input_layer, fp);
     s += layer_load(l->self_layer, fp);
     s += layer_load(l->output_layer, fp);

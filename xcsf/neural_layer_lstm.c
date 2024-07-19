@@ -17,7 +17,7 @@
  * @file neural_layer_lstm.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2024.
  * @brief An implementation of a long short-term memory layer.
  * @details Stateful, and with a step of 1.
  * Typically the output activation is TANH and recurrent activation LOGISTIC.
@@ -104,6 +104,23 @@ malloc_layer_arrays(struct Layer *l)
     l->temp2 = calloc(l->n_outputs, sizeof(double));
     l->temp3 = calloc(l->n_outputs, sizeof(double));
     l->dc = calloc(l->n_outputs, sizeof(double));
+}
+
+/**
+ * @brief Allocate memory for the sub-layers.
+ * @param [in] l The layer to be allocated memory.
+ */
+static void
+malloc_layers(struct Layer *l)
+{
+    l->uf = malloc(sizeof(struct Layer));
+    l->ui = malloc(sizeof(struct Layer));
+    l->ug = malloc(sizeof(struct Layer));
+    l->uo = malloc(sizeof(struct Layer));
+    l->wf = malloc(sizeof(struct Layer));
+    l->wi = malloc(sizeof(struct Layer));
+    l->wg = malloc(sizeof(struct Layer));
+    l->wo = malloc(sizeof(struct Layer));
 }
 
 /**
@@ -723,6 +740,7 @@ neural_layer_lstm_load(struct Layer *l, FILE *fp)
     s += fread(l->temp2, sizeof(double), l->n_outputs, fp);
     s += fread(l->temp3, sizeof(double), l->n_outputs, fp);
     s += fread(l->dc, sizeof(double), l->n_outputs, fp);
+    malloc_layers(l);
     s += layer_load(l->uf, fp);
     s += layer_load(l->ui, fp);
     s += layer_load(l->ug, fp);

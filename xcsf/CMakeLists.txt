@@ -142,10 +142,19 @@ set(CJSON ${CMAKE_SOURCE_DIR}/lib/cJSON/cJSON.c
 # ##############################################################################
 
 add_definitions(-DDSFMT_MEXP=19937)
+
 add_library(xcs STATIC ${XCSF_SOURCES} ${XCSF_HEADERS} ${DSFMT} ${CJSON})
 target_link_libraries(xcs PUBLIC m)
 if(PARALLEL AND OpenMP_FOUND)
   target_link_libraries(xcs PUBLIC OpenMP::OpenMP_C)
+endif()
+
+if(SANITIZE)
+  target_compile_options(xcs
+      PRIVATE -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer)
+
+  target_link_options(xcs
+      BEFORE PUBLIC -fsanitize=undefined PUBLIC -fsanitize=address)
 endif()
 
 # ##############################################################################

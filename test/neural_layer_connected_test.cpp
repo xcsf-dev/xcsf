@@ -17,7 +17,7 @@
  * @file neural_layer_connected_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Fully-connected neural network layer tests.
  */
 
@@ -44,12 +44,13 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
+    struct Net net;
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = CONNECTED;
@@ -62,8 +63,10 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     args.decay = 0;
     args.sgd_weights = true;
     layer_args_validate(&args);
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 10);
     CHECK_EQ(l->n_outputs, 2);
@@ -86,6 +89,7 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
         0.2236021733,  -1.2206964138, -0.2022042865, -1.5489524535
     };
     const double orig_biases[2] = { 0.1033557369, -1.2581317787 };
+
     memcpy(l->weights, orig_weights, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases, sizeof(double) * l->n_outputs);
     neural_layer_connected_forward(l, &net, x);
@@ -195,8 +199,11 @@ TEST_CASE("NEURAL_LAYER_CONNECTED")
     /* Smoke test export */
     char *json_str = neural_layer_connected_json_export(l, true);
     CHECK(json_str != NULL);
+    free(json_str);
 
     /* Clean up */
+    neural_layer_connected_free(l2);
+    free(l2);
     neural_free(&net);
     param_free(&xcsf);
 }

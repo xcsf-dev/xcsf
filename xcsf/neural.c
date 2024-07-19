@@ -17,7 +17,7 @@
  * @file neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2012--2022.
+ * @date 2012--2024.
  * @brief An implementation of a multi-layer perceptron neural network.
  */
 
@@ -411,8 +411,9 @@ neural_json_export(const struct Net *net, const bool return_weights)
     int i = 0;
     char layer_name[256];
     while (iter != NULL) {
-        const char *str = layer_json_export(iter->layer, return_weights);
+        char *str = layer_json_export(iter->layer, return_weights);
         cJSON *layer = cJSON_Parse(str);
+        free(str);
         snprintf(layer_name, 256, "layer_%d", i);
         cJSON_AddItemToObject(json, layer_name, layer);
         iter = iter->prev;
@@ -482,7 +483,6 @@ neural_save(const struct Net *net, FILE *fp)
     s += fwrite(&net->n_outputs, sizeof(int), 1, fp);
     const struct Llist *iter = net->tail;
     while (iter != NULL) {
-        s += fwrite(&iter->layer->type, sizeof(int), 1, fp);
         s += layer_save(iter->layer, fp);
         iter = iter->prev;
     }
@@ -508,9 +508,6 @@ neural_load(struct Net *net, FILE *fp)
     neural_init(net);
     for (int i = 0; i < nlayers; ++i) {
         struct Layer *l = malloc(sizeof(struct Layer));
-        layer_defaults(l);
-        s += fread(&l->type, sizeof(int), 1, fp);
-        layer_set_vptr(l);
         s += layer_load(l, fp);
         neural_push(net, l);
     }

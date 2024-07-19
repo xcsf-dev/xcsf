@@ -17,7 +17,7 @@
  * @file neural_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Neural network tests.
  */
 
@@ -46,9 +46,11 @@ TEST_CASE("NEURAL")
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+    xcsf_init(&xcsf);
+
     const double x[10] = { -0.4792173279, -0.2056298252, -0.1775459629,
                            -0.0814486626, 0.0923277094,  0.2779675621,
                            -0.3109822596, -0.6788371120, -0.0714929928,
@@ -65,7 +67,9 @@ TEST_CASE("NEURAL")
     const double orig_weights2[4] = { 0.3326639519, -0.4446678553, 0.1033557369,
                                       -1.2581317787 };
     const double orig_biases2[2] = { 0.1033557369, -1.2581317787 };
+
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = CONNECTED;
@@ -77,15 +81,19 @@ TEST_CASE("NEURAL")
     args.momentum = 0.9;
     args.decay = 0;
     args.sgd_weights = true;
+
     l = layer_init(&args);
     memcpy(l->weights, orig_weights1, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases1, sizeof(double) * l->n_outputs);
     neural_push(&net, l);
+
     args.n_inputs = 2;
+
     l = layer_init(&args);
     memcpy(l->weights, orig_weights2, sizeof(double) * l->n_weights);
     memcpy(l->biases, orig_biases2, sizeof(double) * l->n_outputs);
     neural_push(&net, l);
+
     neural_propagate(&net, x, false);
     double output_error = 0;
     for (int i = 0; i < net.n_outputs; ++i) {
@@ -105,16 +113,22 @@ TEST_CASE("NEURAL")
     /* Smoke test export */
     char *str = neural_json_export(&net, true);
     CHECK(str != NULL);
+    free(str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = neural_save(&net, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
-    size_t r = neural_load(&net, fp);
+    struct Net load_net;
+    size_t r = neural_load(&load_net, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean up */
-    layer_free(l);
+    neural_free(&net);
+    neural_free(&load_net);
+    xcsf_free(&xcsf);
+    param_free(&xcsf);
 }
