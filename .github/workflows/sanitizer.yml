@@ -1,7 +1,7 @@
 ---
 # Run tests with address sanitizer enabled
 
-name: Ubuntu build
+name: sanitizer
 
 on:
   push:
