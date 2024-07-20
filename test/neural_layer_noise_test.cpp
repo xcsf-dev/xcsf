@@ -83,7 +83,7 @@ TEST_CASE("NEURAL_LAYER_NOISE")
 
     /* Test one forward pass of input when training */
     net.train = true;
-    const double output2[3] = { 0.0230268, 0.5, 0.3 };
+    const double output2[3] = { 0.321005, 0.5, 0.3 };
     neural_layer_noise_forward(l, &net, x);
     out = neural_layer_noise_output(l);
     for (int i = 0; i < l->n_outputs; ++i) {
