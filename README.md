@@ -9,7 +9,7 @@ See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for details on fea
 [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0)
 [![Linux Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/ubuntu_build.yml?branch=master&logo=linux&logoColor=white&style=flat&label=Ubuntu)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Ubuntu+build%22)
 [![MacOS Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/macOS_build.yml?branch=master&logo=apple&logoColor=white&style=flat&label=macOS)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22macOS+build%22)
-[![Windows Build](https://img.shields.io/appveyor/build/rpreen/xcsf-j6qo2?logo=windows&logoColor=white&style=flat&label=Windows)](https://ci.appveyor.com/project/rpreen/xcsf-j6qo2)
+[![Windows Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/windows_build.yml?branch=master&logo=windows&logoColor=white&style=flat&label=Windows)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Windows+build%22)
 [![Latest Version](https://img.shields.io/github/v/release/xcsf-dev/xcsf?style=flat)](https://github.com/xcsf-dev/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
