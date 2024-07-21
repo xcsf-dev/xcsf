@@ -1,5 +1,7 @@
 # Changelog
 
+## Version 1.4.6 (Jul 21, 2024)
+
 Changes:
 *   Update Python packaging ([#124](https://github.com/xcsf-dev/xcsf/pull/124))
 *   Add Python `validation_data` input check ([#136](https://github.com/xcsf-dev/xcsf/pull/136))
