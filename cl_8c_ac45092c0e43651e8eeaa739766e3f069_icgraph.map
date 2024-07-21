@@ -1,36 +1,45 @@
 <map id="cl_free" name="cl_free">
-<area shape="rect" id="node1" title="Frees the memory used by a classifier." alt="" coords="1145,493,1207,519"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="768,442,841,469"/>
-<area shape="rect" id="node30" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="889,543,953,570"/>
-<area shape="rect" id="node34" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="1001,493,1097,519"/>
-<area shape="rect" id="node3" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="593,442,706,469"/>
-<area shape="rect" id="node10" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="579,670,720,697"/>
-<area shape="rect" id="node18" href="$xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b" title="Frees XCSF population sets." alt="" coords="413,594,489,621"/>
-<area shape="rect" id="node19" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="610,315,689,342"/>
-<area shape="rect" id="node22" href="$xcsf_8c.html#a58a321a976cf6a9bb01979d94703fa27" title="Retrieves the previously stored population." alt="" coords="585,71,714,98"/>
-<area shape="rect" id="node27" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="592,189,707,215"/>
-<area shape="rect" id="node4" href="$classXCS.html#a173bb0ba504bc7e97cda5841a6534944" title="Frees memory used by a reinforcement learning trial." alt="" coords="398,391,505,418"/>
-<area shape="rect" id="node5" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="414,493,489,519"/>
-<area shape="rect" id="node7" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="409,442,494,469"/>
-<area shape="rect" id="node6" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="199,493,269,519"/>
-<area shape="rect" id="node8" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="191,442,277,469"/>
-<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="25,493,76,519"/>
-<area shape="rect" id="node11" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="386,645,517,671"/>
-<area shape="rect" id="node13" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="372,695,531,722"/>
-<area shape="rect" id="node15" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="375,746,527,773"/>
-<area shape="rect" id="node17" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="151,797,317,823"/>
-<area shape="rect" id="node12" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="199,645,269,671"/>
-<area shape="rect" id="node14" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="185,695,283,722"/>
-<area shape="rect" id="node16" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="5,771,96,798"/>
-<area shape="rect" id="node20" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="391,290,511,317"/>
-<area shape="rect" id="node21" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="410,341,493,367"/>
-<area shape="rect" id="node23" href="$classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59" title="Retrieves best XCSF population in memory." alt="" coords="374,5,529,47"/>
-<area shape="rect" id="node26" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="401,71,502,98"/>
-<area shape="rect" id="node24" href="$classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23" title="Executes any tasks at the end of fitting." alt="" coords="157,5,311,47"/>
-<area shape="rect" id="node25" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="144,101,324,127"/>
-<area shape="rect" id="node28" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="374,123,529,164"/>
-<area shape="rect" id="node29" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="408,189,495,215"/>
-<area shape="rect" id="node31" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="785,543,824,570"/>
-<area shape="rect" id="node32" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="598,518,701,545"/>
-<area shape="rect" id="node33" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="403,543,500,570"/>
+<area shape="rect" id="node1" title="Frees the memory used by a classifier." alt="" coords="1544,107,1605,133"/>
+<area shape="rect" id="node2" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="1411,335,1485,361"/>
+<area shape="rect" id="node39" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="1251,56,1315,83"/>
+<area shape="rect" id="node43" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="1400,107,1496,133"/>
+<area shape="rect" id="node3" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1215,360,1352,387"/>
+<area shape="rect" id="node15" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="817,233,931,260"/>
+<area shape="rect" id="node21" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="595,56,736,83"/>
+<area shape="rect" id="node28" href="$xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b" title="Frees XCSF population sets." alt="" coords="429,309,505,336"/>
+<area shape="rect" id="node29" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="428,436,507,463"/>
+<area shape="rect" id="node31" href="$xcsf_8c.html#a58a321a976cf6a9bb01979d94703fa27" title="Retrieves the previously stored population." alt="" coords="1219,636,1348,663"/>
+<area shape="rect" id="node36" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="1226,512,1341,539"/>
+<area shape="rect" id="node4" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="1029,360,1149,387"/>
+<area shape="rect" id="node14" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="1020,411,1159,437"/>
+<area shape="rect" id="node5" href="$clset_8c.html#ab1609ae417c14c50f3322c3ed818db6b" title=" " alt="" coords="807,411,941,437"/>
+<area shape="rect" id="node12" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="813,360,935,387"/>
+<area shape="rect" id="node6" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="612,411,719,437"/>
+<area shape="rect" id="node7" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="432,360,503,387"/>
+<area shape="rect" id="node8" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="222,208,291,235"/>
+<area shape="rect" id="node9" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="231,309,282,336"/>
+<area shape="rect" id="node10" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="213,360,300,387"/>
+<area shape="rect" id="node11" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,385,125,412"/>
+<area shape="rect" id="node13" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="608,360,723,387"/>
+<area shape="rect" id="node16" href="$classXCS.html#a173bb0ba504bc7e97cda5841a6534944" title="Frees memory used by a reinforcement learning trial." alt="" coords="612,259,719,285"/>
+<area shape="rect" id="node17" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="628,157,703,184"/>
+<area shape="rect" id="node19" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="623,208,708,235"/>
+<area shape="rect" id="node18" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="433,208,502,235"/>
+<area shape="rect" id="node20" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="425,259,510,285"/>
+<area shape="rect" id="node22" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="402,157,533,184"/>
+<area shape="rect" id="node23" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="388,107,547,133"/>
+<area shape="rect" id="node25" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="391,56,543,83"/>
+<area shape="rect" id="node27" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="173,5,340,32"/>
+<area shape="rect" id="node24" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="208,107,305,133"/>
+<area shape="rect" id="node26" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="20,31,111,57"/>
+<area shape="rect" id="node30" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="215,461,298,488"/>
+<area shape="rect" id="node32" href="$classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59" title="Retrieves best XCSF population in memory." alt="" coords="1012,629,1167,670"/>
+<area shape="rect" id="node35" href="$classXCS.html#af4e2f1db4a14a56a8aecf78c8bcc2a66" title="Retrieves the stored population, setting it as current." alt="" coords="1039,695,1140,721"/>
+<area shape="rect" id="node33" href="$classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23" title="Executes any tasks at the end of fitting." alt="" coords="797,629,951,670"/>
+<area shape="rect" id="node34" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="784,573,964,600"/>
+<area shape="rect" id="node37" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="1012,563,1167,605"/>
+<area shape="rect" id="node38" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="1046,512,1133,539"/>
+<area shape="rect" id="node40" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="1070,56,1109,83"/>
+<area shape="rect" id="node41" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="823,157,925,184"/>
+<area shape="rect" id="node42" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="617,107,714,133"/>
 </map>

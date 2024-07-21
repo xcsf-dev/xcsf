@@ -1,17 +1,17 @@
 <map id="layer_defaults" name="layer_defaults">
-<area shape="rect" id="node1" title="Initialises a layer to default values." alt="" coords="1788,487,1891,513"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="1597,208,1672,235"/>
-<area shape="rect" id="node30" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="1545,259,1724,285"/>
-<area shape="rect" id="node31" href="$neural__layer__connected_8c.html#a1d4a072908a0df8dcc9ff31add3fdcad" title="Initialises and creates a copy of one connected layer from another." alt="" coords="1537,309,1732,336"/>
-<area shape="rect" id="node32" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="1529,360,1740,387"/>
-<area shape="rect" id="node33" href="$neural__layer__dropout_8c.html#a53c6652e7bdcb412cd5173a34f994906" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="1546,411,1723,437"/>
-<area shape="rect" id="node34" href="$neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="1555,461,1714,488"/>
-<area shape="rect" id="node35" href="$neural__layer__maxpool_8c.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="1543,512,1726,539"/>
-<area shape="rect" id="node36" href="$neural__layer__noise_8c.html#aa3f48c8d743c54f4934fea0597969200" title="Initialises and creates a copy of one noise layer from another." alt="" coords="1552,563,1717,589"/>
-<area shape="rect" id="node37" href="$neural__layer__recurrent_8c.html#a5f01cc7e722e1426e5aba2a643e33036" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="1542,613,1727,640"/>
-<area shape="rect" id="node38" href="$neural__layer__softmax_8c.html#a7511194d08647d475924e23c21da562a" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="1544,664,1725,691"/>
-<area shape="rect" id="node39" href="$neural__layer__upsample_8c.html#adc112d2c9f2cbe584a47706d75d11ee9" title="Initialises and copies one upsampling layer from another." alt="" coords="1539,715,1730,741"/>
-<area shape="rect" id="node40" href="$neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="1591,765,1679,792"/>
+<area shape="rect" id="node1" title="Initialises a layer to default values." alt="" coords="1788,613,1891,640"/>
+<area shape="rect" id="node2" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="1597,233,1672,260"/>
+<area shape="rect" id="node30" href="$neural__layer_8h.html#a69ce571bb41dc2df362e3987fe595b63" title="Reads the layer from a file." alt="" coords="1594,385,1675,412"/>
+<area shape="rect" id="node38" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="1545,436,1724,463"/>
+<area shape="rect" id="node39" href="$neural__layer__connected_8c.html#a1d4a072908a0df8dcc9ff31add3fdcad" title="Initialises and creates a copy of one connected layer from another." alt="" coords="1537,487,1732,513"/>
+<area shape="rect" id="node40" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="1529,537,1740,564"/>
+<area shape="rect" id="node41" href="$neural__layer__dropout_8c.html#a53c6652e7bdcb412cd5173a34f994906" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="1546,588,1723,615"/>
+<area shape="rect" id="node42" href="$neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="1555,639,1714,665"/>
+<area shape="rect" id="node43" href="$neural__layer__maxpool_8c.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="1543,689,1726,716"/>
+<area shape="rect" id="node44" href="$neural__layer__noise_8c.html#aa3f48c8d743c54f4934fea0597969200" title="Initialises and creates a copy of one noise layer from another." alt="" coords="1552,740,1717,767"/>
+<area shape="rect" id="node45" href="$neural__layer__recurrent_8c.html#a5f01cc7e722e1426e5aba2a643e33036" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="1542,791,1727,817"/>
+<area shape="rect" id="node46" href="$neural__layer__softmax_8c.html#a7511194d08647d475924e23c21da562a" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="1544,841,1725,868"/>
+<area shape="rect" id="node47" href="$neural__layer__upsample_8c.html#adc112d2c9f2cbe584a47706d75d11ee9" title="Initialises and copies one upsampling layer from another." alt="" coords="1539,892,1730,919"/>
 <area shape="rect" id="node3" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1338,107,1438,133"/>
 <area shape="rect" id="node22" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="1314,157,1462,184"/>
 <area shape="rect" id="node23" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="1301,208,1475,235"/>
@@ -39,8 +39,11 @@
 <area shape="rect" id="node26" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="881,259,1030,285"/>
 <area shape="rect" id="node28" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="1105,309,1233,336"/>
 <area shape="rect" id="node29" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="889,309,1021,336"/>
-<area shape="rect" id="node41" href="$act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="1331,689,1445,716"/>
-<area shape="rect" id="node42" href="$cond__neural_8c.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="1327,740,1449,767"/>
-<area shape="rect" id="node43" href="$pred__neural_8c.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="1328,791,1448,817"/>
-<area shape="rect" id="node44" href="$rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="1313,841,1463,868"/>
+<area shape="rect" id="node31" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="1311,360,1465,387"/>
+<area shape="rect" id="node32" href="$neural__layer__recurrent_8c.html#a2492453a3912b4d17ecd3edf142069de" title="Reads a recurrent layer from a file." alt="" coords="1297,411,1479,437"/>
+<area shape="rect" id="node33" href="$neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="1344,461,1432,488"/>
+<area shape="rect" id="node34" href="$act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="1112,385,1225,412"/>
+<area shape="rect" id="node35" href="$cond__neural_8c.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="1107,436,1230,463"/>
+<area shape="rect" id="node36" href="$pred__neural_8c.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="1109,487,1229,513"/>
+<area shape="rect" id="node37" href="$rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="1093,537,1244,564"/>
 </map>

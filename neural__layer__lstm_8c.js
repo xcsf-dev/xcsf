@@ -3,6 +3,7 @@ var neural__layer__lstm_8c =
     [ "N_MU", "neural__layer__lstm_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30", null ],
     [ "free_layer_arrays", "neural__layer__lstm_8c.html#a6a48f5438e8ccf76faeed24641a0f85a", null ],
     [ "malloc_layer_arrays", "neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97", null ],
+    [ "malloc_layers", "neural__layer__lstm_8c.html#abcfe36c9cad429d98f42b63630fbb0d1", null ],
     [ "mutate_connectivity", "neural__layer__lstm_8c.html#af1574ac1aaa2948e0e159e07e7c4d24a", null ],
     [ "mutate_eta", "neural__layer__lstm_8c.html#a46d6667381b42e2d14554674328c8cde", null ],
     [ "mutate_neurons", "neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd", null ],
