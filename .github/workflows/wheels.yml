@@ -41,29 +41,29 @@ jobs:
             platform: manylinux_x86_64
 
           # MacOS builds
-          - os: macos-12
+          - os: macos-14
             python: "cp38"
             platform: macosx_*
-          - os: macos-12
+          - os: macos-14
             python: "cp39"
             platform: macosx_*
-          - os: macos-12
+          - os: macos-14
             python: "cp310"
             platform: macosx_*
-          - os: macos-12
+          - os: macos-14
             python: "cp311"
             platform: macosx_*
-          - os: macos-12
+          - os: macos-14
             python: "cp312"
             platform: macosx_*
           # MacOS PyPy builds
-          - os: macos-12
+          - os: macos-14
             python: "pp38"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-14
             python: "pp39"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-14
             python: "pp310"
             platform: macosx_x86_64
 
