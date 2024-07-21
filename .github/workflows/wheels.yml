@@ -40,7 +40,7 @@ jobs:
             python: "pp310"
             platform: manylinux_x86_64
 
-          # MacOS builds
+          # MacOS builds - intel
           - os: macos-12
             python: "cp38"
             platform: macosx_x86_64
@@ -107,6 +107,7 @@ jobs:
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_BUILD_VERBOSITY: 3
+          MACOSX_DEPLOYMENT_TARGET: '10.9'
 
       - uses: actions/upload-artifact@v4
         with:
