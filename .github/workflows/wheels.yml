@@ -17,82 +17,82 @@ jobs:
           - os: ubuntu-20.04
             python: "cp38"
             platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "cp39"
-#            platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "cp310"
-#            platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "cp311"
-#            platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "cp312"
-#            platform: manylinux_x86_64
-#          # manylinux pypy builds
-#          - os: ubuntu-20.04
-#            python: "pp38"
-#            platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "pp39"
-#            platform: manylinux_x86_64
-#          - os: ubuntu-20.04
-#            python: "pp310"
-#            platform: manylinux_x86_64
-#
-#          # MacOS builds
-#          - os: macos-11
-#            python: "cp38"
-#            platform: macosx_*
-#          - os: macos-11
-#            python: "cp39"
-#            platform: macosx_*
-#          - os: macos-11
-#            python: "cp310"
-#            platform: macosx_*
-#          - os: macos-11
-#            python: "cp311"
-#            platform: macosx_*
-#          - os: macos-11
-#            python: "cp312"
-#            platform: macosx_*
-#          # MacOS PyPy builds
-#          - os: macos-11
-#            python: "pp38"
-#            platform: macosx_x86_64
-#          - os: macos-11
-#            python: "pp39"
-#            platform: macosx_x86_64
-#          - os: macos-11
-#            python: "pp310"
-#            platform: macosx_x86_64
-#
-#          # Windows builds
-#          - os: windows-2019
-#            python: "cp38"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "cp39"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "cp310"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "cp311"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "cp312"
-#            platform: win_amd64
-#          # Windows PyPy builds
-#          - os: windows-2019
-#            python: "pp38"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "pp39"
-#            platform: win_amd64
-#          - os: windows-2019
-#            python: "pp310"
-#            platform: win_amd64
+          - os: ubuntu-20.04
+            python: "cp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp310"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp311"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp312"
+            platform: manylinux_x86_64
+          # manylinux pypy builds
+          - os: ubuntu-20.04
+            python: "pp38"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "pp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "pp310"
+            platform: manylinux_x86_64
+
+          # MacOS builds
+          - os: macos-11
+            python: "cp38"
+            platform: macosx_*
+          - os: macos-11
+            python: "cp39"
+            platform: macosx_*
+          - os: macos-11
+            python: "cp310"
+            platform: macosx_*
+          - os: macos-11
+            python: "cp311"
+            platform: macosx_*
+          - os: macos-11
+            python: "cp312"
+            platform: macosx_*
+          # MacOS PyPy builds
+          - os: macos-11
+            python: "pp38"
+            platform: macosx_x86_64
+          - os: macos-11
+            python: "pp39"
+            platform: macosx_x86_64
+          - os: macos-11
+            python: "pp310"
+            platform: macosx_x86_64
+
+          # Windows builds
+          - os: windows-2019
+            python: "cp38"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp39"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp310"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp311"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp312"
+            platform: win_amd64
+          # Windows PyPy builds
+          - os: windows-2019
+            python: "pp38"
+            platform: win_amd64
+          - os: windows-2019
+            python: "pp39"
+            platform: win_amd64
+          - os: windows-2019
+            python: "pp310"
+            platform: win_amd64
 
     steps:
       - name: Checkout xcsf
@@ -153,9 +153,9 @@ jobs:
         with:
           subject-path: "dist/*"
 
-      - name: Publish on PyPI (TEST)
+      - name: Publish on PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/
-          repository-url: https://test.pypi.org/legacy/
+          #  repository-url: https://test.pypi.org/legacy/
 ...
