@@ -131,12 +131,31 @@ jobs:
           path: dist/*.tar.gz
 
   upload:
-    needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
+    # if: github.event_name == 'release' && github.event.action == 'published'
+    needs: [build_wheels, build_sdist]
+    environment:
+      name: pypi
+      url: https://pypi.org/p/xcsf
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
     steps:
       - uses: actions/download-artifact@v4
         with:
           pattern: cibw-*
           path: dist
           merge-multiple: true
+
+      - name: Attest
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: "dist/*"
+
+      - name: Publish on PyPI (TEST)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          repository-url: https://test.pypi.org/legacy/
 ...
