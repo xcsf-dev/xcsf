@@ -21,7 +21,8 @@ before_build:
   - cd build
   - git submodule update --init --recursive
   - cmake --version
-  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% %CMAKE_ARGS% -G "%GENERATOR%" ..
+  - cmake -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DCMAKE_MAKE_PROGRAM=%BINDIR%\mingw32-make.exe %CMAKE_ARGS% -G "%GENERATOR%" ..
+
 
 build_script: cmake --build . --config %BUILD_TYPE% -j2
 ...
