@@ -1,0 +1,59 @@
+---
+# Configuration script for github continuous integration service
+
+name: Windows build
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
+  pull_request:
+    branches: [master]
+    paths-ignore:
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+
+      - name: Setup MinGW
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+
+      - name: Configure
+        working-directory: build
+        run: cmake ..
+          -DCMAKE_BUILD_TYPE=Release
+          -DXCSF_PYLIB=ON
+          -DENABLE_TESTS=ON
+          -G "MinGW Makefiles"
+
+      - name: Build
+        working-directory: build
+        run: cmake --build . --config Release -j2
+...
