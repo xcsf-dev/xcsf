@@ -17,7 +17,7 @@
  * @file act_integer_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Integer action tests.
  */
 
@@ -101,7 +101,13 @@ TEST_CASE("ACT_INTEGER")
     CHECK_EQ(new_act->action, orig_act->action);
 
     /* Test clean up */
+    cJSON_Delete(json);
+    free(json_str);
     act_integer_free(&xcsf, &c1);
     act_integer_free(&xcsf, &c2);
+    act_integer_free(&xcsf, &new_cl);
+    free(c1.prediction);
+    free(c2.prediction);
+    free(new_cl.prediction);
     param_free(&xcsf);
 }

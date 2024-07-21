@@ -43,47 +43,53 @@ TEST_CASE("NEURAL_LAYER_ARGS")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
     param_set_random_state(&xcsf, 1);
-    struct ArgsLayer args;
-    layer_args_init(&args);
+    xcsf_init(&xcsf);
+    struct ArgsLayer *args =
+        (struct ArgsLayer *) malloc(sizeof(struct ArgsLayer));
+    layer_args_init(args);
     // first layer args
-    args.type = CONVOLUTIONAL;
-    args.function = RELU;
-    args.width = 4;
-    args.height = 4;
-    args.channels = 1;
-    args.n_init = 2;
-    args.size = 3;
-    args.stride = 1;
-    args.pad = 1;
-    args.decay = 0;
-    args.eta = 0.1;
-    args.momentum = 0.9;
-    args.sgd_weights = true;
-    args.evolve_neurons = true;
-    args.evolve_connect = true;
-    args.evolve_eta = true;
-    args.evolve_functions = true;
-    args.max_neuron_grow = 1;
-    args.n_max = 10;
+    args->type = CONVOLUTIONAL;
+    args->function = RELU;
+    args->width = 4;
+    args->height = 4;
+    args->channels = 1;
+    args->n_init = 2;
+    args->size = 3;
+    args->stride = 1;
+    args->pad = 1;
+    args->decay = 0;
+    args->eta = 0.1;
+    args->momentum = 0.9;
+    args->sgd_weights = true;
+    args->evolve_neurons = true;
+    args->evolve_connect = true;
+    args->evolve_eta = true;
+    args->evolve_functions = true;
+    args->max_neuron_grow = 1;
+    args->n_max = 10;
     // second layer args
-    args.next = layer_args_copy(&args);
-    args.next->type = DROPOUT;
-    args.next->probability = 0.5;
+    args->next = layer_args_copy(args);
+    args->next->type = DROPOUT;
+    args->next->probability = 0.5;
     // third layer args
-    args.next->next = layer_args_copy(&args);
-    args.next->next->type = CONNECTED;
-    layer_args_validate(&args);
+    args->next->next = layer_args_copy(args);
+    args->next->next->type = CONNECTED;
+    layer_args_validate(args);
 
     /* Smoke test export and import */
-    char *json_str = layer_args_json_export(&args);
+    char *json_str = layer_args_json_export(args);
     CHECK(json_str != NULL);
     cJSON *json = cJSON_Parse(json_str);
-    json_str = layer_args_json_import(&args, json->child);
+    free(json_str);
+
+    json_str = layer_args_json_import(args, json->child);
     CHECK(json_str != NULL);
+    cJSON_Delete(json);
 
     /* Test clean up */
+    layer_args_free(&args);
+    xcsf_free(&xcsf);
     param_free(&xcsf);
 }

@@ -17,7 +17,7 @@
  * @file loss_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2024.
  * @brief Loss function tests.
  */
 
@@ -44,6 +44,7 @@ TEST_CASE("LOSS FUNCTIONS")
     struct XCSF xcsf;
     rand_init();
     param_init(&xcsf, 10, 2, 1);
+    param_set_random_state(&xcsf, 1);
     CHECK_EQ(xcsf.x_dim, 10);
     CHECK_EQ(xcsf.y_dim, 2);
     CHECK_EQ(xcsf.n_actions, 1);
@@ -122,4 +123,7 @@ TEST_CASE("LOSS FUNCTIONS")
     CHECK_EQ(inv, LOSS_INVALID);
 
     // loss_type_as_string(LOSS_INVALID);
+
+    // Clean up
+    param_free(&xcsf);
 }

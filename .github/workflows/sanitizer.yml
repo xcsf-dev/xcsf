@@ -1,0 +1,53 @@
+---
+# Run tests with address sanitizer enabled
+
+name: sanitizer
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
+  pull_request:
+    branches: [master]
+    paths-ignore:
+      - "*.md"
+      - "*.cff"
+      - "env/csv/*.csv"
+      - "env/maze/*.txt"
+      - "cfg/*.json"
+      - "python/*.py"
+      - "python/notebooks/*.ipynb"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Configure
+        env:
+          CC: gcc-9
+          CXX: g++-9
+        working-directory: build
+        run: cmake ..
+          -DCMAKE_BUILD_TYPE=Debug
+          -DXCSF_MAIN=OFF
+          -DXCSF_PYLIB=OFF
+          -DPARALLEL=ON
+          -DENABLE_TESTS=ON
+          -DSANITIZE=ON
+
+      - name: Build
+        working-directory: build
+        run: cmake --build . --config Debug -j2
+...

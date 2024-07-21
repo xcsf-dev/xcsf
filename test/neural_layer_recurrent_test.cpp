@@ -17,7 +17,7 @@
  * @file neural_layer_recurrent_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2024.
  * @brief Recurrent neural network layer tests.
  */
 
@@ -45,13 +45,13 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
 {
     /* test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 1, 1, 1);
     param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
+    struct Net net;
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = RECURRENT;
@@ -67,8 +67,10 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     args.evolve_connect = true;
     args.evolve_weights = true;
     args.evolve_functions = true;
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->function, LOGISTIC);
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
@@ -84,14 +86,17 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     l->self_layer->biases[0] = orig_biases[0];
     l->output_layer->weights[0] = 1;
     l->output_layer->biases[0] = 0;
+
     // first time
     neural_layer_recurrent_forward(l, &net, x);
     double output_error = fabs(l->output[0] - 0.48335347);
     CHECK_EQ(doctest::Approx(output_error), 0);
+
     // second time
     neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.3658727);
     CHECK_EQ(doctest::Approx(output_error), 0);
+
     // third time
     neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.39353347);
@@ -104,6 +109,7 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     }
     neural_layer_recurrent_backward(l, &net, x, 0);
     neural_layer_recurrent_update(l);
+
     // forward pass
     neural_layer_recurrent_forward(l, &net, x);
     output_error = fabs(l->output[0] - 0.3988695229);
@@ -174,17 +180,25 @@ TEST_CASE("NEURAL_LAYER_RECURRENT")
     /* Smoke test export */
     char *json_str = neural_layer_recurrent_json_export(l, true);
     CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t w = neural_layer_recurrent_save(l, fp);
+    size_t w = layer_save(l, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
-    size_t r = neural_layer_recurrent_load(l, fp);
+    struct Layer *l3 = (struct Layer *) malloc(sizeof(struct Layer));
+    size_t r = layer_load(l3, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Clean up */
+    neural_layer_recurrent_free(l2);
+    free(l2);
+    neural_layer_recurrent_free(l3);
+    free(l3);
     neural_free(&net);
+    free(lw);
     param_free(&xcsf);
 }

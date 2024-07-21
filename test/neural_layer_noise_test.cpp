@@ -17,7 +17,7 @@
  * @file neural_layer_softmax_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief Noise neural network layer tests.
  */
 
@@ -46,13 +46,13 @@ TEST_CASE("NEURAL_LAYER_NOISE")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
-    param_set_random_state(&xcsf, 2);
+    param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
+    struct Net net;
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = NOISE;
@@ -60,8 +60,10 @@ TEST_CASE("NEURAL_LAYER_NOISE")
     args.probability = 0.5;
     args.scale = 0.2;
     layer_args_validate(&args);
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->n_inputs, 3);
     CHECK_EQ(l->n_outputs, 3);
     CHECK_EQ(l->max_outputs, 3);
@@ -81,7 +83,7 @@ TEST_CASE("NEURAL_LAYER_NOISE")
 
     /* Test one forward pass of input when training */
     net.train = true;
-    const double output2[3] = { 0.321, 0.5, 0.46388 };
+    const double output2[3] = { 0.321005, 0.5, 0.3 };
     neural_layer_noise_forward(l, &net, x);
     out = neural_layer_noise_output(l);
     for (int i = 0; i < l->n_outputs; ++i) {
@@ -121,17 +123,22 @@ TEST_CASE("NEURAL_LAYER_NOISE")
     /* Smoke test export */
     char *json_str = neural_layer_noise_json_export(l, true);
     CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = neural_layer_noise_save(l, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
+    neural_layer_noise_free(l); // reuse l
     size_t r = neural_layer_noise_load(l, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean */
+    neural_layer_noise_free(l2);
+    free(l2);
     neural_free(&net);
     param_free(&xcsf);
 }

@@ -17,7 +17,7 @@
  * @file neural_layer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2021.
+ * @date 2016--2024.
  * @brief Interface for neural network layers.
  */
 
@@ -159,30 +159,6 @@ struct LayerVtbl {
     char *(*layer_impl_json_export)(const struct Layer *l,
                                     const bool return_weights);
 };
-
-/**
- * @brief Writes the layer to a file.
- * @param [in] l The layer to be written.
- * @param [in] fp Pointer to the file to be written.
- * @return The number of elements written.
- */
-static inline size_t
-layer_save(const struct Layer *l, FILE *fp)
-{
-    return (*l->layer_vptr->layer_impl_save)(l, fp);
-}
-
-/**
- * @brief Reads the layer from a file.
- * @param [in] l The layer to be read.
- * @param [in] fp Pointer to the file to be read.
- * @return The number of elements read.
- */
-static inline size_t
-layer_load(struct Layer *l, FILE *fp)
-{
-    return (*l->layer_vptr->layer_impl_load)(l, fp);
-}
 
 /**
  * @brief Returns the outputs of a layer.
@@ -385,4 +361,34 @@ layer_init(const struct ArgsLayer *args)
     layer_set_vptr(l);
     (*l->layer_vptr->layer_impl_init)(l, args);
     return l;
+}
+
+/**
+ * @brief Writes the layer to a file.
+ * @param [in] l The layer to be written.
+ * @param [in] fp Pointer to the file to be written.
+ * @return The number of elements written.
+ */
+static inline size_t
+layer_save(const struct Layer *l, FILE *fp)
+{
+    size_t s = fwrite(&l->type, sizeof(int), 1, fp);
+    s += (*l->layer_vptr->layer_impl_save)(l, fp);
+    return s;
+}
+
+/**
+ * @brief Reads the layer from a file.
+ * @param [in] l The layer to be read.
+ * @param [in] fp Pointer to the file to be read.
+ * @return The number of elements read.
+ */
+static inline size_t
+layer_load(struct Layer *l, FILE *fp)
+{
+    layer_defaults(l);
+    size_t s = fread(&l->type, sizeof(int), 1, fp);
+    layer_set_vptr(l);
+    s += (*l->layer_vptr->layer_impl_load)(l, fp);
+    return s;
 }

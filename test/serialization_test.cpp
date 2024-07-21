@@ -38,7 +38,7 @@ TEST_CASE("Serialization")
 {
     struct XCSF xcsf;
     param_init(&xcsf, 4, 1, 1);
-    rand_init_seed(2);
+    param_set_random_state(&xcsf, 1);
     xcsf_init(&xcsf);
 
     /* test serialisation */

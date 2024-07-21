@@ -17,7 +17,7 @@
  * @file neural_layer_lstm_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Long short-term memory layer tests.
  */
 
@@ -45,13 +45,13 @@ TEST_CASE("NEURAL_LAYER_LSTM")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Net net;
-    struct Layer *l;
-    rand_init();
     param_init(&xcsf, 1, 1, 1);
     param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
+    struct Net net;
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = LSTM;
@@ -65,8 +65,10 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     args.decay = 0;
     args.sgd_weights = true;
     args.evolve_connect = true;
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->n_inputs, 1);
     CHECK_EQ(l->n_outputs, 1);
     CHECK_EQ(l->max_outputs, 1);
@@ -78,6 +80,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
                                      -0.02821708, -0.21004653, 0.4503114,
                                      0.49545765,  0.71247584 };
     const double orig_biases[4] = { 0, 1, 0, 0 };
+
     l->ui->weights[0] = orig_weights[0];
     l->uf->weights[0] = orig_weights[1];
     l->ug->weights[0] = orig_weights[2];
@@ -97,9 +100,11 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     // first time
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.18687713);
+
     // second time
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.30359772);
+
     // third time
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.37268567);
@@ -111,6 +116,7 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     }
     neural_layer_lstm_backward(l, &net, x, 0);
     neural_layer_lstm_update(l);
+
     // forward pass
     neural_layer_lstm_forward(l, &net, x);
     CHECK_EQ(doctest::Approx(l->output[0]), 0.4196390756);
@@ -189,18 +195,26 @@ TEST_CASE("NEURAL_LAYER_LSTM")
     }
 
     /* Smoke test export */
-    CHECK(neural_layer_lstm_json_export(l, true) != NULL);
+    char *json_str = neural_layer_lstm_json_export(l, true);
+    CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t w = neural_layer_lstm_save(l, fp);
+    size_t w = layer_save(l, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
-    size_t r = neural_layer_lstm_load(l, fp);
+    struct Layer *l3 = (struct Layer *) malloc(sizeof(struct Layer));
+    size_t r = layer_load(l3, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean */
+    neural_layer_lstm_free(l2);
+    free(l2);
+    neural_layer_lstm_free(l3);
+    free(l3);
     neural_free(&net);
     param_free(&xcsf);
 }

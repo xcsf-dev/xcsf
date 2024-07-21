@@ -17,7 +17,7 @@
  * @file neural_layer_maxpool_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2024.
  * @brief Maxpooling neural network layer tests.
  */
 
@@ -41,8 +41,6 @@ extern "C" {
 TEST_CASE("NEURAL_LAYER_MAXPOOL")
 {
     /* test initialisation */
-    struct Layer *l;
-    rand_init();
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = MAXPOOL;
@@ -52,7 +50,9 @@ TEST_CASE("NEURAL_LAYER_MAXPOOL")
     args.size = 2;
     args.stride = 2;
     args.pad = 0;
-    l = layer_init(&args);
+
+    struct Layer *l = layer_init(&args);
+
     CHECK_EQ(l->width, 28);
     CHECK_EQ(l->height, 28);
     CHECK_EQ(l->channels, 1);
@@ -64,5 +64,8 @@ TEST_CASE("NEURAL_LAYER_MAXPOOL")
     CHECK_EQ(l->out_c, 1);
     CHECK_EQ(l->n_inputs, 784);
     CHECK_EQ(l->n_outputs, 196);
+
+    /* test clean up */
     layer_free(l);
+    free(l);
 }

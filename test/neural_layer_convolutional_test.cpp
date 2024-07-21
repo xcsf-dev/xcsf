@@ -17,7 +17,7 @@
  * @file neural_layer_convolutional_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2023.
+ * @date 2020--2024.
  * @brief Convolutional neural network layer tests.
  */
 
@@ -46,11 +46,12 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     struct XCSF xcsf;
     struct Net net;
     struct Layer *l;
-    rand_init();
     param_init(&xcsf, 10, 2, 1);
     param_set_random_state(&xcsf, 1);
     pred_param_set_type(&xcsf, PRED_TYPE_NEURAL);
+
     neural_init(&net);
+
     struct ArgsLayer args;
     layer_args_init(&args);
     args.type = CONVOLUTIONAL;
@@ -70,8 +71,10 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     args.max_neuron_grow = 1;
     args.n_max = 10;
     layer_args_validate(&args);
+
     l = layer_init(&args);
     neural_push(&net, l);
+
     CHECK_EQ(l->function, RELU);
     CHECK_EQ(l->n_filters, 2);
     CHECK_EQ(l->size, 3);
@@ -253,18 +256,26 @@ TEST_CASE("NEURAL_LAYER_CONVOLUTIONAL")
     CHECK(l->n_filters != n_filters);
 
     /* Smoke test export */
-    CHECK(neural_layer_convolutional_json_export(l, true) != NULL);
+    char *json_str = neural_layer_convolutional_json_export(l, true);
+    CHECK(json_str != NULL);
+    free(json_str);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
     size_t w = neural_layer_convolutional_save(l, fp);
     fclose(fp);
+
     fp = fopen("temp.bin", "rb");
+    layer_free(l); // reuse l
     size_t r = neural_layer_convolutional_load(l, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean up */
+    neural_layer_convolutional_free(l2);
+    free(l2);
     neural_free(&net);
     param_free(&xcsf);
+    free(wc);
+    free(bc);
 }

@@ -17,7 +17,7 @@
  * @file unit_tests.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020.
+ * @date 2020--2024.
  * @brief Main unit test loading.
  */
 
@@ -32,9 +32,5 @@ main(int argc, char **argv)
 {
     doctest::Context context;
     context.applyCommandLine(argc, argv);
-    const int res = context.run();
-    if (context.shouldExit()) {
-        return res;
-    }
-    return EXIT_SUCCESS;
+    return context.run();
 }

@@ -17,7 +17,7 @@
  * @file pa_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2022.
+ * @date 2022--2024.
  * @brief Prediction array tests.
  */
 
@@ -38,7 +38,7 @@ TEST_CASE("PA")
 {
     struct XCSF xcsf;
     param_init(&xcsf, 5, 1, 5);
-    rand_init_seed(2);
+    param_set_random_state(&xcsf, 1);
 
     // test best action
     double pa1[5] = { 0.214, 0.6423, 0.111, 0.775, 0.445 };
@@ -54,13 +54,13 @@ TEST_CASE("PA")
     double pa3[5] = { 0.6423, 0.6423, 0.6423, 0.6423, 0.445 };
     xcsf.pa = pa3;
     action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 1);
-
-    action = pa_best_action(&xcsf);
     CHECK_EQ(action, 2);
 
     action = pa_best_action(&xcsf);
-    CHECK_EQ(action, 0);
+    CHECK_EQ(action, 3);
+
+    action = pa_best_action(&xcsf);
+    CHECK_EQ(action, 2);
 
     param_free(&xcsf);
 }

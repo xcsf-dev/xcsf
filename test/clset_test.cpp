@@ -44,9 +44,9 @@ TEST_CASE("CLSET")
 
     struct XCSF xcsf;
     param_init(&xcsf, x_dim, y_dim, 1);
-    param_set_random_state(&xcsf, 2);
+    param_set_random_state(&xcsf, 1);
+    param_set_pop_size(&xcsf, 10);
     xcsf_init(&xcsf);
-    clset_pset_init(&xcsf);
 
     /* Test insert */
     // insert a classifier
@@ -54,7 +54,7 @@ TEST_CASE("CLSET")
     cJSON_AddNumberToObject(json, "error", 0.1);
     cJSON_AddNumberToObject(json, "fitness", 0.2);
     cJSON_AddNumberToObject(json, "set_size", 10);
-    cJSON_AddNumberToObject(json, "numerosity", 20);
+    cJSON_AddNumberToObject(json, "numerosity", 1);
     cJSON_AddNumberToObject(json, "experience", 50);
     cJSON_AddNumberToObject(json, "time", 100);
     cJSON_AddNumberToObject(json, "samples_seen", 100);
@@ -71,7 +71,7 @@ TEST_CASE("CLSET")
     CHECK_EQ(c->err, 0.1);
     CHECK_EQ(c->fit, 0.2);
     CHECK_EQ(c->size, 10);
-    CHECK_EQ(c->num, 20);
+    CHECK_EQ(c->num, 1);
     CHECK_EQ(c->exp, 50);
     CHECK_EQ(c->time, 100);
     CHECK_EQ(c->age, 100);
@@ -98,4 +98,5 @@ TEST_CASE("CLSET")
     /* Test clean up */
     xcsf_free(&xcsf);
     param_free(&xcsf);
+    free(json_str);
 }

@@ -17,7 +17,7 @@
  * @file cond_dgp_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2024.
  * @brief DGP condition tests.
  */
 
@@ -36,41 +36,40 @@ extern "C" {
 #include <string.h>
 }
 
-const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674, 0.3449376898,
-                      0.3677518467 };
-
-const double y[1] = { 0.9 };
-
 TEST_CASE("COND_DGP")
 {
     /* Test initialisation */
     struct XCSF xcsf;
-    struct Cl c1;
-    struct Cl c2;
     param_init(&xcsf, 5, 1, 1);
     param_set_random_state(&xcsf, 1);
-    xcsf_init(&xcsf);
     cond_param_set_type(&xcsf, COND_TYPE_DGP);
-    cl_init(&xcsf, &c1, 1, 1);
-    cl_init(&xcsf, &c2, 1, 1);
-    condition_set(&xcsf, &c1);
-    condition_set(&xcsf, &c2);
-    cond_dgp_init(&xcsf, &c1);
-    cond_dgp_init(&xcsf, &c2);
+    xcsf_init(&xcsf);
+
+    struct Cl *c1 = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, c1, 1, 1);
+    cl_rand(&xcsf, c1);
+
+    struct Cl *c2 = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, c2, 1, 1);
+    cl_rand(&xcsf, c2);
+
+    const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674,
+                          0.3449376898, 0.3677518467 };
+    const double y[1] = { 0.9 };
 
     /* Test covering */
-    cond_dgp_cover(&xcsf, &c2, x);
-    bool match = cond_dgp_match(&xcsf, &c2, x);
+    cond_dgp_cover(&xcsf, c2, x);
+    bool match = cond_dgp_match(&xcsf, c2, x);
     CHECK_EQ(match, true);
 
     /* Test update */
-    cond_dgp_update(&xcsf, &c1, x, y);
+    cond_dgp_update(&xcsf, c1, x, y);
 
     /* Test copy */
-    cond_dgp_free(&xcsf, &c2);
-    cond_dgp_copy(&xcsf, &c2, &c1);
-    struct CondDGP *src_cond = (struct CondDGP *) c1.cond;
-    struct CondDGP *dest_cond = (struct CondDGP *) c2.cond;
+    cond_dgp_free(&xcsf, c2);
+    cond_dgp_copy(&xcsf, c2, c1);
+    struct CondDGP *src_cond = (struct CondDGP *) c1->cond;
+    struct CondDGP *dest_cond = (struct CondDGP *) c2->cond;
     CHECK_EQ(dest_cond->dgp.n, src_cond->dgp.n);
     CHECK_EQ(dest_cond->dgp.klen, src_cond->dgp.klen);
     CHECK_EQ(dest_cond->dgp.max_t, src_cond->dgp.max_t);
@@ -88,28 +87,33 @@ TEST_CASE("COND_DGP")
                              src_cond->dgp.n));
 
     /* Test size */
-    CHECK_EQ(cond_dgp_size(&xcsf, &c1), src_cond->dgp.n);
+    CHECK_EQ(cond_dgp_size(&xcsf, c1), src_cond->dgp.n);
 
     /* Test crossover */
-    CHECK(!cond_dgp_crossover(&xcsf, &c1, &c2));
+    CHECK(!cond_dgp_crossover(&xcsf, c1, c2));
 
     /* Test general */
-    CHECK(!cond_dgp_general(&xcsf, &c1, &c2));
+    CHECK(!cond_dgp_general(&xcsf, c1, c2));
 
     /* Test mutation */
-    CHECK(cond_dgp_mutate(&xcsf, &c1));
+    CHECK(cond_dgp_mutate(&xcsf, c1));
     CHECK(!check_array_eq_int(dest_cond->dgp.connectivity,
                               src_cond->dgp.connectivity, src_cond->dgp.klen));
 
     /* Test import and export */
-    char *json_str = cond_dgp_json_export(&xcsf, &c1);
-    struct Cl new_cl;
-    cl_init(&xcsf, &new_cl, 1, 1);
-    cond_dgp_init(&xcsf, &new_cl);
+    char *json_str = cond_dgp_json_export(&xcsf, c1);
+
+    struct Cl *new_cl = (struct Cl *) malloc(sizeof(struct Cl));
+    cl_init(&xcsf, new_cl, 1, 1);
+    cl_rand(&xcsf, new_cl);
+
     cJSON *json = cJSON_Parse(json_str);
-    cond_dgp_json_import(&xcsf, &new_cl, json);
-    struct CondDGP *orig_cond = (struct CondDGP *) c1.cond;
-    struct CondDGP *new_cond = (struct CondDGP *) new_cl.cond;
+    cond_dgp_json_import(&xcsf, new_cl, json);
+    free(json_str);
+    cJSON_Delete(json);
+
+    struct CondDGP *orig_cond = (struct CondDGP *) c1->cond;
+    struct CondDGP *new_cond = (struct CondDGP *) new_cl->cond;
 
     CHECK_EQ(new_cond->dgp.n, orig_cond->dgp.n);
     CHECK_EQ(new_cond->dgp.klen, orig_cond->dgp.klen);
@@ -132,17 +136,24 @@ TEST_CASE("COND_DGP")
     json = cJSON_Parse(json_str);
     char *json_rtn = cond_dgp_param_json_import(&xcsf, json->child);
     CHECK(json_rtn == NULL);
+    free(json_str);
+    cJSON_Delete(json);
 
     /* Test serialization */
     FILE *fp = fopen("temp.bin", "wb");
-    size_t w = cond_dgp_save(&xcsf, &c1, fp);
+    size_t w = cond_dgp_save(&xcsf, c1, fp);
     fclose(fp);
+
+    cond_dgp_free(&xcsf, c2); // reuse c2
     fp = fopen("temp.bin", "rb");
-    size_t r = cond_dgp_load(&xcsf, &c2, fp);
+    size_t r = cond_dgp_load(&xcsf, c2, fp);
     CHECK_EQ(w, r);
     fclose(fp);
 
     /* Test clean up */
-    cond_dgp_free(&xcsf, &c1);
-    cond_dgp_free(&xcsf, &c2);
+    cl_free(&xcsf, c1);
+    cl_free(&xcsf, c2);
+    cl_free(&xcsf, new_cl);
+    xcsf_free(&xcsf);
+    param_free(&xcsf);
 }
