@@ -7,7 +7,7 @@ environment:
       Compiler: MinGW64-gcc-7.2.0
       BINDIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
       BUILD_TYPE: Release
-      PYTHON_DIR: C:\Python36-x64
+      PYTHON_DIR: C:\Python310-x64
       CMAKE_ARGS: -DPARALLEL=ON -DXCSF_PYLIB=ON -DENABLE_TESTS=ON
 
 before_build:
