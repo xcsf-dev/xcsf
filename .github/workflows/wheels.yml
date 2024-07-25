@@ -120,12 +120,11 @@ jobs:
       - name: Set MACOSX_DEPLOYMENT_TARGET
         if: runner.os == 'macOS'
         run: |
-          echo "MACOSX_DEPLOYMENT_TARGET=12.0" >> $GITHUB_ENV
-#          if [[ "${{ matrix.os }}" == "macos-12" ]]; then
-#            echo "MACOSX_DEPLOYMENT_TARGET=12.0" >> $GITHUB_ENV
-#          elif [[ "${{ matrix.os }}" == "macos-14" ]]; then
-#            echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
-#          fi
+          if [[ "${{ matrix.os }}" == "macos-12" ]]; then
+            echo "MACOSX_DEPLOYMENT_TARGET=12.0" >> $GITHUB_ENV
+          elif [[ "${{ matrix.os }}" == "macos-14" ]]; then
+            echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
+          fi
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.19.2
