@@ -32,7 +32,8 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 option(XCSF_MAIN "Build XCSF stand-alone main executable" ON)
 option(XCSF_PYLIB "Build XCSF Python library" OFF)
 option(PARALLEL "Parallel match set and prediction" ON)
-option(ENABLE_TESTS "Build unit tests" OFF)
+option(ENABLE_TESTS "Build standard unit tests" OFF)
+option(PYTEST "Build Python tests" OFF)
 option(NATIVE_OPT "Optimise for the native architecture" ON)
 option(ENABLE_DOXYGEN "Enable Building XCSF Documentation" ON)
 option(GEN_PROF "Generate profiling information" OFF)
@@ -174,6 +175,22 @@ if(XCSF_PYLIB)
   file(COPY ${PYTHON_EXAMPLES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
   file(COPY "xcsf/utils/" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/utils/)
   file(COPY "xcsf/__init__.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
+  if(PYTEST)
+    # Copy the Python tests
+    file(COPY "python/test/test_xcsf.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    # Execute pip to install test dependencies
+    execute_process(
+        COMMAND "${PYTHON_EXECUTABLE}" -m pip install pytest numpy scikit-learn
+    )
+    # Add pytest
+    add_test(NAME pytest COMMAND "${PYTHON_EXECUTABLE} -m pytest .")
+    add_custom_target(run_tests ALL
+        COMMAND pytest
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Running pytest..."
+    )
+    add_dependencies(run_tests xcsf)
+  endif()
 endif()
 
 if(ENABLE_DOXYGEN)
