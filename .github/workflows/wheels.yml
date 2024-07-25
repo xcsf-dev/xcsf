@@ -72,16 +72,16 @@ jobs:
           # MacOS arm64
           - os: macos-14
             python: "cp39"
-            platform_id: macosx_arm64
+            platform: macosx_arm64
           - os: macos-14
             python: "cp310"
-            platform_id: macosx_arm64
+            platform: macosx_arm64
           - os: macos-14
             python: "cp311"
-            platform_id: macosx_arm64
+            platform: macosx_arm64
           - os: macos-14
             python: "cp312"
-            platform_id: macosx_arm64
+            platform: macosx_arm64
 
 #          # Windows builds
 #          - os: windows-2019
