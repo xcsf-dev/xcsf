@@ -13,6 +13,62 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # manylinux builds
+          - os: ubuntu-20.04
+            python: "cp38"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp310"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp311"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "cp312"
+            platform: manylinux_x86_64
+
+          # manylinux pypy builds
+          - os: ubuntu-20.04
+            python: "pp38"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "pp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-20.04
+            python: "pp310"
+            platform: manylinux_x86_64
+
+          # MacOS builds - intel
+          - os: macos-12
+            python: "cp38"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "cp39"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "cp310"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "cp311"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "cp312"
+            platform: macosx_x86_64
+
+          # MacOS PyPy builds
+          - os: macos-12
+            python: "pp38"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "pp39"
+            platform: macosx_x86_64
+          - os: macos-12
+            python: "pp310"
+            platform: macosx_x86_64
+
           # MacOS arm64
           - os: macos-14
             python: "cp39"
@@ -26,6 +82,34 @@ jobs:
           - os: macos-14
             python: "cp312"
             platform: macosx_arm64
+
+          # Windows builds
+          - os: windows-2019
+            python: "cp38"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp39"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp310"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp311"
+            platform: win_amd64
+          - os: windows-2019
+            python: "cp312"
+            platform: win_amd64
+
+          # Windows PyPy builds
+          - os: windows-2019
+            python: "pp38"
+            platform: win_amd64
+          - os: windows-2019
+            python: "pp39"
+            platform: win_amd64
+          - os: windows-2019
+            python: "pp310"
+            platform: win_amd64
 
     steps:
       - name: Checkout xcsf
