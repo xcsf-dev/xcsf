@@ -117,6 +117,14 @@ jobs:
         with:
           submodules: true
 
+      - name: Set mac variables
+        run: |
+          if [[ "${{ matrix.os }}" == "macOS-12" ]]; then
+            echo "CIBW_ENVIRONMENT_MACOS=MACOSX_DEPLOYMENT_TARGET=12.0" >> $GITHUB_ENV
+          elif [[ "${{ matrix.os }}" == "macOS-14" ]]; then
+            echo "CIBW_ENVIRONMENT_MACOS=MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
+          fi
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.19.2
         env:
@@ -124,7 +132,7 @@ jobs:
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_BUILD_VERBOSITY: 3
-          CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET=12.0
+          CIBW_ENVIRONMENT_MACOS: ${{ env.CIBW_ENVIRONMENT_MACOS }}
 
       - uses: actions/upload-artifact@v4
         with:
