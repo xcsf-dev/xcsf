@@ -2,6 +2,7 @@
 
 Changes:
 *   Fix saving and loading DGP graphs from persistent storage ([#151](https://github.com/xcsf-dev/xcsf/pull/151))
+*   Add Python tests ([#149](https://github.com/xcsf-dev/xcsf/pull/149))
 
 ## Version 1.4.6 (Jul 21, 2024)
 
