@@ -1,5 +1,8 @@
 # Changelog
 
+Changes:
+*   Fix saving and loading DGP graphs from persistent storage ([#151](https://github.com/xcsf-dev/xcsf/pull/151))
+
 ## Version 1.4.6 (Jul 21, 2024)
 
 Changes:

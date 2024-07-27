@@ -17,7 +17,7 @@
  * @file dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2023.
+ * @date 2016--2024.
  * @brief An implementation of dynamical GP graphs with fuzzy activations.
  */
 
@@ -564,6 +564,7 @@ graph_save(const struct Graph *dgp, FILE *fp)
 {
     size_t s = 0;
     s += fwrite(&dgp->evolve_cycles, sizeof(bool), 1, fp);
+    s += fwrite(&dgp->n_inputs, sizeof(int), 1, fp);
     s += fwrite(&dgp->n, sizeof(int), 1, fp);
     s += fwrite(&dgp->t, sizeof(int), 1, fp);
     s += fwrite(&dgp->klen, sizeof(int), 1, fp);
@@ -588,6 +589,7 @@ graph_load(struct Graph *dgp, FILE *fp)
 {
     size_t s = 0;
     s += fread(&dgp->evolve_cycles, sizeof(bool), 1, fp);
+    s += fread(&dgp->n_inputs, sizeof(int), 1, fp);
     s += fread(&dgp->n, sizeof(int), 1, fp);
     s += fread(&dgp->t, sizeof(int), 1, fp);
     s += fread(&dgp->klen, sizeof(int), 1, fp);
