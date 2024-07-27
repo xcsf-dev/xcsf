@@ -22,19 +22,18 @@ from __future__ import annotations
 
 from collections import namedtuple
 
+import os
 import pickle
 import numpy as np
 import pytest
-from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.datasets import make_regression
 
 import xcsf
 
-# pylint: disable=redefined-outer-name,invalid-name
-
-PATH: str = "RES_PYTEST"
 SEED: int = 101
+PKL_FILENAME: str = "blah.pkl"
 
 Data = namedtuple(
     "Data",
@@ -42,23 +41,27 @@ Data = namedtuple(
 )
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def data() -> Data:
-    """Load test data."""
-    df = fetch_openml(data_id=189, as_frame=True, parser="auto")
-    x = np.asarray(df.data, dtype=np.float64)
-    y = np.asarray(df.target, dtype=np.float64)
+    """Load test regression data."""
+    X, y = make_regression(
+        n_samples=100,
+        n_features=5,
+        n_informative=5,
+        n_targets=1,
+        random_state=SEED,
+    )
 
-    feature_scaler = StandardScaler()
-    x = feature_scaler.fit_transform(x)
+    feature_scaler = MinMaxScaler(feature_range=(0, 1))
+    X = feature_scaler.fit_transform(X)
     if y.ndim == 1:
         y = y.reshape(-1, 1)
 
-    output_scaler = StandardScaler()
+    output_scaler = MinMaxScaler(feature_range=(0, 1))
     y = output_scaler.fit_transform(y)
 
     x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=0.1, random_state=SEED
+        X, y, test_size=0.1, random_state=SEED
     )
 
     x_train, x_val, y_train, y_val = train_test_split(
@@ -66,8 +69,8 @@ def data() -> Data:
     )
 
     return Data(
-        np.shape(x_train)[1],
-        np.shape(y_train)[1],
+        np.shape(X)[1],
+        np.shape(y)[1],
         x_train,
         y_train,
         x_val,
@@ -106,35 +109,47 @@ def conditions():
 @pytest.mark.parametrize("prediction", predictions())
 def test_deterministic_prediction(data, prediction):
     """Test deterministic prediction."""
+    # create model
     xcs = xcsf.XCS(
         x_dim=data.x_dim,
         y_dim=data.y_dim,
+        n_actions=1,
         pop_size=200,
         max_trials=1000,
         random_state=SEED,
         prediction=prediction,
     )
-    xcs.fit(data.x_train, data.y_train)
+
+    # fit model
+    xcs.fit(data.x_train, data.y_train, validation_data=(data.x_val, data.y_val))
+
+    # get predictions
     a: np.ndarray = xcs.predict(data.x_test)
+
+    # compare output shape
+    assert a.shape == data.y_test.shape
+
+    # compare subsequent calls to predict
     b: np.ndarray = xcs.predict(data.x_test)
     assert np.all(a == b)
 
 
 @pytest.mark.parametrize("condition", conditions())
 @pytest.mark.parametrize("prediction", predictions())
-def test_saving(data, condition, prediction):
+def test_serialization(data, condition, prediction):
     """Test saving and loading.
 
     Note:
     -----
     Calling `predict()` will modify internal parameters such as the current
-    prediction, matching state, etc., so we have make sure to perform
+    prediction, matching state, etc., so we have to make sure to perform
     comparisons before modification.
     """
     # create model
     xcs1 = xcsf.XCS(
         x_dim=data.x_dim,
         y_dim=data.y_dim,
+        n_actions=1,
         pop_size=20,
         max_trials=100,
         random_state=SEED,
@@ -143,15 +158,18 @@ def test_saving(data, condition, prediction):
     )
 
     # fit model
-    xcs1.fit(data.x_train, data.y_train)
+    xcs1.fit(data.x_train, data.y_train, validation_data=(data.x_val, data.y_val))
 
     # save with pickle
-    with open("blah.pkl", "wb") as fp:
+    with open(PKL_FILENAME, "wb") as fp:
         pickle.dump(xcs1, fp)
 
     # load from pickle
-    with open("blah.pkl", "rb") as fp:
+    with open(PKL_FILENAME, "rb") as fp:
         xcs2 = pickle.load(fp)
+
+    # compare loaded instance
+    assert isinstance(xcs2, xcsf.XCS)
 
     # compare parameters
     orig_params: dict = xcs1.internal_params()
@@ -167,3 +185,7 @@ def test_saving(data, condition, prediction):
     orig_pred: np.ndarray = xcs1.predict(data.x_test)
     new_pred: np.ndarray = xcs2.predict(data.x_test)
     assert np.all(orig_pred == new_pred)
+
+    # clean up
+    if os.path.exists(PKL_FILENAME):
+        os.remove(PKL_FILENAME)

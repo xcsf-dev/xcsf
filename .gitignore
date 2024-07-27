@@ -15,6 +15,7 @@
 *.log
 *.o
 *.opensdf
+*.pkl
 *.pyc
 *.pyd
 *.rar
