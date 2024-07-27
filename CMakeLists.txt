@@ -177,7 +177,7 @@ if(XCSF_PYLIB)
   file(COPY "xcsf/__init__.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
   if(PYTEST)
     # Copy the Python tests
-    file(COPY "python/test/test_xcsf.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    file(COPY "test/python/test_xcsf.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
     # Execute pip to install test dependencies
     execute_process(
         COMMAND "${PYTHON_EXECUTABLE}" -m pip install pytest numpy scikit-learn

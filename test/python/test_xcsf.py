@@ -77,17 +77,33 @@ def data() -> Data:
     )
 
 
-@pytest.mark.parametrize(
-    "prediction",
-    [
+def predictions():
+    """Return list of prediction args."""
+    return [
         {"type": "constant"},
         {"type": "nlms_linear"},
         {"type": "nlms_quadratic"},
         {"type": "rls_linear"},
         {"type": "rls_quadratic"},
         {"type": "neural"},
-    ],
-)
+    ]
+
+
+def conditions():
+    """Return list of condition args."""
+    return [
+        {"type": "dummy"},
+        {"type": "ternary"},
+        {"type": "hyperrectangle_ubr"},
+        {"type": "hyperrectangle_csr"},
+        {"type": "hyperellipsoid"},
+        {"type": "neural"},
+        {"type": "tree_gp"},
+        {"type": "dgp"},
+    ]
+
+
+@pytest.mark.parametrize("prediction", predictions())
 def test_deterministic_prediction(data, prediction):
     """Test deterministic prediction."""
     xcs = xcsf.XCS(
@@ -104,30 +120,8 @@ def test_deterministic_prediction(data, prediction):
     assert np.all(a == b)
 
 
-@pytest.mark.parametrize(
-    "condition",
-    [
-        {"type": "dummy"},
-        {"type": "ternary"},
-        {"type": "hyperrectangle_ubr"},
-        {"type": "hyperrectangle_csr"},
-        {"type": "hyperellipsoid"},
-        {"type": "neural"},
-        {"type": "tree_gp"},
-        {"type": "dgp"},
-    ],
-)
-@pytest.mark.parametrize(
-    "prediction",
-    [
-        {"type": "constant"},
-        {"type": "nlms_linear"},
-        {"type": "nlms_quadratic"},
-        {"type": "rls_linear"},
-        {"type": "rls_quadratic"},
-        {"type": "neural"},
-    ],
-)
+@pytest.mark.parametrize("condition", conditions())
+@pytest.mark.parametrize("prediction", predictions())
 def test_saving(data, condition, prediction):
     """Test saving and loading.
 
