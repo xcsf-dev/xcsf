@@ -621,6 +621,25 @@ clset_pset_save(const struct XCSF *xcsf, FILE *fp)
 }
 
 /**
+ * @brief Reverses the order of the population classifier list.
+ * @param [in] xcsf The XCSF data structure.
+ */
+static void
+clset_pset_reverse(struct XCSF *xcsf)
+{
+    struct Clist *current = xcsf->pset.list;
+    struct Clist *prev = NULL;
+    struct Clist *next = NULL;
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    xcsf->pset.list = prev;
+}
+
+/**
  * @brief Reads the population set from a file.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] fp Pointer to the file to be read.
@@ -640,6 +659,7 @@ clset_pset_load(struct XCSF *xcsf, FILE *fp)
         s += cl_load(xcsf, c, fp);
         clset_add(&xcsf->pset, c);
     }
+    clset_pset_reverse(xcsf); // reverse population list for consistency
     return s;
 }
 

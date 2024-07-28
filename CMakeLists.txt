@@ -32,7 +32,8 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 option(XCSF_MAIN "Build XCSF stand-alone main executable" ON)
 option(XCSF_PYLIB "Build XCSF Python library" OFF)
 option(PARALLEL "Parallel match set and prediction" ON)
-option(ENABLE_TESTS "Build unit tests" OFF)
+option(ENABLE_TESTS "Build standard unit tests" OFF)
+option(PYTEST "Build Python tests" OFF)
 option(NATIVE_OPT "Optimise for the native architecture" ON)
 option(ENABLE_DOXYGEN "Enable Building XCSF Documentation" ON)
 option(GEN_PROF "Generate profiling information" OFF)
@@ -174,6 +175,34 @@ if(XCSF_PYLIB)
   file(COPY ${PYTHON_EXAMPLES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
   file(COPY "xcsf/utils/" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/utils/)
   file(COPY "xcsf/__init__.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
+  if(PYTEST)
+    # Copy the Python tests
+    file(GLOB PYTHON_TESTS "test/python/*.py")
+    file(COPY ${PYTHON_TESTS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    # Create a virtual environment
+    set(VENV_DIR "${CMAKE_CURRENT_BINARY_DIR}/venv")
+    execute_process(COMMAND "${PYTHON_EXECUTABLE}" -m venv "${VENV_DIR}")
+    # Activate the virtual environment
+    if(WIN32)
+      set(PYTHON_EXEC "${VENV_DIR}/Scripts/python")
+    else()
+      set(PYTHON_EXEC "${VENV_DIR}/bin/python")
+    endif()
+    # Install dependencies
+    execute_process(
+      COMMAND "${PYTHON_EXEC}" -m pip install pytest numpy scikit-learn
+    )
+    # Add pytest to ctest (to capture CI failures)
+    add_test(NAME pytest COMMAND "${PYTHON_EXEC}" -m pytest .)
+    # Execute pytest at the end of building
+    add_custom_target(run_tests ALL
+      COMMAND "${PYTHON_EXEC}" -m pytest .
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      COMMENT "Running pytest..."
+    )
+    # Wait for XCSF to be built
+    add_dependencies(run_tests xcsf)
+  endif()
 endif()
 
 if(ENABLE_DOXYGEN)
