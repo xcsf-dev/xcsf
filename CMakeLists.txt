@@ -177,18 +177,30 @@ if(XCSF_PYLIB)
   file(COPY "xcsf/__init__.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/xcsf/)
   if(PYTEST)
     # Copy the Python tests
-    file(COPY "test/python/test_xcsf.py" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-    # Execute pip to install test dependencies
+    file(GLOB PYTHON_TESTS "test/python/*.py")
+    file(COPY ${PYTHON_TESTS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    # Create a virtual environment
+    set(VENV_DIR "${CMAKE_CURRENT_BINARY_DIR}/venv")
+    execute_process(COMMAND "${PYTHON_EXECUTABLE}" -m venv "${VENV_DIR}")
+    # Activate the virtual environment
+    if(WIN32)
+      set(PYTHON_EXEC "${VENV_DIR}/Scripts/python")
+    else()
+      set(PYTHON_EXEC "${VENV_DIR}/bin/python")
+    endif()
+    # Install dependencies
     execute_process(
-        COMMAND "${PYTHON_EXECUTABLE}" -m pip install pytest numpy scikit-learn
+      COMMAND "${PYTHON_EXEC}" -m pip install pytest numpy scikit-learn
     )
-    # Add pytest
-    add_test(NAME pytest COMMAND "${PYTHON_EXECUTABLE} -m pytest .")
+    # Add pytest to ctest (to capture CI failures)
+    add_test(NAME pytest COMMAND "${PYTHON_EXEC}" -m pytest .)
+    # Execute pytest at the end of building
     add_custom_target(run_tests ALL
-        COMMAND pytest
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Running pytest..."
+      COMMAND "${PYTHON_EXEC}" -m pytest .
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      COMMENT "Running pytest..."
     )
+    # Wait for XCSF to be built
     add_dependencies(run_tests xcsf)
   endif()
 endif()
