@@ -37,7 +37,7 @@
 
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 4; //!< XCSF minor version number
-static const int VERSION_BUILD = 6; //!< XCSF build version number
+static const int VERSION_BUILD = 7; //!< XCSF build version number
 
 /**
  * @brief Classifier data structure.
