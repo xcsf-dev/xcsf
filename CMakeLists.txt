@@ -147,6 +147,10 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g3")
 set(CMAKE_C_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+if(APPLE AND CMAKE_OSX_ARCHITECTURES MATCHES "arm64")
+  set(NATIVE_OPT OFF)  # don't use native optimisation on Apple Silicon
+endif()
+
 if(NATIVE_OPT)
   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
