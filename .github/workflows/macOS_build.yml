@@ -35,9 +35,6 @@ jobs:
           submodules: true
 
       - name: Configure
-        env:
-          CC: gcc-11
-          CXX: g++-11
         working-directory: build
         run: cmake ..
           -DCMAKE_BUILD_TYPE=Release
