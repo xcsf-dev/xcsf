@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['predneural_1703',['PredNeural',['../structPredNeural.html',1,'']]],
-  ['prednlms_1704',['PredNLMS',['../structPredNLMS.html',1,'']]],
-  ['predrls_1705',['PredRLS',['../structPredRLS.html',1,'']]],
-  ['predvtbl_1706',['PredVtbl',['../structPredVtbl.html',1,'']]]
+  ['predneural_1704',['PredNeural',['../structPredNeural.html',1,'']]],
+  ['prednlms_1705',['PredNLMS',['../structPredNLMS.html',1,'']]],
+  ['predrls_1706',['PredRLS',['../structPredRLS.html',1,'']]],
+  ['predvtbl_1707',['PredVtbl',['../structPredVtbl.html',1,'']]]
 ];

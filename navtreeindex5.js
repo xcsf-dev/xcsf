@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22":[3,0,55,3],
 "neural__activations_8c.html#a5ccdc55bfed79e093028c3670f3009fd":[3,0,55,5],
 "neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73":[3,0,55,2],
 "neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad":[3,0,55,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "neural__layer__connected_8c_source.html":[3,0,63],
 "neural__layer__connected_8h.html":[3,0,64],
 "neural__layer__connected_8h.html#a0c2eda24d755ec965930f84a35c25ce6":[3,0,64,14],
-"neural__layer__connected_8h.html#a19cca87ca818b59328b21d4f3d0e9a0e":[3,0,64,12],
-"neural__layer__connected_8h.html#a1d4a072908a0df8dcc9ff31add3fdcad":[3,0,64,1]
+"neural__layer__connected_8h.html#a19cca87ca818b59328b21d4f3d0e9a0e":[3,0,64,12]
 };

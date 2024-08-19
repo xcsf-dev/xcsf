@@ -23,6 +23,7 @@ var clset_8c =
     [ "clset_pset_init", "clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003", null ],
     [ "clset_pset_load", "clset_8c.html#af87479ea90c3c508352c4a89dae9fd08", null ],
     [ "clset_pset_never_match", "clset_8c.html#a7e9703db2e290a5b852b1112f52f4803", null ],
+    [ "clset_pset_reverse", "clset_8c.html#aec38f30724ac1a0890f90c18f4cd5b32", null ],
     [ "clset_pset_roulette", "clset_8c.html#a7ddb1248094ce9b41cf314b833798b29", null ],
     [ "clset_pset_save", "clset_8c.html#a980a17ddb59b83bfe0ef3068e03fca23", null ],
     [ "clset_set_times", "clset_8c.html#aae63a99d65c81ec1f83ae8a4ba8ac70a", null ],

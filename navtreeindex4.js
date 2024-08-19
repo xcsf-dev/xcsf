@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"functions_t.html":[2,3,0,19],
 "functions_u.html":[2,3,0,20],
 "functions_v.html":[2,3,0,21],
 "functions_vars.html":[2,3,2],
@@ -38,8 +39,8 @@ var NAVTREEINDEX4 =
 "globals_defs.html":[3,1,3],
 "globals_e.html":[3,1,0,4],
 "globals_f.html":[3,1,0,5],
-"globals_func.html":[3,1,1,0],
 "globals_func.html":[3,1,1],
+"globals_func.html":[3,1,1,0],
 "globals_func_b.html":[3,1,1,1],
 "globals_func_c.html":[3,1,1,2],
 "globals_func_e.html":[3,1,1,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "neural_8h.html#afab574137fbf9da9a286d020917c8295":[3,0,54,6],
 "neural_8h_source.html":[3,0,54],
 "neural__activations_8c.html":[3,0,55],
-"neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e":[3,0,55,0],
-"neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22":[3,0,55,3]
+"neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e":[3,0,55,0]
 };

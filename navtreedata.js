@@ -55,16 +55,16 @@ var NAVTREEINDEX =
 [
 "____init_____8py.html",
 "classXCS.html#a4555d7d2d0fe8ab79db5e94954a8cb83",
-"cond__ellipsoid_8h.html#aba3060a3a17ea68beee3503304fce73a",
-"condition_8h.html#af5a052e347755190271b32d8b09ec026",
-"functions_u.html",
-"neural__activations_8c.html#a5ccdc55bfed79e093028c3670f3009fd",
-"neural__layer__connected_8h.html#a24820ae41bc4e935996edadba071f3f3",
-"neural__layer__recurrent_8h.html#a8e1b101a764abf39a150df90177ee9ff",
-"pred__neural_8h.html#a56430e2cbd0ff78b7602723b62737009",
-"rule__neural_8c.html#a84980873859a0e16006ec98443eeeb25",
-"structGraph.html#a9a634d57f7a89c977fd6a0a8daaec1bf",
-"xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c"
+"cond__ellipsoid_8h.html#ab5e78cd23f1657136bd7577b0e20861f",
+"condition_8h.html#af22e6e5a357ef08e482555291cfc612b",
+"functions_t.html",
+"neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22",
+"neural__layer__connected_8h.html#a1d4a072908a0df8dcc9ff31add3fdcad",
+"neural__layer__recurrent_8h.html#a836f37ff8f65c52cc46135785a7ea8b5",
+"pred__neural_8h.html#a54585fad9ebe332fdcd02bf0042fc125",
+"rule__neural_8c.html#a82ccc0ab96dd509d8bd05b6e684d40fc",
+"structGraph.html#a94ea20dedd97ce4bd5042188791b423b",
+"xcs__supervised_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
