@@ -48,8 +48,8 @@ jobs:
 
       - name: Configure
         env:
-          CC: gcc-9
-          CXX: g++-9
+          CC: gcc-13
+          CXX: g++-13
         working-directory: build
         run: cmake ..
           -DCMAKE_BUILD_TYPE=Debug
