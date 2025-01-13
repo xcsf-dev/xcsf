@@ -53,9 +53,9 @@ jobs:
       - name: Generate coverage report
         run: |
           lcov --directory . --capture --output-file lcov.info
-          lcov --remove lcov.info '/usr/*' '*/extlib/*' '*/lib/*' '*/test/*' --output-file coverage.info
+          lcov --remove lcov.info '/usr/*' '*/lib/*' '*/test/*' --output-file coverage.info
           lcov --list coverage.info;
-          gcovr -r ./ -x > report.xml
+          gcovr --sonarqube coverage.xml -r ..
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
