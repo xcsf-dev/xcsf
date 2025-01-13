@@ -28,8 +28,8 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  CC: gcc-9
-  CXX: g++-9
+  CC: gcc-13
+  CXX: g++-13
 
 jobs:
   build:
