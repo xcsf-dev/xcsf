@@ -340,6 +340,14 @@ class XCS
         // access input
         const py::buffer_info buf_x = X.request();
         const py::buffer_info buf_y = Y.request();
+        // check array contiguity
+        // https://github.com/pybind/pybind11/discussions/4211#discussioncomment-3905115
+        const int C_CONTIGUOUS =
+            py::detail::npy_api::constants::NPY_ARRAY_C_CONTIGUOUS_;
+        if (!(C_CONTIGUOUS == (X.flags() & C_CONTIGUOUS)) ||
+            !(C_CONTIGUOUS == (Y.flags() & C_CONTIGUOUS))) {
+            throw std::invalid_argument("X and Y must be C-contiguous");
+        }
         // check input shape
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
             throw std::invalid_argument("X must be 1 or 2-D array");
@@ -584,6 +592,13 @@ class XCS
     predict(const py::array_t<double> X, const py::object &cover)
     {
         const py::buffer_info buf_x = X.request();
+        // check array contiguity
+        // https://github.com/pybind/pybind11/discussions/4211#discussioncomment-3905115
+        const int C_CONTIGUOUS =
+            py::detail::npy_api::constants::NPY_ARRAY_C_CONTIGUOUS_;
+        if (!(C_CONTIGUOUS == (X.flags() & C_CONTIGUOUS))) {
+            throw std::invalid_argument("X must be C-contiguous");
+        }
         if (buf_x.ndim < 1 || buf_x.ndim > 2) {
             throw std::invalid_argument("predict(): X must be 1 or 2-D array");
         }
