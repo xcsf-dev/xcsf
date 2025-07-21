@@ -20,18 +20,18 @@
 
 from __future__ import annotations
 
-from collections import namedtuple
-
 import json
+import numbers
 import os
 import pickle
-import numbers
+from collections import namedtuple
+from copy import deepcopy
+
 import numpy as np
 import pytest
-from copy import deepcopy
+from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.datasets import make_regression
 
 import xcsf
 
@@ -99,9 +99,8 @@ def dicts_equal(d1: dict, d2: dict) -> bool:
         if isinstance(value, dict):
             if not isinstance(d2[key], dict) or not dicts_equal(value, d2[key]):
                 return False
-        else:
-            if d2[key] != value:
-                return False
+        elif d2[key] != value:
+            return False
     return True
 
 
@@ -322,13 +321,15 @@ def _compare_dicts(d1, d2, path=""):
     return diffs
 
 
-def _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start):
-    N = 500
-    DX = 3
-    X = np.random.random((N, DX))
-    y = np.random.randn(N, 1)
+def _test_pop_replace(
+    tmp_path: str, pop_init: bool, clean: bool, fitinbetween: bool, warm_start: bool
+) -> bool:
+    n = 500
+    dx = 3
+    X = np.random.random((n, dx))
+    y = np.random.randn(n, 1)
 
-    xcs = xcsf.XCS(x_dim=DX, pop_size=5, max_trials=1000, pop_init=pop_init)
+    xcs = xcsf.XCS(x_dim=dx, pop_size=5, max_trials=1000, pop_init=pop_init)
     xcs.fit(X, y, verbose=False)
 
     # Initial, “too large” population.
@@ -342,7 +343,7 @@ def _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start):
     (tmp_path / "pset1.json").write_text(json1)
 
     if fitinbetween:
-        xcs.fit(X, y, warm_start=True, verbose=False)
+        xcs.fit(X, y, warm_start=warm_start, verbose=False)
 
     xcs.json_read(str(tmp_path / "pset1.json"), clean=clean)
 
@@ -354,18 +355,17 @@ def _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start):
 
     if len(list1) != len(list2):
         return False
-    else:
-        unequal = False
-        for cl1, cl2 in zip(list1, list2):
-            # If there is any difference, …
-            if _compare_dicts(cl1, cl2):
-                unequal = True
-                break
-        return not unequal
+    unequal = False
+    for cl1, cl2 in zip(list1, list2):
+        # If there is any difference, …
+        if _compare_dicts(cl1, cl2):
+            unequal = True
+            break
+    return not unequal
 
 
 @pytest.mark.parametrize(
-    "pop_init,clean,fitinbetween,warm_start",
+    ("pop_init", "clean", "fitinbetween", "warm_start"),
     [
         (False, True, False, False),
         (False, True, True, False),
@@ -375,9 +375,11 @@ def _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start):
         (True, True, True, True),
     ],
 )
-def test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start):
+def test_pop_replace(
+    tmp_path: str, pop_init: bool, clean: bool, fitinbetween: bool, warm_start: bool
+):
     for seed in range(19):
         np.random.seed(seed)
-        assert _test_pop_replace(
-            tmp_path, pop_init, clean, fitinbetween, warm_start
-        ), f"failed at seed {seed}"
+        assert _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start), (
+            f"failed at seed {seed}"
+        )

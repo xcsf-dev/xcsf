@@ -117,7 +117,7 @@ scores: deque[float] = deque(maxlen=N)  # used to calculate moving average
 
 
 def replay(replay_size: int = 5000) -> None:
-    """Performs experience replay updates"""
+    """Performs experience replay updates."""
     batch_size: int = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
     for state, action, reward, next_state, done in batch:
@@ -133,7 +133,7 @@ def replay(replay_size: int = 5000) -> None:
 
 
 def egreedy_action(state: np.ndarray) -> int:
-    """Selects an action using an epsilon greedy policy"""
+    """Selects an action using an epsilon greedy policy."""
     if np.random.rand() < epsilon:
         return random.randrange(N_ACTIONS)
     prediction_array = xcs.predict(state.reshape(1, -1))[0]
@@ -143,7 +143,7 @@ def egreedy_action(state: np.ndarray) -> int:
 
 
 def episode() -> tuple[float, int]:
-    """Executes a single episode, saving to memory buffer"""
+    """Executes a single episode, saving to memory buffer."""
     episode_score: float = 0
     episode_steps: int = 0
     state: np.ndarray = env.reset()[0]

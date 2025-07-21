@@ -283,7 +283,7 @@ def run_experiment(env: Maze) -> None:
     bar.close()
 
 
-def plot_performance(env: Maze):
+def plot_performance(env: Maze) -> None:
     """Plots learning performance."""
     plt.figure(figsize=(10, 6))
     plt.plot(trials, steps)
