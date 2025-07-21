@@ -943,8 +943,12 @@ class XCS
      * @param [in] filename Name of the input file.
      */
     void
-    json_read(const std::string &filename)
+    json_read(const std::string &filename, const bool clean)
     {
+        if (clean) {
+            clset_kill(&xcs, &xcs.pset);
+            clset_init(&xcs.pset);
+        }
         std::ifstream infile(filename);
         std::stringstream buffer;
         buffer << infile.rdbuf();
@@ -1105,7 +1109,7 @@ PYBIND11_MODULE(xcsf, m)
              py::arg("filename"))
         .def("json_read", &XCS::json_read,
              "Reads classifiers from a JSON file and adds to the population.",
-             py::arg("filename"))
+             py::arg("filename"), py::arg("clean") = true)
         .def("get_params", &XCS::get_params, py::arg("deep") = true,
              "Returns a dictionary of parameters and their values.")
         .def("set_params", &XCS::set_params, "Sets parameters.")
