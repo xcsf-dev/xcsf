@@ -1,5 +1,10 @@
 # Changelog
 
+Changes:
+*   Add checks for array contiguity ([#199](https://github.com/xcsf-dev/xcsf/pull/199))
+*   Add `clean` parameter to wipe existing population to `json_read` ([#202](https://github.com/xcsf-dev/xcsf/pull/202))
+*   Add Ruff linting and formatting for Python ([#196](https://github.com/xcsf-dev/xcsf/pull/196))
+
 ## Version 1.4.7 (Aug 19, 2024)
 
 Changes:
