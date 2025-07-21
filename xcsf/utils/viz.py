@@ -69,7 +69,7 @@ class TreeViz:
             if start == "feature" and int(end) < len(self.feature_names):
                 return self.feature_names[int(end)]
         elif isinstance(symbol, float):
-            return "%.5f" % symbol
+            return f"{symbol:.5f}"
         return str(symbol)
 
     def read_function(self) -> str:
@@ -132,8 +132,8 @@ class DGPViz:
         self.gviz = graphviz.Digraph("G", filename=filename + ".gv")
         self.draw()
         label: str = "" if note is None else note
-        label += "\nN = %d\n" % graph["n"]
-        label += "T = %d\n" % graph["t"]
+        label += "\nN = {graph['n']}\n"
+        label += f"T = {graph['t']}\n"
         label += "match node shaded\n"
         self.gviz.attr(label=label)
         self.gviz.view()
@@ -145,7 +145,7 @@ class DGPViz:
             if start == "feature" and int(end) < len(self.feature_names):
                 return self.feature_names[int(end)]
         elif isinstance(symbol, float):
-            return "%.5f" % symbol
+            return f"{symbol:.5f}"
         return str(symbol)
 
     def draw(self) -> None:
@@ -157,7 +157,7 @@ class DGPViz:
             for j in range(n_inputs):
                 src = self.connectivity[(i * self.k) + j]
                 if src < self.n_inputs:
-                    feature = "feature_%d" % src
+                    feature = f"feature_{src}"
                     self.gviz.node(feature, label=self.label(feature), shape="square")
                     self.gviz.edge(feature, str(i))
                 else:

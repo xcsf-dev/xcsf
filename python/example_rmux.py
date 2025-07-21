@@ -101,13 +101,12 @@ class Mux:
                     reward += 0.1
             else:
                 reward = self.max_payoff
+        elif self.payoff_map:
+            reward = (pos - self.pos_bits) * 0.2
+            if answer == 1:
+                reward += 0.1
         else:
-            if self.payoff_map:
-                reward = (pos - self.pos_bits) * 0.2
-                if answer == 1:
-                    reward += 0.1
-            else:
-                reward = 0
+            reward = 0
         return correct, reward
 
 
