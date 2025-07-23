@@ -649,8 +649,15 @@ class XCS
     py::bytes
     serialize() const
     {
-        // Write XCSF to a temporary binary file
-        const char *filename = "_tmp_pickle.bin";
+        // Create a unique temporary file in /tmp. The file name is made unique
+        // in place by mkstemp.
+        char filename[] = "/tmp/xcsf_pickle_XXXXXX";
+        int fd = mkstemp(filename);
+        if (fd == -1) {
+            throw std::runtime_error("Failed to create temporary file in serialize");
+        }
+        close(fd);
+
         xcsf_save(&xcs, filename);
         // Read the binary file into bytes
         std::ifstream file(filename, std::ios::binary);
@@ -673,8 +680,16 @@ class XCS
     static XCS
     deserialize(const py::bytes &state)
     {
-        // Write the XCSF bytes to a temporary binary file
-        const char *filename = "_tmp_pickle.bin";
+        // Create a unique temporary file in /tmp. The file name is made unique
+        // in place by mkstemp.
+        char filename[] = "/tmp/xcsf_pickle_XXXXXX";
+        int fd = mkstemp(filename);
+        if (fd == -1) {
+            throw std::runtime_error("Failed to create temporary file in deserialize");
+        }
+        close(fd);
+
+        // Write the XCSF bytes to the temporary file.
         std::ofstream file(filename, std::ios::binary);
         file.write(state.cast<std::string>().c_str(),
                    state.cast<std::string>().size());
