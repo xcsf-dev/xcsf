@@ -380,6 +380,47 @@ def test_pop_replace(
 ):
     for seed in range(19):
         np.random.seed(seed)
-        assert _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start), (
-            f"failed at seed {seed}"
-        )
+        assert _test_pop_replace(
+            tmp_path, pop_init, clean, fitinbetween, warm_start
+        ), f"failed at seed {seed}"
+
+
+def test_pop_replace_empty(tmp_path):
+    # Init'ing the pop and overwriting it with an empty one using the clean
+    # option should result in an empty pop.
+    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=True)
+
+    assert xcs.pset_size() == 100
+
+    jsonpop = {"classifiers": []}
+    fpath = tmp_path / "pset1.json"
+    fpath.write_text(json.dumps(jsonpop))
+    xcs.json_read(str(fpath), clean=True)
+
+    assert xcs.pset_size() == 0
+
+    # Not init'ing the pop and overwriting it with an empty one using the clean
+    # option should keep the pop empty.
+    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=False)
+
+    assert xcs.pset_size() == 0
+
+    jsonpop = {"classifiers": []}
+    fpath = tmp_path / "pset1.json"
+    fpath.write_text(json.dumps(jsonpop))
+    xcs.json_read(str(fpath), clean=True)
+
+    assert xcs.pset_size() == 0
+
+    # Init'ing the pop and overwriting it with an empty one but without using
+    # the clean option should not empty the pop.
+    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=True)
+
+    assert xcs.pset_size() == 100
+
+    jsonpop = {"classifiers": []}
+    fpath = tmp_path / "pset1.json"
+    fpath.write_text(json.dumps(jsonpop))
+    xcs.json_read(str(fpath), clean=False)
+
+    assert xcs.pset_size() == 100

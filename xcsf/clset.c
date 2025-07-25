@@ -799,13 +799,15 @@ clset_json_insert(struct XCSF *xcsf, const char *json_str)
     utils_json_parse_check(json);
     if (json->child != NULL && cJSON_IsArray(json->child)) {
         cJSON *tail = json->child->child; // insert inverted for consistency
-        tail->prev = NULL; // this should have been set by cJSON!
-        while (tail->next != NULL) {
-            tail = tail->next;
-        }
-        while (tail != NULL) {
-            clset_json_insert_cl(xcsf, tail);
-            tail = tail->prev;
+        if (tail != NULL) {
+            tail->prev = NULL; // this should have been set by cJSON!
+            while (tail->next != NULL) {
+                tail = tail->next;
+            }
+            while (tail != NULL) {
+                clset_json_insert_cl(xcsf, tail);
+                tail = tail->prev;
+            }
         }
     }
     cJSON_Delete(json);
