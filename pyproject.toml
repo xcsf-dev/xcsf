@@ -1,6 +1,64 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "xcsf"
+version = "1.4.7"
+description = "XCSF learning classifier system: rule-based evolutionary machine learning"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "GPL-3.0"}
+maintainers = [
+    {name = "Richard Preen", email = "rpreen@gmail.com"}
+]
+keywords = [
+    "divide and conquer",
+    "evolutionary algorithm",
+    "genetic programming",
+    "learning classifier system",
+    "least squares",
+    "machine learning",
+    "neural networks",
+    "neuroevolution",
+    "reinforcement learning",
+    "rule-based",
+    "supervised learning",
+    "stochastic gradient descent",
+    "XCS",
+    "XCSF ",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: C",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11 ]",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/xcsf-dev/xcsf"
+"Changelog" = "https://github.com/xcsf-dev/xcsf/CHANGELOG.md"
+"Documentation" = "https://github.com/xcsf-dev/xcsf/wiki"
+"Bug Tracker" = "https://github.com/xcsf-dev/xcsf/issues"
+"Discussions" = "https://github.com/xcsf-dev/xcsf/discussions"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+packages = {find = {exclude = ["build*", "cfg*", "doc*", "python*", "test*"]}}
 
 [tool.ruff]
 indent-width = 4
