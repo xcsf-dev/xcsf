@@ -5,7 +5,8 @@ Changes:
 *   Add `clean` parameter to wipe existing population to `json_read` ([#202](https://github.com/xcsf-dev/xcsf/pull/202))
 *   Add Ruff linting and formatting for Python ([#196](https://github.com/xcsf-dev/xcsf/pull/196))
 *   Fix Python `json_read` crashing when the new population is empty ([#205](https://github.com/xcsf-dev/xcsf/pull/205))
-*   Reduce `max_trials` in Python tests for speed
+*   Reduce `max_trials` in Python tests for speed ([#206](https://github.com/xcsf-dev/xcsf/pull/206))
+*   Update Python packaging: move `setup.cfg` metadata to `pyproject.toml` ([#207](https://github.com/xcsf-dev/xcsf/pull/207))
 
 ## Version 1.4.7 (Aug 19, 2024)
 

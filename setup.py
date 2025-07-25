@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# Copyright (C) 2021--2024 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2021--2025 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import platform
 import subprocess
 import sys
 
-from setuptools import Extension, find_packages, setup
+from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
 
 
@@ -78,7 +78,6 @@ class CMakeBuild(build_ext):
 
 
 setup(
-    packages=find_packages(),
     ext_modules=[CMakeExtension("xcsf/xcsf")],
     cmdclass={"build_ext": CMakeBuild},
 )
