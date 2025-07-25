@@ -380,9 +380,9 @@ def test_pop_replace(
 ):
     for seed in range(19):
         np.random.seed(seed)
-        assert _test_pop_replace(
-            tmp_path, pop_init, clean, fitinbetween, warm_start
-        ), f"failed at seed {seed}"
+        assert _test_pop_replace(tmp_path, pop_init, clean, fitinbetween, warm_start), (
+            f"failed at seed {seed}"
+        )
 
 
 def test_pop_replace_empty(tmp_path):
