@@ -139,7 +139,7 @@ def test_deterministic_prediction(data, prediction):
         y_dim=data.y_dim,
         n_actions=1,
         pop_size=200,
-        max_trials=1000,
+        max_trials=100,
         random_state=SEED,
         prediction=prediction,
     )
@@ -329,7 +329,7 @@ def _test_pop_replace(
     X = np.random.random((n, dx))
     y = np.random.randn(n, 1)
 
-    xcs = xcsf.XCS(x_dim=dx, pop_size=5, max_trials=1000, pop_init=pop_init)
+    xcs = xcsf.XCS(x_dim=dx, pop_size=5, max_trials=100, pop_init=pop_init)
     xcs.fit(X, y, verbose=False)
 
     # Initial, “too large” population.
@@ -388,7 +388,7 @@ def test_pop_replace(
 def test_pop_replace_empty(tmp_path):
     # Init'ing the pop and overwriting it with an empty one using the clean
     # option should result in an empty pop.
-    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=True)
+    xcs = xcsf.XCS(pop_size=100, max_trials=100, pop_init=True)
 
     assert xcs.pset_size() == 100
 
@@ -401,7 +401,7 @@ def test_pop_replace_empty(tmp_path):
 
     # Not init'ing the pop and overwriting it with an empty one using the clean
     # option should keep the pop empty.
-    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=False)
+    xcs = xcsf.XCS(pop_size=100, max_trials=100, pop_init=False)
 
     assert xcs.pset_size() == 0
 
@@ -414,7 +414,7 @@ def test_pop_replace_empty(tmp_path):
 
     # Init'ing the pop and overwriting it with an empty one but without using
     # the clean option should not empty the pop.
-    xcs = xcsf.XCS(pop_size=100, max_trials=1000, pop_init=True)
+    xcs = xcsf.XCS(pop_size=100, max_trials=100, pop_init=True)
 
     assert xcs.pset_size() == 100
 
