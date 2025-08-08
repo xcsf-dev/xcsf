@@ -654,7 +654,8 @@ class XCS
         char filename[] = "/tmp/xcsf_pickle_XXXXXX";
         int fd = mkstemp(filename);
         if (fd == -1) {
-            throw std::runtime_error("Failed to create temporary file in serialize");
+            throw std::runtime_error(
+                "Failed to create temporary file in serialize");
         }
         close(fd);
 
@@ -685,7 +686,8 @@ class XCS
         char filename[] = "/tmp/xcsf_pickle_XXXXXX";
         int fd = mkstemp(filename);
         if (fd == -1) {
-            throw std::runtime_error("Failed to create temporary file in deserialize");
+            throw std::runtime_error(
+                "Failed to create temporary file in deserialize");
         }
         close(fd);
 
