@@ -841,7 +841,7 @@ class XCS
         // map None types
         if (params.contains("random_state")) {
             py::object rs = params["random_state"];
-            if (py::isinstance<py::int_>(rs) && py::int_(rs) < 0) {
+            if (py::isinstance<py::int_>(rs) && rs.cast<long long>() < 0) {
                 params["random_state"] = py::none();
             }
         }
