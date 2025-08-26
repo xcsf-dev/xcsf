@@ -37,17 +37,6 @@ jobs:
             python: "cp314"
             platform: manylinux_x86_64
 
-          # manylinux pypy builds
-          - os: ubuntu-latest
-            python: "pp39"
-            platform: manylinux_x86_64
-          - os: ubuntu-latest
-            python: "pp310"
-            platform: manylinux_x86_64
-          - os: ubuntu-latest
-            python: "pp311"
-            platform: manylinux_x86_64
-
           # MacOS builds - intel
           - os: macos-13
             python: "cp39"
@@ -66,17 +55,6 @@ jobs:
             platform: macosx_x86_64
           - os: macos-13
             python: "cp314"
-            platform: macosx_x86_64
-
-          # MacOS PyPy builds
-          - os: macos-13
-            python: "pp39"
-            platform: macosx_x86_64
-          - os: macos-13
-            python: "pp310"
-            platform: macosx_x86_64
-          - os: macos-13
-            python: "pp311"
             platform: macosx_x86_64
 
           # MacOS arm64
@@ -117,17 +95,6 @@ jobs:
             platform: win_amd64
           - os: windows-latest
             python: "cp314"
-            platform: win_amd64
-
-          # Windows PyPy builds
-          - os: windows-latest
-            python: "pp39"
-            platform: win_amd64
-          - os: windows-latest
-            python: "pp310"
-            platform: win_amd64
-          - os: windows-latest
-            python: "pp311"
             platform: win_amd64
 
     steps:

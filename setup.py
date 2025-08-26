@@ -79,7 +79,8 @@ class CMakeBuild(build_ext):
             openmp_root = self._get_openmp_root()
             if openmp_root:
                 cmake_args += ["-DOpenMP_ROOT=" + openmp_root]
-                os.environ["LDFLAGS"] = os.environ.get("LDFLAGS", "") + f" -L{os.path.join(openmp_root, 'lib')}"
+                os.environ["LDFLAGS"] = os.environ.get("LDFLAGS", "") + \
+                    f" -L{os.path.join(openmp_root, 'lib')}"
 
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
