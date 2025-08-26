@@ -38,21 +38,6 @@ class CMakeExtension(Extension):
 class CMakeBuild(build_ext):
     """Build CMake extension."""
 
-    def _get_openmp_root(self):
-        """Get OpenMP root path on macOS."""
-        if platform.system() == "Darwin":
-            try:  # Try Homebrew first
-                return subprocess.check_output(
-                    ["brew", "--prefix", "libomp"], text=True
-                ).strip()
-            except (subprocess.CalledProcessError, FileNotFoundError):
-                # Try common system paths
-                for path in ["/usr/local", "/opt/homebrew"]:
-                    if os.path.exists(f"{path}/lib/libomp.dylib"):
-                        return path
-        return None
-
-
     def build_extension(self, ext):
         self.announce("Configuring CMake project", level=3)
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
@@ -73,11 +58,6 @@ class CMakeBuild(build_ext):
             "--config",
             "Release",
         ]
-
-        if platform.system() == "Darwin":
-            openmp_root = self._get_openmp_root()
-            if openmp_root:
-                cmake_args.append(f"-DOpenMP_ROOT={openmp_root}")
 
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]

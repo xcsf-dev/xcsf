@@ -35,8 +35,10 @@ jobs:
           submodules: true
 
       - name: Install OpenMP
-        run: brew install libomp
-
+        run: |
+          brew install libomp
+          export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
+          export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
       - name: Configure
         working-directory: build
         run: cmake ..
