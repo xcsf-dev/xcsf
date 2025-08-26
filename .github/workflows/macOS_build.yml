@@ -34,7 +34,7 @@ jobs:
         with:
           submodules: true
 
-      - name: Install OpenMP
+      - name: Install Dependencies
         run: |
           brew install libomp
           OPENMP_PREFIX=$(brew --prefix)/opt/libomp

@@ -8,7 +8,7 @@ version = "1.4.7"
 description = "XCSF learning classifier system: rule-based evolutionary machine learning"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "GPL-3.0"}
+license = "GPL-3.0-or-later"
 maintainers = [
     {name = "Richard Preen", email = "rpreen@gmail.com"}
 ]
@@ -32,7 +32,6 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: C",
     "Programming Language :: C++",
     "Programming Language :: Python :: 3.9",

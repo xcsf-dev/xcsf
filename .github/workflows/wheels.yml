@@ -3,7 +3,11 @@
 
 name: Wheel builder
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  release:
+    types:
+    - published
 
 jobs:
   build_wheels:
@@ -14,53 +18,43 @@ jobs:
       matrix:
         include:
           # manylinux builds
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             python: "cp39"
             platform: manylinux_x86_64
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             python: "cp310"
             platform: manylinux_x86_64
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             python: "cp311"
             platform: manylinux_x86_64
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             python: "cp312"
             platform: manylinux_x86_64
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             python: "cp313"
             platform: manylinux_x86_64
-
-          # manylinux pypy builds
-          - os: ubuntu-20.04
-            python: "pp39"
-            platform: manylinux_x86_64
-          - os: ubuntu-20.04
-            python: "pp310"
+          - os: ubuntu-latest
+            python: "cp314"
             platform: manylinux_x86_64
 
           # MacOS builds - intel
-          - os: macos-12
+          - os: macos-13
             python: "cp39"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-13
             python: "cp310"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-13
             python: "cp311"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-13
             python: "cp312"
             platform: macosx_x86_64
-          - os: macos-12
+          - os: macos-13
             python: "cp313"
             platform: macosx_x86_64
-
-          # MacOS PyPy builds
-          - os: macos-12
-            python: "pp39"
-            platform: macosx_x86_64
-          - os: macos-12
-            python: "pp310"
+          - os: macos-13
+            python: "cp314"
             platform: macosx_x86_64
 
           # MacOS arm64
@@ -79,30 +73,28 @@ jobs:
           - os: macos-14
             python: "cp313"
             platform: macosx_arm64
+          - os: macos-14
+            python: "cp314"
+            platform: macosx_arm64
 
           # Windows builds
-          - os: windows-2019
+          - os: windows-latest
             python: "cp39"
             platform: win_amd64
-          - os: windows-2019
+          - os: windows-latest
             python: "cp310"
             platform: win_amd64
-          - os: windows-2019
+          - os: windows-latest
             python: "cp311"
             platform: win_amd64
-          - os: windows-2019
+          - os: windows-latest
             python: "cp312"
             platform: win_amd64
-          - os: windows-2019
+          - os: windows-latest
             python: "cp313"
             platform: win_amd64
-
-          # Windows PyPy builds
-          - os: windows-2019
-            python: "pp39"
-            platform: win_amd64
-          - os: windows-2019
-            python: "pp310"
+          - os: windows-latest
+            python: "cp314"
             platform: win_amd64
 
     steps:
@@ -111,11 +103,12 @@ jobs:
         with:
           submodules: true
 
-      - name: Set MACOSX_DEPLOYMENT_TARGET
+      - name: macOS Configuration
         if: runner.os == 'macOS'
         run: |
-          if [[ "${{ matrix.os }}" == "macos-12" ]]; then
-            echo "MACOSX_DEPLOYMENT_TARGET=12.0" >> $GITHUB_ENV
+          brew install libomp
+          if [[ "${{ matrix.os }}" == "macos-13" ]]; then
+            echo "MACOSX_DEPLOYMENT_TARGET=13.0" >> $GITHUB_ENV
           elif [[ "${{ matrix.os }}" == "macos-14" ]]; then
             echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
           fi
@@ -123,7 +116,6 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.1.2
         env:
-          CIBW_BEFORE_ALL_MACOS: CC=gcc-12 CXX=g++-12
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_BUILD_VERBOSITY: 3
@@ -153,7 +145,7 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
-    # if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published'
     needs: [build_wheels, build_sdist]
     environment:
       name: pypi
