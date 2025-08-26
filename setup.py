@@ -60,6 +60,7 @@ class CMakeBuild(build_ext):
             extdir += os.path.sep
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
+
         cmake_args = [
             f"-DPYTHON_EXECUTABLE={sys.executable}",
             "-DCMAKE_BUILD_TYPE=Release",
@@ -68,10 +69,7 @@ class CMakeBuild(build_ext):
             "-DENABLE_DOXYGEN=OFF",
             "-DNATIVE_OPT=OFF",
         ]
-        build_args = [
-            "--config",
-            "Release",
-        ]
+        build_args = [ "--config", "Release" ]
 
         if platform.system() == "Darwin":
             openmp_root = self._get_openmp_root()
@@ -81,11 +79,14 @@ class CMakeBuild(build_ext):
                     f" -L{os.path.join(openmp_root, 'lib')}"
 
         if platform.system() == "Windows":
+            cmake_args += ["-DCMAKE_C_COMPILER=gcc"]
+            cmake_args += ["-DCMAKE_CXX_COMPILER=g++"]
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
             cmake_args += ["-GMinGW Makefiles"]
         else:
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + extdir]
             build_args += ["-j4"]
+
         subprocess.check_call(
             ["cmake", ext.sourcedir] + cmake_args, cwd=self.build_temp
         )
