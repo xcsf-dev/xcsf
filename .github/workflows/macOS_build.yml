@@ -34,6 +34,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Install libomp
+        run: brew install libomp
+
       - name: Configure
         env:
           CC: gcc-12
