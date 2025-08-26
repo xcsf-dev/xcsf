@@ -35,7 +35,11 @@ jobs:
           submodules: true
 
       - name: Install OpenMP
-        run: brew install libomp
+        run: |
+          brew install libomp
+          OPENMP_PREFIX=$(brew --prefix)/opt/libomp
+          echo "OpenMP_ROOT=$OPENMP_PREFIX" >> $GITHUB_ENV
+          echo "LDFLAGS=$LDFLAGS -L$OPENMP_PREFIX/lib" >> $GITHUB_ENV
 
       - name: Configure
         working-directory: build

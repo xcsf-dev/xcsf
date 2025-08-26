@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019--2025 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2024 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software

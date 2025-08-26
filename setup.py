@@ -28,7 +28,7 @@ from setuptools.command.build_ext import build_ext
 
 
 class CMakeExtension(Extension):
-    """Create a CMake extension module."""
+    """Creates a CMake extension module."""
 
     def __init__(self, name, sourcedir=""):
         Extension.__init__(self, name, sources=[])
@@ -36,22 +36,7 @@ class CMakeExtension(Extension):
 
 
 class CMakeBuild(build_ext):
-    """Build CMake extension."""
-
-    def _get_openmp_root(self):
-        """Get OpenMP root path on macOS."""
-        if platform.system() == "Darwin":
-            try:  # Try Homebrew first
-                return subprocess.check_output(
-                    ["brew", "--prefix", "libomp"], text=True
-                ).strip()
-            except (subprocess.CalledProcessError, FileNotFoundError):
-                # Try common system paths
-                for path in ["/usr/local", "/opt/homebrew"]:
-                    if os.path.exists(f"{path}/lib/libomp.dylib"):
-                        return path
-        return None
-
+    """Builds CMake extension."""
 
     def build_extension(self, ext):
         self.announce("Configuring CMake project", level=3)
@@ -60,10 +45,11 @@ class CMakeBuild(build_ext):
             extdir += os.path.sep
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
-
         cmake_args = [
             f"-DPYTHON_EXECUTABLE={sys.executable}",
             "-DCMAKE_BUILD_TYPE=Release",
+            "-DCMAKE_C_COMPILER=gcc",
+            "-DCMAKE_CXX_COMPILER=g++",
             "-DXCSF_MAIN=OFF",
             "-DXCSF_PYLIB=ON",
             "-DENABLE_DOXYGEN=OFF",
@@ -73,21 +59,15 @@ class CMakeBuild(build_ext):
             "--config",
             "Release",
         ]
-
-        if platform.system() == "Darwin":
-            openmp_root = self._get_openmp_root()
-            if openmp_root:
-                os.environ["OpenMP_ROOT"] = f"{openmp_root}"
-                ldflags = os.environ.get("LDFLAGS", "")
-                os.environ["LDFLAGS"] = f"{ldflags} -L{openmp_root}/lib"
-
+        if platform.system() == "Darwin":  # set to force CI to use GCC
+            cmake_args[2] = "-DCMAKE_C_COMPILER=gcc-12"
+            cmake_args[3] = "-DCMAKE_CXX_COMPILER=g++-12"
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
             cmake_args += ["-GMinGW Makefiles"]
         else:
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + extdir]
             build_args += ["-j4"]
-
         subprocess.check_call(
             ["cmake", ext.sourcedir] + cmake_args, cwd=self.build_temp
         )
