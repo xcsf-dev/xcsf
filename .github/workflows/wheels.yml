@@ -16,7 +16,119 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-13, macos-14, windows-latest]
+        include:
+          # manylinux builds
+          - os: ubuntu-latest
+            python: "cp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp310"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp311"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp312"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp313"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp314"
+            platform: manylinux_x86_64
+
+          # manylinux pypy builds
+          - os: ubuntu-latest
+            python: "pp39"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "pp310"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "pp311"
+            platform: manylinux_x86_64
+
+          # MacOS builds - intel
+          - os: macos-13
+            python: "cp39"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp310"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp311"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp312"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp313"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp314"
+            platform: macosx_x86_64
+
+          # MacOS PyPy builds
+          - os: macos-13
+            python: "pp39"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "pp310"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "pp311"
+            platform: macosx_x86_64
+
+          # MacOS arm64
+          - os: macos-14
+            python: "cp39"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp310"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp311"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp312"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp313"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp314"
+            platform: macosx_arm64
+
+          # Windows builds
+          - os: windows-latest
+            python: "cp39"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp310"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp311"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp312"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp313"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp314"
+            platform: win_amd64
+
+          # Windows PyPy builds
+          - os: windows-latest
+            python: "pp39"
+            platform: win_amd64
+          - os: windows-latest
+            python: "pp310"
+            platform: win_amd64
+          - os: windows-latest
+            python: "pp311"
+            platform: win_amd64
 
     steps:
       - name: Checkout xcsf
