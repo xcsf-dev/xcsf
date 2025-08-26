@@ -9,6 +9,7 @@ Changes:
 *   Update Python packaging: move `setup.cfg` metadata to `pyproject.toml` ([#207](https://github.com/xcsf-dev/xcsf/pull/207))
 *   Fix macOS building with AppleClang ([#210](https://github.com/xcsf-dev/xcsf/pull/210))
 *   Add support for Python 3.14 ([#211](https://github.com/xcsf-dev/xcsf/pull/211))
+*   Update pybind11 to v3.0.1 and doctest to v2.4.12 ([#212](https://github.com/xcsf-dev/xcsf/pull/212))
 
 ## Version 1.4.7 (Aug 19, 2024)
 
