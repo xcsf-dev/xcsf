@@ -3,7 +3,11 @@
 
 name: Wheel builder
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  release:
+    types:
+    - published
 
 jobs:
   build_wheels:
@@ -153,7 +157,7 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
-    # if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release' && github.event.action == 'published'
     needs: [build_wheels, build_sdist]
     environment:
       name: pypi
