@@ -129,7 +129,10 @@ if(PARALLEL)
     find_path(OpenMP_INCLUDE_DIR omp.h HINTS ${OpenMP_ROOT}/include)
   endif()
 
-  find_package(OpenMP REQUIRED)
+  if(NOT OpenMP_FOUND)
+    find_package(OpenMP REQUIRED)
+  endif()
+
   if(OpenMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL_MATCH")
