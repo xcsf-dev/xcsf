@@ -140,9 +140,6 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew install libomp
-          OPENMP_PREFIX=$(brew --prefix)/opt/libomp
-          echo "OpenMP_ROOT=$OPENMP_PREFIX" >> $GITHUB_ENV
-          echo "LDFLAGS=$LDFLAGS -L$OPENMP_PREFIX/lib" >> $GITHUB_ENV
           if [[ "${{ matrix.os }}" == "macos-13" ]]; then
             echo "MACOSX_DEPLOYMENT_TARGET=13.0" >> $GITHUB_ENV
           elif [[ "${{ matrix.os }}" == "macos-14" ]]; then
@@ -152,6 +149,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.1.2
         env:
+          CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_BUILD_VERBOSITY: 3
           CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET=${{ env.MACOSX_DEPLOYMENT_TARGET }}
