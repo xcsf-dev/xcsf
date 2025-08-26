@@ -51,7 +51,7 @@ repos:
       - id: cmake-format
         args: ["--line-width=90"]
       - id: cmake-lint
-        args: ["--line-width=90"]
+        args: ["--line-width=90 --disabled_codes=C0103"]
 
   # Ruff, the Python auto-correcting linter/formatter written in Rust
   - repo: https://github.com/astral-sh/ruff-pre-commit

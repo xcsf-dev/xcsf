@@ -34,9 +34,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Install libomp
-        run: brew install libomp
-
       - name: Configure
         working-directory: build
         run: cmake ..

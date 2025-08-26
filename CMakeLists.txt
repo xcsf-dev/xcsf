@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019--2024 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2025 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -120,6 +120,15 @@ if(ENABLE_TESTS)
 endif()
 
 if(PARALLEL)
+  if(APPLE AND OpenMP_ROOT)
+    set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp")
+    set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp")
+    set(OpenMP_C_LIB_NAMES "omp")
+    set(OpenMP_CXX_LIB_NAMES "omp")
+    set(OpenMP_omp_LIBRARY "${OpenMP_ROOT}/lib/libomp.dylib")
+    find_path(OpenMP_INCLUDE_DIR omp.h HINTS ${OpenMP_ROOT}/include)
+  endif()
+
   find_package(OpenMP REQUIRED)
   if(OpenMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPARALLEL")
