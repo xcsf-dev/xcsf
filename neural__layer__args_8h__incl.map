@@ -1,10 +1,17 @@
 <map id="neural_layer_args.h" name="neural_layer_args.h">
-<area shape="rect" id="node1" title="Functions operating on neural network arguments/constants." alt="" coords="367,5,502,32"/>
-<area shape="rect" id="node2" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="406,80,463,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,157,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="182,155,333,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="357,155,419,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="444,155,519,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="543,155,604,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="628,155,692,181"/>
+<area shape="rect" id="Node000001" title="Functions operating on neural network arguments/constants." alt="" coords="367,5,502,31"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="406,79,463,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="437,31,437,65,432,65,432,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,157,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="406,101,152,152,151,147,405,96"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="182,152,333,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="407,106,300,149,298,144,405,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="357,152,419,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="429,106,405,142,401,139,425,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="444,152,519,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="445,103,468,139,464,142,440,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="543,152,604,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="458,102,540,143,537,148,456,106"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="628,152,692,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="464,99,615,147,614,152,463,104"/>
 </map>

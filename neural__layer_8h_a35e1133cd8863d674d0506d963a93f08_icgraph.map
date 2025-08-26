@@ -1,6 +1,13 @@
 <map id="layer_mutate_neurons" name="layer_mutate_neurons">
-<area shape="rect" id="node1" title="Returns the number of neurons to add or remove from a layer." alt="" coords="431,35,581,61"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="246,5,361,32"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="224,57,383,98"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="Node000001" title="Returns the number of neurons to add or remove from a layer." alt="" coords="431,61,581,87"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="246,8,361,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,60,351,36,353,31,444,55"/>
+<area shape="rect" id="Node000004" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="246,61,361,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="417,77,361,77,361,71,417,71"/>
+<area shape="rect" id="Node000006" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="224,111,383,151"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="448,93,375,114,374,109,447,88"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,22,176,22,176,16,232,17"/>
+<area shape="rect" id="Node000005" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="15,55,166,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="232,77,166,78,166,72,232,72"/>
 </map>

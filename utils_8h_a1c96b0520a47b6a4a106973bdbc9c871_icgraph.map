@@ -1,7 +1,11 @@
 <map id="clamp_int" name="clamp_int">
-<area shape="rect" id="node1" title="Returns an integer clamped within the specified range." alt="" coords="417,31,496,57"/>
-<area shape="rect" id="node2" href="$rule__dgp_8c.html#ad20d1e81deeb95357c02154547c1669e" title=" " alt="" coords="209,5,363,32"/>
-<area shape="rect" id="node4" href="$rule__neural_8c.html#ad1efaff17fedd6badb97970589715d8f" title=" " alt="" coords="203,56,369,83"/>
-<area shape="rect" id="node3" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="13,5,147,32"/>
-<area shape="rect" id="node5" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,56,155,83"/>
+<area shape="rect" id="Node000001" title="Returns an integer clamped within the specified range." alt="" coords="417,31,496,56"/>
+<area shape="rect" id="Node000002" href="$rule__dgp_8c.html#ad20d1e81deeb95357c02154547c1669e" title=" " alt="" coords="209,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,38,362,32,363,27,404,33"/>
+<area shape="rect" id="Node000004" href="$rule__neural_8c.html#ad1efaff17fedd6badb97970589715d8f" title=" " alt="" coords="203,55,369,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="404,53,370,58,369,53,404,48"/>
+<area shape="rect" id="Node000003" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="13,5,147,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,21,148,21,148,15,196,15"/>
+<area shape="rect" id="Node000005" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,55,155,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="189,70,155,70,155,65,189,65"/>
 </map>

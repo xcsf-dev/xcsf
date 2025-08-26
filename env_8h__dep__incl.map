@@ -1,12 +1,23 @@
 <map id="env.h" name="env.h">
-<area shape="rect" id="node1" title="Built&#45;in problem environment interface." alt="" coords="261,5,313,32"/>
-<area shape="rect" id="node2" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="301,80,381,107"/>
-<area shape="rect" id="node6" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="72,80,165,107"/>
-<area shape="rect" id="node8" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="190,80,277,107"/>
-<area shape="rect" id="node10" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="406,80,474,107"/>
-<area shape="rect" id="node3" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="234,155,286,181"/>
-<area shape="rect" id="node4" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="396,155,476,181"/>
-<area shape="rect" id="node5" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="311,155,372,181"/>
-<area shape="rect" id="node7" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="5,155,99,181"/>
-<area shape="rect" id="node9" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="123,155,210,181"/>
+<area shape="rect" id="Node000001" title="Built&#45;in problem environment interface." alt="" coords="261,5,313,31"/>
+<area shape="rect" id="Node000002" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="301,79,381,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,40,335,77,330,80,302,43"/>
+<area shape="rect" id="Node000006" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="72,79,165,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="249,38,147,81,145,76,247,33"/>
+<area shape="rect" id="Node000008" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="190,79,277,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="272,43,244,80,240,77,268,40"/>
+<area shape="rect" id="Node000010" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="406,79,474,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="325,34,416,76,414,81,322,39"/>
+<area shape="rect" id="Node000003" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="234,152,286,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,115,275,154,272,150,316,111"/>
+<area shape="rect" id="Node000004" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="396,152,476,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="369,110,422,150,419,154,366,114"/>
+<area shape="rect" id="Node000005" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="311,152,372,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="344,118,344,152,339,152,339,118"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="155,108,238,149,236,154,152,112"/>
+<area shape="rect" id="Node000007" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="5,152,99,177"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="100,116,65,154,61,150,96,113"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="245,116,258,151,253,153,240,118"/>
+<area shape="rect" id="Node000009" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="123,152,210,177"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="215,116,179,154,176,150,211,113"/>
 </map>

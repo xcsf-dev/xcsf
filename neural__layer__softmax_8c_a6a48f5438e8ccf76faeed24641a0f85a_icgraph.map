@@ -1,5 +1,7 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by a softmax layer." alt="" coords="228,35,351,61"/>
-<area shape="rect" id="node2" href="$neural__layer__softmax_8c.html#a314875a074c00172bb8c3b613914ea46" title="Free memory used by a softmax layer." alt="" coords="5,5,180,32"/>
-<area shape="rect" id="node3" href="$neural__layer__softmax_8c.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" title="Resizes a softmax layer if the previous layer has changed size." alt="" coords="19,57,166,98"/>
+<area shape="rect" id="Node000001" title="Free memory used by a softmax layer." alt="" coords="228,35,351,60"/>
+<area shape="rect" id="Node000002" href="$neural__layer__softmax_8c.html#a314875a074c00172bb8c3b613914ea46" title="Free memory used by a softmax layer." alt="" coords="5,5,180,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,39,177,33,178,28,215,34"/>
+<area shape="rect" id="Node000003" href="$neural__layer__softmax_8c.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" title="Resizes a softmax layer if the previous layer has changed size." alt="" coords="19,55,166,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,61,167,68,166,62,214,55"/>
 </map>

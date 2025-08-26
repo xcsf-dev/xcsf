@@ -1,12 +1,27 @@
 <map id="pred_param_defaults" name="pred_param_defaults">
-<area shape="rect" id="node1" title="Initialises default prediction parameters." alt="" coords="593,81,736,108"/>
-<area shape="rect" id="node2" href="$param_8c.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="463,81,545,108"/>
-<area shape="rect" id="node3" href="$env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="314,5,409,32"/>
-<area shape="rect" id="node6" href="$env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="308,56,415,83"/>
-<area shape="rect" id="node7" href="$env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15" title="Initialises a real multiplexer environment of specified length." alt="" coords="312,107,411,133"/>
-<area shape="rect" id="node8" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="318,157,405,184"/>
-<area shape="rect" id="node4" href="$env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="183,56,250,83"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="40,56,91,83"/>
-<area shape="rect" id="node9" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,157,260,184"/>
-<area shape="rect" id="node10" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,157,125,184"/>
+<area shape="rect" id="Node000001" title="Initialises default prediction parameters." alt="" coords="792,80,935,105"/>
+<area shape="rect" id="Node000002" href="$param_8c.html#ac8218a170803be0bcd974764e7494b0e" title="Initialises default XCSF parameters." alt="" coords="661,80,744,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="778,95,744,95,744,90,778,90"/>
+<area shape="rect" id="Node000003" href="$env__csv_8c.html#ab26a39a388f0ac83b9ac14726ad14b16" title="Initialises a CSV input environment from a specified filename." alt="" coords="513,5,607,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="667,75,612,44,589,33,591,28,615,40,670,71"/>
+<area shape="rect" id="Node000006" href="$env__maze_8c.html#acad3cc6e9fe2b7e07e878f1f517ad3a6" title="Initialises a maze environment from a specified file." alt="" coords="507,55,613,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="647,86,613,79,614,74,648,80"/>
+<area shape="rect" id="Node000007" href="$env__mux_8c.html#aff3b81b4913d273ecfd62d7585480b15" title="Initialises a real multiplexer environment of specified length." alt="" coords="511,104,609,129"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="648,104,610,111,609,106,647,99"/>
+<area shape="rect" id="Node000008" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="517,153,603,179"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="668,114,615,143,590,155,587,151,612,138,665,110"/>
+<area shape="rect" id="Node000004" href="$env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="382,55,449,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="510,38,450,59,448,54,508,33"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="239,55,289,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="368,70,290,70,290,65,368,65"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="493,70,449,70,449,65,493,65"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="508,102,448,81,450,76,510,97"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="372,128,459,153"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="503,159,459,151,459,146,504,153"/>
+<area shape="rect" id="Node000012" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="372,177,459,203"/>
+<area shape="poly" id="edge13_Node000008_Node000012" title=" " alt="" coords="504,178,459,185,459,180,503,173"/>
+<area shape="rect" id="Node000010" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="204,128,324,153"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="358,143,324,143,324,138,358,138"/>
+<area shape="rect" id="Node000011" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,128,156,153"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="190,143,156,143,156,138,190,138"/>
 </map>

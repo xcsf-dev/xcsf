@@ -1,5 +1,8 @@
 <map id="tree_traverse" name="tree_traverse">
-<area shape="rect" id="node1" title="Traverses a GP tree." alt="" coords="344,5,443,32"/>
-<area shape="rect" id="node2" href="$gp_8c.html#a716c3b813a0907d3cff786eaa73d995a" title="Performs sub&#45;tree crossover." alt="" coords="188,5,296,32"/>
-<area shape="rect" id="node3" href="$cond__gp_8c.html#a6ae653caf56edad1cbb0e0517dfea270" title="Performs sub&#45;tree crossover with two tree&#45;GP conditions." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="Node000001" title="Traverses a GP tree." alt="" coords="344,29,443,55"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="419,19,411,11,393,8,378,10,370,15,368,20,373,28,368,31,363,21,366,11,376,5,393,3,414,6,423,15"/>
+<area shape="rect" id="Node000002" href="$gp_8c.html#a716c3b813a0907d3cff786eaa73d995a" title="Performs sub&#45;tree crossover." alt="" coords="188,29,296,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="330,45,296,45,296,39,330,39"/>
+<area shape="rect" id="Node000003" href="$cond__gp_8c.html#a6ae653caf56edad1cbb0e0517dfea270" title="Performs sub&#45;tree crossover with two tree&#45;GP conditions." alt="" coords="5,29,140,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,45,140,45,140,39,175,39"/>
 </map>

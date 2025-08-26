@@ -1,12 +1,21 @@
 <map id="layer_guard_biases" name="layer_guard_biases">
-<area shape="rect" id="node1" title="Check number of biases is within bounds." alt="" coords="820,136,955,163"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="673,136,772,163"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="487,81,625,108"/>
-<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="487,165,625,192"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,32"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,56,433,83"/>
-<area shape="rect" id="node6" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,107,437,133"/>
-<area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="246,158,421,199"/>
-<area shape="rect" id="node10" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,223,421,265"/>
-<area shape="rect" id="node9" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,158,180,199"/>
+<area shape="rect" id="Node000001" title="Check number of biases is within bounds." alt="" coords="820,133,955,159"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="673,133,772,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="806,149,772,149,772,143,806,143"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="487,80,625,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="669,132,595,108,597,103,670,127"/>
+<area shape="rect" id="Node000007" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="487,161,625,187"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="660,159,626,165,625,160,659,154"/>
+<area shape="rect" id="Node000004" href="$neural__layer__convolutional_8c.html#aa05b9dcca6484abdcc65c7554bce784e" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="516,76,438,45,398,33,399,28,440,39,518,71"/>
+<area shape="rect" id="Node000005" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,55,433,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="473,86,433,81,433,76,473,81"/>
+<area shape="rect" id="Node000006" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,104,437,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="473,104,437,108,437,103,472,99"/>
+<area shape="rect" id="Node000008" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="246,154,421,194"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="473,177,421,177,421,171,473,171"/>
+<area shape="rect" id="Node000010" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,218,421,258"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="498,193,404,220,403,215,497,188"/>
+<area shape="rect" id="Node000009" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,154,180,194"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="232,177,180,177,180,171,232,171"/>
 </map>

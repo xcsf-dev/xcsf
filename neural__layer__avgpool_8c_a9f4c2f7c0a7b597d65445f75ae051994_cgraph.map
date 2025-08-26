@@ -1,0 +1,11 @@
+<map id="neural_layer_avgpool_copy" name="neural_layer_avgpool_copy">
+<area shape="rect" id="Node000001" title="Initialises and copies one average pooling layer from another." alt="" coords="5,31,184,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="250,5,353,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,30,236,23,237,29,185,35"/>
+<area shape="rect" id="Node000003" href="$neural__layer__avgpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an average pooling layer." alt="" coords="232,55,371,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,51,219,55,218,60,184,56"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="419,55,557,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="371,65,405,65,405,70,371,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="605,55,688,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="558,65,592,65,592,70,558,70"/>
+</map>

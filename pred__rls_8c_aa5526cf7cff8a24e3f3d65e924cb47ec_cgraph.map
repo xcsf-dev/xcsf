@@ -1,4 +1,5 @@
 <map id="pred_rls_print" name="pred_rls_print">
-<area shape="rect" id="node1" title="Prints an RLS prediction." alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$pred__rls_8c.html#a77b1bc0fe274c512aedd39ed7e7cb431" title="Returns a json formatted string representation of an RLS prediction." alt="" coords="153,5,296,32"/>
+<area shape="rect" id="Node000001" title="Prints an RLS prediction." alt="" coords="5,5,105,31"/>
+<area shape="rect" id="Node000002" href="$pred__rls_8c.html#aa9f576c0200e583c5750e60e7f115b45" title="Returns a json formatted string representation of an RLS prediction." alt="" coords="153,5,296,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,15,139,15,139,21,106,21"/>
 </map>

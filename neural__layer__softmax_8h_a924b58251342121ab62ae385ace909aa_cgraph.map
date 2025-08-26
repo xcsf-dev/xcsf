@@ -1,6 +1,9 @@
 <map id="neural_layer_softmax_init" name="neural_layer_softmax_init">
-<area shape="rect" id="node1" title="Creates and initialises a softmax layer." alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node2" href="$neural__layer__softmax_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a softmax layer." alt="" coords="224,5,363,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="411,5,549,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="597,5,680,32"/>
+<area shape="rect" id="Node000001" title="Creates and initialises a softmax layer." alt="" coords="5,5,176,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer__softmax_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a softmax layer." alt="" coords="224,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,15,210,15,210,21,176,21"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="411,5,549,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,15,397,15,397,21,363,21"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="597,5,680,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="550,15,584,15,584,21,550,21"/>
 </map>

@@ -1,0 +1,11 @@
+<map id="neural_layer_upsample_copy" name="neural_layer_upsample_copy">
+<area shape="rect" id="Node000001" title="Initialises and copies one upsampling layer from another." alt="" coords="5,31,196,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="262,5,365,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,29,248,23,249,28,197,35"/>
+<area shape="rect" id="Node000003" href="$neural__layer__upsample_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an upsampling layer." alt="" coords="244,55,383,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,51,231,55,230,61,196,57"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="431,55,569,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="383,65,417,65,417,70,383,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="617,55,700,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="570,65,604,65,604,70,570,70"/>
+</map>

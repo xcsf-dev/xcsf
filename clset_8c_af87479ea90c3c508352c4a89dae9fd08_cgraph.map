@@ -1,13 +1,23 @@
 <map id="clset_pset_load" name="clset_pset_load">
-<area shape="rect" id="node1" title="Reads the population set from a file." alt="" coords="5,208,119,235"/>
-<area shape="rect" id="node2" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="201,132,264,159"/>
-<area shape="rect" id="node9" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="193,183,272,209"/>
-<area shape="rect" id="node10" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="195,233,270,260"/>
-<area shape="rect" id="node11" href="$clset_8c.html#aec38f30724ac1a0890f90c18f4cd5b32" title="Reverses the order of the population classifier list." alt="" coords="167,284,299,311"/>
-<area shape="rect" id="node3" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="363,5,433,32"/>
-<area shape="rect" id="node4" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="357,56,439,83"/>
-<area shape="rect" id="node5" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="357,107,439,133"/>
-<area shape="rect" id="node6" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="349,157,447,184"/>
-<area shape="rect" id="node7" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="359,208,437,235"/>
-<area shape="rect" id="node8" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="347,259,449,285"/>
+<area shape="rect" id="Node000001" title="Reads the population set from a file." alt="" coords="5,203,119,228"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="201,128,264,153"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,200,166,162,187,154,189,158,168,167,89,205"/>
+<area shape="rect" id="Node000009" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="193,177,272,203"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="118,204,179,195,180,200,119,210"/>
+<area shape="rect" id="Node000010" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="195,227,270,252"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="119,221,182,230,181,235,118,226"/>
+<area shape="rect" id="Node000011" href="$clset_8c.html#aec38f30724ac1a0890f90c18f4cd5b32" title="Reverses the order of the population classifier list." alt="" coords="167,276,299,301"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="91,226,168,261,186,268,184,273,166,266,88,230"/>
+<area shape="rect" id="Node000003" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="363,5,433,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="244,126,287,85,345,40,353,35,356,39,348,44,291,89,248,130"/>
+<area shape="rect" id="Node000004" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="357,55,439,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="261,125,355,83,357,88,263,130"/>
+<area shape="rect" id="Node000005" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="357,104,439,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="264,134,343,122,344,127,265,139"/>
+<area shape="rect" id="Node000006" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="349,153,447,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="265,143,335,154,334,159,264,148"/>
+<area shape="rect" id="Node000007" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="359,203,437,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="266,149,300,162,348,188,360,194,358,199,345,192,298,167,264,154"/>
+<area shape="rect" id="Node000008" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="347,252,449,277"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="265,145,283,152,300,163,317,182,326,200,333,219,349,237,355,242,351,247,345,241,329,221,321,202,313,184,297,167,281,157,263,150"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="act_json_import" name="act_json_import">
-<area shape="rect" id="node1" title="Creates an action from a cJSON object." alt="" coords="5,31,120,57"/>
-<area shape="rect" id="node2" href="$action_8h.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="177,5,308,32"/>
-<area shape="rect" id="node3" href="$action_8h.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="168,56,317,83"/>
+<area shape="rect" id="Node000001" title="Creates an action from a cJSON object." alt="" coords="5,31,120,56"/>
+<area shape="rect" id="Node000002" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="177,5,308,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,163,26,164,32,120,38"/>
+<area shape="rect" id="Node000003" href="$action_8c.html#ad546aad49d253d6d0e72a6eddb237d01" title="Returns a string representation of an action type from an integer." alt="" coords="168,55,317,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,48,154,53,154,58,120,54"/>
 </map>

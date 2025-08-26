@@ -1,10 +1,20 @@
 <map id="neural_layer_convolutional_load" name="neural_layer_convolutional_load">
-<area shape="rect" id="node1" title="Reads a convolutional layer from a file." alt="" coords="5,43,212,69"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="260,43,399,69"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="447,5,588,32"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="468,68,567,95"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="825,68,908,95"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="639,43,774,69"/>
-<area shape="rect" id="node7" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="637,93,776,120"/>
-<area shape="rect" id="node8" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="636,144,777,171"/>
+<area shape="rect" id="Node000001" title="Reads a convolutional layer from a file." alt="" coords="5,44,212,69"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="260,44,399,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,54,246,54,246,59,213,59"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="447,5,588,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,41,441,31,442,36,392,47"/>
+<area shape="rect" id="Node000005" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="468,68,567,93"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="399,63,454,70,453,75,399,68"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="825,68,908,93"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="588,10,679,11,729,17,778,27,811,41,839,58,837,63,808,46,777,33,729,22,679,16,588,15"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="639,43,774,68"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="566,72,625,64,626,69,567,77"/>
+<area shape="rect" id="Node000007" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="637,92,776,117"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="567,84,624,92,623,97,566,89"/>
+<area shape="rect" id="Node000008" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="636,141,777,167"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="548,91,637,128,655,134,653,139,635,132,546,96"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="775,63,812,69,812,75,774,69"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="776,92,811,86,812,91,776,97"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="748,139,776,128,832,98,835,103,778,132,750,144"/>
 </map>

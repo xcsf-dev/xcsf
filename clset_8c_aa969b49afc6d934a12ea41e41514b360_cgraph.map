@@ -1,5 +1,7 @@
 <map id="clset_update_fit" name="clset_update_fit">
-<area shape="rect" id="node1" title="Updates the fitness of classifiers in the set." alt="" coords="5,31,120,57"/>
-<area shape="rect" id="node2" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="186,5,246,32"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a5fe8108de575672338fc8e602e469589" title="Updates the fitness of a classifier." alt="" coords="168,56,264,83"/>
+<area shape="rect" id="Node000001" title="Updates the fitness of classifiers in the set." alt="" coords="5,31,120,56"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="186,5,246,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,31,172,22,173,28,121,37"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#a5fe8108de575672338fc8e602e469589" title="Updates the fitness of a classifier." alt="" coords="168,55,264,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,50,155,55,154,60,120,55"/>
 </map>

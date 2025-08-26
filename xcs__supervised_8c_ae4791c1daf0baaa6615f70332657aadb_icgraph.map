@@ -1,4 +1,7 @@
 <map id="xcs_supervised_predict" name="xcs_supervised_predict">
-<area shape="rect" id="node1" title="Calculates the XCSF predictions for the provided input." alt="" coords="151,5,309,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="5,5,103,32"/>
+<area shape="rect" id="Node000001" title="Calculates the XCSF predictions for the provided input." alt="" coords="349,5,508,31"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="204,5,301,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="336,21,301,21,301,15,336,15"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,21,156,21,156,15,190,15"/>
 </map>

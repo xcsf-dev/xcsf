@@ -1,7 +1,12 @@
 <map id="neural_layer_connected_load" name="neural_layer_connected_load">
-<area shape="rect" id="node1" title="Reads a connected layer from a file." alt="" coords="5,31,196,57"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a connected layer." alt="" coords="244,31,383,57"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="432,5,571,32"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="431,56,572,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="620,31,703,57"/>
+<area shape="rect" id="Node000001" title="Reads a connected layer from a file." alt="" coords="5,31,196,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer__connected_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a connected layer." alt="" coords="244,31,383,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,41,230,41,230,46,197,46"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="432,5,571,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,31,418,27,419,32,384,37"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="431,55,572,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="383,50,418,54,417,59,383,55"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="620,31,703,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="571,26,607,32,606,37,570,32"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="572,54,606,49,607,54,573,59"/>
 </map>

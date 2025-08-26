@@ -1,4 +1,5 @@
 <map id="rule_neural_act_print" name="rule_neural_act_print">
-<area shape="rect" id="node1" title=" " alt="" coords="5,13,148,39"/>
-<area shape="rect" id="node2" href="$rule__neural_8c.html#a26df55499f4662007737ba0fabdd9669" title=" " alt="" coords="196,5,337,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,148,38"/>
+<area shape="rect" id="Node000002" href="$rule__neural_8c.html#a32d2f19dfc0d4af759fed8879ae69678" title=" " alt="" coords="196,5,337,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,23,182,23,182,28,148,28"/>
 </map>

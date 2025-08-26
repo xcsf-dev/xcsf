@@ -1,10 +1,24 @@
 <map id="XCS::error" name="XCS::error">
-<area shape="rect" id="node1" title="Returns the current system error." alt="" coords="512,81,596,108"/>
-<area shape="rect" id="node2" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="352,5,459,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="371,56,440,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f" title="Loads an input data structure for fitting." alt="" coords="347,107,464,133"/>
-<area shape="rect" id="node8" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="357,157,454,184"/>
-<area shape="rect" id="node5" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,81,75,108"/>
-<area shape="rect" id="node6" href="$classXCS.html#abccf7ccb52a4626d0f8bedccd62c0003" title="Loads validation data if present in kwargs." alt="" coords="123,107,299,133"/>
-<area shape="rect" id="node7" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="165,157,256,184"/>
+<area shape="rect" id="Node000001" title="Returns the current system error." alt="" coords="593,107,677,132"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="239,56,345,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="580,110,545,103,345,77,346,71,546,98,581,105"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,107,156,132"/>
+<area shape="poly" id="edge13_Node000001_Node000003" title=" " alt="" coords="579,122,156,122,156,117,579,117"/>
+<area shape="rect" id="Node000004" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="452,157,521,183"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="585,139,522,161,520,156,583,134"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#a70d5ac7b2500084093d2f2b0d24f0c2f" title="Loads an input data structure for fitting." alt="" coords="428,232,545,257"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="610,143,505,234,501,230,607,139"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="438,5,535,31"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="607,100,544,52,512,33,514,29,547,48,610,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,87,135,109,134,104,225,82"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="438,168,204,141,156,134,157,129,204,135,439,163"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="46,283,115,308"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="455,267,420,284,381,298,307,309,234,311,167,308,115,303,116,297,167,303,234,306,307,303,379,293,418,279,453,262"/>
+<area shape="rect" id="Node000007" href="$classXCS.html#abccf7ccb52a4626d0f8bedccd62c0003" title="Loads validation data if present in kwargs." alt="" coords="204,257,380,283"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="415,257,380,261,380,256,414,251"/>
+<area shape="rect" id="Node000008" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="247,208,337,233"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="414,238,337,229,338,224,414,233"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="191,285,116,294,115,289,190,280"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="239,206,203,191,147,162,101,134,104,130,149,157,205,186,241,201"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="424,18,320,23,262,31,205,46,174,59,145,76,99,109,96,104,142,71,171,54,203,41,261,26,319,17,424,13"/>
 </map>

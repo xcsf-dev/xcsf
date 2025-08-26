@@ -1,6 +1,11 @@
 <map id="xcsf.utils.viz.TreeViz.read_subexpr" name="xcsf.utils.viz.TreeViz.read_subexpr">
-<area shape="rect" id="node1" title=" " alt="" coords="5,50,180,91"/>
-<area shape="rect" id="node2" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a8d91773ee959a8b829712cdd686fa683" title=" " alt="" coords="452,31,628,57"/>
-<area shape="rect" id="node3" href="$classxcsf_1_1utils_1_1viz_1_1DGPViz.html#ab30761352a4a304a84e403dce20784ac" title=" " alt="" coords="451,85,629,112"/>
-<area shape="rect" id="node4" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="228,50,403,91"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,180,129"/>
+<area shape="rect" id="Node000002" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a8d91773ee959a8b829712cdd686fa683" title=" " alt="" coords="229,5,405,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,86,175,62,227,40,249,32,251,37,229,44,177,67,131,91"/>
+<area shape="rect" id="Node000003" href="$classxcsf_1_1utils_1_1viz_1_1DGPViz.html#ab30761352a4a304a84e403dce20784ac" title=" " alt="" coords="228,55,407,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,90,234,80,235,85,181,95"/>
+<area shape="rect" id="Node000004" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="230,129,405,169"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,126,217,137,216,142,159,131"/>
+<area shape="poly" id="edge5_Node000004_Node000001" title=" " alt="" coords="250,131,193,120,194,115,251,126"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="275,129,273,119,280,110,295,104,317,102,343,105,358,112,355,117,342,110,317,107,296,109,283,114,278,120,281,128"/>
 </map>

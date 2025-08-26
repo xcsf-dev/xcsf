@@ -1,12 +1,21 @@
 <map id="ea_param_defaults" name="ea_param_defaults">
-<area shape="rect" id="node1" title="Initialises default evolutionary algorithm parameters." alt="" coords="5,208,137,235"/>
-<area shape="rect" id="node2" href="$ea_8c.html#a542e7edec79442b8ea67b549de8c20f4" title=" " alt="" coords="195,5,361,32"/>
-<area shape="rect" id="node3" href="$ea_8c.html#a6991ded81cd5f8092edd273f14b51656" title=" " alt="" coords="197,56,359,83"/>
-<area shape="rect" id="node4" href="$ea_8c.html#a3cd269c31d0c8746945c5702b0ff2878" title=" " alt="" coords="201,107,355,133"/>
-<area shape="rect" id="node5" href="$ea_8c.html#aa13da4ecefb72f2ea73ac3305978fbd9" title=" " alt="" coords="187,157,369,184"/>
-<area shape="rect" id="node6" href="$ea_8c.html#a8dddce688fce5036e42a02cb5f81c16a" title=" " alt="" coords="192,208,364,235"/>
-<area shape="rect" id="node7" href="$ea_8c.html#af8835dfc61b17259355a8857b834a085" title=" " alt="" coords="189,259,367,285"/>
-<area shape="rect" id="node8" href="$ea_8c.html#ad070a57554acfa1a1111c182c5dc1ff5" title=" " alt="" coords="189,309,367,336"/>
-<area shape="rect" id="node9" href="$ea_8c.html#a01bfae90b944b75fb043898949cffc93" title=" " alt="" coords="185,360,371,387"/>
-<area shape="rect" id="node10" href="$ea_8c.html#a4f787e4f40ad089a2d7ed89705921669" title=" " alt="" coords="208,411,348,437"/>
+<area shape="rect" id="Node000001" title="Initialises default evolutionary algorithm parameters." alt="" coords="5,203,137,228"/>
+<area shape="rect" id="Node000002" href="$ea_8c.html#acafdb53cd6f917e67ac7956c41c22ccb" title=" " alt="" coords="195,5,361,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,202,88,169,111,125,143,79,184,40,192,35,195,39,187,44,147,82,116,128,93,171,80,204"/>
+<area shape="rect" id="Node000003" href="$ea_8c.html#a2a733cfde61e6071a78fb93e5d30fbeb" title=" " alt="" coords="197,55,359,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="78,201,119,147,149,116,184,89,196,83,198,87,187,94,153,120,123,150,83,204"/>
+<area shape="rect" id="Node000004" href="$ea_8c.html#ae31fdbb41052ef2dc362c25b65217280" title=" " alt="" coords="201,104,355,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="87,200,129,169,184,138,203,131,205,136,186,143,132,174,90,205"/>
+<area shape="rect" id="Node000005" href="$ea_8c.html#a485d390107e08149f545078eb98e21b6" title=" " alt="" coords="187,153,369,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="125,200,210,179,211,185,126,205"/>
+<area shape="rect" id="Node000006" href="$ea_8c.html#a580f592408f14dd920756b8eaab9f532" title=" " alt="" coords="192,203,364,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="138,213,178,213,178,218,138,218"/>
+<area shape="rect" id="Node000007" href="$ea_8c.html#aca7349c1a592c4c712a0641ad17e59a3" title=" " alt="" coords="189,252,367,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="126,225,211,246,210,251,125,231"/>
+<area shape="rect" id="Node000008" href="$ea_8c.html#ad070a57554acfa1a1111c182c5dc1ff5" title=" " alt="" coords="189,301,367,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="90,226,133,256,186,286,208,295,206,300,184,291,130,261,87,230"/>
+<area shape="rect" id="Node000009" href="$ea_8c.html#a43a40309615dbb66caa55cb795f1abc0" title=" " alt="" coords="185,351,371,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="83,227,123,280,153,310,187,336,202,343,199,348,184,340,149,314,119,283,79,230"/>
+<area shape="rect" id="Node000010" href="$ea_8c.html#a9cb108839380d505f1d16d7c84e70847" title=" " alt="" coords="208,400,348,425"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="80,227,94,260,116,302,147,347,187,385,198,392,195,397,184,389,143,351,112,305,89,262,75,229"/>
 </map>

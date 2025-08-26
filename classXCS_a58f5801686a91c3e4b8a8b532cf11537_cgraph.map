@@ -1,4 +1,5 @@
 <map id="XCS::callbacks_finish" name="XCS::callbacks_finish">
-<area shape="rect" id="node1" title="Executes callback finish." alt="" coords="5,5,156,32"/>
-<area shape="rect" id="node2" href="$classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09" title=" " alt="" coords="204,5,316,32"/>
+<area shape="rect" id="Node000001" title="Executes callback finish." alt="" coords="5,5,156,31"/>
+<area shape="rect" id="Node000002" href="$classCallback.html#a37f8adb30ea71174d2f5468c3b21ef09" title=" " alt="" coords="204,5,316,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,15,190,15,190,21,156,21"/>
 </map>

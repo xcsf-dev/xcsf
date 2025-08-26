@@ -1,5 +1,7 @@
 <map id="act_neural_param_defaults" name="act_neural_param_defaults">
-<area shape="rect" id="node1" title="Initialises default neural action parameters." alt="" coords="5,31,184,57"/>
-<area shape="rect" id="node2" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="232,5,349,32"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="237,56,344,83"/>
+<area shape="rect" id="Node000001" title="Initialises default neural action parameters." alt="" coords="5,31,184,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer__args_8c.html#afbc76691bfb760e903155e0e41ae97bd" title="Creates and returns a copy of specified layer parameters." alt="" coords="232,5,349,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,29,218,25,219,30,185,34"/>
+<area shape="rect" id="Node000003" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="237,55,344,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,52,224,57,223,62,184,57"/>
 </map>

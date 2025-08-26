@@ -1,33 +1,145 @@
 <map id="layer_print" name="layer_print">
-<area shape="rect" id="node1" title="Prints the layer." alt="" coords="1132,339,1215,365"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="733,161,874,188"/>
-<area shape="rect" id="node11" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="937,263,1072,289"/>
-<area shape="rect" id="node13" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="935,364,1074,391"/>
-<area shape="rect" id="node24" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="934,313,1075,340"/>
-<area shape="rect" id="node29" href="$neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="965,415,1044,441"/>
-<area shape="rect" id="node31" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="925,466,1084,507"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="515,107,653,133"/>
-<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="515,161,653,188"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,32"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,56,433,83"/>
-<area shape="rect" id="node6" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,107,437,133"/>
-<area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="246,158,421,199"/>
-<area shape="rect" id="node10" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,223,421,265"/>
-<area shape="rect" id="node9" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,158,180,199"/>
-<area shape="rect" id="node12" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="754,263,853,289"/>
-<area shape="rect" id="node14" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="738,364,869,391"/>
-<area shape="rect" id="node18" href="$neural__layer__avgpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an average pooling layer." alt="" coords="734,547,873,573"/>
-<area shape="rect" id="node22" href="$neural__layer__avgpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by an average pooling layer." alt="" coords="734,452,873,479"/>
-<area shape="rect" id="node15" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="527,364,641,391"/>
-<area shape="rect" id="node17" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="505,415,663,457"/>
-<area shape="rect" id="node16" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="248,364,419,391"/>
-<area shape="rect" id="node19" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="495,597,673,624"/>
-<area shape="rect" id="node20" href="$neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="500,648,668,675"/>
-<area shape="rect" id="node21" href="$neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="497,547,671,573"/>
-<area shape="rect" id="node23" href="$neural__layer__avgpool_8c.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="512,481,656,522"/>
-<area shape="rect" id="node25" href="$neural__layer__connected_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a connected layer." alt="" coords="734,313,873,340"/>
-<area shape="rect" id="node26" href="$neural__layer__connected_8c.html#a1d4a072908a0df8dcc9ff31add3fdcad" title="Initialises and creates a copy of one connected layer from another." alt="" coords="487,212,681,239"/>
-<area shape="rect" id="node27" href="$neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" title="Initialises a fully&#45;connected layer." alt="" coords="493,263,675,289"/>
-<area shape="rect" id="node28" href="$neural__layer__connected_8c.html#aacd5e7b2682eae2870f22205a399d89c" title="Reads a connected layer from a file." alt="" coords="489,313,679,340"/>
-<area shape="rect" id="node30" href="$neural__layer__maxpool_8c.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="729,598,877,639"/>
+<area shape="rect" id="Node000001" title="Prints the layer." alt="" coords="1132,667,1215,692"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="733,157,874,183"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1169,653,1164,595,1150,516,1124,430,1105,389,1082,352,1056,320,1026,292,959,245,893,209,839,185,841,180,895,204,962,240,1029,288,1060,317,1086,348,1110,387,1129,429,1155,515,1169,594,1174,653"/>
+<area shape="rect" id="Node000011" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="937,363,1072,388"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1158,655,1082,507,1012,390,1016,387,1086,505,1162,653"/>
+<area shape="rect" id="Node000013" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="935,815,1074,840"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="1149,704,1022,816,1019,812,1145,700"/>
+<area shape="rect" id="Node000065" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="934,519,1075,544"/>
+<area shape="poly" id="edge69_Node000001_Node000065" title=" " alt="" coords="1145,659,1019,546,1022,542,1149,655"/>
+<area shape="rect" id="Node000066" href="$neural__layer__maxpool_8c.html#a03e721637071990d769895cac88b29a8" title="Returns the index of the maximum input value corresponding to a specified output height,..." alt="" coords="965,864,1044,889"/>
+<area shape="poly" id="edge73_Node000001_Node000066" title=" " alt="" coords="1168,706,1157,739,1140,779,1117,819,1086,853,1066,866,1045,873,1043,868,1064,861,1082,849,1112,816,1136,777,1152,738,1163,705"/>
+<area shape="rect" id="Node000068" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="925,914,1084,954"/>
+<area shape="poly" id="edge75_Node000001_Node000068" title=" " alt="" coords="1171,706,1162,748,1146,800,1121,854,1105,880,1086,903,1068,916,1065,912,1082,899,1101,877,1117,852,1141,798,1157,747,1166,705"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="515,104,653,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="736,157,636,132,637,127,737,151"/>
+<area shape="rect" id="Node000007" href="$neural__layer__convolutional_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a convolutional layer." alt="" coords="515,157,653,183"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="718,173,653,173,653,167,718,167"/>
+<area shape="rect" id="Node000004" href="$neural__layer__convolutional_8c.html#aa05b9dcca6484abdcc65c7554bce784e" title="Initialises and copies one convolutional layer from another." alt="" coords="228,5,439,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="549,99,498,71,438,45,401,33,402,28,440,39,500,66,552,95"/>
+<area shape="rect" id="Node000005" href="$neural__layer__convolutional_8c.html#af46529e6b147b347e1cdd776972bbf44" title="Initialises a 2D convolutional layer." alt="" coords="234,55,433,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="505,104,398,83,399,77,506,99"/>
+<area shape="rect" id="Node000006" href="$neural__layer__convolutional_8c.html#ad77ef9a98206ae6d87b200f24b6c55e3" title="Reads a convolutional layer from a file." alt="" coords="230,104,437,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="500,119,437,119,437,114,500,114"/>
+<area shape="rect" id="Node000008" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="246,154,421,194"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="501,174,421,175,421,170,501,169"/>
+<area shape="rect" id="Node000010" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="246,218,421,258"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="518,189,487,197,403,221,401,215,486,191,516,183"/>
+<area shape="rect" id="Node000009" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,154,180,194"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="232,177,180,177,180,171,232,171"/>
+<area shape="rect" id="Node000012" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="754,281,853,307"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="964,359,876,320,845,309,847,304,878,316,967,354"/>
+<area shape="poly" id="edge12_Node000012_Node000003" title=" " alt="" coords="783,272,731,202,703,168,680,147,648,132,650,127,683,142,707,164,735,198,788,269"/>
+<area shape="poly" id="edge13_Node000012_Node000007" title=" " alt="" coords="779,273,735,233,680,196,652,185,654,180,683,192,739,229,782,269"/>
+<area shape="poly" id="edge15_Node000013_Node000012" title=" " alt="" coords="993,802,960,695,923,556,916,519,914,486,916,428,915,401,909,375,897,348,876,320,851,304,854,300,879,316,901,346,914,373,920,401,921,428,920,485,922,518,928,555,966,694,998,801"/>
+<area shape="rect" id="Node000014" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="738,469,869,495"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="998,801,988,741,966,662,950,621,930,580,905,542,876,508,859,497,862,493,879,504,910,538,935,577,955,618,971,661,993,740,1003,800"/>
+<area shape="rect" id="Node000020" href="$neural__layer__avgpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an average pooling layer." alt="" coords="734,741,873,767"/>
+<area shape="poly" id="edge22_Node000013_Node000020" title=" " alt="" coords="955,812,838,769,840,764,957,807"/>
+<area shape="rect" id="Node000024" href="$neural__layer__connected_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a connected layer." alt="" coords="734,568,873,593"/>
+<area shape="poly" id="edge26_Node000013_Node000024" title=" " alt="" coords="982,805,813,595,817,592,986,802"/>
+<area shape="rect" id="Node000028" href="$neural__layer__dropout_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a dropout layer." alt="" coords="734,864,873,889"/>
+<area shape="poly" id="edge30_Node000013_Node000028" title=" " alt="" coords="940,846,857,867,855,861,938,841"/>
+<area shape="rect" id="Node000033" href="$neural__layer__lstm_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an LSTM layer." alt="" coords="734,331,873,356"/>
+<area shape="poly" id="edge35_Node000013_Node000033" title=" " alt="" coords="994,802,951,652,916,555,875,458,842,401,812,358,817,355,847,398,880,455,921,553,956,651,999,800"/>
+<area shape="rect" id="Node000037" href="$neural__layer__maxpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a maxpooling layer." alt="" coords="734,1053,873,1079"/>
+<area shape="poly" id="edge40_Node000013_Node000037" title=" " alt="" coords="934,849,927,853,903,876,881,903,847,961,824,1015,811,1054,806,1052,819,1013,842,958,877,900,899,873,924,849,930,844"/>
+<area shape="rect" id="Node000041" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="734,1225,873,1251"/>
+<area shape="poly" id="edge44_Node000013_Node000041" title=" " alt="" coords="930,850,927,853,906,882,895,909,890,935,890,962,892,1021,889,1054,880,1091,846,1169,815,1226,810,1224,841,1167,875,1089,884,1053,887,1021,884,962,885,935,890,907,902,879,923,850,927,846"/>
+<area shape="rect" id="Node000046" href="$neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a recurrent layer." alt="" coords="734,1413,873,1439"/>
+<area shape="poly" id="edge49_Node000013_Node000046" title=" " alt="" coords="930,850,928,853,910,887,899,933,893,989,891,1050,889,1170,887,1222,880,1263,865,1308,847,1351,814,1415,810,1412,842,1349,860,1306,875,1261,881,1222,884,1170,886,1050,888,989,894,932,905,885,923,850,926,847"/>
+<area shape="rect" id="Node000050" href="$neural__layer__softmax_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a softmax layer." alt="" coords="734,1587,873,1612"/>
+<area shape="poly" id="edge53_Node000013_Node000050" title=" " alt="" coords="930,850,927,853,914,875,903,902,890,971,885,1053,886,1141,891,1317,889,1392,880,1451,866,1491,848,1530,815,1588,811,1585,843,1528,861,1489,875,1449,883,1391,885,1317,881,1141,880,1052,885,970,898,901,909,873,923,850,926,847"/>
+<area shape="rect" id="Node000055" href="$neural__layer__upsample_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by an upsampling layer." alt="" coords="734,1775,873,1800"/>
+<area shape="poly" id="edge58_Node000013_Node000055" title=" " alt="" coords="930,850,928,853,919,871,911,901,901,989,895,1103,892,1231,889,1477,886,1569,880,1624,866,1669,848,1712,815,1776,810,1773,843,1710,861,1667,875,1623,880,1569,883,1477,886,1231,889,1103,896,988,906,900,914,869,923,850,926,847"/>
+<area shape="rect" id="Node000060" href="$neural__layer__avgpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by an average pooling layer." alt="" coords="734,1824,873,1849"/>
+<area shape="poly" id="edge63_Node000013_Node000060" title=" " alt="" coords="929,851,928,853,907,889,893,935,886,988,883,1048,889,1184,903,1330,917,1477,923,1613,921,1674,913,1728,900,1775,879,1813,865,1826,861,1822,875,1810,895,1773,908,1727,915,1673,918,1613,912,1477,898,1331,884,1184,878,1048,881,988,888,933,902,887,923,850,925,847"/>
+<area shape="rect" id="Node000062" href="$neural__layer__maxpool_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a maxpooling layer." alt="" coords="734,1873,873,1899"/>
+<area shape="poly" id="edge65_Node000013_Node000062" title=" " alt="" coords="929,851,928,853,906,891,892,939,884,995,881,1059,888,1201,903,1355,918,1509,925,1652,923,1716,915,1773,901,1823,879,1862,865,1875,861,1871,875,1859,896,1821,910,1772,917,1716,919,1652,913,1509,897,1355,882,1201,876,1059,879,995,887,938,901,889,923,850,925,847"/>
+<area shape="rect" id="Node000064" href="$neural__layer__recurrent_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a recurrent layer." alt="" coords="734,519,873,544"/>
+<area shape="poly" id="edge67_Node000013_Node000064" title=" " alt="" coords="996,802,983,750,960,685,925,616,902,585,876,557,858,546,861,542,879,553,906,582,929,613,965,682,988,749,1001,800"/>
+<area shape="rect" id="Node000015" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="527,355,641,380"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="776,462,733,428,680,395,641,381,642,376,682,390,736,423,780,458"/>
+<area shape="rect" id="Node000017" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="527,469,641,495"/>
+<area shape="poly" id="edge19_Node000014_Node000017" title=" " alt="" coords="724,485,641,485,641,479,724,479"/>
+<area shape="rect" id="Node000019" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="505,405,663,445"/>
+<area shape="poly" id="edge21_Node000014_Node000019" title=" " alt="" coords="740,468,660,447,662,442,742,463"/>
+<area shape="rect" id="Node000016" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="248,355,419,380"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="513,370,419,370,419,365,513,365"/>
+<area shape="rect" id="Node000018" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="258,462,409,502"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="513,485,409,485,409,479,513,479"/>
+<area shape="rect" id="Node000021" href="$neural__layer__avgpool_8c.html#a9f4c2f7c0a7b597d65445f75ae051994" title="Initialises and copies one average pooling layer from another." alt="" coords="495,667,673,692"/>
+<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="762,738,680,706,642,695,643,690,682,701,764,733"/>
+<area shape="rect" id="Node000022" href="$neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="500,716,668,741"/>
+<area shape="poly" id="edge24_Node000020_Node000022" title=" " alt="" coords="720,747,668,741,669,736,720,742"/>
+<area shape="rect" id="Node000023" href="$neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="497,765,671,791"/>
+<area shape="poly" id="edge25_Node000020_Node000023" title=" " alt="" coords="720,766,672,771,671,766,719,760"/>
+<area shape="rect" id="Node000025" href="$neural__layer__connected_8c.html#af788792d1be190cfaa2f26fe262761b9" title="Initialises and creates a copy of one connected layer from another." alt="" coords="487,519,681,544"/>
+<area shape="poly" id="edge27_Node000024_Node000025" title=" " alt="" coords="732,568,641,547,642,541,734,562"/>
+<area shape="rect" id="Node000026" href="$neural__layer__connected_8c.html#af721369377e6bd5f2b691065f73a32f6" title="Initialises a fully&#45;connected layer." alt="" coords="493,568,675,593"/>
+<area shape="poly" id="edge28_Node000024_Node000026" title=" " alt="" coords="720,583,676,583,676,578,720,578"/>
+<area shape="rect" id="Node000027" href="$neural__layer__connected_8c.html#aacd5e7b2682eae2870f22205a399d89c" title="Reads a connected layer from a file." alt="" coords="489,617,679,643"/>
+<area shape="poly" id="edge29_Node000024_Node000027" title=" " alt="" coords="734,599,642,620,641,615,732,594"/>
+<area shape="rect" id="Node000029" href="$neural__layer__dropout_8c.html#a18092e986e5ed7f9084f416a153c5ba1" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="495,815,673,840"/>
+<area shape="poly" id="edge31_Node000028_Node000029" title=" " alt="" coords="732,864,641,843,642,837,734,858"/>
+<area shape="rect" id="Node000030" href="$neural__layer__dropout_8c.html#aa96fffc3ae2e176c86142debc8faf512" title="Initialises a dropout layer." alt="" coords="501,864,667,889"/>
+<area shape="poly" id="edge32_Node000028_Node000030" title=" " alt="" coords="720,879,667,879,667,874,720,874"/>
+<area shape="rect" id="Node000031" href="$neural__layer__dropout_8c.html#ad6efd45d8c8f564208504cc5f71e47f4" title="Reads a dropout layer from a file." alt="" coords="497,913,671,939"/>
+<area shape="poly" id="edge33_Node000028_Node000031" title=" " alt="" coords="734,895,642,916,641,911,732,890"/>
+<area shape="rect" id="Node000032" href="$neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" title="Resizes a dropout layer if the previous layer has changed size." alt="" coords="513,963,655,1003"/>
+<area shape="poly" id="edge34_Node000028_Node000032" title=" " alt="" coords="774,899,731,926,682,952,650,966,648,961,680,948,729,921,771,895"/>
+<area shape="poly" id="edge36_Node000033_Node000015" title=" " alt="" coords="720,355,642,364,641,358,720,350"/>
+<area shape="rect" id="Node000034" href="$neural__layer__lstm_8c.html#ad055907f841ba89c18deb79ecebe8124" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="505,207,663,232"/>
+<area shape="poly" id="edge37_Node000033_Node000034" title=" " alt="" coords="738,327,728,320,711,301,703,281,696,263,680,245,659,235,662,230,683,241,700,260,708,279,716,298,731,316,741,322"/>
+<area shape="rect" id="Node000035" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="510,256,658,281"/>
+<area shape="poly" id="edge38_Node000033_Node000035" title=" " alt="" coords="748,328,728,320,704,307,680,295,645,284,647,279,682,290,707,303,730,316,750,323"/>
+<area shape="rect" id="Node000036" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="507,305,661,331"/>
+<area shape="poly" id="edge39_Node000033_Node000036" title=" " alt="" coords="719,336,661,330,662,324,720,331"/>
+<area shape="rect" id="Node000038" href="$neural__layer__maxpool_8c.html#a499dad862c3fa7b4263cfb94dd584d72" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="493,1028,675,1053"/>
+<area shape="poly" id="edge41_Node000037_Node000038" title=" " alt="" coords="720,1059,675,1054,676,1049,720,1054"/>
+<area shape="rect" id="Node000039" href="$neural__layer__maxpool_8c.html#a2a0197edd0fc484149f1b35e0d0c94e8" title="Initialises a 2D maxpooling layer." alt="" coords="498,1077,670,1103"/>
+<area shape="poly" id="edge42_Node000037_Node000039" title=" " alt="" coords="720,1078,670,1083,670,1078,720,1072"/>
+<area shape="rect" id="Node000040" href="$neural__layer__maxpool_8c.html#ac91009faa234b027ecbfde0a55407bd8" title="Reads a maxpooling layer from a file." alt="" coords="495,1127,673,1152"/>
+<area shape="poly" id="edge43_Node000037_Node000040" title=" " alt="" coords="761,1087,682,1117,639,1129,637,1124,680,1111,759,1082"/>
+<area shape="rect" id="Node000042" href="$neural__layer__noise_8c.html#a6c89736d9f4fb3a4490ba87d8f8e3e92" title="Initialises and creates a copy of one noise layer from another." alt="" coords="501,1176,667,1201"/>
+<area shape="poly" id="edge45_Node000041_Node000042" title=" " alt="" coords="732,1225,641,1204,642,1199,734,1220"/>
+<area shape="rect" id="Node000043" href="$neural__layer__noise_8c.html#a433252b61a22c508b4c943191124ce03" title="Initialises a noise layer." alt="" coords="507,1225,661,1251"/>
+<area shape="poly" id="edge46_Node000041_Node000043" title=" " alt="" coords="720,1241,661,1241,661,1235,720,1235"/>
+<area shape="rect" id="Node000044" href="$neural__layer__noise_8c.html#a79a3cce0f83b86c08dd45b14088a7519" title="Reads a noise layer from a file." alt="" coords="503,1275,665,1300"/>
+<area shape="poly" id="edge47_Node000041_Node000044" title=" " alt="" coords="734,1256,642,1277,641,1272,732,1251"/>
+<area shape="rect" id="Node000045" href="$neural__layer__noise_8c.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="519,1325,649,1365"/>
+<area shape="poly" id="edge48_Node000041_Node000045" title=" " alt="" coords="774,1261,731,1287,682,1314,650,1327,648,1322,680,1309,729,1283,771,1256"/>
+<area shape="rect" id="Node000047" href="$neural__layer__recurrent_8c.html#a5809330e54d3a893af1f635f7435dd8c" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="491,1389,677,1415"/>
+<area shape="poly" id="edge50_Node000046_Node000047" title=" " alt="" coords="720,1420,677,1415,677,1409,720,1414"/>
+<area shape="rect" id="Node000048" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="497,1439,671,1464"/>
+<area shape="poly" id="edge51_Node000046_Node000048" title=" " alt="" coords="720,1438,672,1444,671,1439,719,1433"/>
+<area shape="rect" id="Node000049" href="$neural__layer__recurrent_8c.html#a2492453a3912b4d17ecd3edf142069de" title="Reads a recurrent layer from a file." alt="" coords="493,1488,675,1513"/>
+<area shape="poly" id="edge52_Node000046_Node000049" title=" " alt="" coords="762,1447,682,1478,639,1491,638,1485,680,1473,760,1442"/>
+<area shape="rect" id="Node000051" href="$neural__layer__softmax_8c.html#a4075ebb518e4fb21c3f1ce28a47fd6a0" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="493,1537,675,1563"/>
+<area shape="poly" id="edge54_Node000050_Node000051" title=" " alt="" coords="732,1586,641,1565,642,1560,734,1581"/>
+<area shape="rect" id="Node000052" href="$neural__layer__softmax_8c.html#a924b58251342121ab62ae385ace909aa" title="Creates and initialises a softmax layer." alt="" coords="499,1587,669,1612"/>
+<area shape="poly" id="edge55_Node000050_Node000052" title=" " alt="" coords="720,1602,669,1602,669,1597,720,1597"/>
+<area shape="rect" id="Node000053" href="$neural__layer__softmax_8c.html#a82ab9964bfb9c258d64b5ae55b432bd3" title="Reads a softmax layer from a file." alt="" coords="495,1636,673,1661"/>
+<area shape="poly" id="edge56_Node000050_Node000053" title=" " alt="" coords="734,1618,642,1639,641,1633,732,1612"/>
+<area shape="rect" id="Node000054" href="$neural__layer__softmax_8c.html#aa26a5d73cbae5aa58fd2ae5ba482fd71" title="Resizes a softmax layer if the previous layer has changed size." alt="" coords="511,1686,657,1726"/>
+<area shape="poly" id="edge57_Node000050_Node000054" title=" " alt="" coords="774,1622,731,1649,682,1675,650,1688,648,1684,680,1670,729,1644,771,1617"/>
+<area shape="rect" id="Node000056" href="$neural__layer__upsample_8c.html#a86864ca291459a0ab37839c7db8bb1c5" title="Initialises and copies one upsampling layer from another." alt="" coords="489,1751,679,1776"/>
+<area shape="poly" id="edge59_Node000055_Node000056" title=" " alt="" coords="720,1781,679,1776,680,1771,720,1776"/>
+<area shape="rect" id="Node000057" href="$neural__layer__upsample_8c.html#aaac5547674e091e9c905cea0e58055f2" title="Initialises a 2D upsampling layer." alt="" coords="495,1800,673,1825"/>
+<area shape="poly" id="edge60_Node000055_Node000057" title=" " alt="" coords="720,1800,674,1805,673,1800,720,1794"/>
+<area shape="rect" id="Node000058" href="$neural__layer__upsample_8c.html#ab4b98af15404832cef591126b83fabc3" title="Reads an upsampling layer from a file." alt="" coords="491,1849,677,1875"/>
+<area shape="poly" id="edge61_Node000055_Node000058" title=" " alt="" coords="748,1807,730,1814,707,1827,682,1839,643,1852,642,1847,680,1834,704,1822,728,1809,746,1802"/>
+<area shape="rect" id="Node000059" href="$neural__layer__upsample_8c.html#a0bb6959136d4a1c70fa3ec778a8a8cca" title="Resizes an upsampling layer if the previous layer has changed size." alt="" coords="507,1899,661,1939"/>
+<area shape="poly" id="edge62_Node000055_Node000059" title=" " alt="" coords="738,1808,731,1813,715,1831,708,1850,700,1869,683,1888,661,1901,658,1897,680,1884,695,1866,703,1848,711,1828,728,1809,735,1804"/>
+<area shape="rect" id="Node000061" href="$neural__layer__avgpool_8c.html#ae977e3a6877399ab4be43387735a7ab5" title="Resizes an avg pooling layer if the previous layer has changed size." alt="" coords="512,1963,656,2003"/>
+<area shape="poly" id="edge64_Node000060_Node000061" title=" " alt="" coords="737,1858,731,1863,714,1884,708,1907,701,1930,683,1953,658,1969,655,1964,680,1949,696,1928,703,1905,710,1882,727,1859,734,1854"/>
+<area shape="rect" id="Node000063" href="$neural__layer__maxpool_8c.html#a2ba512290c75f7ca9e8ab6005aefac6a" title="Resizes a maxpooling layer if the previous layer has changed size." alt="" coords="510,2027,658,2067"/>
+<area shape="poly" id="edge66_Node000062_Node000063" title=" " alt="" coords="738,1908,731,1913,720,1926,714,1938,708,1964,702,1990,695,2004,683,2017,660,2033,657,2028,680,2013,691,2001,697,1989,703,1963,709,1936,716,1923,728,1909,735,1903"/>
+<area shape="poly" id="edge68_Node000064_Node000017" title=" " alt="" coords="732,518,641,497,642,492,734,513"/>
+<area shape="poly" id="edge70_Node000065_Node000012" title=" " alt="" coords="987,508,923,401,903,356,893,338,876,320,852,307,854,302,879,316,898,335,908,354,928,398,991,506"/>
+<area shape="poly" id="edge71_Node000065_Node000014" title=" " alt="" coords="938,518,855,497,857,492,940,513"/>
+<area shape="poly" id="edge72_Node000065_Node000024" title=" " alt="" coords="940,550,857,571,855,565,938,545"/>
+<area shape="rect" id="Node000067" href="$neural__layer__maxpool_8c.html#ab6439ffb382e4898aa9885d5a98bd642" title="Forward propagates a maxpooling layer." alt="" coords="729,1923,877,1963"/>
+<area shape="poly" id="edge74_Node000066_Node000067" title=" " alt="" coords="953,886,939,893,927,904,906,942,892,989,884,1046,881,1109,886,1250,900,1403,914,1556,921,1699,919,1763,912,1821,900,1871,880,1912,866,1925,862,1921,875,1908,895,1869,907,1820,914,1763,916,1699,909,1557,895,1403,881,1250,875,1109,878,1045,887,988,901,940,923,900,936,889,951,881"/>
 </map>

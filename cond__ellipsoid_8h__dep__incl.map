@@ -1,5 +1,7 @@
 <map id="cond_ellipsoid.h" name="cond_ellipsoid.h">
-<area shape="rect" id="node1" title="Hyperellipsoid condition functions." alt="" coords="67,5,181,32"/>
-<area shape="rect" id="node2" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="5,80,120,107"/>
-<area shape="rect" id="node3" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="144,80,229,107"/>
+<area shape="rect" id="Node000001" title="Hyperellipsoid condition functions." alt="" coords="67,5,181,31"/>
+<area shape="rect" id="Node000002" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="5,79,120,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,43,75,80,71,77,103,40"/>
+<area shape="rect" id="Node000003" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="144,79,229,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,39,179,77,175,80,141,43"/>
 </map>

@@ -1,106 +1,235 @@
 <map id="xcs_rl_exp" name="xcs_rl_exp">
-<area shape="rect" id="node1" title="Executes a reinforcement learning experiment." alt="" coords="5,693,91,720"/>
-<area shape="rect" id="node2" href="$perf_8c.html#ac15feab73f15fadd432e0615ada25fd6" title="Displays the current training and test performance." alt="" coords="143,668,219,695"/>
-<area shape="rect" id="node3" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="139,719,224,745"/>
-<area shape="rect" id="node4" href="$env_8h.html#ae121d577e67ad7e2b6297bb3287cb388" title="Executes the specified action and returns the payoff." alt="" coords="290,389,386,416"/>
-<area shape="rect" id="node5" href="$env_8h.html#aa7315e5f4ff3adb90bfbb044f7389a3a" title="Returns the current environment perceptions." alt="" coords="286,440,390,467"/>
-<area shape="rect" id="node6" href="$env_8h.html#adfd68b7697030b181f8c43c84f9fea34" title="Returns whether the environment is in a terminal state." alt="" coords="291,491,385,517"/>
-<area shape="rect" id="node7" href="$env_8h.html#aaa4a7e6e6b8db660fe0815b756cc6711" title="Returns the maximum payoff value possible in the environment." alt="" coords="279,541,397,568"/>
-<area shape="rect" id="node8" href="$env_8h.html#a9d66a98c84c8121e2bc735d66759c551" title="Returns whether the environment is a multistep problem." alt="" coords="287,592,389,619"/>
-<area shape="rect" id="node9" href="$env_8h.html#a0e62c90c09c60cf8afd4f2dd47743f92" title="Resets the environment." alt="" coords="299,643,377,669"/>
-<area shape="rect" id="node10" href="$param_8c.html#a429d77deb33cf59f7e63ab7f258b176c" title=" " alt="" coords="272,693,404,720"/>
-<area shape="rect" id="node11" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="282,744,394,771"/>
-<area shape="rect" id="node53" href="$xcs__rl_8c.html#aee0c56c15edc80945cda6de450e3ceb7" title="Ends a step in a reinforcement learning trial." alt="" coords="279,896,397,923"/>
-<area shape="rect" id="node56" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="281,947,395,973"/>
-<area shape="rect" id="node62" href="$xcs__rl_8c.html#ab5029df41800b6186c6c90239430da69" title="Returns the reinforcement learning system prediction error." alt="" coords="293,845,383,872"/>
-<area shape="rect" id="node63" href="$xcs__rl_8c.html#a6bbd7dc6c04d7173cbc743ba47bd8b91" title="Initialises a step in a reinforcement learning trial." alt="" coords="281,1048,395,1075"/>
-<area shape="rect" id="node65" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="283,997,393,1024"/>
-<area shape="rect" id="node66" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="456,845,559,872"/>
-<area shape="rect" id="node12" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="461,444,554,471"/>
-<area shape="rect" id="node42" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1331,705,1428,732"/>
-<area shape="rect" id="node46" href="$pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="452,693,563,720"/>
-<area shape="rect" id="node48" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="472,744,543,771"/>
-<area shape="rect" id="node52" href="$pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d" title="Returns a random action from the prediction array." alt="" coords="452,617,563,644"/>
-<area shape="rect" id="node13" href="$cl_8c.html#a60956375242a14df433347c54c40fb94" title="Computes the current classifier action using the input." alt="" coords="621,385,696,412"/>
-<area shape="rect" id="node15" href="$cl_8c.html#a1ccf0c57e37b72878dd521ef0e8d719a" title="Returns whether a classifier matched the most recent input." alt="" coords="633,495,684,521"/>
-<area shape="rect" id="node16" href="$cl_8c.html#a87846c65c6d158e77a63714535b28a59" title="Calculates whether a classifier matches an input." alt="" coords="621,240,696,267"/>
-<area shape="rect" id="node18" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="1160,655,1239,681"/>
-<area shape="rect" id="node19" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="614,444,703,471"/>
-<area shape="rect" id="node44" href="$clset_8c.html#ab7cb042e6b9a34ee1d7a81ed91b1a42d" title="Returns the fraction of inputs matched by the most general rule with error below E0...." alt="" coords="613,305,704,332"/>
-<area shape="rect" id="node14" href="$action_8h.html#a6a453cb80b07ecb3f18eabc178c81424" title="Computes the current classifier action using the input." alt="" coords="782,335,879,361"/>
-<area shape="rect" id="node17" href="$condition_8h.html#ae7763257380d2cc8a99aefac7d61f657" title="Calculates whether the condition matches the input." alt="" coords="784,233,877,260"/>
-<area shape="rect" id="node20" href="$cl_8c.html#ab80c62ad6a09b3243f499a7ad9ef95cd" title="Covers the condition and action for a classifier." alt="" coords="795,132,866,159"/>
-<area shape="rect" id="node30" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="803,744,859,771"/>
-<area shape="rect" id="node31" href="$clset_8c.html#af1f8c646fef336390c16b4ba0572ff6f" title="Checks whether each action is covered by the match set." alt="" coords="755,385,907,412"/>
-<area shape="rect" id="node32" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="765,437,897,478"/>
-<area shape="rect" id="node43" href="$clset_8c.html#a3bb797f21eed0cdf6fc54b36692e213f" title="Removes classifiers with 0 numerosity from the set." alt="" coords="961,1567,1063,1593"/>
-<area shape="rect" id="node21" href="$action_8h.html#a4760df86361ac4ed8c85d985c37a6d3d" title="Generates an action that matches the specified value." alt="" coords="973,208,1051,235"/>
-<area shape="rect" id="node22" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="980,107,1044,133"/>
-<area shape="rect" id="node29" href="$condition_8h.html#abfb169263bdeb3b4bac3fa532a6f6ef4" title="Generates a condition that matches the current input." alt="" coords="967,157,1057,184"/>
-<area shape="rect" id="node23" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="1167,5,1231,32"/>
-<area shape="rect" id="node24" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="1158,56,1241,83"/>
-<area shape="rect" id="node25" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="1162,107,1237,133"/>
-<area shape="rect" id="node26" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="1150,157,1249,184"/>
-<area shape="rect" id="node27" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="1164,389,1235,416"/>
-<area shape="rect" id="node28" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="1148,208,1251,235"/>
-<area shape="rect" id="node33" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="959,444,1065,471"/>
-<area shape="rect" id="node34" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="1117,444,1281,471"/>
-<area shape="rect" id="node35" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="1133,287,1265,313"/>
-<area shape="rect" id="node36" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="1330,337,1429,364"/>
-<area shape="rect" id="node38" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="1335,236,1423,263"/>
-<area shape="rect" id="node39" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="1332,287,1427,313"/>
-<area shape="rect" id="node41" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="1329,1009,1429,1036"/>
-<area shape="rect" id="node37" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="1477,337,1559,364"/>
-<area shape="rect" id="node40" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="1479,287,1557,313"/>
-<area shape="rect" id="node45" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="795,284,867,311"/>
-<area shape="rect" id="node47" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="1140,705,1259,732"/>
-<area shape="rect" id="node49" href="$cl_8c.html#a6d152849e51ed10765330586e574805f" title="Computes the current classifier prediction using the input." alt="" coords="973,1820,1051,1847"/>
-<area shape="rect" id="node51" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="623,744,695,771"/>
-<area shape="rect" id="node50" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="1147,1820,1251,1847"/>
-<area shape="rect" id="node54" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="468,947,547,973"/>
-<area shape="rect" id="node55" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="477,896,537,923"/>
-<area shape="rect" id="node57" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="471,997,544,1024"/>
-<area shape="rect" id="node58" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="1169,1364,1230,1391"/>
-<area shape="rect" id="node59" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="1345,1415,1414,1441"/>
-<area shape="rect" id="node60" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="1340,1313,1419,1340"/>
-<area shape="rect" id="node61" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="1341,1364,1417,1391"/>
-<area shape="rect" id="node64" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="470,1048,545,1075"/>
-<area shape="rect" id="node67" href="$clset_8c.html#a6b2fe42823bdd24cdea0e1ec3468e1f8" title="Constructs the action set from the match set." alt="" coords="613,795,705,821"/>
-<area shape="rect" id="node68" href="$clset_8c.html#a27aedca23d7c37f4ca0f44845e9805c7" title="Provides reinforcement to the set and performs set subsumption." alt="" coords="611,1668,707,1695"/>
-<area shape="rect" id="node81" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="639,1009,678,1036"/>
-<area shape="rect" id="node103" href="$pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c" title="Returns the highest value in the prediction array." alt="" coords="613,845,705,872"/>
-<area shape="rect" id="node69" href="$cl_8c.html#a486392cc4fbb4f38ecbf8d6d8fc6df77" title="Updates a classifier&#39;s experience, error, and set size." alt="" coords="791,1871,870,1897"/>
-<area shape="rect" id="node73" href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" title="Performs set subsumption." alt="" coords="765,1617,896,1644"/>
-<area shape="rect" id="node78" href="$clset_8c.html#aa969b49afc6d934a12ea41e41514b360" title="Updates the fitness of classifiers in the set." alt="" coords="773,1719,888,1745"/>
-<area shape="rect" id="node70" href="$action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" title="Updates the classifier&#39;s action." alt="" coords="969,1921,1055,1948"/>
-<area shape="rect" id="node71" href="$condition_8h.html#af8317dec779d25b369473111f5cbd0e1" title="Updates the classifier&#39;s condition." alt="" coords="964,1972,1060,1999"/>
-<area shape="rect" id="node72" href="$prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" title="Updates the classifier&#39;s prediction." alt="" coords="965,1871,1059,1897"/>
-<area shape="rect" id="node74" href="$cl_8c.html#a702d046abd4a69246f5bfd302c523f92" title="Returns whether classifier c1 is more general than c2." alt="" coords="1159,1567,1240,1593"/>
-<area shape="rect" id="node77" href="$cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" title="Returns whether a classifier is a potential subsumer." alt="" coords="1151,1313,1247,1340"/>
-<area shape="rect" id="node75" href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" title="Returns whether the action of classifier c1 is more general than c2." alt="" coords="1335,1541,1424,1568"/>
-<area shape="rect" id="node76" href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="1330,1592,1429,1619"/>
-<area shape="rect" id="node79" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="982,1769,1042,1796"/>
-<area shape="rect" id="node80" href="$cl_8c.html#a5fe8108de575672338fc8e602e469589" title="Updates the fitness of a classifier." alt="" coords="964,1719,1060,1745"/>
-<area shape="rect" id="node82" href="$cl_8c.html#a9ee3a0eeed6f36bba89250b27df8ae02" title="Copies condition, action, and prediction structures." alt="" coords="797,1009,864,1036"/>
-<area shape="rect" id="node86" href="$cl_8c.html#aa237e827b4c84629b0fa044f4dcd57d3" title="Performs classifier crossover." alt="" coords="783,1415,879,1441"/>
-<area shape="rect" id="node90" href="$cl_8c.html#a919994ba12876465611bd4bb9df0171c" title="Performs classifier mutation." alt="" coords="791,896,870,923"/>
-<area shape="rect" id="node94" href="$clset_8c.html#a2948f1764d173335c2c53783077b52ae" title="Calculates the mean time stamp of classifiers in the set." alt="" coords="770,947,891,973"/>
-<area shape="rect" id="node96" href="$clset_8c.html#aae63a99d65c81ec1f83ae8a4ba8ac70a" title="Sets the time stamps for classifiers in the set." alt="" coords="773,1516,888,1543"/>
-<area shape="rect" id="node97" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="799,1237,863,1264"/>
-<area shape="rect" id="node99" href="$ea_8c.html#aaac3e363f65e1444bfd2ee6984fa1885" title="Initialises offspring error and fitness." alt="" coords="772,1111,889,1137"/>
-<area shape="rect" id="node100" href="$ea_8c.html#a78e7969b82ca14889652c6c1716675ff" title="Selects two parents." alt="" coords="973,1263,1051,1289"/>
-<area shape="rect" id="node83" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="975,1009,1049,1036"/>
-<area shape="rect" id="node84" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="969,1060,1055,1087"/>
-<area shape="rect" id="node85" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="971,1111,1053,1137"/>
-<area shape="rect" id="node87" href="$action_8h.html#a1cb59126839b6577e98f066504dde5df" title="Performs classifier action crossover." alt="" coords="960,1415,1064,1441"/>
-<area shape="rect" id="node88" href="$condition_8h.html#a51f1292e43a63159f27330fe53df9fa3" title="Performs classifier condition crossover." alt="" coords="955,1465,1069,1492"/>
-<area shape="rect" id="node89" href="$prediction_8h.html#aa0d463ff8c57df62a1923d3dbdc8ecac" title="Performs classifier prediction crossover." alt="" coords="957,1516,1067,1543"/>
-<area shape="rect" id="node91" href="$action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9" title="Performs classifier action mutation." alt="" coords="969,807,1055,833"/>
-<area shape="rect" id="node92" href="$condition_8h.html#a2f4c5f7d01053ba51ccc7287c0b4cd4d" title="Performs classifier condition mutation." alt="" coords="963,857,1061,884"/>
-<area shape="rect" id="node93" href="$prediction_8h.html#a54e0ad7eb1a2c24d35dd13e3212f7500" title="Performs classifier prediction mutation." alt="" coords="965,756,1059,783"/>
-<area shape="rect" id="node95" href="$clset_8c.html#ad2bced61b3addd5c4d95dd3460338e0b" title="Calculates the total time stamps of classifiers in the set." alt="" coords="955,908,1069,935"/>
-<area shape="rect" id="node98" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="964,1313,1060,1340"/>
-<area shape="rect" id="node101" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulette wheel." alt="" coords="1150,1111,1249,1137"/>
-<area shape="rect" id="node102" href="$ea_8c.html#a1e69096825e17626b2015dd730e66638" title="Selects a classifier from the set via tournament." alt="" coords="1124,857,1275,884"/>
-<area shape="rect" id="node104" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="798,845,863,872"/>
+<area shape="rect" id="Node000001" title="Executes a reinforcement learning experiment." alt="" coords="5,684,91,709"/>
+<area shape="rect" id="Node000002" href="$perf_8c.html#ac15feab73f15fadd432e0615ada25fd6" title="Displays the current training and test performance." alt="" coords="143,659,219,684"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,686,129,679,130,684,91,691"/>
+<area shape="rect" id="Node000003" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="139,708,224,733"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="91,702,126,708,125,713,90,707"/>
+<area shape="rect" id="Node000004" href="$env_8h.html#ae121d577e67ad7e2b6297bb3287cb388" title="Executes the specified action and returns the payoff." alt="" coords="290,387,386,412"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="211,706,222,695,241,659,248,625,247,592,243,559,239,526,239,493,248,458,270,423,277,416,280,420,274,426,253,461,244,493,244,526,248,558,252,591,253,625,246,661,226,698,214,710"/>
+<area shape="rect" id="Node000005" href="$env_8h.html#a5f5457e3e253253fe4d20105bf7b41e4" title="Returns the current environment perceptions." alt="" coords="286,436,390,461"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="210,706,222,695,238,666,245,638,245,611,243,584,241,557,243,529,251,501,270,472,275,467,279,471,274,476,256,503,248,530,246,557,248,583,251,610,250,639,243,668,226,698,214,710"/>
+<area shape="rect" id="Node000006" href="$env_8h.html#adfd68b7697030b181f8c43c84f9fea34" title="Returns whether the environment is in a terminal state." alt="" coords="291,485,385,511"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="210,706,222,695,235,672,242,651,244,608,246,566,254,544,270,522,277,515,281,519,274,525,259,546,251,567,249,609,247,652,240,675,226,698,213,710"/>
+<area shape="rect" id="Node000007" href="$env_8h.html#aaa4a7e6e6b8db660fe0815b756cc6711" title="Returns the maximum payoff value possible in the environment." alt="" coords="279,535,397,560"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="209,706,222,695,233,679,239,664,244,633,250,603,257,587,270,571,276,565,280,569,274,575,262,590,255,604,249,634,244,665,238,681,226,698,213,710"/>
+<area shape="rect" id="Node000008" href="$env_8h.html#a9d66a98c84c8121e2bc735d66759c551" title="Returns whether the environment is a multistep problem." alt="" coords="287,584,389,609"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="207,706,222,695,237,676,245,657,253,639,270,620,279,614,282,618,274,624,258,642,250,660,242,678,226,699,211,710"/>
+<area shape="rect" id="Node000009" href="$env_8h.html#a0e62c90c09c60cf8afd4f2dd47743f92" title="Resets the environment." alt="" coords="299,633,377,659"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="204,705,271,669,288,661,290,666,273,674,206,710"/>
+<area shape="rect" id="Node000010" href="$param_8c.html#a2dd28079e288b25bb2360347bc1856ff" title=" " alt="" coords="272,683,404,708"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="224,711,258,706,259,711,225,716"/>
+<area shape="rect" id="Node000011" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="282,732,394,757"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="225,725,269,731,268,737,224,730"/>
+<area shape="rect" id="Node000053" href="$xcs__rl_8c.html#aee0c56c15edc80945cda6de450e3ceb7" title="Ends a step in a reinforcement learning trial." alt="" coords="279,883,397,908"/>
+<area shape="poly" id="edge57_Node000003_Node000053" title=" " alt="" coords="189,732,218,797,243,836,274,869,280,874,277,878,270,873,238,839,213,800,184,735"/>
+<area shape="rect" id="Node000056" href="$xcs__rl_8c.html#aacfd74f90f7b56679f88ff944c31835a" title="Frees memory used by a reinforcement learning trial." alt="" coords="281,932,395,957"/>
+<area shape="poly" id="edge60_Node000003_Node000056" title=" " alt="" coords="187,733,196,769,212,819,237,872,254,897,274,919,278,923,275,927,270,923,250,900,233,875,207,821,191,771,182,734"/>
+<area shape="rect" id="Node000062" href="$xcs__rl_8c.html#ab5029df41800b6186c6c90239430da69" title="Returns the reinforcement learning system prediction error." alt="" coords="293,833,383,859"/>
+<area shape="poly" id="edge67_Node000003_Node000062" title=" " alt="" coords="195,732,228,770,274,812,294,825,292,829,270,816,224,774,190,735"/>
+<area shape="rect" id="Node000063" href="$xcs__rl_8c.html#a6bbd7dc6c04d7173cbc743ba47bd8b91" title="Initialises a step in a reinforcement learning trial." alt="" coords="281,1031,395,1056"/>
+<area shape="poly" id="edge69_Node000003_Node000063" title=" " alt="" coords="185,733,188,785,200,861,211,902,227,944,247,983,274,1018,278,1021,274,1025,270,1021,243,986,222,946,206,904,195,862,183,785,180,734"/>
+<area shape="rect" id="Node000065" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="283,981,393,1007"/>
+<area shape="poly" id="edge71_Node000003_Node000065" title=" " alt="" coords="186,733,192,777,206,840,232,908,251,940,274,968,278,972,274,976,270,972,246,943,227,911,201,842,187,778,181,734"/>
+<area shape="rect" id="Node000066" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="456,833,559,859"/>
+<area shape="poly" id="edge73_Node000003_Node000066" title=" " alt="" coords="204,731,273,768,363,801,446,827,444,832,361,807,271,772,202,736"/>
+<area shape="rect" id="Node000012" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="461,435,554,460"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="386,730,402,719,421,682,447,613,495,472,500,474,453,615,426,684,406,722,390,734"/>
+<area shape="rect" id="Node000042" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1331,695,1428,720"/>
+<area shape="poly" id="edge56_Node000011_Node000042" title=" " alt="" coords="389,730,402,719,426,682,437,647,440,613,437,579,431,507,435,466,450,422,480,354,508,302,526,280,548,260,610,221,648,208,680,207,713,212,755,214,831,208,865,208,907,214,1118,314,1166,327,1207,331,1244,340,1263,351,1283,368,1312,405,1335,446,1352,490,1364,535,1378,618,1381,681,1376,681,1372,619,1359,536,1347,492,1330,448,1308,408,1279,372,1260,355,1242,345,1206,336,1165,332,1116,319,906,219,864,213,831,213,755,219,713,217,680,212,649,213,612,226,551,264,530,284,513,305,484,357,454,424,441,468,436,507,442,579,445,613,442,648,431,684,406,722,393,734"/>
+<area shape="rect" id="Node000046" href="$pa_8c.html#adf55daf0e18f0cb5e48f8b65464bab9c" title="Returns the best action in the prediction array." alt="" coords="452,683,563,708"/>
+<area shape="poly" id="edge47_Node000011_Node000046" title=" " alt="" coords="381,729,449,710,450,715,383,735"/>
+<area shape="rect" id="Node000048" href="$pa_8c.html#abcd11f4277bf0a24b4710389f9529015" title="Builds the prediction array for the specified input." alt="" coords="472,733,543,759"/>
+<area shape="poly" id="edge50_Node000011_Node000048" title=" " alt="" coords="394,742,458,743,458,748,394,748"/>
+<area shape="rect" id="Node000052" href="$pa_8c.html#a5f7fe0f7014294c40ff55b5e7498a43d" title="Returns a random action from the prediction array." alt="" coords="452,620,563,645"/>
+<area shape="poly" id="edge54_Node000011_Node000052" title=" " alt="" coords="381,730,403,718,417,707,427,695,450,669,474,651,477,655,454,673,431,699,421,711,405,723,383,734"/>
+<area shape="rect" id="Node000013" href="$cl_8c.html#a60956375242a14df433347c54c40fb94" title="Computes the current classifier action using the input." alt="" coords="621,377,696,403"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="541,432,611,405,613,410,543,437"/>
+<area shape="rect" id="Node000015" href="$cl_8c.html#a1ccf0c57e37b72878dd521ef0e8d719a" title="Returns whether a classifier matched the most recent input." alt="" coords="633,484,684,509"/>
+<area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="548,458,621,482,619,487,546,463"/>
+<area shape="rect" id="Node000016" href="$cl_8c.html#a87846c65c6d158e77a63714535b28a59" title="Calculates whether a classifier matches an input." alt="" coords="621,236,696,261"/>
+<area shape="poly" id="edge15_Node000012_Node000016" title=" " alt="" coords="513,433,550,367,577,325,609,286,627,268,631,272,613,289,582,329,554,370,517,436"/>
+<area shape="rect" id="Node000018" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="1160,644,1239,669"/>
+<area shape="poly" id="edge17_Node000012_Node000018" title=" " alt="" coords="524,458,562,489,612,520,684,549,759,574,910,612,1045,636,1147,649,1146,655,1044,642,909,617,757,579,682,554,609,524,559,494,521,463"/>
+<area shape="rect" id="Node000019" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="614,435,703,460"/>
+<area shape="poly" id="edge18_Node000012_Node000019" title=" " alt="" coords="554,445,600,445,600,450,554,450"/>
+<area shape="rect" id="Node000044" href="$clset_8c.html#ab7cb042e6b9a34ee1d7a81ed91b1a42d" title="Returns the fraction of inputs matched by the most general rule with error below E0...." alt="" coords="613,300,704,325"/>
+<area shape="poly" id="edge45_Node000012_Node000044" title=" " alt="" coords="521,432,632,332,635,336,525,436"/>
+<area shape="rect" id="Node000014" href="$action_8h.html#a6a453cb80b07ecb3f18eabc178c81424" title="Computes the current classifier action using the input." alt="" coords="782,328,879,353"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="696,377,771,355,773,360,697,382"/>
+<area shape="rect" id="Node000017" href="$condition_8h.html#ae7763257380d2cc8a99aefac7d61f657" title="Calculates whether the condition matches the input." alt="" coords="784,229,877,255"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="696,245,770,242,770,247,696,250"/>
+<area shape="poly" id="edge31_Node000019_Node000018" title=" " alt="" coords="695,458,755,477,803,487,844,492,916,495,986,503,1026,515,1071,534,1105,555,1135,581,1182,631,1178,635,1132,585,1101,560,1068,539,1024,520,985,508,916,500,844,497,802,492,754,482,693,463"/>
+<area shape="rect" id="Node000020" href="$cl_8c.html#ab80c62ad6a09b3243f499a7ad9ef95cd" title="Covers the condition and action for a classifier." alt="" coords="795,128,866,153"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="684,433,705,414,719,388,727,363,731,318,733,270,740,244,752,215,774,185,799,161,803,164,778,189,757,218,745,246,738,271,736,318,732,364,724,390,709,417,687,437"/>
+<area shape="rect" id="Node000030" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="803,732,859,757"/>
+<area shape="poly" id="edge29_Node000019_Node000030" title=" " alt="" coords="692,458,709,471,733,501,754,534,789,603,812,668,826,718,821,719,807,669,784,605,750,536,729,504,705,475,689,462"/>
+<area shape="rect" id="Node000031" href="$clset_8c.html#af1f8c646fef336390c16b4ba0572ff6f" title="Checks whether each action is covered by the match set." alt="" coords="755,377,907,403"/>
+<area shape="poly" id="edge30_Node000019_Node000031" title=" " alt="" coords="697,432,778,404,780,410,698,437"/>
+<area shape="rect" id="Node000032" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="765,427,897,467"/>
+<area shape="poly" id="edge32_Node000019_Node000032" title=" " alt="" coords="704,445,751,445,751,450,704,450"/>
+<area shape="rect" id="Node000043" href="$clset_8c.html#a3bb797f21eed0cdf6fc54b36692e213f" title="Removes classifiers with 0 numerosity from the set." alt="" coords="961,1544,1063,1569"/>
+<area shape="poly" id="edge44_Node000019_Node000043" title=" " alt="" coords="696,458,709,471,727,510,739,558,745,613,747,674,741,810,728,955,716,1100,712,1234,715,1294,723,1347,737,1392,757,1428,773,1445,789,1454,825,1460,864,1463,886,1469,908,1480,924,1493,933,1505,942,1518,956,1531,964,1535,961,1540,953,1535,938,1521,929,1509,920,1496,905,1484,884,1474,863,1468,824,1466,787,1459,769,1449,753,1432,732,1394,718,1348,710,1294,706,1234,710,1100,722,955,735,810,741,674,740,614,733,559,722,512,704,474,692,462"/>
+<area shape="rect" id="Node000021" href="$action_8h.html#a4760df86361ac4ed8c85d985c37a6d3d" title="Generates an action that matches the specified value." alt="" coords="973,203,1051,228"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="864,151,969,195,967,200,862,156"/>
+<area shape="rect" id="Node000022" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="980,104,1044,129"/>
+<area shape="poly" id="edge21_Node000020_Node000022" title=" " alt="" coords="866,133,966,120,967,125,866,139"/>
+<area shape="rect" id="Node000029" href="$condition_8h.html#abfb169263bdeb3b4bac3fa532a6f6ef4" title="Generates a condition that matches the current input." alt="" coords="967,153,1057,179"/>
+<area shape="poly" id="edge28_Node000020_Node000029" title=" " alt="" coords="866,143,954,155,954,161,866,148"/>
+<area shape="rect" id="Node000023" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="1167,5,1231,31"/>
+<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="1026,102,1065,71,1116,40,1153,26,1155,31,1119,44,1068,75,1029,106"/>
+<area shape="rect" id="Node000024" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="1158,55,1241,80"/>
+<area shape="poly" id="edge23_Node000022_Node000024" title=" " alt="" coords="1044,106,1144,79,1146,84,1045,111"/>
+<area shape="rect" id="Node000025" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="1162,104,1237,129"/>
+<area shape="poly" id="edge24_Node000022_Node000025" title=" " alt="" coords="1044,114,1148,114,1148,119,1044,119"/>
+<area shape="rect" id="Node000026" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="1150,153,1249,179"/>
+<area shape="poly" id="edge25_Node000022_Node000026" title=" " alt="" coords="1045,122,1138,147,1137,152,1044,128"/>
+<area shape="rect" id="Node000027" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="1164,381,1235,407"/>
+<area shape="poly" id="edge26_Node000022_Node000027" title=" " alt="" coords="1046,122,1059,129,1071,139,1087,162,1096,184,1100,225,1102,268,1108,291,1120,315,1144,346,1171,371,1167,375,1140,350,1115,318,1103,292,1097,269,1095,226,1091,185,1083,164,1067,142,1056,133,1043,127"/>
+<area shape="rect" id="Node000028" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="1148,203,1251,228"/>
+<area shape="poly" id="edge27_Node000022_Node000028" title=" " alt="" coords="1045,125,1071,138,1086,152,1095,164,1104,176,1119,188,1136,197,1134,201,1116,192,1100,180,1091,167,1082,155,1068,143,1043,130"/>
+<area shape="rect" id="Node000033" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="959,435,1065,460"/>
+<area shape="poly" id="edge33_Node000032_Node000033" title=" " alt="" coords="897,445,945,445,945,450,897,450"/>
+<area shape="poly" id="edge34_Node000033_Node000018" title=" " alt="" coords="1037,458,1071,484,1106,522,1138,562,1185,631,1181,634,1134,565,1102,525,1068,488,1034,462"/>
+<area shape="rect" id="Node000034" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="1117,435,1281,460"/>
+<area shape="poly" id="edge35_Node000033_Node000034" title=" " alt="" coords="1066,445,1104,445,1104,450,1066,450"/>
+<area shape="rect" id="Node000035" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="1133,279,1265,304"/>
+<area shape="poly" id="edge36_Node000033_Node000035" title=" " alt="" coords="1027,433,1170,311,1174,315,1030,437"/>
+<area shape="rect" id="Node000036" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="1330,328,1429,353"/>
+<area shape="poly" id="edge37_Node000035_Node000036" title=" " alt="" coords="1247,301,1319,322,1318,327,1246,307"/>
+<area shape="rect" id="Node000038" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="1335,229,1423,255"/>
+<area shape="poly" id="edge39_Node000035_Node000038" title=" " alt="" coords="1246,276,1321,255,1323,260,1247,281"/>
+<area shape="rect" id="Node000039" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="1332,279,1427,304"/>
+<area shape="poly" id="edge40_Node000035_Node000039" title=" " alt="" coords="1266,289,1318,289,1318,294,1266,294"/>
+<area shape="rect" id="Node000041" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="1329,995,1429,1020"/>
+<area shape="poly" id="edge42_Node000035_Node000041" title=" " alt="" coords="1222,302,1254,330,1271,348,1284,369,1306,420,1319,465,1325,506,1326,546,1324,629,1326,677,1332,732,1376,981,1370,982,1327,733,1320,677,1319,629,1321,546,1319,506,1313,466,1301,422,1279,371,1266,351,1251,334,1218,306"/>
+<area shape="poly" id="edge43_Node000035_Node000042" title=" " alt="" coords="1255,302,1283,321,1315,365,1339,413,1356,464,1368,516,1380,611,1382,681,1376,681,1375,611,1363,517,1351,466,1334,415,1310,368,1279,325,1252,306"/>
+<area shape="rect" id="Node000037" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="1477,328,1559,353"/>
+<area shape="poly" id="edge38_Node000036_Node000037" title=" " alt="" coords="1429,338,1464,338,1464,343,1429,343"/>
+<area shape="rect" id="Node000040" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="1479,279,1557,304"/>
+<area shape="poly" id="edge41_Node000039_Node000040" title=" " alt="" coords="1427,289,1465,289,1465,294,1427,294"/>
+<area shape="rect" id="Node000045" href="$cl_8c.html#a1358864e37832999f9688487ab8f8870" title="Returns the fraction of observed inputs matched by a classifier." alt="" coords="795,279,867,304"/>
+<area shape="poly" id="edge46_Node000044_Node000045" title=" " alt="" coords="704,304,781,295,782,300,704,310"/>
+<area shape="rect" id="Node000047" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="1140,695,1259,720"/>
+<area shape="poly" id="edge48_Node000046_Node000047" title=" " alt="" coords="563,694,1126,703,1126,709,563,699"/>
+<area shape="poly" id="edge49_Node000047_Node000042" title=" " alt="" coords="1259,705,1317,705,1317,710,1259,710"/>
+<area shape="rect" id="Node000049" href="$cl_8c.html#a4a979db96c5292f7ab10a022779ce30d" title="Computes the current classifier prediction using the input." alt="" coords="973,1795,1051,1820"/>
+<area shape="poly" id="edge51_Node000048_Node000049" title=" " alt="" coords="523,757,546,785,565,821,574,882,578,984,580,1258,581,1401,586,1529,596,1628,604,1661,613,1682,647,1718,689,1747,735,1769,783,1784,832,1795,879,1802,959,1806,959,1812,879,1807,831,1800,782,1790,733,1774,686,1751,644,1722,608,1685,598,1663,591,1628,581,1529,576,1401,574,1258,573,984,569,882,560,823,541,788,519,760"/>
+<area shape="rect" id="Node000051" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="623,733,695,759"/>
+<area shape="poly" id="edge53_Node000048_Node000051" title=" " alt="" coords="543,743,609,743,609,749,543,749"/>
+<area shape="rect" id="Node000050" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="1147,1795,1251,1820"/>
+<area shape="poly" id="edge52_Node000049_Node000050" title=" " alt="" coords="1052,1805,1134,1805,1134,1810,1052,1810"/>
+<area shape="poly" id="edge55_Node000052_Node000047" title=" " alt="" coords="563,634,785,651,1070,682,1127,691,1126,696,1069,687,784,656,563,639"/>
+<area shape="rect" id="Node000054" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="468,932,547,957"/>
+<area shape="poly" id="edge58_Node000053_Node000054" title=" " alt="" coords="383,905,455,927,454,932,381,911"/>
+<area shape="rect" id="Node000055" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="477,883,537,908"/>
+<area shape="poly" id="edge59_Node000053_Node000055" title=" " alt="" coords="397,893,463,893,463,898,397,898"/>
+<area shape="poly" id="edge61_Node000056_Node000054" title=" " alt="" coords="395,942,454,942,454,947,395,947"/>
+<area shape="rect" id="Node000057" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="471,981,544,1007"/>
+<area shape="poly" id="edge62_Node000056_Node000057" title=" " alt="" coords="383,955,458,977,457,982,381,960"/>
+<area shape="rect" id="Node000058" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="1169,1345,1230,1371"/>
+<area shape="poly" id="edge63_Node000057_Node000058" title=" " alt="" coords="546,1002,565,1018,580,1048,591,1084,602,1172,602,1276,596,1387,590,1498,587,1603,594,1693,601,1730,613,1761,644,1815,676,1857,711,1889,749,1914,791,1933,839,1949,955,1978,1017,1995,1042,1994,1068,1979,1080,1964,1089,1945,1102,1896,1108,1835,1109,1768,1106,1635,1108,1578,1115,1533,1129,1490,1147,1448,1181,1381,1186,1384,1152,1450,1134,1492,1120,1535,1113,1578,1112,1635,1114,1768,1113,1836,1107,1897,1094,1947,1084,1967,1071,1983,1043,1999,1016,2000,954,1983,837,1954,789,1938,746,1919,707,1893,672,1860,640,1818,608,1763,596,1732,588,1694,582,1603,584,1498,591,1386,596,1275,596,1172,586,1085,575,1050,561,1021,542,1006"/>
+<area shape="rect" id="Node000059" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="1345,1395,1414,1420"/>
+<area shape="poly" id="edge64_Node000058_Node000059" title=" " alt="" coords="1231,1364,1332,1392,1331,1397,1230,1369"/>
+<area shape="rect" id="Node000060" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="1340,1296,1419,1321"/>
+<area shape="poly" id="edge65_Node000058_Node000060" title=" " alt="" coords="1230,1347,1326,1320,1327,1326,1231,1352"/>
+<area shape="rect" id="Node000061" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="1341,1345,1417,1371"/>
+<area shape="poly" id="edge66_Node000058_Node000061" title=" " alt="" coords="1230,1355,1327,1355,1327,1361,1230,1361"/>
+<area shape="poly" id="edge68_Node000062_Node000055" title=" " alt="" coords="383,856,465,880,463,885,381,861"/>
+<area shape="rect" id="Node000064" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="470,1031,545,1056"/>
+<area shape="poly" id="edge70_Node000063_Node000064" title=" " alt="" coords="395,1041,456,1041,456,1046,395,1046"/>
+<area shape="poly" id="edge72_Node000065_Node000064" title=" " alt="" coords="383,1004,457,1026,456,1031,381,1009"/>
+<area shape="poly" id="edge92_Node000066_Node000043" title=" " alt="" coords="549,857,565,870,661,1201,725,1426,757,1530,777,1544,800,1554,850,1566,900,1569,946,1566,947,1571,900,1575,849,1572,798,1559,774,1548,753,1533,720,1427,656,1203,560,873,545,861"/>
+<area shape="rect" id="Node000067" href="$clset_8c.html#a6b2fe42823bdd24cdea0e1ec3468e1f8" title="Constructs the action set from the match set." alt="" coords="613,784,705,809"/>
+<area shape="poly" id="edge74_Node000066_Node000067" title=" " alt="" coords="546,831,605,811,607,816,548,836"/>
+<area shape="rect" id="Node000068" href="$clset_8c.html#a27aedca23d7c37f4ca0f44845e9805c7" title="Provides reinforcement to the set and performs set subsumption." alt="" coords="611,1645,707,1671"/>
+<area shape="poly" id="edge76_Node000066_Node000068" title=" " alt="" coords="551,857,565,870,580,898,591,932,604,1015,608,1111,606,1216,599,1420,602,1507,613,1575,626,1605,642,1632,637,1635,621,1608,608,1576,597,1508,594,1420,600,1215,602,1111,599,1015,586,933,575,900,561,873,547,861"/>
+<area shape="rect" id="Node000081" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="639,995,678,1020"/>
+<area shape="poly" id="edge93_Node000066_Node000081" title=" " alt="" coords="544,856,564,869,591,896,614,926,647,981,643,984,610,929,587,900,561,873,541,861"/>
+<area shape="rect" id="Node000103" href="$pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c" title="Returns the highest value in the prediction array." alt="" coords="613,833,705,859"/>
+<area shape="poly" id="edge128_Node000066_Node000103" title=" " alt="" coords="559,843,599,843,599,849,559,849"/>
+<area shape="poly" id="edge75_Node000067_Node000018" title=" " alt="" coords="705,796,800,792,854,783,906,768,920,760,929,751,953,732,1003,709,1054,691,1146,665,1147,670,1056,696,1005,714,956,736,933,755,923,764,908,772,855,788,800,797,705,801"/>
+<area shape="rect" id="Node000069" href="$cl_8c.html#a486392cc4fbb4f38ecbf8d6d8fc6df77" title="Updates a classifier&#39;s experience, error, and set size." alt="" coords="791,1844,870,1869"/>
+<area shape="poly" id="edge77_Node000068_Node000069" title=" " alt="" coords="673,1669,811,1832,807,1835,669,1673"/>
+<area shape="rect" id="Node000073" href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" title="Performs set subsumption." alt="" coords="765,1595,896,1620"/>
+<area shape="poly" id="edge82_Node000068_Node000073" title=" " alt="" coords="702,1643,773,1621,774,1627,703,1648"/>
+<area shape="rect" id="Node000078" href="$clset_8c.html#aa969b49afc6d934a12ea41e41514b360" title="Updates the fitness of classifiers in the set." alt="" coords="773,1696,888,1721"/>
+<area shape="poly" id="edge89_Node000068_Node000078" title=" " alt="" coords="703,1668,774,1689,773,1695,702,1673"/>
+<area shape="poly" id="edge79_Node000069_Node000049" title=" " alt="" coords="870,1844,959,1819,960,1824,871,1849"/>
+<area shape="rect" id="Node000070" href="$action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80" title="Updates the classifier&#39;s action." alt="" coords="969,1893,1055,1919"/>
+<area shape="poly" id="edge78_Node000069_Node000070" title=" " alt="" coords="871,1865,956,1888,955,1893,870,1870"/>
+<area shape="rect" id="Node000071" href="$condition_8h.html#af8317dec779d25b369473111f5cbd0e1" title="Updates the classifier&#39;s condition." alt="" coords="964,1943,1060,1968"/>
+<area shape="poly" id="edge80_Node000069_Node000071" title=" " alt="" coords="852,1867,899,1897,956,1929,968,1935,966,1940,953,1934,896,1901,850,1872"/>
+<area shape="rect" id="Node000072" href="$prediction_8h.html#a81932bc605950c43bcc2852a77e47fbd" title="Updates the classifier&#39;s prediction." alt="" coords="965,1844,1059,1869"/>
+<area shape="poly" id="edge81_Node000069_Node000072" title=" " alt="" coords="870,1854,951,1854,951,1859,870,1859"/>
+<area shape="poly" id="edge87_Node000073_Node000018" title=" " alt="" coords="848,1592,878,1566,904,1530,920,1488,925,1449,924,1412,919,1377,916,1342,918,1307,929,1271,953,1232,967,1219,982,1212,1012,1209,1042,1206,1055,1199,1067,1187,1088,1154,1102,1122,1109,1090,1112,1058,1104,997,1089,935,1073,874,1067,811,1070,780,1078,747,1093,715,1115,682,1129,669,1146,661,1148,666,1132,674,1119,685,1097,717,1083,749,1075,780,1072,811,1079,873,1094,934,1110,996,1117,1058,1115,1091,1107,1123,1093,1156,1071,1190,1058,1204,1043,1211,1013,1214,983,1218,970,1224,957,1236,933,1273,923,1308,921,1342,925,1377,929,1412,931,1449,925,1489,909,1533,882,1569,852,1596"/>
+<area shape="poly" id="edge88_Node000073_Node000043" title=" " alt="" coords="876,1592,952,1571,953,1576,878,1597"/>
+<area shape="rect" id="Node000074" href="$cl_8c.html#a702d046abd4a69246f5bfd302c523f92" title="Returns whether classifier c1 is more general than c2." alt="" coords="1159,1545,1240,1571"/>
+<area shape="poly" id="edge83_Node000073_Node000074" title=" " alt="" coords="881,1617,922,1625,969,1630,1019,1631,1069,1623,1123,1603,1168,1576,1171,1581,1125,1607,1070,1629,1020,1636,969,1636,921,1630,880,1623"/>
+<area shape="rect" id="Node000077" href="$cl_8c.html#afb88481d6c45d9a8869936cd5b5d9fc1" title="Returns whether a classifier is a potential subsumer." alt="" coords="1151,1296,1247,1321"/>
+<area shape="poly" id="edge86_Node000073_Node000077" title=" " alt="" coords="896,1617,939,1619,985,1616,1029,1604,1049,1594,1067,1580,1090,1552,1099,1523,1098,1492,1094,1461,1088,1430,1087,1397,1095,1365,1115,1332,1137,1317,1140,1321,1119,1336,1100,1367,1093,1398,1094,1429,1099,1461,1104,1492,1104,1523,1094,1554,1071,1584,1052,1598,1031,1609,986,1621,939,1625,896,1622"/>
+<area shape="rect" id="Node000075" href="$action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" title="Returns whether the action of classifier c1 is more general than c2." alt="" coords="1335,1520,1424,1545"/>
+<area shape="poly" id="edge84_Node000074_Node000075" title=" " alt="" coords="1240,1550,1321,1538,1321,1543,1240,1555"/>
+<area shape="rect" id="Node000076" href="$condition_8h.html#a6a257a1407c9394b7def57701188422d" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="1330,1569,1429,1595"/>
+<area shape="poly" id="edge85_Node000074_Node000076" title=" " alt="" coords="1240,1561,1317,1571,1316,1576,1240,1566"/>
+<area shape="rect" id="Node000079" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="982,1745,1042,1771"/>
+<area shape="poly" id="edge90_Node000078_Node000079" title=" " alt="" coords="879,1719,969,1744,968,1749,877,1724"/>
+<area shape="rect" id="Node000080" href="$cl_8c.html#a5fe8108de575672338fc8e602e469589" title="Updates the fitness of a classifier." alt="" coords="964,1696,1060,1721"/>
+<area shape="poly" id="edge91_Node000078_Node000080" title=" " alt="" coords="888,1706,950,1706,950,1711,888,1711"/>
+<area shape="poly" id="edge103_Node000081_Node000030" title=" " alt="" coords="663,993,696,918,722,868,753,820,777,791,802,765,806,769,781,794,757,824,727,871,701,920,667,996"/>
+<area shape="poly" id="edge110_Node000081_Node000032" title=" " alt="" coords="662,994,704,871,771,648,818,480,823,481,776,649,709,872,667,996"/>
+<area shape="rect" id="Node000082" href="$cl_8c.html#a9ee3a0eeed6f36bba89250b27df8ae02" title="Copies condition, action, and prediction structures." alt="" coords="797,995,864,1020"/>
+<area shape="poly" id="edge94_Node000081_Node000082" title=" " alt="" coords="678,1005,783,1005,783,1010,678,1010"/>
+<area shape="rect" id="Node000086" href="$cl_8c.html#aa237e827b4c84629b0fa044f4dcd57d3" title="Performs classifier crossover." alt="" coords="783,1392,879,1417"/>
+<area shape="poly" id="edge99_Node000081_Node000086" title=" " alt="" coords="667,1019,702,1119,757,1257,818,1379,813,1381,752,1259,697,1120,662,1021"/>
+<area shape="rect" id="Node000090" href="$cl_8c.html#a919994ba12876465611bd4bb9df0171c" title="Performs classifier mutation." alt="" coords="791,883,870,908"/>
+<area shape="poly" id="edge104_Node000081_Node000090" title=" " alt="" coords="669,992,704,956,753,918,777,907,780,912,756,923,708,960,673,996"/>
+<area shape="rect" id="Node000094" href="$clset_8c.html#a2948f1764d173335c2c53783077b52ae" title="Calculates the mean time stamp of classifiers in the set." alt="" coords="770,932,891,957"/>
+<area shape="poly" id="edge108_Node000081_Node000094" title=" " alt="" coords="677,998,781,960,783,965,679,1003"/>
+<area shape="rect" id="Node000096" href="$clset_8c.html#aae63a99d65c81ec1f83ae8a4ba8ac70a" title="Sets the time stamps for classifiers in the set." alt="" coords="773,1493,888,1519"/>
+<area shape="poly" id="edge111_Node000081_Node000096" title=" " alt="" coords="664,1020,672,1109,690,1245,703,1316,718,1381,736,1435,757,1472,771,1485,767,1489,753,1476,731,1437,713,1382,698,1317,685,1245,667,1110,658,1020"/>
+<area shape="rect" id="Node000097" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="799,1220,863,1245"/>
+<area shape="poly" id="edge112_Node000081_Node000097" title=" " alt="" coords="672,1019,757,1132,813,1207,809,1210,753,1136,668,1022"/>
+<area shape="rect" id="Node000099" href="$ea_8c.html#aaac3e363f65e1444bfd2ee6984fa1885" title="Initialises offspring error and fitness." alt="" coords="772,1096,889,1121"/>
+<area shape="poly" id="edge121_Node000081_Node000099" title=" " alt="" coords="677,1018,712,1046,756,1074,784,1088,781,1093,753,1079,709,1050,674,1022"/>
+<area shape="rect" id="Node000100" href="$ea_8c.html#a78e7969b82ca14889652c6c1716675ff" title="Selects two parents." alt="" coords="973,1245,1051,1271"/>
+<area shape="poly" id="edge122_Node000081_Node000100" title=" " alt="" coords="679,1010,806,1046,872,1067,908,1082,943,1117,970,1158,991,1198,1004,1231,999,1233,986,1200,965,1160,939,1121,905,1087,870,1072,805,1051,677,1015"/>
+<area shape="poly" id="edge98_Node000082_Node000027" title=" " alt="" coords="864,999,978,972,1033,952,1054,941,1067,930,1089,897,1104,865,1112,834,1115,803,1108,741,1092,679,1076,617,1069,554,1071,521,1079,489,1093,455,1115,422,1131,408,1150,399,1152,404,1134,412,1119,425,1098,458,1084,490,1076,522,1074,553,1081,616,1097,678,1113,740,1120,803,1117,835,1109,867,1094,900,1071,933,1057,945,1036,957,980,977,865,1004"/>
+<area shape="rect" id="Node000083" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="975,995,1049,1020"/>
+<area shape="poly" id="edge95_Node000082_Node000083" title=" " alt="" coords="864,1005,961,1005,961,1010,864,1010"/>
+<area shape="rect" id="Node000084" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="969,1044,1055,1069"/>
+<area shape="poly" id="edge96_Node000082_Node000084" title=" " alt="" coords="865,1014,957,1039,956,1044,864,1019"/>
+<area shape="rect" id="Node000085" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="971,1093,1053,1119"/>
+<area shape="poly" id="edge97_Node000082_Node000085" title=" " alt="" coords="865,1016,908,1037,932,1059,956,1080,965,1085,962,1090,953,1084,929,1063,905,1042,863,1021"/>
+<area shape="rect" id="Node000087" href="$action_8h.html#a1cb59126839b6577e98f066504dde5df" title="Performs classifier action crossover." alt="" coords="960,1396,1064,1421"/>
+<area shape="poly" id="edge100_Node000086_Node000087" title=" " alt="" coords="879,1403,946,1405,946,1410,879,1408"/>
+<area shape="rect" id="Node000088" href="$condition_8h.html#a51f1292e43a63159f27330fe53df9fa3" title="Performs classifier condition crossover." alt="" coords="955,1445,1069,1471"/>
+<area shape="poly" id="edge101_Node000086_Node000088" title=" " alt="" coords="876,1415,956,1439,954,1444,874,1420"/>
+<area shape="rect" id="Node000089" href="$prediction_8h.html#aa0d463ff8c57df62a1923d3dbdc8ecac" title="Performs classifier prediction crossover." alt="" coords="957,1495,1067,1520"/>
+<area shape="poly" id="edge102_Node000086_Node000089" title=" " alt="" coords="870,1415,908,1434,923,1447,933,1458,942,1470,956,1481,964,1486,961,1491,953,1486,938,1473,929,1462,919,1450,905,1439,868,1420"/>
+<area shape="rect" id="Node000091" href="$action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9" title="Performs classifier action mutation." alt="" coords="969,795,1055,820"/>
+<area shape="poly" id="edge105_Node000090_Node000091" title=" " alt="" coords="869,883,905,869,929,850,953,830,965,824,968,828,956,835,933,855,908,874,871,888"/>
+<area shape="rect" id="Node000092" href="$condition_8h.html#a2f4c5f7d01053ba51ccc7287c0b4cd4d" title="Performs classifier condition mutation." alt="" coords="963,844,1061,869"/>
+<area shape="poly" id="edge106_Node000090_Node000092" title=" " alt="" coords="870,884,949,867,950,873,871,890"/>
+<area shape="rect" id="Node000093" href="$prediction_8h.html#a54e0ad7eb1a2c24d35dd13e3212f7500" title="Performs classifier prediction mutation." alt="" coords="965,745,1059,771"/>
+<area shape="poly" id="edge107_Node000090_Node000093" title=" " alt="" coords="869,887,888,880,905,869,922,849,929,827,936,805,953,781,959,776,963,780,957,785,941,807,934,829,926,851,908,873,890,884,871,892"/>
+<area shape="rect" id="Node000095" href="$clset_8c.html#ad2bced61b3addd5c4d95dd3460338e0b" title="Calculates the total time stamps of classifiers in the set." alt="" coords="955,893,1069,919"/>
+<area shape="poly" id="edge109_Node000094_Node000095" title=" " alt="" coords="890,929,941,918,942,924,892,935"/>
+<area shape="poly" id="edge114_Node000097_Node000018" title=" " alt="" coords="862,1219,983,1172,1039,1147,1067,1129,1086,1100,1098,1071,1105,1043,1107,1015,1101,960,1088,906,1076,852,1071,796,1074,768,1082,740,1095,711,1115,682,1129,669,1146,662,1148,666,1132,674,1119,685,1100,714,1087,742,1079,769,1076,796,1081,851,1093,905,1106,959,1112,1015,1110,1044,1103,1073,1090,1103,1071,1133,1041,1152,985,1177,864,1224"/>
+<area shape="poly" id="edge113_Node000097_Node000058" title=" " alt="" coords="845,1244,890,1288,921,1312,956,1330,1007,1346,1061,1355,1155,1358,1155,1363,1060,1360,1006,1351,954,1335,918,1316,886,1292,841,1247"/>
+<area shape="rect" id="Node000098" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="964,1295,1060,1320"/>
+<area shape="poly" id="edge115_Node000097_Node000098" title=" " alt="" coords="864,1243,969,1287,967,1292,862,1248"/>
+<area shape="poly" id="edge119_Node000098_Node000018" title=" " alt="" coords="1055,1292,1067,1282,1079,1259,1088,1230,1095,1158,1094,1074,1089,982,1084,891,1083,806,1092,734,1102,705,1115,682,1129,669,1146,661,1148,666,1132,674,1119,685,1106,707,1097,735,1089,806,1089,891,1094,982,1100,1073,1101,1159,1093,1231,1084,1261,1071,1285,1059,1296"/>
+<area shape="poly" id="edge120_Node000098_Node000047" title=" " alt="" coords="1055,1292,1067,1282,1085,1244,1095,1192,1099,1130,1101,1063,1101,932,1105,876,1115,832,1143,775,1176,729,1180,732,1148,777,1120,834,1111,876,1107,932,1106,1063,1105,1130,1100,1192,1090,1245,1071,1285,1059,1296"/>
+<area shape="poly" id="edge116_Node000098_Node000058" title=" " alt="" coords="1061,1318,1156,1344,1154,1349,1059,1323"/>
+<area shape="poly" id="edge117_Node000098_Node000074" title=" " alt="" coords="1025,1319,1182,1532,1178,1535,1021,1322"/>
+<area shape="poly" id="edge118_Node000098_Node000077" title=" " alt="" coords="1060,1305,1138,1306,1137,1311,1060,1310"/>
+<area shape="poly" id="edge123_Node000100_Node000041" title=" " alt="" coords="1051,1244,1099,1226,1159,1201,1221,1169,1280,1129,1305,1106,1328,1079,1362,1030,1366,1033,1332,1083,1309,1109,1283,1133,1224,1173,1161,1206,1101,1231,1052,1249"/>
+<area shape="rect" id="Node000101" href="$ea_8c.html#ad60a68edf77c6a3736f2d826bcbcb414" title="Selects a classifier from the set via roulette wheel." alt="" coords="1150,1093,1249,1119"/>
+<area shape="poly" id="edge124_Node000100_Node000101" title=" " alt="" coords="1037,1243,1068,1224,1127,1174,1175,1127,1179,1131,1131,1178,1071,1228,1040,1247"/>
+<area shape="rect" id="Node000102" href="$ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4" title="Selects a classifier from the set via tournament." alt="" coords="1124,844,1275,869"/>
+<area shape="poly" id="edge126_Node000100_Node000102" title=" " alt="" coords="1043,1243,1067,1224,1089,1189,1099,1158,1104,1124,1115,1081,1186,881,1191,883,1120,1083,1109,1125,1104,1159,1094,1192,1071,1228,1046,1247"/>
+<area shape="poly" id="edge125_Node000101_Node000042" title=" " alt="" coords="1204,1092,1364,732,1369,734,1209,1094"/>
+<area shape="poly" id="edge127_Node000102_Node000042" title=" " alt="" coords="1214,842,1351,727,1354,731,1218,846"/>
+<area shape="rect" id="Node000104" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="798,833,863,859"/>
+<area shape="poly" id="edge129_Node000103_Node000104" title=" " alt="" coords="705,843,784,843,784,849,705,849"/>
 </map>

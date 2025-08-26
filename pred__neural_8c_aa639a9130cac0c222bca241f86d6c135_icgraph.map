@@ -1,5 +1,9 @@
 <map id="pred_neural_ae_to_classifier" name="pred_neural_ae_to_classifier">
-<area shape="rect" id="node1" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="396,5,583,32"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="203,5,348,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="Node000001" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="595,5,781,31"/>
+<area shape="rect" id="Node000002" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,5,547,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="581,21,547,21,547,15,581,15"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,5,353,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,21,354,21,354,15,387,15"/>
+<area shape="rect" id="Node000004" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,21,157,21,157,15,190,15"/>
 </map>

@@ -1,4 +1,7 @@
 <map id="clset_mean_cond_neurons" name="clset_mean_cond_neurons">
-<area shape="rect" id="node1" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="200,13,377,39"/>
-<area shape="rect" id="node2" href="$classXCS.html#a0ce16d3be0a878bff98dd47043370c0d" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="Node000001" title="Calculates the mean number of condition neurons for a given layer." alt="" coords="399,13,576,38"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#a0ce16d3be0a878bff98dd47043370c0d" title=" " alt="" coords="204,5,351,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="384,28,351,28,351,23,384,23"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,13,156,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
 </map>

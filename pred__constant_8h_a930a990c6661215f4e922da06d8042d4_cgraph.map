@@ -1,4 +1,5 @@
 <map id="pred_constant_print" name="pred_constant_print">
-<area shape="rect" id="node1" title="Prints a constant prediction." alt="" coords="5,13,141,39"/>
-<area shape="rect" id="node2" href="$pred__constant_8c.html#adf82e471616f786f781413e7f4bcf49e" title="Returns a json formatted string representation of a prediction." alt="" coords="189,5,324,47"/>
+<area shape="rect" id="Node000001" title="Prints a constant prediction." alt="" coords="5,13,141,38"/>
+<area shape="rect" id="Node000002" href="$pred__constant_8c.html#a6f67f877bc03939b895369961f371bcd" title="Returns a json formatted string representation of a prediction." alt="" coords="189,5,324,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,23,175,23,175,28,141,28"/>
 </map>

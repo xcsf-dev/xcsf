@@ -1,6 +1,9 @@
 <map id="mutate_weights" name="mutate_weights">
-<area shape="rect" id="node1" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="5,31,120,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="168,31,317,57"/>
-<area shape="rect" id="node3" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="383,5,441,32"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="365,56,459,83"/>
+<area shape="rect" id="Node000001" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="5,31,120,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="168,31,317,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,41,154,41,154,46,120,46"/>
+<area shape="rect" id="Node000003" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="383,5,441,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,30,369,22,370,27,318,35"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="365,55,459,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="318,51,352,56,352,62,317,57"/>
 </map>

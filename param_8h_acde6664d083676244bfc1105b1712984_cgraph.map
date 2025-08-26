@@ -1,8 +1,15 @@
 <map id="param_free" name="param_free">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,92,83"/>
-<area shape="rect" id="node2" href="$action_8c.html#acc202dbe3c6a1d3f745383aec209c780" title="Frees action parameters." alt="" coords="140,5,269,32"/>
-<area shape="rect" id="node4" href="$condition_8c.html#af22e6e5a357ef08e482555291cfc612b" title="Frees condition parameters." alt="" coords="143,107,266,133"/>
-<area shape="rect" id="node6" href="$prediction_8c.html#a05bc6d7f4f01d3891fe4af373f0b573d" title="Frees prediction parameters." alt="" coords="145,56,264,83"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="317,56,428,83"/>
-<area shape="rect" id="node5" href="$gp_8c.html#a1756fddb02ca93b4891d0a672ac72fc8" title="Frees memory used by GP tree parameters." alt="" coords="320,107,425,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,92,80"/>
+<area shape="rect" id="Node000002" href="$action_8c.html#acc202dbe3c6a1d3f745383aec209c780" title="Frees action parameters." alt="" coords="140,5,269,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,52,150,32,151,37,90,57"/>
+<area shape="rect" id="Node000004" href="$condition_8c.html#af22e6e5a357ef08e482555291cfc612b" title="Frees condition parameters." alt="" coords="143,104,266,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="90,77,151,97,150,102,89,83"/>
+<area shape="rect" id="Node000006" href="$prediction_8c.html#a05bc6d7f4f01d3891fe4af373f0b573d" title="Frees prediction parameters." alt="" coords="145,55,264,80"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="92,65,132,65,132,70,92,70"/>
+<area shape="rect" id="Node000003" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="317,55,428,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,28,316,48,314,53,248,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="248,101,314,82,316,87,249,107"/>
+<area shape="rect" id="Node000005" href="$gp_8c.html#a1756fddb02ca93b4891d0a672ac72fc8" title="Frees memory used by GP tree parameters." alt="" coords="320,104,425,129"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="266,114,306,114,306,119,266,119"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="264,65,304,65,304,70,264,70"/>
 </map>

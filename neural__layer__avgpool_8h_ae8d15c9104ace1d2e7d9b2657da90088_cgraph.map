@@ -1,4 +1,5 @@
 <map id="neural_layer_avgpool_print" name="neural_layer_avgpool_print">
-<area shape="rect" id="node1" title="Prints an average pooling layer." alt="" coords="5,5,149,47"/>
-<area shape="rect" id="node2" href="$neural__layer__avgpool_8c.html#acd8d298ed28774c848e032a98c33e783" title="Returns a json formatted string of an average pool layer." alt="" coords="197,5,341,47"/>
+<area shape="rect" id="Node000001" title="Prints an average pooling layer." alt="" coords="5,5,149,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer__avgpool_8c.html#aa004d395a36f9c4751e89be39d02e88f" title="Returns a json formatted string of an average pool layer." alt="" coords="197,5,341,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,23,184,23,184,28,150,28"/>
 </map>

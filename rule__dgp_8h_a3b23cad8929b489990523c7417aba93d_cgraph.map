@@ -1,4 +1,5 @@
 <map id="rule_dgp_cond_free" name="rule_dgp_cond_free">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395" title="Frees a DGP graph." alt="" coords="188,5,271,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,140,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a49d4c90eb5704b9a3ff9f72f41d11395" title="Frees a DGP graph." alt="" coords="188,5,271,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,15,174,15,174,21,140,21"/>
 </map>

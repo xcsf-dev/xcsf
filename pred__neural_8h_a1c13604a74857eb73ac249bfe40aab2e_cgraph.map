@@ -1,6 +1,9 @@
 <map id="pred_neural_mutate" name="pred_neural_mutate">
-<area shape="rect" id="node1" title="Mutates a neural network prediction." alt="" coords="5,31,141,57"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a462b490af8481803fd34af3c728f057d" title="Mutates a neural network." alt="" coords="189,31,293,57"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#ad3229854f8e7c4c0eed64b22a8cd1cfa" title="Performs layer mutation." alt="" coords="341,5,439,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="344,56,436,83"/>
+<area shape="rect" id="Node000001" title="Mutates a neural network prediction." alt="" coords="5,31,141,56"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#a462b490af8481803fd34af3c728f057d" title="Mutates a neural network." alt="" coords="189,31,293,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,41,176,41,176,46,141,46"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#ad3229854f8e7c4c0eed64b22a8cd1cfa" title="Performs layer mutation." alt="" coords="341,5,439,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="293,32,328,26,329,31,294,37"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="344,55,436,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="294,49,331,55,330,60,293,54"/>
 </map>

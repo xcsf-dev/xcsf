@@ -1,6 +1,9 @@
 <map id="blas_scal" name="blas_scal">
-<area shape="rect" id="node1" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="228,78,305,105"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#afb4c050b212b3a0dd87d66d86b57adb7" title="Updates the weights and biases of a connected layer." alt="" coords="13,5,172,47"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a3e2922534009f8942017c7621f3b42e8" title="Updates the weights and biases of a convolutional layer." alt="" coords="5,71,180,112"/>
-<area shape="rect" id="node4" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="35,137,150,163"/>
+<area shape="rect" id="Node000001" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="228,77,305,102"/>
+<area shape="rect" id="Node000002" href="$neural__layer__connected_8c.html#afb4c050b212b3a0dd87d66d86b57adb7" title="Updates the weights and biases of a connected layer." alt="" coords="13,5,172,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,74,179,60,147,48,149,43,181,55,220,69"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a3e2922534009f8942017c7621f3b42e8" title="Updates the weights and biases of a convolutional layer." alt="" coords="5,69,180,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,92,180,92,180,87,214,87"/>
+<area shape="rect" id="Node000004" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="35,134,150,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="221,109,181,124,140,137,138,131,179,119,220,104"/>
 </map>

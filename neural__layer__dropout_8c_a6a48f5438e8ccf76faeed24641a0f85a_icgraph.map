@@ -1,5 +1,7 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by a dropout layer." alt="" coords="224,35,347,61"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#ab97d59680503404e3efe1fd2f3b4353c" title="Free memory used by a dropout layer." alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node3" href="$neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" title="Resizes a dropout layer if the previous layer has changed size." alt="" coords="19,57,162,98"/>
+<area shape="rect" id="Node000001" title="Free memory used by a dropout layer." alt="" coords="224,35,347,60"/>
+<area shape="rect" id="Node000002" href="$neural__layer__dropout_8c.html#ab97d59680503404e3efe1fd2f3b4353c" title="Free memory used by a dropout layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,39,175,33,176,28,211,33"/>
+<area shape="rect" id="Node000003" href="$neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" title="Resizes a dropout layer if the previous layer has changed size." alt="" coords="19,55,162,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,61,162,68,162,62,210,55"/>
 </map>

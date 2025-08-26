@@ -1,10 +1,17 @@
 <map id="neural_layer_softmax.h" name="neural_layer_softmax.h">
-<area shape="rect" id="node1" title="An implementation of a softmax layer." alt="" coords="315,5,472,32"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,80,226,107"/>
-<area shape="rect" id="node4" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,80,318,107"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,80,445,107"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,80,603,107"/>
-<area shape="rect" id="node7" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="628,80,785,107"/>
-<area shape="rect" id="node8" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="810,80,910,107"/>
+<area shape="rect" id="Node000001" title="An implementation of a softmax layer." alt="" coords="315,5,472,31"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,79,99,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,36,100,83,98,78,325,31"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,79,226,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,37,211,81,209,76,344,32"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,79,318,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="366,40,303,81,300,76,363,36"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,79,445,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="396,44,396,79,391,79,391,44"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,79,603,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="430,34,514,76,511,81,427,39"/>
+<area shape="rect" id="Node000007" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="628,79,785,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="457,31,657,76,655,81,456,36"/>
+<area shape="rect" id="Node000008" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="810,79,910,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="486,29,798,76,810,78,809,83,797,81,485,35"/>
 </map>

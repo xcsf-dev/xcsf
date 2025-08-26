@@ -1,13 +1,29 @@
 <map id="catch_error" name="catch_error">
-<area shape="rect" id="node1" title="Catches parameter value errors." alt="" coords="735,123,821,149"/>
-<area shape="rect" id="node2" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="514,5,667,32"/>
-<area shape="rect" id="node8" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="516,57,665,98"/>
-<area shape="rect" id="node9" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="500,123,681,149"/>
-<area shape="rect" id="node10" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="507,173,674,200"/>
-<area shape="rect" id="node11" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="495,224,687,251"/>
-<area shape="rect" id="node3" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="315,123,447,149"/>
-<area shape="rect" id="node4" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="159,97,248,124"/>
-<area shape="rect" id="node6" href="$classXCS.html#ad8780630d80d4bf5b76d9bf2f6c91f25" title="Sets parameter values." alt="" coords="140,148,267,175"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="23,97,74,124"/>
-<area shape="rect" id="node7" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="5,148,92,175"/>
+<area shape="rect" id="Node000001" title="Catches parameter value errors." alt="" coords="799,120,885,145"/>
+<area shape="rect" id="Node000002" href="$ea_8c.html#ae78d49893c85cfe792ceafc58e590965" title="Sets the EA parameters from a cJSON object." alt="" coords="578,5,731,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="821,111,790,77,749,46,720,33,722,28,752,41,793,73,825,107"/>
+<area shape="rect" id="Node000009" href="$param_8c.html#a97aa83082509d7fe3de540e1f6137318" title="Sets the general classifier parameters from a cJSON object." alt="" coords="580,55,729,95"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="786,118,720,98,721,93,787,113"/>
+<area shape="rect" id="Node000010" href="$param_8c.html#ad7d3421611d8020079446a6a190df8f8" title="Sets the general parameters from a cJSON object." alt="" coords="564,120,745,145"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="785,135,746,135,746,130,785,130"/>
+<area shape="rect" id="Node000011" href="$param_8c.html#a7d152ab74c6a8c9096303ae3331eb015" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="571,169,738,195"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="786,150,705,172,703,167,785,145"/>
+<area shape="rect" id="Node000012" href="$param_8c.html#ac51f8770dba4b66f28d6d4eaa631123e" title="Sets the subsumption parameters from a cJSON object." alt="" coords="559,219,751,244"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="821,157,790,185,752,210,723,221,721,216,749,205,787,181,817,153"/>
+<area shape="rect" id="Node000003" href="$param_8c.html#a130260988988535419aee8abe51986c1" title="Sets the parameters from a json formatted string." alt="" coords="379,120,511,145"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="579,38,560,46,530,63,502,84,460,122,457,118,499,80,527,59,557,41,577,33"/>
+<area shape="rect" id="Node000004" href="$config_8c.html#a045a64a30d99a4bef2ebfd9b54aa9698" title="Reads the specified configuration file." alt="" coords="223,95,312,120"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="364,124,312,116,312,111,365,119"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#a0d9522bfc97392a8b6ee11774ae29f8a" title="Sets parameter values." alt="" coords="204,144,331,169"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="365,146,331,151,330,145,365,141"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,95,106,120"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="209,110,106,110,106,105,209,105"/>
+<area shape="rect" id="Node000007" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,144,156,169"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="190,159,156,159,156,154,190,154"/>
+<area shape="rect" id="Node000008" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="37,193,124,219"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="206,175,125,197,124,192,205,170"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="569,102,493,122,492,117,567,96"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="550,135,511,135,511,130,550,130"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="586,169,499,148,500,143,588,164"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="577,217,558,210,502,179,460,148,463,143,505,174,560,205,579,212"/>
 </map>

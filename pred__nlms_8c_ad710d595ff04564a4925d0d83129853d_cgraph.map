@@ -1,7 +1,0 @@
-<map id="pred_nlms_param_json_import" name="pred_nlms_param_json_import">
-<area shape="rect" id="node1" title="Sets the NLMS parameters from a cJSON object." alt="" coords="5,74,161,115"/>
-<area shape="rect" id="node2" href="$prediction_8c.html#abf258a7e5dec62efd980dcd56bdc9e5d" title=" " alt="" coords="232,5,372,32"/>
-<area shape="rect" id="node3" href="$prediction_8c.html#ab59b2b572c1ff05157b89759ab7162f5" title=" " alt="" coords="218,56,386,83"/>
-<area shape="rect" id="node4" href="$prediction_8c.html#ab9fb871ffa65568f7b2039d5c8e62512" title=" " alt="" coords="209,107,395,133"/>
-<area shape="rect" id="node5" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="234,157,370,184"/>
-</map>

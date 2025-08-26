@@ -1,16 +1,31 @@
 <map id="loss.h" name="loss.h">
-<area shape="rect" id="node1" title="Loss functions for calculating prediction error." alt="" coords="633,5,691,32"/>
-<area shape="rect" id="node2" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="478,80,521,107"/>
-<area shape="rect" id="node3" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="545,80,603,107"/>
-<area shape="rect" id="node4" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="627,80,697,107"/>
-<area shape="rect" id="node13" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="864,155,988,181"/>
-<area shape="rect" id="node14" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="1013,155,1071,181"/>
-<area shape="rect" id="node5" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="259,155,327,181"/>
-<area shape="rect" id="node6" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="351,155,431,181"/>
-<area shape="rect" id="node7" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="455,155,549,181"/>
-<area shape="rect" id="node8" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="573,155,660,181"/>
-<area shape="rect" id="node9" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="685,155,746,181"/>
-<area shape="rect" id="node10" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="770,155,839,181"/>
-<area shape="rect" id="node11" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="5,155,143,181"/>
-<area shape="rect" id="node12" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="167,155,235,181"/>
+<area shape="rect" id="Node000001" title="Loss functions for calculating prediction error." alt="" coords="633,5,691,31"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="478,79,521,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="624,39,522,83,520,78,622,34"/>
+<area shape="rect" id="Node000003" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="545,79,603,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="639,41,590,81,587,76,636,37"/>
+<area shape="rect" id="Node000004" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="627,79,697,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="665,44,665,79,659,79,659,44"/>
+<area shape="rect" id="Node000013" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="864,152,988,177"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="696,35,906,150,904,154,694,40"/>
+<area shape="rect" id="Node000014" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="1013,152,1071,177"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="705,33,1013,150,1011,155,703,38"/>
+<area shape="rect" id="Node000005" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="259,152,327,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="614,107,475,131,340,155,327,157,326,152,339,149,474,126,613,101"/>
+<area shape="rect" id="Node000006" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="351,152,431,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="615,108,432,155,431,150,613,103"/>
+<area shape="rect" id="Node000007" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="455,152,549,177"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="625,112,529,154,527,149,623,107"/>
+<area shape="rect" id="Node000008" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="573,152,660,177"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="649,117,626,153,622,150,645,114"/>
+<area shape="rect" id="Node000009" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="685,152,746,177"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="681,113,709,150,705,153,677,117"/>
+<area shape="rect" id="Node000010" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="770,152,839,177"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="698,108,783,149,780,154,696,112"/>
+<area shape="rect" id="Node000011" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="5,152,143,177"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="614,106,484,125,382,134,281,142,154,155,143,156,143,151,154,149,281,136,382,129,483,120,613,101"/>
+<area shape="rect" id="Node000012" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="167,152,235,177"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="614,106,509,122,428,130,347,139,246,155,235,157,234,152,246,149,347,133,427,125,509,117,613,101"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="711,103,884,149,883,154,710,108"/>
+<area shape="poly" id="edge13_Node000004_Node000014" title=" " alt="" coords="711,97,842,119,1000,149,1013,152,1012,158,999,155,841,124,710,102"/>
 </map>

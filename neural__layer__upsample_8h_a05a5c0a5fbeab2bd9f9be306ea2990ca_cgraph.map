@@ -1,4 +1,5 @@
 <map id="neural_layer_upsample_print" name="neural_layer_upsample_print">
-<area shape="rect" id="node1" title="Prints an upsampling layer." alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node2" href="$neural__layer__upsample_8c.html#ac1e934e89938747a8b973a5c5235ff71" title="Returns a json formatted string representation of an upsample layer." alt="" coords="208,5,363,47"/>
+<area shape="rect" id="Node000001" title="Prints an upsampling layer." alt="" coords="5,5,160,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer__upsample_8c.html#a4c32f8d57eed7ddfdf8c2fa59446dd98" title="Returns a json formatted string representation of an upsample layer." alt="" coords="208,5,363,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,23,194,23,194,28,160,28"/>
 </map>

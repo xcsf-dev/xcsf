@@ -1,9 +1,15 @@
 <map id="rule_dgp_cond_match" name="rule_dgp_cond_match">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,155,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#aa77646399b1b3d18c38e1597008880e0" title="Returns the current state of a specified node in the graph." alt="" coords="204,5,301,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a91b113eb2798ad1b958d47184ebbf1fb" title="Updates a DGP graph T cycles." alt="" coords="203,56,303,83"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c" title="Resets the states to their initial state." alt="" coords="377,31,467,57"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#a3086c105976334ceda0e9b8e97964220" title="Performs a synchronous update." alt="" coords="351,81,493,108"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="541,81,644,108"/>
-<area shape="rect" id="node7" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="692,81,749,108"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,155,56"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#aa77646399b1b3d18c38e1597008880e0" title="Returns the current state of a specified node in the graph." alt="" coords="204,5,301,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,30,190,24,190,30,155,35"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a91b113eb2798ad1b958d47184ebbf1fb" title="Updates a DGP graph T cycles." alt="" coords="203,55,303,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,51,190,56,189,61,155,56"/>
+<area shape="rect" id="Node000004" href="$dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c" title="Resets the states to their initial state." alt="" coords="377,29,467,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="303,57,362,48,363,53,304,63"/>
+<area shape="rect" id="Node000005" href="$dgp_8c.html#a3086c105976334ceda0e9b8e97964220" title="Performs a synchronous update." alt="" coords="351,79,493,104"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="303,72,337,77,336,82,303,77"/>
+<area shape="rect" id="Node000006" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="541,79,644,104"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="494,89,528,89,528,94,494,94"/>
+<area shape="rect" id="Node000007" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="692,79,749,104"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="644,89,678,89,678,94,644,94"/>
 </map>

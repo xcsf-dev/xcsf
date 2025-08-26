@@ -1,8 +1,15 @@
 <map id="pa_free" name="pa_free">
-<area shape="rect" id="node1" title="Frees the prediction array." alt="" coords="396,31,461,57"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="203,5,348,32"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b" title="Frees XCSF population sets." alt="" coords="237,56,313,83"/>
-<area shape="rect" id="node3" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="5,5,155,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="45,56,115,83"/>
-<area shape="rect" id="node6" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,107,105,133"/>
+<area shape="rect" id="Node000001" title="Frees the prediction array." alt="" coords="595,31,660,56"/>
+<area shape="rect" id="Node000002" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="401,5,547,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="581,38,547,33,548,27,581,33"/>
+<area shape="rect" id="Node000005" href="$xcsf_8c.html#aeeb273a5ee6d1e2419ab8a95d76d860b" title="Frees XCSF population sets." alt="" coords="436,55,512,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="581,53,513,64,512,59,580,48"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,5,353,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,21,354,21,354,15,387,15"/>
+<area shape="rect" id="Node000004" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,21,157,21,157,15,190,15"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="244,55,313,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="422,70,313,70,313,65,422,65"/>
+<area shape="rect" id="Node000007" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="253,104,304,129"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="423,83,305,113,304,108,422,78"/>
 </map>

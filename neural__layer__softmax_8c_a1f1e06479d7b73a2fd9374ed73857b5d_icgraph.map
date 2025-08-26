@@ -1,0 +1,5 @@
+<map id="neural_layer_softmax_json_export" name="neural_layer_softmax_json_export">
+<area shape="rect" id="Node000001" title="Returns a json formatted string representation of a softmax layer." alt="" coords="200,5,347,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer__softmax_8c.html#a8b733035044a0ceac72f4e7f9615d696" title="Prints a softmax layer." alt="" coords="5,5,152,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,28,152,28,152,23,186,23"/>
+</map>

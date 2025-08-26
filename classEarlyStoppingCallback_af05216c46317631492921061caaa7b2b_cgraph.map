@@ -1,15 +1,27 @@
 <map id="EarlyStoppingCallback::store" name="EarlyStoppingCallback::store">
-<area shape="rect" id="node1" title="Stores best XCSF population in memory." alt="" coords="5,74,160,115"/>
-<area shape="rect" id="node2" href="$pybind__utils_8h.html#a3f3b864aa1926634aeab0d037cefc11d" title="Returns a formatted string for displaying time." alt="" coords="211,56,319,83"/>
-<area shape="rect" id="node3" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="208,107,323,133"/>
-<area shape="rect" id="node4" href="$cl_8c.html#a70aceb2c4039333d36ee71f954fb9d79" title="Initialises and creates a copy of one classifier from another." alt="" coords="371,56,461,83"/>
-<area shape="rect" id="node8" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="377,107,455,133"/>
-<area shape="rect" id="node9" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="379,157,453,184"/>
-<area shape="rect" id="node5" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="515,5,589,32"/>
-<area shape="rect" id="node6" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="509,56,595,83"/>
-<area shape="rect" id="node7" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="511,107,593,133"/>
-<area shape="rect" id="node10" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="521,157,583,184"/>
-<area shape="rect" id="node11" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="647,107,717,133"/>
-<area shape="rect" id="node12" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="643,157,721,184"/>
-<area shape="rect" id="node13" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="644,208,720,235"/>
+<area shape="rect" id="Node000001" title="Stores best XCSF population in memory." alt="" coords="5,73,160,113"/>
+<area shape="rect" id="Node000002" href="$pybind__utils_8h.html#a3f3b864aa1926634aeab0d037cefc11d" title="Returns a formatted string for displaying time." alt="" coords="211,55,319,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,79,197,74,198,79,161,85"/>
+<area shape="rect" id="Node000003" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="208,104,323,129"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,100,195,105,194,110,160,105"/>
+<area shape="rect" id="Node000004" href="$cl_8c.html#a70aceb2c4039333d36ee71f954fb9d79" title="Initialises and creates a copy of one classifier from another." alt="" coords="371,55,461,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="304,101,362,82,364,87,306,106"/>
+<area shape="rect" id="Node000008" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="377,104,455,129"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="323,114,363,114,363,119,323,119"/>
+<area shape="rect" id="Node000009" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="379,153,453,179"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="306,127,367,147,366,152,304,132"/>
+<area shape="rect" id="Node000005" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="515,5,589,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="451,52,502,33,504,38,453,57"/>
+<area shape="rect" id="Node000006" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="509,55,595,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="461,65,495,65,495,70,461,70"/>
+<area shape="rect" id="Node000007" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="511,104,593,129"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="453,78,504,97,502,102,451,83"/>
+<area shape="rect" id="Node000010" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="521,153,583,179"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="453,163,507,163,507,169,453,169"/>
+<area shape="rect" id="Node000011" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="647,104,717,129"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="582,152,634,132,636,137,584,157"/>
+<area shape="rect" id="Node000012" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="643,153,721,179"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="583,163,629,163,629,169,583,169"/>
+<area shape="rect" id="Node000013" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="644,203,720,228"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="584,175,636,195,634,200,582,180"/>
 </map>

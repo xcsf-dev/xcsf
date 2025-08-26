@@ -1,5 +1,7 @@
 <map id="xcs_supervised_fit" name="xcs_supervised_fit">
-<area shape="rect" id="node1" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,31,253,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
-<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,56,65,83"/>
+<area shape="rect" id="Node000001" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,31,253,56"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,32,74,26,75,21,110,27"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,55,65,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,59,66,66,65,61,109,54"/>
 </map>

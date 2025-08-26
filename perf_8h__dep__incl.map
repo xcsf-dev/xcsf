@@ -1,6 +1,9 @@
 <map id="perf.h" name="perf.h">
-<area shape="rect" id="node1" title="System performance printing." alt="" coords="91,5,145,32"/>
-<area shape="rect" id="node2" href="$perf_8c.html" title="System performance printing." alt="" coords="5,80,60,107"/>
-<area shape="rect" id="node3" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="84,80,152,107"/>
-<area shape="rect" id="node4" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="176,80,300,107"/>
+<area shape="rect" id="Node000001" title="System performance printing." alt="" coords="91,5,145,31"/>
+<area shape="rect" id="Node000002" href="$perf_8c.html" title="System performance printing." alt="" coords="5,79,60,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,41,48,80,45,76,92,37"/>
+<area shape="rect" id="Node000003" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="84,79,152,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,44,121,79,115,79,115,44"/>
+<area shape="rect" id="Node000004" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="176,79,300,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,35,220,76,217,81,148,40"/>
 </map>

@@ -1,5 +1,10 @@
 <map id="Llist" name="Llist">
-<area shape="rect" id="node1" title="Forward declaration of layer structure." alt="" coords="5,231,52,257"/>
-<area shape="rect" id="node2" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="65,73,120,99"/>
-<area shape="rect" id="node3" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="157,231,234,257"/>
+<area shape="rect" id="Node000001" title="Forward declaration of layer structure." alt="" coords="5,231,52,257"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="67,234,75,237,79,244,70,254,52,255,52,249,68,249,73,244,71,241,65,239"/>
+<area shape="rect" id="Node000002" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="65,73,120,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,111,52,148,33,191,29,212,30,231,25,231,24,212,27,190,47,145,72,109"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="115,64,126,62,137,66,144,74,147,86,142,101,131,109,117,109,103,101,105,96,118,103,130,104,138,98,141,86,139,76,134,70,126,68,116,69"/>
+<area shape="rect" id="Node000003" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="157,231,234,257"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="87,112,79,158,81,182,91,204,104,217,121,227,157,237,156,243,118,232,101,221,86,207,76,183,73,158,81,111"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="195,218,190,192,173,163,152,138,108,101,112,97,155,134,178,160,195,190,200,217"/>
 </map>

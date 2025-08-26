@@ -1,8 +1,13 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
-<area shape="rect" id="node1" title="Allocate memory used by an LSTM layer." alt="" coords="431,81,569,108"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="246,5,361,32"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="224,56,383,83"/>
-<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="229,107,377,133"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="226,157,381,184"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="Node000001" title="Allocate memory used by an LSTM layer." alt="" coords="431,80,569,105"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="246,5,361,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="458,77,382,44,348,33,350,28,384,40,461,72"/>
+<area shape="rect" id="Node000004" href="$neural__layer__lstm_8c.html#ad055907f841ba89c18deb79ecebe8124" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="224,55,383,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="416,85,382,80,383,75,417,79"/>
+<area shape="rect" id="Node000005" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="229,104,377,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="417,105,378,110,377,105,417,100"/>
+<area shape="rect" id="Node000006" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="226,153,381,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="459,113,384,143,347,156,345,151,382,138,457,108"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,21,176,21,176,15,232,15"/>
 </map>

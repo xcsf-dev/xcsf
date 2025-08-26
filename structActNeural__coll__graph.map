@@ -1,7 +1,14 @@
 <map id="ActNeural" name="ActNeural">
-<area shape="rect" id="node1" title="Neural network action data structure." alt="" coords="5,425,85,452"/>
-<area shape="rect" id="node2" href="$structNet.html" title="Neural network data structure." alt="" coords="24,336,67,363"/>
-<area shape="rect" id="node3" href="$structLlist.html" title="Forward declaration of layer structure." alt="" coords="22,231,69,257"/>
-<area shape="rect" id="node4" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="82,73,137,99"/>
-<area shape="rect" id="node5" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="173,231,251,257"/>
+<area shape="rect" id="Node000001" title="Neural network action data structure." alt="" coords="5,424,85,449"/>
+<area shape="rect" id="Node000002" href="$structNet.html" title="Neural network data structure." alt="" coords="24,336,67,361"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="48,375,48,423,43,423,43,375"/>
+<area shape="rect" id="Node000003" href="$structLlist.html" title="Forward declaration of layer structure." alt="" coords="22,231,69,257"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="48,271,48,336,43,336,43,271"/>
+<area shape="poly" id="edge7_Node000003_Node000003" title=" " alt="" coords="83,234,92,237,95,244,86,254,69,255,69,249,84,249,90,244,88,241,81,239"/>
+<area shape="rect" id="Node000004" href="$structLayer.html" title="Neural network layer data structure." alt="" coords="82,73,137,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,111,69,148,49,191,46,212,47,231,41,231,41,212,44,190,64,145,89,109"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="132,64,143,62,153,66,161,74,163,86,159,101,148,109,133,109,119,101,122,96,135,103,146,104,155,98,158,86,156,76,151,70,143,68,133,69"/>
+<area shape="rect" id="Node000005" href="$structLayerVtbl.html" title="Neural network layer interface data structure." alt="" coords="173,231,251,257"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="103,112,95,158,98,182,108,204,121,217,137,227,174,237,173,243,135,232,117,221,103,207,93,183,90,158,98,111"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="212,218,207,192,190,163,168,138,125,101,128,97,172,134,194,160,212,190,217,217"/>
 </map>

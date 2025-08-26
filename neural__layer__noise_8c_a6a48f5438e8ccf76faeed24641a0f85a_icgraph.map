@@ -1,5 +1,7 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by a noise layer." alt="" coords="212,35,335,61"/>
-<area shape="rect" id="node2" href="$neural__layer__noise_8c.html#a09a6ea6471765a98984abd35b081a78f" title="Free memory used by a noise layer." alt="" coords="5,5,164,32"/>
-<area shape="rect" id="node3" href="$neural__layer__noise_8c.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="19,57,150,98"/>
+<area shape="rect" id="Node000001" title="Free memory used by a noise layer." alt="" coords="212,35,335,60"/>
+<area shape="rect" id="Node000002" href="$neural__layer__noise_8c.html#a09a6ea6471765a98984abd35b081a78f" title="Free memory used by a noise layer." alt="" coords="5,5,164,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,38,164,33,164,28,199,33"/>
+<area shape="rect" id="Node000003" href="$neural__layer__noise_8c.html#a2464187d100209519f41aa1c4c640bca" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="19,55,150,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,61,151,68,150,63,198,56"/>
 </map>

@@ -1,4 +1,0 @@
-<map id="ea_param_json_export" name="ea_param_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of the EA parameters." alt="" coords="5,5,159,32"/>
-<area shape="rect" id="node2" href="$ea_8c.html#a53acdbcd7a77faf6d38068559ae03b8b" title="Returns a string representation of an EA select type from an integer." alt="" coords="207,5,335,32"/>
-</map>

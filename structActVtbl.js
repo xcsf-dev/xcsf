@@ -7,7 +7,7 @@ var structActVtbl =
     [ "act_impl_free", "structActVtbl.html#ab342858851a8b07d9509f5db9e7be874", null ],
     [ "act_impl_general", "structActVtbl.html#a267aa142d875990ecb54c411ef74367d", null ],
     [ "act_impl_init", "structActVtbl.html#a95142ffbb481e2da217ad90eb2eb5b78", null ],
-    [ "act_impl_json_export", "structActVtbl.html#a7a5366a6b7370fe568675a3a60b27b70", null ],
+    [ "act_impl_json_export", "structActVtbl.html#adee07b85b1fe4c557ac991d77f2d3422", null ],
     [ "act_impl_json_import", "structActVtbl.html#a170c10865f681512e264d45d89f05506", null ],
     [ "act_impl_load", "structActVtbl.html#a1aac189071da41e2d0d99ce9c0cdbfe3", null ],
     [ "act_impl_mutate", "structActVtbl.html#a3c39e120d4ec256e7a40a74fdac4f0f1", null ],

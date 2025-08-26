@@ -1,7 +1,11 @@
 <map id="neural_copy" name="neural_copy">
-<area shape="rect" id="node1" title="Copies a neural network." alt="" coords="208,81,300,108"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="24,5,141,32"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="19,56,146,83"/>
-<area shape="rect" id="node4" href="$pred__neural_8c.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="21,107,145,133"/>
-<area shape="rect" id="node5" href="$rule__neural_8c.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="5,157,160,184"/>
+<area shape="rect" id="Node000001" title="Copies a neural network." alt="" coords="208,80,300,105"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="24,5,141,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,75,159,44,129,33,130,28,161,40,221,70"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="19,55,146,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,87,146,79,147,74,195,81"/>
+<area shape="rect" id="Node000004" href="$pred__neural_8c.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="21,104,145,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="195,104,145,111,144,105,194,98"/>
+<area shape="rect" id="Node000005" href="$rule__neural_8c.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="5,153,160,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="220,114,161,143,127,156,125,151,159,138,217,110"/>
 </map>

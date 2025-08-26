@@ -1,7 +1,11 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
-<area shape="rect" id="node1" title="Allocate memory used by a dropout layer." alt="" coords="231,81,369,108"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#a53c6652e7bdcb412cd5173a34f994906" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="5,5,183,32"/>
-<area shape="rect" id="node3" href="$neural__layer__dropout_8c.html#aa96fffc3ae2e176c86142debc8faf512" title="Initialises a dropout layer." alt="" coords="11,56,177,83"/>
-<area shape="rect" id="node4" href="$neural__layer__dropout_8c.html#ad6efd45d8c8f564208504cc5f71e47f4" title="Reads a dropout layer from a file." alt="" coords="7,107,181,133"/>
-<area shape="rect" id="node5" href="$neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" title="Resizes a dropout layer if the previous layer has changed size." alt="" coords="23,158,165,199"/>
+<area shape="rect" id="Node000001" title="Allocate memory used by a dropout layer." alt="" coords="231,80,369,105"/>
+<area shape="rect" id="Node000002" href="$neural__layer__dropout_8c.html#a18092e986e5ed7f9084f416a153c5ba1" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="5,5,183,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,77,182,45,146,33,147,28,184,39,261,72"/>
+<area shape="rect" id="Node000003" href="$neural__layer__dropout_8c.html#aa96fffc3ae2e176c86142debc8faf512" title="Initialises a dropout layer." alt="" coords="11,55,177,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,85,177,80,178,75,217,80"/>
+<area shape="rect" id="Node000004" href="$neural__layer__dropout_8c.html#ad6efd45d8c8f564208504cc5f71e47f4" title="Reads a dropout layer from a file." alt="" coords="7,104,181,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="217,105,181,109,180,104,217,100"/>
+<area shape="rect" id="Node000005" href="$neural__layer__dropout_8c.html#a41d440982cb69c9769ac696c731b4e17" title="Resizes a dropout layer if the previous layer has changed size." alt="" coords="23,154,165,194"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="256,113,184,143,150,156,148,151,182,138,254,108"/>
 </map>

@@ -1,10 +1,17 @@
 <map id="blas.h" name="blas.h">
-<area shape="rect" id="node1" title="Basic linear algebra functions." alt="" coords="532,5,589,32"/>
-<area shape="rect" id="node2" href="$blas_8c.html" title="Basic linear algebra functions." alt="" coords="5,80,63,107"/>
-<area shape="rect" id="node3" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="87,80,258,107"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="282,80,469,107"/>
-<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="493,80,628,107"/>
-<area shape="rect" id="node6" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="652,80,813,107"/>
-<area shape="rect" id="node7" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="838,80,931,107"/>
-<area shape="rect" id="node8" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="956,80,1035,107"/>
+<area shape="rect" id="Node000001" title="Basic linear algebra functions." alt="" coords="532,5,589,31"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html" title="Basic linear algebra functions." alt="" coords="5,79,63,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="519,25,326,44,201,60,76,81,63,84,62,79,75,76,201,55,326,38,518,20"/>
+<area shape="rect" id="Node000003" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="87,79,258,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="519,30,236,81,235,76,518,24"/>
+<area shape="rect" id="Node000004" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="282,79,469,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="520,38,406,81,404,76,518,33"/>
+<area shape="rect" id="Node000005" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="493,79,628,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="563,44,563,79,558,79,558,44"/>
+<area shape="rect" id="Node000006" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="652,79,813,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="602,33,706,76,704,81,600,38"/>
+<area shape="rect" id="Node000007" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="838,79,931,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="603,26,838,77,837,82,602,31"/>
+<area shape="rect" id="Node000008" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="956,79,1035,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="603,22,754,44,944,76,956,78,955,84,943,81,753,50,603,28"/>
 </map>

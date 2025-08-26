@@ -1,5 +1,7 @@
 <map id="cond_ternary_param_defaults" name="cond_ternary_param_defaults">
-<area shape="rect" id="node1" title="Initialises default ternary condition parameters." alt="" coords="5,23,145,65"/>
-<area shape="rect" id="node2" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="215,5,361,32"/>
-<area shape="rect" id="node3" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="193,56,383,83"/>
+<area shape="rect" id="Node000001" title="Initialises default ternary condition parameters." alt="" coords="5,23,145,63"/>
+<area shape="rect" id="Node000002" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="215,5,361,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,32,201,26,201,31,146,38"/>
+<area shape="rect" id="Node000003" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="193,55,383,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,49,180,52,179,58,145,54"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="neural_layer_convolutional_print" name="neural_layer_convolutional_print">
-<area shape="rect" id="node1" title="Prints a convolutional layer." alt="" coords="5,23,180,65"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#afc7573115023963925da3e173ece9bea" title="Returns a json formatted string of a convolutional layer." alt="" coords="228,23,403,65"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="467,5,593,32"/>
-<area shape="rect" id="node4" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="451,56,609,83"/>
+<area shape="rect" id="Node000001" title="Prints a convolutional layer." alt="" coords="5,23,180,63"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#a2e770f02f5c3f31d02dbdf11c64c3371" title="Returns a json formatted string of a convolutional layer." alt="" coords="228,23,403,63"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,41,214,41,214,46,180,46"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#ab690105513e8867b6dd3252dc7d639f8" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="467,5,593,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,30,453,24,453,30,403,36"/>
+<area shape="rect" id="Node000004" href="$neural__activations_8c.html#a434ca6390662d569b5e002a9e2d82c1d" title="Returns the name of a specified activation function." alt="" coords="451,55,609,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="403,50,437,54,436,60,403,56"/>
 </map>

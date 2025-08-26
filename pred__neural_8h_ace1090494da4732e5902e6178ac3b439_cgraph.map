@@ -1,4 +1,5 @@
 <map id="pred_neural_size" name="pred_neural_size">
-<area shape="rect" id="node1" title="Returns the size of a neural network prediction." alt="" coords="5,5,125,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9" title="Returns the total number of non&#45;zero weights in a neural network." alt="" coords="173,5,261,32"/>
+<area shape="rect" id="Node000001" title="Returns the size of a neural network prediction." alt="" coords="5,5,125,31"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#a610bf0c797a4877216d39dab2a91a4c9" title="Returns the total number of non&#45;zero weights in a neural network." alt="" coords="173,5,261,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,15,159,15,159,21,126,21"/>
 </map>

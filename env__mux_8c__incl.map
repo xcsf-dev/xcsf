@@ -1,21 +1,47 @@
 <map id="env_mux.c" name="env_mux.c">
-<area shape="rect" id="node1" title="The real multiplexer problem environment." alt="" coords="306,5,393,32"/>
-<area shape="rect" id="node2" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="419,80,506,107"/>
-<area shape="rect" id="node5" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="123,304,181,331"/>
-<area shape="rect" id="node18" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="315,80,384,107"/>
-<area shape="rect" id="node3" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="437,155,489,181"/>
-<area shape="rect" id="node4" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="433,229,492,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="545,379,607,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="681,379,756,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="805,379,867,405"/>
-<area shape="rect" id="node11" title=" " alt="" coords="5,379,69,405"/>
-<area shape="rect" id="node12" title=" " alt="" coords="205,304,267,331"/>
-<area shape="rect" id="node13" title=" " alt="" coords="292,304,351,331"/>
-<area shape="rect" id="node14" title=" " alt="" coords="375,304,454,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="479,304,543,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="567,304,633,331"/>
-<area shape="rect" id="node17" title=" " alt="" coords="657,304,722,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="93,379,245,405"/>
-<area shape="rect" id="node7" title=" " alt="" coords="270,379,421,405"/>
-<area shape="rect" id="node19" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="355,155,413,181"/>
+<area shape="rect" id="Node000001" title="The real multiplexer problem environment." alt="" coords="306,5,393,31"/>
+<area shape="rect" id="Node000002" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="419,79,506,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="369,28,434,69,431,74,366,33"/>
+<area shape="rect" id="Node000005" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="123,299,181,324"/>
+<area shape="poly" id="edge26_Node000001_Node000005" title=" " alt="" coords="342,33,305,80,226,196,168,288,164,285,222,193,301,77,338,29"/>
+<area shape="rect" id="Node000018" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="315,79,384,104"/>
+<area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="352,31,352,65,347,65,347,31"/>
+<area shape="rect" id="Node000003" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="437,152,489,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="465,104,465,138,460,138,460,104"/>
+<area shape="rect" id="Node000004" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="433,225,492,251"/>
+<area shape="poly" id="edge21_Node000002_Node000004" title=" " alt="" coords="476,103,498,135,505,156,504,178,495,198,484,216,479,213,491,196,499,177,500,157,494,138,472,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="465,178,465,212,460,212,460,178"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="434,248,195,301,194,296,433,243"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="545,372,607,397"/>
+<area shape="poly" id="edge15_Node000004_Node000008" title=" " alt="" coords="492,239,553,244,627,255,694,272,720,283,737,297,745,314,742,329,731,342,714,352,669,369,621,379,620,374,667,364,711,348,728,338,737,326,740,314,733,300,717,288,692,277,626,260,552,250,492,244"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="681,372,756,397"/>
+<area shape="poly" id="edge16_Node000004_Node000009" title=" " alt="" coords="493,238,558,243,638,253,711,271,739,282,758,297,765,314,762,331,742,363,738,360,757,329,760,314,754,300,737,287,710,276,637,259,557,248,492,243"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="805,372,867,397"/>
+<area shape="poly" id="edge18_Node000004_Node000010" title=" " alt="" coords="493,239,644,259,723,275,755,285,779,296,808,325,828,358,823,361,804,329,776,301,753,290,722,280,643,264,492,245"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="5,372,69,397"/>
+<area shape="poly" id="edge19_Node000004_Node000011" title=" " alt="" coords="433,244,265,264,175,280,138,290,112,301,78,329,53,362,49,359,74,326,109,296,136,285,173,275,264,258,433,239"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="205,299,267,324"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="434,251,281,299,280,294,432,246"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="292,299,351,324"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="441,253,358,295,355,290,439,248"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="375,299,454,324"/>
+<area shape="poly" id="edge13_Node000004_Node000014" title=" " alt="" coords="457,253,432,289,428,286,453,250"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="479,299,543,324"/>
+<area shape="poly" id="edge14_Node000004_Node000015" title=" " alt="" coords="473,250,498,286,493,289,468,253"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="567,299,633,324"/>
+<area shape="poly" id="edge17_Node000004_Node000016" title=" " alt="" coords="486,248,567,290,564,295,484,253"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="657,299,722,324"/>
+<area shape="poly" id="edge20_Node000004_Node000017" title=" " alt="" coords="493,246,644,293,642,298,492,251"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="93,372,245,397"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="157,324,166,358,161,360,152,325"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="270,372,421,397"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="182,321,302,365,300,370,180,326"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="181,319,193,321,380,355,531,376,531,381,380,360,191,327,180,324"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="181,319,193,321,312,341,405,351,500,358,620,369,668,375,667,380,620,375,499,363,405,356,311,347,191,327,180,324"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="181,319,192,321,353,344,479,351,606,355,768,369,792,373,791,378,768,375,606,360,479,356,353,349,192,327,180,324"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="135,326,69,367,66,362,132,322"/>
+<area shape="poly" id="edge25_Node000018_Node000004" title=" " alt="" coords="347,105,338,139,339,158,345,176,360,193,379,207,421,225,419,230,376,212,356,197,340,179,333,159,333,138,342,103"/>
+<area shape="rect" id="Node000019" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="355,152,413,177"/>
+<area shape="poly" id="edge23_Node000018_Node000019" title=" " alt="" coords="357,103,375,138,370,141,353,106"/>
+<area shape="poly" id="edge24_Node000019_Node000004" title=" " alt="" coords="398,175,442,214,438,218,395,179"/>
 </map>

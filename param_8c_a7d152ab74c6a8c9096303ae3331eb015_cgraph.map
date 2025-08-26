@@ -1,7 +1,11 @@
 <map id="param_json_import_multi" name="param_json_import_multi">
-<area shape="rect" id="node1" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="5,81,172,108"/>
-<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="272,5,359,32"/>
-<area shape="rect" id="node3" href="$param_8c.html#a8d8141b90d111aad2e2ea30102bb0805" title=" " alt="" coords="249,56,382,83"/>
-<area shape="rect" id="node4" href="$param_8c.html#aa8c004ce6cdca4dfecfa34dea70b2619" title=" " alt="" coords="242,107,389,133"/>
-<area shape="rect" id="node5" href="$param_8c.html#a926dea96f312414ab1caf1d3e284f696" title=" " alt="" coords="220,157,411,184"/>
+<area shape="rect" id="Node000001" title="Sets the multi&#45;step parameters from a cJSON object." alt="" coords="5,80,172,105"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="272,5,359,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,77,219,39,258,28,259,34,221,45,121,82"/>
+<area shape="rect" id="Node000003" href="$param_8c.html#ae7d1ced2f4294cbaf4ca167adf298bdc" title=" " alt="" coords="249,55,382,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,81,234,74,235,79,172,86"/>
+<area shape="rect" id="Node000004" href="$param_8c.html#a9463f6530791683fd1d63d415fedb236" title=" " alt="" coords="242,104,389,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,99,229,105,228,110,172,104"/>
+<area shape="rect" id="Node000005" href="$param_8c.html#a6bc118161b197baa2dfea0f804b745a0" title=" " alt="" coords="220,153,411,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="123,103,221,138,251,147,250,152,219,143,121,108"/>
 </map>

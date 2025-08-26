@@ -1,5 +1,7 @@
 <map id="env_maze.h" name="env_maze.h">
-<area shape="rect" id="node1" title="The discrete maze problem environment module." alt="" coords="33,5,126,32"/>
-<area shape="rect" id="node2" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="5,80,57,107"/>
-<area shape="rect" id="node3" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="82,80,175,107"/>
+<area shape="rect" id="Node000001" title="The discrete maze problem environment module." alt="" coords="33,5,126,31"/>
+<area shape="rect" id="Node000002" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="5,79,57,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,44,41,80,37,77,62,41"/>
+<area shape="rect" id="Node000003" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="82,79,175,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,41,123,77,118,80,93,44"/>
 </map>

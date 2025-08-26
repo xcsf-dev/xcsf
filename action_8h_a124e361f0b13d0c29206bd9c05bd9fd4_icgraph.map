@@ -1,33 +1,81 @@
 <map id="act_init" name="act_init">
-<area shape="rect" id="node1" title="Initialises a classifier&#39;s action." alt="" coords="1604,335,1668,361"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="1492,335,1556,361"/>
-<area shape="rect" id="node3" href="$cl_8c.html#ab80c62ad6a09b3243f499a7ad9ef95cd" title="Covers the condition and action for a classifier." alt="" coords="1355,265,1426,292"/>
-<area shape="rect" id="node21" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="1337,335,1444,361"/>
-<area shape="rect" id="node25" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="612,335,719,361"/>
-<area shape="rect" id="node4" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="1176,247,1265,273"/>
-<area shape="rect" id="node5" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="988,208,1081,235"/>
-<area shape="rect" id="node6" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="795,183,907,209"/>
-<area shape="rect" id="node11" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="813,233,888,260"/>
-<area shape="rect" id="node13" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="595,81,736,108"/>
-<area shape="rect" id="node7" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="612,132,719,159"/>
-<area shape="rect" id="node8" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="623,183,708,209"/>
-<area shape="rect" id="node9" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="425,208,510,235"/>
-<area shape="rect" id="node10" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="231,208,282,235"/>
-<area shape="rect" id="node12" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="631,233,700,260"/>
-<area shape="rect" id="node14" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="402,157,533,184"/>
-<area shape="rect" id="node16" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="388,5,547,32"/>
-<area shape="rect" id="node18" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="391,107,543,133"/>
-<area shape="rect" id="node20" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="173,56,340,83"/>
-<area shape="rect" id="node15" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="222,157,291,184"/>
-<area shape="rect" id="node17" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="208,5,305,32"/>
-<area shape="rect" id="node19" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="20,81,111,108"/>
-<area shape="rect" id="node22" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1152,335,1289,361"/>
-<area shape="rect" id="node23" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="975,284,1095,311"/>
-<area shape="rect" id="node31" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="965,335,1104,361"/>
-<area shape="rect" id="node24" href="$clset_8c.html#ab1609ae417c14c50f3322c3ed818db6b" title=" " alt="" coords="784,335,917,361"/>
-<area shape="rect" id="node29" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="790,284,911,311"/>
-<area shape="rect" id="node26" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="432,259,503,285"/>
-<area shape="rect" id="node27" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="213,259,300,285"/>
-<area shape="rect" id="node28" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,259,125,285"/>
-<area shape="rect" id="node30" href="$classXCS.html#a1a882e28a64c4e2b92ae234d79f327de" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="608,284,723,311"/>
+<area shape="rect" id="Node000001" title="Initialises a classifier&#39;s action." alt="" coords="1803,151,1867,176"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="1691,151,1755,176"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1789,166,1755,166,1755,161,1789,161"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#ab80c62ad6a09b3243f499a7ad9ef95cd" title="Covers the condition and action for a classifier." alt="" coords="1554,202,1625,227"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1678,183,1625,204,1623,199,1677,178"/>
+<area shape="rect" id="Node000022" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="1536,100,1643,126"/>
+<area shape="poly" id="edge28_Node000002_Node000022" title=" " alt="" coords="1677,149,1623,128,1625,123,1678,144"/>
+<area shape="rect" id="Node000026" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="811,150,917,175"/>
+<area shape="poly" id="edge46_Node000002_Node000026" title=" " alt="" coords="1677,166,1421,166,1232,166,918,165,918,160,1232,161,1421,161,1677,161"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="1375,202,1464,227"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1540,217,1464,217,1464,212,1540,212"/>
+<area shape="rect" id="Node000005" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="1003,275,1096,300"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1362,228,1097,281,1096,276,1360,223"/>
+<area shape="rect" id="Node000006" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="808,300,920,326"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="989,298,920,308,920,303,989,293"/>
+<area shape="rect" id="Node000012" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="827,250,901,275"/>
+<area shape="poly" id="edge11_Node000005_Node000012" title=" " alt="" coords="989,282,901,270,902,265,990,277"/>
+<area shape="rect" id="Node000014" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="793,502,935,527"/>
+<area shape="poly" id="edge14_Node000005_Node000014" title=" " alt="" coords="1031,313,878,503,873,500,1027,309"/>
+<area shape="rect" id="Node000007" href="$classXCS.html#ac6003941812bd2c70ea443dd63bd59d0" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="211,400,317,426"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="851,339,810,393,780,420,746,441,687,460,624,471,560,473,498,469,385,451,302,428,304,423,386,446,498,464,560,468,623,465,685,455,744,436,777,416,806,390,847,336"/>
+<area shape="rect" id="Node000009" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="623,300,709,326"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="794,316,709,316,709,310,794,310"/>
+<area shape="rect" id="Node000008" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,198,156,223"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="240,392,91,225,95,221,244,388"/>
+<area shape="rect" id="Node000010" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="413,300,498,326"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="610,316,498,316,498,310,610,310"/>
+<area shape="rect" id="Node000011" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="239,300,289,326"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="399,316,289,316,289,310,399,310"/>
+<area shape="rect" id="Node000013" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="229,247,299,272"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="813,265,299,262,299,257,813,259"/>
+<area shape="poly" id="edge13_Node000013_Node000008" title=" " alt="" coords="215,249,128,226,129,220,217,244"/>
+<area shape="rect" id="Node000015" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="601,400,731,426"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="825,498,691,428,693,423,827,493"/>
+<area shape="rect" id="Node000017" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="587,603,745,628"/>
+<area shape="poly" id="edge18_Node000014_Node000017" title=" " alt="" coords="833,537,747,586,703,605,701,600,744,581,830,532"/>
+<area shape="rect" id="Node000019" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="590,502,742,527"/>
+<area shape="poly" id="edge21_Node000014_Node000019" title=" " alt="" coords="780,517,742,517,742,512,780,512"/>
+<area shape="rect" id="Node000021" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="372,552,539,578"/>
+<area shape="poly" id="edge27_Node000014_Node000021" title=" " alt="" coords="798,533,746,542,638,555,539,563,539,558,638,550,745,537,797,527"/>
+<area shape="poly" id="edge17_Node000015_Node000011" title=" " alt="" coords="587,420,483,415,426,406,371,390,343,377,317,360,277,328,280,324,320,356,345,372,373,385,427,400,483,409,587,414"/>
+<area shape="rect" id="Node000016" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="421,350,490,375"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="599,400,490,373,491,368,600,394"/>
+<area shape="rect" id="Node000018" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="215,576,313,602"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="572,612,313,595,313,589,573,607"/>
+<area shape="poly" id="edge20_Node000018_Node000008" title=" " alt="" coords="229,569,202,541,175,498,152,452,116,359,93,278,82,224,87,223,99,277,121,358,157,450,180,496,206,538,233,566"/>
+<area shape="poly" id="edge22_Node000019_Node000016" title=" " alt="" coords="634,495,473,377,476,373,638,491"/>
+<area shape="rect" id="Node000020" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="219,502,309,527"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="576,517,310,517,310,512,576,512"/>
+<area shape="poly" id="edge25_Node000019_Node000021" title=" " alt="" coords="600,533,509,555,508,550,599,528"/>
+<area shape="poly" id="edge24_Node000020_Node000008" title=" " alt="" coords="241,492,202,440,131,316,86,224,90,222,135,313,206,437,245,489"/>
+<area shape="poly" id="edge26_Node000021_Node000020" title=" " alt="" coords="393,551,309,529,310,524,394,546"/>
+<area shape="rect" id="Node000023" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1351,87,1488,112"/>
+<area shape="poly" id="edge29_Node000022_Node000023" title=" " alt="" coords="1522,110,1488,108,1488,102,1523,105"/>
+<area shape="rect" id="Node000024" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="1173,87,1293,112"/>
+<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="1337,102,1294,102,1294,97,1337,97"/>
+<area shape="rect" id="Node000033" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="1164,12,1303,38"/>
+<area shape="poly" id="edge44_Node000023_Node000033" title=" " alt="" coords="1373,84,1265,40,1267,35,1375,79"/>
+<area shape="rect" id="Node000025" href="$clset_8c.html#ab1609ae417c14c50f3322c3ed818db6b" title=" " alt="" coords="983,100,1116,126"/>
+<area shape="poly" id="edge31_Node000024_Node000025" title=" " alt="" coords="1160,108,1116,111,1116,105,1159,102"/>
+<area shape="rect" id="Node000031" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="395,50,516,75"/>
+<area shape="poly" id="edge40_Node000024_Node000031" title=" " alt="" coords="1159,94,1116,90,777,73,516,66,516,61,777,68,1116,85,1160,89"/>
+<area shape="poly" id="edge32_Node000025_Node000026" title=" " alt="" coords="989,132,914,152,912,147,987,127"/>
+<area shape="rect" id="Node000027" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="631,150,701,175"/>
+<area shape="poly" id="edge33_Node000026_Node000027" title=" " alt="" coords="797,165,701,165,701,160,797,160"/>
+<area shape="poly" id="edge35_Node000027_Node000011" title=" " alt="" coords="619,182,290,306,288,301,617,177"/>
+<area shape="poly" id="edge34_Node000027_Node000016" title=" " alt="" coords="652,188,597,273,567,314,540,340,516,353,491,360,489,355,514,348,537,336,563,310,593,270,648,186"/>
+<area shape="rect" id="Node000028" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="412,148,499,174"/>
+<area shape="poly" id="edge36_Node000027_Node000028" title=" " alt="" coords="617,165,499,164,499,159,617,159"/>
+<area shape="rect" id="Node000030" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="412,99,499,124"/>
+<area shape="poly" id="edge39_Node000027_Node000030" title=" " alt="" coords="617,153,498,124,500,119,618,148"/>
+<area shape="rect" id="Node000029" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="204,194,324,219"/>
+<area shape="poly" id="edge37_Node000028_Node000029" title=" " alt="" coords="399,177,319,196,318,191,398,172"/>
+<area shape="poly" id="edge38_Node000029_Node000008" title=" " alt="" coords="190,211,157,211,156,206,190,205"/>
+<area shape="poly" id="edge43_Node000031_Node000008" title=" " alt="" coords="395,82,373,89,223,149,110,200,108,195,221,144,371,84,393,76"/>
+<area shape="rect" id="Node000032" href="$classXCS.html#ad7aade3a334222e010b571f5c7a6bc43" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="207,56,321,82"/>
+<area shape="poly" id="edge41_Node000031_Node000032" title=" " alt="" coords="381,67,322,70,321,64,381,62"/>
+<area shape="poly" id="edge42_Node000032_Node000008" title=" " alt="" coords="236,92,206,115,99,200,96,195,202,111,233,88"/>
+<area shape="poly" id="edge45_Node000033_Node000008" title=" " alt="" coords="1150,23,1017,17,865,14,454,14,323,9,296,11,269,17,239,28,205,46,183,62,163,81,129,124,104,166,89,199,85,196,100,164,125,121,159,77,180,58,203,41,237,23,267,12,296,6,323,4,454,9,865,9,1017,12,1150,18"/>
 </map>

@@ -1,22 +1,55 @@
 <map id="pred_neural.h" name="pred_neural.h">
-<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="377,5,477,32"/>
-<area shape="rect" id="node2" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="377,155,445,181"/>
-<area shape="rect" id="node12" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="119,80,258,107"/>
-<area shape="rect" id="node13" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="287,80,389,107"/>
-<area shape="rect" id="node15" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="471,80,560,107"/>
-<area shape="rect" id="node16" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="626,155,685,181"/>
-<area shape="rect" id="node3" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="228,229,285,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="618,304,693,331"/>
-<area shape="rect" id="node8" title=" " alt="" coords="533,304,594,331"/>
-<area shape="rect" id="node9" title=" " alt="" coords="445,304,509,331"/>
-<area shape="rect" id="node10" title=" " alt="" coords="463,229,528,256"/>
-<area shape="rect" id="node11" title=" " alt="" coords="552,229,617,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="93,304,245,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="269,304,420,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,304,68,331"/>
-<area shape="rect" id="node14" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="197,155,332,181"/>
-<area shape="rect" id="node17" title=" " alt="" coords="1069,229,1132,256"/>
-<area shape="rect" id="node18" title=" " alt="" coords="743,229,802,256"/>
-<area shape="rect" id="node19" title=" " alt="" coords="877,229,956,256"/>
-<area shape="rect" id="node20" title=" " alt="" coords="981,229,1045,256"/>
+<area shape="rect" id="Node000001" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="377,5,477,31"/>
+<area shape="rect" id="Node000002" href="$neural_8h.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="377,152,445,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,31,417,139,411,138,423,31"/>
+<area shape="rect" id="Node000012" href="$neural__activations_8h.html" title="Neural network activation functions." alt="" coords="119,79,258,104"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="390,33,241,77,240,72,388,28"/>
+<area shape="rect" id="Node000013" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="287,79,389,104"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="415,33,365,72,362,68,411,29"/>
+<area shape="rect" id="Node000015" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="471,79,560,104"/>
+<area shape="poly" id="edge20_Node000001_Node000015" title=" " alt="" coords="443,29,492,68,489,72,440,33"/>
+<area shape="rect" id="Node000016" href="$xcsf_8h.html" title="XCSF data structures." alt="" coords="626,152,685,177"/>
+<area shape="poly" id="edge33_Node000001_Node000016" title=" " alt="" coords="468,28,520,48,574,76,611,107,640,139,636,143,607,111,571,81,518,53,466,33"/>
+<area shape="rect" id="Node000003" href="$utils_8h.html" title="Utility functions for random number handling, etc." alt="" coords="228,225,285,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="388,180,295,222,293,217,385,175"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="618,299,693,324"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="416,177,428,213,439,232,453,249,473,258,512,270,605,295,604,300,511,275,471,263,450,253,434,235,423,215,411,179"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="533,299,594,324"/>
+<area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="409,178,401,213,401,232,408,249,422,258,450,269,520,294,518,299,448,274,419,262,404,252,396,233,395,212,404,177"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="445,299,509,324"/>
+<area shape="poly" id="edge12_Node000002_Node000009" title=" " alt="" coords="396,179,378,194,363,212,354,231,354,240,358,249,368,260,386,271,433,291,430,296,384,275,365,264,353,252,349,241,349,230,358,209,375,190,393,175"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="463,225,528,251"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="427,175,473,214,469,218,423,179"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="552,225,617,251"/>
+<area shape="poly" id="edge13_Node000002_Node000011" title=" " alt="" coords="440,175,545,218,543,222,438,180"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="93,299,245,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="244,253,195,292,192,288,241,249"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="269,299,420,324"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="272,249,321,288,318,292,269,253"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,299,68,324"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="229,251,82,298,80,293,227,246"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="286,241,420,262,605,296,604,301,419,268,285,246"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="286,243,520,296,519,301,285,248"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="286,246,432,293,431,298,285,251"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="183,106,55,288,51,285,178,103"/>
+<area shape="poly" id="edge17_Node000013_Node000002" title=" " alt="" coords="352,102,391,140,388,144,348,106"/>
+<area shape="rect" id="Node000014" href="$neural__layer__args_8h.html" title="Functions operating on neural network arguments/constants." alt="" coords="197,152,332,177"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="328,106,288,144,285,140,324,102"/>
+<area shape="poly" id="edge19_Node000014_Node000003" title=" " alt="" coords="266,178,262,212,257,212,261,177"/>
+<area shape="poly" id="edge21_Node000015_Node000016" title=" " alt="" coords="539,102,622,143,619,148,537,106"/>
+<area shape="poly" id="edge22_Node000016_Node000003" title=" " alt="" coords="626,174,299,232,298,227,625,169"/>
+<area shape="poly" id="edge27_Node000016_Node000006" title=" " alt="" coords="626,170,553,174,450,183,333,200,216,228,135,260,69,294,66,289,133,255,215,223,332,195,450,178,552,168,626,164"/>
+<area shape="poly" id="edge28_Node000016_Node000007" title=" " alt="" coords="685,165,717,169,753,179,788,197,816,224,823,241,820,256,810,268,794,279,752,295,707,305,705,300,750,290,792,274,807,264,816,253,818,241,812,227,785,201,751,184,716,175,684,170"/>
+<area shape="poly" id="edge30_Node000016_Node000008" title=" " alt="" coords="665,177,680,211,682,232,676,252,665,263,648,275,606,296,604,291,646,270,662,259,672,249,677,232,675,213,661,179"/>
+<area shape="poly" id="edge31_Node000016_Node000009" title=" " alt="" coords="658,178,652,214,644,234,632,253,614,265,586,278,523,300,521,295,584,273,611,261,628,249,639,232,647,212,652,177"/>
+<area shape="poly" id="edge29_Node000016_Node000010" title=" " alt="" coords="631,180,535,222,533,217,629,175"/>
+<area shape="poly" id="edge32_Node000016_Node000011" title=" " alt="" coords="646,180,608,218,604,214,642,176"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1069,225,1132,251"/>
+<area shape="poly" id="edge23_Node000016_Node000017" title=" " alt="" coords="685,167,840,187,1056,223,1055,228,839,192,684,172"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="743,225,802,251"/>
+<area shape="poly" id="edge24_Node000016_Node000018" title=" " alt="" coords="676,175,743,216,740,220,673,180"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="877,225,956,251"/>
+<area shape="poly" id="edge25_Node000016_Node000019" title=" " alt="" coords="685,171,865,220,863,225,684,177"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="981,225,1045,251"/>
+<area shape="poly" id="edge26_Node000016_Node000020" title=" " alt="" coords="685,168,805,190,968,223,967,228,804,195,684,174"/>
 </map>

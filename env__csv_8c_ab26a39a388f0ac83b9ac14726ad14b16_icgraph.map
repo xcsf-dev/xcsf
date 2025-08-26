@@ -1,5 +1,7 @@
 <map id="env_csv_init" name="env_csv_init">
-<area shape="rect" id="node1" title="Initialises a CSV input environment from a specified filename." alt="" coords="219,5,313,32"/>
-<area shape="rect" id="node2" href="$env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="104,5,171,32"/>
-<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,32"/>
+<area shape="rect" id="Node000001" title="Initialises a CSV input environment from a specified filename." alt="" coords="219,5,313,31"/>
+<area shape="rect" id="Node000002" href="$env_8c.html#a9213fcf5fc422d6a77bce853b1d78dc9" title="Initialises a built&#45;in problem environment." alt="" coords="104,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,21,171,21,171,15,205,15"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,56,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,21,56,21,56,15,90,15"/>
 </map>

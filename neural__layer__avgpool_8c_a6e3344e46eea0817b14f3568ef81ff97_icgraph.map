@@ -1,6 +1,9 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
-<area shape="rect" id="node1" title="Allocate memory used by an average pooling layer." alt="" coords="232,56,371,83"/>
-<area shape="rect" id="node2" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="5,5,184,32"/>
-<area shape="rect" id="node3" href="$neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="11,56,179,83"/>
-<area shape="rect" id="node4" href="$neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="7,107,182,133"/>
+<area shape="rect" id="Node000001" title="Allocate memory used by an average pooling layer." alt="" coords="232,55,371,80"/>
+<area shape="rect" id="Node000002" href="$neural__layer__avgpool_8c.html#a9f4c2f7c0a7b597d65445f75ae051994" title="Initialises and copies one average pooling layer from another." alt="" coords="5,5,184,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,54,148,33,149,28,235,49"/>
+<area shape="rect" id="Node000003" href="$neural__layer__avgpool_8c.html#a1e3c2800f09684332ee24b00868360fc" title="Initialises an average pooling layer." alt="" coords="11,55,179,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,70,179,70,179,65,218,65"/>
+<area shape="rect" id="Node000004" href="$neural__layer__avgpool_8c.html#a8e84bcdfb1b1343390aaf1f8e6ec0523" title="Reads an average pooling layer from a file." alt="" coords="7,104,182,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="235,86,149,107,148,101,234,81"/>
 </map>

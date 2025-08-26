@@ -1,5 +1,7 @@
 <map id="graph_print" name="graph_print">
-<area shape="rect" id="node1" title="Prints a DGP graph." alt="" coords="5,5,92,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#ac1f6f6714cd298c49c7ba05cf7f994e1" title="Returns a json formatted string representation of a DGP graph." alt="" coords="140,5,268,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#adacd704e517eabb4de2b9c586169ad45" title="Returns the name of a specified node function." alt="" coords="316,5,423,32"/>
+<area shape="rect" id="Node000001" title="Prints a DGP graph." alt="" coords="5,5,92,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a6e561b0a46615962e977ccc8b4d4e0ae" title="Returns a json formatted string representation of a DGP graph." alt="" coords="140,5,268,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,15,126,15,126,21,92,21"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a0e52d68ab8db46a3fa505aabda274cad" title="Returns the name of a specified node function." alt="" coords="316,5,423,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="268,15,302,15,302,21,268,21"/>
 </map>

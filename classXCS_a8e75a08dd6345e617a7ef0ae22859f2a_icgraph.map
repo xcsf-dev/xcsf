@@ -1,6 +1,0 @@
-<map id="XCS::get_cover" name="XCS::get_cover">
-<area shape="rect" id="node1" title="Returns the values specified in the cover array." alt="" coords="313,31,428,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#acb7150d55f04c456a685be939de95f17" title="Sets the XCSF cover array to values given, or zeros." alt="" coords="151,31,265,57"/>
-<area shape="rect" id="node3" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="5,5,103,32"/>
-<area shape="rect" id="node4" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="9,56,99,83"/>
-</map>

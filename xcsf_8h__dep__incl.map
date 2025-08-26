@@ -1,85 +1,279 @@
 <map id="xcsf.h" name="xcsf.h">
-<area shape="rect" id="node1" title="XCSF data structures." alt="" coords="2873,5,2932,32"/>
-<area shape="rect" id="node2" href="$act__integer_8h.html" title="integer action functions." alt="" coords="411,155,507,181"/>
-<area shape="rect" id="node5" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="148,155,241,181"/>
-<area shape="rect" id="node7" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="818,80,886,107"/>
-<area shape="rect" id="node11" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="811,155,893,181"/>
-<area shape="rect" id="node14" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="691,155,787,181"/>
-<area shape="rect" id="node16" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="3773,155,3816,181"/>
-<area shape="rect" id="node22" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="3840,155,3901,181"/>
-<area shape="rect" id="node23" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="4423,229,4484,256"/>
-<area shape="rect" id="node26" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="3165,155,3267,181"/>
-<area shape="rect" id="node27" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="1102,155,1191,181"/>
-<area shape="rect" id="node29" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="917,155,1027,181"/>
-<area shape="rect" id="node31" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="1373,155,1488,181"/>
-<area shape="rect" id="node33" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="1267,155,1349,181"/>
-<area shape="rect" id="node35" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2075,155,2178,181"/>
-<area shape="rect" id="node37" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="1513,155,1634,181"/>
-<area shape="rect" id="node39" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="1659,155,1765,181"/>
-<area shape="rect" id="node41" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="1643,80,1728,107"/>
-<area shape="rect" id="node42" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="4695,155,4763,181"/>
-<area shape="rect" id="node44" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="1106,80,1161,107"/>
-<area shape="rect" id="node46" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="2202,155,2249,181"/>
-<area shape="rect" id="node47" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="4802,80,4854,107"/>
-<area shape="rect" id="node48" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="4788,155,4868,181"/>
-<area shape="rect" id="node51" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="4892,155,4985,181"/>
-<area shape="rect" id="node53" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="5010,155,5097,181"/>
-<area shape="rect" id="node55" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="1285,80,1331,107"/>
-<area shape="rect" id="node57" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="3959,80,4017,107"/>
-<area shape="rect" id="node59" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="4500,155,4569,181"/>
-<area shape="rect" id="node60" href="$pa_8h.html" title="Prediction array functions." alt="" coords="4258,155,4305,181"/>
-<area shape="rect" id="node61" href="$perf_8h.html" title="System performance printing." alt="" coords="4329,155,4383,181"/>
-<area shape="rect" id="node63" href="$pred__constant_8h.html" title="Piece&#45;wise constant prediction functions." alt="" coords="2871,155,2985,181"/>
-<area shape="rect" id="node66" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="2746,155,2846,181"/>
-<area shape="rect" id="node68" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="2324,155,2417,181"/>
-<area shape="rect" id="node70" href="$pred__rls_8h.html" title="Recursive least mean squares prediction functions." alt="" coords="3010,155,3089,181"/>
-<area shape="rect" id="node72" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="2750,80,2839,107"/>
-<area shape="rect" id="node73" href="$pybind__callback_8h.html" title="Interface for callbacks." alt="" coords="3445,80,3571,107"/>
-<area shape="rect" id="node74" href="$pybind__callback__checkpoint_8h.html" title="Checkpoint callback for Python library." alt="" coords="3291,155,3487,181"/>
-<area shape="rect" id="node75" href="$pybind__callback__earlystop_8h.html" title="Early stopping callback for Python library." alt="" coords="3563,155,3749,181"/>
-<area shape="rect" id="node76" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="1789,155,1848,181"/>
-<area shape="rect" id="node82" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="4407,155,4475,181"/>
-<area shape="rect" id="node83" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="4110,155,4234,181"/>
-<area shape="rect" id="node3" href="$act__integer_8c.html" title="integer action functions." alt="" coords="216,229,312,256"/>
-<area shape="rect" id="node4" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="123,229,191,256"/>
-<area shape="rect" id="node6" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,229,99,256"/>
-<area shape="rect" id="node8" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="2764,229,2807,256"/>
-<area shape="rect" id="node9" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="2671,229,2740,256"/>
-<area shape="rect" id="node10" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="3509,229,3646,256"/>
-<area shape="rect" id="node12" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="696,229,781,256"/>
-<area shape="rect" id="node13" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="456,229,539,256"/>
-<area shape="rect" id="node15" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="336,229,432,256"/>
-<area shape="rect" id="node17" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="3764,229,3825,256"/>
-<area shape="rect" id="node18" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="2831,229,2934,256"/>
-<area shape="rect" id="node19" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="3438,229,3485,256"/>
-<area shape="rect" id="node20" href="$pa_8c.html" title="Prediction array functions." alt="" coords="3979,229,4026,256"/>
-<area shape="rect" id="node21" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="3849,229,3908,256"/>
-<area shape="rect" id="node24" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4330,229,4398,256"/>
-<area shape="rect" id="node25" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="4103,229,4227,256"/>
-<area shape="rect" id="node28" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="885,229,974,256"/>
-<area shape="rect" id="node30" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="563,229,672,256"/>
-<area shape="rect" id="node32" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="2009,229,2124,256"/>
-<area shape="rect" id="node34" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="1903,229,1985,256"/>
-<area shape="rect" id="node36" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2426,229,2529,256"/>
-<area shape="rect" id="node38" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="2149,229,2270,256"/>
-<area shape="rect" id="node40" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="2295,229,2401,256"/>
-<area shape="rect" id="node43" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="4509,229,4577,256"/>
-<area shape="rect" id="node45" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="806,229,861,256"/>
-<area shape="rect" id="node49" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="4934,229,4986,256"/>
-<area shape="rect" id="node50" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="4601,229,4681,256"/>
-<area shape="rect" id="node52" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="4705,229,4799,256"/>
-<area shape="rect" id="node54" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="4823,229,4910,256"/>
-<area shape="rect" id="node56" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="998,229,1045,256"/>
-<area shape="rect" id="node58" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="3926,155,3983,181"/>
-<area shape="rect" id="node62" href="$perf_8c.html" title="System performance printing." alt="" coords="4251,229,4306,256"/>
-<area shape="rect" id="node64" href="$pred__constant_8c.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3196,229,3311,256"/>
-<area shape="rect" id="node65" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="3082,229,3171,256"/>
-<area shape="rect" id="node67" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="2958,229,3058,256"/>
-<area shape="rect" id="node69" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="2553,229,2647,256"/>
-<area shape="rect" id="node71" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="3335,229,3414,256"/>
-<area shape="rect" id="node77" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="1069,229,1240,256"/>
-<area shape="rect" id="node78" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1264,229,1451,256"/>
-<area shape="rect" id="node79" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1475,229,1610,256"/>
-<area shape="rect" id="node80" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="1634,229,1795,256"/>
-<area shape="rect" id="node81" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="1820,229,1879,256"/>
+<area shape="rect" id="Node000001" title="XCSF data structures." alt="" coords="2873,5,2932,31"/>
+<area shape="rect" id="Node000002" href="$act__integer_8h.html" title="integer action functions." alt="" coords="411,152,507,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2860,22,2482,22,1876,28,1549,35,1239,46,972,61,771,81,691,97,613,116,491,155,490,149,612,111,690,91,770,76,971,55,1239,40,1549,29,1876,22,2482,17,2860,16"/>
+<area shape="rect" id="Node000005" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="148,152,241,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="2860,22,2462,25,1819,34,1143,52,858,65,644,81,530,97,418,117,242,155,241,149,417,111,530,91,644,76,858,60,1143,47,1819,29,2462,20,2860,17"/>
+<area shape="rect" id="Node000007" href="$action_8h.html" title="Interface for classifier actions." alt="" coords="818,79,886,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="2860,22,1943,38,1353,56,1105,68,919,81,887,86,886,81,918,76,1105,62,1353,51,1943,33,2860,17"/>
+<area shape="rect" id="Node000011" href="$rule__dgp_8h.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="811,152,893,177"/>
+<area shape="poly" id="edge170_Node000001_Node000011" title=" " alt="" coords="2859,22,2490,27,1919,37,1363,55,1159,67,1039,81,990,96,944,116,872,154,869,149,941,111,989,91,1038,76,1158,61,1363,49,1919,31,2490,21,2859,17"/>
+<area shape="rect" id="Node000014" href="$rule__neural_8h.html" title="Neural network rule (condition + action) functions." alt="" coords="691,152,787,177"/>
+<area shape="poly" id="edge171_Node000001_Node000014" title=" " alt="" coords="2860,22,2430,25,1759,34,1421,42,1126,52,909,65,841,73,806,81,785,96,768,116,746,153,741,151,764,112,782,92,804,76,840,68,909,60,1125,47,1421,37,1759,29,2430,20,2860,17"/>
+<area shape="rect" id="Node000016" href="$cl_8h.html" title="Functions operating on classifiers." alt="" coords="3773,152,3816,177"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="2946,18,3284,36,3478,53,3558,64,3618,76,3665,92,3709,112,3778,149,3775,154,3707,117,3663,97,3617,81,3557,69,3477,58,3284,41,2945,24"/>
+<area shape="rect" id="Node000022" href="$clset_8h.html" title="Functions operating on sets of classifiers." alt="" coords="3840,152,3901,177"/>
+<area shape="poly" id="edge27_Node000001_Node000022" title=" " alt="" coords="2946,18,3308,37,3517,54,3603,64,3669,76,3721,92,3772,112,3851,149,3848,154,3770,117,3720,97,3667,81,3602,69,3516,59,3307,42,2946,24"/>
+<area shape="rect" id="Node000023" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="4423,225,4484,251"/>
+<area shape="poly" id="edge127_Node000001_Node000023" title=" " alt="" coords="2946,16,3294,18,3548,22,3820,32,4086,48,4319,72,4415,87,4493,105,4550,126,4570,138,4584,151,4589,164,4584,179,4568,193,4543,206,4485,229,4483,224,4540,202,4565,189,4579,176,4583,164,4579,153,4567,142,4548,131,4491,110,4414,92,4318,77,4086,53,3820,37,3547,28,3294,23,2946,22"/>
+<area shape="rect" id="Node000026" href="$clset__neural_8h.html" title="Functions operating on sets of neural classifiers." alt="" coords="3165,152,3267,177"/>
+<area shape="poly" id="edge35_Node000001_Node000026" title=" " alt="" coords="2941,34,3192,150,3190,154,2939,39"/>
+<area shape="rect" id="Node000027" href="$cond__dgp_8h.html" title="Dynamical GP graph condition functions." alt="" coords="1102,152,1191,177"/>
+<area shape="poly" id="edge38_Node000001_Node000027" title=" " alt="" coords="2859,22,2531,25,2033,33,1778,41,1551,51,1375,64,1313,72,1273,81,1239,96,1207,116,1160,154,1157,150,1204,112,1236,91,1271,76,1312,67,1374,59,1551,46,1778,35,2032,28,2531,19,2859,17"/>
+<area shape="rect" id="Node000029" href="$cond__dummy_8h.html" title="Always&#45;matching dummy condition functions." alt="" coords="917,152,1027,177"/>
+<area shape="poly" id="edge41_Node000001_Node000029" title=" " alt="" coords="2860,22,2499,23,1944,30,1660,37,1406,48,1208,62,1139,71,1094,81,1061,96,1030,116,985,154,982,150,1027,112,1058,91,1092,76,1138,66,1208,57,1406,43,1660,32,1944,25,2499,18,2860,17"/>
+<area shape="rect" id="Node000031" href="$cond__ellipsoid_8h.html" title="Hyperellipsoid condition functions." alt="" coords="1373,152,1488,177"/>
+<area shape="poly" id="edge44_Node000001_Node000031" title=" " alt="" coords="2860,22,2620,24,2263,31,2075,38,1898,49,1745,63,1631,81,1579,97,1529,116,1452,154,1450,150,1527,112,1577,92,1630,76,1745,58,1897,44,2074,33,2263,26,2620,18,2860,17"/>
+<area shape="rect" id="Node000033" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="1267,152,1349,177"/>
+<area shape="poly" id="edge47_Node000001_Node000033" title=" " alt="" coords="2860,22,2607,25,2227,34,1837,51,1674,65,1551,81,1489,97,1428,117,1334,154,1332,149,1426,112,1487,92,1550,76,1673,59,1836,46,2227,28,2607,20,2860,17"/>
+<area shape="rect" id="Node000035" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2075,152,2178,177"/>
+<area shape="poly" id="edge50_Node000001_Node000035" title=" " alt="" coords="2860,26,2714,44,2624,60,2534,81,2502,94,2469,107,2392,125,2331,135,2191,155,2178,157,2178,152,2190,149,2330,130,2391,120,2467,101,2500,89,2533,76,2623,55,2713,39,2859,21"/>
+<area shape="rect" id="Node000037" href="$cond__rectangle_8h.html" title="Hyperrectangle condition functions." alt="" coords="1513,152,1634,177"/>
+<area shape="poly" id="edge55_Node000001_Node000037" title=" " alt="" coords="2860,24,2550,43,2336,59,2118,81,1848,119,1635,155,1634,150,1847,114,2117,76,2335,54,2550,37,2859,19"/>
+<area shape="rect" id="Node000039" href="$cond__ternary_8h.html" title="Ternary condition functions." alt="" coords="1659,152,1765,177"/>
+<area shape="poly" id="edge58_Node000001_Node000039" title=" " alt="" coords="2860,26,2335,81,2056,115,1778,155,1766,157,1765,151,1777,149,2055,110,2334,76,2859,21"/>
+<area shape="rect" id="Node000041" href="$condition_8h.html" title="Interface for classifier conditions." alt="" coords="1643,79,1728,104"/>
+<area shape="poly" id="edge61_Node000001_Node000041" title=" " alt="" coords="2860,24,1728,90,1728,85,2859,19"/>
+<area shape="rect" id="Node000042" href="$config_8h.html" title="Configuration file handling functions." alt="" coords="4695,152,4763,177"/>
+<area shape="poly" id="edge75_Node000001_Node000042" title=" " alt="" coords="2946,17,3291,17,3819,23,4089,30,4330,41,4517,56,4583,65,4626,76,4656,92,4683,112,4722,150,4718,154,4680,116,4654,96,4624,81,4582,71,4517,61,4330,46,4089,36,3819,29,3291,22,2946,22"/>
+<area shape="rect" id="Node000044" href="$dgp_8h.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="1106,79,1161,104"/>
+<area shape="poly" id="edge78_Node000001_Node000044" title=" " alt="" coords="2859,22,2612,22,2208,29,1717,47,1462,62,1211,81,1161,88,1160,83,1210,76,1461,56,1717,42,2208,24,2612,17,2859,16"/>
+<area shape="rect" id="Node000046" href="$ea_8h.html" title="Evolutionary algorithm functions." alt="" coords="2202,152,2249,177"/>
+<area shape="poly" id="edge82_Node000001_Node000046" title=" " alt="" coords="2860,28,2741,48,2598,81,2566,94,2534,107,2453,127,2372,144,2249,163,2248,158,2371,138,2452,122,2533,101,2564,89,2597,76,2740,42,2859,22"/>
+<area shape="rect" id="Node000047" href="$env_8h.html" title="Built&#45;in problem environment interface." alt="" coords="4802,79,4854,104"/>
+<area shape="poly" id="edge93_Node000001_Node000047" title=" " alt="" coords="2946,17,3281,22,3810,32,4363,50,4595,62,4770,76,4802,81,4801,87,4769,81,4594,67,4362,55,3810,37,3281,27,2946,22"/>
+<area shape="rect" id="Node000048" href="$env__csv_8h.html" title="CSV input file handling functions." alt="" coords="4788,152,4868,177"/>
+<area shape="poly" id="edge105_Node000001_Node000048" title=" " alt="" coords="2946,17,3297,21,3837,30,4360,48,4553,61,4621,68,4666,76,4710,91,4751,111,4813,150,4811,154,4749,116,4708,96,4665,81,4620,73,4553,66,4360,53,3836,36,3297,26,2946,22"/>
+<area shape="rect" id="Node000051" href="$env__maze_8h.html" title="The discrete maze problem environment module." alt="" coords="4892,152,4985,177"/>
+<area shape="poly" id="edge106_Node000001_Node000051" title=" " alt="" coords="2945,17,3351,21,3977,31,4568,49,4770,61,4834,68,4868,76,4891,92,4910,112,4935,150,4931,153,4906,116,4888,96,4866,81,4833,74,4770,67,4568,54,3977,36,3351,26,2945,22"/>
+<area shape="rect" id="Node000053" href="$env__mux_8h.html" title="The real multiplexer problem environment." alt="" coords="5010,152,5097,177"/>
+<area shape="poly" id="edge107_Node000001_Node000053" title=" " alt="" coords="2946,17,3339,19,3952,27,4268,34,4551,44,4772,58,4849,67,4901,76,4942,91,4981,111,5040,150,5037,154,4979,116,4940,96,4899,81,4849,72,4771,64,4551,50,4268,39,3952,32,3339,24,2946,22"/>
+<area shape="rect" id="Node000055" href="$gp_8h.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="1285,79,1331,104"/>
+<area shape="poly" id="edge108_Node000001_Node000055" title=" " alt="" coords="2859,22,2634,22,2270,29,1830,47,1602,62,1378,81,1332,88,1331,83,1377,76,1601,56,1830,42,2270,24,2634,17,2859,16"/>
+<area shape="rect" id="Node000057" href="$loss_8h.html" title="Loss functions for calculating prediction error." alt="" coords="3959,79,4017,104"/>
+<area shape="poly" id="edge111_Node000001_Node000057" title=" " alt="" coords="2946,19,3317,41,3850,76,3960,85,3959,90,3849,81,3317,46,2945,24"/>
+<area shape="rect" id="Node000059" href="$param_8h.html" title="Functions for setting and printing parameters." alt="" coords="4500,152,4569,177"/>
+<area shape="poly" id="edge134_Node000001_Node000059" title=" " alt="" coords="2946,17,3199,21,3578,31,3968,49,4131,61,4254,76,4326,92,4397,112,4507,149,4505,155,4395,117,4325,97,4253,81,4130,66,3968,54,3578,36,3199,26,2946,22"/>
+<area shape="rect" id="Node000060" href="$pa_8h.html" title="Prediction array functions." alt="" coords="4258,152,4305,177"/>
+<area shape="poly" id="edge128_Node000001_Node000060" title=" " alt="" coords="2946,17,3170,20,3497,28,3831,46,3971,59,4075,76,4129,92,4182,112,4262,150,4259,154,4179,117,4128,97,4074,81,3970,65,3831,51,3497,34,3170,25,2946,22"/>
+<area shape="rect" id="Node000061" href="$perf_8h.html" title="System performance printing." alt="" coords="4329,152,4383,177"/>
+<area shape="poly" id="edge135_Node000001_Node000061" title=" " alt="" coords="2946,17,3178,20,3522,29,3874,47,4021,60,4131,76,4190,92,4247,112,4334,150,4332,154,4245,117,4188,97,4130,81,4020,65,3874,52,3522,34,3178,25,2946,22"/>
+<area shape="rect" id="Node000063" href="$pred__constant_8h.html" title="Piece&#45;wise constant prediction functions." alt="" coords="2871,152,2985,177"/>
+<area shape="poly" id="edge139_Node000001_Node000063" title=" " alt="" coords="2910,44,2929,151,2923,152,2904,45"/>
+<area shape="rect" id="Node000066" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="2746,152,2846,177"/>
+<area shape="poly" id="edge142_Node000001_Node000066" title=" " alt="" coords="2893,44,2854,106,2810,154,2806,150,2850,102,2888,41"/>
+<area shape="rect" id="Node000068" href="$pred__nlms_8h.html" title="Normalised least mean squares prediction functions." alt="" coords="2324,152,2417,177"/>
+<area shape="poly" id="edge147_Node000001_Node000068" title=" " alt="" coords="2861,34,2598,107,2416,155,2414,149,2597,101,2859,29"/>
+<area shape="rect" id="Node000070" href="$pred__rls_8h.html" title="Recursive least mean squares prediction functions." alt="" coords="3010,152,3089,177"/>
+<area shape="poly" id="edge150_Node000001_Node000070" title=" " alt="" coords="2926,39,3039,150,3036,154,2922,42"/>
+<area shape="rect" id="Node000072" href="$prediction_8h.html" title="Interface for classifier predictions." alt="" coords="2750,79,2839,104"/>
+<area shape="poly" id="edge153_Node000001_Node000072" title=" " alt="" coords="2875,40,2814,81,2811,76,2873,36"/>
+<area shape="rect" id="Node000073" href="$pybind__callback_8h.html" title="Interface for callbacks." alt="" coords="3445,79,3571,104"/>
+<area shape="poly" id="edge162_Node000001_Node000073" title=" " alt="" coords="2946,22,3445,80,3444,85,2946,27"/>
+<area shape="rect" id="Node000074" href="$pybind__callback__checkpoint_8h.html" title="Checkpoint callback for Python library." alt="" coords="3291,152,3487,177"/>
+<area shape="poly" id="edge168_Node000001_Node000074" title=" " alt="" coords="2946,29,3352,149,3350,154,2944,34"/>
+<area shape="rect" id="Node000075" href="$pybind__callback__earlystop_8h.html" title="Early stopping callback for Python library." alt="" coords="3563,152,3749,177"/>
+<area shape="poly" id="edge169_Node000001_Node000075" title=" " alt="" coords="2946,16,3085,17,3272,24,3368,31,3456,42,3531,57,3585,76,3608,92,3627,112,3652,150,3648,153,3623,116,3605,96,3583,81,3529,62,3455,47,3367,37,3272,29,3085,22,2946,22"/>
+<area shape="rect" id="Node000076" href="$sam_8h.html" title="Self&#45;adaptive mutation functions." alt="" coords="1789,152,1848,177"/>
+<area shape="poly" id="edge172_Node000001_Node000076" title=" " alt="" coords="2860,27,2688,49,2468,81,2335,107,2053,143,1849,163,1848,158,2052,137,2334,101,2468,76,2688,44,2859,22"/>
+<area shape="rect" id="Node000082" href="$xcs__rl_8h.html" title="Reinforcement learning functions." alt="" coords="4407,152,4475,177"/>
+<area shape="poly" id="edge187_Node000001_Node000082" title=" " alt="" coords="2946,17,3188,21,3549,30,3919,48,4073,60,4190,76,4255,92,4318,112,4416,149,4415,154,4317,117,4254,97,4189,81,4073,66,3918,53,3549,35,3188,26,2946,22"/>
+<area shape="rect" id="Node000083" href="$xcs__supervised_8h.html" title="Supervised regression learning functions." alt="" coords="4110,152,4234,177"/>
+<area shape="poly" id="edge191_Node000001_Node000083" title=" " alt="" coords="2946,16,3162,16,3478,22,3643,29,3798,40,3931,55,4030,76,4069,92,4105,112,4160,150,4157,154,4103,116,4067,96,4029,81,3930,61,3797,45,3643,34,3477,27,3162,21,2946,22"/>
+<area shape="rect" id="Node000003" href="$act__integer_8c.html" title="integer action functions." alt="" coords="216,225,312,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,184,297,228,295,223,414,179"/>
+<area shape="rect" id="Node000004" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="123,225,191,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="398,183,205,228,192,231,191,226,203,223,396,178"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="185,191,166,226,161,224,180,188"/>
+<area shape="rect" id="Node000006" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,225,99,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="161,186,77,227,74,223,158,181"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="805,104,507,157,507,152,804,99"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="806,109,677,143,519,180,431,195,362,204,293,213,205,228,192,231,191,225,203,223,292,208,361,199,430,190,518,175,676,138,804,104"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="804,100,242,161,241,156,804,95"/>
+<area shape="rect" id="Node000008" href="$cl_8c.html" title="Functions operating on classifiers." alt="" coords="2764,225,2807,251"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="900,92,1458,122,1903,149,1955,162,2006,175,2119,189,2215,194,2380,193,2459,192,2544,195,2640,204,2753,223,2764,226,2763,231,2751,228,2639,209,2544,200,2459,198,2380,199,2215,200,2118,194,2005,180,1953,167,1902,155,1457,127,900,98"/>
+<area shape="rect" id="Node000009" href="$param_8c.html" title="Functions for setting and printing parameters." alt="" coords="2671,225,2740,251"/>
+<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="900,92,1435,119,1718,136,1861,149,1885,162,1909,175,2020,201,2115,213,2200,216,2280,214,2447,207,2545,210,2659,223,2671,225,2670,230,2658,228,2545,215,2447,212,2280,219,2200,222,2114,219,2019,206,1907,180,1883,167,1859,155,1717,142,1435,125,899,98"/>
+<area shape="rect" id="Node000010" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="3509,225,3646,251"/>
+<area shape="poly" id="edge13_Node000007_Node000010" title=" " alt="" coords="900,92,1093,101,1469,112,1762,116,2054,125,2430,149,2528,162,2626,175,2870,192,3062,198,3253,204,3498,223,3509,224,3508,229,3497,228,3252,209,3061,203,2870,197,2625,180,2527,167,2429,155,2054,130,1762,122,1469,118,1093,107,900,98"/>
+<area shape="poly" id="edge14_Node000007_Node000011" title=" " alt="" coords="855,118,855,152,849,152,849,118"/>
+<area shape="poly" id="edge17_Node000007_Node000014" title=" " alt="" coords="823,114,759,154,756,150,820,109"/>
+<area shape="rect" id="Node000012" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="696,225,781,251"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="823,187,759,227,756,223,820,183"/>
+<area shape="rect" id="Node000013" href="$rule__dgp_8c.html" title="Dynamical GP graph rule (condition + action) functions." alt="" coords="456,225,539,251"/>
+<area shape="poly" id="edge16_Node000011_Node000013" title=" " alt="" coords="797,180,551,228,540,230,539,225,550,223,796,175"/>
+<area shape="poly" id="edge18_Node000014_Node000012" title=" " alt="" coords="741,191,741,225,736,225,736,191"/>
+<area shape="rect" id="Node000015" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="336,225,432,251"/>
+<area shape="poly" id="edge19_Node000014_Node000015" title=" " alt="" coords="678,181,433,230,432,224,677,176"/>
+<area shape="poly" id="edge21_Node000016_Node000008" title=" " alt="" coords="3760,180,3618,201,3496,209,3388,209,3288,204,3188,200,3081,199,2961,207,2821,228,2807,231,2806,226,2819,223,2960,202,3081,194,3188,194,3288,199,3389,203,3496,204,3617,195,3759,174"/>
+<area shape="rect" id="Node000017" href="$clset_8c.html" title="Functions operating on sets of classifiers." alt="" coords="3764,225,3825,251"/>
+<area shape="poly" id="edge22_Node000016_Node000017" title=" " alt="" coords="3797,191,3797,225,3792,225,3792,191"/>
+<area shape="rect" id="Node000018" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="2831,225,2934,251"/>
+<area shape="poly" id="edge23_Node000016_Node000018" title=" " alt="" coords="3760,180,3637,200,3532,210,3440,214,3353,214,3174,212,3069,217,2947,228,2935,230,2934,224,2946,223,3069,211,3174,207,3353,208,3439,209,3532,205,3637,194,3759,174"/>
+<area shape="rect" id="Node000019" href="$ea_8c.html" title="Evolutionary algorithm functions." alt="" coords="3438,225,3485,251"/>
+<area shape="poly" id="edge24_Node000016_Node000019" title=" " alt="" coords="3761,180,3686,196,3627,205,3570,213,3498,228,3486,231,3484,226,3497,223,3569,208,3627,199,3685,191,3760,175"/>
+<area shape="rect" id="Node000020" href="$pa_8c.html" title="Prediction array functions." alt="" coords="3979,225,4026,251"/>
+<area shape="poly" id="edge25_Node000016_Node000020" title=" " alt="" coords="3830,175,3980,226,3978,231,3828,180"/>
+<area shape="rect" id="Node000021" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="3849,225,3908,251"/>
+<area shape="poly" id="edge26_Node000016_Node000021" title=" " alt="" coords="3820,184,3867,223,3863,227,3817,188"/>
+<area shape="poly" id="edge31_Node000022_Node000010" title=" " alt="" coords="3827,180,3628,228,3627,223,3826,175"/>
+<area shape="poly" id="edge28_Node000022_Node000017" title=" " alt="" coords="3850,189,3809,227,3805,223,3847,185"/>
+<area shape="poly" id="edge29_Node000022_Node000019" title=" " alt="" coords="3826,180,3733,195,3660,203,3588,211,3498,228,3485,231,3484,226,3497,223,3587,206,3659,198,3733,190,3826,175"/>
+<area shape="poly" id="edge34_Node000022_Node000021" title=" " alt="" coords="3876,191,3880,225,3875,226,3871,191"/>
+<area shape="poly" id="edge30_Node000022_Node000023" title=" " alt="" coords="3915,174,4056,192,4165,198,4274,204,4411,223,4423,225,4422,230,4410,228,4274,209,4165,204,4055,198,3915,180"/>
+<area shape="rect" id="Node000024" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="4330,225,4398,251"/>
+<area shape="poly" id="edge32_Node000022_Node000024" title=" " alt="" coords="3915,174,4030,191,4119,199,4208,206,4319,223,4330,225,4329,230,4318,228,4207,212,4119,204,4029,197,3915,180"/>
+<area shape="rect" id="Node000025" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="4103,225,4227,251"/>
+<area shape="poly" id="edge33_Node000022_Node000025" title=" " alt="" coords="3915,175,3915,175,4116,223,4115,228,3914,180,3914,180"/>
+<area shape="poly" id="edge37_Node000026_Node000010" title=" " alt="" coords="3281,176,3519,223,3518,228,3280,181"/>
+<area shape="poly" id="edge36_Node000026_Node000018" title=" " alt="" coords="3152,182,2935,228,2934,223,3151,177"/>
+<area shape="poly" id="edge40_Node000027_Node000012" title=" " alt="" coords="1089,178,794,228,782,230,781,225,793,223,1088,172"/>
+<area shape="rect" id="Node000028" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="885,225,974,251"/>
+<area shape="poly" id="edge39_Node000027_Node000028" title=" " alt="" coords="1100,184,965,228,964,223,1098,179"/>
+<area shape="poly" id="edge43_Node000029_Node000012" title=" " alt="" coords="922,184,777,228,776,223,921,179"/>
+<area shape="rect" id="Node000030" href="$cond__dummy_8c.html" title="Always&#45;matching dummy condition functions." alt="" coords="563,225,672,251"/>
+<area shape="poly" id="edge42_Node000029_Node000030" title=" " alt="" coords="904,182,673,228,672,223,903,177"/>
+<area shape="poly" id="edge46_Node000031_Node000012" title=" " alt="" coords="1360,180,1200,195,1075,202,951,210,794,228,782,230,781,225,793,223,950,204,1074,197,1199,190,1360,175"/>
+<area shape="rect" id="Node000032" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="2009,225,2124,251"/>
+<area shape="poly" id="edge45_Node000031_Node000032" title=" " alt="" coords="1501,175,1502,175,1641,190,1750,199,1858,207,1998,223,2010,224,2009,230,1997,228,1858,212,1749,204,1640,195,1501,180,1501,180"/>
+<area shape="poly" id="edge49_Node000033_Node000012" title=" " alt="" coords="1253,175,794,228,782,230,781,225,793,223,1253,169"/>
+<area shape="rect" id="Node000034" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="1903,225,1985,251"/>
+<area shape="poly" id="edge48_Node000033_Node000034" title=" " alt="" coords="1364,175,1512,192,1629,199,1745,205,1891,223,1903,225,1902,230,1890,228,1744,211,1629,204,1512,197,1363,180"/>
+<area shape="poly" id="edge53_Node000035_Node000012" title=" " alt="" coords="2062,171,794,228,782,230,781,224,793,223,2061,166"/>
+<area shape="poly" id="edge51_Node000035_Node000018" title=" " alt="" coords="2192,175,2369,192,2507,199,2645,205,2819,223,2831,224,2831,230,2818,228,2644,211,2507,204,2369,197,2191,180"/>
+<area shape="poly" id="edge54_Node000035_Node000021" title=" " alt="" coords="2192,175,2443,193,2655,198,2843,194,3018,186,3193,179,3379,180,3590,193,3838,223,3850,225,3849,230,3837,228,3590,198,3379,185,3193,185,3018,191,2843,199,2655,203,2442,199,2192,180"/>
+<area shape="rect" id="Node000036" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="2426,225,2529,251"/>
+<area shape="poly" id="edge52_Node000035_Node000036" title=" " alt="" coords="2192,176,2426,224,2425,229,2191,182"/>
+<area shape="poly" id="edge57_Node000037_Node000012" title=" " alt="" coords="1499,180,1300,196,1144,201,989,207,794,228,782,230,781,225,793,223,989,202,1144,196,1299,191,1499,175"/>
+<area shape="rect" id="Node000038" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="2149,225,2270,251"/>
+<area shape="poly" id="edge56_Node000037_Node000038" title=" " alt="" coords="1648,175,1786,190,1894,199,2001,208,2136,223,2149,224,2148,230,2136,228,2000,213,1894,204,1786,195,1647,180"/>
+<area shape="poly" id="edge60_Node000039_Node000012" title=" " alt="" coords="1645,180,1515,192,1405,198,1217,202,1030,206,922,214,794,228,782,230,781,225,793,223,921,208,1030,201,1217,196,1405,193,1515,187,1645,175"/>
+<area shape="rect" id="Node000040" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="2295,225,2401,251"/>
+<area shape="poly" id="edge59_Node000039_Node000040" title=" " alt="" coords="1779,175,1922,191,2033,199,2143,207,2283,223,2295,224,2294,230,2282,228,2143,212,2032,204,1921,196,1778,180"/>
+<area shape="poly" id="edge62_Node000041_Node000008" title=" " alt="" coords="1742,97,1865,116,1936,131,2006,149,2036,163,2065,175,2167,195,2255,204,2333,206,2407,203,2481,200,2560,200,2649,206,2753,223,2764,226,2763,231,2751,228,2648,212,2560,205,2481,205,2407,208,2333,211,2255,210,2166,200,2063,180,2033,168,2004,155,1935,136,1864,121,1742,102"/>
+<area shape="poly" id="edge71_Node000041_Node000009" title=" " alt="" coords="1740,105,1890,145,2019,175,2116,188,2198,195,2339,199,2480,203,2562,210,2659,223,2671,225,2670,230,2658,228,2562,215,2479,208,2339,205,2198,201,2115,193,2018,180,1888,150,1739,110"/>
+<area shape="poly" id="edge72_Node000041_Node000010" title=" " alt="" coords="1742,90,1895,93,2114,102,2368,120,2626,149,2681,162,2735,175,2850,189,2948,198,3115,204,3283,208,3498,223,3509,224,3508,229,3497,228,3283,213,3115,209,2948,203,2850,195,2734,180,2679,167,2625,155,2367,125,2113,107,1895,99,1742,96"/>
+<area shape="poly" id="edge73_Node000041_Node000011" title=" " alt="" coords="1629,97,1320,113,1114,130,906,155,894,157,893,151,905,149,1114,125,1319,108,1629,92"/>
+<area shape="poly" id="edge74_Node000041_Node000014" title=" " alt="" coords="1629,97,1278,112,1040,129,799,155,787,156,787,151,798,149,1040,124,1278,107,1628,91"/>
+<area shape="poly" id="edge63_Node000041_Node000018" title=" " alt="" coords="1742,89,1842,91,1972,99,2118,117,2191,131,2262,150,2288,162,2313,175,2388,193,2452,204,2509,209,2563,211,2676,211,2742,214,2819,223,2831,225,2831,230,2818,228,2741,220,2675,216,2563,216,2509,215,2451,209,2386,199,2311,180,2285,167,2260,154,2190,137,2117,123,1972,104,1842,96,1742,94"/>
+<area shape="poly" id="edge64_Node000041_Node000027" title=" " alt="" coords="1629,103,1192,160,1191,155,1629,97"/>
+<area shape="poly" id="edge65_Node000041_Node000029" title=" " alt="" coords="1629,101,1027,161,1027,155,1629,96"/>
+<area shape="poly" id="edge66_Node000041_Node000031" title=" " alt="" coords="1632,110,1473,154,1471,149,1630,105"/>
+<area shape="poly" id="edge67_Node000041_Node000033" title=" " alt="" coords="1629,105,1362,155,1350,157,1349,152,1361,149,1628,100"/>
+<area shape="poly" id="edge68_Node000041_Node000035" title=" " alt="" coords="1742,99,2056,149,2075,152,2075,158,2056,155,1741,104"/>
+<area shape="poly" id="edge69_Node000041_Node000037" title=" " alt="" coords="1657,114,1593,154,1590,150,1654,109"/>
+<area shape="poly" id="edge70_Node000041_Node000039" title=" " alt="" coords="1697,116,1710,151,1705,153,1692,118"/>
+<area shape="poly" id="edge77_Node000042_Node000023" title=" " alt="" coords="4683,181,4498,228,4485,231,4483,226,4497,223,4681,175"/>
+<area shape="rect" id="Node000043" href="$config_8c.html" title="Configuration file (JSON) handling functions." alt="" coords="4509,225,4577,251"/>
+<area shape="poly" id="edge76_Node000042_Node000043" title=" " alt="" coords="4688,185,4574,228,4572,223,4686,180"/>
+<area shape="poly" id="edge81_Node000044_Node000011" title=" " alt="" coords="1093,105,894,155,893,150,1092,100"/>
+<area shape="poly" id="edge79_Node000044_Node000027" title=" " alt="" coords="1141,117,1147,151,1142,152,1135,118"/>
+<area shape="rect" id="Node000045" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="806,225,861,251"/>
+<area shape="poly" id="edge80_Node000044_Node000045" title=" " alt="" coords="1116,116,1083,149,1040,180,995,200,958,210,920,217,873,228,862,231,860,226,871,223,919,211,957,205,994,195,1037,175,1079,145,1112,113"/>
+<area shape="poly" id="edge83_Node000046_Node000008" title=" " alt="" coords="2263,174,2268,175,2342,186,2404,192,2511,196,2617,201,2680,209,2753,223,2764,226,2763,231,2751,228,2679,214,2617,207,2510,201,2403,197,2341,191,2268,180,2262,179"/>
+<area shape="poly" id="edge89_Node000046_Node000009" title=" " alt="" coords="2263,173,2268,175,2378,192,2463,199,2549,207,2659,223,2671,225,2670,230,2658,228,2549,212,2463,205,2377,197,2268,180,2261,179"/>
+<area shape="poly" id="edge90_Node000046_Node000010" title=" " alt="" coords="2262,169,2312,175,2492,188,2645,194,2905,198,3165,201,3317,209,3498,223,3509,224,3508,229,3497,228,3317,214,3164,207,2905,203,2645,200,2492,193,2312,180,2262,174"/>
+<area shape="poly" id="edge88_Node000046_Node000019" title=" " alt="" coords="2262,169,2312,175,2482,185,2626,188,2872,182,2990,180,3116,184,3259,197,3427,223,3438,225,3437,231,3426,228,3259,202,3116,189,2990,185,2872,187,2626,193,2482,191,2312,180,2262,174"/>
+<area shape="poly" id="edge91_Node000046_Node000024" title=" " alt="" coords="2262,169,2312,175,2508,184,2751,188,3316,189,3607,190,3881,195,4124,205,4319,223,4330,225,4330,230,4318,228,4124,210,3881,200,3607,196,3316,194,2751,194,2508,189,2312,180,2262,174"/>
+<area shape="poly" id="edge92_Node000046_Node000025" title=" " alt="" coords="2262,169,2312,175,2575,192,2797,201,2993,205,3175,205,3553,205,3776,210,4039,223,4103,228,4103,233,4039,228,3776,216,3553,210,3175,210,2993,210,2797,207,2574,198,2312,180,2262,174"/>
+<area shape="poly" id="edge84_Node000046_Node000032" title=" " alt="" coords="2191,184,2093,228,2091,223,2189,179"/>
+<area shape="poly" id="edge85_Node000046_Node000034" title=" " alt="" coords="2189,180,1986,230,1985,225,2188,175"/>
+<area shape="poly" id="edge86_Node000046_Node000038" title=" " alt="" coords="2222,191,2215,226,2209,225,2217,190"/>
+<area shape="poly" id="edge87_Node000046_Node000040" title=" " alt="" coords="2258,182,2329,223,2327,227,2255,186"/>
+<area shape="poly" id="edge104_Node000047_Node000024" title=" " alt="" coords="4790,109,4582,180,4399,231,4397,226,4581,175,4788,104"/>
+<area shape="poly" id="edge94_Node000047_Node000048" title=" " alt="" coords="4831,118,4831,152,4825,152,4825,118"/>
+<area shape="poly" id="edge98_Node000047_Node000051" title=" " alt="" coords="4859,109,4922,150,4919,154,4856,114"/>
+<area shape="poly" id="edge101_Node000047_Node000053" title=" " alt="" coords="4868,102,5018,149,5016,155,4866,107"/>
+<area shape="poly" id="edge97_Node000048_Node000023" title=" " alt="" coords="4775,180,4634,203,4498,228,4485,231,4483,226,4497,223,4633,198,4774,175"/>
+<area shape="rect" id="Node000049" href="$env_8c.html" title="Built&#45;in problem environment interface." alt="" coords="4934,225,4986,251"/>
+<area shape="poly" id="edge95_Node000048_Node000049" title=" " alt="" coords="4862,181,4940,223,4937,227,4860,186"/>
+<area shape="rect" id="Node000050" href="$env__csv_8c.html" title="CSV input file handling functions." alt="" coords="4601,225,4681,251"/>
+<area shape="poly" id="edge96_Node000048_Node000050" title=" " alt="" coords="4786,185,4673,228,4671,223,4785,180"/>
+<area shape="poly" id="edge99_Node000051_Node000049" title=" " alt="" coords="4949,190,4959,224,4954,226,4944,192"/>
+<area shape="rect" id="Node000052" href="$env__maze_8c.html" title="The discrete maze problem environment module." alt="" coords="4705,225,4799,251"/>
+<area shape="poly" id="edge100_Node000051_Node000052" title=" " alt="" coords="4897,185,4783,228,4782,223,4895,180"/>
+<area shape="poly" id="edge102_Node000053_Node000049" title=" " alt="" coords="5029,188,4977,227,4974,223,5026,183"/>
+<area shape="rect" id="Node000054" href="$env__mux_8c.html" title="The real multiplexer problem environment." alt="" coords="4823,225,4910,251"/>
+<area shape="poly" id="edge103_Node000053_Node000054" title=" " alt="" coords="5012,185,4898,228,4896,223,5010,180"/>
+<area shape="poly" id="edge109_Node000055_Node000033" title=" " alt="" coords="1311,118,1311,152,1305,152,1305,118"/>
+<area shape="rect" id="Node000056" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="998,225,1045,251"/>
+<area shape="poly" id="edge110_Node000055_Node000056" title=" " alt="" coords="1289,116,1251,148,1204,180,1046,232,1044,227,1201,175,1248,144,1285,112"/>
+<area shape="poly" id="edge112_Node000057_Node000008" title=" " alt="" coords="3945,97,3266,120,2902,137,2784,146,2736,154,2732,162,2731,170,2738,189,2754,208,2771,223,2768,227,2750,211,2734,192,2725,171,2727,160,2733,150,2784,141,2902,132,3266,114,3945,91"/>
+<area shape="poly" id="edge126_Node000057_Node000021" title=" " alt="" coords="4000,116,4006,147,4004,163,3998,179,3980,200,3957,215,3909,233,3907,228,3954,211,3976,196,3994,176,3999,162,4000,147,3995,117"/>
+<area shape="poly" id="edge125_Node000057_Node000025" title=" " alt="" coords="4015,111,4153,223,4149,227,4011,115"/>
+<area shape="rect" id="Node000058" href="$loss_8c.html" title="Loss functions for calculating prediction error." alt="" coords="3926,152,3983,177"/>
+<area shape="poly" id="edge113_Node000057_Node000058" title=" " alt="" coords="3979,118,3962,153,3958,151,3974,115"/>
+<area shape="poly" id="edge114_Node000057_Node000059" title=" " alt="" coords="4031,93,4229,113,4358,129,4488,149,4500,152,4499,157,4488,155,4357,134,4228,118,4030,99"/>
+<area shape="poly" id="edge120_Node000059_Node000009" title=" " alt="" coords="4486,180,4349,196,4223,207,3999,216,3801,212,3617,204,3433,195,3236,192,3014,201,2889,212,2752,228,2741,230,2740,225,2752,223,2888,206,3013,196,3236,186,3433,189,3617,198,3802,207,3999,210,4223,201,4349,191,4486,174"/>
+<area shape="poly" id="edge121_Node000059_Node000010" title=" " alt="" coords="4486,179,3646,235,3646,230,4486,174"/>
+<area shape="poly" id="edge124_Node000059_Node000021" title=" " alt="" coords="4487,180,4341,200,4226,209,4112,215,3968,228,3908,235,3908,230,3968,223,4112,210,4226,203,4340,195,4486,175"/>
+<area shape="poly" id="edge119_Node000059_Node000023" title=" " alt="" coords="4513,188,4468,227,4465,223,4510,184"/>
+<area shape="poly" id="edge122_Node000059_Node000024" title=" " alt="" coords="4496,185,4393,228,4391,223,4493,180"/>
+<area shape="poly" id="edge123_Node000059_Node000025" title=" " alt="" coords="4487,180,4228,229,4227,224,4486,175"/>
+<area shape="poly" id="edge115_Node000059_Node000043" title=" " alt="" coords="4540,191,4544,225,4539,226,4535,191"/>
+<area shape="poly" id="edge116_Node000059_Node000050" title=" " alt="" coords="4564,183,4625,223,4622,227,4562,187"/>
+<area shape="poly" id="edge117_Node000059_Node000052" title=" " alt="" coords="4583,179,4718,223,4716,228,4582,184"/>
+<area shape="poly" id="edge118_Node000059_Node000054" title=" " alt="" coords="4583,174,4823,225,4822,230,4582,179"/>
+<area shape="poly" id="edge130_Node000060_Node000020" title=" " alt="" coords="4246,180,4119,213,4027,234,4025,229,4118,208,4244,175"/>
+<area shape="poly" id="edge133_Node000060_Node000021" title=" " alt="" coords="4245,180,4073,211,3909,235,3908,230,4072,205,4245,175"/>
+<area shape="poly" id="edge129_Node000060_Node000023" title=" " alt="" coords="4318,178,4427,223,4424,228,4316,183"/>
+<area shape="poly" id="edge131_Node000060_Node000024" title=" " alt="" coords="4307,184,4352,223,4349,227,4303,188"/>
+<area shape="poly" id="edge132_Node000060_Node000025" title=" " alt="" coords="4253,187,4186,227,4183,223,4250,182"/>
+<area shape="poly" id="edge137_Node000061_Node000024" title=" " alt="" coords="4361,191,4365,225,4360,226,4356,191"/>
+<area shape="poly" id="edge138_Node000061_Node000025" title=" " alt="" coords="4316,184,4197,228,4195,223,4315,179"/>
+<area shape="rect" id="Node000062" href="$perf_8c.html" title="System performance printing." alt="" coords="4251,225,4306,251"/>
+<area shape="poly" id="edge136_Node000061_Node000062" title=" " alt="" coords="4335,189,4293,227,4290,223,4332,185"/>
+<area shape="rect" id="Node000064" href="$pred__constant_8c.html" title="Piece&#45;wise constant prediction functions." alt="" coords="3196,225,3311,251"/>
+<area shape="poly" id="edge140_Node000063_Node000064" title=" " alt="" coords="2994,178,3201,223,3200,228,2993,183"/>
+<area shape="rect" id="Node000065" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="3082,225,3171,251"/>
+<area shape="poly" id="edge141_Node000063_Node000065" title=" " alt="" coords="2974,179,3095,223,3093,228,2972,184"/>
+<area shape="poly" id="edge143_Node000066_Node000018" title=" " alt="" coords="2822,184,2870,223,2867,227,2819,188"/>
+<area shape="poly" id="edge146_Node000066_Node000021" title=" " alt="" coords="2860,175,3009,188,3136,193,3352,191,3455,190,3566,193,3691,203,3838,223,3850,225,3849,230,3837,228,3691,208,3566,199,3455,196,3352,197,3136,198,3009,193,2860,180"/>
+<area shape="poly" id="edge145_Node000066_Node000065" title=" " alt="" coords="2860,177,3082,224,3081,230,2859,182"/>
+<area shape="rect" id="Node000067" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="2958,225,3058,251"/>
+<area shape="poly" id="edge144_Node000066_Node000067" title=" " alt="" coords="2844,179,2975,223,2973,228,2842,184"/>
+<area shape="poly" id="edge149_Node000068_Node000065" title=" " alt="" coords="2431,166,2709,184,2889,201,3071,223,3082,224,3081,230,3070,228,2888,206,2708,189,2431,171"/>
+<area shape="rect" id="Node000069" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="2553,225,2647,251"/>
+<area shape="poly" id="edge148_Node000068_Node000069" title=" " alt="" coords="2422,179,2564,223,2562,228,2420,184"/>
+<area shape="poly" id="edge152_Node000070_Node000065" title=" " alt="" coords="3074,185,3116,223,3112,227,3070,189"/>
+<area shape="rect" id="Node000071" href="$pred__rls_8c.html" title="Recursive least mean squares prediction functions." alt="" coords="3335,225,3414,251"/>
+<area shape="poly" id="edge151_Node000070_Node000071" title=" " alt="" coords="3103,175,3323,223,3335,225,3334,231,3322,228,3101,180"/>
+<area shape="poly" id="edge154_Node000072_Node000008" title=" " alt="" coords="2736,100,2680,108,2621,119,2570,134,2552,143,2539,154,2523,177,2527,180,2543,182,2616,192,2676,203,2753,223,2765,226,2763,232,2751,228,2675,209,2616,197,2542,188,2525,185,2518,178,2535,150,2549,139,2568,129,2620,114,2679,102,2736,95"/>
+<area shape="poly" id="edge156_Node000072_Node000009" title=" " alt="" coords="2737,104,2602,127,2545,141,2517,154,2512,165,2517,176,2537,186,2577,200,2671,226,2670,231,2576,205,2535,191,2513,179,2507,165,2513,150,2543,136,2601,122,2736,98"/>
+<area shape="poly" id="edge161_Node000072_Node000010" title=" " alt="" coords="2854,97,2970,116,3037,131,3102,150,3128,163,3154,175,3248,198,3324,208,3400,212,3498,223,3509,224,3508,230,3497,228,3400,218,3323,213,3247,203,3152,180,3126,167,3100,154,3035,136,2969,121,2853,102"/>
+<area shape="poly" id="edge155_Node000072_Node000018" title=" " alt="" coords="2767,114,2751,128,2738,144,2733,160,2737,176,2752,189,2778,201,2841,223,2839,228,2776,206,2749,193,2732,179,2727,160,2734,141,2747,125,2763,110"/>
+<area shape="poly" id="edge157_Node000072_Node000063" title=" " alt="" coords="2829,108,2907,149,2905,154,2827,113"/>
+<area shape="poly" id="edge158_Node000072_Node000066" title=" " alt="" coords="2798,118,2798,152,2793,152,2792,118"/>
+<area shape="poly" id="edge159_Node000072_Node000068" title=" " alt="" coords="2737,105,2436,155,2418,158,2417,153,2436,149,2736,100"/>
+<area shape="poly" id="edge160_Node000072_Node000070" title=" " alt="" coords="2849,105,3010,150,3009,155,2848,110"/>
+<area shape="poly" id="edge167_Node000073_Node000010" title=" " alt="" coords="3522,116,3574,224,3569,226,3517,118"/>
+<area shape="poly" id="edge163_Node000073_Node000074" title=" " alt="" coords="3478,113,3410,154,3407,149,3476,109"/>
+<area shape="poly" id="edge165_Node000073_Node000075" title=" " alt="" coords="3545,107,3633,149,3631,154,3543,112"/>
+<area shape="poly" id="edge164_Node000074_Node000010" title=" " alt="" coords="3433,180,3548,223,3546,228,3431,185"/>
+<area shape="poly" id="edge166_Node000075_Node000010" title=" " alt="" coords="3635,189,3592,227,3588,223,3631,185"/>
+<area shape="poly" id="edge173_Node000076_Node000003" title=" " alt="" coords="1776,180,1556,206,1369,218,1203,218,1049,213,895,207,730,204,543,210,324,228,313,230,312,224,324,223,543,204,730,199,895,202,1049,208,1204,213,1369,212,1556,201,1775,174"/>
+<area shape="poly" id="edge174_Node000076_Node000028" title=" " alt="" coords="1776,180,1656,196,1554,205,1379,208,1206,209,1104,215,986,228,975,230,974,224,985,223,1104,210,1205,204,1379,203,1553,199,1655,191,1775,175"/>
+<area shape="poly" id="edge175_Node000076_Node000032" title=" " alt="" coords="1862,175,2027,223,2026,228,1860,181"/>
+<area shape="poly" id="edge176_Node000076_Node000034" title=" " alt="" coords="1852,182,1925,223,1922,227,1849,186"/>
+<area shape="poly" id="edge177_Node000076_Node000038" title=" " alt="" coords="1862,174,1867,175,2149,225,2148,230,1866,180,1861,179"/>
+<area shape="poly" id="edge178_Node000076_Node000040" title=" " alt="" coords="1862,174,1867,175,1983,192,2075,201,2166,208,2283,223,2295,225,2294,230,2282,228,2165,214,2074,206,1983,197,1866,180,1861,179"/>
+<area shape="poly" id="edge179_Node000076_Node000045" title=" " alt="" coords="1776,180,1639,197,1521,204,1418,205,1322,202,1225,200,1123,201,1008,209,872,228,862,230,860,225,872,223,1007,204,1123,196,1225,194,1322,197,1418,200,1521,199,1638,192,1775,174"/>
+<area shape="poly" id="edge180_Node000076_Node000056" title=" " alt="" coords="1776,180,1667,194,1574,201,1414,201,1256,203,1165,211,1058,228,1045,231,1044,226,1057,223,1164,206,1256,198,1414,196,1573,196,1666,189,1775,174"/>
+<area shape="poly" id="edge185_Node000076_Node000069" title=" " alt="" coords="1862,174,1867,175,1969,188,2056,196,2204,201,2352,205,2439,211,2542,223,2554,224,2553,230,2541,228,2439,217,2352,210,2204,206,2055,201,1968,193,1866,180,1861,179"/>
+<area shape="rect" id="Node000077" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="1069,225,1240,251"/>
+<area shape="poly" id="edge181_Node000076_Node000077" title=" " alt="" coords="1776,180,1629,201,1513,211,1398,216,1252,228,1240,229,1240,224,1252,223,1398,211,1513,205,1628,196,1775,175"/>
+<area shape="rect" id="Node000078" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1264,225,1451,251"/>
+<area shape="poly" id="edge182_Node000076_Node000078" title=" " alt="" coords="1776,180,1619,205,1448,228,1447,223,1619,200,1775,175"/>
+<area shape="rect" id="Node000079" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1475,225,1610,251"/>
+<area shape="poly" id="edge183_Node000076_Node000079" title=" " alt="" coords="1777,180,1590,228,1588,223,1776,175"/>
+<area shape="rect" id="Node000080" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="1634,225,1795,251"/>
+<area shape="poly" id="edge184_Node000076_Node000080" title=" " alt="" coords="1792,187,1733,227,1730,223,1789,183"/>
+<area shape="rect" id="Node000081" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="1820,225,1879,251"/>
+<area shape="poly" id="edge186_Node000076_Node000081" title=" " alt="" coords="1832,189,1847,224,1842,226,1827,191"/>
+<area shape="poly" id="edge189_Node000082_Node000010" title=" " alt="" coords="4394,180,4051,207,3646,235,3646,229,4051,201,4393,174"/>
+<area shape="poly" id="edge188_Node000082_Node000023" title=" " alt="" coords="4448,191,4454,225,4449,226,4443,192"/>
+<area shape="poly" id="edge190_Node000082_Node000024" title=" " alt="" coords="4421,189,4378,227,4375,223,4417,185"/>
+<area shape="poly" id="edge193_Node000083_Node000010" title=" " alt="" coords="4096,178,3647,231,3646,226,4096,172"/>
+<area shape="poly" id="edge192_Node000083_Node000023" title=" " alt="" coords="4232,178,4411,223,4423,226,4422,231,4410,228,4231,183"/>
+<area shape="poly" id="edge194_Node000083_Node000025" title=" " alt="" coords="4172,191,4169,225,4164,225,4167,191"/>
 </map>

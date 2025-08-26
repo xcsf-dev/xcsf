@@ -1,4 +1,5 @@
 <map id="neural_activations.h" name="neural_activations.h">
-<area shape="rect" id="node1" title="Neural network activation functions." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="43,80,106,107"/>
+<area shape="rect" id="Node000001" title="Neural network activation functions." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="43,79,106,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,31,77,65,72,65,72,31"/>
 </map>

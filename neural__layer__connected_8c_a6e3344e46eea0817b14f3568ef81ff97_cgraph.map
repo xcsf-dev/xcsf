@@ -1,6 +1,10 @@
 <map id="malloc_layer_arrays" name="malloc_layer_arrays">
-<area shape="rect" id="node1" title="Allocate memory used by a connected layer." alt="" coords="5,31,144,57"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="193,5,332,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="192,56,333,83"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="381,31,464,57"/>
+<area shape="rect" id="Node000001" title="Allocate memory used by a connected layer." alt="" coords="5,31,144,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="193,5,332,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,31,179,27,180,32,145,37"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="192,55,333,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,50,179,54,178,59,144,55"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="381,31,464,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,26,368,32,367,37,332,32"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="333,54,367,49,368,54,334,59"/>
 </map>

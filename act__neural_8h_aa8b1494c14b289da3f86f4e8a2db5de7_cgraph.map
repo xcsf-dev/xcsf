@@ -1,11 +1,20 @@
 <map id="act_neural_cover" name="act_neural_cover">
-<area shape="rect" id="node1" title="Generates a neural network that covers the specified input:action." alt="" coords="5,107,127,133"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="175,69,313,96"/>
-<area shape="rect" id="node8" href="$neural_8c.html#ab83a82e116953e1b969198cd1cdff5e4" title="Randomises the layers within a neural network." alt="" coords="199,132,289,159"/>
-<area shape="rect" id="node3" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="389,5,455,32"/>
-<area shape="rect" id="node4" href="$neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575" title="Returns the outputs from the output layer of a neural network." alt="" coords="369,56,475,83"/>
-<area shape="rect" id="node6" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="361,107,483,133"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115" title="Returns the outputs of a layer." alt="" coords="534,56,627,83"/>
-<area shape="rect" id="node7" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="531,107,631,133"/>
-<area shape="rect" id="node9" href="$neural__layer_8h.html#a1230cf25ba52027afad6f728089644ab" title="Randomises a layer." alt="" coords="381,157,463,184"/>
+<area shape="rect" id="Node000001" title="Generates a neural network that covers the specified input:action." alt="" coords="5,105,127,131"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="175,68,313,93"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,103,169,94,170,99,127,108"/>
+<area shape="rect" id="Node000008" href="$neural_8c.html#ab83a82e116953e1b969198cd1cdff5e4" title="Randomises the layers within a neural network." alt="" coords="199,129,289,155"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="127,123,186,132,185,137,126,129"/>
+<area shape="rect" id="Node000003" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="389,5,455,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,65,375,31,377,37,282,70"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html#a081aae61d4322cc2bed4f760aaeaa8a6" title="Returns the outputs from the output layer of a neural network." alt="" coords="369,55,475,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="313,73,355,70,355,75,314,78"/>
+<area shape="rect" id="Node000006" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="361,104,483,129"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="308,91,348,99,347,104,307,96"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#a5f745c9f7568146a1b5e0bb37a2666b8" title="Returns the outputs of a layer." alt="" coords="534,55,627,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="476,65,520,65,520,70,476,70"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="463,101,525,82,527,87,464,107"/>
+<area shape="rect" id="Node000007" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="531,104,631,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="483,114,517,114,517,119,483,119"/>
+<area shape="rect" id="Node000009" href="$neural__layer_8h.html#a1230cf25ba52027afad6f728089644ab" title="Randomises a layer." alt="" coords="381,153,463,179"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="289,145,367,156,366,161,288,151"/>
 </map>

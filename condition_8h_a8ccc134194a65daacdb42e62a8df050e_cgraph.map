@@ -1,5 +1,7 @@
 <map id="cond_json_import" name="cond_json_import">
-<area shape="rect" id="node1" title="Creates a condition from a cJSON object." alt="" coords="5,31,129,57"/>
-<area shape="rect" id="node2" href="$condition_8h.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="187,5,335,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="177,56,344,83"/>
+<area shape="rect" id="Node000001" title="Creates a condition from a cJSON object." alt="" coords="5,31,129,56"/>
+<area shape="rect" id="Node000002" href="$condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="187,5,335,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,33,173,27,173,32,130,38"/>
+<area shape="rect" id="Node000003" href="$condition_8c.html#aec601fad80ae7881897793c49d4d87cc" title="Returns a string representation of a condition type from an integer." alt="" coords="177,55,344,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,48,164,53,163,58,129,54"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="xcs_rl_init_trial" name="xcs_rl_init_trial">
-<area shape="rect" id="node1" title="Initialises a reinforcement learning trial." alt="" coords="5,5,115,32"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="163,5,237,32"/>
+<area shape="rect" id="Node000001" title="Initialises a reinforcement learning trial." alt="" coords="5,5,115,31"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="163,5,237,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,15,149,15,149,21,115,21"/>
 </map>

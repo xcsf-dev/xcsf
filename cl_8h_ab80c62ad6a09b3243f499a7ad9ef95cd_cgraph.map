@@ -1,12 +1,21 @@
 <map id="cl_cover" name="cl_cover">
-<area shape="rect" id="node1" title="Covers the condition and action for a classifier." alt="" coords="5,132,76,159"/>
-<area shape="rect" id="node2" href="$action_8h.html#a4760df86361ac4ed8c85d985c37a6d3d" title="Generates an action that matches the specified value." alt="" coords="129,81,208,108"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="137,132,201,159"/>
-<area shape="rect" id="node10" href="$condition_8h.html#abfb169263bdeb3b4bac3fa532a6f6ef4" title="Generates a condition that matches the current input." alt="" coords="124,183,213,209"/>
-<area shape="rect" id="node4" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="281,5,345,32"/>
-<area shape="rect" id="node5" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="271,56,354,83"/>
-<area shape="rect" id="node6" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="275,107,350,133"/>
-<area shape="rect" id="node7" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="263,157,362,184"/>
-<area shape="rect" id="node8" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="277,208,348,235"/>
-<area shape="rect" id="node9" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="261,259,364,285"/>
+<area shape="rect" id="Node000001" title="Covers the condition and action for a classifier." alt="" coords="5,129,76,155"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a4760df86361ac4ed8c85d985c37a6d3d" title="Generates an action that matches the specified value." alt="" coords="129,80,208,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,127,121,108,123,113,75,132"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="137,129,201,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="76,139,123,139,123,145,76,145"/>
+<area shape="rect" id="Node000010" href="$condition_8h.html#abfb169263bdeb3b4bac3fa532a6f6ef4" title="Generates a condition that matches the current input." alt="" coords="124,179,213,204"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="75,152,123,171,121,176,73,157"/>
+<area shape="rect" id="Node000004" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="281,5,345,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="195,127,211,115,226,96,235,78,243,59,259,40,267,34,270,38,263,44,248,62,239,80,231,99,215,119,198,131"/>
+<area shape="rect" id="Node000005" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="271,55,354,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="191,127,260,89,270,84,273,89,263,94,194,131"/>
+<area shape="rect" id="Node000006" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="275,104,350,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="200,134,261,123,262,128,201,139"/>
+<area shape="rect" id="Node000007" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="263,153,362,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="201,145,250,153,249,158,200,150"/>
+<area shape="rect" id="Node000008" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="277,203,348,228"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="195,152,263,188,275,194,272,199,260,192,193,157"/>
+<area shape="rect" id="Node000009" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="261,252,364,277"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="200,153,215,164,231,184,240,202,248,219,263,237,269,242,266,247,259,241,243,222,235,204,227,186,212,168,196,157"/>
 </map>

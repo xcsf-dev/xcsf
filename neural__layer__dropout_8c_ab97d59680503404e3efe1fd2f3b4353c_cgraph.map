@@ -1,4 +1,5 @@
 <map id="neural_layer_dropout_free" name="neural_layer_dropout_free">
-<area shape="rect" id="node1" title="Free memory used by a dropout layer." alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by a dropout layer." alt="" coords="224,5,347,32"/>
+<area shape="rect" id="Node000001" title="Free memory used by a dropout layer." alt="" coords="5,5,176,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer__dropout_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by a dropout layer." alt="" coords="224,5,347,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,15,210,15,210,21,176,21"/>
 </map>

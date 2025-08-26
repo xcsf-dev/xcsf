@@ -1,4 +1,5 @@
 <map id="env_maze_sensor" name="env_maze_sensor">
-<area shape="rect" id="node1" title="Returns a float encoding of a sensor perception." alt="" coords="196,5,324,32"/>
-<area shape="rect" id="node2" href="$env__maze_8c.html#ac076c3f4a2971924cd083f02c96d57ea" title="Returns the current animat perceptions in the maze." alt="" coords="5,5,148,32"/>
+<area shape="rect" id="Node000001" title="Returns a float encoding of a sensor perception." alt="" coords="196,5,324,31"/>
+<area shape="rect" id="Node000002" href="$env__maze_8c.html#aa48a93825f8038f0e5e5e313478d95b8" title="Returns the current animat perceptions in the maze." alt="" coords="5,5,148,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,21,149,21,149,15,182,15"/>
 </map>

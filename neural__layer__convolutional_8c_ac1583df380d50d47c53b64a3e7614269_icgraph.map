@@ -1,4 +1,5 @@
 <map id="neural_layer_convolutional_add_filters" name="neural_layer_convolutional_add_filters">
-<area shape="rect" id="node1" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="228,5,403,47"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="Node000001" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="228,5,403,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,5,180,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,28,180,28,180,23,214,23"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by an LSTM layer." alt="" coords="425,31,548,57"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="243,5,358,32"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#a5a415724e5bf8ff59f922b80b9a6bdb9" title="Free memory used by an LSTM layer." alt="" coords="224,56,377,83"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="Node000001" title="Free memory used by an LSTM layer." alt="" coords="425,31,548,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="243,5,358,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="412,36,358,28,359,23,412,31"/>
+<area shape="rect" id="Node000004" href="$neural__layer__lstm_8c.html#a5a415724e5bf8ff59f922b80b9a6bdb9" title="Free memory used by an LSTM layer." alt="" coords="224,55,377,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="412,56,378,60,377,55,411,50"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,21,176,21,176,15,230,15"/>
 </map>

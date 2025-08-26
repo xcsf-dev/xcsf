@@ -1,5 +1,7 @@
 <map id="neural_print" name="neural_print">
-<area shape="rect" id="node1" title="Prints a neural network." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#af29acbba461eb214eac4d0924f783120" title="Returns a json formatted string representation of a neural network." alt="" coords="143,5,273,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#abed58073ee996eda6dad51a18ab7946e" title="Returns a json formatted string representation of a layer." alt="" coords="321,5,445,32"/>
+<area shape="rect" id="Node000001" title="Prints a neural network." alt="" coords="5,5,95,31"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#a78b25eeb601d0bb9813a46ecda6eb9c5" title="Returns a json formatted string representation of a neural network." alt="" coords="143,5,273,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,15,129,15,129,21,95,21"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#a89cf8ff22317cfec17d83e8df103ea09" title="Returns a json formatted string representation of a layer." alt="" coords="321,5,445,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,15,308,15,308,21,274,21"/>
 </map>

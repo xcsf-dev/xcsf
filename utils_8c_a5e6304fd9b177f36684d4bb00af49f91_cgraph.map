@@ -1,4 +1,5 @@
 <map id="rand_uniform_int" name="rand_uniform_int">
-<area shape="rect" id="node1" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="172,5,269,32"/>
+<area shape="rect" id="Node000001" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="172,5,269,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
 </map>

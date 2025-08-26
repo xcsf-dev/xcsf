@@ -1,4 +1,5 @@
 <map id="layer_guard_biases" name="layer_guard_biases">
-<area shape="rect" id="node1" title="Check number of biases is within bounds." alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="188,5,271,32"/>
+<area shape="rect" id="Node000001" title="Check number of biases is within bounds." alt="" coords="5,5,140,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="188,5,271,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,15,174,15,174,21,140,21"/>
 </map>

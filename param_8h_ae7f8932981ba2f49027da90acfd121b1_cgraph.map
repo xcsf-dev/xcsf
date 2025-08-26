@@ -1,21 +1,42 @@
 <map id="param_load" name="param_load">
-<area shape="rect" id="node1" title="Reads the XCSF data structure from a file." alt="" coords="5,157,95,184"/>
-<area shape="rect" id="node2" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="143,208,273,235"/>
-<area shape="rect" id="node6" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="146,56,270,83"/>
-<area shape="rect" id="node9" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="153,157,263,184"/>
-<area shape="rect" id="node10" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="157,284,259,311"/>
-<area shape="rect" id="node19" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="147,107,269,133"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="323,107,437,133"/>
-<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="487,69,597,96"/>
-<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="489,120,595,147"/>
-<area shape="rect" id="node7" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="321,56,439,83"/>
-<area shape="rect" id="node8" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="327,5,433,32"/>
-<area shape="rect" id="node11" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="324,309,436,336"/>
-<area shape="rect" id="node12" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="337,360,423,387"/>
-<area shape="rect" id="node13" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="345,411,415,437"/>
-<area shape="rect" id="node14" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="341,461,419,488"/>
-<area shape="rect" id="node15" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="503,183,581,209"/>
-<area shape="rect" id="node16" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="334,259,426,285"/>
-<area shape="rect" id="node18" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="339,208,421,235"/>
-<area shape="rect" id="node17" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="509,259,575,285"/>
+<area shape="rect" id="Node000001" title="Reads the XCSF data structure from a file." alt="" coords="5,153,95,179"/>
+<area shape="rect" id="Node000002" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="143,203,273,228"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,176,154,196,153,201,91,181"/>
+<area shape="rect" id="Node000006" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="146,55,270,80"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="63,151,97,120,141,89,153,83,155,88,144,94,100,125,66,155"/>
+<area shape="rect" id="Node000009" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="153,153,263,179"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="95,163,139,163,139,169,95,169"/>
+<area shape="rect" id="Node000010" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="157,279,259,304"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="68,177,144,239,181,268,178,272,141,243,65,181"/>
+<area shape="rect" id="Node000019" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="147,104,269,129"/>
+<area shape="poly" id="edge20_Node000001_Node000019" title=" " alt="" coords="91,151,153,131,154,136,92,156"/>
+<area shape="rect" id="Node000003" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="323,104,437,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,200,272,188,296,168,320,147,340,134,342,138,323,151,299,172,275,192,249,205"/>
+<area shape="rect" id="Node000004" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="487,80,597,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="437,106,473,100,473,105,437,111"/>
+<area shape="rect" id="Node000005" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="489,129,595,155"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="437,123,475,129,475,134,437,128"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="254,77,323,98,321,103,252,83"/>
+<area shape="rect" id="Node000007" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="321,55,439,80"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="270,65,307,65,307,70,270,70"/>
+<area shape="rect" id="Node000008" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="327,5,433,31"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="252,52,321,32,323,37,254,57"/>
+<area shape="rect" id="Node000011" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="324,304,436,329"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="260,296,311,304,310,309,259,302"/>
+<area shape="rect" id="Node000012" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="337,353,423,379"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="238,302,322,340,336,346,334,350,320,344,236,306"/>
+<area shape="rect" id="Node000013" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="345,403,415,428"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="223,303,265,344,323,389,334,395,331,400,320,394,262,348,219,306"/>
+<area shape="rect" id="Node000014" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="341,452,419,477"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="218,303,257,367,287,405,323,439,330,443,326,448,320,443,284,408,253,370,214,306"/>
+<area shape="rect" id="Node000015" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="503,180,581,205"/>
+<area shape="poly" id="edge15_Node000010_Node000015" title=" " alt="" coords="225,276,271,239,293,212,304,200,320,190,363,178,408,174,451,175,489,179,489,185,451,180,408,179,364,183,322,195,307,204,297,215,275,243,228,281"/>
+<area shape="rect" id="Node000016" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="334,255,426,280"/>
+<area shape="poly" id="edge16_Node000010_Node000016" title=" " alt="" coords="259,282,320,273,321,278,260,287"/>
+<area shape="rect" id="Node000018" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="339,205,421,231"/>
+<area shape="poly" id="edge18_Node000010_Node000018" title=" " alt="" coords="238,276,336,234,338,239,240,281"/>
+<area shape="rect" id="Node000017" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="509,255,575,280"/>
+<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="426,265,496,265,496,270,426,270"/>
+<area shape="poly" id="edge19_Node000018_Node000015" title=" " alt="" coords="421,209,488,198,489,204,422,214"/>
+<area shape="poly" id="edge21_Node000019_Node000003" title=" " alt="" coords="269,114,309,114,309,119,269,119"/>
 </map>

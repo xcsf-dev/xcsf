@@ -1,76 +1,156 @@
 <map id="XCS::load" name="XCS::load">
-<area shape="rect" id="node1" title="Reads the entire current state of XCSF from a file." alt="" coords="5,1182,88,1209"/>
-<area shape="rect" id="node2" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="136,969,283,995"/>
-<area shape="rect" id="node39" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="170,1207,249,1234"/>
-<area shape="rect" id="node3" href="$param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="331,722,463,749"/>
-<area shape="rect" id="node4" href="$action_8c.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="511,305,685,331"/>
-<area shape="rect" id="node24" href="$condition_8c.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="515,487,681,514"/>
-<area shape="rect" id="node32" href="$ea_8c.html#a5a9251875e8fbefb5dc08774cb7edc8e" title="Returns a json formatted string representation of the EA parameters." alt="" coords="521,747,675,774"/>
-<area shape="rect" id="node34" href="$loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe" title="Returns a string representation of a loss type from the integer." alt="" coords="529,798,667,825"/>
-<area shape="rect" id="node35" href="$prediction_8c.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="516,697,680,723"/>
-<area shape="rect" id="node5" href="$action_8c.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="755,254,904,281"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="751,305,907,331"/>
-<area shape="rect" id="node7" href="$neural__layer__args_8c.html#a0d29d99487e5afd1746e7ac70fadf68f" title="Adds layer activation function to a json object." alt="" coords="987,5,1143,47"/>
-<area shape="rect" id="node9" href="$neural__layer__args_8c.html#aba8bd68ce834099ac6558a3b2560963a" title="Adds layer evolutionary parameters to a json object." alt="" coords="973,71,1157,98"/>
-<area shape="rect" id="node10" href="$neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2" title="Adds layer input parameters to a json object." alt="" coords="987,123,1143,164"/>
-<area shape="rect" id="node12" href="$neural__layer__args_8c.html#a1130173f486e5e1b647a65ff0822aebc" title="Adds layer scaling parameters to a json object." alt="" coords="987,188,1143,229"/>
-<area shape="rect" id="node13" href="$neural__layer__args_8c.html#a686e3f11eb7bb524effd5ddb75bdbd34" title="Adds layer gradient descent parameters to a json object." alt="" coords="973,254,1157,281"/>
-<area shape="rect" id="node14" href="$neural__layer_8c.html#a0e2222a263f09abb981bc7273cd88d7e" title="Returns a string representation of a layer type from an integer." alt="" coords="994,305,1137,331"/>
-<area shape="rect" id="node15" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1015,355,1115,382"/>
-<area shape="rect" id="node19" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="1244,406,1325,433"/>
-<area shape="rect" id="node22" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="1022,457,1109,483"/>
-<area shape="rect" id="node8" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="1205,13,1364,39"/>
-<area shape="rect" id="node11" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1207,130,1362,157"/>
-<area shape="rect" id="node16" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="1247,305,1322,331"/>
-<area shape="rect" id="node20" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="1239,355,1331,382"/>
-<area shape="rect" id="node17" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="1413,305,1515,331"/>
-<area shape="rect" id="node18" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="1412,254,1516,281"/>
-<area shape="rect" id="node21" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="1416,355,1512,382"/>
-<area shape="rect" id="node23" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="1245,457,1324,483"/>
-<area shape="rect" id="node25" href="$cond__dgp_8c.html#a8cca6a8bfdd85934854a2b57fafcdcad" title="Returns a json formatted string of the DGP parameters." alt="" coords="753,356,905,397"/>
-<area shape="rect" id="node27" href="$cond__gp_8c.html#ac5fd198ed7de7e41a1b68ac4167f443e" title="Returns a json formatted string of the tree GP parameters." alt="" coords="757,421,902,463"/>
-<area shape="rect" id="node29" href="$condition_8c.html#a2c6bd28191ba3318455d46004e9e845a" title="Returns a json formatted string of the center&#45;spread parameters." alt="" coords="733,487,925,514"/>
-<area shape="rect" id="node30" href="$cond__ternary_8c.html#a3e242bc5b35ada8f04d551d9c0a5062f" title="Returns a json formatted string of the ternary parameters." alt="" coords="759,539,899,580"/>
-<area shape="rect" id="node31" href="$condition_8c.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="746,605,913,631"/>
-<area shape="rect" id="node26" href="$dgp_8c.html#a198a40a55adefa4b97666309231694c3" title="Returns a json formatted string of the DGP parameters." alt="" coords="985,507,1145,534"/>
-<area shape="rect" id="node28" href="$gp_8c.html#acedba2c1610ffd5e67effc0f0f482652" title="Returns a json formatted string of the GP tree parameters." alt="" coords="990,558,1141,585"/>
-<area shape="rect" id="node33" href="$ea_8c.html#a53acdbcd7a77faf6d38068559ae03b8b" title="Returns a string representation of an EA select type from an integer." alt="" coords="765,853,893,879"/>
-<area shape="rect" id="node36" href="$pred__nlms_8c.html#a3ed879edc5785d8f0c208e83ff62382a" title="Returns a json formatted string of the NLMS parameters." alt="" coords="751,656,907,697"/>
-<area shape="rect" id="node37" href="$pred__rls_8c.html#aa75d18939833eb602a768c5bfbd7d75b" title="Returns a json formatted string of the RLS parameters." alt="" coords="758,721,901,763"/>
-<area shape="rect" id="node38" href="$prediction_8c.html#a085a8402296bdeab95f54299040e6e0e" title="Returns a string representation of a prediction type from the integer." alt="" coords="764,787,895,828"/>
-<area shape="rect" id="node40" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="561,1207,635,1234"/>
-<area shape="rect" id="node41" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="360,1258,433,1285"/>
-<area shape="rect" id="node46" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="340,1157,453,1183"/>
-<area shape="rect" id="node56" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="352,1638,441,1665"/>
-<area shape="rect" id="node42" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="567,1258,629,1285"/>
-<area shape="rect" id="node43" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="795,1309,864,1335"/>
-<area shape="rect" id="node44" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="790,1207,869,1234"/>
-<area shape="rect" id="node45" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="791,1258,867,1285"/>
-<area shape="rect" id="node47" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="567,1055,629,1082"/>
-<area shape="rect" id="node54" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="559,1106,637,1133"/>
-<area shape="rect" id="node55" href="$clset_8c.html#aec38f30724ac1a0890f90c18f4cd5b32" title="Reverses the order of the population classifier list." alt="" coords="532,1157,664,1183"/>
-<area shape="rect" id="node48" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="794,1157,865,1183"/>
-<area shape="rect" id="node49" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="788,903,871,930"/>
-<area shape="rect" id="node50" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="789,954,870,981"/>
-<area shape="rect" id="node51" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="780,1005,879,1031"/>
-<area shape="rect" id="node52" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="790,1055,869,1082"/>
-<area shape="rect" id="node53" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="778,1106,881,1133"/>
-<area shape="rect" id="node57" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="533,1613,663,1639"/>
-<area shape="rect" id="node61" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="536,1765,660,1791"/>
-<area shape="rect" id="node64" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="543,1714,653,1741"/>
-<area shape="rect" id="node65" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="547,1537,649,1563"/>
-<area shape="rect" id="node74" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="537,1663,659,1690"/>
-<area shape="rect" id="node58" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="773,1714,886,1741"/>
-<area shape="rect" id="node59" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="1010,1739,1121,1766"/>
-<area shape="rect" id="node60" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="1012,1689,1119,1715"/>
-<area shape="rect" id="node62" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="771,1815,888,1842"/>
-<area shape="rect" id="node63" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="776,1765,883,1791"/>
-<area shape="rect" id="node66" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="773,1562,885,1589"/>
-<area shape="rect" id="node67" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="787,1613,872,1639"/>
-<area shape="rect" id="node68" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="794,1663,865,1690"/>
-<area shape="rect" id="node69" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="790,1359,869,1386"/>
-<area shape="rect" id="node70" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="1026,1486,1105,1513"/>
-<area shape="rect" id="node71" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="783,1410,875,1437"/>
-<area shape="rect" id="node73" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="788,1511,871,1538"/>
-<area shape="rect" id="node72" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="1033,1410,1098,1437"/>
+<area shape="rect" id="Node000001" title="Reads the entire current state of XCSF from a file." alt="" coords="5,1154,88,1179"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="136,946,283,971"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,1152,187,981,192,984,60,1155"/>
+<area shape="rect" id="Node000039" href="$xcsf_8c.html#ada5fb9a2a1e9225aad40a36614fc0de7" title="Reads the state of XCSF from a file." alt="" coords="170,1178,249,1203"/>
+<area shape="poly" id="edge41_Node000001_Node000039" title=" " alt="" coords="89,1170,157,1180,156,1186,88,1175"/>
+<area shape="rect" id="Node000003" href="$param_8c.html#a6deea84ba84241d90aba6317656598a4" title="Returns a json formatted string representation of the parameters." alt="" coords="331,706,463,731"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,944,375,741,379,744,223,947"/>
+<area shape="rect" id="Node000004" href="$action_8c.html#abc3d337a565dc94c88faa33472505c3e" title="Returns a json formatted string of the action parameters." alt="" coords="511,298,685,323"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="401,705,443,604,508,463,580,334,584,337,513,465,448,606,406,707"/>
+<area shape="rect" id="Node000024" href="$condition_8c.html#ab1e3bf6514986d3bce77a73ce910047e" title="Returns a json formatted string of the condition parameters." alt="" coords="515,477,681,502"/>
+<area shape="poly" id="edge24_Node000003_Node000024" title=" " alt="" coords="407,704,575,511,579,514,411,707"/>
+<area shape="rect" id="Node000032" href="$ea_8c.html#a18fa82805c33fc10cdcc5965d903c4ae" title="Returns a json formatted string representation of the EA parameters." alt="" coords="521,730,675,755"/>
+<area shape="poly" id="edge33_Node000003_Node000032" title=" " alt="" coords="463,724,508,729,507,735,463,729"/>
+<area shape="rect" id="Node000034" href="$loss_8c.html#a272f6c1c9b24a6171865c855b231d560" title="Returns a string representation of a loss type from the integer." alt="" coords="529,779,667,805"/>
+<area shape="poly" id="edge35_Node000003_Node000034" title=" " alt="" coords="426,729,512,764,538,773,536,778,510,769,424,734"/>
+<area shape="rect" id="Node000035" href="$prediction_8c.html#ac363177fac13104615104df74c5dcac4" title="Returns a json formatted string of the prediction parameters." alt="" coords="516,681,680,706"/>
+<area shape="poly" id="edge36_Node000003_Node000035" title=" " alt="" coords="463,708,502,703,503,708,463,713"/>
+<area shape="rect" id="Node000005" href="$action_8c.html#ad546aad49d253d6d0e72a6eddb237d01" title="Returns a string representation of an action type from an integer." alt="" coords="755,249,904,274"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="658,295,755,274,756,280,659,301"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html#a91be60f1596b4940ddfe3aa08a72ea9d" title="Returns a json formatted string of the neural layer parameters." alt="" coords="751,298,907,323"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="686,308,738,308,738,313,686,313"/>
+<area shape="rect" id="Node000007" href="$neural__layer__args_8c.html#a0d29d99487e5afd1746e7ac70fadf68f" title="Adds layer activation function to a json object." alt="" coords="987,5,1143,45"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="906,296,923,283,943,256,951,229,951,201,948,173,944,144,944,115,952,85,971,56,974,52,978,56,975,59,957,87,950,116,950,144,953,172,956,201,956,229,947,258,927,287,909,300"/>
+<area shape="rect" id="Node000009" href="$neural__layer__args_8c.html#aba8bd68ce834099ac6558a3b2560963a" title="Adds layer evolutionary parameters to a json object." alt="" coords="973,70,1157,95"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="906,296,923,283,939,262,947,241,947,197,947,152,955,129,971,106,978,101,981,105,975,110,959,131,952,152,952,197,952,242,944,265,927,287,909,300"/>
+<area shape="rect" id="Node000010" href="$neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2" title="Adds layer input parameters to a json object." alt="" coords="987,120,1143,160"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="904,296,924,283,935,270,942,257,947,229,952,200,959,185,971,170,976,166,980,170,975,174,964,188,957,201,952,230,947,259,940,273,927,287,907,300"/>
+<area shape="rect" id="Node000012" href="$neural__layer__args_8c.html#a1130173f486e5e1b647a65ff0822aebc" title="Adds layer scaling parameters to a json object." alt="" coords="987,184,1143,224"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="896,295,924,283,938,272,947,259,957,247,972,234,983,228,985,232,975,238,961,250,952,263,942,275,927,288,898,300"/>
+<area shape="rect" id="Node000013" href="$neural__layer__args_8c.html#a686e3f11eb7bb524effd5ddb75bdbd34" title="Adds layer gradient descent parameters to a json object." alt="" coords="973,249,1157,274"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="890,295,990,274,991,280,891,301"/>
+<area shape="rect" id="Node000014" href="$neural__layer_8c.html#ac79a38e3a8b17f929de92ba8ee9adf68" title="Returns a string representation of a layer type from an integer." alt="" coords="994,298,1137,323"/>
+<area shape="poly" id="edge13_Node000006_Node000014" title=" " alt="" coords="908,308,980,308,980,313,908,313"/>
+<area shape="rect" id="Node000015" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1015,347,1115,373"/>
+<area shape="poly" id="edge14_Node000006_Node000015" title=" " alt="" coords="891,321,1002,344,1001,349,890,326"/>
+<area shape="rect" id="Node000019" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="1244,398,1325,423"/>
+<area shape="poly" id="edge23_Node000006_Node000019" title=" " alt="" coords="897,321,927,334,942,346,951,359,960,371,975,382,1040,404,1110,414,1175,417,1231,414,1231,419,1175,422,1109,419,1039,409,972,386,956,375,947,362,938,350,924,338,895,326"/>
+<area shape="rect" id="Node000022" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="1022,449,1109,474"/>
+<area shape="poly" id="edge21_Node000006_Node000022" title=" " alt="" coords="905,321,927,334,946,357,952,381,959,405,975,427,991,439,1010,447,1008,452,989,443,971,431,954,407,947,383,941,360,924,338,903,326"/>
+<area shape="rect" id="Node000008" href="$neural__activations_8c.html#a434ca6390662d569b5e002a9e2d82c1d" title="Returns the name of a specified activation function." alt="" coords="1205,13,1364,38"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1144,23,1191,23,1191,28,1144,28"/>
+<area shape="rect" id="Node000011" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1207,127,1362,153"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1144,137,1194,137,1194,143,1144,143"/>
+<area shape="rect" id="Node000016" href="$neural__layer_8h.html#aa969a46ce36513e683114c704f78a0b5" title="Creates and initialises a new layer." alt="" coords="1247,298,1322,323"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1115,346,1233,319,1234,325,1116,351"/>
+<area shape="poly" id="edge18_Node000015_Node000019" title=" " alt="" coords="1116,369,1231,396,1230,401,1115,374"/>
+<area shape="rect" id="Node000020" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="1239,347,1331,373"/>
+<area shape="poly" id="edge19_Node000015_Node000020" title=" " alt="" coords="1116,357,1225,357,1225,363,1116,363"/>
+<area shape="rect" id="Node000017" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="1413,298,1515,323"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="1322,308,1399,308,1399,313,1322,313"/>
+<area shape="rect" id="Node000018" href="$neural__layer_8c.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="1412,249,1516,274"/>
+<area shape="poly" id="edge17_Node000016_Node000018" title=" " alt="" coords="1321,298,1403,275,1405,280,1323,303"/>
+<area shape="rect" id="Node000021" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="1416,347,1512,373"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="1331,357,1402,357,1402,363,1331,363"/>
+<area shape="rect" id="Node000023" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="1245,449,1324,474"/>
+<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="1109,459,1231,459,1231,464,1109,464"/>
+<area shape="poly" id="edge32_Node000024_Node000006" title=" " alt="" coords="605,475,652,407,689,368,732,334,746,326,749,331,735,338,692,372,656,411,609,478"/>
+<area shape="rect" id="Node000025" href="$cond__dgp_8c.html#a7e13c4942516df44b1f351caa8596804" title="Returns a json formatted string of the DGP parameters." alt="" coords="753,348,905,388"/>
+<area shape="poly" id="edge25_Node000024_Node000025" title=" " alt="" coords="614,474,665,437,732,398,748,391,750,395,735,402,668,442,617,479"/>
+<area shape="rect" id="Node000027" href="$cond__gp_8c.html#accc2f071ae6f822e0e5f220b6013be5a" title="Returns a json formatted string of the tree GP parameters." alt="" coords="757,412,902,452"/>
+<area shape="poly" id="edge27_Node000024_Node000027" title=" " alt="" coords="649,474,743,451,744,456,651,479"/>
+<area shape="rect" id="Node000029" href="$condition_8c.html#aa6c965be1f21dfe31ddcff8e737c156b" title="Returns a json formatted string of the center&#45;spread parameters." alt="" coords="733,477,925,502"/>
+<area shape="poly" id="edge29_Node000024_Node000029" title=" " alt="" coords="682,487,719,487,719,492,682,492"/>
+<area shape="rect" id="Node000030" href="$cond__ternary_8c.html#acc1e571360e4a0844afcad8077d134ba" title="Returns a json formatted string of the ternary parameters." alt="" coords="759,527,899,567"/>
+<area shape="poly" id="edge30_Node000024_Node000030" title=" " alt="" coords="651,499,747,524,746,529,649,505"/>
+<area shape="rect" id="Node000031" href="$condition_8c.html#aec601fad80ae7881897793c49d4d87cc" title="Returns a string representation of a condition type from an integer." alt="" coords="746,591,913,617"/>
+<area shape="poly" id="edge31_Node000024_Node000031" title=" " alt="" coords="616,500,667,538,734,576,757,585,755,590,732,581,664,542,613,504"/>
+<area shape="rect" id="Node000026" href="$dgp_8c.html#aa8a506a744d852413eb4392398019dc7" title="Returns a json formatted string of the DGP parameters." alt="" coords="985,498,1145,523"/>
+<area shape="poly" id="edge26_Node000025_Node000026" title=" " alt="" coords="907,385,927,398,945,420,952,442,958,463,975,483,985,490,982,494,972,487,954,466,947,444,940,423,924,402,904,389"/>
+<area shape="rect" id="Node000028" href="$gp_8c.html#a02b9cab70165d2e0a4a376932cc2d2ed" title="Returns a json formatted string of the GP tree parameters." alt="" coords="990,547,1141,573"/>
+<area shape="poly" id="edge28_Node000027_Node000028" title=" " alt="" coords="903,448,927,462,943,480,952,499,959,516,975,533,986,539,983,544,972,537,955,519,947,501,939,483,924,466,901,453"/>
+<area shape="rect" id="Node000033" href="$ea_8c.html#af6093a84bc749f8a81a716f91f300028" title="Returns a string representation of an EA select type from an integer." alt="" coords="765,834,893,859"/>
+<area shape="poly" id="edge34_Node000032_Node000033" title=" " alt="" coords="663,753,687,764,703,778,712,793,720,806,735,819,753,828,751,833,732,824,716,810,707,795,698,782,684,769,661,758"/>
+<area shape="poly" id="edge37_Node000035_Node000006" title=" " alt="" coords="604,679,640,609,683,512,691,486,694,461,696,417,703,376,714,356,731,334,738,329,741,333,735,338,718,359,708,378,701,418,699,462,696,487,688,514,645,612,609,682"/>
+<area shape="rect" id="Node000036" href="$pred__nlms_8c.html#a17c4c63005d55fcd9a34b4e854950fb9" title="Returns a json formatted string of the NLMS parameters." alt="" coords="751,641,907,681"/>
+<area shape="poly" id="edge38_Node000035_Node000036" title=" " alt="" coords="680,679,737,671,738,677,681,685"/>
+<area shape="rect" id="Node000037" href="$pred__rls_8c.html#ab12685383e9295a53ec47c7d66559844" title="Returns a json formatted string of the RLS parameters." alt="" coords="758,705,901,745"/>
+<area shape="poly" id="edge39_Node000035_Node000037" title=" " alt="" coords="681,702,745,711,744,716,680,707"/>
+<area shape="rect" id="Node000038" href="$prediction_8c.html#aef1e7511eb94c9d099a764fa6b1a78d6" title="Returns a string representation of a prediction type from the integer." alt="" coords="764,769,895,809"/>
+<area shape="poly" id="edge40_Node000035_Node000038" title=" " alt="" coords="659,704,687,715,702,725,711,735,735,755,752,764,750,769,732,760,708,739,698,729,684,720,657,709"/>
+<area shape="rect" id="Node000040" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="561,1178,635,1203"/>
+<area shape="poly" id="edge42_Node000039_Node000040" title=" " alt="" coords="249,1188,547,1188,547,1193,249,1193"/>
+<area shape="rect" id="Node000041" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="360,1229,433,1254"/>
+<area shape="poly" id="edge43_Node000039_Node000041" title=" " alt="" coords="250,1199,347,1225,346,1231,248,1204"/>
+<area shape="rect" id="Node000046" href="$clset_8c.html#af87479ea90c3c508352c4a89dae9fd08" title="Reads the population set from a file." alt="" coords="340,1127,453,1153"/>
+<area shape="poly" id="edge48_Node000039_Node000046" title=" " alt="" coords="248,1178,335,1154,337,1159,250,1183"/>
+<area shape="rect" id="Node000056" href="$param_8c.html#ae7f8932981ba2f49027da90acfd121b1" title="Reads the XCSF data structure from a file." alt="" coords="352,1601,441,1626"/>
+<area shape="poly" id="edge59_Node000039_Node000056" title=" " alt="" coords="219,1203,387,1587,382,1589,214,1205"/>
+<area shape="rect" id="Node000042" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="567,1229,629,1254"/>
+<area shape="poly" id="edge44_Node000041_Node000042" title=" " alt="" coords="434,1239,554,1239,554,1244,434,1244"/>
+<area shape="rect" id="Node000043" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="795,1278,864,1303"/>
+<area shape="poly" id="edge45_Node000042_Node000043" title=" " alt="" coords="629,1245,782,1278,781,1283,628,1250"/>
+<area shape="rect" id="Node000044" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="790,1179,869,1205"/>
+<area shape="poly" id="edge46_Node000042_Node000044" title=" " alt="" coords="628,1232,776,1201,777,1206,629,1238"/>
+<area shape="rect" id="Node000045" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="791,1229,867,1254"/>
+<area shape="poly" id="edge47_Node000042_Node000045" title=" " alt="" coords="629,1239,778,1239,778,1244,629,1244"/>
+<area shape="poly" id="edge57_Node000046_Node000040" title=" " alt="" coords="449,1150,548,1175,546,1181,447,1155"/>
+<area shape="rect" id="Node000047" href="$cl_8c.html#aa1ac32b2cecb1ff414f4f8c405e9cc9d" title="Reads a classifier from a file." alt="" coords="567,1030,629,1055"/>
+<area shape="poly" id="edge49_Node000046_Node000047" title=" " alt="" coords="413,1125,455,1095,510,1064,552,1050,554,1055,512,1069,458,1099,416,1129"/>
+<area shape="rect" id="Node000054" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="559,1079,637,1105"/>
+<area shape="poly" id="edge56_Node000046_Node000054" title=" " alt="" coords="450,1125,544,1102,546,1107,451,1130"/>
+<area shape="rect" id="Node000055" href="$clset_8c.html#aec38f30724ac1a0890f90c18f4cd5b32" title="Reverses the order of the population classifier list." alt="" coords="532,1129,664,1154"/>
+<area shape="poly" id="edge58_Node000046_Node000055" title=" " alt="" coords="453,1138,518,1138,518,1143,453,1143"/>
+<area shape="rect" id="Node000048" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="794,1130,865,1155"/>
+<area shape="poly" id="edge50_Node000047_Node000048" title=" " alt="" coords="630,1044,658,1052,687,1064,702,1077,711,1091,720,1103,735,1115,757,1126,781,1133,780,1138,755,1131,732,1120,716,1107,707,1094,698,1081,684,1069,657,1057,629,1050"/>
+<area shape="rect" id="Node000049" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="788,883,871,909"/>
+<area shape="poly" id="edge51_Node000047_Node000049" title=" " alt="" coords="608,1028,657,974,693,944,732,918,774,902,776,907,735,922,696,948,661,978,612,1031"/>
+<area shape="rect" id="Node000050" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="789,933,870,958"/>
+<area shape="poly" id="edge52_Node000047_Node000050" title=" " alt="" coords="618,1028,668,997,732,967,775,954,776,959,734,972,671,1002,620,1032"/>
+<area shape="rect" id="Node000051" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="780,982,879,1007"/>
+<area shape="poly" id="edge53_Node000047_Node000051" title=" " alt="" coords="629,1034,766,1005,767,1010,630,1039"/>
+<area shape="rect" id="Node000052" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="790,1031,869,1057"/>
+<area shape="poly" id="edge54_Node000047_Node000052" title=" " alt="" coords="630,1040,777,1041,777,1046,630,1046"/>
+<area shape="rect" id="Node000053" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="778,1081,881,1106"/>
+<area shape="poly" id="edge55_Node000047_Node000053" title=" " alt="" coords="630,1047,765,1077,764,1082,629,1052"/>
+<area shape="rect" id="Node000057" href="$action_8c.html#a08b64f3c3cc1e112d0859880ea767c53" title="Loads action parameters." alt="" coords="533,1577,663,1602"/>
+<area shape="poly" id="edge60_Node000056_Node000057" title=" " alt="" coords="441,1605,519,1596,519,1601,442,1611"/>
+<area shape="rect" id="Node000061" href="$condition_8c.html#a529394a6a6f7f5a7aa596e14b2eb1ec2" title="Loads condition parameters." alt="" coords="536,1725,660,1750"/>
+<area shape="poly" id="edge64_Node000056_Node000061" title=" " alt="" coords="411,1624,452,1667,481,1691,512,1711,526,1717,523,1722,509,1716,478,1695,449,1671,407,1628"/>
+<area shape="rect" id="Node000064" href="$ea_8c.html#a98847959ab2371b435176a89306207c5" title="Loads evolutionary algorithm parameters." alt="" coords="543,1675,653,1701"/>
+<area shape="poly" id="edge68_Node000056_Node000064" title=" " alt="" coords="425,1624,512,1662,534,1669,533,1674,510,1666,422,1629"/>
+<area shape="rect" id="Node000065" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="547,1502,649,1527"/>
+<area shape="poly" id="edge69_Node000056_Node000065" title=" " alt="" coords="422,1598,557,1531,560,1536,425,1603"/>
+<area shape="rect" id="Node000074" href="$prediction_8c.html#a022e1e3dabeddd6cc051aa63a9af5924" title="Loads prediction parameters." alt="" coords="537,1626,659,1651"/>
+<area shape="poly" id="edge79_Node000056_Node000074" title=" " alt="" coords="442,1616,524,1627,523,1632,441,1622"/>
+<area shape="rect" id="Node000058" href="$neural__layer__args_8c.html#a398a06830ed5cc20b78e7e04121897fd" title="Loads neural network layer parameters." alt="" coords="773,1675,886,1701"/>
+<area shape="poly" id="edge61_Node000057_Node000058" title=" " alt="" coords="659,1600,687,1612,702,1625,711,1638,720,1650,735,1662,760,1673,758,1678,732,1666,716,1654,707,1641,698,1629,684,1617,656,1604"/>
+<area shape="rect" id="Node000059" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="1010,1701,1121,1726"/>
+<area shape="poly" id="edge62_Node000058_Node000059" title=" " alt="" coords="887,1691,997,1703,996,1709,886,1697"/>
+<area shape="rect" id="Node000060" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="1012,1651,1119,1677"/>
+<area shape="poly" id="edge63_Node000058_Node000060" title=" " alt="" coords="886,1680,998,1668,998,1673,887,1685"/>
+<area shape="poly" id="edge66_Node000061_Node000058" title=" " alt="" coords="658,1722,759,1700,760,1705,659,1727"/>
+<area shape="rect" id="Node000062" href="$dgp_8c.html#a4e160f3ae49e0876bd5d9d03cff31a79" title="Loads DGP parameters." alt="" coords="771,1774,888,1799"/>
+<area shape="poly" id="edge65_Node000061_Node000062" title=" " alt="" coords="659,1747,758,1769,757,1774,658,1753"/>
+<area shape="rect" id="Node000063" href="$gp_8c.html#ace6f12ff809357296578e8aa1d1b0b47" title="Loads Tree GP parameters." alt="" coords="776,1725,883,1750"/>
+<area shape="poly" id="edge67_Node000061_Node000063" title=" " alt="" coords="660,1735,763,1735,763,1740,660,1740"/>
+<area shape="rect" id="Node000066" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="773,1527,885,1553"/>
+<area shape="poly" id="edge70_Node000065_Node000066" title=" " alt="" coords="650,1518,760,1530,759,1535,649,1523"/>
+<area shape="rect" id="Node000067" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="787,1577,872,1602"/>
+<area shape="poly" id="edge71_Node000065_Node000067" title=" " alt="" coords="631,1525,734,1563,774,1574,772,1579,733,1568,629,1530"/>
+<area shape="rect" id="Node000068" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="794,1626,865,1651"/>
+<area shape="poly" id="edge72_Node000065_Node000068" title=" " alt="" coords="626,1525,687,1563,701,1577,711,1590,720,1601,735,1612,757,1623,781,1629,780,1635,755,1628,732,1617,716,1605,706,1593,697,1581,684,1567,624,1530"/>
+<area shape="rect" id="Node000069" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="790,1327,869,1353"/>
+<area shape="poly" id="edge73_Node000065_Node000069" title=" " alt="" coords="605,1500,652,1434,689,1395,732,1362,775,1345,777,1350,735,1366,693,1399,656,1437,609,1503"/>
+<area shape="rect" id="Node000070" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="1026,1453,1105,1478"/>
+<area shape="poly" id="edge74_Node000065_Node000070" title=" " alt="" coords="625,1499,675,1480,733,1464,809,1455,885,1452,1012,1458,1012,1463,885,1458,809,1460,734,1469,676,1485,627,1504"/>
+<area shape="rect" id="Node000071" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="783,1377,875,1402"/>
+<area shape="poly" id="edge75_Node000065_Node000071" title=" " alt="" coords="613,1500,664,1461,732,1419,769,1403,771,1408,735,1424,667,1465,616,1504"/>
+<area shape="rect" id="Node000073" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="788,1478,871,1503"/>
+<area shape="poly" id="edge77_Node000065_Node000073" title=" " alt="" coords="649,1507,774,1494,775,1499,650,1512"/>
+<area shape="rect" id="Node000072" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="1033,1377,1098,1402"/>
+<area shape="poly" id="edge76_Node000071_Node000072" title=" " alt="" coords="876,1387,1019,1387,1019,1392,876,1392"/>
+<area shape="poly" id="edge78_Node000073_Node000070" title=" " alt="" coords="870,1484,1012,1468,1012,1474,871,1489"/>
+<area shape="poly" id="edge80_Node000074_Node000058" title=" " alt="" coords="659,1649,760,1671,759,1676,658,1654"/>
 </map>

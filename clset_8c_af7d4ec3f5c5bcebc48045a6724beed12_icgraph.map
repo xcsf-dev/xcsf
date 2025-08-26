@@ -1,8 +1,0 @@
-<map id="clset_json_export" name="clset_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of a classifier set." alt="" coords="507,31,631,57"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="355,5,437,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#adf6549829b0b5dd678f32b939676c40e" title="Returns a JSON formatted string representing the population set." alt="" coords="333,56,459,83"/>
-<area shape="rect" id="node3" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="171,5,282,32"/>
-<area shape="rect" id="node4" href="$classXCS.html#a9feecf1cfbc0910bd334031105732952" title="Prints the current population." alt="" coords="5,5,120,32"/>
-<area shape="rect" id="node6" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="168,56,285,83"/>
-</map>

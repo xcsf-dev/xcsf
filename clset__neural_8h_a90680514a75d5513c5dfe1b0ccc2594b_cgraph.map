@@ -1,4 +1,5 @@
 <map id="clset_mean_pred_connections" name="clset_mean_pred_connections">
-<area shape="rect" id="node1" title="Calculates the mean number of prediction connections in the set." alt="" coords="5,5,204,32"/>
-<area shape="rect" id="node2" href="$pred__neural_8c.html#a56430e2cbd0ff78b7602723b62737009" title="Returns the number of active connections in a neural prediction layer." alt="" coords="252,5,419,32"/>
+<area shape="rect" id="Node000001" title="Calculates the mean number of prediction connections in the set." alt="" coords="5,5,204,31"/>
+<area shape="rect" id="Node000002" href="$pred__neural_8c.html#a56430e2cbd0ff78b7602723b62737009" title="Returns the number of active connections in a neural prediction layer." alt="" coords="252,5,419,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,15,238,15,238,21,204,21"/>
 </map>

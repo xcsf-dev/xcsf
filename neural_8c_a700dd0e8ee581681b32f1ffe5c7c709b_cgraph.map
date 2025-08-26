@@ -1,4 +1,5 @@
 <map id="neural_output" name="neural_output">
-<area shape="rect" id="node1" title="Returns the output of a specified neuron in the output layer of a neural network." alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115" title="Returns the outputs of a layer." alt="" coords="153,5,247,32"/>
+<area shape="rect" id="Node000001" title="Returns the output of a specified neuron in the output layer of a neural network." alt="" coords="5,5,105,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#a5f745c9f7568146a1b5e0bb37a2666b8" title="Returns the outputs of a layer." alt="" coords="153,5,247,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,15,140,15,140,21,106,21"/>
 </map>

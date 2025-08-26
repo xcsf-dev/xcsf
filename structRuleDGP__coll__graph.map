@@ -1,4 +1,5 @@
 <map id="RuleDGP" name="RuleDGP">
-<area shape="rect" id="node1" title="Dynamical GP graph rule data structure." alt="" coords="5,95,84,121"/>
-<area shape="rect" id="node2" href="$structGraph.html" title="Dynamical GP graph data structure." alt="" coords="16,5,73,32"/>
+<area shape="rect" id="Node000001" title="Dynamical GP graph rule data structure." alt="" coords="5,93,84,119"/>
+<area shape="rect" id="Node000002" href="$structGraph.html" title="Dynamical GP graph data structure." alt="" coords="16,5,73,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="47,45,47,93,42,93,42,45"/>
 </map>

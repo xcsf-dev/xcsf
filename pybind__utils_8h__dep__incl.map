@@ -1,6 +1,11 @@
 <map id="pybind_utils.h" name="pybind_utils.h">
-<area shape="rect" id="node1" title="Utilities for Python library." alt="" coords="188,5,291,32"/>
-<area shape="rect" id="node2" href="$pybind__callback__checkpoint_8h.html" title="Checkpoint callback for Python library." alt="" coords="5,80,201,107"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="171,155,308,181"/>
-<area shape="rect" id="node4" href="$pybind__callback__earlystop_8h.html" title="Early stopping callback for Python library." alt="" coords="277,80,463,107"/>
+<area shape="rect" id="Node000001" title="Utilities for Python library." alt="" coords="188,5,291,31"/>
+<area shape="rect" id="Node000002" href="$pybind__callback__checkpoint_8h.html" title="Checkpoint callback for Python library." alt="" coords="5,79,201,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,39,127,81,124,76,204,34"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="171,152,308,177"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="242,45,242,152,237,152,237,45"/>
+<area shape="rect" id="Node000004" href="$pybind__callback__earlystop_8h.html" title="Early stopping callback for Python library." alt="" coords="277,79,463,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,35,350,76,347,81,271,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,108,218,149,216,154,136,113"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="338,113,262,154,259,149,335,108"/>
 </map>

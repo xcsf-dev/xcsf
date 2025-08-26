@@ -1,5 +1,7 @@
 <map id="clset_neural.h" name="clset_neural.h">
-<area shape="rect" id="node1" title="Functions operating on sets of neural classifiers." alt="" coords="77,5,180,32"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="132,80,269,107"/>
+<area shape="rect" id="Node000001" title="Functions operating on sets of neural classifiers." alt="" coords="77,5,180,31"/>
+<area shape="rect" id="Node000002" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,79,108,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,43,70,80,66,77,105,39"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html" title="Python library wrapper functions." alt="" coords="132,79,269,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,39,191,77,187,80,149,43"/>
 </map>

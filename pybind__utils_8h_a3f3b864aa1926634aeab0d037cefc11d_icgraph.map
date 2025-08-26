@@ -1,12 +1,23 @@
 <map id="get_timestamp" name="get_timestamp">
-<area shape="rect" id="node1" title="Returns a formatted string for displaying time." alt="" coords="436,123,544,149"/>
-<area shape="rect" id="node2" href="$classXCS.html#abe789636748762a6f5a12e6c63db1e30" title="Prints the current performance metrics." alt="" coords="247,5,374,32"/>
-<area shape="rect" id="node4" href="$classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59" title="Retrieves best XCSF population in memory." alt="" coords="233,57,388,98"/>
-<area shape="rect" id="node6" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,123,185,149"/>
-<area shape="rect" id="node7" href="$classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca" title="Saves the state of XCSF." alt="" coords="241,239,380,281"/>
-<area shape="rect" id="node10" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="233,174,388,215"/>
-<area shape="rect" id="node3" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="61,5,130,32"/>
-<area shape="rect" id="node5" href="$classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23" title="Executes any tasks at the end of fitting." alt="" coords="18,57,173,98"/>
-<area shape="rect" id="node8" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="26,210,165,251"/>
-<area shape="rect" id="node9" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="13,276,178,303"/>
+<area shape="rect" id="Node000001" title="Returns a formatted string for displaying time." alt="" coords="436,120,544,145"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#abe789636748762a6f5a12e6c63db1e30" title="Prints the current performance metrics." alt="" coords="247,5,374,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="466,112,431,78,387,46,359,33,361,28,389,41,434,74,470,108"/>
+<area shape="rect" id="Node000004" href="$classEarlyStoppingCallback.html#a39fd68145eeec792410898eee2d92b59" title="Retrieves best XCSF population in memory." alt="" coords="233,55,388,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="436,118,373,98,374,93,437,113"/>
+<area shape="rect" id="Node000006" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,120,185,145"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="422,135,185,135,185,130,422,130"/>
+<area shape="rect" id="Node000007" href="$classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca" title="Saves the state of XCSF." alt="" coords="241,234,380,274"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="469,158,433,191,389,224,367,236,365,232,387,220,430,187,465,154"/>
+<area shape="rect" id="Node000010" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="233,170,388,210"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="437,152,374,173,373,167,436,147"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="61,5,130,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="233,21,130,21,130,15,233,15"/>
+<area shape="rect" id="Node000005" href="$classEarlyStoppingCallback.html#a5d052927fbfa9950952c34f34cd7ec23" title="Executes any tasks at the end of fitting." alt="" coords="18,55,173,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="220,78,173,78,173,73,220,73"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="223,101,145,122,143,117,221,96"/>
+<area shape="rect" id="Node000008" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="26,205,165,245"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="227,245,165,237,165,231,228,240"/>
+<area shape="rect" id="Node000009" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="13,269,178,295"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="228,267,179,274,178,269,227,262"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="221,169,143,148,145,143,223,164"/>
 </map>

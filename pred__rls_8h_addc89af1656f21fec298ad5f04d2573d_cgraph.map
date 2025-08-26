@@ -1,6 +1,0 @@
-<map id="pred_rls_param_json_import" name="pred_rls_param_json_import">
-<area shape="rect" id="node1" title="Sets the RLS parameters from a cJSON object." alt="" coords="5,57,148,98"/>
-<area shape="rect" id="node2" href="$prediction_8c.html#a7b4efcc30beb6a0721140f10f67861da" title=" " alt="" coords="196,5,360,32"/>
-<area shape="rect" id="node3" href="$prediction_8c.html#acb71e8f11fe64ba35150417afa4c9441" title=" " alt="" coords="201,57,355,98"/>
-<area shape="rect" id="node4" href="$prediction_8c.html#a618accb7ec3239f16fc794f9efa8f89c" title=" " alt="" coords="210,123,346,149"/>
-</map>

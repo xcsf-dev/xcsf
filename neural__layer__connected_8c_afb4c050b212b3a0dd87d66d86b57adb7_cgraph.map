@@ -1,7 +1,11 @@
 <map id="neural_layer_connected_update" name="neural_layer_connected_update">
-<area shape="rect" id="node1" title="Updates the weights and biases of a connected layer." alt="" coords="5,49,164,90"/>
-<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="240,5,321,32"/>
-<area shape="rect" id="node3" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="242,56,319,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="212,107,349,133"/>
-<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="397,107,455,133"/>
+<area shape="rect" id="Node000001" title="Updates the weights and biases of a connected layer." alt="" coords="5,47,164,87"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="240,5,321,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,45,226,29,227,34,165,50"/>
+<area shape="rect" id="Node000003" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="242,55,319,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,65,228,65,228,70,164,70"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a80e54e8cdbe0776d6cc739f1a50ffd26" title="Clamps a layer&#39;s weights and biases in range [WEIGHT_MIN, WEIGHT_MAX]." alt="" coords="212,104,349,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,85,217,98,216,103,163,90"/>
+<area shape="rect" id="Node000005" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="397,104,455,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="350,114,384,114,384,119,350,119"/>
 </map>

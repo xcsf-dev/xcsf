@@ -1,7 +1,16 @@
 <map id="XCS::update_params" name="XCS::update_params">
-<area shape="rect" id="node1" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="443,31,589,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="310,5,393,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="308,56,395,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,56,260,83"/>
-<area shape="rect" id="node5" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,56,125,83"/>
+<area shape="rect" id="Node000001" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="641,29,788,55"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="223,5,305,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="627,40,305,23,306,17,627,35"/>
+<area shape="rect" id="Node000004" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="507,55,593,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="628,58,594,63,593,58,627,53"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,31,156,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="210,28,157,36,156,30,209,23"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="372,55,459,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="493,70,459,70,459,65,493,65"/>
+<area shape="rect" id="Node000007" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="372,104,459,129"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="503,87,452,106,450,101,501,82"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="204,55,324,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="358,70,324,70,324,65,358,65"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="190,60,156,56,157,51,191,55"/>
 </map>

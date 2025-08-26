@@ -1,14 +1,25 @@
 <map id="ea_param_json_import" name="ea_param_json_import">
-<area shape="rect" id="node1" title="Sets the EA parameters from a cJSON object." alt="" coords="5,233,159,260"/>
-<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="256,5,343,32"/>
-<area shape="rect" id="node3" href="$ea_8c.html#a542e7edec79442b8ea67b549de8c20f4" title=" " alt="" coords="217,56,382,83"/>
-<area shape="rect" id="node4" href="$ea_8c.html#a6991ded81cd5f8092edd273f14b51656" title=" " alt="" coords="219,107,380,133"/>
-<area shape="rect" id="node5" href="$ea_8c.html#a3cd269c31d0c8746945c5702b0ff2878" title=" " alt="" coords="223,157,376,184"/>
-<area shape="rect" id="node6" href="$ea_8c.html#aa13da4ecefb72f2ea73ac3305978fbd9" title=" " alt="" coords="208,208,391,235"/>
-<area shape="rect" id="node7" href="$ea_8c.html#a8dddce688fce5036e42a02cb5f81c16a" title=" " alt="" coords="213,259,385,285"/>
-<area shape="rect" id="node8" href="$ea_8c.html#af8835dfc61b17259355a8857b834a085" title=" " alt="" coords="211,309,388,336"/>
-<area shape="rect" id="node9" href="$ea_8c.html#a01bfae90b944b75fb043898949cffc93" title=" " alt="" coords="207,360,392,387"/>
-<area shape="rect" id="node10" href="$ea_8c.html#a4f787e4f40ad089a2d7ed89705921669" title=" " alt="" coords="229,411,369,437"/>
-<area shape="rect" id="node11" href="$ea_8c.html#aae5494ed1288e31cd5ff702ecdb9d02b" title=" " alt="" coords="212,461,387,488"/>
-<area shape="rect" id="node12" href="$ea_8c.html#aa0505eb5ed3eb60094e9aa48bec5c02f" title="Returns the integer representation of an EA selection type." alt="" coords="440,461,551,488"/>
+<area shape="rect" id="Node000001" title="Sets the EA parameters from a cJSON object." alt="" coords="5,228,159,253"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="256,5,343,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,227,99,190,124,139,159,86,181,61,205,40,223,30,242,23,244,28,225,35,208,44,184,65,163,89,129,142,104,192,90,229"/>
+<area shape="rect" id="Node000003" href="$ea_8c.html#acafdb53cd6f917e67ac7956c41c22ccb" title=" " alt="" coords="217,55,382,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="88,227,131,161,165,122,205,89,216,83,219,88,208,94,169,126,135,164,92,229"/>
+<area shape="rect" id="Node000004" href="$ea_8c.html#a2a733cfde61e6071a78fb93e5d30fbeb" title=" " alt="" coords="219,104,380,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="94,226,140,183,171,159,205,138,221,131,224,136,208,143,174,163,143,187,97,230"/>
+<area shape="rect" id="Node000005" href="$ea_8c.html#ae31fdbb41052ef2dc362c25b65217280" title=" " alt="" coords="223,153,376,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="110,225,206,187,231,180,232,185,208,193,112,230"/>
+<area shape="rect" id="Node000006" href="$ea_8c.html#a485d390107e08149f545078eb98e21b6" title=" " alt="" coords="208,203,391,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="159,229,194,225,195,230,159,234"/>
+<area shape="rect" id="Node000007" href="$ea_8c.html#a580f592408f14dd920756b8eaab9f532" title=" " alt="" coords="213,252,385,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="159,246,200,251,199,256,159,252"/>
+<area shape="rect" id="Node000008" href="$ea_8c.html#aca7349c1a592c4c712a0641ad17e59a3" title=" " alt="" coords="211,301,388,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="114,251,208,286,236,295,235,300,206,291,112,256"/>
+<area shape="rect" id="Node000009" href="$ea_8c.html#a43a40309615dbb66caa55cb795f1abc0" title=" " alt="" coords="207,351,392,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="98,251,144,293,175,316,208,336,227,344,225,349,205,340,172,320,140,297,94,255"/>
+<area shape="rect" id="Node000010" href="$ea_8c.html#a9cb108839380d505f1d16d7c84e70847" title=" " alt="" coords="229,400,369,425"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="93,252,136,316,169,353,208,385,222,393,219,397,205,390,165,357,132,319,88,255"/>
+<area shape="rect" id="Node000011" href="$ea_8c.html#aae5494ed1288e31cd5ff702ecdb9d02b" title=" " alt="" coords="212,449,387,475"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="90,253,104,289,129,338,164,390,185,414,208,435,219,441,216,446,205,439,181,418,159,394,124,341,100,291,85,254"/>
+<area shape="rect" id="Node000012" href="$ea_8c.html#aa0505eb5ed3eb60094e9aa48bec5c02f" title="Returns the integer representation of an EA selection type." alt="" coords="440,449,551,475"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="387,459,426,459,426,465,387,465"/>
 </map>

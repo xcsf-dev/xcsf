@@ -1,5 +1,7 @@
 <map id="rule_dgp_act_compute" name="rule_dgp_act_compute">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,159,57"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871" title="Returns an integer clamped within the specified range." alt="" coords="216,5,295,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#aa77646399b1b3d18c38e1597008880e0" title="Returns the current state of a specified node in the graph." alt="" coords="207,56,304,83"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,159,56"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#a1c96b0520a47b6a4a106973bdbc9c871" title="Returns an integer clamped within the specified range." alt="" coords="216,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,30,202,23,203,28,159,35"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#aa77646399b1b3d18c38e1597008880e0" title="Returns the current state of a specified node in the graph." alt="" coords="207,55,304,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,51,194,56,193,61,158,57"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="neural_layer_convolutional_json_export" name="neural_layer_convolutional_json_export">
+<area shape="rect" id="Node000001" title="Returns a json formatted string of a convolutional layer." alt="" coords="5,23,180,63"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#ab690105513e8867b6dd3252dc7d639f8" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="244,5,371,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,230,24,231,30,181,36"/>
+<area shape="rect" id="Node000003" href="$neural__activations_8c.html#a434ca6390662d569b5e002a9e2d82c1d" title="Returns the name of a specified activation function." alt="" coords="228,55,387,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,50,214,54,214,60,180,56"/>
+</map>

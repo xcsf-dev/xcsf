@@ -1,13 +1,23 @@
 <map id="clset_pset_del" name="clset_pset_del">
-<area shape="rect" id="node1" title="Deletes a single classifier from the population set." alt="" coords="5,56,112,83"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="203,5,281,32"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="160,56,324,83"/>
-<area shape="rect" id="node4" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="176,107,308,133"/>
-<area shape="rect" id="node5" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="373,5,471,32"/>
-<area shape="rect" id="node7" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="378,56,466,83"/>
-<area shape="rect" id="node8" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="375,107,469,133"/>
-<area shape="rect" id="node10" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="372,157,472,184"/>
-<area shape="rect" id="node11" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="373,208,471,235"/>
-<area shape="rect" id="node6" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="520,5,601,32"/>
-<area shape="rect" id="node9" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="521,107,600,133"/>
+<area shape="rect" id="Node000001" title="Deletes a single classifier from the population set." alt="" coords="5,55,112,80"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="203,5,281,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,52,188,29,190,35,107,57"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="160,55,324,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,65,146,65,146,70,112,70"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="176,104,308,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="107,77,181,98,180,103,106,83"/>
+<area shape="rect" id="Node000005" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="373,5,471,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="296,101,323,89,337,78,346,66,356,53,370,40,377,35,380,40,374,44,360,57,351,69,341,81,325,94,298,106"/>
+<area shape="rect" id="Node000007" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="378,55,466,80"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="288,101,364,80,365,86,290,107"/>
+<area shape="rect" id="Node000008" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="375,104,469,129"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="308,114,361,114,361,119,308,119"/>
+<area shape="rect" id="Node000010" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="372,153,472,179"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="290,127,362,147,360,152,288,132"/>
+<area shape="rect" id="Node000011" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="373,203,471,228"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="266,127,373,188,385,194,383,199,371,192,264,132"/>
+<area shape="rect" id="Node000006" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="520,5,601,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="472,15,506,15,506,21,472,21"/>
+<area shape="rect" id="Node000009" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="521,104,600,129"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="469,114,507,114,507,119,469,119"/>
 </map>

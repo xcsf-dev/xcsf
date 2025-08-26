@@ -1,7 +1,11 @@
 <map id="action_param_defaults" name="action_param_defaults">
-<area shape="rect" id="node1" title="Initialises default action parameters." alt="" coords="5,56,159,83"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="207,31,385,57"/>
-<area shape="rect" id="node5" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="217,81,375,108"/>
-<area shape="rect" id="node3" href="$neural__layer__args_8c.html#ae2a39b39d39a77a51f0a9e85dd48c002" title="Creates and returns a copy of specified layer parameters." alt="" coords="433,5,551,32"/>
-<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="439,56,545,83"/>
+<area shape="rect" id="Node000001" title="Initialises default action parameters." alt="" coords="5,55,159,80"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html#ae9c1117ca77c9dbe5b509c508483d56b" title="Initialises default neural action parameters." alt="" coords="207,29,385,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,56,193,52,193,57,159,61"/>
+<area shape="rect" id="Node000005" href="$action_8c.html#a1a07a69a801b65052f3679d317507363" title=" " alt="" coords="217,79,375,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="159,73,204,78,203,84,159,79"/>
+<area shape="rect" id="Node000003" href="$neural__layer__args_8c.html#afbc76691bfb760e903155e0e41ae97bd" title="Creates and returns a copy of specified layer parameters." alt="" coords="433,5,551,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="385,28,419,24,420,29,386,34"/>
+<area shape="rect" id="Node000004" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="439,55,545,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="386,51,425,56,425,61,385,56"/>
 </map>

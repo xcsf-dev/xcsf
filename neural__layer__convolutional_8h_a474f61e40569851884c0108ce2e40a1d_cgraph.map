@@ -1,24 +1,45 @@
 <map id="neural_layer_convolutional_forward" name="neural_layer_convolutional_forward">
-<area shape="rect" id="node1" title="Forward propagates a convolutional layer." alt="" coords="5,201,180,242"/>
-<area shape="rect" id="node2" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="257,107,346,133"/>
-<area shape="rect" id="node7" href="$image_8c.html#a33557bb05f10824eef9cc5775ac17c0d" title="Transforms an image vector to a column vector." alt="" coords="271,208,331,235"/>
-<area shape="rect" id="node9" href="$neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" title="Applies an activation function to a vector of neuron states." alt="" coords="228,259,375,285"/>
-<area shape="rect" id="node3" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="443,5,521,32"/>
-<area shape="rect" id="node4" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="444,56,520,83"/>
-<area shape="rect" id="node5" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="444,107,520,133"/>
-<area shape="rect" id="node6" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="445,157,519,184"/>
-<area shape="rect" id="node8" href="$image_8c.html#a35b83d0e813d0341ce6e237a42412cda" title=" " alt="" coords="423,208,541,235"/>
-<area shape="rect" id="node10" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="453,259,511,285"/>
-<area shape="rect" id="node11" href="$neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e" title="Returns the result from applying a specified activation function." alt="" coords="427,309,537,336"/>
-<area shape="rect" id="node12" href="$neural__activations_8h.html#a2a1911ebfe2cce90f9b909d685a59d15" title=" " alt="" coords="605,56,701,83"/>
-<area shape="rect" id="node13" href="$neural__activations_8h.html#a5a67647a321713d6ac1586b89dcdceb0" title=" " alt="" coords="590,107,717,133"/>
-<area shape="rect" id="node14" href="$neural__activations_8h.html#aca09887967da390ec55c3f4a1f2dee48" title=" " alt="" coords="600,157,707,184"/>
-<area shape="rect" id="node15" href="$neural__activations_8h.html#ab867da5d496341c42b73c27ccc9b5f2b" title=" " alt="" coords="600,208,707,235"/>
-<area shape="rect" id="node16" href="$neural__activations_8h.html#a72f509e640dc8b6e9b33af9d8d2aa023" title=" " alt="" coords="600,259,707,285"/>
-<area shape="rect" id="node17" href="$neural__activations_8h.html#ac92b3d5389aff87e855b8ae05b9ec0f9" title=" " alt="" coords="595,309,711,336"/>
-<area shape="rect" id="node18" href="$neural__activations_8h.html#a36d1fc0c7b2462a22d82d41138bd79eb" title=" " alt="" coords="605,360,701,387"/>
-<area shape="rect" id="node19" href="$neural__activations_8h.html#ae8360118176b50bcc1ce7b6e9a5c5d96" title=" " alt="" coords="604,411,703,437"/>
-<area shape="rect" id="node20" href="$neural__activations_8h.html#addeba3077f238bf95ab678521f3f01f4" title=" " alt="" coords="607,461,699,488"/>
-<area shape="rect" id="node21" href="$neural__activations_8h.html#a72a5c108b60b2e169e798a31a16ed5c9" title=" " alt="" coords="589,512,717,539"/>
-<area shape="rect" id="node22" href="$neural__activations_8h.html#ad5b55632ec4cca70c5cac2f139ab7890" title=" " alt="" coords="603,563,703,589"/>
+<area shape="rect" id="Node000001" title="Forward propagates a convolutional layer." alt="" coords="5,195,180,235"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="257,104,346,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,193,260,133,262,138,137,198"/>
+<area shape="rect" id="Node000007" href="$image_8c.html#a33557bb05f10824eef9cc5775ac17c0d" title="Transforms an image vector to a column vector." alt="" coords="271,203,331,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="180,213,257,213,257,218,180,218"/>
+<area shape="rect" id="Node000009" href="$neural__activations_8c.html#acef0d15cd01c7dcc5a4d6d8bdc1d8bad" title="Applies an activation function to a vector of neuron states." alt="" coords="228,252,375,277"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="178,233,234,246,233,251,177,238"/>
+<area shape="rect" id="Node000003" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="443,5,521,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,102,365,72,421,40,434,34,436,39,424,44,368,76,323,106"/>
+<area shape="rect" id="Node000004" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="444,55,520,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="345,102,430,79,431,84,347,107"/>
+<area shape="rect" id="Node000005" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="444,104,520,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="346,114,430,114,430,119,346,119"/>
+<area shape="rect" id="Node000006" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="445,153,519,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="347,126,432,150,431,155,345,131"/>
+<area shape="rect" id="Node000008" href="$image_8c.html#a35b83d0e813d0341ce6e237a42412cda" title=" " alt="" coords="423,203,541,228"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="332,213,409,213,409,218,332,218"/>
+<area shape="rect" id="Node000010" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="453,252,511,277"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="375,262,439,262,439,267,375,267"/>
+<area shape="rect" id="Node000011" href="$neural__activations_8c.html#a00b26b831c9b6ad65114ee7c1dd6760e" title="Returns the result from applying a specified activation function." alt="" coords="427,301,537,327"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="349,275,422,295,420,300,348,280"/>
+<area shape="rect" id="Node000012" href="$neural__activations_8h.html#a2a1911ebfe2cce90f9b909d685a59d15" title=" " alt="" coords="605,55,701,80"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="524,299,539,287,555,262,562,238,562,190,561,165,562,141,570,115,587,90,592,85,596,89,591,93,575,118,567,142,566,165,567,189,568,239,560,264,543,290,527,303"/>
+<area shape="rect" id="Node000013" href="$neural__activations_8h.html#a5a67647a321713d6ac1586b89dcdceb0" title=" " alt="" coords="590,104,717,129"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="523,299,539,287,552,268,559,250,562,214,566,177,573,158,587,139,591,135,595,139,591,142,578,161,571,178,568,214,564,252,557,271,543,291,527,303"/>
+<area shape="rect" id="Node000014" href="$neural__activations_8h.html#aca09887967da390ec55c3f4a1f2dee48" title=" " alt="" coords="600,153,707,179"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="522,299,539,287,556,263,562,238,569,213,587,188,593,184,596,188,591,192,574,216,568,240,561,265,543,291,525,303"/>
+<area shape="rect" id="Node000015" href="$neural__activations_8h.html#ab867da5d496341c42b73c27ccc9b5f2b" title=" " alt="" coords="600,203,707,228"/>
+<area shape="poly" id="edge14_Node000011_Node000015" title=" " alt="" coords="518,299,540,286,554,274,563,262,573,250,588,237,597,231,600,236,591,242,577,254,567,265,558,278,543,291,520,303"/>
+<area shape="rect" id="Node000016" href="$neural__activations_8h.html#a72f509e640dc8b6e9b33af9d8d2aa023" title=" " alt="" coords="600,252,707,277"/>
+<area shape="poly" id="edge15_Node000011_Node000016" title=" " alt="" coords="526,299,594,279,595,284,528,304"/>
+<area shape="rect" id="Node000017" href="$neural__activations_8h.html#ac92b3d5389aff87e855b8ae05b9ec0f9" title=" " alt="" coords="595,301,711,327"/>
+<area shape="poly" id="edge16_Node000011_Node000017" title=" " alt="" coords="538,311,581,311,581,317,538,317"/>
+<area shape="rect" id="Node000018" href="$neural__activations_8h.html#a36d1fc0c7b2462a22d82d41138bd79eb" title=" " alt="" coords="605,351,701,376"/>
+<area shape="poly" id="edge17_Node000011_Node000018" title=" " alt="" coords="528,324,595,344,594,349,526,329"/>
+<area shape="rect" id="Node000019" href="$neural__activations_8h.html#ae8360118176b50bcc1ce7b6e9a5c5d96" title=" " alt="" coords="604,400,703,425"/>
+<area shape="poly" id="edge18_Node000011_Node000019" title=" " alt="" coords="501,325,541,354,591,385,605,392,603,397,588,390,538,358,498,329"/>
+<area shape="rect" id="Node000020" href="$neural__activations_8h.html#addeba3077f238bf95ab678521f3f01f4" title=" " alt="" coords="607,449,699,475"/>
+<area shape="poly" id="edge19_Node000011_Node000020" title=" " alt="" coords="494,325,532,377,559,408,591,435,601,441,599,446,588,439,556,412,528,381,489,328"/>
+<area shape="rect" id="Node000021" href="$neural__activations_8h.html#a72a5c108b60b2e169e798a31a16ed5c9" title=" " alt="" coords="589,499,717,524"/>
+<area shape="poly" id="edge20_Node000011_Node000021" title=" " alt="" coords="490,326,525,399,554,444,591,484,599,490,596,494,588,488,550,448,520,402,485,328"/>
+<area shape="rect" id="Node000022" href="$neural__activations_8h.html#ad5b55632ec4cca70c5cac2f139ab7890" title=" " alt="" coords="603,548,703,573"/>
+<area shape="poly" id="edge21_Node000011_Node000022" title=" " alt="" coords="489,326,499,366,519,421,549,481,569,509,591,533,598,539,595,543,588,537,564,512,545,484,514,423,494,367,483,328"/>
 </map>

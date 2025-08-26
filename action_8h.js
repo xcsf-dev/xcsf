@@ -15,7 +15,7 @@ var action_8h =
     [ "act_free", "action_8h.html#a81912970283c86f80c5b7a38f1865ebd", null ],
     [ "act_general", "action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d", null ],
     [ "act_init", "action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4", null ],
-    [ "act_json_export", "action_8h.html#a31b90b0384c02bd54a0abd49211401fc", null ],
+    [ "act_json_export", "action_8h.html#ae481f5ce26b84ce02edf1e4052fbcfc3", null ],
     [ "act_json_import", "action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce", null ],
     [ "act_load", "action_8h.html#a52378844456bccd5792fd83a66c3e024", null ],
     [ "act_mutate", "action_8h.html#a44bf56cba57482ddbd8b1db0a6b835b9", null ],
@@ -24,13 +24,13 @@ var action_8h =
     [ "act_update", "action_8h.html#abff2406a17ffc24bdc2f98dbecab1f80", null ],
     [ "action_param_defaults", "action_8h.html#aa7e0cd00c920c30b15e0d1cc409cada5", null ],
     [ "action_param_free", "action_8h.html#acc202dbe3c6a1d3f745383aec209c780", null ],
-    [ "action_param_json_export", "action_8h.html#ae4c75dacfa854514efe71cc00515d6c0", null ],
-    [ "action_param_json_import", "action_8h.html#a39f808f6b04ccbc2a2c2a2857e5b845e", null ],
+    [ "action_param_json_export", "action_8h.html#abc3d337a565dc94c88faa33472505c3e", null ],
+    [ "action_param_json_import", "action_8h.html#aa4c80732c23959a06e307c26508488e2", null ],
     [ "action_param_load", "action_8h.html#a08b64f3c3cc1e112d0859880ea767c53", null ],
     [ "action_param_save", "action_8h.html#a95fbb463d8e044d1dadc5fdb1b6b1e05", null ],
     [ "action_param_set_type", "action_8h.html#a1a07a69a801b65052f3679d317507363", null ],
     [ "action_param_set_type_string", "action_8h.html#aa39e0957258c0608cff224da76500d62", null ],
     [ "action_set", "action_8h.html#a57d1606f2517912f1f56018f095761e9", null ],
     [ "action_type_as_int", "action_8h.html#a38d3209ab8ce0417631ce2359f6590a7", null ],
-    [ "action_type_as_string", "action_8h.html#a92f612de02989e82ef6c52bc7384f24f", null ]
+    [ "action_type_as_string", "action_8h.html#ad546aad49d253d6d0e72a6eddb237d01", null ]
 ];

@@ -1,5 +1,7 @@
 <map id="float_to_binary" name="float_to_binary">
-<area shape="rect" id="node1" title="Generates a binary string from a float." alt="" coords="193,31,300,57"/>
-<area shape="rect" id="node2" href="$cond__ternary_8c.html#a76ab7500198ab706583a378230920e08" title="Generates a ternary condition that matches the current input." alt="" coords="7,5,143,32"/>
-<area shape="rect" id="node3" href="$cond__ternary_8c.html#a38a12a34e9676ae5326bc200d69f9822" title="Calculates whether a ternary condition matches an input." alt="" coords="5,56,145,83"/>
+<area shape="rect" id="Node000001" title="Generates a binary string from a float." alt="" coords="193,31,300,56"/>
+<area shape="rect" id="Node000002" href="$cond__ternary_8c.html#a76ab7500198ab706583a378230920e08" title="Generates a ternary condition that matches the current input." alt="" coords="7,5,143,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,36,143,31,144,25,180,31"/>
+<area shape="rect" id="Node000003" href="$cond__ternary_8c.html#a38a12a34e9676ae5326bc200d69f9822" title="Calculates whether a ternary condition matches an input." alt="" coords="5,55,145,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,55,146,60,145,55,179,50"/>
 </map>

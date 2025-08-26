@@ -9,5 +9,5 @@ var loss_8c =
     [ "loss_rmse", "loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f", null ],
     [ "loss_set_func", "loss_8c.html#abd279ef66e8491bb524ee192a45e0e34", null ],
     [ "loss_type_as_int", "loss_8c.html#a6b76e413b2123f456c6656f0555208e1", null ],
-    [ "loss_type_as_string", "loss_8c.html#ae2f30fcd2fb24ac4698c87b4d6b08cfe", null ]
+    [ "loss_type_as_string", "loss_8c.html#a272f6c1c9b24a6171865c855b231d560", null ]
 ];

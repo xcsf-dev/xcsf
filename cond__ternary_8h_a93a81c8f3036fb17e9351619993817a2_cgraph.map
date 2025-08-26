@@ -1,4 +1,5 @@
 <map id="cond_ternary_print" name="cond_ternary_print">
-<area shape="rect" id="node1" title="Prints a ternary condition." alt="" coords="5,5,135,32"/>
-<area shape="rect" id="node2" href="$cond__ternary_8c.html#adad1cd5fe2871af5f4a078bf8ceddb20" title="Returns a json formatted string representation of a ternary condition." alt="" coords="183,5,353,32"/>
+<area shape="rect" id="Node000001" title="Prints a ternary condition." alt="" coords="5,5,135,31"/>
+<area shape="rect" id="Node000002" href="$cond__ternary_8c.html#a158c159a7242779dd592729457d8b5d5" title="Returns a json formatted string representation of a ternary condition." alt="" coords="183,5,353,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,15,169,15,169,21,135,21"/>
 </map>

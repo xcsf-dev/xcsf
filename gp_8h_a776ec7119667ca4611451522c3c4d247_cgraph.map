@@ -1,6 +1,10 @@
 <map id="tree_print" name="tree_print">
-<area shape="rect" id="node1" title="Prints a GP tree." alt="" coords="5,5,81,32"/>
-<area shape="rect" id="node2" href="$gp_8c.html#ae500c8ca8754458d2830363563e35799" title="Returns a json formatted string representation of a GP tree." alt="" coords="129,5,248,32"/>
-<area shape="rect" id="node3" href="$gp_8c.html#a7d9e5de8f96b49e28beba7017673fb2a" title="Returns a json formatted string representation of a GP tree." alt="" coords="296,5,379,32"/>
-<area shape="rect" id="node4" href="$gp_8c.html#a1bd65ee588829ca31c406410a89bc3ee" title="Returns a string representation of a node function." alt="" coords="427,5,563,32"/>
+<area shape="rect" id="Node000001" title="Prints a GP tree." alt="" coords="5,29,81,55"/>
+<area shape="rect" id="Node000002" href="$gp_8c.html#a165275c764a6a128565ce26a9e64f331" title="Returns a json formatted string representation of a GP tree." alt="" coords="129,29,248,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,39,116,39,116,45,81,45"/>
+<area shape="rect" id="Node000003" href="$gp_8c.html#a7d9e5de8f96b49e28beba7017673fb2a" title="Returns a json formatted string representation of a GP tree." alt="" coords="296,29,379,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="248,39,282,39,282,45,248,45"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="312,31,307,21,310,11,320,5,337,3,358,6,366,15,363,18,355,11,337,8,322,10,314,15,313,20,317,28"/>
+<area shape="rect" id="Node000004" href="$gp_8c.html#a2ad670e4d0674aaf6348842f3e9c8f5b" title="Returns a string representation of a node function." alt="" coords="427,29,563,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="379,39,413,39,413,45,379,45"/>
 </map>

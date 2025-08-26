@@ -1,4 +1,5 @@
 <map id="cond_dgp_save" name="cond_dgp_save">
-<area shape="rect" id="node1" title="Writes a dynamical GP graph condition to a file." alt="" coords="5,5,119,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a617b755a80529d6d8db90ce873242b61" title="Writes DGP graph to a file." alt="" coords="167,5,256,32"/>
+<area shape="rect" id="Node000001" title="Writes a dynamical GP graph condition to a file." alt="" coords="5,5,119,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a617b755a80529d6d8db90ce873242b61" title="Writes DGP graph to a file." alt="" coords="167,5,256,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,15,153,15,153,21,119,21"/>
 </map>

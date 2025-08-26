@@ -1,5 +1,0 @@
-<map id="neural_layer_lstm_json_export" name="neural_layer_lstm_json_export">
-<area shape="rect" id="node1" title="Returns a json formatted string representation of an LSTM layer." alt="" coords="5,23,160,65"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="224,5,351,32"/>
-<area shape="rect" id="node3" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="208,56,367,83"/>
-</map>

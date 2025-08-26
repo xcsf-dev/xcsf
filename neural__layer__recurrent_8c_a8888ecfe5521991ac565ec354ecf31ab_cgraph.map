@@ -1,6 +1,10 @@
 <map id="mutate_functions" name="mutate_functions">
-<area shape="rect" id="node1" title="Mutates the activation function of a recurrent layer." alt="" coords="5,5,128,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="176,5,333,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="548,5,645,32"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="381,31,500,57"/>
+<area shape="rect" id="Node000001" title="Mutates the activation function of a recurrent layer." alt="" coords="5,5,128,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="176,5,333,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,15,162,15,162,21,128,21"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="548,5,645,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,15,534,15,534,21,333,21"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="381,31,500,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="334,26,368,31,367,36,333,31"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="500,31,534,25,535,31,501,36"/>
 </map>

@@ -1,7 +1,13 @@
 <map id="cl_init_copy" name="cl_init_copy">
-<area shape="rect" id="node1" title="Initialises and creates a copy of one classifier from another." alt="" coords="599,42,689,69"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="436,42,551,69"/>
-<area shape="rect" id="node3" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="233,5,388,47"/>
-<area shape="rect" id="node5" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="267,71,354,98"/>
-<area shape="rect" id="node4" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,13,185,39"/>
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one classifier from another." alt="" coords="599,42,689,67"/>
+<area shape="rect" id="Node000002" href="$xcsf_8c.html#a10d0342ac640d2cd32e9cb95d0cd3bbe" title="Stores the current population." alt="" coords="436,42,551,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="585,57,551,57,551,52,585,52"/>
+<area shape="rect" id="Node000003" href="$classEarlyStoppingCallback.html#af05216c46317631492921061caaa7b2b" title="Stores best XCSF population in memory." alt="" coords="233,5,388,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="422,46,388,40,388,35,423,41"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#a0d5d38e87da92827cee73290b030ff9f" title="Stores the current population in memory for later retrieval." alt="" coords="267,70,354,95"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="423,68,355,79,354,73,422,63"/>
+<area shape="rect" id="Node000004" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,13,185,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="220,28,185,28,185,23,220,23"/>
+<area shape="rect" id="Node000006" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="20,70,171,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="254,85,171,85,171,80,254,80"/>
 </map>

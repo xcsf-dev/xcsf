@@ -1,13 +1,23 @@
 <map id="layer_forward" name="layer_forward">
-<area shape="rect" id="node1" title="Forward propagates an input through the layer." alt="" coords="636,64,736,91"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="413,5,588,32"/>
-<area shape="rect" id="node3" href="$neural__layer__recurrent_8c.html#af0904dad2dc7cb2170c5b98aae6c0aae" title="Forward propagates a recurrent layer." alt="" coords="425,57,576,98"/>
-<area shape="rect" id="node4" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="440,123,561,149"/>
-<area shape="rect" id="node5" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="215,47,353,73"/>
-<area shape="rect" id="node7" href="$cond__neural_8c.html#a431867aa5e420b58fde321b23762987c" title="Generates a neural network that matches the current input." alt="" coords="217,97,351,124"/>
-<area shape="rect" id="node9" href="$pred__neural_8c.html#a620fbeb95758715776b84ee1628a637d" title="Forward propagates a neural network prediction with a provided input." alt="" coords="211,148,357,175"/>
-<area shape="rect" id="node10" href="$rule__neural_8c.html#a0adc732972d73bff35c7eac3f7cc243d" title=" " alt="" coords="203,199,365,225"/>
-<area shape="rect" id="node6" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="19,47,141,73"/>
-<area shape="rect" id="node8" href="$cond__neural_8c.html#abfc93f53d30caf9deccddb96705b632e" title="Generates a neural network that matches the current input." alt="" coords="15,97,145,124"/>
-<area shape="rect" id="node11" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,199,155,225"/>
+<area shape="rect" id="Node000001" title="Forward propagates an input through the layer." alt="" coords="636,63,736,88"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#af2c3a4a9e6dd75cd00083c38733bddb0" title="Forward propagates an LSTM layer." alt="" coords="413,5,588,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="634,61,587,46,546,33,547,28,589,41,635,56"/>
+<area shape="rect" id="Node000003" href="$neural__layer__recurrent_8c.html#af0904dad2dc7cb2170c5b98aae6c0aae" title="Forward propagates a recurrent layer." alt="" coords="425,55,576,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="622,78,576,78,576,73,622,73"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="440,120,561,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="635,95,589,110,547,122,546,117,587,105,634,90"/>
+<area shape="rect" id="Node000005" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="215,45,353,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="436,119,412,110,364,84,332,73,334,68,366,80,414,105,438,114"/>
+<area shape="rect" id="Node000007" href="$cond__neural_8c.html#a431867aa5e420b58fde321b23762987c" title="Generates a neural network that matches the current input." alt="" coords="217,95,351,120"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="426,127,351,118,352,113,426,121"/>
+<area shape="rect" id="Node000009" href="$pred__neural_8c.html#a620fbeb95758715776b84ee1628a637d" title="Forward propagates a neural network prediction with a provided input." alt="" coords="211,144,357,169"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="427,144,358,151,357,146,426,138"/>
+<area shape="rect" id="Node000010" href="$rule__neural_8c.html#a0adc732972d73bff35c7eac3f7cc243d" title=" " alt="" coords="203,193,365,219"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="455,153,366,185,330,196,329,191,364,179,453,148"/>
+<area shape="rect" id="Node000006" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="19,45,141,71"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="201,61,141,61,141,55,201,55"/>
+<area shape="rect" id="Node000008" href="$cond__neural_8c.html#abfc93f53d30caf9deccddb96705b632e" title="Generates a neural network that matches the current input." alt="" coords="15,95,145,120"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="203,110,145,110,145,105,203,105"/>
+<area shape="rect" id="Node000011" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,193,155,219"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="189,209,155,209,155,203,189,203"/>
 </map>

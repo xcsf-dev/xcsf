@@ -1,20 +1,37 @@
 <map id="param_json_import_action" name="param_json_import_action">
-<area shape="rect" id="node1" title="Sets the action parameters from a json formatted string." alt="" coords="5,199,180,226"/>
-<area shape="rect" id="node2" href="$action_8c.html#a39f808f6b04ccbc2a2c2a2857e5b845e" title="Sets the action parameters from a cJSON object." alt="" coords="228,170,403,197"/>
-<area shape="rect" id="node17" href="$action_8c.html#aa39e0957258c0608cff224da76500d62" title=" " alt="" coords="237,221,394,263"/>
-<area shape="rect" id="node3" href="$act__neural_8c.html#af2696c8b843a0a6a9c09df4b988df39a" title="Sets the neural network parameters from a cJSON object." alt="" coords="451,163,607,204"/>
-<area shape="rect" id="node4" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="677,94,788,121"/>
-<area shape="rect" id="node5" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="679,145,786,171"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html#a3b9aa19f760cc83a0a56abd6264e314e" title="Sets the layer parameters from a cJSON object." alt="" coords="655,195,811,222"/>
-<area shape="rect" id="node14" href="$neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="665,305,800,331"/>
-<area shape="rect" id="node7" href="$neural__layer__args_8c.html#af7388e196c27ab190bb7bb6848a7a456" title="Sets the layer activation from a cJSON object." alt="" coords="873,5,1029,47"/>
-<area shape="rect" id="node9" href="$neural__layer__args_8c.html#a511a92070d5a53700d9650c1705b96ab" title="Sets the layer evolutionary parameters from a cJSON object." alt="" coords="859,71,1043,98"/>
-<area shape="rect" id="node10" href="$neural__layer__args_8c.html#a22a018ccf2e332aafeaa450968b96ed1" title="Sets the layer input parameters from a cJSON object." alt="" coords="873,123,1029,164"/>
-<area shape="rect" id="node11" href="$neural__layer__args_8c.html#ab5d03fe4bb8549b5321c9bda9c514161" title="Sets the layer scaling parameters from a cJSON object." alt="" coords="873,188,1029,229"/>
-<area shape="rect" id="node12" href="$neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2" title="Sets the layer SGD parameters from a cJSON object." alt="" coords="859,254,1043,281"/>
-<area shape="rect" id="node13" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="889,305,1013,331"/>
-<area shape="rect" id="node8" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="1091,13,1253,39"/>
-<area shape="rect" id="node15" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="883,356,1018,397"/>
-<area shape="rect" id="node16" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1095,363,1249,390"/>
-<area shape="rect" id="node18" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="463,229,594,255"/>
+<area shape="rect" id="Node000001" title="Sets the action parameters from a json formatted string." alt="" coords="5,197,180,222"/>
+<area shape="rect" id="Node000002" href="$action_8c.html#aa4c80732c23959a06e307c26508488e2" title="Sets the action parameters from a cJSON object." alt="" coords="228,167,403,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,195,214,191,215,196,181,200"/>
+<area shape="rect" id="Node000017" href="$action_8c.html#aa39e0957258c0608cff224da76500d62" title=" " alt="" coords="237,217,394,257"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="181,218,223,223,223,228,180,223"/>
+<area shape="rect" id="Node000003" href="$act__neural_8c.html#a8f12dcda71da9c5c6751f19e8b3e3cd3" title="Sets the neural network parameters from a cJSON object." alt="" coords="451,160,607,200"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,177,437,177,437,183,403,183"/>
+<area shape="rect" id="Node000004" href="$neural__layer__args_8c.html#a477d2c5cf9da9413c6dba66b5d7f7aff" title="Frees memory used by a list of layer parameters and points to NULL." alt="" coords="677,93,788,118"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="576,157,654,127,675,120,677,125,656,132,578,162"/>
+<area shape="rect" id="Node000005" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="679,142,786,167"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="606,168,665,160,666,166,607,173"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html#aa75a852a1179d08e50341fc45ebc7435" title="Sets the layer parameters from a cJSON object." alt="" coords="655,191,811,217"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="607,186,641,191,641,196,606,192"/>
+<area shape="rect" id="Node000014" href="$neural__layer__args_8c.html#a492de2de029ff6124f8fe466ad6b0d80" title="Checks network layer arguments are valid." alt="" coords="665,298,800,323"/>
+<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="585,198,608,210,664,249,709,287,706,291,661,253,605,214,582,202"/>
+<area shape="rect" id="Node000007" href="$neural__layer__args_8c.html#af7388e196c27ab190bb7bb6848a7a456" title="Sets the layer activation from a cJSON object." alt="" coords="873,5,1029,45"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="790,189,809,177,821,162,828,148,832,118,837,87,844,71,857,55,862,51,865,55,861,59,849,74,842,88,837,119,833,149,825,165,812,181,793,194"/>
+<area shape="rect" id="Node000009" href="$neural__layer__args_8c.html#a511a92070d5a53700d9650c1705b96ab" title="Sets the layer evolutionary parameters from a cJSON object." alt="" coords="859,70,1043,95"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="787,189,809,177,824,160,832,142,840,124,857,106,869,99,871,103,860,110,845,127,837,144,829,163,812,181,789,194"/>
+<area shape="rect" id="Node000010" href="$neural__layer__args_8c.html#a22a018ccf2e332aafeaa450968b96ed1" title="Sets the layer input parameters from a cJSON object." alt="" coords="873,120,1029,160"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="776,189,868,161,869,167,778,194"/>
+<area shape="rect" id="Node000011" href="$neural__layer__args_8c.html#ab5d03fe4bb8549b5321c9bda9c514161" title="Sets the layer scaling parameters from a cJSON object." alt="" coords="873,184,1029,224"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="811,201,859,201,859,207,811,207"/>
+<area shape="rect" id="Node000012" href="$neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2" title="Sets the layer SGD parameters from a cJSON object." alt="" coords="859,249,1043,274"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="782,214,889,243,888,248,781,219"/>
+<area shape="rect" id="Node000013" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="889,298,1013,323"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="751,215,798,249,860,284,878,291,876,296,858,289,795,254,748,219"/>
+<area shape="rect" id="Node000008" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="1091,13,1253,38"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1029,23,1077,23,1077,28,1029,28"/>
+<area shape="rect" id="Node000015" href="$neural__layer__args_8c.html#a8e1a02c60d1cbe0baba8f2c6ff0b5266" title="Checks input layer arguments are valid." alt="" coords="883,348,1018,388"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="782,321,871,344,870,350,781,326"/>
+<area shape="rect" id="Node000016" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="1095,355,1249,381"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1018,365,1081,365,1081,371,1018,371"/>
+<area shape="rect" id="Node000018" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="463,225,594,250"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="395,235,450,235,450,240,395,240"/>
 </map>

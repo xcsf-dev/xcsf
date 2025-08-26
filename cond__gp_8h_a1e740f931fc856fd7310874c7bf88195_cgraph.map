@@ -1,12 +1,26 @@
 <map id="cond_gp_cover" name="cond_gp_cover">
-<area shape="rect" id="node1" title="Generates a GP tree that matches the current input." alt="" coords="5,56,116,83"/>
-<area shape="rect" id="node2" href="$cond__gp_8c.html#a9f417a6e9cdf49ef3ed1ad19be29b63d" title="Calculates whether a GP tree condition matches an input." alt="" coords="164,5,279,32"/>
-<area shape="rect" id="node5" href="$gp_8c.html#af0aebfb2cd45db848aa6ad20ff763c7e" title="Frees a GP tree." alt="" coords="185,56,258,83"/>
-<area shape="rect" id="node6" href="$gp_8c.html#affeb808d791121907611f01eb00de3ca" title="Creates a random GP tree." alt="" coords="183,107,259,133"/>
-<area shape="rect" id="node3" href="$gp_8c.html#a88f58058fc80e2e8c8735ed7843705b2" title="Evaluates a GP tree." alt="" coords="329,5,403,32"/>
-<area shape="rect" id="node4" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="484,5,541,32"/>
-<area shape="rect" id="node7" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="331,93,401,120"/>
-<area shape="rect" id="node10" href="$gp_8c.html#a3fd26d51462342ffd317e3cb3f1b9c2f" title="Grows a random GP tree of specified max length and depth." alt="" coords="327,144,405,171"/>
-<area shape="rect" id="node8" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="620,119,717,145"/>
-<area shape="rect" id="node9" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="453,119,572,145"/>
+<area shape="rect" id="Node000001" title="Generates a GP tree that matches the current input." alt="" coords="5,79,116,104"/>
+<area shape="rect" id="Node000002" href="$cond__gp_8c.html#a9f417a6e9cdf49ef3ed1ad19be29b63d" title="Calculates whether a GP tree condition matches an input." alt="" coords="164,29,279,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,76,165,56,167,61,103,81"/>
+<area shape="rect" id="Node000005" href="$gp_8c.html#af0aebfb2cd45db848aa6ad20ff763c7e" title="Frees a GP tree." alt="" coords="185,79,258,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="116,89,171,89,171,94,116,94"/>
+<area shape="rect" id="Node000006" href="$gp_8c.html#affeb808d791121907611f01eb00de3ca" title="Creates a random GP tree." alt="" coords="183,128,259,153"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="103,101,171,123,169,128,102,107"/>
+<area shape="rect" id="Node000003" href="$gp_8c.html#a88f58058fc80e2e8c8735ed7843705b2" title="Evaluates a GP tree." alt="" coords="329,29,403,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,39,315,39,315,45,279,45"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="341,30,336,21,339,11,349,5,366,3,386,6,395,15,391,18,383,11,366,8,351,10,343,15,342,20,346,28"/>
+<area shape="rect" id="Node000004" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="484,29,541,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="404,39,470,39,470,45,404,45"/>
+<area shape="rect" id="Node000007" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="331,111,401,136"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="259,134,316,127,317,132,260,139"/>
+<area shape="rect" id="Node000010" href="$gp_8c.html#a3fd26d51462342ffd317e3cb3f1b9c2f" title="Grows a random GP tree of specified max length and depth." alt="" coords="327,184,405,209"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="256,151,321,176,319,181,254,156"/>
+<area shape="rect" id="Node000008" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="620,148,717,173"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="402,121,480,123,572,133,614,142,613,147,572,138,480,129,402,126"/>
+<area shape="rect" id="Node000009" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="453,148,572,173"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="402,130,450,142,449,147,401,135"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="572,158,606,158,606,163,572,163"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="406,194,483,192,572,183,613,174,614,180,572,189,483,198,406,200"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="405,185,447,174,448,179,406,190"/>
+<area shape="poly" id="edge14_Node000010_Node000010" title=" " alt="" coords="341,185,336,176,339,166,349,160,366,157,386,161,395,169,391,173,383,166,366,163,351,165,343,169,342,175,346,183"/>
 </map>

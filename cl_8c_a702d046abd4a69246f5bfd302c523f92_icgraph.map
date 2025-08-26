@@ -1,23 +1,54 @@
 <map id="cl_general" name="cl_general">
-<area shape="rect" id="node1" title="Returns whether classifier c1 is more general than c2." alt="" coords="1189,157,1271,184"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" title="Performs set subsumption." alt="" coords="1011,132,1141,159"/>
-<area shape="rect" id="node19" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="1028,183,1124,209"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a27aedca23d7c37f4ca0f44845e9805c7" title="Provides reinforcement to the set and performs set subsumption." alt="" coords="755,132,851,159"/>
-<area shape="rect" id="node4" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="585,107,687,133"/>
-<area shape="rect" id="node11" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="565,208,707,235"/>
-<area shape="rect" id="node5" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="389,5,487,32"/>
-<area shape="rect" id="node6" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="401,56,475,83"/>
-<area shape="rect" id="node8" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="395,107,481,133"/>
-<area shape="rect" id="node7" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="193,31,262,57"/>
-<area shape="rect" id="node9" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="185,81,270,108"/>
-<area shape="rect" id="node10" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="25,107,76,133"/>
-<area shape="rect" id="node12" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="373,183,503,209"/>
-<area shape="rect" id="node14" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="359,335,517,361"/>
-<area shape="rect" id="node16" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="362,233,514,260"/>
-<area shape="rect" id="node18" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="144,284,311,311"/>
-<area shape="rect" id="node13" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="193,183,262,209"/>
-<area shape="rect" id="node15" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="179,335,276,361"/>
-<area shape="rect" id="node17" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="5,259,96,285"/>
-<area shape="rect" id="node20" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="899,183,963,209"/>
-<area shape="rect" id="node21" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="783,183,822,209"/>
+<area shape="rect" id="Node000001" title="Returns whether classifier c1 is more general than c2." alt="" coords="1395,166,1476,192"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a4777af2f15c4a7b5abeecb35e7e8b6b3" title="Performs set subsumption." alt="" coords="1216,141,1347,166"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1381,173,1347,167,1347,162,1382,168"/>
+<area shape="rect" id="Node000020" href="$ea_8c.html#ac3134366cd64189d6386a3cf014987b7" title="Performs evolutionary algorithm subsumption." alt="" coords="1233,190,1329,216"/>
+<area shape="poly" id="edge26_Node000001_Node000020" title=" " alt="" coords="1381,190,1330,198,1329,193,1381,185"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a27aedca23d7c37f4ca0f44845e9805c7" title="Provides reinforcement to the set and performs set subsumption." alt="" coords="960,140,1056,165"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1202,156,1056,155,1056,150,1202,151"/>
+<area shape="rect" id="Node000004" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="790,102,893,128"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="946,141,893,129,894,124,947,136"/>
+<area shape="rect" id="Node000012" href="$xcs__supervised_8c.html#a8e376723db7b6786507d5ea6add9f650" title="Executes a single XCSF trial." alt="" coords="771,229,912,254"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="973,174,867,231,865,227,970,169"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#af8970ba52403714439fda0d4383a390b" title="Creates the action set using the previously selected action, updates the classifiers,..." alt="" coords="204,9,301,34"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="814,95,772,66,722,42,665,27,606,17,489,9,383,11,302,18,301,13,383,6,489,3,607,12,666,22,724,37,775,61,817,91"/>
+<area shape="rect" id="Node000007" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="606,52,681,77"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="777,101,680,76,682,71,778,96"/>
+<area shape="rect" id="Node000009" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="601,102,686,128"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="776,118,686,118,686,112,776,112"/>
+<area shape="rect" id="Node000006" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,180,156,205"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="224,45,206,61,141,127,94,181,90,178,137,124,202,57,221,41"/>
+<area shape="rect" id="Node000008" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="218,72,287,97"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="592,70,288,85,287,80,592,64"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="221,107,103,182,101,177,219,102"/>
+<area shape="rect" id="Node000010" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="390,102,475,128"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="587,118,476,118,476,112,587,112"/>
+<area shape="rect" id="Node000011" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="227,146,278,172"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="377,131,279,156,278,150,376,126"/>
+<area shape="rect" id="Node000013" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="578,204,709,229"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="757,234,709,227,710,222,758,228"/>
+<area shape="rect" id="Node000015" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="564,354,723,380"/>
+<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="818,266,776,301,724,337,683,357,681,352,721,333,773,297,815,262"/>
+<area shape="rect" id="Node000017" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="567,253,719,278"/>
+<area shape="poly" id="edge19_Node000012_Node000017" title=" " alt="" coords="758,255,720,259,719,254,757,249"/>
+<area shape="rect" id="Node000019" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="349,305,516,330"/>
+<area shape="poly" id="edge25_Node000012_Node000019" title=" " alt="" coords="804,263,766,280,723,294,616,312,517,319,516,314,616,307,722,288,764,275,802,258"/>
+<area shape="poly" id="edge15_Node000013_Node000011" title=" " alt="" coords="565,204,516,195,278,164,279,159,516,190,566,198"/>
+<area shape="rect" id="Node000014" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="398,204,467,229"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="564,219,467,219,467,214,564,214"/>
+<area shape="rect" id="Node000016" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="384,354,481,380"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="550,370,482,370,482,364,550,364"/>
+<area shape="poly" id="edge18_Node000016_Node000006" title=" " alt="" coords="372,353,349,346,274,325,242,314,203,295,170,273,139,249,93,207,96,203,142,245,173,269,205,290,244,309,275,320,350,340,374,348"/>
+<area shape="poly" id="edge20_Node000017_Node000014" title=" " alt="" coords="574,252,467,227,468,222,576,247"/>
+<area shape="rect" id="Node000018" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="207,254,298,280"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="554,269,298,270,298,264,554,263"/>
+<area shape="poly" id="edge23_Node000017_Node000019" title=" " alt="" coords="579,284,485,308,484,302,578,279"/>
+<area shape="poly" id="edge22_Node000018_Node000006" title=" " alt="" coords="209,251,110,207,112,203,211,246"/>
+<area shape="poly" id="edge24_Node000019_Node000018" title=" " alt="" coords="373,304,297,282,299,277,374,299"/>
+<area shape="rect" id="Node000021" href="$ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" title="Adds offspring to the population." alt="" coords="1104,190,1168,216"/>
+<area shape="poly" id="edge27_Node000020_Node000021" title=" " alt="" coords="1219,206,1168,206,1168,200,1219,200"/>
+<area shape="rect" id="Node000022" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="989,190,1027,216"/>
+<area shape="poly" id="edge28_Node000021_Node000022" title=" " alt="" coords="1090,206,1028,206,1028,200,1090,200"/>
+<area shape="poly" id="edge29_Node000022_Node000004" title=" " alt="" coords="975,189,865,130,868,126,978,185"/>
+<area shape="poly" id="edge30_Node000022_Node000012" title=" " alt="" coords="976,213,897,232,896,226,975,208"/>
 </map>

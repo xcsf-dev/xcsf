@@ -1,7 +1,11 @@
 <map id="gp.h" name="gp.h">
-<area shape="rect" id="node1" title="An implementation of GP trees based upon TinyGP." alt="" coords="121,5,167,32"/>
-<area shape="rect" id="node2" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="59,80,141,107"/>
-<area shape="rect" id="node5" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="166,80,213,107"/>
-<area shape="rect" id="node3" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="5,155,88,181"/>
-<area shape="rect" id="node4" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="112,155,197,181"/>
+<area shape="rect" id="Node000001" title="An implementation of GP trees based upon TinyGP." alt="" coords="121,5,167,31"/>
+<area shape="rect" id="Node000002" href="$cond__gp_8h.html" title="Tree GP condition functions." alt="" coords="59,79,141,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,44,109,80,105,77,127,41"/>
+<area shape="rect" id="Node000005" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="166,79,213,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,41,184,77,180,80,157,44"/>
+<area shape="rect" id="Node000003" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="5,152,88,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,117,57,153,53,150,81,113"/>
+<area shape="rect" id="Node000004" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="112,152,197,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="119,113,148,150,144,154,115,117"/>
 </map>

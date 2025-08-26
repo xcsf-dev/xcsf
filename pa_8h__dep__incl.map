@@ -1,8 +1,13 @@
 <map id="pa.h" name="pa.h">
-<area shape="rect" id="node1" title="Prediction array functions." alt="" coords="173,5,219,32"/>
-<area shape="rect" id="node2" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="5,80,67,107"/>
-<area shape="rect" id="node3" href="$pa_8c.html" title="Prediction array functions." alt="" coords="91,80,138,107"/>
-<area shape="rect" id="node4" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="162,80,230,107"/>
-<area shape="rect" id="node5" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="254,80,378,107"/>
-<area shape="rect" id="node6" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="403,80,461,107"/>
+<area shape="rect" id="Node000001" title="Prediction array functions." alt="" coords="173,5,219,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title="Main function for stand&#45;alone binary execution." alt="" coords="5,79,67,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,38,63,81,61,76,159,33"/>
+<area shape="rect" id="Node000003" href="$pa_8c.html" title="Prediction array functions." alt="" coords="91,79,138,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,42,130,80,126,76,171,38"/>
+<area shape="rect" id="Node000004" href="$xcs__rl_8c.html" title="Reinforcement learning functions." alt="" coords="162,79,230,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,44,199,79,193,79,193,44"/>
+<area shape="rect" id="Node000005" href="$xcs__supervised_8c.html" title="Supervised regression learning functions." alt="" coords="254,79,378,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="229,35,298,76,295,81,226,40"/>
+<area shape="rect" id="Node000006" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="403,79,461,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="233,28,403,79,402,84,232,33"/>
 </map>

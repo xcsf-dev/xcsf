@@ -1,12 +1,22 @@
 <map id="param_set_loss_func" name="param_set_loss_func">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,152,184"/>
-<area shape="rect" id="node2" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="200,157,303,184"/>
-<area shape="rect" id="node3" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="351,5,463,32"/>
-<area shape="rect" id="node4" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="364,56,449,83"/>
-<area shape="rect" id="node5" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="371,107,442,133"/>
-<area shape="rect" id="node6" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="367,157,446,184"/>
-<area shape="rect" id="node7" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="511,233,589,260"/>
-<area shape="rect" id="node8" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="361,309,453,336"/>
-<area shape="rect" id="node10" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="365,259,448,285"/>
-<area shape="rect" id="node9" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="517,309,583,336"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,153,152,179"/>
+<area shape="rect" id="Node000002" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="200,153,303,179"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,163,187,163,187,169,152,169"/>
+<area shape="rect" id="Node000003" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="351,5,463,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,152,293,99,319,68,349,40,356,35,359,40,352,44,323,71,297,102,262,155"/>
+<area shape="rect" id="Node000004" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="364,55,449,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="265,151,302,121,349,89,359,84,362,88,352,94,306,125,269,155"/>
+<area shape="rect" id="Node000005" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="371,104,442,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="291,151,357,130,358,135,293,156"/>
+<area shape="rect" id="Node000006" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="367,153,446,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="303,163,353,163,353,169,303,169"/>
+<area shape="rect" id="Node000007" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="511,229,589,255"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="303,176,498,226,496,231,302,181"/>
+<area shape="rect" id="Node000008" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="361,304,453,329"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="262,177,297,231,322,263,352,291,359,295,356,299,349,295,319,266,292,234,257,180"/>
+<area shape="rect" id="Node000010" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="365,255,448,280"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="271,177,352,233,372,245,369,250,349,238,268,181"/>
+<area shape="rect" id="Node000009" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="517,304,583,329"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="453,314,503,314,503,319,453,319"/>
+<area shape="poly" id="edge10_Node000010_Node000007" title=" " alt="" coords="448,257,496,249,497,254,449,263"/>
 </map>

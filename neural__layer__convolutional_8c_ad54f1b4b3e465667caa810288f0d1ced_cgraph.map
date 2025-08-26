@@ -1,6 +1,9 @@
 <map id="neural_layer_convolutional_mutate_filter" name="neural_layer_convolutional_mutate_filter">
-<area shape="rect" id="node1" title="Returns the number of kernel filters to add or remove from a layer." alt="" coords="5,49,180,90"/>
-<area shape="rect" id="node2" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="248,5,305,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="230,56,323,83"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="228,107,325,133"/>
+<area shape="rect" id="Node000001" title="Returns the number of kernel filters to add or remove from a layer." alt="" coords="5,47,180,87"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="248,5,305,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,45,234,26,236,32,168,50"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="230,55,323,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,65,216,65,216,70,180,70"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="228,104,325,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,85,216,98,215,103,167,90"/>
 </map>

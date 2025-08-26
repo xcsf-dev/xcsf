@@ -1,6 +1,11 @@
 <map id="graph_mutate_connectivity" name="graph_mutate_connectivity">
-<area shape="rect" id="node1" title="Mutates the connectivity of a DGP graph." alt="" coords="5,5,184,32"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="581,31,679,57"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="232,31,367,57"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="415,81,533,108"/>
+<area shape="rect" id="Node000001" title="Mutates the connectivity of a DGP graph." alt="" coords="5,5,184,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="581,31,679,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,11,347,10,441,14,534,22,568,27,567,33,533,27,440,19,347,16,184,17"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="232,31,367,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,26,218,31,218,36,184,32"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="367,41,567,41,567,46,367,46"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="415,81,533,107"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="345,54,417,75,415,80,343,59"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="513,79,576,58,578,63,515,84"/>
 </map>

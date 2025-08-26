@@ -1,7 +1,0 @@
-<map id="graph_args_json_import" name="graph_args_json_import">
-<area shape="rect" id="node1" title="Sets the DGP graph parameters from a cJSON object." alt="" coords="5,97,165,123"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="214,5,381,47"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="213,71,381,98"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="215,122,380,149"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="229,173,365,199"/>
-</map>

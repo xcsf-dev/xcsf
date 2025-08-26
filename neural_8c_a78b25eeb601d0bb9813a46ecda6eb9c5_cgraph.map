@@ -1,0 +1,5 @@
+<map id="neural_json_export" name="neural_json_export">
+<area shape="rect" id="Node000001" title="Returns a json formatted string representation of a neural network." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#a89cf8ff22317cfec17d83e8df103ea09" title="Returns a json formatted string representation of a layer." alt="" coords="184,5,308,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,15,170,15,170,21,136,21"/>
+</map>

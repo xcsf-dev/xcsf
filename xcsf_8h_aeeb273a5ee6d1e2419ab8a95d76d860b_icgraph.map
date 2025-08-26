@@ -1,5 +1,7 @@
 <map id="xcsf_free" name="xcsf_free">
-<area shape="rect" id="node1" title="Frees XCSF population sets." alt="" coords="123,31,199,57"/>
-<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,32"/>
-<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,56,65,83"/>
+<area shape="rect" id="Node000001" title="Frees XCSF population sets." alt="" coords="123,31,199,56"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,35,74,28,75,23,110,30"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,55,65,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,56,66,65,65,60,109,51"/>
 </map>

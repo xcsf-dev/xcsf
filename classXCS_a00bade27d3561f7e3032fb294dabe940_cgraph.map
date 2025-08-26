@@ -1,6 +1,9 @@
 <map id="XCS::get_pset_mean_cond_size" name="XCS::get_pset_mean_cond_size">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,47"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a858e99d88d35cdc49b60788ca90f5b56" title="Calculates the mean condition size of classifiers in the set." alt="" coords="200,13,355,39"/>
-<area shape="rect" id="node3" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="403,13,501,39"/>
-<area shape="rect" id="node4" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="549,13,631,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,152,45"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a858e99d88d35cdc49b60788ca90f5b56" title="Calculates the mean condition size of classifiers in the set." alt="" coords="200,13,355,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,23,186,23,186,28,152,28"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="403,13,501,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="355,23,389,23,389,28,355,28"/>
+<area shape="rect" id="Node000004" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="549,13,631,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="501,23,536,23,536,28,501,28"/>
 </map>

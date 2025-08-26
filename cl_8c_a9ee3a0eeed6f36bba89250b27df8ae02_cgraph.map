@@ -1,7 +1,11 @@
 <map id="cl_copy" name="cl_copy">
-<area shape="rect" id="node1" title="Copies condition, action, and prediction structures." alt="" coords="5,81,72,108"/>
-<area shape="rect" id="node2" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="125,5,200,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="120,56,205,83"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="121,107,204,133"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="127,157,198,184"/>
+<area shape="rect" id="Node000001" title="Copies condition, action, and prediction structures." alt="" coords="5,80,72,105"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a319e5909d871e8146c4cbc66626ca5f3" title="Copies the action from one classifier to another." alt="" coords="125,5,200,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,78,119,40,126,35,128,40,121,44,61,82"/>
+<area shape="rect" id="Node000003" href="$condition_8h.html#aab327f8188ff446498294b76164f2d25" title="Copies the condition from one classifier to another." alt="" coords="120,55,205,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="72,83,106,76,107,81,73,88"/>
+<area shape="rect" id="Node000004" href="$prediction_8h.html#a8657fd08bb09fdf57a6d91db71f1b447" title="Copies the prediction from one classifier to another." alt="" coords="121,104,204,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="73,96,108,103,107,109,72,102"/>
+<area shape="rect" id="Node000005" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="127,153,198,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="63,103,130,144,127,148,60,108"/>
 </map>

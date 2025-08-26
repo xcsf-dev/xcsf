@@ -1,4 +1,7 @@
 <map id="xcsf_ae_to_classifier" name="xcsf_ae_to_classifier">
-<area shape="rect" id="node1" title="Switches from autoencoding to classification." alt="" coords="203,5,348,32"/>
-<area shape="rect" id="node2" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="Node000001" title="Switches from autoencoding to classification." alt="" coords="401,5,547,31"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="204,5,353,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="387,21,354,21,354,15,387,15"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,21,157,21,157,15,190,15"/>
 </map>

@@ -1,13 +1,29 @@
 <map id="cond_dgp_mutate" name="cond_dgp_mutate">
-<area shape="rect" id="node1" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="5,118,131,144"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="179,118,280,144"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a9f7258ad6f516679d0f6f42cc132e786" title="Mutates the connectivity of a DGP graph." alt="" coords="328,30,507,56"/>
-<area shape="rect" id="node7" href="$dgp_8c.html#ac8a2a3639d6abed0b0ff6d86a11b2bf8" title="Mutates the number of update cycles performed by a DGP graph." alt="" coords="344,194,491,220"/>
-<area shape="rect" id="node8" href="$dgp_8c.html#a97de370d641fe9c28c2d7cc97e1f4511" title="Mutates the node functions within a DGP graph." alt="" coords="555,92,716,119"/>
-<area shape="rect" id="node9" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="592,156,679,183"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="931,55,1028,82"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="568,30,703,56"/>
-<area shape="rect" id="node6" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="764,106,883,132"/>
-<area shape="rect" id="node10" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="795,258,852,284"/>
-<area shape="rect" id="node11" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="777,207,870,234"/>
+<area shape="rect" id="Node000001" title="Mutates a dynamical GP graph condition with the self&#45;adaptive rates." alt="" coords="5,130,131,155"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#af71be7faf77196a067d8e69ac1493ee2" title="Mutates a specified DGP graph." alt="" coords="179,130,280,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,140,165,140,165,145,131,145"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a9f7258ad6f516679d0f6f42cc132e786" title="Mutates the connectivity of a DGP graph." alt="" coords="328,29,507,54"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,127,380,58,382,63,255,132"/>
+<area shape="rect" id="Node000007" href="$dgp_8c.html#ac8a2a3639d6abed0b0ff6d86a11b2bf8" title="Mutates the number of update cycles performed by a DGP graph." alt="" coords="344,206,491,231"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="258,153,329,184,367,199,365,204,327,189,256,158"/>
+<area shape="rect" id="Node000008" href="$dgp_8c.html#a97de370d641fe9c28c2d7cc97e1f4511" title="Mutates the node functions within a DGP graph." alt="" coords="555,105,716,130"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="280,137,541,120,541,126,280,142"/>
+<area shape="rect" id="Node000009" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="592,167,679,193"/>
+<area shape="poly" id="edge12_Node000002_Node000009" title=" " alt="" coords="280,144,578,172,578,177,280,150"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="931,66,1028,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="474,26,554,13,647,5,721,4,793,12,883,33,944,57,942,62,882,38,792,17,720,9,648,11,555,19,474,31"/>
+<area shape="rect" id="Node000005" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="568,29,703,54"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="507,39,554,39,554,44,507,44"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="703,41,789,47,883,57,918,63,917,68,882,63,788,53,702,47"/>
+<area shape="rect" id="Node000006" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="764,117,883,142"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="665,52,784,108,781,113,662,56"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="863,114,925,93,927,98,864,119"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="716,106,917,83,917,88,717,111"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="717,120,751,122,750,127,716,125"/>
+<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="679,180,774,177,829,168,882,152,923,128,955,99,959,103,926,132,884,157,830,173,775,182,679,185"/>
+<area shape="poly" id="edge16_Node000009_Node000006" title=" " alt="" coords="678,166,762,143,763,148,679,171"/>
+<area shape="rect" id="Node000010" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="795,267,852,293"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="657,190,706,220,765,254,783,262,781,267,763,258,703,225,655,195"/>
+<area shape="rect" id="Node000011" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="777,218,870,243"/>
+<area shape="poly" id="edge14_Node000009_Node000011" title=" " alt="" coords="679,189,764,212,762,217,678,194"/>
 </map>

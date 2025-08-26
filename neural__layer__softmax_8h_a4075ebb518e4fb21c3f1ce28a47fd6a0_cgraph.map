@@ -1,0 +1,11 @@
+<map id="neural_layer_softmax_copy" name="neural_layer_softmax_copy">
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="5,31,187,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="253,5,355,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,30,239,23,239,29,187,35"/>
+<area shape="rect" id="Node000003" href="$neural__layer__softmax_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a softmax layer." alt="" coords="235,55,373,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,51,221,55,221,60,186,56"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="421,55,560,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="374,65,407,65,407,70,374,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="608,55,691,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="560,65,594,65,594,70,560,70"/>
+</map>

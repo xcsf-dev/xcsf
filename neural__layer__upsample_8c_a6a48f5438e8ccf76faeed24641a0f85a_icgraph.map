@@ -1,5 +1,7 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by an upsampling layer." alt="" coords="237,35,360,61"/>
-<area shape="rect" id="node2" href="$neural__layer__upsample_8c.html#a4b57e2faa924a34426421ee74dc7e854" title="Free memory used by an upsampling layer." alt="" coords="5,5,189,32"/>
-<area shape="rect" id="node3" href="$neural__layer__upsample_8c.html#a0bb6959136d4a1c70fa3ec778a8a8cca" title="Resizes an upsampling layer if the previous layer has changed size." alt="" coords="20,57,175,98"/>
+<area shape="rect" id="Node000001" title="Free memory used by an upsampling layer." alt="" coords="237,35,360,60"/>
+<area shape="rect" id="Node000002" href="$neural__layer__upsample_8c.html#a4b57e2faa924a34426421ee74dc7e854" title="Free memory used by an upsampling layer." alt="" coords="5,5,189,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,39,184,33,185,28,224,34"/>
+<area shape="rect" id="Node000003" href="$neural__layer__upsample_8c.html#a0bb6959136d4a1c70fa3ec778a8a8cca" title="Resizes an upsampling layer if the previous layer has changed size." alt="" coords="20,55,175,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,60,175,67,174,62,223,55"/>
 </map>

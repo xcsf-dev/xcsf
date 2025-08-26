@@ -1,5 +1,8 @@
 <map id="graph_mutate_functions" name="graph_mutate_functions">
-<area shape="rect" id="node1" title="Mutates the node functions within a DGP graph." alt="" coords="5,5,167,32"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="381,5,479,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="215,31,333,57"/>
+<area shape="rect" id="Node000001" title="Mutates the node functions within a DGP graph." alt="" coords="5,5,167,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="381,5,479,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,15,367,15,367,21,167,21"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="215,31,333,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,26,201,31,201,36,167,32"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="333,31,367,25,368,31,334,36"/>
 </map>

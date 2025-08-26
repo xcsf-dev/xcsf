@@ -1,19 +1,52 @@
 <map id="neural_layer_connected_mutate" name="neural_layer_connected_mutate">
-<area shape="rect" id="node1" title="Mutates a connected layer." alt="" coords="5,325,164,366"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="234,137,365,164"/>
-<area shape="rect" id="node9" href="$neural__layer_8c.html#aa2cdee32220a13c467c9ae5d4982332d" title="Ensures that each neuron is connected to at least one input and each input is connected to at least o..." alt="" coords="234,409,365,450"/>
-<area shape="rect" id="node11" href="$neural__layer_8c.html#a0540e1d6748c9b53c1114d869147340f" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="212,205,387,232"/>
-<area shape="rect" id="node12" href="$neural__layer_8c.html#ae0694e66ecd389f10d1d3857b699a561" title="Mutates the gradient descent rate of a neural layer." alt="" coords="238,357,361,384"/>
-<area shape="rect" id="node14" href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="221,525,378,552"/>
-<area shape="rect" id="node15" href="$neural__layer_8c.html#a35e1133cd8863d674d0506d963a93f08" title="Returns the number of neurons to add or remove from a layer." alt="" coords="224,256,375,283"/>
-<area shape="rect" id="node16" href="$neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="225,307,374,333"/>
-<area shape="rect" id="node17" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="256,475,343,501"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Recalculates the number of active connections within a layer." alt="" coords="437,5,574,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="436,107,575,133"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="435,56,576,83"/>
-<area shape="rect" id="node7" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="459,309,552,336"/>
-<area shape="rect" id="node8" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="624,335,721,361"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="631,81,714,108"/>
-<area shape="rect" id="node10" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="446,473,565,500"/>
-<area shape="rect" id="node13" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="477,360,534,387"/>
+<area shape="rect" id="Node000001" title="Mutates a connected layer." alt="" coords="5,321,164,361"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="234,132,365,157"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,319,144,257,175,222,210,189,254,161,257,166,214,193,179,225,148,261,102,322"/>
+<area shape="rect" id="Node000009" href="$neural__layer_8c.html#aa2cdee32220a13c467c9ae5d4982332d" title="Ensures that each neuron is connected to at least one input and each input is connected to at least o..." alt="" coords="234,402,365,442"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="138,358,213,388,232,395,230,400,211,392,136,363"/>
+<area shape="rect" id="Node000011" href="$neural__layer_8c.html#a0540e1d6748c9b53c1114d869147340f" title="Mutates a layer&#39;s connectivity by zeroing weights." alt="" coords="212,204,387,229"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="104,318,151,278,211,238,226,232,228,236,213,243,154,282,108,322"/>
+<area shape="rect" id="Node000012" href="$neural__layer_8c.html#ae0694e66ecd389f10d1d3857b699a561" title="Mutates the gradient descent rate of a neural layer." alt="" coords="238,352,361,377"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="165,347,224,354,224,359,164,352"/>
+<area shape="rect" id="Node000014" href="$neural__layer_8c.html#a50025a1c69fa89d1ee28171be85d8f7a" title="Mutates a layer&#39;s activation function by random selection." alt="" coords="221,516,378,541"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="98,359,142,430,175,469,214,502,223,508,221,513,210,507,171,473,137,433,94,362"/>
+<area shape="rect" id="Node000015" href="$neural__layer_8c.html#a35e1133cd8863d674d0506d963a93f08" title="Returns the number of neurons to add or remove from a layer." alt="" coords="224,253,375,279"/>
+<area shape="poly" id="edge22_Node000001_Node000015" title=" " alt="" coords="131,318,211,287,235,280,236,285,213,293,133,323"/>
+<area shape="rect" id="Node000016" href="$neural__layer_8c.html#af6edb9466e46b6cd7bc1e8556e86d8ed" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="225,303,374,328"/>
+<area shape="poly" id="edge26_Node000001_Node000016" title=" " alt="" coords="164,329,211,323,211,328,165,334"/>
+<area shape="rect" id="Node000017" href="$sam_8c.html#a8dfbd425ab3513d47726620e94fc861c" title="Self&#45;adapts mutation rates." alt="" coords="256,467,343,492"/>
+<area shape="poly" id="edge29_Node000001_Node000017" title=" " alt="" coords="105,359,151,406,181,430,213,452,244,465,242,470,211,456,178,435,148,410,101,363"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Recalculates the number of active connections within a layer." alt="" coords="437,5,574,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="312,130,363,87,433,40,446,33,449,38,436,44,367,91,316,134"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="436,104,575,129"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,133,422,125,423,131,365,138"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="435,55,576,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="330,129,434,89,452,82,454,87,436,94,332,134"/>
+<area shape="rect" id="Node000007" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="459,307,552,332"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="331,155,359,170,388,189,445,243,488,294,484,297,441,247,385,193,357,175,328,160"/>
+<area shape="rect" id="Node000008" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="624,331,721,356"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="365,150,414,159,469,174,525,195,577,224,604,245,626,270,660,317,655,320,622,273,600,249,575,228,523,200,468,179,413,165,364,155"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="631,80,714,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="575,104,618,98,618,103,575,109"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="576,75,618,82,617,87,576,81"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="363,399,385,388,399,376,409,365,418,353,433,341,445,335,447,340,436,346,422,357,413,368,403,380,388,392,365,404"/>
+<area shape="rect" id="Node000010" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="446,459,565,484"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="366,435,439,453,438,458,364,440"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="538,456,574,436,616,400,650,365,654,369,620,404,578,440,540,461"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="357,227,388,238,437,266,479,296,476,300,435,271,386,243,355,232"/>
+<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="388,217,481,230,530,243,577,261,619,288,652,318,649,322,616,292,575,266,529,248,480,236,387,222"/>
+<area shape="poly" id="edge18_Node000012_Node000007" title=" " alt="" coords="357,349,445,330,446,335,358,355"/>
+<area shape="rect" id="Node000013" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="477,356,534,381"/>
+<area shape="poly" id="edge17_Node000012_Node000013" title=" " alt="" coords="361,363,463,365,463,371,361,369"/>
+<area shape="poly" id="edge20_Node000014_Node000008" title=" " alt="" coords="378,534,426,534,477,529,528,516,575,494,606,467,630,434,648,399,661,368,666,370,653,401,635,436,610,471,577,499,529,522,478,534,426,540,378,540"/>
+<area shape="poly" id="edge21_Node000014_Node000010" title=" " alt="" coords="346,513,386,502,445,485,447,490,387,507,347,518"/>
+<area shape="poly" id="edge24_Node000015_Node000007" title=" " alt="" coords="350,276,446,301,445,307,349,281"/>
+<area shape="poly" id="edge25_Node000015_Node000008" title=" " alt="" coords="375,263,472,271,525,279,577,291,611,305,642,321,639,326,609,310,575,297,524,284,472,276,375,269"/>
+<area shape="poly" id="edge23_Node000015_Node000013" title=" " alt="" coords="364,276,388,288,404,301,413,315,422,328,436,341,465,355,463,360,433,346,418,332,409,318,400,305,385,292,361,281"/>
+<area shape="poly" id="edge28_Node000016_Node000007" title=" " alt="" coords="374,314,445,316,445,321,374,319"/>
+<area shape="poly" id="edge27_Node000016_Node000013" title=" " alt="" coords="350,326,464,355,462,361,349,331"/>
+<area shape="poly" id="edge31_Node000017_Node000007" title=" " alt="" coords="342,472,365,465,385,452,396,439,403,426,408,399,414,370,421,356,433,341,445,333,448,337,436,345,425,359,419,372,414,400,408,428,401,442,388,456,367,469,344,477"/>
+<area shape="poly" id="edge32_Node000017_Node000008" title=" " alt="" coords="342,465,386,451,482,425,575,392,637,360,639,365,577,396,483,430,387,457,343,470"/>
+<area shape="poly" id="edge33_Node000017_Node000010" title=" " alt="" coords="343,475,432,471,432,477,343,480"/>
+<area shape="poly" id="edge30_Node000017_Node000013" title=" " alt="" coords="342,469,364,462,385,452,400,439,409,427,418,413,433,399,463,381,466,386,436,403,422,416,413,430,404,443,388,456,366,467,344,474"/>
 </map>

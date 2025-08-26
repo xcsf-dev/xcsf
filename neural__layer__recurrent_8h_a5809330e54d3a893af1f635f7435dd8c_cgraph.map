@@ -1,0 +1,13 @@
+<map id="neural_layer_recurrent_copy" name="neural_layer_recurrent_copy">
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="5,55,191,80"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#ab7d35f63fa7bc33a3a56ab41da5fc16c" title="Creates and returns a copy of a specified layer." alt="" coords="265,5,351,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,52,252,28,253,34,153,57"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="257,55,359,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,65,243,65,243,70,191,70"/>
+<area shape="rect" id="Node000004" href="$neural__layer__recurrent_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a recurrent layer." alt="" coords="239,104,377,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,77,241,98,239,103,152,83"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="425,104,564,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="378,114,411,114,411,119,378,119"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="612,104,695,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="564,114,598,114,598,119,564,119"/>
+</map>

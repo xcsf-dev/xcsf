@@ -1,40 +1,134 @@
 <map id="neural_layer_args.h" name="neural_layer_args.h">
-<area shape="rect" id="node1" title="Functions operating on neural network arguments/constants." alt="" coords="1378,5,1513,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="1394,80,1497,107"/>
-<area shape="rect" id="node3" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="765,155,859,181"/>
-<area shape="rect" id="node6" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="207,155,310,181"/>
-<area shape="rect" id="node11" href="$neural__activations_8c.html" title="Neural network activation functions." alt="" coords="603,155,741,181"/>
-<area shape="rect" id="node12" href="$neural__layer__avgpool_8h.html" title="An implementation of an average pooling layer." alt="" coords="883,155,1037,181"/>
-<area shape="rect" id="node17" href="$neural__layer__connected_8h.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="2517,155,2688,181"/>
-<area shape="rect" id="node23" href="$neural__layer__convolutional_8h.html" title="An implementation of a 2D convolutional layer." alt="" coords="1253,155,1440,181"/>
-<area shape="rect" id="node25" href="$neural__layer__dropout_8h.html" title="An implementation of a dropout layer." alt="" coords="2154,155,2307,181"/>
-<area shape="rect" id="node27" href="$neural__layer__lstm_8h.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1995,155,2130,181"/>
-<area shape="rect" id="node28" href="$neural__layer__maxpool_8h.html" title="An implementation of a 2D maxpooling layer." alt="" coords="1465,155,1623,181"/>
-<area shape="rect" id="node30" href="$neural__layer__noise_8h.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="1648,155,1789,181"/>
-<area shape="rect" id="node32" href="$neural__layer__recurrent_8h.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="2331,155,2493,181"/>
-<area shape="rect" id="node33" href="$neural__layer__softmax_8h.html" title="An implementation of a softmax layer." alt="" coords="1813,155,1971,181"/>
-<area shape="rect" id="node35" href="$neural__layer__upsample_8h.html" title="An implementation of a 2D upsampling layer." alt="" coords="1062,155,1229,181"/>
-<area shape="rect" id="node37" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="334,155,434,181"/>
-<area shape="rect" id="node4" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="1421,229,1515,256"/>
-<area shape="rect" id="node5" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="439,229,507,256"/>
-<area shape="rect" id="node7" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="115,229,218,256"/>
-<area shape="rect" id="node8" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="1990,229,2093,256"/>
-<area shape="rect" id="node9" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="5,229,91,256"/>
-<area shape="rect" id="node10" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="243,229,301,256"/>
-<area shape="rect" id="node13" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="1705,229,1807,256"/>
-<area shape="rect" id="node14" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="1831,229,1966,256"/>
-<area shape="rect" id="node15" href="$neural__layer__avgpool_8c.html" title="An implementation of an average pooling layer." alt="" coords="532,229,687,256"/>
-<area shape="rect" id="node16" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="1297,229,1397,256"/>
-<area shape="rect" id="node18" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="2477,229,2545,256"/>
-<area shape="rect" id="node19" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="3035,229,3205,256"/>
-<area shape="rect" id="node20" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="2690,229,2825,256"/>
-<area shape="rect" id="node21" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="2849,229,3010,256"/>
-<area shape="rect" id="node22" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="2569,229,2665,256"/>
-<area shape="rect" id="node24" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="903,229,1089,256"/>
-<area shape="rect" id="node26" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="2299,229,2453,256"/>
-<area shape="rect" id="node29" href="$neural__layer__maxpool_8c.html" title="An implementation of a 2D maxpooling layer." alt="" coords="1114,229,1273,256"/>
-<area shape="rect" id="node31" href="$neural__layer__noise_8c.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="1539,229,1680,256"/>
-<area shape="rect" id="node34" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="2117,229,2275,256"/>
-<area shape="rect" id="node36" href="$neural__layer__upsample_8c.html" title="An implementation of a 2D upsampling layer." alt="" coords="711,229,878,256"/>
-<area shape="rect" id="node38" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="326,229,415,256"/>
+<area shape="rect" id="Node000001" title="Functions operating on neural network arguments/constants." alt="" coords="1378,5,1513,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html" title="Interface for neural network layers." alt="" coords="1394,79,1497,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1448,44,1448,79,1443,79,1443,44"/>
+<area shape="rect" id="Node000003" href="$act__neural_8h.html" title="Neural network action functions." alt="" coords="765,152,859,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1380,100,1154,120,871,155,859,157,858,151,870,149,1154,115,1380,95"/>
+<area shape="rect" id="Node000006" href="$cond__neural_8h.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="207,152,310,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="1380,96,1198,99,936,109,632,126,322,155,311,156,310,151,321,149,631,121,936,103,1198,94,1380,91"/>
+<area shape="rect" id="Node000011" href="$neural__activations_8c.html" title="Neural network activation functions." alt="" coords="603,152,741,177"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="1380,100,1107,121,754,155,742,156,741,151,753,149,1107,115,1380,94"/>
+<area shape="rect" id="Node000012" href="$neural__layer__avgpool_8h.html" title="An implementation of an average pooling layer." alt="" coords="883,152,1037,177"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="1381,105,1038,155,1037,149,1380,100"/>
+<area shape="rect" id="Node000017" href="$neural__layer__connected_8h.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="2517,152,2688,177"/>
+<area shape="poly" id="edge17_Node000002_Node000017" title=" " alt="" coords="1511,92,1929,111,2215,128,2506,149,2517,150,2517,156,2505,155,2214,133,1929,116,1510,98"/>
+<area shape="rect" id="Node000023" href="$neural__layer__convolutional_8h.html" title="An implementation of a 2D convolutional layer." alt="" coords="1253,152,1440,177"/>
+<area shape="poly" id="edge28_Node000002_Node000023" title=" " alt="" coords="1420,114,1364,154,1361,150,1417,110"/>
+<area shape="rect" id="Node000025" href="$neural__layer__dropout_8h.html" title="An implementation of a dropout layer." alt="" coords="2154,152,2307,177"/>
+<area shape="poly" id="edge35_Node000002_Node000025" title=" " alt="" coords="1511,95,1786,116,2143,149,2154,151,2154,156,2142,155,1786,121,1510,100"/>
+<area shape="rect" id="Node000027" href="$neural__layer__lstm_8h.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1995,152,2130,177"/>
+<area shape="poly" id="edge44_Node000002_Node000027" title=" " alt="" coords="1511,97,1983,149,1995,151,1995,156,1982,155,1510,102"/>
+<area shape="rect" id="Node000028" href="$neural__layer__maxpool_8h.html" title="An implementation of a 2D maxpooling layer." alt="" coords="1465,152,1623,177"/>
+<area shape="poly" id="edge52_Node000002_Node000028" title=" " alt="" coords="1474,110,1529,150,1526,154,1470,114"/>
+<area shape="rect" id="Node000030" href="$neural__layer__noise_8h.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="1648,152,1789,177"/>
+<area shape="poly" id="edge59_Node000002_Node000030" title=" " alt="" coords="1503,105,1675,149,1674,154,1502,110"/>
+<area shape="rect" id="Node000032" href="$neural__layer__recurrent_8h.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="2331,152,2493,177"/>
+<area shape="poly" id="edge67_Node000002_Node000032" title=" " alt="" coords="1510,93,1856,113,2320,149,2332,150,2331,156,2320,155,1856,119,1510,99"/>
+<area shape="rect" id="Node000033" href="$neural__layer__softmax_8h.html" title="An implementation of a softmax layer." alt="" coords="1813,152,1971,177"/>
+<area shape="poly" id="edge76_Node000002_Node000033" title=" " alt="" coords="1511,100,1821,149,1820,155,1510,106"/>
+<area shape="rect" id="Node000035" href="$neural__layer__upsample_8h.html" title="An implementation of a 2D upsampling layer." alt="" coords="1062,152,1229,177"/>
+<area shape="poly" id="edge84_Node000002_Node000035" title=" " alt="" coords="1385,110,1195,154,1193,149,1384,104"/>
+<area shape="rect" id="Node000037" href="$pred__neural_8h.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="334,152,434,177"/>
+<area shape="poly" id="edge90_Node000002_Node000037" title=" " alt="" coords="1381,100,434,163,434,157,1380,94"/>
+<area shape="rect" id="Node000004" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="1421,225,1515,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="872,175,1024,191,1143,199,1261,206,1410,223,1422,225,1421,230,1409,228,1260,211,1142,204,1024,197,872,180"/>
+<area shape="rect" id="Node000005" href="$action_8c.html" title="Interface for classifier actions." alt="" coords="439,225,507,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="752,181,521,228,508,231,507,226,519,223,751,175"/>
+<area shape="rect" id="Node000007" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="115,225,218,251"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="235,188,183,227,180,223,232,183"/>
+<area shape="rect" id="Node000008" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="1990,225,2093,251"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="324,175,576,195,789,203,977,203,1153,198,1328,194,1516,194,1729,202,1979,223,1990,224,1989,229,1978,228,1728,207,1516,199,1328,199,1153,204,977,208,789,209,575,201,324,180"/>
+<area shape="rect" id="Node000009" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="5,225,91,251"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="213,184,83,228,81,223,211,179"/>
+<area shape="rect" id="Node000010" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="243,225,301,251"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="266,191,272,225,267,226,261,192"/>
+<area shape="poly" id="edge12_Node000012_Node000004" title=" " alt="" coords="1051,175,1410,223,1422,225,1421,230,1409,228,1051,180"/>
+<area shape="rect" id="Node000013" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="1705,225,1807,251"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="1051,175,1233,189,1374,196,1514,204,1692,223,1705,224,1704,230,1692,228,1514,210,1374,201,1233,194,1051,180"/>
+<area shape="rect" id="Node000014" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="1831,225,1966,251"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="1051,175,1269,191,1438,197,1606,205,1820,223,1831,224,1831,229,1820,228,1606,210,1438,203,1268,196,1051,180"/>
+<area shape="rect" id="Node000015" href="$neural__layer__avgpool_8c.html" title="An implementation of an average pooling layer." alt="" coords="532,225,687,251"/>
+<area shape="poly" id="edge15_Node000012_Node000015" title=" " alt="" coords="891,183,667,228,666,223,890,177"/>
+<area shape="rect" id="Node000016" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="1297,225,1397,251"/>
+<area shape="poly" id="edge16_Node000012_Node000016" title=" " alt="" coords="1037,177,1286,223,1297,225,1296,230,1285,228,1036,182"/>
+<area shape="poly" id="edge18_Node000017_Node000004" title=" " alt="" coords="2504,180,2355,190,2228,195,2013,198,1799,204,1674,213,1527,228,1516,230,1515,224,1526,223,1673,207,1799,198,2013,192,2228,190,2354,185,2503,175"/>
+<area shape="poly" id="edge19_Node000017_Node000008" title=" " alt="" coords="2504,180,2106,228,2093,230,2093,225,2105,223,2503,175"/>
+<area shape="poly" id="edge21_Node000017_Node000013" title=" " alt="" coords="2504,180,2311,194,2160,201,2010,209,1820,228,1808,230,1807,224,1820,223,2010,204,2160,195,2310,189,2504,175"/>
+<area shape="poly" id="edge22_Node000017_Node000014" title=" " alt="" coords="2504,180,2239,203,1979,228,1967,229,1966,224,1978,223,2239,198,2504,175"/>
+<area shape="poly" id="edge26_Node000017_Node000016" title=" " alt="" coords="2504,180,2337,191,2195,196,1954,198,1715,203,1574,212,1410,228,1397,230,1397,224,1409,223,1574,207,1714,198,1954,193,2195,191,2337,185,2504,175"/>
+<area shape="rect" id="Node000018" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="2477,225,2545,251"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="2579,188,2527,227,2524,223,2576,183"/>
+<area shape="rect" id="Node000019" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="3035,225,3205,251"/>
+<area shape="poly" id="edge23_Node000017_Node000019" title=" " alt="" coords="2699,177,3037,223,3036,228,2699,182"/>
+<area shape="rect" id="Node000020" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="2690,225,2825,251"/>
+<area shape="poly" id="edge24_Node000017_Node000020" title=" " alt="" coords="2641,181,2733,223,2731,228,2639,185"/>
+<area shape="rect" id="Node000021" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="2849,225,3010,251"/>
+<area shape="poly" id="edge25_Node000017_Node000021" title=" " alt="" coords="2669,178,2877,223,2876,228,2668,183"/>
+<area shape="rect" id="Node000022" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="2569,225,2665,251"/>
+<area shape="poly" id="edge27_Node000017_Node000022" title=" " alt="" coords="2610,190,2618,225,2612,226,2605,191"/>
+<area shape="poly" id="edge29_Node000023_Node000004" title=" " alt="" coords="1380,182,1449,223,1447,227,1377,187"/>
+<area shape="poly" id="edge30_Node000023_Node000008" title=" " alt="" coords="1454,175,1719,196,1834,205,1979,223,1990,224,1989,230,1978,228,1833,211,1719,201,1454,180"/>
+<area shape="poly" id="edge31_Node000023_Node000013" title=" " alt="" coords="1428,177,1692,223,1705,225,1704,230,1692,228,1427,182"/>
+<area shape="poly" id="edge32_Node000023_Node000014" title=" " alt="" coords="1454,176,1820,223,1832,224,1831,230,1820,228,1454,182"/>
+<area shape="poly" id="edge34_Node000023_Node000016" title=" " alt="" coords="1349,191,1349,225,1344,225,1344,191"/>
+<area shape="rect" id="Node000024" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="903,225,1089,251"/>
+<area shape="poly" id="edge33_Node000023_Node000024" title=" " alt="" coords="1278,183,1053,228,1052,223,1277,177"/>
+<area shape="poly" id="edge36_Node000025_Node000004" title=" " alt="" coords="2141,180,1967,194,1832,201,1697,209,1527,228,1515,230,1514,225,1526,223,1697,204,1831,196,1967,189,2140,175"/>
+<area shape="poly" id="edge37_Node000025_Node000008" title=" " alt="" coords="2188,185,2073,228,2071,223,2187,180"/>
+<area shape="poly" id="edge39_Node000025_Node000013" title=" " alt="" coords="2141,181,1820,228,1808,230,1807,225,1820,223,2140,176"/>
+<area shape="poly" id="edge40_Node000025_Node000014" title=" " alt="" coords="2165,183,1953,228,1952,223,2164,178"/>
+<area shape="poly" id="edge42_Node000025_Node000016" title=" " alt="" coords="2140,180,1934,195,1773,201,1613,208,1410,228,1397,230,1397,224,1409,223,1613,203,1773,196,1934,190,2140,175"/>
+<area shape="poly" id="edge38_Node000025_Node000018" title=" " alt="" coords="2289,178,2477,225,2476,231,2288,183"/>
+<area shape="poly" id="edge43_Node000025_Node000022" title=" " alt="" coords="2308,177,2558,223,2569,225,2568,230,2557,228,2307,182"/>
+<area shape="rect" id="Node000026" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="2299,225,2453,251"/>
+<area shape="poly" id="edge41_Node000025_Node000026" title=" " alt="" coords="2267,181,2353,223,2351,228,2265,186"/>
+<area shape="poly" id="edge45_Node000027_Node000004" title=" " alt="" coords="1982,180,1752,202,1653,212,1527,228,1515,230,1514,225,1526,223,1652,206,1752,197,1981,175"/>
+<area shape="poly" id="edge46_Node000027_Node000008" title=" " alt="" coords="2058,192,2047,226,2042,224,2053,190"/>
+<area shape="poly" id="edge47_Node000027_Node000013" title=" " alt="" coords="2001,183,1806,228,1805,223,2000,178"/>
+<area shape="poly" id="edge48_Node000027_Node000014" title=" " alt="" coords="2025,185,1927,228,1924,223,2023,180"/>
+<area shape="poly" id="edge50_Node000027_Node000016" title=" " alt="" coords="1982,180,1820,195,1693,202,1568,211,1410,228,1397,230,1396,225,1409,223,1568,205,1693,197,1819,189,1981,175"/>
+<area shape="poly" id="edge49_Node000027_Node000020" title=" " alt="" coords="2144,175,2295,190,2413,199,2530,208,2678,223,2690,224,2689,229,2677,228,2529,213,2412,204,2295,195,2143,180"/>
+<area shape="poly" id="edge51_Node000027_Node000022" title=" " alt="" coords="2144,175,2353,197,2558,223,2569,225,2568,230,2557,228,2353,203,2144,180"/>
+<area shape="poly" id="edge53_Node000028_Node000004" title=" " alt="" coords="1524,189,1482,227,1479,223,1520,185"/>
+<area shape="poly" id="edge54_Node000028_Node000008" title=" " alt="" coords="1638,175,1979,223,1990,225,1989,230,1978,228,1637,180"/>
+<area shape="poly" id="edge55_Node000028_Node000013" title=" " alt="" coords="1592,179,1723,223,1721,228,1590,184"/>
+<area shape="poly" id="edge56_Node000028_Node000014" title=" " alt="" coords="1615,177,1842,223,1841,228,1614,183"/>
+<area shape="poly" id="edge58_Node000028_Node000016" title=" " alt="" coords="1500,184,1380,228,1378,223,1499,179"/>
+<area shape="rect" id="Node000029" href="$neural__layer__maxpool_8c.html" title="An implementation of a 2D maxpooling layer." alt="" coords="1114,225,1273,251"/>
+<area shape="poly" id="edge57_Node000028_Node000029" title=" " alt="" coords="1475,183,1251,228,1250,223,1474,177"/>
+<area shape="poly" id="edge60_Node000030_Node000004" title=" " alt="" coords="1666,184,1509,228,1508,223,1664,179"/>
+<area shape="poly" id="edge61_Node000030_Node000008" title=" " alt="" coords="1784,178,1990,223,1989,228,1783,183"/>
+<area shape="poly" id="edge63_Node000030_Node000013" title=" " alt="" coords="1733,188,1752,224,1748,226,1729,191"/>
+<area shape="poly" id="edge64_Node000030_Node000014" title=" " alt="" coords="1761,180,1870,223,1868,228,1759,185"/>
+<area shape="poly" id="edge66_Node000030_Node000016" title=" " alt="" coords="1646,182,1397,230,1396,225,1645,177"/>
+<area shape="poly" id="edge62_Node000030_Node000018" title=" " alt="" coords="1803,175,1990,188,2137,193,2282,200,2466,223,2477,225,2476,230,2465,228,2282,205,2137,198,1990,194,1803,180"/>
+<area shape="rect" id="Node000031" href="$neural__layer__noise_8c.html" title="An implementation of a Gaussian noise adding layer." alt="" coords="1539,225,1680,251"/>
+<area shape="poly" id="edge65_Node000030_Node000031" title=" " alt="" coords="1691,187,1629,227,1626,223,1688,183"/>
+<area shape="poly" id="edge68_Node000032_Node000004" title=" " alt="" coords="2318,180,2094,195,1920,199,1747,206,1527,228,1516,230,1515,224,1526,223,1747,201,1920,194,2094,189,2317,175"/>
+<area shape="poly" id="edge69_Node000032_Node000008" title=" " alt="" coords="2340,182,2093,229,2092,224,2339,177"/>
+<area shape="poly" id="edge71_Node000032_Node000013" title=" " alt="" coords="2318,180,2067,202,1958,211,1820,228,1808,230,1807,225,1820,223,1958,206,2067,197,2318,175"/>
+<area shape="poly" id="edge72_Node000032_Node000014" title=" " alt="" coords="2318,181,1979,228,1967,230,1966,224,1978,223,2317,176"/>
+<area shape="poly" id="edge74_Node000032_Node000016" title=" " alt="" coords="2318,180,2061,196,1861,200,1663,206,1546,214,1410,228,1397,230,1397,224,1409,223,1546,209,1662,201,1861,194,2061,190,2317,175"/>
+<area shape="poly" id="edge70_Node000032_Node000018" title=" " alt="" coords="2440,183,2496,223,2493,227,2437,187"/>
+<area shape="poly" id="edge73_Node000032_Node000021" title=" " alt="" coords="2507,176,2849,223,2848,228,2506,182"/>
+<area shape="poly" id="edge75_Node000032_Node000022" title=" " alt="" coords="2459,179,2585,223,2583,228,2457,184"/>
+<area shape="poly" id="edge77_Node000033_Node000004" title=" " alt="" coords="1805,182,1527,228,1515,230,1514,225,1526,223,1804,177"/>
+<area shape="poly" id="edge78_Node000033_Node000008" title=" " alt="" coords="1929,181,2018,223,2016,228,1927,186"/>
+<area shape="poly" id="edge80_Node000033_Node000013" title=" " alt="" coords="1860,186,1779,227,1777,223,1857,181"/>
+<area shape="poly" id="edge81_Node000033_Node000014" title=" " alt="" coords="1897,191,1900,225,1895,225,1892,191"/>
+<area shape="poly" id="edge83_Node000033_Node000016" title=" " alt="" coords="1800,180,1603,202,1410,228,1397,230,1396,225,1409,223,1602,197,1799,175"/>
+<area shape="poly" id="edge79_Node000033_Node000018" title=" " alt="" coords="1985,175,2122,187,2228,194,2333,203,2466,223,2477,225,2476,230,2465,228,2333,209,2228,199,2121,192,1984,180"/>
+<area shape="rect" id="Node000034" href="$neural__layer__softmax_8c.html" title="An implementation of a softmax layer." alt="" coords="2117,225,2275,251"/>
+<area shape="poly" id="edge82_Node000033_Node000034" title=" " alt="" coords="1955,178,2147,223,2146,228,1953,183"/>
+<area shape="poly" id="edge85_Node000035_Node000004" title=" " alt="" coords="1211,178,1422,224,1420,229,1210,183"/>
+<area shape="poly" id="edge86_Node000035_Node000013" title=" " alt="" coords="1243,175,1470,197,1692,223,1705,225,1704,230,1692,228,1469,202,1242,180"/>
+<area shape="poly" id="edge87_Node000035_Node000014" title=" " alt="" coords="1243,175,1534,198,1660,207,1820,223,1832,224,1831,229,1820,228,1659,212,1533,203,1242,180"/>
+<area shape="poly" id="edge89_Node000035_Node000016" title=" " alt="" coords="1192,179,1315,223,1313,228,1190,184"/>
+<area shape="rect" id="Node000036" href="$neural__layer__upsample_8c.html" title="An implementation of a 2D upsampling layer." alt="" coords="711,225,878,251"/>
+<area shape="poly" id="edge88_Node000035_Node000036" title=" " alt="" coords="1076,183,852,228,851,223,1075,177"/>
+<area shape="poly" id="edge91_Node000037_Node000007" title=" " alt="" coords="337,184,203,228,201,223,335,179"/>
+<area shape="poly" id="edge94_Node000037_Node000010" title=" " alt="" coords="356,187,292,227,289,223,353,183"/>
+<area shape="poly" id="edge92_Node000037_Node000016" title=" " alt="" coords="448,167,908,195,1286,223,1297,224,1296,230,1285,228,908,201,448,172"/>
+<area shape="rect" id="Node000038" href="$prediction_8c.html" title="Interface for classifier predictions." alt="" coords="326,225,415,251"/>
+<area shape="poly" id="edge93_Node000037_Node000038" title=" " alt="" coords="382,192,375,226,370,225,377,191"/>
 </map>

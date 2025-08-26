@@ -1,6 +1,9 @@
 <map id="set_layer_n_biases" name="set_layer_n_biases">
-<area shape="rect" id="node1" title="Sets the total number of biases in a recurrent layer." alt="" coords="427,38,561,65"/>
-<area shape="rect" id="node2" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="234,13,349,39"/>
-<area shape="rect" id="node4" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="204,63,379,90"/>
-<area shape="rect" id="node3" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="Node000001" title="Sets the total number of biases in a recurrent layer." alt="" coords="427,38,561,63"/>
+<area shape="rect" id="Node000002" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="234,13,349,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,43,349,35,350,30,413,38"/>
+<area shape="rect" id="Node000004" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="204,62,379,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="413,63,379,67,379,62,413,58"/>
+<area shape="rect" id="Node000003" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="5,5,156,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="220,28,156,28,156,23,220,23"/>
 </map>

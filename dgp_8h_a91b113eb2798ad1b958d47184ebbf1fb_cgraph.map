@@ -1,7 +1,11 @@
 <map id="graph_update" name="graph_update">
-<area shape="rect" id="node1" title="Updates a DGP graph T cycles." alt="" coords="5,31,105,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c" title="Resets the states to their initial state." alt="" coords="179,5,270,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a3086c105976334ceda0e9b8e97964220" title="Performs a synchronous update." alt="" coords="153,56,296,83"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="344,56,447,83"/>
-<area shape="rect" id="node5" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="495,56,552,83"/>
+<area shape="rect" id="Node000001" title="Updates a DGP graph T cycles." alt="" coords="5,31,105,56"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#aee734e2659ea39d69c4fdd8f567ef63c" title="Resets the states to their initial state." alt="" coords="179,5,270,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,33,165,24,166,29,106,39"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a3086c105976334ceda0e9b8e97964220" title="Performs a synchronous update." alt="" coords="153,55,296,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,48,140,53,139,58,105,53"/>
+<area shape="rect" id="Node000004" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="344,55,447,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="296,65,331,65,331,70,296,70"/>
+<area shape="rect" id="Node000005" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="495,55,552,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="447,65,481,65,481,70,447,70"/>
 </map>

@@ -1,4 +1,0 @@
-<map id="env_mux_get_state" name="env_mux_get_state">
-<area shape="rect" id="node1" title="Returns a random multiplexer problem instance." alt="" coords="5,5,141,32"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="189,5,287,32"/>
-</map>

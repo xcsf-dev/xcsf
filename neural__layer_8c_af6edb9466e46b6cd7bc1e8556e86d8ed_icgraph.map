@@ -1,7 +1,15 @@
 <map id="layer_mutate_weights" name="layer_mutate_weights">
-<area shape="rect" id="node1" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="447,64,596,91"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#aa6189d30b38ebf21205ba9643c788776" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="254,5,369,32"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="232,57,391,98"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="224,122,399,163"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="Node000001" title="Mutates a layer&#39;s weights and biases by adding random numbers from a Gaussian normal distribution wit..." alt="" coords="447,89,596,115"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#aa6189d30b38ebf21205ba9643c788776" title="Mutates the magnitude of weights and biases in an LSTM layer." alt="" coords="254,7,369,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="479,86,398,51,351,35,353,30,400,46,482,81"/>
+<area shape="rect" id="Node000004" href="$neural__layer__recurrent_8c.html#aa6189d30b38ebf21205ba9643c788776" title="Mutates the magnitude of weights and biases in a recurrent layer." alt="" coords="254,60,369,85"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="433,92,369,83,370,78,433,87"/>
+<area shape="rect" id="Node000006" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="232,110,391,150"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="433,116,391,122,390,117,433,111"/>
+<area shape="rect" id="Node000007" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="224,174,399,214"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="485,124,400,164,370,176,368,172,398,160,483,119"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,22,176,21,176,16,240,16"/>
+<area shape="rect" id="Node000005" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="15,55,166,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="240,76,166,77,166,72,240,71"/>
 </map>

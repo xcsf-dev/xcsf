@@ -1,4 +1,5 @@
 <map id="CondDGP" name="CondDGP">
-<area shape="rect" id="node1" title="Dynamical GP graph condition data structure." alt="" coords="5,95,88,121"/>
-<area shape="rect" id="node2" href="$structGraph.html" title="Dynamical GP graph data structure." alt="" coords="18,5,75,32"/>
+<area shape="rect" id="Node000001" title="Dynamical GP graph condition data structure." alt="" coords="5,93,88,119"/>
+<area shape="rect" id="Node000002" href="$structGraph.html" title="Dynamical GP graph data structure." alt="" coords="18,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,45,49,93,44,93,44,45"/>
 </map>

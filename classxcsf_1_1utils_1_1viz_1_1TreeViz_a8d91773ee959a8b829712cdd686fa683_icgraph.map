@@ -1,6 +1,9 @@
 <map id="xcsf.utils.viz.TreeViz.label" name="xcsf.utils.viz.TreeViz.label">
-<area shape="rect" id="node1" title=" " alt="" coords="456,88,632,115"/>
-<area shape="rect" id="node2" href="$classxcsf_1_1utils_1_1viz_1_1DGPViz.html#a291230e10f8beb2f17b243e48a153e96" title=" " alt="" coords="228,5,408,32"/>
-<area shape="rect" id="node3" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="231,81,405,122"/>
-<area shape="rect" id="node4" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a712b0c4074c1effee7c8bc41f341b14d" title=" " alt="" coords="5,81,180,122"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="451,37,627,62"/>
+<area shape="rect" id="Node000002" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a712b0c4074c1effee7c8bc41f341b14d" title=" " alt="" coords="228,29,403,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="437,52,403,52,403,47,437,47"/>
+<area shape="rect" id="Node000003" href="$classxcsf_1_1utils_1_1viz_1_1TreeViz.html#a45ff2d8d6eefa38ba7fb478b4dbf9ae6" title=" " alt="" coords="5,29,180,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="214,61,180,61,180,55,214,56"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="194,38,228,38,228,43,194,43"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="130,18,117,11,93,8,71,10,59,15,54,21,56,28,51,30,49,20,55,10,70,5,93,3,119,6,133,13"/>
 </map>

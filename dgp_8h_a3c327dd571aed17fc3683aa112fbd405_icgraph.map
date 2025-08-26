@@ -1,5 +1,7 @@
 <map id="graph_copy" name="graph_copy">
-<area shape="rect" id="node1" title="Copies a DGP graph." alt="" coords="195,31,284,57"/>
-<area shape="rect" id="node2" href="$cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="19,5,133,32"/>
-<area shape="rect" id="node3" href="$rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" title=" " alt="" coords="5,56,147,83"/>
+<area shape="rect" id="Node000001" title="Copies a DGP graph." alt="" coords="195,31,284,56"/>
+<area shape="rect" id="Node000002" href="$cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="19,5,133,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,37,133,29,133,24,182,32"/>
+<area shape="rect" id="Node000003" href="$rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" title=" " alt="" coords="5,55,147,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,54,147,60,146,54,181,49"/>
 </map>

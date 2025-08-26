@@ -1,9 +1,20 @@
 <map id="cond_dgp_init" name="cond_dgp_init">
-<area shape="rect" id="node1" title="Creates and initialises a dynamical GP graph condition." alt="" coords="5,56,108,83"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a9f8800d534121a0e036e7643100dff41" title="Initialises a new DGP graph." alt="" coords="160,19,239,45"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="156,81,243,108"/>
-<area shape="rect" id="node3" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="323,5,393,32"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="640,81,737,108"/>
-<area shape="rect" id="node5" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="473,56,592,83"/>
-<area shape="rect" id="node7" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="291,107,425,133"/>
+<area shape="rect" id="Node000001" title="Creates and initialises a dynamical GP graph condition." alt="" coords="5,57,108,83"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a9f8800d534121a0e036e7643100dff41" title="Initialises a new DGP graph." alt="" coords="160,19,239,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,55,146,43,148,48,105,60"/>
+<area shape="rect" id="Node000006" href="$dgp_8c.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="156,81,243,107"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="109,76,143,82,142,87,108,81"/>
+<area shape="rect" id="Node000003" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="323,5,393,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,25,309,19,309,25,239,31"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="640,81,737,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="394,15,485,20,539,28,593,41,627,55,658,72,656,76,625,60,591,46,538,33,484,26,394,20"/>
+<area shape="rect" id="Node000005" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="473,56,592,81"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="394,26,475,49,474,55,393,31"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="593,76,627,81,626,87,592,81"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="219,105,251,125,291,142,339,151,387,154,436,152,484,147,571,129,640,109,642,114,573,134,485,152,436,158,387,159,338,156,290,147,249,130,216,109"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="243,88,459,72,460,77,243,93"/>
+<area shape="rect" id="Node000007" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="291,107,425,132"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="243,98,277,104,277,109,242,103"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="426,112,626,96,626,101,426,117"/>
+<area shape="poly" id="edge11_Node000007_Node000005" title=" " alt="" coords="402,104,474,83,475,88,403,109"/>
 </map>

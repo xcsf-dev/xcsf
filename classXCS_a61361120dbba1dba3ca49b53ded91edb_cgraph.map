@@ -1,43 +1,84 @@
 <map id="XCS::json_insert_cl" name="XCS::json_insert_cl">
-<area shape="rect" id="node1" title="Creates a classifier from JSON and inserts into the population." alt="" coords="5,776,144,803"/>
-<area shape="rect" id="node2" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="203,751,340,777"/>
-<area shape="rect" id="node41" href="$utils_8c.html#ab88f9e76233791f1e21ef22ba3a958b0" title="Checks whether JSON parsed correctly." alt="" coords="192,801,351,828"/>
-<area shape="rect" id="node3" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="411,524,518,551"/>
-<area shape="rect" id="node23" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="841,804,920,831"/>
-<area shape="rect" id="node24" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="427,751,502,777"/>
-<area shape="rect" id="node25" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="428,700,501,727"/>
-<area shape="rect" id="node30" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="399,853,531,894"/>
-<area shape="rect" id="node4" href="$action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce" title="Creates an action from a cJSON object." alt="" coords="607,499,721,525"/>
-<area shape="rect" id="node7" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="636,549,692,576"/>
-<area shape="rect" id="node8" href="$cl_8c.html#abc78504adf8a6060fcc3ec25efecaee5" title="Sets a classifier&#39;s current properties from a cJSON object." alt="" coords="587,600,741,627"/>
-<area shape="rect" id="node9" href="$cl_8c.html#ae1015eda0df557040383c6678e3f0840" title="Sets a classifier&#39;s properties from a cJSON object." alt="" coords="579,651,749,677"/>
-<area shape="rect" id="node10" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="632,157,696,184"/>
-<area shape="rect" id="node17" href="$condition_8h.html#a8ccc134194a65daacdb42e62a8df050e" title="Creates a condition from a cJSON object." alt="" coords="602,360,726,387"/>
-<area shape="rect" id="node20" href="$prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb" title="Creates a prediction from a cJSON object." alt="" coords="603,448,725,475"/>
-<area shape="rect" id="node5" href="$action_8h.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="815,528,946,555"/>
-<area shape="rect" id="node6" href="$action_8h.html#a92f612de02989e82ef6c52bc7384f24f" title="Returns a string representation of an action type from an integer." alt="" coords="806,579,955,605"/>
-<area shape="rect" id="node11" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="849,5,913,32"/>
-<area shape="rect" id="node12" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="839,56,922,83"/>
-<area shape="rect" id="node13" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="843,107,918,133"/>
-<area shape="rect" id="node14" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="831,157,930,184"/>
-<area shape="rect" id="node15" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="845,208,916,235"/>
-<area shape="rect" id="node16" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="829,259,932,285"/>
-<area shape="rect" id="node18" href="$condition_8h.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="807,309,955,336"/>
-<area shape="rect" id="node19" href="$condition_8h.html#af5a052e347755190271b32d8b09ec026" title="Returns a string representation of a condition type from an integer." alt="" coords="797,360,964,387"/>
-<area shape="rect" id="node21" href="$prediction_8h.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="805,411,957,437"/>
-<area shape="rect" id="node22" href="$prediction_8h.html#a085a8402296bdeab95f54299040e6e0e" title="Returns a string representation of a prediction type from the integer." alt="" coords="815,462,946,503"/>
-<area shape="rect" id="node26" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="633,701,695,728"/>
-<area shape="rect" id="node27" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="846,752,915,779"/>
-<area shape="rect" id="node28" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="841,651,920,677"/>
-<area shape="rect" id="node29" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="843,701,919,728"/>
-<area shape="rect" id="node31" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="611,856,717,883"/>
-<area shape="rect" id="node32" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="799,856,963,883"/>
-<area shape="rect" id="node33" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="815,907,947,933"/>
-<area shape="rect" id="node34" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="1013,805,1111,832"/>
-<area shape="rect" id="node36" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="1018,856,1106,883"/>
-<area shape="rect" id="node37" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="1015,907,1109,933"/>
-<area shape="rect" id="node39" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="1012,957,1112,984"/>
-<area shape="rect" id="node40" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1013,1008,1111,1035"/>
-<area shape="rect" id="node35" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="1160,805,1241,832"/>
-<area shape="rect" id="node38" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="1161,907,1240,933"/>
+<area shape="rect" id="Node000001" title="Creates a classifier from JSON and inserts into the population." alt="" coords="5,756,144,781"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="203,731,340,756"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,757,188,751,189,757,145,762"/>
+<area shape="rect" id="Node000041" href="$utils_8c.html#ab88f9e76233791f1e21ef22ba3a958b0" title="Checks whether JSON parsed correctly." alt="" coords="192,780,351,805"/>
+<area shape="poly" id="edge41_Node000001_Node000041" title=" " alt="" coords="145,774,179,779,178,784,144,780"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="411,511,518,536"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="282,728,441,545,445,548,286,732"/>
+<area shape="rect" id="Node000023" href="$clset_8c.html#a64d33e6235c57f30a4a3ec82f18e57d6" title="Adds a classifier to the set." alt="" coords="841,783,920,808"/>
+<area shape="poly" id="edge22_Node000002_Node000023" title=" " alt="" coords="327,753,399,766,519,778,638,786,827,792,827,798,638,791,518,784,398,771,327,759"/>
+<area shape="rect" id="Node000024" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="427,731,502,756"/>
+<area shape="poly" id="edge23_Node000002_Node000024" title=" " alt="" coords="340,741,413,741,413,746,340,746"/>
+<area shape="rect" id="Node000025" href="$clset_8c.html#a236baf24659360891f944761f88a30f4" title="Frees the set and the classifiers." alt="" coords="428,681,501,707"/>
+<area shape="poly" id="edge24_Node000002_Node000025" title=" " alt="" coords="321,728,414,704,415,709,322,733"/>
+<area shape="rect" id="Node000030" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="399,831,531,871"/>
+<area shape="poly" id="edge29_Node000002_Node000030" title=" " alt="" coords="324,754,352,766,377,788,400,811,417,822,414,826,397,815,374,792,349,771,322,758"/>
+<area shape="rect" id="Node000004" href="$action_8h.html#a8ddc4aefec0235d2af07465f6d48e2ce" title="Creates an action from a cJSON object." alt="" coords="607,485,721,511"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="518,514,593,504,593,510,519,519"/>
+<area shape="rect" id="Node000007" href="$cl_8c.html#a188fac458e06c9a27e0e4069f7ddb68a" title="Initialises a new classifier &#45; but not condition, action, prediction." alt="" coords="636,535,692,560"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="519,527,623,540,622,545,518,532"/>
+<area shape="rect" id="Node000008" href="$cl_8c.html#abc78504adf8a6060fcc3ec25efecaee5" title="Sets a classifier&#39;s current properties from a cJSON object." alt="" coords="587,584,741,609"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="494,534,580,569,605,577,603,582,578,574,492,538"/>
+<area shape="rect" id="Node000009" href="$cl_8c.html#ae1015eda0df557040383c6678e3f0840" title="Sets a classifier&#39;s properties from a cJSON object." alt="" coords="579,633,749,659"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="480,535,522,576,550,599,580,618,597,626,594,631,577,623,546,603,518,580,476,539"/>
+<area shape="rect" id="Node000010" href="$cl_8c.html#a47e450b7a0f97f3662080f311b6bad0d" title="Initialises random actions, conditions and predictions." alt="" coords="632,153,696,179"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="471,509,647,190,651,192,475,512"/>
+<area shape="rect" id="Node000017" href="$condition_8h.html#a8ccc134194a65daacdb42e62a8df050e" title="Creates a condition from a cJSON object." alt="" coords="602,351,726,376"/>
+<area shape="poly" id="edge16_Node000003_Node000017" title=" " alt="" coords="478,509,577,421,631,382,634,386,580,425,481,513"/>
+<area shape="rect" id="Node000020" href="$prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb" title="Creates a prediction from a cJSON object." alt="" coords="603,436,725,461"/>
+<area shape="poly" id="edge19_Node000003_Node000020" title=" " alt="" coords="490,508,578,470,599,463,601,468,580,475,493,513"/>
+<area shape="rect" id="Node000005" href="$action_8c.html#a38d3209ab8ce0417631ce2359f6590a7" title="Returns the integer representation of an action type given a name." alt="" coords="815,515,946,540"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="722,503,802,514,802,519,721,508"/>
+<area shape="rect" id="Node000006" href="$action_8c.html#ad546aad49d253d6d0e72a6eddb237d01" title="Returns a string representation of an action type from an integer." alt="" coords="806,564,955,589"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="719,508,750,520,775,534,799,549,819,557,817,562,796,554,772,539,748,524,717,513"/>
+<area shape="rect" id="Node000011" href="$action_8h.html#a124e361f0b13d0c29206bd9c05bd9fd4" title="Initialises a classifier&#39;s action." alt="" coords="849,5,913,31"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="674,151,722,98,757,66,796,40,834,24,836,29,799,44,760,71,726,101,677,155"/>
+<area shape="rect" id="Node000012" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="839,55,922,80"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="683,151,733,120,796,89,825,78,827,83,798,94,736,125,686,155"/>
+<area shape="rect" id="Node000013" href="$condition_8h.html#ad8a71ebe28cc52430a49610bfe5f7836" title="Initialises a classifier&#39;s condition." alt="" coords="843,104,918,129"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="696,156,829,125,830,131,697,161"/>
+<area shape="rect" id="Node000014" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="831,153,930,179"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="696,163,818,163,818,169,696,169"/>
+<area shape="rect" id="Node000015" href="$prediction_8h.html#ac18761d16e606f80e814a15d1770d367" title="Initialises a classifier&#39;s prediction." alt="" coords="845,203,916,228"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="697,171,832,202,831,207,696,176"/>
+<area shape="rect" id="Node000016" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="829,252,932,277"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="687,176,736,206,798,237,821,245,819,250,796,242,734,211,684,181"/>
+<area shape="rect" id="Node000018" href="$condition_8c.html#a654e570bc807e2c15a6d963b31d3caf2" title="Returns the integer representation of a condition type given a name." alt="" coords="807,301,955,327"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="720,348,810,327,812,332,721,353"/>
+<area shape="rect" id="Node000019" href="$condition_8c.html#aec601fad80ae7881897793c49d4d87cc" title="Returns a string representation of a condition type from an integer." alt="" coords="797,351,964,376"/>
+<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="726,361,784,361,784,366,726,366"/>
+<area shape="rect" id="Node000021" href="$prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="805,400,957,425"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="725,436,790,425,791,430,725,441"/>
+<area shape="rect" id="Node000022" href="$prediction_8c.html#aef1e7511eb94c9d099a764fa6b1a78d6" title="Returns a string representation of a prediction type from the integer." alt="" coords="815,450,946,490"/>
+<area shape="poly" id="edge21_Node000020_Node000022" title=" " alt="" coords="725,452,802,460,802,465,725,457"/>
+<area shape="rect" id="Node000026" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="633,683,695,708"/>
+<area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="502,692,619,692,619,698,502,697"/>
+<area shape="rect" id="Node000027" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="846,732,915,757"/>
+<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="696,700,833,731,832,736,694,705"/>
+<area shape="rect" id="Node000028" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="841,633,920,659"/>
+<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="694,686,827,655,828,660,696,691"/>
+<area shape="rect" id="Node000029" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="843,683,919,708"/>
+<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="695,693,829,693,829,698,695,698"/>
+<area shape="rect" id="Node000031" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="611,836,717,861"/>
+<area shape="poly" id="edge30_Node000030_Node000031" title=" " alt="" coords="531,848,597,847,597,852,531,853"/>
+<area shape="poly" id="edge31_Node000031_Node000023" title=" " alt="" coords="716,833,827,806,829,811,717,838"/>
+<area shape="rect" id="Node000032" href="$clset_8c.html#a7e9703db2e290a5b852b1112f52f4803" title="Finds a rule in the population that never matches an input." alt="" coords="799,835,963,860"/>
+<area shape="poly" id="edge32_Node000031_Node000032" title=" " alt="" coords="718,846,785,845,785,851,718,851"/>
+<area shape="rect" id="Node000033" href="$clset_8c.html#a7ddb1248094ce9b41cf314b833798b29" title="Selects a classifier from the population for deletion via roulette." alt="" coords="815,884,947,909"/>
+<area shape="poly" id="edge33_Node000031_Node000033" title=" " alt="" coords="718,858,810,878,809,884,717,863"/>
+<area shape="rect" id="Node000034" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="1013,785,1111,811"/>
+<area shape="poly" id="edge34_Node000033_Node000034" title=" " alt="" coords="939,882,963,870,977,859,987,847,996,835,1010,821,1019,815,1022,820,1014,825,1000,838,991,851,981,863,965,875,941,886"/>
+<area shape="rect" id="Node000036" href="$cl_8c.html#ae083f9dc65912cf983795d134006e236" title="Returns the deletion vote of a classifier." alt="" coords="1018,835,1106,860"/>
+<area shape="poly" id="edge36_Node000033_Node000036" title=" " alt="" coords="927,881,1004,860,1006,865,929,887"/>
+<area shape="rect" id="Node000037" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="1015,884,1109,909"/>
+<area shape="poly" id="edge37_Node000033_Node000037" title=" " alt="" coords="947,894,1001,894,1001,899,947,899"/>
+<area shape="rect" id="Node000039" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="1012,933,1112,959"/>
+<area shape="poly" id="edge39_Node000033_Node000039" title=" " alt="" coords="929,907,1002,927,1001,932,927,912"/>
+<area shape="rect" id="Node000040" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="1013,983,1111,1008"/>
+<area shape="poly" id="edge40_Node000033_Node000040" title=" " alt="" coords="905,907,1013,969,1023,974,1021,979,1011,974,902,912"/>
+<area shape="rect" id="Node000035" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="1160,785,1241,811"/>
+<area shape="poly" id="edge35_Node000034_Node000035" title=" " alt="" coords="1112,795,1146,795,1146,801,1112,801"/>
+<area shape="rect" id="Node000038" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="1161,884,1240,909"/>
+<area shape="poly" id="edge38_Node000037_Node000038" title=" " alt="" coords="1109,894,1147,894,1147,899,1109,899"/>
 </map>

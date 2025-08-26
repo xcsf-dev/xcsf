@@ -1,6 +1,12 @@
 <map id="xcs_supervised_score" name="xcs_supervised_score">
-<area shape="rect" id="node1" title="Calculates the XCSF error for the input data." alt="" coords="359,56,511,83"/>
-<area shape="rect" id="node2" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="193,5,262,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="5,81,96,108"/>
-<area shape="rect" id="node4" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="144,107,311,133"/>
+<area shape="rect" id="Node000001" title="Calculates the XCSF error for the input data." alt="" coords="557,56,709,81"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="391,5,461,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="567,55,460,29,462,24,568,50"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="204,81,295,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="544,77,295,94,295,88,543,72"/>
+<area shape="rect" id="Node000005" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="343,107,509,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="568,87,479,109,478,104,567,82"/>
+<area shape="rect" id="Node000004" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,81,156,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,97,156,97,156,91,190,91"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="328,108,295,103,295,98,329,103"/>
 </map>

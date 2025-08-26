@@ -1,4 +1,5 @@
 <map id="neural_layer_dropout_print" name="neural_layer_dropout_print">
-<area shape="rect" id="node1" title="Prints a dropout layer." alt="" coords="5,5,148,47"/>
-<area shape="rect" id="node2" href="$neural__layer__dropout_8c.html#a7c62c13ebad583f7bb3ac06b22b07c6e" title="Returns a json formatted string representation of a dropout layer." alt="" coords="196,5,339,47"/>
+<area shape="rect" id="Node000001" title="Prints a dropout layer." alt="" coords="5,5,148,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer__dropout_8c.html#a27a855595673282edd4a65b0f343f19b" title="Returns a json formatted string representation of a dropout layer." alt="" coords="196,5,339,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,23,183,23,183,28,148,28"/>
 </map>

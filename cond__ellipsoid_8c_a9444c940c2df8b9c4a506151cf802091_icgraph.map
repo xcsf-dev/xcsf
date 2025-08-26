@@ -1,5 +1,7 @@
 <map id="cond_ellipsoid_dist" name="cond_ellipsoid_dist">
-<area shape="rect" id="node1" title="Returns the relative distance to a hyperellipsoid." alt="" coords="207,31,339,57"/>
-<area shape="rect" id="node2" href="$cond__ellipsoid_8c.html#aca843e209b567077d3102cb4d260ed34" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="5,5,159,32"/>
-<area shape="rect" id="node3" href="$cond__ellipsoid_8c.html#a6855f4c629d12c4831a27b4ea4e5d4b8" title="Calculates whether a hyperellipsoid condition matches an input." alt="" coords="9,56,155,83"/>
+<area shape="rect" id="Node000001" title="Returns the relative distance to a hyperellipsoid." alt="" coords="207,31,339,56"/>
+<area shape="rect" id="Node000002" href="$cond__ellipsoid_8c.html#aca843e209b567077d3102cb4d260ed34" title="Returns whether classifier c1 has a condition more general than c2." alt="" coords="5,5,159,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,35,159,31,160,26,193,30"/>
+<area shape="rect" id="Node000003" href="$cond__ellipsoid_8c.html#a6855f4c629d12c4831a27b4ea4e5d4b8" title="Calculates whether a hyperellipsoid condition matches an input." alt="" coords="9,55,155,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,56,156,61,156,55,193,51"/>
 </map>

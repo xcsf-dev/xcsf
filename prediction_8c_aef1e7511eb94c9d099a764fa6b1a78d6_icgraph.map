@@ -1,0 +1,61 @@
+<map id="prediction_type_as_string" name="prediction_type_as_string">
+<area shape="rect" id="Node000001" title="Returns a string representation of a prediction type from the integer." alt="" coords="1825,93,1956,133"/>
+<area shape="rect" id="Node000002" href="$prediction_8h.html#a2e189fd3243b2e77d73b7fac5b52a9eb" title="Creates a prediction from a cJSON object." alt="" coords="1635,75,1756,100"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1811,105,1756,98,1757,93,1812,100"/>
+<area shape="rect" id="Node000018" href="$prediction_8c.html#ac363177fac13104615104df74c5dcac4" title="Returns a json formatted string of the prediction parameters." alt="" coords="1613,124,1777,149"/>
+<area shape="poly" id="edge20_Node000001_Node000018" title=" " alt="" coords="1812,125,1778,129,1777,124,1811,120"/>
+<area shape="rect" id="Node000003" href="$cl_8c.html#ada9e7ce4c9c81af8ea0d1fd0dda59e3c" title="Creates a classifier from a cJSON object." alt="" coords="1459,73,1565,99"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1620,89,1566,89,1566,84,1621,84"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1273,61,1411,87"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1445,84,1411,81,1411,76,1445,79"/>
+<area shape="rect" id="Node000005" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="1096,61,1216,87"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1259,77,1216,77,1216,71,1259,71"/>
+<area shape="rect" id="Node000017" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="1087,5,1225,31"/>
+<area shape="poly" id="edge18_Node000004_Node000017" title=" " alt="" coords="1285,60,1199,33,1200,28,1287,55"/>
+<area shape="rect" id="Node000006" href="$clset_8c.html#ab1609ae417c14c50f3322c3ed818db6b" title=" " alt="" coords="905,99,1039,124"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1083,92,1036,101,1034,96,1082,86"/>
+<area shape="rect" id="Node000015" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="403,48,524,73"/>
+<area shape="poly" id="edge14_Node000005_Node000015" title=" " alt="" coords="1082,75,524,64,524,59,1082,70"/>
+<area shape="rect" id="Node000007" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="731,99,837,124"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="892,114,838,114,838,109,892,109"/>
+<area shape="rect" id="Node000008" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="582,180,653,205"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="746,132,646,182,643,177,744,128"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="429,149,498,175"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="568,186,498,171,499,166,569,180"/>
+<area shape="rect" id="Node000010" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="438,199,489,224"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="568,201,489,211,489,206,568,196"/>
+<area shape="rect" id="Node000011" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="420,248,507,273"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="579,214,525,239,498,250,496,245,523,234,577,209"/>
+<area shape="rect" id="Node000014" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="420,297,507,323"/>
+<area shape="poly" id="edge13_Node000008_Node000014" title=" " alt="" coords="580,215,574,220,559,237,551,254,542,271,526,288,507,299,504,295,522,284,538,268,546,252,555,234,570,216,577,211"/>
+<area shape="rect" id="Node000012" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="219,231,339,256"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="406,258,339,252,340,246,407,253"/>
+<area shape="rect" id="Node000013" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,172,156,197"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="222,229,124,200,125,195,223,224"/>
+<area shape="poly" id="edge17_Node000015_Node000013" title=" " alt="" coords="389,60,299,66,251,75,205,90,171,108,140,131,95,174,91,170,137,127,168,103,203,85,250,70,298,61,389,55"/>
+<area shape="rect" id="Node000016" href="$classXCS.html#ad7aade3a334222e010b571f5c7a6bc43" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="222,99,337,124"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="404,80,327,101,326,96,403,75"/>
+<area shape="poly" id="edge16_Node000016_Node000013" title=" " alt="" coords="228,131,205,139,114,174,112,169,203,134,226,126"/>
+<area shape="poly" id="edge19_Node000017_Node000013" title=" " alt="" coords="1073,18,785,13,462,13,387,12,328,14,272,26,205,56,168,83,135,115,92,173,88,170,131,112,164,79,203,52,270,21,327,9,387,6,462,7,785,7,1073,13"/>
+<area shape="rect" id="Node000019" href="$param_8c.html#a6deea84ba84241d90aba6317656598a4" title="Returns a json formatted string representation of the parameters." alt="" coords="906,149,1038,175"/>
+<area shape="poly" id="edge21_Node000018_Node000019" title=" " alt="" coords="1600,143,1038,162,1038,157,1599,137"/>
+<area shape="rect" id="Node000020" href="$classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8" title="Returns a dictionary of the internal parameters." alt="" coords="204,172,355,197"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="892,157,632,138,499,134,445,136,403,141,351,156,307,174,305,169,349,151,402,135,444,131,499,129,632,133,892,152"/>
+<area shape="rect" id="Node000021" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="572,229,663,255"/>
+<area shape="poly" id="edge25_Node000019_Node000021" title=" " alt="" coords="902,180,664,235,662,229,901,175"/>
+<area shape="rect" id="Node000023" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="711,285,857,311"/>
+<area shape="poly" id="edge29_Node000019_Node000023" title=" " alt="" coords="947,186,859,256,809,288,806,283,856,252,944,182"/>
+<area shape="poly" id="edge24_Node000020_Node000013" title=" " alt="" coords="191,187,156,187,156,182,191,182"/>
+<area shape="poly" id="edge23_Node000020_Node000020" title=" " alt="" coords="312,162,303,154,279,151,260,153,250,157,248,163,253,170,249,173,242,164,246,154,258,148,279,145,305,149,315,158"/>
+<area shape="poly" id="edge26_Node000021_Node000010" title=" " alt="" coords="558,233,488,219,489,214,559,228"/>
+<area shape="rect" id="Node000022" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="213,300,346,325"/>
+<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="587,265,574,276,561,293,553,309,543,325,525,338,498,348,468,353,409,352,355,342,311,328,313,323,356,337,410,347,468,348,496,343,523,333,539,321,548,307,556,290,570,272,583,261"/>
+<area shape="poly" id="edge28_Node000022_Node000013" title=" " alt="" coords="243,295,203,271,98,200,101,195,205,266,246,291"/>
+<area shape="rect" id="Node000024" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="238,388,321,413"/>
+<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="717,316,525,359,321,397,320,391,523,354,716,311"/>
+<area shape="rect" id="Node000025" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="574,285,661,311"/>
+<area shape="poly" id="edge32_Node000023_Node000025" title=" " alt="" coords="697,301,661,301,661,295,697,295"/>
+<area shape="poly" id="edge31_Node000024_Node000013" title=" " alt="" coords="248,381,202,340,135,262,89,199,93,196,139,258,206,336,252,377"/>
+<area shape="poly" id="edge33_Node000025_Node000011" title=" " alt="" coords="560,287,506,274,508,269,561,282"/>
+<area shape="poly" id="edge34_Node000025_Node000014" title=" " alt="" coords="560,305,507,309,507,304,560,300"/>
+</map>

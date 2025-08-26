@@ -1,4 +1,5 @@
 <map id="layer_weight_print" name="layer_weight_print">
-<area shape="rect" id="node1" title="Prints a layer&#39;s weights and biases." alt="" coords="5,5,132,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="180,5,307,32"/>
+<area shape="rect" id="Node000001" title="Prints a layer&#39;s weights and biases." alt="" coords="5,5,132,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#ab690105513e8867b6dd3252dc7d639f8" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="180,5,307,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,15,167,15,167,21,132,21"/>
 </map>

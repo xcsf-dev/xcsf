@@ -1,6 +1,9 @@
 <map id="realloc_layer_arrays" name="realloc_layer_arrays">
-<area shape="rect" id="node1" title="Resize memory used by a convolutional layer." alt="" coords="451,46,589,73"/>
-<area shape="rect" id="node2" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="228,5,403,47"/>
-<area shape="rect" id="node4" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="228,71,403,112"/>
-<area shape="rect" id="node3" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="Node000001" title="Resize memory used by a convolutional layer." alt="" coords="451,45,589,70"/>
+<area shape="rect" id="Node000002" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="228,5,403,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,47,402,42,403,36,437,42"/>
+<area shape="rect" id="Node000004" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="228,69,403,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="437,73,403,78,402,73,436,68"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="5,5,180,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="214,28,180,28,180,23,214,23"/>
 </map>

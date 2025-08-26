@@ -1,11 +1,25 @@
 <map id="xcs_supervised_trial" name="xcs_supervised_trial">
-<area shape="rect" id="node1" title="Executes a single XCSF trial." alt="" coords="565,132,707,159"/>
-<area shape="rect" id="node2" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="373,107,503,133"/>
-<area shape="rect" id="node5" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="359,31,517,57"/>
-<area shape="rect" id="node7" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="362,157,514,184"/>
-<area shape="rect" id="node9" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="144,208,311,235"/>
-<area shape="rect" id="node3" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="193,107,262,133"/>
-<area shape="rect" id="node4" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="202,56,253,83"/>
-<area shape="rect" id="node6" href="$classXCS.html#a9c4d2f074abbde709c8a108bc2d1c932" title="Returns the XCSF prediction array for the provided input." alt="" coords="179,5,276,32"/>
-<area shape="rect" id="node8" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="5,183,96,209"/>
+<area shape="rect" id="Node000001" title="Executes a single XCSF trial." alt="" coords="771,105,912,131"/>
+<area shape="rect" id="Node000002" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="578,80,709,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="757,110,709,104,710,98,758,105"/>
+<area shape="rect" id="Node000005" href="$xcs__supervised_8c.html#ae4791c1daf0baaa6615f70332657aadb" title="Calculates the XCSF predictions for the provided input." alt="" coords="564,5,723,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="801,101,668,33,671,28,804,96"/>
+<area shape="rect" id="Node000008" href="$xcs__supervised_8c.html#a535e3dbbf0f80e64a4e9b1c700e51f40" title="Calculates the XCSF error for the input data." alt="" coords="567,131,719,156"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="758,131,720,136,719,131,757,126"/>
+<area shape="rect" id="Node000010" href="$xcs__supervised_8c.html#a9ab2bb39625aea84c716901a95a4326e" title="Calculates the XCSF error for a subsample of the input data." alt="" coords="349,181,516,207"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="805,140,766,157,723,171,670,182,616,190,516,196,516,191,615,184,669,177,722,166,765,152,803,135"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="398,80,467,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="564,95,467,95,467,90,564,90"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="407,31,458,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="575,79,458,52,459,47,576,74"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="204,31,301,56"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="550,15,453,13,350,21,293,33,292,28,349,15,453,8,550,9"/>
+<area shape="rect" id="Node000007" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,107,156,132"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="212,64,112,109,109,104,209,59"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="576,130,467,103,468,98,577,125"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="207,131,298,156"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="554,146,298,146,298,141,554,141"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="577,162,487,184,485,179,576,157"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="193,138,156,133,157,127,194,133"/>
+<area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="373,180,297,159,299,153,374,175"/>
 </map>

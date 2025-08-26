@@ -1,5 +1,7 @@
 <map id="clset_mean_pred_size" name="clset_mean_pred_size">
-<area shape="rect" id="node1" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="5,5,157,32"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="205,5,300,32"/>
-<area shape="rect" id="node3" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="348,5,427,32"/>
+<area shape="rect" id="Node000001" title="Calculates the mean prediction size of classifiers in the set." alt="" coords="5,5,157,31"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" title="Returns the size of a classifier&#39;s prediction." alt="" coords="205,5,300,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,15,192,15,192,21,158,21"/>
+<area shape="rect" id="Node000003" href="$prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" title="Returns the size of the classifier prediction." alt="" coords="348,5,427,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,15,335,15,335,21,300,21"/>
 </map>

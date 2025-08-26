@@ -1,4 +1,5 @@
 <map id="clset_mean_pred_eta" name="clset_mean_pred_eta">
-<area shape="rect" id="node1" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="5,5,152,32"/>
-<area shape="rect" id="node2" href="$pred__neural_8c.html#abb0f86e4555ee62a1505d1f1707b506d" title="Returns the gradient descent rate of a neural prediction layer." alt="" coords="200,5,315,32"/>
+<area shape="rect" id="Node000001" title="Calculates the mean prediction layer ETA of classifiers in the set." alt="" coords="5,5,152,31"/>
+<area shape="rect" id="Node000002" href="$pred__neural_8c.html#abb0f86e4555ee62a1505d1f1707b506d" title="Returns the gradient descent rate of a neural prediction layer." alt="" coords="200,5,315,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,15,186,15,186,21,152,21"/>
 </map>

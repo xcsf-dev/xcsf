@@ -1,5 +1,7 @@
 <map id="pred_rls_compute" name="pred_rls_compute">
-<area shape="rect" id="node1" title="Computes the current RLS prediction for a provided input." alt="" coords="5,31,131,57"/>
-<area shape="rect" id="node2" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="215,5,286,32"/>
-<area shape="rect" id="node3" href="$prediction_8c.html#acc0ceeaf35d0e232c23d94d258fe1e79" title="Prepares the input state for least squares computation." alt="" coords="179,56,323,83"/>
+<area shape="rect" id="Node000001" title="Computes the current RLS prediction for a provided input." alt="" coords="5,31,131,56"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="215,5,286,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,32,201,22,202,27,131,37"/>
+<area shape="rect" id="Node000003" href="$prediction_8c.html#acc0ceeaf35d0e232c23d94d258fe1e79" title="Prepares the input state for least squares computation." alt="" coords="179,55,323,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,49,165,53,165,59,130,54"/>
 </map>

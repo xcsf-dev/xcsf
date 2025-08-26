@@ -1,5 +1,7 @@
 <map id="synchronous_update" name="synchronous_update">
-<area shape="rect" id="node1" title="Performs a synchronous update." alt="" coords="5,5,148,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="196,5,299,32"/>
-<area shape="rect" id="node3" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="347,5,404,32"/>
+<area shape="rect" id="Node000001" title="Performs a synchronous update." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#ace96d089b13bac9a14edeb6406b6d8cb" title="Returns the result from applying a specified activation function." alt="" coords="196,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,15,183,15,183,21,148,21"/>
+<area shape="rect" id="Node000003" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="347,5,404,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,15,333,15,333,21,299,21"/>
 </map>

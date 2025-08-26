@@ -1,5 +1,9 @@
 <map id="pred_neural_expand" name="pred_neural_expand">
-<area shape="rect" id="node1" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="361,5,500,32"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="185,5,313,32"/>
-<area shape="rect" id="node3" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="5,5,137,32"/>
+<area shape="rect" id="Node000001" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="560,5,699,31"/>
+<area shape="rect" id="Node000002" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="384,5,512,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="546,21,512,21,512,15,546,15"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="204,5,336,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="370,21,336,21,336,15,370,15"/>
+<area shape="rect" id="Node000004" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,21,156,21,156,15,190,15"/>
 </map>

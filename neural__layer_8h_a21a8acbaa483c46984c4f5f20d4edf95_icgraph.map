@@ -1,49 +1,107 @@
 <map id="layer_defaults" name="layer_defaults">
-<area shape="rect" id="node1" title="Initialises a layer to default values." alt="" coords="1788,613,1891,640"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="1597,233,1672,260"/>
-<area shape="rect" id="node30" href="$neural__layer_8h.html#a69ce571bb41dc2df362e3987fe595b63" title="Reads the layer from a file." alt="" coords="1594,385,1675,412"/>
-<area shape="rect" id="node38" href="$neural__layer__avgpool_8c.html#aac38c297b6ec2440be737791d86f0af6" title="Initialises and copies one average pooling layer from another." alt="" coords="1545,436,1724,463"/>
-<area shape="rect" id="node39" href="$neural__layer__connected_8c.html#a1d4a072908a0df8dcc9ff31add3fdcad" title="Initialises and creates a copy of one connected layer from another." alt="" coords="1537,487,1732,513"/>
-<area shape="rect" id="node40" href="$neural__layer__convolutional_8c.html#a8cf0bdb29cf5ba2d12d4884ecacf45c7" title="Initialises and copies one convolutional layer from another." alt="" coords="1529,537,1740,564"/>
-<area shape="rect" id="node41" href="$neural__layer__dropout_8c.html#a53c6652e7bdcb412cd5173a34f994906" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="1546,588,1723,615"/>
-<area shape="rect" id="node42" href="$neural__layer__lstm_8c.html#a6ec181dbf42f15b8c04c04005c399def" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="1555,639,1714,665"/>
-<area shape="rect" id="node43" href="$neural__layer__maxpool_8c.html#a6142b0ee7c8b1cdd97a5ea595e03204c" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="1543,689,1726,716"/>
-<area shape="rect" id="node44" href="$neural__layer__noise_8c.html#aa3f48c8d743c54f4934fea0597969200" title="Initialises and creates a copy of one noise layer from another." alt="" coords="1552,740,1717,767"/>
-<area shape="rect" id="node45" href="$neural__layer__recurrent_8c.html#a5f01cc7e722e1426e5aba2a643e33036" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="1542,791,1727,817"/>
-<area shape="rect" id="node46" href="$neural__layer__softmax_8c.html#a7511194d08647d475924e23c21da562a" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="1544,841,1725,868"/>
-<area shape="rect" id="node47" href="$neural__layer__upsample_8c.html#adc112d2c9f2cbe584a47706d75d11ee9" title="Initialises and copies one upsampling layer from another." alt="" coords="1539,892,1730,919"/>
-<area shape="rect" id="node3" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1338,107,1438,133"/>
-<area shape="rect" id="node22" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="1314,157,1462,184"/>
-<area shape="rect" id="node23" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="1301,208,1475,235"/>
-<area shape="rect" id="node24" href="$pred__neural_8c.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="1295,259,1481,285"/>
-<area shape="rect" id="node27" href="$pred__neural_8c.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="1319,309,1457,336"/>
-<area shape="rect" id="node4" href="$act__neural_8c.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="1115,5,1222,32"/>
-<area shape="rect" id="node5" href="$cond__neural_8c.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="1111,56,1227,83"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html#a390bf97769999138966232a530c705e8" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1091,107,1247,133"/>
-<area shape="rect" id="node20" href="$pred__neural_8c.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="1112,157,1225,184"/>
-<area shape="rect" id="node21" href="$rule__neural_8c.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="1097,208,1241,235"/>
-<area shape="rect" id="node7" href="$action_8c.html#ae4c75dacfa854514efe71cc00515d6c0" title="Returns a json formatted string of the action parameters." alt="" coords="868,56,1043,83"/>
-<area shape="rect" id="node18" href="$condition_8c.html#ac3384a0731c16bed95c104111873c6e2" title="Returns a json formatted string of the condition parameters." alt="" coords="872,107,1039,133"/>
-<area shape="rect" id="node19" href="$prediction_8c.html#afb4c9f7647df17c3b4ab748f01b5e301" title="Returns a json formatted string of the prediction parameters." alt="" coords="873,157,1037,184"/>
-<area shape="rect" id="node8" href="$param_8c.html#a92d92fc270b6ed2e2637ccb590eb15d5" title="Returns a json formatted string representation of the parameters." alt="" coords="688,107,820,133"/>
-<area shape="rect" id="node9" href="$classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8" title="Returns a dictionary of the internal parameters." alt="" coords="489,56,640,83"/>
-<area shape="rect" id="node10" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="519,107,610,133"/>
-<area shape="rect" id="node13" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="491,157,638,184"/>
-<area shape="rect" id="node11" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="349,56,400,83"/>
-<area shape="rect" id="node12" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="308,107,441,133"/>
-<area shape="rect" id="node14" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="333,157,416,184"/>
-<area shape="rect" id="node15" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="331,208,418,235"/>
-<area shape="rect" id="node16" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,208,260,235"/>
-<area shape="rect" id="node17" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,208,125,235"/>
-<area shape="rect" id="node25" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="1096,259,1241,285"/>
-<area shape="rect" id="node26" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="881,259,1030,285"/>
-<area shape="rect" id="node28" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="1105,309,1233,336"/>
-<area shape="rect" id="node29" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="889,309,1021,336"/>
-<area shape="rect" id="node31" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="1311,360,1465,387"/>
-<area shape="rect" id="node32" href="$neural__layer__recurrent_8c.html#a2492453a3912b4d17ecd3edf142069de" title="Reads a recurrent layer from a file." alt="" coords="1297,411,1479,437"/>
-<area shape="rect" id="node33" href="$neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="1344,461,1432,488"/>
-<area shape="rect" id="node34" href="$act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="1112,385,1225,412"/>
-<area shape="rect" id="node35" href="$cond__neural_8c.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="1107,436,1230,463"/>
-<area shape="rect" id="node36" href="$pred__neural_8c.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="1109,487,1229,513"/>
-<area shape="rect" id="node37" href="$rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="1093,537,1244,564"/>
+<area shape="rect" id="Node000001" title="Initialises a layer to default values." alt="" coords="2031,667,2133,692"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#aa969a46ce36513e683114c704f78a0b5" title="Creates and initialises a new layer." alt="" coords="1840,296,1915,321"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2071,654,2037,554,2012,492,1980,433,1933,369,1890,323,1894,320,1938,366,1985,430,2016,490,2042,552,2076,652"/>
+<area shape="rect" id="Node000032" href="$neural__layer_8h.html#a69ce571bb41dc2df362e3987fe595b63" title="Reads the layer from a file." alt="" coords="1837,444,1918,469"/>
+<area shape="poly" id="edge39_Node000001_Node000032" title=" " alt="" coords="2073,654,2062,615,2044,568,2017,522,2000,501,1981,483,1951,467,1918,460,1919,455,1952,462,1984,478,2004,497,2022,519,2049,566,2067,613,2078,652"/>
+<area shape="rect" id="Node000040" href="$neural__layer__avgpool_8c.html#a9f4c2f7c0a7b597d65445f75ae051994" title="Initialises and copies one average pooling layer from another." alt="" coords="1788,493,1967,519"/>
+<area shape="poly" id="edge47_Node000001_Node000040" title=" " alt="" coords="2069,655,2036,592,2011,560,1981,532,1960,521,1963,516,1984,528,2015,556,2041,589,2073,653"/>
+<area shape="rect" id="Node000041" href="$neural__layer__connected_8c.html#af788792d1be190cfaa2f26fe262761b9" title="Initialises and creates a copy of one connected layer from another." alt="" coords="1780,543,1975,568"/>
+<area shape="poly" id="edge48_Node000001_Node000041" title=" " alt="" coords="2062,658,2027,619,2005,599,1981,583,1952,570,1954,566,1984,578,2009,595,2031,615,2066,654"/>
+<area shape="rect" id="Node000042" href="$neural__layer__convolutional_8c.html#aa05b9dcca6484abdcc65c7554bce784e" title="Initialises and copies one convolutional layer from another." alt="" coords="1772,592,1983,617"/>
+<area shape="poly" id="edge49_Node000001_Node000042" title=" " alt="" coords="2046,662,1982,632,1940,620,1942,615,1984,628,2048,657"/>
+<area shape="rect" id="Node000043" href="$neural__layer__dropout_8c.html#a18092e986e5ed7f9084f416a153c5ba1" title="Initialises and creates a copy of one dropout layer from another." alt="" coords="1789,641,1966,667"/>
+<area shape="poly" id="edge50_Node000001_Node000043" title=" " alt="" coords="2016,674,1966,668,1967,662,2017,669"/>
+<area shape="rect" id="Node000044" href="$neural__layer__lstm_8c.html#ad055907f841ba89c18deb79ecebe8124" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="1798,691,1957,716"/>
+<area shape="poly" id="edge51_Node000001_Node000044" title=" " alt="" coords="2017,690,1957,697,1956,691,2016,684"/>
+<area shape="rect" id="Node000045" href="$neural__layer__maxpool_8c.html#a499dad862c3fa7b4263cfb94dd584d72" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="1786,740,1969,765"/>
+<area shape="poly" id="edge52_Node000001_Node000045" title=" " alt="" coords="2048,701,1984,731,1946,742,1944,737,1982,726,2046,696"/>
+<area shape="rect" id="Node000046" href="$neural__layer__noise_8c.html#a6c89736d9f4fb3a4490ba87d8f8e3e92" title="Initialises and creates a copy of one noise layer from another." alt="" coords="1795,789,1960,815"/>
+<area shape="poly" id="edge53_Node000001_Node000046" title=" " alt="" coords="2066,705,2031,744,2009,764,1984,780,1957,792,1955,787,1981,776,2005,759,2027,740,2062,701"/>
+<area shape="rect" id="Node000047" href="$neural__layer__recurrent_8c.html#a5809330e54d3a893af1f635f7435dd8c" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="1785,839,1970,864"/>
+<area shape="poly" id="edge54_Node000001_Node000047" title=" " alt="" coords="2073,706,2040,768,2015,802,1984,830,1962,841,1960,836,1981,825,2011,798,2036,766,2069,703"/>
+<area shape="rect" id="Node000048" href="$neural__layer__softmax_8c.html#a4075ebb518e4fb21c3f1ce28a47fd6a0" title="Initialises and creates a copy of one softmax layer from another." alt="" coords="1787,888,1968,913"/>
+<area shape="poly" id="edge55_Node000001_Node000048" title=" " alt="" coords="2078,706,2067,745,2048,792,2021,839,2004,860,1984,879,1965,890,1963,886,1981,875,2000,857,2017,836,2044,789,2062,743,2073,705"/>
+<area shape="rect" id="Node000049" href="$neural__layer__upsample_8c.html#a86864ca291459a0ab37839c7db8bb1c5" title="Initialises and copies one upsampling layer from another." alt="" coords="1782,937,1973,963"/>
+<area shape="poly" id="edge56_Node000001_Node000049" title=" " alt="" coords="2081,707,2073,755,2056,814,2027,876,2008,904,1984,928,1967,939,1964,935,1981,924,2004,900,2023,873,2051,813,2067,753,2075,706"/>
+<area shape="rect" id="Node000003" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="1581,171,1681,196"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1848,289,1792,250,1723,211,1680,196,1682,191,1725,206,1795,245,1851,285"/>
+<area shape="rect" id="Node000024" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="1557,221,1705,247"/>
+<area shape="poly" id="edge29_Node000002_Node000024" title=" " alt="" coords="1826,294,1723,261,1683,249,1684,244,1725,255,1828,289"/>
+<area shape="rect" id="Node000025" href="$neural__layer__recurrent_8c.html#a74274033f3a8272fb8aae4366f93d74c" title="Initialises a recurrent layer." alt="" coords="1543,271,1718,296"/>
+<area shape="poly" id="edge30_Node000002_Node000025" title=" " alt="" coords="1826,306,1718,295,1719,290,1827,301"/>
+<area shape="rect" id="Node000026" href="$pred__neural_8c.html#aa639a9130cac0c222bca241f86d6c135" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="1537,320,1724,345"/>
+<area shape="poly" id="edge31_Node000002_Node000026" title=" " alt="" coords="1827,316,1724,326,1724,321,1826,311"/>
+<area shape="rect" id="Node000029" href="$pred__neural_8c.html#ab573aaed6ff7623e99afe1d1f6e00919" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="1561,369,1700,395"/>
+<area shape="poly" id="edge35_Node000002_Node000029" title=" " alt="" coords="1828,327,1725,359,1680,372,1679,367,1723,354,1826,322"/>
+<area shape="rect" id="Node000004" href="$act__neural_8c.html#abbdbc4d92f139ccc9816289233dbf934" title="Creates and initialises an action neural network." alt="" coords="1358,59,1465,84"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1599,165,1549,131,1488,98,1459,87,1461,82,1490,93,1552,126,1602,160"/>
+<area shape="rect" id="Node000005" href="$cond__neural_8c.html#a16f80af76361587e6da53dd21fa05b7b" title="Creates and initialises a neural network condition." alt="" coords="1353,108,1469,133"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1572,170,1456,136,1458,131,1573,164"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html#a91be60f1596b4940ddfe3aa08a72ea9d" title="Returns a json formatted string of the neural layer parameters." alt="" coords="1333,157,1489,183"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1567,182,1490,177,1490,172,1567,177"/>
+<area shape="rect" id="Node000022" href="$pred__neural_8c.html#a8ff454a2da61b52670f4b70b71da2fe8" title="Creates and initialises a neural network prediction." alt="" coords="1355,207,1468,232"/>
+<area shape="poly" id="edge27_Node000003_Node000022" title=" " alt="" coords="1567,196,1469,213,1468,207,1566,191"/>
+<area shape="rect" id="Node000023" href="$rule__neural_8c.html#accc0db627c6130e7c8680c008b47a2e2" title=" " alt="" coords="1339,256,1483,281"/>
+<area shape="poly" id="edge28_Node000003_Node000023" title=" " alt="" coords="1568,200,1539,211,1515,228,1491,246,1460,258,1458,253,1488,241,1512,224,1536,206,1567,195"/>
+<area shape="rect" id="Node000007" href="$action_8c.html#abc3d337a565dc94c88faa33472505c3e" title="Returns a json formatted string of the action parameters." alt="" coords="1111,108,1285,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1342,157,1253,136,1254,131,1343,152"/>
+<area shape="rect" id="Node000020" href="$condition_8c.html#ab1e3bf6514986d3bce77a73ce910047e" title="Returns a json formatted string of the condition parameters." alt="" coords="1115,157,1281,183"/>
+<area shape="poly" id="edge23_Node000006_Node000020" title=" " alt="" coords="1319,173,1282,173,1282,167,1319,167"/>
+<area shape="rect" id="Node000021" href="$prediction_8c.html#ac363177fac13104615104df74c5dcac4" title="Returns a json formatted string of the prediction parameters." alt="" coords="1116,207,1280,232"/>
+<area shape="poly" id="edge25_Node000006_Node000021" title=" " alt="" coords="1343,188,1254,209,1253,204,1342,183"/>
+<area shape="rect" id="Node000008" href="$param_8c.html#a6deea84ba84241d90aba6317656598a4" title="Returns a json formatted string representation of the parameters." alt="" coords="922,145,1054,171"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1113,138,1055,149,1054,144,1112,133"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8" title="Returns a dictionary of the internal parameters." alt="" coords="385,29,536,55"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="947,142,864,109,769,78,670,58,602,50,536,46,536,41,602,45,671,53,770,73,866,103,949,137"/>
+<area shape="rect" id="Node000011" href="$param_8c.html#a1e92bde5285ed6ded96ba4af5fd27bd2" title="Prints all XCSF parameters." alt="" coords="747,119,837,144"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="908,150,837,140,838,135,909,145"/>
+<area shape="rect" id="Node000014" href="$classXCS.html#ae0f45d78bb598a31d8068c3ca3242e2c" title="Updates the Python object&#39;s parameter dictionary." alt="" coords="719,169,865,195"/>
+<area shape="poly" id="edge15_Node000008_Node000014" title=" " alt="" coords="909,170,866,176,865,170,908,165"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="490,19,481,11,461,8,443,10,434,15,432,20,437,28,433,31,427,21,430,11,442,5,461,3,483,6,493,15"/>
+<area shape="rect" id="Node000010" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,195,156,220"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="373,57,289,76,246,90,205,108,172,129,141,153,95,197,92,193,137,149,169,125,203,104,244,85,288,71,371,51"/>
+<area shape="rect" id="Node000012" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="602,68,653,93"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="736,117,652,91,654,86,738,112"/>
+<area shape="rect" id="Node000013" href="$classXCS.html#a7731d72fe05a86f0d9bc67939fd56182" title="Prints the XCSF parameters and their current values." alt="" coords="204,119,337,144"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="733,134,338,134,338,129,733,129"/>
+<area shape="poly" id="edge14_Node000013_Node000010" title=" " alt="" coords="226,152,114,197,112,192,224,147"/>
+<area shape="rect" id="Node000015" href="$classXCS.html#a1a7ff32cb3485c0de9dd988f6f3e3470" title="Reads the entire current state of XCSF from a file." alt="" coords="586,169,669,195"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="705,185,669,185,669,179,705,179"/>
+<area shape="rect" id="Node000016" href="$classXCS.html#a2e542f3f17c9c76d07045adf1f5c16f9" title="Resets basic constructor variables." alt="" coords="584,220,671,245"/>
+<area shape="poly" id="edge18_Node000014_Node000016" title=" " alt="" coords="737,201,670,222,669,217,736,196"/>
+<area shape="poly" id="edge17_Node000015_Node000010" title=" " alt="" coords="573,187,156,207,156,201,572,182"/>
+<area shape="rect" id="Node000017" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="417,220,504,245"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="570,235,504,235,504,230,570,230"/>
+<area shape="rect" id="Node000019" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="417,269,504,295"/>
+<area shape="poly" id="edge22_Node000016_Node000019" title=" " alt="" coords="571,252,505,272,503,267,570,247"/>
+<area shape="rect" id="Node000018" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="211,220,331,245"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="404,235,331,235,331,230,404,230"/>
+<area shape="poly" id="edge21_Node000018_Node000010" title=" " alt="" coords="197,226,156,220,156,215,198,220"/>
+<area shape="poly" id="edge24_Node000020_Node000008" title=" " alt="" coords="1100,167,1054,164,1055,159,1101,162"/>
+<area shape="poly" id="edge26_Node000021_Node000008" title=" " alt="" coords="1140,205,1110,197,1031,173,1033,168,1111,191,1141,200"/>
+<area shape="rect" id="Node000027" href="$xcsf_8c.html#ad77461184a11780681798ac593b090ab" title="Switches from autoencoding to classification." alt="" coords="1339,320,1484,345"/>
+<area shape="poly" id="edge32_Node000026_Node000027" title=" " alt="" coords="1523,335,1485,335,1485,330,1523,330"/>
+<area shape="rect" id="Node000028" href="$classXCS.html#ad73009d926d395ee03bf7586f194fcbe" title="Switches from autoencoding to classification." alt="" coords="913,320,1063,345"/>
+<area shape="poly" id="edge33_Node000027_Node000028" title=" " alt="" coords="1325,335,1063,335,1063,330,1325,330"/>
+<area shape="poly" id="edge34_Node000028_Node000010" title=" " alt="" coords="900,335,629,335,459,335,405,332,351,322,299,308,249,291,162,253,102,222,105,218,164,249,250,286,300,303,352,317,406,326,459,330,629,330,900,330"/>
+<area shape="rect" id="Node000030" href="$xcsf_8c.html#a6bb93a888da68d6397ce63fb58428237" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="1347,369,1475,395"/>
+<area shape="poly" id="edge36_Node000029_Node000030" title=" " alt="" coords="1547,385,1476,385,1476,379,1547,379"/>
+<area shape="rect" id="Node000031" href="$classXCS.html#aa4d00c1db4ef961055b74f231cbd39f0" title="Inserts a new hidden layer before the output layer within all prediction neural networks in the popul..." alt="" coords="205,371,337,396"/>
+<area shape="poly" id="edge37_Node000030_Node000031" title=" " alt="" coords="1334,385,989,386,626,386,337,386,337,381,626,381,989,381,1334,380"/>
+<area shape="poly" id="edge38_Node000031_Node000010" title=" " alt="" coords="223,367,202,353,165,320,132,283,88,222,92,218,137,279,169,316,206,349,226,362"/>
+<area shape="rect" id="Node000033" href="$neural__layer__lstm_8c.html#a6f8cf6bf022b03c7513b8360002720af" title="Reads an LSTM layer from a file." alt="" coords="1553,419,1708,444"/>
+<area shape="poly" id="edge40_Node000032_Node000033" title=" " alt="" coords="1822,454,1708,442,1708,437,1823,448"/>
+<area shape="rect" id="Node000034" href="$neural__layer__recurrent_8c.html#a2492453a3912b4d17ecd3edf142069de" title="Reads a recurrent layer from a file." alt="" coords="1540,468,1721,493"/>
+<area shape="poly" id="edge41_Node000032_Node000034" title=" " alt="" coords="1823,465,1722,475,1721,469,1823,459"/>
+<area shape="rect" id="Node000035" href="$neural_8c.html#a7cb2bd3f18f66f9ccd9512b9d35d6d08" title="Reads a neural network from a file." alt="" coords="1587,517,1675,543"/>
+<area shape="poly" id="edge42_Node000032_Node000035" title=" " alt="" coords="1824,469,1773,483,1749,495,1725,507,1675,523,1674,518,1723,502,1747,490,1771,478,1822,464"/>
+<area shape="rect" id="Node000036" href="$act__neural_8c.html#a241289b5c61dec98b854ee24fdf16d67" title="Reads a neural network action from a file." alt="" coords="1355,443,1468,468"/>
+<area shape="poly" id="edge43_Node000035_Node000036" title=" " alt="" coords="1573,519,1536,507,1488,482,1457,471,1459,466,1490,477,1538,502,1575,514"/>
+<area shape="rect" id="Node000037" href="$cond__neural_8c.html#a8decac2646ea64aba95cd8522d295c83" title="Reads a neural network condition from a file." alt="" coords="1350,492,1473,517"/>
+<area shape="poly" id="edge44_Node000035_Node000037" title=" " alt="" coords="1573,526,1473,514,1473,509,1573,521"/>
+<area shape="rect" id="Node000038" href="$pred__neural_8c.html#aee98eff48767b879343983d0717952cc" title="Reads a neural network prediction from a file." alt="" coords="1351,541,1471,567"/>
+<area shape="poly" id="edge45_Node000035_Node000038" title=" " alt="" coords="1573,539,1472,550,1471,545,1573,534"/>
+<area shape="rect" id="Node000039" href="$rule__neural_8c.html#a0e1e69e3c01307e2423a9c3c05409d63" title=" " alt="" coords="1336,591,1487,616"/>
+<area shape="poly" id="edge46_Node000035_Node000039" title=" " alt="" coords="1583,550,1490,582,1455,593,1453,588,1488,577,1581,545"/>
 </map>

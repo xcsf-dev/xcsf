@@ -1,5 +1,7 @@
 <map id="xcs_rl_end_step" name="xcs_rl_end_step">
-<area shape="rect" id="node1" title="Ends a step in a reinforcement learning trial." alt="" coords="5,31,123,57"/>
-<area shape="rect" id="node2" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="171,5,249,32"/>
-<area shape="rect" id="node3" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="180,56,240,83"/>
+<area shape="rect" id="Node000001" title="Ends a step in a reinforcement learning trial." alt="" coords="5,31,123,56"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#ae5d75dfda0a2d2bb81386ccf08a1b5de" title="Frees the set, but not the classifiers." alt="" coords="171,5,249,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,31,157,24,158,30,123,36"/>
+<area shape="rect" id="Node000003" href="$pa_8c.html#a8fad4c2dc045d99e9715f7a0cbb2a5e6" title="Returns the value of a specified action in the prediction array." alt="" coords="180,55,240,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,50,167,58,166,63,122,56"/>
 </map>

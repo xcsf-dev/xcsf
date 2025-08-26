@@ -1,6 +1,9 @@
 <map id="cl_free" name="cl_free">
-<area shape="rect" id="node1" title="Frees the memory used by a classifier." alt="" coords="5,56,67,83"/>
-<area shape="rect" id="node2" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="119,5,189,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="115,56,193,83"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="116,107,192,133"/>
+<area shape="rect" id="Node000001" title="Frees the memory used by a classifier." alt="" coords="5,55,67,80"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="119,5,189,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,52,109,34,111,39,68,57"/>
+<area shape="rect" id="Node000003" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="115,55,193,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="67,65,101,65,101,70,67,70"/>
+<area shape="rect" id="Node000004" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="116,104,192,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="68,78,111,96,109,101,66,82"/>
 </map>

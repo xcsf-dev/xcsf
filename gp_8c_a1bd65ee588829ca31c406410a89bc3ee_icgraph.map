@@ -1,8 +1,0 @@
-<map id="tree_function_string" name="tree_function_string">
-<area shape="rect" id="node1" title="Returns a string representation of a node function." alt="" coords="647,31,783,57"/>
-<area shape="rect" id="node2" href="$gp_8c.html#a7d9e5de8f96b49e28beba7017673fb2a" title="Returns a json formatted string representation of a GP tree." alt="" coords="516,31,599,57"/>
-<area shape="rect" id="node3" href="$gp_8c.html#ae500c8ca8754458d2830363563e35799" title="Returns a json formatted string representation of a GP tree." alt="" coords="349,31,468,57"/>
-<area shape="rect" id="node4" href="$cond__gp_8c.html#a56f3b0a6833bc769adc5707fb0a6f301" title="Returns a json formatted string representation of a tree&#45;GP condition." alt="" coords="156,5,301,32"/>
-<area shape="rect" id="node6" href="$gp_8c.html#a776ec7119667ca4611451522c3c4d247" title="Prints a GP tree." alt="" coords="191,56,267,83"/>
-<area shape="rect" id="node5" href="$cond__gp_8c.html#a096c64bae58b314e1a303f0e3887d412" title="Prints a tree&#45;GP condition." alt="" coords="5,5,108,32"/>
-</map>

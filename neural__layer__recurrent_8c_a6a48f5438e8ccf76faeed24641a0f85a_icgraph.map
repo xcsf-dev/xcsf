@@ -1,4 +1,5 @@
 <map id="free_layer_arrays" name="free_layer_arrays">
-<area shape="rect" id="node1" title="Free memory used by a recurrent layer." alt="" coords="232,5,355,32"/>
-<area shape="rect" id="node2" href="$neural__layer__recurrent_8c.html#ae432e30b57089c0a3fc6547ebe26616d" title="Free memory used by a recurrent layer." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="Node000001" title="Free memory used by a recurrent layer." alt="" coords="232,5,355,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer__recurrent_8c.html#ae432e30b57089c0a3fc6547ebe26616d" title="Free memory used by a recurrent layer." alt="" coords="5,5,184,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,21,184,21,184,15,218,15"/>
 </map>

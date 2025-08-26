@@ -1,6 +1,9 @@
 <map id="param_json_import_subsump" name="param_json_import_subsump">
-<area shape="rect" id="node1" title="Sets the subsumption parameters from a cJSON object." alt="" coords="5,56,197,83"/>
-<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="297,5,383,32"/>
-<area shape="rect" id="node3" href="$param_8c.html#a2c2cfd50d3d5b606fdf60e38139f2a8d" title=" " alt="" coords="245,56,435,83"/>
-<area shape="rect" id="node4" href="$param_8c.html#afc99ec312507b8f99f37cf87e3ab8a56" title=" " alt="" coords="267,107,413,133"/>
+<area shape="rect" id="Node000001" title="Sets the subsumption parameters from a cJSON object." alt="" coords="5,55,197,80"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="297,5,383,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,52,283,27,284,32,164,57"/>
+<area shape="rect" id="Node000003" href="$param_8c.html#ad868d6331f2b60c48557c526cfebd194" title=" " alt="" coords="245,55,435,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,65,231,65,231,70,198,70"/>
+<area shape="rect" id="Node000004" href="$param_8c.html#ad2dbb6663919ab5c81c6cdb0d5c156bd" title=" " alt="" coords="267,104,413,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,77,265,99,264,104,163,83"/>
 </map>

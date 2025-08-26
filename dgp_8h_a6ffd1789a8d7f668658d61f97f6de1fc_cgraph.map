@@ -1,13 +1,26 @@
 <map id="graph_json_import" name="graph_json_import">
-<area shape="rect" id="node1" title="Creates a DGP graph from a cJSON object." alt="" coords="5,152,133,179"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#aa0e728dc8bbdd2d26278adfffbc4c66c" title="Sets DGP mutation rates from a cJSON object." alt="" coords="181,5,387,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a71f09957faa9fdabb2d987360cbaa811" title="Sets DGP current states from a cJSON object." alt="" coords="197,57,371,98"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#a27aaa1180acbdad10e62a36f72117743" title="Sets DGP functions from a cJSON object." alt="" coords="190,123,378,149"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#af5777dde3a1e975576169168c7109581" title="Sets DGP initial states from a cJSON object." alt="" coords="201,174,367,215"/>
-<area shape="rect" id="node7" href="$dgp_8c.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="241,240,327,267"/>
-<area shape="rect" id="node11" href="$sam_8c.html#a7af63fa58413563b25933f08b97852b9" title="Initialises a mutation vector from a cJSON object." alt="" coords="223,291,345,317"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#ad0f02a38a45b019fd630ac6246f921ab" title="Returns the integer value of a specified node function." alt="" coords="457,123,547,149"/>
-<area shape="rect" id="node8" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="784,240,881,267"/>
-<area shape="rect" id="node9" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="617,240,736,267"/>
-<area shape="rect" id="node10" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="435,291,569,317"/>
+<area shape="rect" id="Node000001" title="Creates a DGP graph from a cJSON object." alt="" coords="5,149,133,175"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#aa0e728dc8bbdd2d26278adfffbc4c66c" title="Sets DGP mutation rates from a cJSON object." alt="" coords="181,5,387,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,147,117,96,146,66,180,41,196,33,198,38,183,46,150,70,121,99,81,151"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a71f09957faa9fdabb2d987360cbaa811" title="Sets DGP current states from a cJSON object." alt="" coords="197,55,371,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,147,180,105,200,97,202,102,182,110,95,152"/>
+<area shape="rect" id="Node000004" href="$dgp_8c.html#a27aaa1180acbdad10e62a36f72117743" title="Sets DGP functions from a cJSON object." alt="" coords="190,120,378,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,151,177,145,178,150,134,156"/>
+<area shape="rect" id="Node000006" href="$dgp_8c.html#af5777dde3a1e975576169168c7109581" title="Sets DGP initial states from a cJSON object." alt="" coords="201,170,367,210"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="134,168,188,175,187,180,133,173"/>
+<area shape="rect" id="Node000007" href="$dgp_8c.html#a58fe69583d92f2c818d007d899fdbbb6" title="Randomises a specified DGP graph." alt="" coords="241,235,327,260"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="92,173,133,196,182,220,228,234,227,239,180,224,130,201,89,177"/>
+<area shape="rect" id="Node000011" href="$sam_8c.html#a7af63fa58413563b25933f08b97852b9" title="Initialises a mutation vector from a cJSON object." alt="" coords="223,284,345,309"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="82,173,122,221,150,248,183,270,211,282,209,287,180,275,147,252,118,225,78,177"/>
+<area shape="rect" id="Node000005" href="$dgp_8c.html#ad0f02a38a45b019fd630ac6246f921ab" title="Returns the integer value of a specified node function." alt="" coords="457,120,547,145"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="379,130,443,130,443,135,379,135"/>
+<area shape="rect" id="Node000008" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="784,235,881,260"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="327,237,404,226,506,216,621,212,736,219,780,228,779,234,736,225,621,217,506,221,405,231,328,242"/>
+<area shape="rect" id="Node000009" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="617,235,736,260"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="327,245,604,245,604,250,327,250"/>
+<area shape="rect" id="Node000010" href="$dgp_8c.html#a60cad5226bcd3510b7c52b046c4cb5d6" title="Returns a random connection." alt="" coords="435,285,569,311"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="328,255,434,280,432,285,327,260"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="736,245,770,245,770,250,736,250"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="569,291,649,283,736,270,775,261,776,266,736,275,650,288,570,296"/>
+<area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="546,283,618,261,619,267,547,288"/>
 </map>

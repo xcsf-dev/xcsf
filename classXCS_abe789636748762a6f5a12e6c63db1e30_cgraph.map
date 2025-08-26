@@ -1,4 +1,5 @@
 <map id="XCS::print_status" name="XCS::print_status">
-<area shape="rect" id="node1" title="Prints the current performance metrics." alt="" coords="5,5,132,32"/>
-<area shape="rect" id="node2" href="$pybind__utils_8h.html#a3f3b864aa1926634aeab0d037cefc11d" title="Returns a formatted string for displaying time." alt="" coords="180,5,288,32"/>
+<area shape="rect" id="Node000001" title="Prints the current performance metrics." alt="" coords="5,5,132,31"/>
+<area shape="rect" id="Node000002" href="$pybind__utils_8h.html#a3f3b864aa1926634aeab0d037cefc11d" title="Returns a formatted string for displaying time." alt="" coords="180,5,288,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,15,166,15,166,21,132,21"/>
 </map>

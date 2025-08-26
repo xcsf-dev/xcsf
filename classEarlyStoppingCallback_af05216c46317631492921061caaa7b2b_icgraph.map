@@ -1,4 +1,5 @@
 <map id="EarlyStoppingCallback::store" name="EarlyStoppingCallback::store">
-<area shape="rect" id="node1" title="Stores best XCSF population in memory." alt="" coords="233,5,388,47"/>
-<area shape="rect" id="node2" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,13,185,39"/>
+<area shape="rect" id="Node000001" title="Stores best XCSF population in memory." alt="" coords="233,5,388,45"/>
+<area shape="rect" id="Node000002" href="$classEarlyStoppingCallback.html#abd3058b7119551231838e98d71d4de0c" title="Checks whether early stopping criteria has been met." alt="" coords="5,13,185,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,28,185,28,185,23,220,23"/>
 </map>

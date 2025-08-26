@@ -1,10 +1,17 @@
 <map id="neural_propagate" name="neural_propagate">
-<area shape="rect" id="node1" title="Forward propagates a neural network." alt="" coords="413,81,535,108"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="215,5,353,32"/>
-<area shape="rect" id="node4" href="$cond__neural_8c.html#a431867aa5e420b58fde321b23762987c" title="Generates a neural network that matches the current input." alt="" coords="217,56,351,83"/>
-<area shape="rect" id="node6" href="$pred__neural_8c.html#a620fbeb95758715776b84ee1628a637d" title="Forward propagates a neural network prediction with a provided input." alt="" coords="211,107,357,133"/>
-<area shape="rect" id="node7" href="$rule__neural_8c.html#a0adc732972d73bff35c7eac3f7cc243d" title=" " alt="" coords="203,157,365,184"/>
-<area shape="rect" id="node3" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="19,5,141,32"/>
-<area shape="rect" id="node5" href="$cond__neural_8c.html#abfc93f53d30caf9deccddb96705b632e" title="Generates a neural network that matches the current input." alt="" coords="15,56,145,83"/>
-<area shape="rect" id="node8" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,157,155,184"/>
+<area shape="rect" id="Node000001" title="Forward propagates a neural network." alt="" coords="413,80,535,105"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html#aa4616932ee69561f2324af10da2865de" title="Computes the current neural network action using the input." alt="" coords="215,5,353,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="435,76,364,44,331,33,333,28,366,40,438,71"/>
+<area shape="rect" id="Node000004" href="$cond__neural_8c.html#a431867aa5e420b58fde321b23762987c" title="Generates a neural network that matches the current input." alt="" coords="217,55,351,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="399,85,351,79,352,74,400,80"/>
+<area shape="rect" id="Node000006" href="$pred__neural_8c.html#a620fbeb95758715776b84ee1628a637d" title="Forward propagates a neural network prediction with a provided input." alt="" coords="211,104,357,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="400,105,358,110,357,105,399,99"/>
+<area shape="rect" id="Node000007" href="$rule__neural_8c.html#a0adc732972d73bff35c7eac3f7cc243d" title=" " alt="" coords="203,153,365,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="435,114,366,143,330,156,328,151,364,138,433,109"/>
+<area shape="rect" id="Node000003" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="19,5,141,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,21,141,21,141,15,201,15"/>
+<area shape="rect" id="Node000005" href="$cond__neural_8c.html#abfc93f53d30caf9deccddb96705b632e" title="Generates a neural network that matches the current input." alt="" coords="15,55,145,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="203,70,145,70,145,65,203,65"/>
+<area shape="rect" id="Node000008" href="$rule__neural_8c.html#aea01f5493b0dbc37383421cae4f873ca" title=" " alt="" coords="5,153,155,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="189,169,155,169,155,163,189,163"/>
 </map>

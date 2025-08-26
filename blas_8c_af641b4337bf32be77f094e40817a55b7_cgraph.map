@@ -1,7 +1,11 @@
 <map id="blas_gemm" name="blas_gemm">
-<area shape="rect" id="node1" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="5,81,95,108"/>
-<area shape="rect" id="node2" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="143,5,221,32"/>
-<area shape="rect" id="node3" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="144,56,220,83"/>
-<area shape="rect" id="node4" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="144,107,220,133"/>
-<area shape="rect" id="node5" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="145,157,219,184"/>
+<area shape="rect" id="Node000001" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="5,80,95,105"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="143,5,221,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,77,145,35,148,40,75,82"/>
+<area shape="rect" id="Node000003" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="144,55,220,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,82,130,75,131,80,95,87"/>
+<area shape="rect" id="Node000004" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="144,104,220,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="95,98,131,105,130,110,94,103"/>
+<area shape="rect" id="Node000005" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="145,153,219,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="75,103,147,144,145,149,73,108"/>
 </map>

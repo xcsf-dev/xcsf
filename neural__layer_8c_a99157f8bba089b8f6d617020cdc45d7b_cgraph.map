@@ -1,4 +1,5 @@
 <map id="layer_guard_outputs" name="layer_guard_outputs">
-<area shape="rect" id="node1" title="Check number of outputs is within bounds." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="192,5,275,32"/>
+<area shape="rect" id="Node000001" title="Check number of outputs is within bounds." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="192,5,275,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,15,178,15,178,21,144,21"/>
 </map>

@@ -1,7 +1,11 @@
 <map id="neural_layer_noise_resize" name="neural_layer_noise_resize">
-<area shape="rect" id="node1" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="5,23,136,65"/>
-<area shape="rect" id="node2" href="$neural__layer__noise_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by a noise layer." alt="" coords="192,5,315,32"/>
-<area shape="rect" id="node3" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="184,56,323,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="371,56,509,83"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="557,56,640,83"/>
+<area shape="rect" id="Node000001" title="Resizes a noise layer if the previous layer has changed size." alt="" coords="5,23,136,63"/>
+<area shape="rect" id="Node000002" href="$neural__layer__noise_8c.html#a6a48f5438e8ccf76faeed24641a0f85a" title="Free memory used by a noise layer." alt="" coords="192,5,315,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,32,178,26,178,31,137,37"/>
+<area shape="rect" id="Node000003" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="184,55,323,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,49,171,54,170,59,136,55"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="371,55,509,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="323,65,357,65,357,70,323,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="557,55,640,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="510,65,544,65,544,70,510,70"/>
 </map>

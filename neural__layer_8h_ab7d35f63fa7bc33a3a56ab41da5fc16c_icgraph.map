@@ -1,0 +1,17 @@
+<map id="layer_copy" name="layer_copy">
+<area shape="rect" id="Node000001" title="Creates and returns a copy of a specified layer." alt="" coords="441,128,527,153"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="255,79,347,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="427,128,393,118,346,106,348,100,394,113,429,122"/>
+<area shape="rect" id="Node000007" href="$neural__layer__lstm_8c.html#ad055907f841ba89c18deb79ecebe8124" title="Initialises and creates a copy of one LSTM layer from another." alt="" coords="221,128,380,153"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="427,143,380,143,380,138,427,138"/>
+<area shape="rect" id="Node000008" href="$neural__layer__recurrent_8c.html#a5809330e54d3a893af1f635f7435dd8c" title="Initialises and creates a copy of one recurrent layer from another." alt="" coords="208,177,393,203"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="429,158,350,180,348,175,427,153"/>
+<area shape="rect" id="Node000003" href="$act__neural_8c.html#a6c3049bc82f3a2bd512e156a0f1c1a9b" title="Copies a neural network action from one classifier to another." alt="" coords="24,5,141,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,77,159,45,124,33,126,28,161,39,253,72"/>
+<area shape="rect" id="Node000004" href="$cond__neural_8c.html#ad37696d691025a38a0f8dafeb376ad44" title="Copies a neural network condition from one classifier to another." alt="" coords="19,55,146,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="240,87,146,77,147,72,241,82"/>
+<area shape="rect" id="Node000005" href="$pred__neural_8c.html#aabc294bd7043f7ea912832c3a26b73a1" title="Copies a neural network prediction from one classifier to another." alt="" coords="21,104,145,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="241,101,145,112,145,107,240,96"/>
+<area shape="rect" id="Node000006" href="$rule__neural_8c.html#ad4146518a1cee7c58589d9ea89e02a83" title=" " alt="" coords="5,153,160,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="242,107,209,118,185,130,161,143,127,156,125,151,159,138,183,125,207,113,241,102"/>
+</map>

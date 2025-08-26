@@ -1,0 +1,11 @@
+<map id="neural_layer_maxpool_copy" name="neural_layer_maxpool_copy">
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one maxpooling layer from another." alt="" coords="5,31,188,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="254,5,357,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,30,240,23,241,28,189,35"/>
+<area shape="rect" id="Node000003" href="$neural__layer__maxpool_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a maxpooling layer." alt="" coords="236,55,375,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,51,222,55,222,60,188,57"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="423,55,561,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="375,65,409,65,409,70,375,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="609,55,692,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="562,65,596,65,596,70,562,70"/>
+</map>

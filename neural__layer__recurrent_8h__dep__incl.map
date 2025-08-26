@@ -1,11 +1,19 @@
 <map id="neural_layer_recurrent.h" name="neural_layer_recurrent.h">
-<area shape="rect" id="node1" title="An implementation of a recurrent layer of perceptrons." alt="" coords="383,5,545,32"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,80,226,107"/>
-<area shape="rect" id="node4" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,80,318,107"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,80,445,107"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,80,603,107"/>
-<area shape="rect" id="node7" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="627,80,789,107"/>
-<area shape="rect" id="node8" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="813,80,913,107"/>
-<area shape="rect" id="node9" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="937,80,1033,107"/>
+<area shape="rect" id="Node000001" title="An implementation of a recurrent layer of perceptrons." alt="" coords="383,5,545,31"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,79,99,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,36,111,81,99,83,98,78,110,76,379,30"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,79,226,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="405,37,222,81,221,76,404,31"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,79,318,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="424,38,314,81,312,76,422,33"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,79,445,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="445,43,407,80,403,77,441,39"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,79,603,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="488,39,526,77,522,80,484,43"/>
+<area shape="rect" id="Node000007" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="627,79,789,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="517,32,669,76,668,81,515,37"/>
+<area shape="rect" id="Node000008" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="813,79,913,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="544,30,802,76,813,78,812,83,801,81,543,36"/>
+<area shape="rect" id="Node000009" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="937,79,1033,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="559,27,730,48,926,76,937,78,936,83,925,81,729,53,558,32"/>
 </map>

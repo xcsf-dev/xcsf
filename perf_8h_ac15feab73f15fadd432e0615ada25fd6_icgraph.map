@@ -1,7 +1,12 @@
 <map id="perf_print" name="perf_print">
-<area shape="rect" id="node1" title="Displays the current training and test performance." alt="" coords="301,31,377,57"/>
-<area shape="rect" id="node2" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="145,5,231,32"/>
-<area shape="rect" id="node4" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,56,253,83"/>
-<area shape="rect" id="node3" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,5,65,32"/>
-<area shape="rect" id="node5" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,56,75,83"/>
+<area shape="rect" id="Node000001" title="Displays the current training and test performance." alt="" coords="301,31,377,56"/>
+<area shape="rect" id="Node000002" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="145,5,231,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,37,230,28,231,22,288,32"/>
+<area shape="rect" id="Node000004" href="$xcs__supervised_8c.html#a4b67d2351436bfb520f5707260420f8c" title="Executes MAX_TRIALS number of XCSF learning iterations using the training data and test iterations us..." alt="" coords="123,55,253,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,54,254,60,253,54,287,49"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="15,5,65,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,21,66,21,66,15,131,15"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="135,53,65,29,66,24,137,48"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="5,55,75,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="109,70,75,70,75,65,109,65"/>
 </map>

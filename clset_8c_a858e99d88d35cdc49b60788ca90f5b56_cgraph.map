@@ -1,5 +1,7 @@
 <map id="clset_mean_cond_size" name="clset_mean_cond_size">
-<area shape="rect" id="node1" title="Calculates the mean condition size of classifiers in the set." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="208,5,307,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="355,5,436,32"/>
+<area shape="rect" id="Node000001" title="Calculates the mean condition size of classifiers in the set." alt="" coords="5,5,160,31"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#a281f748c300892281088a51455c6657b" title="Returns the size of a classifier&#39;s condition." alt="" coords="208,5,307,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,15,194,15,194,21,160,21"/>
+<area shape="rect" id="Node000003" href="$condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" title="Returns the size of the classifier condition." alt="" coords="355,5,436,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="307,15,341,15,341,21,307,21"/>
 </map>

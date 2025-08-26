@@ -1,0 +1,13 @@
+<map id="cond_dgp_param_json_import" name="cond_dgp_param_json_import">
+<area shape="rect" id="Node000001" title="Sets the DGP parameters from a cJSON object." alt="" coords="5,88,157,128"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a249d71f924000750fb224b1a992d0427" title="Sets the DGP graph parameters from a cJSON object." alt="" coords="205,95,365,121"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,105,192,105,192,111,158,111"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="414,5,581,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,93,412,55,430,48,432,53,414,60,319,98"/>
+<area shape="rect" id="Node000004" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="413,70,581,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,96,400,92,400,97,366,101"/>
+<area shape="rect" id="Node000005" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="415,119,580,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="366,114,402,118,401,124,366,120"/>
+<area shape="rect" id="Node000006" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="429,169,565,194"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="320,118,414,153,441,162,439,167,412,159,318,123"/>
+</map>

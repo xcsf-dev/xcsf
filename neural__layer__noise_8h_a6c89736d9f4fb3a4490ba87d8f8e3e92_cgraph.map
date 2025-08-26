@@ -1,0 +1,11 @@
+<map id="neural_layer_noise_copy" name="neural_layer_noise_copy">
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one noise layer from another." alt="" coords="5,31,171,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="237,5,339,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,30,223,24,223,29,171,36"/>
+<area shape="rect" id="Node000003" href="$neural__layer__noise_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a noise layer." alt="" coords="219,55,357,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,51,206,55,205,60,170,56"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="405,55,544,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="358,65,391,65,391,70,358,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="592,55,675,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="544,65,578,65,578,70,544,70"/>
+</map>

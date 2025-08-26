@@ -1,11 +1,19 @@
 <map id="neural_layer_dropout.h" name="neural_layer_dropout.h">
-<area shape="rect" id="node1" title="An implementation of a dropout layer." alt="" coords="387,5,541,32"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,80,226,107"/>
-<area shape="rect" id="node4" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,80,318,107"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,80,445,107"/>
-<area shape="rect" id="node6" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,80,603,107"/>
-<area shape="rect" id="node7" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="627,80,781,107"/>
-<area shape="rect" id="node8" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="805,80,905,107"/>
-<area shape="rect" id="node9" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="929,80,1025,107"/>
+<area shape="rect" id="Node000001" title="An implementation of a dropout layer." alt="" coords="387,5,541,31"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html" title="Neural network action functions." alt="" coords="5,79,99,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,36,111,81,99,83,98,78,110,76,379,30"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="123,79,226,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="405,37,222,81,221,76,404,31"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html" title="An implementation of a multi&#45;layer perceptron neural network." alt="" coords="250,79,318,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="424,38,314,81,312,76,422,33"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html" title="Interface for neural network layers." alt="" coords="342,79,445,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="445,43,407,80,403,77,441,39"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html" title="Functions operating on neural network arguments/constants." alt="" coords="469,79,603,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="488,39,526,77,522,80,484,43"/>
+<area shape="rect" id="Node000007" href="$neural__layer__dropout_8c.html" title="An implementation of a dropout layer." alt="" coords="627,79,781,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="517,32,666,76,664,81,515,37"/>
+<area shape="rect" id="Node000008" href="$pred__neural_8c.html" title="Multi&#45;layer perceptron neural network prediction functions." alt="" coords="805,79,905,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="542,30,794,76,805,78,804,83,793,81,541,36"/>
+<area shape="rect" id="Node000009" href="$rule__neural_8c.html" title="Neural network rule (condition + action) functions." alt="" coords="929,79,1025,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="555,27,724,48,918,76,929,78,928,83,917,81,723,53,554,32"/>
 </map>

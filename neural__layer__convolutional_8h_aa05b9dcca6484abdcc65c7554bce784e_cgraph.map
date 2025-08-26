@@ -1,0 +1,22 @@
+<map id="neural_layer_convolutional_copy" name="neural_layer_convolutional_copy">
+<area shape="rect" id="Node000001" title="Initialises and copies one convolutional layer from another." alt="" coords="5,31,216,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="282,5,385,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,29,268,23,269,28,217,34"/>
+<area shape="rect" id="Node000003" href="$neural__layer__convolutional_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a convolutional layer." alt="" coords="264,55,403,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,52,251,56,250,61,216,57"/>
+<area shape="rect" id="Node000004" href="$neural__layer__convolutional_8c.html#a9613e3f3c10a68cc7b9d5e8f084b137c" title="Returns the memory workspace size for a convolutional layer." alt="" coords="451,16,592,41"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="395,52,445,42,446,47,396,57"/>
+<area shape="rect" id="Node000006" href="$neural__layer__convolutional_8c.html#adf18759f7155da7757db6805774dbc73" title="Check memory allocation is within bounds." alt="" coords="472,79,571,104"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="403,74,458,81,457,86,403,79"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="829,79,912,104"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="592,20,683,22,733,27,782,38,815,52,843,69,841,73,812,56,781,43,733,33,683,27,592,26"/>
+<area shape="rect" id="Node000007" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="643,53,778,79"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="570,82,629,74,630,79,571,87"/>
+<area shape="rect" id="Node000008" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="641,103,780,128"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="571,95,628,102,627,107,570,100"/>
+<area shape="rect" id="Node000009" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="640,152,781,177"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="552,102,641,138,659,145,657,150,639,143,550,106"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="779,74,816,80,816,85,778,79"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="780,102,815,97,816,102,780,108"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="752,149,780,138,836,109,839,113,782,143,754,154"/>
+</map>

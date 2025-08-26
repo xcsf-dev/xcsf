@@ -1,10 +1,17 @@
 <map id="xcsf_print_pset" name="xcsf_print_pset">
-<area shape="rect" id="node1" title="Prints the current XCSF population." alt="" coords="5,81,116,108"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="164,81,247,108"/>
-<area shape="rect" id="node3" href="$clset_8c.html#af7d4ec3f5c5bcebc48045a6724beed12" title="Returns a json formatted string representation of a classifier set." alt="" coords="295,81,419,108"/>
-<area shape="rect" id="node4" href="$cl_8c.html#a6fccc77f8093c33617be7fc29175614c" title="Returns a json formatted string representation of a classifier." alt="" coords="467,81,573,108"/>
-<area shape="rect" id="node5" href="$action_8h.html#a31b90b0384c02bd54a0abd49211401fc" title="Returns a json formatted string representation of an action ." alt="" coords="626,5,741,32"/>
-<area shape="rect" id="node6" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="653,56,713,83"/>
-<area shape="rect" id="node7" href="$condition_8h.html#af0c3edaf8549aba2b07a05ba30efde4b" title="Returns a json formatted string representation of a condition." alt="" coords="621,107,745,133"/>
-<area shape="rect" id="node8" href="$prediction_8h.html#a18199616c368658b3bbebeb7bf358306" title="Returns a json formatted string representation of a prediction." alt="" coords="623,157,744,184"/>
+<area shape="rect" id="Node000001" title="Prints the current XCSF population." alt="" coords="5,80,116,105"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="164,80,247,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,90,150,90,150,95,116,95"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a499695ab2ce0f39d1791da495a4c2897" title="Returns a json formatted string representation of a classifier set." alt="" coords="295,80,419,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="247,90,281,90,281,95,247,95"/>
+<area shape="rect" id="Node000004" href="$cl_8c.html#a3dd986331d1e3144f7c3b9530d65a41c" title="Returns a json formatted string representation of a classifier." alt="" coords="467,80,573,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="419,90,453,90,453,95,419,95"/>
+<area shape="rect" id="Node000005" href="$action_8h.html#ae481f5ce26b84ce02edf1e4052fbcfc3" title="Returns a json formatted string representation of an action ." alt="" coords="626,5,741,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="544,78,620,40,634,34,636,38,622,44,546,82"/>
+<area shape="rect" id="Node000006" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="653,55,713,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="573,82,639,71,640,77,574,87"/>
+<area shape="rect" id="Node000007" href="$condition_8h.html#a92c9d643bbbe54b9969dacf6477954c8" title="Returns a json formatted string representation of a condition." alt="" coords="621,104,745,129"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="574,98,608,103,607,108,573,103"/>
+<area shape="rect" id="Node000008" href="$prediction_8h.html#a15774442fdcdf75c7f0ccf1e1e043509" title="Returns a json formatted string representation of a prediction." alt="" coords="623,153,744,179"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="548,103,622,138,639,145,637,150,620,143,546,108"/>
 </map>

@@ -1,5 +1,9 @@
 <map id="tree_grow" name="tree_grow">
-<area shape="rect" id="node1" title="Grows a random GP tree of specified max length and depth." alt="" coords="5,5,84,32"/>
-<area shape="rect" id="node2" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="299,5,396,32"/>
-<area shape="rect" id="node3" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="132,31,251,57"/>
+<area shape="rect" id="Node000001" title="Grows a random GP tree of specified max length and depth." alt="" coords="5,29,84,55"/>
+<area shape="poly" id="edge4_Node000001_Node000001" title=" " alt="" coords="20,31,15,21,17,11,28,5,45,3,65,6,74,15,70,18,62,11,45,8,29,10,22,15,20,20,24,28"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="299,29,396,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,39,285,39,285,45,85,45"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="132,55,251,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="85,46,119,52,118,57,84,51"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="251,55,284,49,285,55,252,60"/>
 </map>

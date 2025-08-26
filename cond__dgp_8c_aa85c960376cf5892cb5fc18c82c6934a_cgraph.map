@@ -1,8 +1,14 @@
 <map id="cond_dgp_copy" name="cond_dgp_copy">
-<area shape="rect" id="node1" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="5,31,119,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a3c327dd571aed17fc3683aa112fbd405" title="Copies a DGP graph." alt="" coords="167,5,256,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#a9f8800d534121a0e036e7643100dff41" title="Initialises a new DGP graph." alt="" coords="172,56,251,83"/>
-<area shape="rect" id="node4" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="304,56,375,83"/>
-<area shape="rect" id="node5" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="589,56,687,83"/>
-<area shape="rect" id="node6" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="423,81,541,108"/>
+<area shape="rect" id="Node000001" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="5,31,119,56"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a3c327dd571aed17fc3683aa112fbd405" title="Copies a DGP graph." alt="" coords="167,5,256,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,31,153,25,153,30,119,36"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#a9f8800d534121a0e036e7643100dff41" title="Initialises a new DGP graph." alt="" coords="172,55,251,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,50,159,56,158,62,118,55"/>
+<area shape="rect" id="Node000004" href="$sam_8c.html#a7f7f30716900f06683a74486aca5f5a0" title="Initialises self&#45;adaptive mutation rates." alt="" coords="304,55,375,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="251,65,290,65,290,70,251,70"/>
+<area shape="rect" id="Node000005" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="589,55,687,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="375,65,576,65,576,70,375,70"/>
+<area shape="rect" id="Node000006" href="$utils_8c.html#a5e6304fd9b177f36684d4bb00af49f91" title="Returns a uniform random integer [min,max] not inclusive of max." alt="" coords="423,80,541,105"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="375,71,409,77,408,82,374,76"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="541,80,575,75,576,80,542,86"/>
 </map>

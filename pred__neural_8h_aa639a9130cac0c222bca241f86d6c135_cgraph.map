@@ -1,12 +1,21 @@
 <map id="pred_neural_ae_to_classifier" name="pred_neural_ae_to_classifier">
-<area shape="rect" id="node1" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="5,81,192,108"/>
-<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="240,5,347,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="256,56,331,83"/>
-<area shape="rect" id="node6" href="$neural_8c.html#af2d255733445f37ec77b106a21215baf" title="Removes the layer at the head of a neural network." alt="" coords="251,107,336,133"/>
-<area shape="rect" id="node9" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="247,157,339,184"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="397,5,499,32"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="396,56,500,83"/>
-<area shape="rect" id="node7" href="$neural_8c.html#aa21d6a71eb14fd94a17e7937d3ccd6c9" title="Removes a layer from a neural network." alt="" coords="395,107,501,133"/>
-<area shape="rect" id="node8" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="549,107,628,133"/>
-<area shape="rect" id="node10" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="400,157,496,184"/>
+<area shape="rect" id="Node000001" title="Removes prediction (decoder) layers and inserts softmax output layer." alt="" coords="5,80,192,105"/>
+<area shape="rect" id="Node000002" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="240,5,347,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,77,246,33,248,38,134,82"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#aa969a46ce36513e683114c704f78a0b5" title="Creates and initialises a new layer." alt="" coords="256,55,331,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,78,242,71,243,77,192,83"/>
+<area shape="rect" id="Node000006" href="$neural_8c.html#af2d255733445f37ec77b106a21215baf" title="Removes the layer at the head of a neural network." alt="" coords="251,104,336,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="192,102,237,107,236,112,192,107"/>
+<area shape="rect" id="Node000009" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="247,153,339,179"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="134,103,247,146,245,151,132,108"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="397,5,499,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="330,53,393,33,395,38,332,58"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="396,55,500,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="331,65,383,65,383,70,331,70"/>
+<area shape="rect" id="Node000007" href="$neural_8c.html#aa21d6a71eb14fd94a17e7937d3ccd6c9" title="Removes a layer from a neural network." alt="" coords="395,104,501,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="336,114,381,114,381,119,336,119"/>
+<area shape="rect" id="Node000008" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="549,104,628,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="502,114,536,114,536,119,502,119"/>
+<area shape="rect" id="Node000010" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="400,153,496,179"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="339,163,386,163,386,169,339,169"/>
 </map>

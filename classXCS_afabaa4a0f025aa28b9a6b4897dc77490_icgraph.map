@@ -1,0 +1,12 @@
+<map id="XCS::get_cover" name="XCS::get_cover">
+<area shape="rect" id="Node000001" title="Returns the values specified in the cover array." alt="" coords="512,31,627,56"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#acb7150d55f04c456a685be939de95f17" title="Sets the XCSF cover array to values given, or zeros." alt="" coords="349,31,464,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="498,46,464,46,464,41,498,41"/>
+<area shape="rect" id="Node000003" href="$classXCS.html#a562cb81d9627e7dbcfdb0dc05ec2e3f0" title="Returns the XCSF prediction array for the provided input." alt="" coords="204,5,301,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,34,301,29,302,23,336,29"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#a2aeb9df5550b79ea97a725e83ef64005" title="Returns the error using N random samples from the provided data." alt="" coords="207,55,298,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="336,57,299,63,298,58,335,52"/>
+<area shape="rect" id="Node000004" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,31,156,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="191,30,157,35,156,30,190,25"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="193,62,156,57,157,51,194,57"/>
+</map>

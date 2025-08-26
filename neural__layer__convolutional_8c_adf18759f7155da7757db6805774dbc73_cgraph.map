@@ -1,7 +1,13 @@
 <map id="guard_malloc" name="guard_malloc">
-<area shape="rect" id="node1" title="Check memory allocation is within bounds." alt="" coords="5,56,104,83"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="155,5,290,32"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="153,56,292,83"/>
-<area shape="rect" id="node5" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="152,107,293,133"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="341,56,424,83"/>
+<area shape="rect" id="Node000001" title="Check memory allocation is within bounds." alt="" coords="5,55,104,80"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a01a12854b9685f32f76429d615e90c50" title="Check number of biases is within bounds." alt="" coords="155,5,290,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,52,164,32,166,37,99,57"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="153,55,292,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="104,65,139,65,139,70,104,70"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="152,104,293,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="99,77,166,97,164,102,98,83"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="341,55,424,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,28,329,48,327,53,264,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="292,65,328,65,328,70,292,70"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="264,101,327,82,329,87,265,107"/>
 </map>

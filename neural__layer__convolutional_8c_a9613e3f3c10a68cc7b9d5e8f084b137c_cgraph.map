@@ -1,4 +1,5 @@
 <map id="get_workspace_size" name="get_workspace_size">
-<area shape="rect" id="node1" title="Returns the memory workspace size for a convolutional layer." alt="" coords="5,5,147,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="195,5,277,32"/>
+<area shape="rect" id="Node000001" title="Returns the memory workspace size for a convolutional layer." alt="" coords="5,5,147,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="195,5,277,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,15,181,15,181,21,147,21"/>
 </map>

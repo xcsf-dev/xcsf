@@ -1,6 +1,9 @@
 <map id="pa_build" name="pa_build">
-<area shape="rect" id="node1" title="Builds the prediction array for the specified input." alt="" coords="5,31,76,57"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a6d152849e51ed10765330586e574805f" title="Computes the current classifier prediction using the input." alt="" coords="124,5,203,32"/>
-<area shape="rect" id="node4" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="127,56,199,83"/>
-<area shape="rect" id="node3" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="251,5,355,32"/>
+<area shape="rect" id="Node000001" title="Builds the prediction array for the specified input." alt="" coords="5,31,76,56"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#a4a979db96c5292f7ab10a022779ce30d" title="Computes the current classifier prediction using the input." alt="" coords="124,5,203,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,34,110,26,111,32,77,39"/>
+<area shape="rect" id="Node000004" href="$pa_8c.html#a63ac1844cb7efa4e37b8c382f56b542b" title="Resets the prediction array to zero." alt="" coords="127,55,199,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="77,48,114,55,113,60,76,53"/>
+<area shape="rect" id="Node000003" href="$prediction_8h.html#a6b6f9e53800aae4a64991a811f670541" title="Computes the current classifier prediction using the input." alt="" coords="251,5,355,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
 </map>

@@ -1,0 +1,8 @@
+<map id="XCS::json_export" name="XCS::json_export">
+<area shape="rect" id="Node000001" title="Returns a JSON formatted string representing the population set." alt="" coords="369,31,495,56"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="204,5,321,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="355,35,321,29,322,24,356,29"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,31,156,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="356,46,156,46,156,41,356,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="191,31,156,36,156,30,190,25"/>
+</map>

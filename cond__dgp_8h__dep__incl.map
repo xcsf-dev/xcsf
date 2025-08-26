@@ -1,5 +1,7 @@
 <map id="cond_dgp.h" name="cond_dgp.h">
-<area shape="rect" id="node1" title="Dynamical GP graph condition functions." alt="" coords="61,5,151,32"/>
-<area shape="rect" id="node2" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="5,80,95,107"/>
-<area shape="rect" id="node3" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="119,80,205,107"/>
+<area shape="rect" id="Node000001" title="Dynamical GP graph condition functions." alt="" coords="61,5,151,31"/>
+<area shape="rect" id="Node000002" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="5,79,95,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,43,61,80,57,77,86,40"/>
+<area shape="rect" id="Node000003" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="119,79,205,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,40,155,77,151,80,122,43"/>
 </map>

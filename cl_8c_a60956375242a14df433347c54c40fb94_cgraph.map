@@ -1,4 +1,5 @@
 <map id="cl_action" name="cl_action">
-<area shape="rect" id="node1" title="Computes the current classifier action using the input." alt="" coords="5,5,80,32"/>
-<area shape="rect" id="node2" href="$action_8h.html#a6a453cb80b07ecb3f18eabc178c81424" title="Computes the current classifier action using the input." alt="" coords="128,5,225,32"/>
+<area shape="rect" id="Node000001" title="Computes the current classifier action using the input." alt="" coords="5,5,80,31"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a6a453cb80b07ecb3f18eabc178c81424" title="Computes the current classifier action using the input." alt="" coords="128,5,225,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,15,114,15,114,21,80,21"/>
 </map>

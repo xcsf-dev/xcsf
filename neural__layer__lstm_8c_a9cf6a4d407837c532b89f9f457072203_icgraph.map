@@ -1,8 +1,14 @@
 <map id="set_layer_n_active" name="set_layer_n_active">
-<area shape="rect" id="node1" title="Sets the number of active (non&#45;zero) weights in an LSTM layer." alt="" coords="439,81,569,108"/>
-<area shape="rect" id="node2" href="$neural__layer__lstm_8c.html#af1574ac1aaa2948e0e159e07e7c4d24a" title="Mutates the number of active weights in an LSTM layer." alt="" coords="238,5,377,32"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="250,56,365,83"/>
-<area shape="rect" id="node5" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="233,107,381,133"/>
-<area shape="rect" id="node6" href="$neural__layer__lstm_8c.html#a7ac6b82c9536c24a6f033c76bb486bcd" title="Resizes an LSTM layer if the previous layer has changed size." alt="" coords="224,157,391,184"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,31,176,57"/>
+<area shape="rect" id="Node000001" title="Sets the number of active (non&#45;zero) weights in an LSTM layer." alt="" coords="439,80,569,105"/>
+<area shape="rect" id="Node000002" href="$neural__layer__lstm_8c.html#af1574ac1aaa2948e0e159e07e7c4d24a" title="Mutates the number of active weights in an LSTM layer." alt="" coords="238,5,377,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="464,76,390,44,355,33,357,28,392,40,466,71"/>
+<area shape="rect" id="Node000004" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="250,55,365,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="425,85,364,77,365,72,425,80"/>
+<area shape="rect" id="Node000005" href="$neural__layer__lstm_8c.html#ae10001d478d05d7503e4ce76e02cbf6b" title="Initialises a long short&#45;term memory layer." alt="" coords="233,104,381,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="425,105,382,110,381,105,425,100"/>
+<area shape="rect" id="Node000006" href="$neural__layer__lstm_8c.html#a7ac6b82c9536c24a6f033c76bb486bcd" title="Resizes an LSTM layer if the previous layer has changed size." alt="" coords="224,153,391,179"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="464,114,392,143,354,156,352,151,390,138,461,109"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,31,176,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="224,30,176,36,176,31,224,25"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="236,62,176,55,176,50,236,57"/>
 </map>

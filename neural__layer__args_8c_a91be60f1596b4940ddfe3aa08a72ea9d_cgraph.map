@@ -1,0 +1,38 @@
+<map id="layer_args_json_export" name="layer_args_json_export">
+<area shape="rect" id="Node000001" title="Returns a json formatted string of the neural layer parameters." alt="" coords="5,249,161,274"/>
+<area shape="rect" id="Node000002" href="$neural__layer__args_8c.html#a0d29d99487e5afd1746e7ac70fadf68f" title="Adds layer activation function to a json object." alt="" coords="223,5,379,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,247,101,210,127,158,162,103,183,78,208,55,214,50,217,55,211,59,187,82,166,107,131,161,106,212,92,249"/>
+<area shape="rect" id="Node000004" href="$neural__layer__args_8c.html#aba8bd68ce834099ac6558a3b2560963a" title="Adds layer evolutionary parameters to a json object." alt="" coords="209,70,393,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="89,247,133,180,167,140,208,106,221,98,224,103,211,110,171,144,137,183,94,250"/>
+<area shape="rect" id="Node000005" href="$neural__layer__args_8c.html#a7b6e5027adbd710fc3653c7056c22fa2" title="Adds layer input parameters to a json object." alt="" coords="223,120,379,160"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="98,246,145,209,208,170,222,163,224,168,211,174,148,214,101,251"/>
+<area shape="rect" id="Node000007" href="$neural__layer__args_8c.html#a1130173f486e5e1b647a65ff0822aebc" title="Adds layer scaling parameters to a json object." alt="" coords="223,184,379,224"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="132,246,211,225,212,230,133,251"/>
+<area shape="rect" id="Node000008" href="$neural__layer__args_8c.html#a686e3f11eb7bb524effd5ddb75bdbd34" title="Adds layer gradient descent parameters to a json object." alt="" coords="209,249,393,274"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="162,259,196,259,196,264,162,264"/>
+<area shape="rect" id="Node000009" href="$neural__layer_8c.html#ac79a38e3a8b17f929de92ba8ee9adf68" title="Returns a string representation of a layer type from an integer." alt="" coords="230,298,373,323"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="141,271,232,292,231,298,140,277"/>
+<area shape="rect" id="Node000010" href="$neural_8c.html#a6466387dd7c533e0f15da4c2127bfd79" title="Initialises and creates a new neural network from a parameter list." alt="" coords="251,347,351,373"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="104,272,151,302,210,332,239,343,237,348,208,337,149,306,101,276"/>
+<area shape="rect" id="Node000014" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="480,398,561,423"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="95,273,140,328,172,358,210,382,276,403,346,414,411,416,467,414,467,419,411,422,345,419,275,409,208,386,169,362,136,331,91,276"/>
+<area shape="rect" id="Node000017" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="258,449,345,474"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="93,273,136,346,170,389,211,427,246,445,244,450,208,432,166,393,131,349,89,276"/>
+<area shape="rect" id="Node000003" href="$neural__activations_8c.html#a434ca6390662d569b5e002a9e2d82c1d" title="Returns the name of a specified activation function." alt="" coords="441,13,600,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="380,23,427,23,427,28,380,28"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="443,127,598,153"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="380,137,430,137,430,143,380,143"/>
+<area shape="rect" id="Node000011" href="$neural__layer_8h.html#aa969a46ce36513e683114c704f78a0b5" title="Creates and initialises a new layer." alt="" coords="483,298,558,323"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="351,346,469,319,470,325,352,351"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="352,369,467,396,466,401,351,374"/>
+<area shape="rect" id="Node000015" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="475,347,567,373"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="352,357,461,357,461,363,352,363"/>
+<area shape="rect" id="Node000012" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="649,249,751,274"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="557,298,639,275,641,280,559,303"/>
+<area shape="rect" id="Node000013" href="$neural__layer_8c.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="648,298,752,323"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="558,308,634,308,634,313,558,313"/>
+<area shape="rect" id="Node000016" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="652,347,748,373"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="567,357,638,357,638,363,567,363"/>
+<area shape="rect" id="Node000018" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="481,449,560,474"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="345,459,467,459,467,464,345,464"/>
+</map>

@@ -1,8 +1,0 @@
-<map id="tree_args_json_import" name="tree_args_json_import">
-<area shape="rect" id="node1" title="Sets the GP tree parameters from a cJSON object." alt="" coords="5,122,156,149"/>
-<area shape="rect" id="node2" href="$gp_8c.html#ab912e7b472f6fdc6bf9a7565bac8f063" title=" " alt="" coords="231,5,367,47"/>
-<area shape="rect" id="node3" href="$gp_8c.html#a7ce902011f75d08acceed528c688a3d0" title=" " alt="" coords="227,71,371,98"/>
-<area shape="rect" id="node4" href="$gp_8c.html#a31aa4c7ee72dd3c66fa9fb093d3d8519" title=" " alt="" coords="215,122,383,149"/>
-<area shape="rect" id="node5" href="$gp_8c.html#ace8b76bf8fcb4b48723dd94efae893c9" title=" " alt="" coords="229,173,369,199"/>
-<area shape="rect" id="node6" href="$gp_8c.html#a9a12da4c3d6254d01924a949478bcc01" title=" " alt="" coords="204,223,395,250"/>
-</map>

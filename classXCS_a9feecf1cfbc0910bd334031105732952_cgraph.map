@@ -1,11 +1,19 @@
 <map id="XCS::print_pset" name="XCS::print_pset">
-<area shape="rect" id="node1" title="Prints the current population." alt="" coords="5,81,120,108"/>
-<area shape="rect" id="node2" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="168,81,279,108"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="327,81,409,108"/>
-<area shape="rect" id="node4" href="$clset_8c.html#af7d4ec3f5c5bcebc48045a6724beed12" title="Returns a json formatted string representation of a classifier set." alt="" coords="457,81,581,108"/>
-<area shape="rect" id="node5" href="$cl_8c.html#a6fccc77f8093c33617be7fc29175614c" title="Returns a json formatted string representation of a classifier." alt="" coords="629,81,736,108"/>
-<area shape="rect" id="node6" href="$action_8h.html#a31b90b0384c02bd54a0abd49211401fc" title="Returns a json formatted string representation of an action ." alt="" coords="789,5,903,32"/>
-<area shape="rect" id="node7" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="816,56,876,83"/>
-<area shape="rect" id="node8" href="$condition_8h.html#af0c3edaf8549aba2b07a05ba30efde4b" title="Returns a json formatted string representation of a condition." alt="" coords="784,107,908,133"/>
-<area shape="rect" id="node9" href="$prediction_8h.html#a18199616c368658b3bbebeb7bf358306" title="Returns a json formatted string representation of a prediction." alt="" coords="785,157,907,184"/>
+<area shape="rect" id="Node000001" title="Prints the current population." alt="" coords="5,80,120,105"/>
+<area shape="rect" id="Node000002" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="168,80,279,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,90,154,90,154,95,120,95"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="327,80,409,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,90,313,90,313,95,279,95"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#a499695ab2ce0f39d1791da495a4c2897" title="Returns a json formatted string representation of a classifier set." alt="" coords="457,80,581,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="410,90,443,90,443,95,410,95"/>
+<area shape="rect" id="Node000005" href="$cl_8c.html#a3dd986331d1e3144f7c3b9530d65a41c" title="Returns a json formatted string representation of a classifier." alt="" coords="629,80,736,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,90,615,90,615,95,581,95"/>
+<area shape="rect" id="Node000006" href="$action_8h.html#ae481f5ce26b84ce02edf1e4052fbcfc3" title="Returns a json formatted string representation of an action ." alt="" coords="789,5,903,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="706,78,783,40,797,34,799,38,785,44,709,82"/>
+<area shape="rect" id="Node000007" href="$cl_8c.html#ad686da805e2ab762a3d32c321657775f" title="Returns the accuracy of a classifier." alt="" coords="816,55,876,80"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="736,82,802,71,803,77,737,87"/>
+<area shape="rect" id="Node000008" href="$condition_8h.html#a92c9d643bbbe54b9969dacf6477954c8" title="Returns a json formatted string representation of a condition." alt="" coords="784,104,908,129"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="737,98,771,103,770,108,736,103"/>
+<area shape="rect" id="Node000009" href="$prediction_8h.html#a15774442fdcdf75c7f0ccf1e1e043509" title="Returns a json formatted string representation of a prediction." alt="" coords="785,153,907,179"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="711,103,785,138,801,145,799,150,783,143,709,108"/>
 </map>

@@ -1,0 +1,17 @@
+<map id="layer_args_json_import" name="layer_args_json_import">
+<area shape="rect" id="Node000001" title="Sets the layer parameters from a cJSON object." alt="" coords="5,159,161,185"/>
+<area shape="rect" id="Node000002" href="$neural__layer__args_8c.html#af7388e196c27ab190bb7bb6848a7a456" title="Sets the layer activation from a cJSON object." alt="" coords="223,5,379,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,157,140,108,172,80,208,55,220,49,222,53,211,60,176,84,144,112,97,161"/>
+<area shape="rect" id="Node000004" href="$neural__layer__args_8c.html#a511a92070d5a53700d9650c1705b96ab" title="Sets the layer evolutionary parameters from a cJSON object." alt="" coords="209,70,393,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="105,157,152,132,208,106,233,97,235,102,210,110,154,136,107,162"/>
+<area shape="rect" id="Node000005" href="$neural__layer__args_8c.html#a22a018ccf2e332aafeaa450968b96ed1" title="Sets the layer input parameters from a cJSON object." alt="" coords="223,120,379,160"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,158,209,151,210,156,162,163"/>
+<area shape="rect" id="Node000006" href="$neural__layer__args_8c.html#ab5d03fe4bb8549b5321c9bda9c514161" title="Sets the layer scaling parameters from a cJSON object." alt="" coords="223,184,379,224"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="162,181,210,188,209,193,161,186"/>
+<area shape="rect" id="Node000007" href="$neural__layer__args_8c.html#a9a07261fd04326ccbae66c152f8f6de2" title="Sets the layer SGD parameters from a cJSON object." alt="" coords="209,249,393,274"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="107,182,154,208,210,234,235,242,233,247,208,238,152,212,105,187"/>
+<area shape="rect" id="Node000008" href="$neural__layer_8c.html#a5a8bc3e92587742c0bd1ee27780b1128" title="Returns the integer representation of a layer type given a name." alt="" coords="239,298,363,323"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="97,183,143,232,175,259,211,283,228,291,226,296,208,288,172,264,140,236,93,187"/>
+<area shape="rect" id="Node000003" href="$neural__activations_8c.html#aaba6ef52952c92bb15f6231b6b42fa73" title="Returns the integer representation of an activation function." alt="" coords="441,13,604,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="380,23,428,23,428,28,380,28"/>
+</map>

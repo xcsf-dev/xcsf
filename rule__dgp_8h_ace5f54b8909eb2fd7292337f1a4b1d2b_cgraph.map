@@ -1,4 +1,5 @@
 <map id="rule_dgp_cond_save" name="rule_dgp_cond_save">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,147,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a617b755a80529d6d8db90ce873242b61" title="Writes DGP graph to a file." alt="" coords="195,5,284,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,147,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a617b755a80529d6d8db90ce873242b61" title="Writes DGP graph to a file." alt="" coords="195,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,15,181,15,181,21,147,21"/>
 </map>

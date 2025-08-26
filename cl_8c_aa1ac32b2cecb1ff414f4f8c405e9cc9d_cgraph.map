@@ -1,9 +1,15 @@
 <map id="cl_load" name="cl_load">
-<area shape="rect" id="node1" title="Reads a classifier from a file." alt="" coords="5,132,68,159"/>
-<area shape="rect" id="node2" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="132,5,203,32"/>
-<area shape="rect" id="node3" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="126,56,209,83"/>
-<area shape="rect" id="node4" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="127,107,208,133"/>
-<area shape="rect" id="node5" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="118,157,217,184"/>
-<area shape="rect" id="node6" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="128,208,207,235"/>
-<area shape="rect" id="node7" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="116,259,219,285"/>
+<area shape="rect" id="Node000001" title="Reads a classifier from a file." alt="" coords="5,129,68,155"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a52378844456bccd5792fd83a66c3e024" title="Reads the action from a file." alt="" coords="132,5,203,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="43,127,71,86,91,62,114,40,120,36,123,40,118,44,95,65,76,89,48,130"/>
+<area shape="rect" id="Node000003" href="$action_8c.html#a57d1606f2517912f1f56018f095761e9" title="Sets a classifier&#39;s action functions to the implementations." alt="" coords="126,55,209,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="55,127,115,89,124,84,127,88,117,94,58,131"/>
+<area shape="rect" id="Node000004" href="$condition_8h.html#aecb888a4d67bac7930149265d00f2c60" title="Reads the condition from a file." alt="" coords="127,104,208,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="68,133,113,124,114,130,69,139"/>
+<area shape="rect" id="Node000005" href="$condition_8c.html#a16981837f523cea3a917404e441981b3" title="Sets a classifier&#39;s condition functions to the implementations." alt="" coords="118,153,217,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="69,145,105,152,104,157,68,150"/>
+<area shape="rect" id="Node000006" href="$prediction_8h.html#acb4453c3ff11e3b628432cdc2fa5e73b" title="Reads the prediction from a file." alt="" coords="128,203,207,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="59,152,117,188,129,194,127,199,115,192,56,157"/>
+<area shape="rect" id="Node000007" href="$prediction_8c.html#a81ad118db1c9b692c45880e6f3a33ec4" title="Sets a classifier&#39;s prediction functions to the implementations." alt="" coords="116,252,219,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="48,153,76,194,118,237,125,243,122,247,114,241,72,197,44,156"/>
 </map>

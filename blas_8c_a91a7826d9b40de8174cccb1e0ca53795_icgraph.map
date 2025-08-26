@@ -1,7 +1,11 @@
 <map id="blas_dot" name="blas_dot">
-<area shape="rect" id="node1" title="Computes the dot product of two vectors." alt="" coords="192,81,263,108"/>
-<area shape="rect" id="node2" href="$pred__nlms_8c.html#a51b8eb7d83c9b73cb298691505af10c0" title="Computes the current NLMS prediction for a provided input." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node3" href="$pred__nlms_8c.html#ac583f28320a20a93d335688484e8ef91" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="11,56,139,83"/>
-<area shape="rect" id="node4" href="$pred__rls_8c.html#ae7fd78fa9f7a442ed68b25e8eac51469" title="Computes the current RLS prediction for a provided input." alt="" coords="12,107,137,133"/>
-<area shape="rect" id="node5" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="17,157,132,184"/>
+<area shape="rect" id="Node000001" title="Computes the dot product of two vectors." alt="" coords="192,80,263,105"/>
+<area shape="rect" id="Node000002" href="$pred__nlms_8c.html#a51b8eb7d83c9b73cb298691505af10c0" title="Computes the current NLMS prediction for a provided input." alt="" coords="5,5,144,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,75,143,44,115,33,118,28,145,40,198,70"/>
+<area shape="rect" id="Node000003" href="$pred__nlms_8c.html#ac583f28320a20a93d335688484e8ef91" title="Updates an NLMS prediction for a given input and truth sample." alt="" coords="11,55,139,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,87,138,81,139,75,179,82"/>
+<area shape="rect" id="Node000004" href="$pred__rls_8c.html#ae7fd78fa9f7a442ed68b25e8eac51469" title="Computes the current RLS prediction for a provided input." alt="" coords="12,104,137,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,103,138,109,137,104,178,98"/>
+<area shape="rect" id="Node000005" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="17,153,132,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="196,115,145,143,115,156,113,151,143,138,193,110"/>
 </map>

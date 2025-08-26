@@ -1,7 +1,11 @@
 <map id="cond_neural.h" name="cond_neural.h">
-<area shape="rect" id="node1" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="191,5,293,32"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="132,80,235,107"/>
-<area shape="rect" id="node4" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="259,80,345,107"/>
-<area shape="rect" id="node5" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="369,80,427,107"/>
+<area shape="rect" id="Node000001" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="191,5,293,31"/>
+<area shape="rect" id="Node000002" href="$clset__neural_8c.html" title="Functions operating on sets of neural classifiers." alt="" coords="5,79,108,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,38,88,81,86,76,199,33"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html" title="Multi&#45;layer perceptron neural network condition functions." alt="" coords="132,79,235,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,43,195,80,191,77,222,40"/>
+<area shape="rect" id="Node000004" href="$condition_8c.html" title="Interface for classifier conditions." alt="" coords="259,79,345,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="263,40,294,77,290,80,259,43"/>
+<area shape="rect" id="Node000005" href="$xcsf_8c.html" title="System&#45;level functions for initialising, saving, loading, etc." alt="" coords="369,79,427,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,34,374,76,371,81,278,39"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="XCS::get_pset_mean_cond_layers" name="XCS::get_pset_mean_cond_layers">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,47"/>
-<area shape="rect" id="node2" href="$clset__neural_8c.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="200,13,367,39"/>
-<area shape="rect" id="node3" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="415,13,549,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,152,45"/>
+<area shape="rect" id="Node000002" href="$clset__neural_8c.html#a6090aa6b432c00fb699a7c9a42f94056" title="Calculates the mean number of condition layers in the set." alt="" coords="200,13,367,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,23,186,23,186,28,152,28"/>
+<area shape="rect" id="Node000003" href="$cond__neural_8c.html#a1f124131c4080c032a61d3a49bdefe20" title="Returns the number of layers within a neural network condition." alt="" coords="415,13,549,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="367,23,401,23,401,28,367,28"/>
 </map>

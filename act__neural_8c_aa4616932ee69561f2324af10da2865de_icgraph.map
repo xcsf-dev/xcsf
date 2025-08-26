@@ -1,4 +1,5 @@
 <map id="act_neural_compute" name="act_neural_compute">
-<area shape="rect" id="node1" title="Computes the current neural network action using the input." alt="" coords="175,5,313,32"/>
-<area shape="rect" id="node2" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="5,5,127,32"/>
+<area shape="rect" id="Node000001" title="Computes the current neural network action using the input." alt="" coords="175,5,313,31"/>
+<area shape="rect" id="Node000002" href="$act__neural_8c.html#aa8b1494c14b289da3f86f4e8a2db5de7" title="Generates a neural network that covers the specified input:action." alt="" coords="5,5,127,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,21,127,21,127,15,161,15"/>
 </map>

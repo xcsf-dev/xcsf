@@ -1,6 +1,9 @@
 <map id="Cl" name="Cl">
-<area shape="rect" id="node1" title="Classifier data structure." alt="" coords="112,95,151,121"/>
-<area shape="rect" id="node2" href="$structActVtbl.html" title="Action interface data structure." alt="" coords="5,5,71,32"/>
-<area shape="rect" id="node3" href="$structPredVtbl.html" title="Prediction interface data structure." alt="" coords="95,5,167,32"/>
-<area shape="rect" id="node4" href="$structCondVtbl.html" title="Condition interface data structure." alt="" coords="192,5,268,32"/>
+<area shape="rect" id="Node000001" title="Classifier data structure." alt="" coords="123,93,161,119"/>
+<area shape="rect" id="Node000002" href="$structCondVtbl.html" title="Condition interface data structure." alt="" coords="5,5,81,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,41,77,67,100,84,123,95,121,100,97,88,73,71,53,45"/>
+<area shape="rect" id="Node000003" href="$structPredVtbl.html" title="Prediction interface data structure." alt="" coords="106,5,178,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,45,145,93,139,93,139,45"/>
+<area shape="rect" id="Node000004" href="$structActVtbl.html" title="Action interface data structure." alt="" coords="203,5,268,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,45,208,71,186,88,163,99,160,95,183,83,204,67,223,41"/>
 </map>

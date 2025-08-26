@@ -1,5 +1,7 @@
 <map id="layer_ensure_input_represention" name="layer_ensure_input_represention">
-<area shape="rect" id="node1" title="Ensures that each neuron is connected to at least one input and each input is connected to at least o..." alt="" coords="212,39,343,80"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="5,5,164,47"/>
-<area shape="rect" id="node3" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="5,71,164,112"/>
+<area shape="rect" id="Node000001" title="Ensures that each neuron is connected to at least one input and each input is connected to at least o..." alt="" coords="212,37,343,77"/>
+<area shape="rect" id="Node000002" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="5,5,164,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,47,164,41,165,36,199,42"/>
+<area shape="rect" id="Node000003" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="5,69,164,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,73,165,79,164,74,198,68"/>
 </map>

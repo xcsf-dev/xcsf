@@ -1,8 +1,13 @@
 <map id="synchronous_update" name="synchronous_update">
-<area shape="rect" id="node1" title="Performs a synchronous update." alt="" coords="533,31,676,57"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a91b113eb2798ad1b958d47184ebbf1fb" title="Updates a DGP graph T cycles." alt="" coords="385,31,485,57"/>
-<area shape="rect" id="node3" href="$cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title="Calculates whether a dynamical GP graph condition matches an input." alt="" coords="202,5,323,32"/>
-<area shape="rect" id="node5" href="$rule__dgp_8c.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="188,56,337,83"/>
-<area shape="rect" id="node4" href="$cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="14,5,131,32"/>
-<area shape="rect" id="node6" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,56,140,83"/>
+<area shape="rect" id="Node000001" title="Performs a synchronous update." alt="" coords="533,31,676,56"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a91b113eb2798ad1b958d47184ebbf1fb" title="Updates a DGP graph T cycles." alt="" coords="385,31,485,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="520,46,486,46,486,41,520,41"/>
+<area shape="rect" id="Node000003" href="$cond__dgp_8c.html#a8bb6fc747fba92c9a717c1b26f5ffca7" title="Calculates whether a dynamical GP graph condition matches an input." alt="" coords="202,5,323,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,37,323,30,324,24,372,31"/>
+<area shape="rect" id="Node000005" href="$rule__dgp_8c.html#a85eb12064cc539b1ec1fea93ee5f5e3e" title=" " alt="" coords="188,55,337,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="372,55,338,60,337,54,372,49"/>
+<area shape="rect" id="Node000004" href="$cond__dgp_8c.html#a585a3476b4473b1b19159a7d55daa6ae" title="Generates a dynamical GP graph that matches the current input." alt="" coords="14,5,131,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="188,21,132,21,132,15,188,15"/>
+<area shape="rect" id="Node000006" href="$rule__dgp_8c.html#ac1f0b0c11b92852e82b00ad7b4bb169f" title=" " alt="" coords="5,55,140,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="174,70,141,70,141,65,174,65"/>
 </map>

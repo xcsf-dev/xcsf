@@ -1,4 +1,5 @@
 <map id="layer_args_validate_inputs" name="layer_args_validate_inputs">
-<area shape="rect" id="node1" title="Checks input layer arguments are valid." alt="" coords="5,5,140,47"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="188,13,343,39"/>
+<area shape="rect" id="Node000001" title="Checks input layer arguments are valid." alt="" coords="5,5,140,45"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="188,13,343,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,23,174,23,174,28,140,28"/>
 </map>

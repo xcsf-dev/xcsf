@@ -1,17 +1,31 @@
 <map id="sam.h" name="sam.h">
-<area shape="rect" id="node1" title="Self&#45;adaptive mutation functions." alt="" coords="799,5,857,32"/>
-<area shape="rect" id="node2" href="$act__integer_8c.html" title="integer action functions." alt="" coords="5,80,101,107"/>
-<area shape="rect" id="node3" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="126,80,215,107"/>
-<area shape="rect" id="node4" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="240,80,355,107"/>
-<area shape="rect" id="node5" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="379,80,461,107"/>
-<area shape="rect" id="node6" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="486,80,607,107"/>
-<area shape="rect" id="node7" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="632,80,739,107"/>
-<area shape="rect" id="node8" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="763,80,818,107"/>
-<area shape="rect" id="node9" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="842,80,889,107"/>
-<area shape="rect" id="node10" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="913,80,1084,107"/>
-<area shape="rect" id="node11" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1108,80,1295,107"/>
-<area shape="rect" id="node12" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1319,80,1454,107"/>
-<area shape="rect" id="node13" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="1478,80,1639,107"/>
-<area shape="rect" id="node14" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="1664,80,1757,107"/>
-<area shape="rect" id="node15" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="1781,80,1840,107"/>
+<area shape="rect" id="Node000001" title="Self&#45;adaptive mutation functions." alt="" coords="799,5,857,31"/>
+<area shape="rect" id="Node000002" href="$act__integer_8c.html" title="integer action functions." alt="" coords="5,79,101,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="785,24,503,42,310,59,114,81,102,83,101,78,113,76,309,53,502,37,785,19"/>
+<area shape="rect" id="Node000003" href="$cond__dgp_8c.html" title="Dynamical GP graph condition functions." alt="" coords="126,79,215,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="785,25,548,44,389,60,228,81,216,83,215,78,228,76,389,55,547,39,785,19"/>
+<area shape="rect" id="Node000004" href="$cond__ellipsoid_8c.html" title="Hyperellipsoid condition functions." alt="" coords="240,79,355,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="785,27,367,81,355,83,354,78,366,76,784,22"/>
+<area shape="rect" id="Node000005" href="$cond__gp_8c.html" title="Tree GP condition functions." alt="" coords="379,79,461,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="786,28,474,81,462,84,461,78,473,76,785,23"/>
+<area shape="rect" id="Node000006" href="$cond__rectangle_8c.html" title="Hyperrectangle condition functions." alt="" coords="486,79,607,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="786,33,593,81,591,76,785,27"/>
+<area shape="rect" id="Node000007" href="$cond__ternary_8c.html" title="Ternary condition functions." alt="" coords="632,79,739,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="794,39,710,81,707,76,792,34"/>
+<area shape="rect" id="Node000008" href="$dgp_8c.html" title="An implementation of dynamical GP graphs with fuzzy activations." alt="" coords="763,79,818,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="818,44,799,80,794,77,813,42"/>
+<area shape="rect" id="Node000009" href="$gp_8c.html" title="An implementation of GP trees based upon TinyGP." alt="" coords="842,79,889,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="843,42,862,77,857,80,838,44"/>
+<area shape="rect" id="Node000010" href="$neural__layer__connected_8c.html" title="An implementation of a fully&#45;connected layer of perceptrons." alt="" coords="913,79,1084,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="869,33,972,76,970,81,867,38"/>
+<area shape="rect" id="Node000011" href="$neural__layer__convolutional_8c.html" title="An implementation of a 2D convolutional layer." alt="" coords="1108,79,1295,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="872,25,1142,76,1141,81,871,30"/>
+<area shape="rect" id="Node000012" href="$neural__layer__lstm_8c.html" title="An implementation of a long short&#45;term memory layer." alt="" coords="1319,79,1454,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="872,22,1307,76,1319,78,1319,83,1306,81,871,27"/>
+<area shape="rect" id="Node000013" href="$neural__layer__recurrent_8c.html" title="An implementation of a recurrent layer of perceptrons." alt="" coords="1478,79,1639,104"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="872,20,1124,42,1467,76,1478,77,1478,83,1466,81,1124,48,871,26"/>
+<area shape="rect" id="Node000014" href="$pred__nlms_8c.html" title="Normalised least mean squares prediction functions." alt="" coords="1664,79,1757,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="871,18,1196,34,1422,51,1652,76,1664,78,1664,83,1652,81,1422,56,1196,39,871,23"/>
+<area shape="rect" id="Node000015" href="$sam_8c.html" title="Self&#45;adaptive mutation functions." alt="" coords="1781,79,1840,104"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="871,16,1020,17,1242,24,1503,42,1638,57,1770,76,1782,78,1780,84,1769,81,1637,62,1503,48,1242,30,1020,23,871,22"/>
 </map>

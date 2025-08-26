@@ -1,10 +1,17 @@
 <map id="pred_neural_expand" name="pred_neural_expand">
-<area shape="rect" id="node1" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="5,81,144,108"/>
-<area shape="rect" id="node2" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="192,5,299,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a33f40237cec8d79bf6325b78d1f955fe" title="Creates and initialises a new layer." alt="" coords="208,56,283,83"/>
-<area shape="rect" id="node6" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="197,107,293,133"/>
-<area shape="rect" id="node7" href="$neural_8c.html#a76c99d66af7b4eb556b71a86f099b7a0" title="Resizes neural network layers as necessary." alt="" coords="196,157,295,184"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="347,31,450,57"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="347,81,451,108"/>
-<area shape="rect" id="node8" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="353,157,445,184"/>
+<area shape="rect" id="Node000001" title="Creates and inserts a hidden layer before the prediction output layer." alt="" coords="5,80,144,105"/>
+<area shape="rect" id="Node000002" href="$neural__layer__args_8c.html#a3b06e82bed7fc9a8915d6187ce08d33e" title="Sets layer parameters to default values." alt="" coords="192,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,77,202,34,204,39,106,82"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#aa969a46ce36513e683114c704f78a0b5" title="Creates and initialises a new layer." alt="" coords="208,55,283,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,80,194,72,195,77,145,85"/>
+<area shape="rect" id="Node000006" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="197,104,293,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="145,100,184,105,183,111,144,105"/>
+<area shape="rect" id="Node000007" href="$neural_8c.html#a76c99d66af7b4eb556b71a86f099b7a0" title="Resizes neural network layers as necessary." alt="" coords="196,153,295,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="106,103,203,145,201,150,104,108"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="347,31,450,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,59,334,51,335,56,283,64"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8c.html#a786726dce503a14b3bdd88b1ab5c356f" title="Sets a neural network layer&#39;s functions to the implementations." alt="" coords="347,80,451,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="283,71,333,79,332,84,282,76"/>
+<area shape="rect" id="Node000008" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="353,153,445,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="295,163,339,163,339,169,295,169"/>
 </map>

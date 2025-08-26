@@ -1,4 +1,5 @@
 <map id="act_integer_print" name="act_integer_print">
-<area shape="rect" id="node1" title="Prints an integer action." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node2" href="$act__integer_8c.html#ac235c7dc2f575e993284d0414f830c18" title="Returns a json formatted string representation of an integer action." alt="" coords="172,5,332,32"/>
+<area shape="rect" id="Node000001" title="Prints an integer action." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$act__integer_8c.html#ab39eaaee3cbedd7dabd19b625cc61409" title="Returns a json formatted string representation of an integer action." alt="" coords="172,5,332,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
 </map>

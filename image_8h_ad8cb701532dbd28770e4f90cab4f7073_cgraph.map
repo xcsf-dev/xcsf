@@ -1,4 +1,5 @@
 <map id="col2im" name="col2im">
-<area shape="rect" id="node1" title="Transforms a column vector to an image vector." alt="" coords="5,5,65,32"/>
-<area shape="rect" id="node2" href="$image_8c.html#aad5873f6590465834413dd198919808c" title=" " alt="" coords="113,5,236,32"/>
+<area shape="rect" id="Node000001" title="Transforms a column vector to an image vector." alt="" coords="5,5,65,31"/>
+<area shape="rect" id="Node000002" href="$image_8c.html#aad5873f6590465834413dd198919808c" title=" " alt="" coords="113,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,15,99,15,99,21,66,21"/>
 </map>

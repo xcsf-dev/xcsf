@@ -1,9 +1,19 @@
 <map id="clset_load_pop_file" name="clset_load_pop_file">
-<area shape="rect" id="node1" title=" " alt="" coords="581,56,715,83"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="427,56,533,83"/>
-<area shape="rect" id="node3" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="308,56,379,83"/>
-<area shape="rect" id="node4" href="$classXCS.html#a04a010f5046c529132d7a67202123295" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="182,5,251,32"/>
-<area shape="rect" id="node5" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="191,56,242,83"/>
-<area shape="rect" id="node6" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="173,107,260,133"/>
-<area shape="rect" id="node7" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="5,107,125,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="780,80,913,105"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="625,80,732,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="766,95,732,95,732,90,766,90"/>
+<area shape="rect" id="Node000003" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="507,80,577,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="611,95,577,95,577,90,611,90"/>
+<area shape="rect" id="Node000004" href="$classXCS.html#ae71d09f1e1346353163fc9d8ffb430af" title="Executes MAX_TRIALS number of XCSF learning iterations using the provided training data." alt="" coords="381,5,450,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="508,75,457,44,438,33,441,29,460,40,511,71"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="390,55,441,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="492,86,440,75,441,70,493,80"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#a8a53a8df81152fbf73e6abcc6a6e56b4" title="Default Constructor." alt="" coords="372,104,459,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="493,105,459,111,458,106,492,99"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#a608a50f998819369d28ef9966d6812ca" title="Constructor." alt="" coords="372,153,459,179"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="508,115,440,155,437,151,506,110"/>
+<area shape="rect" id="Node000007" href="$classXCS.html#a71b21201e1a2aef16702a2c308eb6683" title="Implements pickle file reading." alt="" coords="204,104,324,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="358,119,324,119,324,114,358,114"/>
+<area shape="rect" id="Node000008" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,104,156,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="190,119,156,119,156,114,190,114"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="rule_dgp_cond_load" name="rule_dgp_cond_load">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,143,32"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#ada0d974917fd977ef9ab8908c8e43782" title="Reads DGP graph from a file." alt="" coords="191,5,276,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,143,31"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#ada0d974917fd977ef9ab8908c8e43782" title="Reads DGP graph from a file." alt="" coords="191,5,276,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,15,177,15,177,21,143,21"/>
 </map>

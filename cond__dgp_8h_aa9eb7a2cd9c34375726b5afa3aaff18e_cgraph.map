@@ -1,9 +1,15 @@
 <map id="cond_dgp_param_defaults" name="cond_dgp_param_defaults">
-<area shape="rect" id="node1" title="Initialises default DGP condition parameters." alt="" coords="5,148,180,175"/>
-<area shape="rect" id="node2" href="$dgp_8c.html#a6b7a635ba70d5560f6b3ce23433fe56b" title="Sets DGP parameters to default values." alt="" coords="262,5,373,32"/>
-<area shape="rect" id="node3" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="234,57,401,98"/>
-<area shape="rect" id="node4" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="233,123,401,149"/>
-<area shape="rect" id="node5" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="235,173,400,200"/>
-<area shape="rect" id="node6" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="249,224,385,251"/>
-<area shape="rect" id="node7" href="$dgp_8c.html#aa84ac940be12dff259a4905f95dba1a1" title=" " alt="" coords="228,275,407,301"/>
+<area shape="rect" id="Node000001" title="Initialises default DGP condition parameters." alt="" coords="5,145,180,171"/>
+<area shape="rect" id="Node000002" href="$dgp_8c.html#a6b7a635ba70d5560f6b3ce23433fe56b" title="Sets DGP parameters to default values." alt="" coords="262,5,373,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,143,153,94,188,66,227,41,248,32,250,36,229,46,192,70,157,98,107,147"/>
+<area shape="rect" id="Node000003" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="234,55,401,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,143,227,105,247,98,249,103,229,110,128,148"/>
+<area shape="rect" id="Node000004" href="$dgp_8c.html#ad00d04d5a1aa9f62c635775765099ca7" title=" " alt="" coords="233,120,401,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="180,145,219,141,220,146,181,151"/>
+<area shape="rect" id="Node000005" href="$dgp_8c.html#a2032837921a137ebe4c7704c47fd420f" title=" " alt="" coords="235,169,400,195"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="181,165,221,169,221,174,180,170"/>
+<area shape="rect" id="Node000006" href="$dgp_8c.html#a5fae5c843dd7b47d4a7a136122efd24b" title=" " alt="" coords="249,219,385,244"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="129,168,229,203,258,212,256,217,227,209,127,173"/>
+<area shape="rect" id="Node000007" href="$dgp_8c.html#aa84ac940be12dff259a4905f95dba1a1" title=" " alt="" coords="228,268,407,293"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="110,169,161,210,194,233,229,253,249,261,246,266,227,258,191,237,157,214,106,173"/>
 </map>

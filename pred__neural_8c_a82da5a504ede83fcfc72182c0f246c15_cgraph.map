@@ -1,5 +1,7 @@
 <map id="pred_neural_free" name="pred_neural_free">
-<area shape="rect" id="node1" title="Frees the memory used by a neural network prediction." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="172,5,259,32"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="307,5,385,32"/>
+<area shape="rect" id="Node000001" title="Frees the memory used by a neural network prediction." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#a9c3e1da0425d0fc17daa12c21e4799ca" title="Frees a neural network." alt="" coords="172,5,259,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#a5ea2541eb1936ed851001c4a8b99b08f" title="Frees the memory used by the layer." alt="" coords="307,5,385,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,15,293,15,293,21,259,21"/>
 </map>

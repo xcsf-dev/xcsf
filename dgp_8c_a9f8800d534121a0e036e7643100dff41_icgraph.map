@@ -1,7 +1,11 @@
 <map id="graph_init" name="graph_init">
-<area shape="rect" id="node1" title="Initialises a new DGP graph." alt="" coords="195,81,273,108"/>
-<area shape="rect" id="node2" href="$cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="19,5,133,32"/>
-<area shape="rect" id="node3" href="$cond__dgp_8c.html#a36eb6c8e497eb217ea0423ffce18e8e4" title="Creates and initialises a dynamical GP graph condition." alt="" coords="25,56,127,83"/>
-<area shape="rect" id="node4" href="$rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" title=" " alt="" coords="5,107,147,133"/>
-<area shape="rect" id="node5" href="$rule__dgp_8c.html#a242104780e9757fc9b303b8850f56382" title=" " alt="" coords="11,157,141,184"/>
+<area shape="rect" id="Node000001" title="Initialises a new DGP graph." alt="" coords="195,80,273,105"/>
+<area shape="rect" id="Node000002" href="$cond__dgp_8c.html#aa85c960376cf5892cb5fc18c82c6934a" title="Copies a dynamical GP graph condition from one classifier to another." alt="" coords="19,5,133,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,75,146,44,118,33,120,28,148,40,203,70"/>
+<area shape="rect" id="Node000003" href="$cond__dgp_8c.html#a36eb6c8e497eb217ea0423ffce18e8e4" title="Creates and initialises a dynamical GP graph condition." alt="" coords="25,55,127,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,87,127,78,128,73,181,82"/>
+<area shape="rect" id="Node000004" href="$rule__dgp_8c.html#a6e5c0bccb713a8dc277bf31a25673fab" title=" " alt="" coords="5,104,147,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,103,147,109,146,103,180,98"/>
+<area shape="rect" id="Node000005" href="$rule__dgp_8c.html#a242104780e9757fc9b303b8850f56382" title=" " alt="" coords="11,153,141,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="201,115,148,143,117,156,115,151,146,138,199,110"/>
 </map>

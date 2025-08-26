@@ -1,9 +1,18 @@
 <map id="xcs_rl_end_step" name="xcs_rl_end_step">
-<area shape="rect" id="node1" title="Ends a step in a reinforcement learning trial." alt="" coords="396,56,513,83"/>
-<area shape="rect" id="node2" href="$classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d" title="Ends a step in a reinforcement learning trial." alt="" coords="237,5,348,32"/>
-<area shape="rect" id="node3" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="255,56,330,83"/>
-<area shape="rect" id="node5" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="250,107,335,133"/>
-<area shape="rect" id="node4" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="112,56,181,83"/>
-<area shape="rect" id="node6" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="104,107,189,133"/>
-<area shape="rect" id="node7" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,107,56,133"/>
+<area shape="rect" id="Node000001" title="Ends a step in a reinforcement learning trial." alt="" coords="496,55,613,80"/>
+<area shape="rect" id="Node000002" href="$classXCS.html#aaa50fffbade66dcb1a1bd48e28ea838d" title="Ends a step in a reinforcement learning trial." alt="" coords="204,5,315,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="492,54,448,45,315,26,315,21,448,39,493,49"/>
+<area shape="rect" id="Node000004" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="368,55,443,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="482,70,443,70,443,65,482,65"/>
+<area shape="rect" id="Node000006" href="$xcs__rl_8c.html#a8171cd945b56ed0a4563f9dcd89438e3" title="Executes a reinforcement learning trial using a built&#45;in environment." alt="" coords="363,104,448,129"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="504,87,446,106,444,101,502,82"/>
+<area shape="rect" id="Node000003" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,31,156,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="191,30,157,35,156,30,190,25"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#ac12768292958a714a726b1c029e9616a" title="Creates/updates an action set for a given (state, action, reward)." alt="" coords="225,55,294,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="354,70,294,70,294,65,354,65"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="211,64,156,56,157,51,211,58"/>
+<area shape="rect" id="Node000007" href="$xcs__rl_8c.html#adb4c284d19eeaed2b4a629f9b939ed20" title="Executes a reinforcement learning experiment." alt="" coords="217,104,302,129"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="349,119,302,119,302,114,349,114"/>
+<area shape="rect" id="Node000008" href="$main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="55,104,106,129"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="203,119,106,119,106,114,203,114"/>
 </map>

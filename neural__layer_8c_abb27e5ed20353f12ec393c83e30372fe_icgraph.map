@@ -1,11 +1,23 @@
 <map id="layer_calc_n_active" name="layer_calc_n_active">
-<area shape="rect" id="node1" title="Recalculates the number of active connections within a layer." alt="" coords="669,127,807,153"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="469,35,599,61"/>
-<area shape="rect" id="node6" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="455,86,613,127"/>
-<area shape="rect" id="node7" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="447,151,621,193"/>
-<area shape="rect" id="node9" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="447,217,621,258"/>
-<area shape="rect" id="node3" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="254,5,369,32"/>
-<area shape="rect" id="node5" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="232,57,391,98"/>
-<area shape="rect" id="node4" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,32"/>
-<area shape="rect" id="node8" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="224,151,399,193"/>
+<area shape="rect" id="Node000001" title="Recalculates the number of active connections within a layer." alt="" coords="669,149,807,175"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="469,60,599,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="704,144,665,122,620,100,585,88,586,83,622,96,667,117,707,140"/>
+<area shape="rect" id="Node000008" href="$neural__layer__connected_8c.html#a59fadd69e4cf947b9c23f10e6a30e6dc" title="Resizes a connected layer if the previous layer has changed size." alt="" coords="455,110,613,150"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="655,152,613,145,614,140,656,147"/>
+<area shape="rect" id="Node000009" href="$neural__layer__convolutional_8c.html#ac1583df380d50d47c53b64a3e7614269" title="Adds N filters to a layer. Negative N removes filters." alt="" coords="447,174,621,214"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="656,178,622,183,621,178,655,172"/>
+<area shape="rect" id="Node000011" href="$neural__layer__convolutional_8c.html#a6c9ca01e07720bcdade79e664bed4c05" title="Resizes a convolutional layer if the previous layer has changed size." alt="" coords="447,238,621,278"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="705,184,622,228,594,240,592,235,620,224,703,179"/>
+<area shape="rect" id="Node000003" href="$neural__layer__lstm_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in an LSTM layer." alt="" coords="254,7,369,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="466,59,364,35,366,29,468,54"/>
+<area shape="rect" id="Node000005" href="$neural__layer__recurrent_8c.html#a804cc1f15baeb4bb507dc449b8e3dcfd" title="Mutates the number of neurons in a recurrent layer." alt="" coords="254,60,369,85"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="455,75,369,75,369,70,455,70"/>
+<area shape="rect" id="Node000007" href="$neural__layer__connected_8c.html#abfd38ab832a6f70d7b61065fe3dc25c3" title="Mutates a connected layer." alt="" coords="232,110,391,150"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="471,91,390,113,389,107,470,86"/>
+<area shape="rect" id="Node000004" href="$neural__layer__lstm_8c.html#a4324dc3fbf9a44f60c956a467a5ff73b" title="Mutates an LSTM layer." alt="" coords="5,5,176,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="240,22,176,21,176,16,240,16"/>
+<area shape="rect" id="Node000006" href="$neural__layer__recurrent_8c.html#a5f6793ef0a2d69438a499632e360f9e6" title="Mutates a recurrent layer." alt="" coords="15,55,166,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="240,76,166,77,166,72,240,71"/>
+<area shape="rect" id="Node000010" href="$neural__layer__convolutional_8c.html#a9e4f5fb82855910a5a4fecad093033db" title="Mutates a convolutional layer." alt="" coords="224,174,399,214"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="433,197,399,197,399,191,433,191"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="XCS::init_trial" name="XCS::init_trial">
-<area shape="rect" id="node1" title="Initialises a reinforcement learning trial." alt="" coords="5,5,108,32"/>
-<area shape="rect" id="node2" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="156,5,265,32"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="313,5,388,32"/>
+<area shape="rect" id="Node000001" title="Initialises a reinforcement learning trial." alt="" coords="5,5,108,31"/>
+<area shape="rect" id="Node000002" href="$xcs__rl_8c.html#adca6cf3218b5080457ff2d1a7fbb8017" title="Initialises a reinforcement learning trial." alt="" coords="156,5,265,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,15,142,15,142,21,108,21"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a9af546abf9de1bc840d605e949d3ef47" title="Initialises a new set." alt="" coords="313,5,388,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,15,300,15,300,21,265,21"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="cl_save" name="cl_save">
-<area shape="rect" id="node1" title="Writes a classifier to a file." alt="" coords="5,56,72,83"/>
-<area shape="rect" id="node2" href="$action_8h.html#a60392c9bd1cbef6582260ce68267ce87" title="Writes the action to a file." alt="" coords="125,5,200,32"/>
-<area shape="rect" id="node3" href="$condition_8h.html#a724ee05518d297e814f73a5192e582fc" title="Writes the condition to a file." alt="" coords="120,56,205,83"/>
-<area shape="rect" id="node4" href="$prediction_8h.html#a6b770c6e0195594d8ebc5dd1b57d0f39" title="Writes the prediction to a file." alt="" coords="121,107,204,133"/>
+<area shape="rect" id="Node000001" title="Writes a classifier to a file." alt="" coords="5,55,72,80"/>
+<area shape="rect" id="Node000002" href="$action_8h.html#a60392c9bd1cbef6582260ce68267ce87" title="Writes the action to a file." alt="" coords="125,5,200,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,52,116,33,118,38,72,57"/>
+<area shape="rect" id="Node000003" href="$condition_8h.html#a724ee05518d297e814f73a5192e582fc" title="Writes the condition to a file." alt="" coords="120,55,205,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="73,65,106,65,106,70,73,70"/>
+<area shape="rect" id="Node000004" href="$prediction_8h.html#a6b770c6e0195594d8ebc5dd1b57d0f39" title="Writes the prediction to a file." alt="" coords="121,104,204,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="72,78,118,96,116,101,70,83"/>
 </map>

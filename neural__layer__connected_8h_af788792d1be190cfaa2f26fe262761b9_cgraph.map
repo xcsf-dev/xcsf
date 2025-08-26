@@ -1,0 +1,14 @@
+<map id="neural_layer_connected_copy" name="neural_layer_connected_copy">
+<area shape="rect" id="Node000001" title="Initialises and creates a copy of one connected layer from another." alt="" coords="5,31,200,56"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a21a8acbaa483c46984c4f5f20d4edf95" title="Initialises a layer to default values." alt="" coords="266,5,369,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,29,252,23,252,28,200,35"/>
+<area shape="rect" id="Node000003" href="$neural__layer__connected_8c.html#a6e3344e46eea0817b14f3568ef81ff97" title="Allocate memory used by a connected layer." alt="" coords="248,55,387,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,52,234,55,234,61,200,57"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="436,29,575,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="387,55,422,51,423,56,388,61"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="435,79,576,104"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="387,74,422,78,421,83,387,79"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="624,55,707,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="575,50,611,56,610,61,574,56"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="576,78,610,73,611,78,577,83"/>
+</map>

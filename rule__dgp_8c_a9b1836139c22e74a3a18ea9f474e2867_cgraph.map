@@ -1,4 +1,5 @@
 <map id="rule_dgp_act_print" name="rule_dgp_act_print">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,133,32"/>
-<area shape="rect" id="node2" href="$rule__dgp_8c.html#a17eb483987e4417282bacaf66aad775f" title=" " alt="" coords="181,5,352,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,133,31"/>
+<area shape="rect" id="Node000002" href="$rule__dgp_8c.html#accf5c9106ecd8870f4e95ccacec8dcbc" title=" " alt="" coords="181,5,352,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,15,168,15,168,21,134,21"/>
 </map>

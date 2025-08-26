@@ -1,11 +1,22 @@
 <map id="cond_save" name="cond_save">
-<area shape="rect" id="node1" title="Writes the condition to a file." alt="" coords="816,64,901,91"/>
-<area shape="rect" id="node2" href="$cl_8c.html#a9d9005cabc5bb84749bc6fb29c4b9fd9" title="Writes a classifier to a file." alt="" coords="701,64,768,91"/>
-<area shape="rect" id="node3" href="$clset_8c.html#a980a17ddb59b83bfe0ef3068e03fca23" title="Writes the population set to a file." alt="" coords="536,64,653,91"/>
-<area shape="rect" id="node4" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="405,64,488,91"/>
-<area shape="rect" id="node5" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="245,5,331,32"/>
-<area shape="rect" id="node6" href="$classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca" title="Saves the state of XCSF." alt="" coords="219,57,357,98"/>
-<area shape="rect" id="node9" href="$classXCS.html#ac214b881bee8379185c34abb450c1c4b" title="Implements pickle file writing." alt="" coords="235,123,341,149"/>
-<area shape="rect" id="node7" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="19,27,157,69"/>
-<area shape="rect" id="node8" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="5,93,171,120"/>
+<area shape="rect" id="Node000001" title="Writes the condition to a file." alt="" coords="816,55,901,80"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#a9d9005cabc5bb84749bc6fb29c4b9fd9" title="Writes a classifier to a file." alt="" coords="701,55,768,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="802,70,768,70,768,65,802,65"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a980a17ddb59b83bfe0ef3068e03fca23" title="Writes the population set to a file." alt="" coords="536,55,653,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="688,70,654,70,654,65,688,65"/>
+<area shape="rect" id="Node000004" href="$xcsf_8c.html#a2dd24ee181640aa90ec5d109aa717966" title="Writes the current state of XCSF to a file." alt="" coords="405,55,488,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="522,70,488,70,488,65,522,65"/>
+<area shape="rect" id="Node000005" href="$classXCS.html#a8501483f2f168c56448892cfbb5285ea" title="Writes the entire current state of XCSF to a file." alt="" coords="245,5,331,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="391,53,329,33,331,28,393,48"/>
+<area shape="rect" id="Node000007" href="$classCheckpointCallback.html#ab08fbc7f61e2e51cdecf3cc9bab3bdca" title="Saves the state of XCSF." alt="" coords="219,105,357,145"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="399,87,345,107,343,102,397,82"/>
+<area shape="rect" id="Node000010" href="$classXCS.html#ac214b881bee8379185c34abb450c1c4b" title="Implements pickle file writing." alt="" coords="235,55,341,80"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="391,70,342,70,342,65,391,65"/>
+<area shape="rect" id="Node000006" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="13,17,163,43"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="231,24,164,28,163,23,230,19"/>
+<area shape="rect" id="Node000008" href="$classCheckpointCallback.html#a2f1890c788abd4b5a0b2a01060330471" title="Executes any tasks at the end of fitting." alt="" coords="19,91,157,131"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="204,122,157,119,158,113,205,116"/>
+<area shape="rect" id="Node000009" href="$classCheckpointCallback.html#a6c387f29b7b99cbec1842f125029736e" title="Performs callback operations." alt="" coords="5,156,171,181"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="205,146,147,159,146,153,204,140"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="221,58,156,45,157,40,222,52"/>
 </map>

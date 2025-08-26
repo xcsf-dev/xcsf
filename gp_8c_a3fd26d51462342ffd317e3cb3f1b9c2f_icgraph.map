@@ -1,6 +1,10 @@
 <map id="tree_grow" name="tree_grow">
-<area shape="rect" id="node1" title="Grows a random GP tree of specified max length and depth." alt="" coords="288,31,367,57"/>
-<area shape="rect" id="node2" href="$gp_8c.html#affeb808d791121907611f01eb00de3ca" title="Creates a random GP tree." alt="" coords="164,31,240,57"/>
-<area shape="rect" id="node3" href="$cond__gp_8c.html#a1e740f931fc856fd7310874c7bf88195" title="Generates a GP tree that matches the current input." alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node4" href="$cond__gp_8c.html#aa688690c3fa9cb73c35c98db35867789" title="Creates and initialises a tree&#45;GP condition." alt="" coords="13,56,108,83"/>
+<area shape="rect" id="Node000001" title="Grows a random GP tree of specified max length and depth." alt="" coords="288,31,367,56"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="348,19,342,12,327,9,315,11,308,16,307,22,310,29,306,32,301,22,304,13,313,6,327,4,345,7,352,16"/>
+<area shape="rect" id="Node000002" href="$gp_8c.html#affeb808d791121907611f01eb00de3ca" title="Creates a random GP tree." alt="" coords="164,31,240,56"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="274,46,240,46,240,41,274,41"/>
+<area shape="rect" id="Node000003" href="$cond__gp_8c.html#a1e740f931fc856fd7310874c7bf88195" title="Generates a GP tree that matches the current input." alt="" coords="5,5,116,31"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="150,37,116,31,117,25,151,32"/>
+<area shape="rect" id="Node000004" href="$cond__gp_8c.html#aa688690c3fa9cb73c35c98db35867789" title="Creates and initialises a tree&#45;GP condition." alt="" coords="13,55,108,80"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="151,55,109,62,108,57,150,49"/>
 </map>

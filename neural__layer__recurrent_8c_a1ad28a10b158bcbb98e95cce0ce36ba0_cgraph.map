@@ -1,4 +1,5 @@
 <map id="neural_layer_recurrent_save" name="neural_layer_recurrent_save">
-<area shape="rect" id="node1" title="Writes a recurrent layer to a file." alt="" coords="5,5,191,32"/>
-<area shape="rect" id="node2" href="$neural__layer_8h.html#a337ac50311aae51ccada35fedb0444a7" title="Writes the layer to a file." alt="" coords="239,5,324,32"/>
+<area shape="rect" id="Node000001" title="Writes a recurrent layer to a file." alt="" coords="5,5,191,31"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8h.html#a337ac50311aae51ccada35fedb0444a7" title="Writes the layer to a file." alt="" coords="239,5,324,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,15,225,15,225,21,191,21"/>
 </map>

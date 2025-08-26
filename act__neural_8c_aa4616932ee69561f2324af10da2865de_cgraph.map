@@ -1,8 +1,14 @@
 <map id="act_neural_compute" name="act_neural_compute">
-<area shape="rect" id="node1" title="Computes the current neural network action using the input." alt="" coords="5,56,144,83"/>
-<area shape="rect" id="node2" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="220,5,285,32"/>
-<area shape="rect" id="node3" href="$neural_8c.html#a1054bccbeafce6e26cc5a8bffed9f575" title="Returns the outputs from the output layer of a neural network." alt="" coords="199,56,306,83"/>
-<area shape="rect" id="node5" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="192,107,313,133"/>
-<area shape="rect" id="node4" href="$neural__layer_8h.html#a2ba51f939c19b5a2d9be3d219bbe3115" title="Returns the outputs of a layer." alt="" coords="365,56,458,83"/>
-<area shape="rect" id="node6" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="361,107,461,133"/>
+<area shape="rect" id="Node000001" title="Computes the current neural network action using the input." alt="" coords="5,55,144,80"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="220,5,285,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,52,206,28,207,33,122,57"/>
+<area shape="rect" id="Node000003" href="$neural_8c.html#a081aae61d4322cc2bed4f760aaeaa8a6" title="Returns the outputs from the output layer of a neural network." alt="" coords="199,55,306,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,65,186,65,186,70,144,70"/>
+<area shape="rect" id="Node000005" href="$neural_8c.html#ae52d35ca06ded1387949731e1ad3d751" title="Forward propagates a neural network." alt="" coords="192,104,313,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="122,77,193,98,192,103,120,83"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8h.html#a5f745c9f7568146a1b5e0bb37a2666b8" title="Returns the outputs of a layer." alt="" coords="365,55,458,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="306,65,351,65,351,70,306,70"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="293,101,356,82,357,87,295,107"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8h.html#aabfac5227c61181614f84ebf5e00e462" title="Forward propagates an input through the layer." alt="" coords="361,104,461,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="313,114,347,114,347,119,313,119"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="pred_neural_json_import" name="pred_neural_json_import">
-<area shape="rect" id="node1" title="Creates a neural prediction from a cJSON object." alt="" coords="5,5,168,32"/>
-<area shape="rect" id="node2" href="$neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53" title="Creates a neural network from a cJSON object." alt="" coords="216,5,347,32"/>
+<area shape="rect" id="Node000001" title="Creates a neural prediction from a cJSON object." alt="" coords="5,5,168,31"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#a86c9af5cafd26d9fbbb798743312bb53" title="Creates a neural network from a cJSON object." alt="" coords="216,5,347,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,15,202,15,202,21,168,21"/>
 </map>

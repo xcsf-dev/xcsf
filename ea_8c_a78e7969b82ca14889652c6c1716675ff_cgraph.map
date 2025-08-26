@@ -1,7 +1,12 @@
 <map id="ea_select" name="ea_select">
-<area shape="rect" id="node1" title="Selects two parents." alt="" coords="5,56,84,83"/>
-<area shape="rect" id="node2" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="157,5,257,32"/>
-<area shape="rect" id="node3" href="$ea_8c.html#ae8196eff79fdd3471dc75c90fe985f9b" title="Selects a classifier from the set via roulette wheel." alt="" coords="158,56,257,83"/>
-<area shape="rect" id="node5" href="$ea_8c.html#a1e69096825e17626b2015dd730e66638" title="Selects a classifier from the set via tournament." alt="" coords="132,107,283,133"/>
-<area shape="rect" id="node4" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="331,81,428,108"/>
+<area shape="rect" id="Node000001" title="Selects two parents." alt="" coords="5,55,84,80"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a27da8860873485883cc85edfac13da87" title="Calculates the total fitness of classifiers in the set." alt="" coords="157,5,257,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,53,151,32,152,37,85,58"/>
+<area shape="rect" id="Node000003" href="$ea_8c.html#ad60a68edf77c6a3736f2d826bcbcb414" title="Selects a classifier from the set via roulette wheel." alt="" coords="158,55,257,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="84,65,144,65,144,70,84,70"/>
+<area shape="rect" id="Node000005" href="$ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4" title="Selects a classifier from the set via tournament." alt="" coords="132,104,283,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="85,77,152,97,151,102,84,82"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="331,80,428,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,72,317,81,317,86,256,77"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="283,103,317,99,318,104,283,109"/>
 </map>

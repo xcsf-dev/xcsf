@@ -1,9 +1,15 @@
 <map id="gemm_nt" name="gemm_nt">
-<area shape="rect" id="node1" title=" " alt="" coords="365,143,441,170"/>
-<area shape="rect" id="node2" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="228,143,317,170"/>
-<area shape="rect" id="node3" href="$neural__layer__connected_8c.html#ab16bf1d293853d0403c2ec2ea01122ce" title="Backward propagates a connected layer." alt="" coords="13,5,172,47"/>
-<area shape="rect" id="node4" href="$neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" title="Forward propagates a connected layer." alt="" coords="13,71,172,112"/>
-<area shape="rect" id="node5" href="$neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,136,180,177"/>
-<area shape="rect" id="node6" href="$neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="5,201,180,243"/>
-<area shape="rect" id="node7" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="35,267,150,294"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="365,141,441,166"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="228,141,317,166"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,156,317,156,317,151,352,151"/>
+<area shape="rect" id="Node000003" href="$neural__layer__connected_8c.html#ab16bf1d293853d0403c2ec2ea01122ce" title="Backward propagates a connected layer." alt="" coords="13,5,172,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="252,131,220,95,178,60,157,48,159,43,182,55,224,91,256,128"/>
+<area shape="rect" id="Node000004" href="$neural__layer__connected_8c.html#ae984294bf3121be074bf77081b0ccdf2" title="Forward propagates a connected layer." alt="" coords="13,69,172,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="222,138,149,112,151,107,224,133"/>
+<area shape="rect" id="Node000005" href="$neural__layer__convolutional_8c.html#af9d56553f0be61bc808cac3898e35a82" title="Backward propagates a convolutional layer." alt="" coords="5,133,180,173"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="215,156,180,156,180,151,215,151"/>
+<area shape="rect" id="Node000006" href="$neural__layer__convolutional_8c.html#a474f61e40569851884c0108ce2e40a1d" title="Forward propagates a convolutional layer." alt="" coords="5,197,180,237"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="224,173,151,200,149,195,222,168"/>
+<area shape="rect" id="Node000007" href="$pred__rls_8c.html#a34245842989abd5abef6b922983216d9" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="35,262,150,287"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="256,179,224,217,181,252,152,265,149,260,179,247,220,213,252,176"/>
 </map>

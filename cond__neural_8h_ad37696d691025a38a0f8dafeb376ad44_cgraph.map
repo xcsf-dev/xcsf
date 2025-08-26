@@ -1,8 +1,13 @@
 <map id="cond_neural_copy" name="cond_neural_copy">
-<area shape="rect" id="node1" title="Copies a neural network condition from one classifier to another." alt="" coords="5,56,132,83"/>
-<area shape="rect" id="node2" href="$neural_8c.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="180,56,272,83"/>
-<area shape="rect" id="node3" href="$neural__layer_8h.html#a392e18d96d59f5739ebeec3b05d5b4ad" title="Creates and returns a copy of a specified layer." alt="" coords="323,5,409,32"/>
-<area shape="rect" id="node4" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="325,56,407,83"/>
-<area shape="rect" id="node5" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="320,107,412,133"/>
-<area shape="rect" id="node6" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="460,107,556,133"/>
+<area shape="rect" id="Node000001" title="Copies a neural network condition from one classifier to another." alt="" coords="5,55,132,80"/>
+<area shape="rect" id="Node000002" href="$neural_8c.html#acc35a399d5b8b9dd9a2d9500138966f3" title="Copies a neural network." alt="" coords="180,55,272,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,65,166,65,166,70,132,70"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8h.html#ab7d35f63fa7bc33a3a56ab41da5fc16c" title="Creates and returns a copy of a specified layer." alt="" coords="323,5,409,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="262,52,315,33,317,38,264,57"/>
+<area shape="rect" id="Node000004" href="$neural_8c.html#ad70aee7c40f698d4be45e3d419051c2f" title="Initialises an empty neural network." alt="" coords="325,55,407,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="272,65,311,65,311,70,272,70"/>
+<area shape="rect" id="Node000005" href="$neural_8c.html#a1c1c06446fc719b8293aade2ded8433c" title="Inserts a layer at the head of a neural network." alt="" coords="320,104,412,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="264,78,317,97,315,102,262,83"/>
+<area shape="rect" id="Node000006" href="$neural_8c.html#afab574137fbf9da9a286d020917c8295" title="Inserts a layer into a neural network." alt="" coords="460,104,556,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="412,114,446,114,446,119,412,119"/>
 </map>

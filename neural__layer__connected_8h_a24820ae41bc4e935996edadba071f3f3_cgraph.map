@@ -1,6 +1,9 @@
 <map id="neural_layer_connected_print" name="neural_layer_connected_print">
-<area shape="rect" id="node1" title="Prints a connected layer." alt="" coords="5,23,164,65"/>
-<area shape="rect" id="node2" href="$neural__layer__connected_8c.html#a28ca264a776f46ee6188a3481fa96be8" title="Returns a json formatted string representation of a connected layer." alt="" coords="212,23,371,65"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#a78127a80046f674b62342f5a8d8cdbf1" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="435,5,561,32"/>
-<area shape="rect" id="node4" href="$neural__activations_8c.html#a429f5b4427682cb174e3d4d56f181a22" title="Returns the name of a specified activation function." alt="" coords="419,56,577,83"/>
+<area shape="rect" id="Node000001" title="Prints a connected layer." alt="" coords="5,23,164,63"/>
+<area shape="rect" id="Node000002" href="$neural__layer__connected_8c.html#a95759db9d908d61ddcaa4485e4635533" title="Returns a json formatted string representation of a connected layer." alt="" coords="212,23,371,63"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,41,198,41,198,46,164,46"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#ab690105513e8867b6dd3252dc7d639f8" title="Returns a json formatted string representation of a layer&#39;s weights." alt="" coords="435,5,561,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,31,420,25,421,30,371,36"/>
+<area shape="rect" id="Node000004" href="$neural__activations_8c.html#a434ca6390662d569b5e002a9e2d82c1d" title="Returns the name of a specified activation function." alt="" coords="419,55,577,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="371,50,406,54,405,59,371,55"/>
 </map>

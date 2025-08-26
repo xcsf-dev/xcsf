@@ -1,28 +1,54 @@
 <map id="param_json_import_general" name="param_json_import_general">
-<area shape="rect" id="node1" title="Sets the general parameters from a cJSON object." alt="" coords="5,393,187,420"/>
-<area shape="rect" id="node2" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="290,73,377,100"/>
-<area shape="rect" id="node3" href="$param_8c.html#a8a701e38369c61ee86e1572eae56cd04" title=" " alt="" coords="255,124,412,151"/>
-<area shape="rect" id="node4" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="260,175,407,217"/>
-<area shape="rect" id="node15" href="$param_8c.html#a388a95e329f834d2771efb09acc84d60" title=" " alt="" coords="258,241,409,268"/>
-<area shape="rect" id="node16" href="$param_8c.html#abfa2456db9cee78f53e3298b904ad2fc" title=" " alt="" coords="260,292,407,319"/>
-<area shape="rect" id="node17" href="$param_8c.html#a7ab1b36bfc8ed140a530b64bd851a05c" title="Sets the number of OMP threads." alt="" coords="235,343,432,369"/>
-<area shape="rect" id="node18" href="$param_8c.html#a0b53049abf12592f085fa578c9f4546d" title=" " alt="" coords="260,393,407,420"/>
-<area shape="rect" id="node19" href="$param_8c.html#afe9a688ddf3a0df2b976bdedf1ab66b7" title=" " alt="" coords="266,444,401,471"/>
-<area shape="rect" id="node20" href="$param_8c.html#a389d74d2c11c8cd13d9cf2a895026cf7" title=" " alt="" coords="262,495,405,521"/>
-<area shape="rect" id="node21" href="$param_8c.html#a0fda68ee143dd886c3f2023fd1c67dc3" title=" " alt="" coords="247,545,420,572"/>
-<area shape="rect" id="node22" href="$param_8c.html#a43677e3953256d8fdffd8758a0363c2b" title=" " alt="" coords="249,596,418,623"/>
-<area shape="rect" id="node25" href="$param_8c.html#ae5cca726a15c57daed5e2edbed5de528" title=" " alt="" coords="271,647,396,673"/>
-<area shape="rect" id="node26" href="$param_8c.html#a6b5cac72b8e4061a76f365e19a05da2a" title=" " alt="" coords="271,697,396,724"/>
-<area shape="rect" id="node5" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="489,157,591,184"/>
-<area shape="rect" id="node14" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="480,208,600,235"/>
-<area shape="rect" id="node6" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="648,5,760,32"/>
-<area shape="rect" id="node7" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="661,56,747,83"/>
-<area shape="rect" id="node8" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="669,107,739,133"/>
-<area shape="rect" id="node9" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="665,157,743,184"/>
-<area shape="rect" id="node10" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="808,233,887,260"/>
-<area shape="rect" id="node11" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="658,309,750,336"/>
-<area shape="rect" id="node13" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="663,259,745,285"/>
-<area shape="rect" id="node12" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="815,309,880,336"/>
-<area shape="rect" id="node23" href="$utils_8c.html#ab74192959d5c945feaf0a630b58fd123" title="Initialises the pseudo&#45;random number generator." alt="" coords="505,571,575,597"/>
-<area shape="rect" id="node24" href="$utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a" title="Initialises the pseudo&#45;random number generator with a fixed seed." alt="" coords="487,621,593,648"/>
+<area shape="rect" id="Node000001" title="Sets the general parameters from a cJSON object." alt="" coords="5,383,187,408"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#ad4c1cfaf547c968379d68470354816b7" title="Catches parameter value errors." alt="" coords="290,71,377,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,382,108,331,133,256,151,215,173,175,200,137,233,105,253,93,275,86,277,91,255,98,236,109,204,141,178,177,155,217,138,257,113,332,102,383"/>
+<area shape="rect" id="Node000003" href="$param_8c.html#ac3697417e059e38940e83b3d76b24eda" title=" " alt="" coords="255,120,412,145"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,381,113,338,140,277,179,212,204,182,233,156,244,149,247,153,236,160,208,185,184,215,145,279,118,340,104,383"/>
+<area shape="rect" id="Node000004" href="$param_8c.html#ac445df670c4171f1830eeb60967a03ad" title=" " alt="" coords="260,170,407,210"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="102,381,120,349,150,305,188,260,233,220,246,212,249,217,236,224,192,263,154,309,125,351,106,384"/>
+<area shape="rect" id="Node000015" href="$param_8c.html#a79c2bfdb40f5712c66dba5560d13ab05" title=" " alt="" coords="258,235,409,260"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="106,381,156,327,193,295,233,269,248,262,251,267,236,274,196,300,160,330,110,384"/>
+<area shape="rect" id="Node000016" href="$param_8c.html#a331bf1753bcc8c263b4ef5aced825bce" title=" " alt="" coords="260,284,407,309"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="116,380,168,349,234,318,256,311,258,316,236,323,170,354,118,385"/>
+<area shape="rect" id="Node000017" href="$param_8c.html#acf37c3eef45ef7aad671e6cf97b65bd5" title="Sets the number of OMP threads." alt="" coords="235,333,432,359"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="157,380,258,359,259,364,158,385"/>
+<area shape="rect" id="Node000018" href="$param_8c.html#af09cd38e0e407c0933e28bd598cef62f" title=" " alt="" coords="260,383,407,408"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="187,393,246,393,246,398,187,398"/>
+<area shape="rect" id="Node000019" href="$param_8c.html#aeab6643db5f74428c6781e19a9a83996" title=" " alt="" coords="266,432,401,457"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="158,405,259,427,258,432,157,411"/>
+<area shape="rect" id="Node000020" href="$param_8c.html#a069161b1e344c7857d8324246d96d110" title=" " alt="" coords="262,481,405,507"/>
+<area shape="poly" id="edge20_Node000001_Node000020" title=" " alt="" coords="119,406,171,436,236,466,262,475,260,480,234,471,168,440,116,410"/>
+<area shape="rect" id="Node000021" href="$param_8c.html#aaef2a038ddf1d98d46da6b5cd792c650" title=" " alt="" coords="247,531,420,556"/>
+<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="110,406,161,460,196,490,236,516,254,524,251,529,233,520,193,494,157,464,106,410"/>
+<area shape="rect" id="Node000022" href="$param_8c.html#aaf65dc570968c5e4af32e7771295504c" title=" " alt="" coords="249,580,418,605"/>
+<area shape="poly" id="edge22_Node000001_Node000022" title=" " alt="" coords="106,407,124,439,153,482,191,527,236,565,249,572,247,577,233,570,187,531,149,485,120,442,101,409"/>
+<area shape="rect" id="Node000025" href="$param_8c.html#a7ca5182d7e190ced124694ccd511e2d3" title=" " alt="" coords="271,629,396,655"/>
+<area shape="poly" id="edge25_Node000001_Node000025" title=" " alt="" coords="104,407,119,448,146,505,185,565,209,592,236,616,259,628,256,633,233,620,205,596,181,568,141,508,114,450,99,409"/>
+<area shape="rect" id="Node000026" href="$param_8c.html#aedcb61cbc4852fd2c5b36415f4c8261c" title=" " alt="" coords="271,679,396,704"/>
+<area shape="poly" id="edge26_Node000001_Node000026" title=" " alt="" coords="103,408,115,457,140,527,158,565,180,602,206,636,236,665,259,678,256,683,233,669,202,639,175,605,153,567,135,529,110,458,97,409"/>
+<area shape="rect" id="Node000005" href="$loss_8c.html#abd279ef66e8491bb524ee192a45e0e34" title="Sets the XCSF error function to the implemented function." alt="" coords="489,153,591,179"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="407,179,474,171,475,176,407,184"/>
+<area shape="rect" id="Node000014" href="$loss_8c.html#a6b76e413b2123f456c6656f0555208e1" title="Returns the integer representation of a loss type given a name." alt="" coords="480,203,600,228"/>
+<area shape="poly" id="edge14_Node000004_Node000014" title=" " alt="" coords="407,196,467,204,466,209,407,202"/>
+<area shape="rect" id="Node000006" href="$loss_8c.html#a2687b111bc407194c64e07e2b933bb3c" title="Binary logistic log loss for binary&#45;class classification." alt="" coords="648,5,760,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="547,152,586,99,614,68,646,40,653,35,656,40,650,44,618,72,590,102,552,155"/>
+<area shape="rect" id="Node000007" href="$loss_8c.html#adf5bc1e947369774d48b0355dbdbcc30" title="Huber loss function." alt="" coords="661,55,747,80"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="556,151,596,121,647,89,657,83,660,88,649,94,599,126,559,155"/>
+<area shape="rect" id="Node000008" href="$loss_8c.html#a5b0fc07896aaa302b61213c450874d49" title="Logistic log loss for multi&#45;class classification." alt="" coords="669,104,739,129"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="582,151,655,129,656,134,584,156"/>
+<area shape="rect" id="Node000009" href="$loss_8c.html#a7f1e236d219a5f551408639674b4a24a" title="Mean absolute error loss function." alt="" coords="665,153,743,179"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="591,163,651,163,651,169,591,169"/>
+<area shape="rect" id="Node000010" href="$loss_8c.html#aaeed4518371c4e75de20532e3a6aa601" title="Mean squared error loss function." alt="" coords="808,229,887,255"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="592,176,795,227,794,232,591,181"/>
+<area shape="rect" id="Node000011" href="$loss_8c.html#a38e786a5c46be2519aae23287c92cc23" title="One&#45;hot classification error." alt="" coords="658,304,750,329"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="585,176,602,188,620,214,627,240,633,264,650,290,656,295,652,299,646,293,628,267,622,241,615,216,598,192,582,181"/>
+<area shape="rect" id="Node000013" href="$loss_8c.html#a3278a1ba45bd0ccbf39e25bde1562f8f" title="Root mean squared error loss function." alt="" coords="663,255,745,280"/>
+<area shape="poly" id="edge12_Node000005_Node000013" title=" " alt="" coords="580,176,602,188,626,210,650,233,668,245,665,250,646,237,623,214,598,192,577,181"/>
+<area shape="rect" id="Node000012" href="$utils_8h.html#ae85373ce85c9be81cf1456fb58478274" title="Returns the index of the largest element in vector X." alt="" coords="815,304,880,329"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="750,314,801,314,801,319,750,319"/>
+<area shape="poly" id="edge13_Node000013_Node000010" title=" " alt="" coords="745,257,794,249,794,254,746,263"/>
+<area shape="rect" id="Node000023" href="$utils_8c.html#ab74192959d5c945feaf0a630b58fd123" title="Initialises the pseudo&#45;random number generator." alt="" coords="505,556,575,581"/>
+<area shape="poly" id="edge23_Node000022_Node000023" title=" " alt="" coords="418,580,491,572,491,577,419,585"/>
+<area shape="rect" id="Node000024" href="$utils_8c.html#ad163bbefbbb9754feb94f468cab51b3a" title="Initialises the pseudo&#45;random number generator with a fixed seed." alt="" coords="487,605,593,631"/>
+<area shape="poly" id="edge24_Node000022_Node000024" title=" " alt="" coords="419,600,473,607,473,612,418,606"/>
 </map>

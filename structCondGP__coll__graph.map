@@ -1,4 +1,5 @@
 <map id="CondGP" name="CondGP">
-<area shape="rect" id="node1" title="Tree GP condition data structure." alt="" coords="5,95,77,121"/>
-<area shape="rect" id="node2" href="$structGPTree.html" title="GP tree data structure." alt="" coords="8,5,75,32"/>
+<area shape="rect" id="Node000001" title="Tree GP condition data structure." alt="" coords="5,93,77,119"/>
+<area shape="rect" id="Node000002" href="$structGPTree.html" title="GP tree data structure." alt="" coords="8,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,45,44,93,39,93,39,45"/>
 </map>

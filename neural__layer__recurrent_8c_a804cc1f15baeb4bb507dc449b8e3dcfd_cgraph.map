@@ -1,17 +1,35 @@
 <map id="mutate_neurons" name="mutate_neurons">
-<area shape="rect" id="node1" title="Mutates the number of neurons in a recurrent layer." alt="" coords="5,208,120,235"/>
-<area shape="rect" id="node2" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="178,107,309,133"/>
-<area shape="rect" id="node9" href="$neural__layer_8c.html#a35e1133cd8863d674d0506d963a93f08" title="Returns the number of neurons to add or remove from a layer." alt="" coords="168,157,319,184"/>
-<area shape="rect" id="node11" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="197,208,289,235"/>
-<area shape="rect" id="node12" href="$neural__layer__recurrent_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a recurrent layer." alt="" coords="174,31,313,57"/>
-<area shape="rect" id="node13" href="$neural__layer__recurrent_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in a recurrent layer." alt="" coords="178,259,309,285"/>
-<area shape="rect" id="node14" href="$neural__layer__recurrent_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in a recurrent layer." alt="" coords="176,309,311,336"/>
-<area shape="rect" id="node15" href="$neural__layer__recurrent_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in a recurrent layer." alt="" coords="173,360,314,387"/>
-<area shape="rect" id="node3" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Recalculates the number of active connections within a layer." alt="" coords="369,56,506,83"/>
-<area shape="rect" id="node4" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="368,5,507,32"/>
-<area shape="rect" id="node6" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="367,107,508,133"/>
-<area shape="rect" id="node7" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="391,157,484,184"/>
-<area shape="rect" id="node8" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="389,208,486,235"/>
-<area shape="rect" id="node5" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="556,56,639,83"/>
-<area shape="rect" id="node10" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="409,259,466,285"/>
+<area shape="rect" id="Node000001" title="Mutates the number of neurons in a recurrent layer." alt="" coords="5,203,120,228"/>
+<area shape="rect" id="Node000002" href="$neural__layer_8c.html#a9bdb16a2c9164cf5895c9a7af9adc051" title="Adds N neurons to a layer. Negative N removes neurons." alt="" coords="178,104,309,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,200,117,170,167,140,184,132,186,137,169,144,120,175,81,205"/>
+<area shape="rect" id="Node000009" href="$neural__layer_8c.html#a35e1133cd8863d674d0506d963a93f08" title="Returns the number of neurons to add or remove from a layer." alt="" coords="168,153,319,179"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="109,200,181,180,183,185,111,205"/>
+<area shape="rect" id="Node000011" href="$neural__layer_8h.html#a28fed9ac2d12fe1bad08b4540f3f0455" title="Resizes a layer using the previous layer&#39;s inputs." alt="" coords="197,203,289,228"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="120,213,184,213,184,218,120,218"/>
+<area shape="rect" id="Node000012" href="$neural__layer__recurrent_8c.html#a7575ee8d3534af2a6dcc865e02e5351f" title="Resize memory used by a recurrent layer." alt="" coords="174,29,313,55"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="71,201,110,150,166,89,206,60,210,64,170,93,114,153,75,204"/>
+<area shape="rect" id="Node000013" href="$neural__layer__recurrent_8c.html#a9cf6a4d407837c532b89f9f457072203" title="Sets the number of active (non&#45;zero) weights in a recurrent layer." alt="" coords="178,252,309,277"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="111,225,183,246,181,251,109,231"/>
+<area shape="rect" id="Node000014" href="$neural__layer__recurrent_8c.html#ab67b6e38da6db94e4735740f8521d5b1" title="Sets the total number of biases in a recurrent layer." alt="" coords="176,301,311,327"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="80,226,119,256,169,288,184,294,182,299,167,292,116,261,77,230"/>
+<area shape="rect" id="Node000015" href="$neural__layer__recurrent_8c.html#a75386a5e5f7e81bf322e68e2c87ad374" title="Sets the total number of weights in a recurrent layer." alt="" coords="173,351,314,376"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="74,227,110,280,138,311,170,337,179,343,176,347,166,342,134,315,106,283,69,230"/>
+<area shape="rect" id="Node000003" href="$neural__layer_8c.html#abb27e5ed20353f12ec393c83e30372fe" title="Recalculates the number of active connections within a layer." alt="" coords="369,55,506,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="293,101,372,81,374,86,295,107"/>
+<area shape="rect" id="Node000004" href="$neural__layer_8c.html#a99157f8bba089b8f6d617020cdc45d7b" title="Check number of outputs is within bounds." alt="" coords="368,5,507,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="261,102,307,72,365,40,381,33,383,38,368,44,310,76,264,106"/>
+<area shape="rect" id="Node000006" href="$neural__layer_8c.html#afb8c6762568c65726b62ee12c816fb2b" title="Check number of weights is within bounds." alt="" coords="367,104,508,129"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="309,114,353,114,353,119,309,119"/>
+<area shape="rect" id="Node000007" href="$utils_8c.html#a6a36d869b4a218a3f55cd19067f62c0f" title="Returns a random Gaussian with specified mean and standard deviation." alt="" coords="391,153,484,179"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="295,127,378,148,376,153,293,132"/>
+<area shape="rect" id="Node000008" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="389,203,486,228"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="294,127,320,140,335,152,345,165,354,177,368,189,378,195,376,199,365,194,350,181,341,168,332,156,317,144,292,132"/>
+<area shape="rect" id="Node000005" href="$neural__layer_8h.html#af3da4af94dd537080a072c07c66d955d" title="Prints the layer." alt="" coords="556,55,639,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="480,28,543,48,542,53,478,33"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="478,101,542,82,543,87,480,107"/>
+<area shape="poly" id="edge11_Node000009_Node000007" title=" " alt="" coords="319,163,377,163,377,169,319,169"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="295,176,376,197,374,202,293,181"/>
+<area shape="rect" id="Node000010" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="409,252,466,277"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="294,176,320,189,335,202,345,214,354,227,368,238,396,252,394,257,365,243,350,230,341,218,332,205,317,194,292,181"/>
+<area shape="poly" id="edge15_Node000012_Node000004" title=" " alt="" coords="313,31,354,26,355,31,314,36"/>
 </map>

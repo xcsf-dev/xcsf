@@ -1,5 +1,7 @@
 <map id="pred_json_import" name="pred_json_import">
-<area shape="rect" id="node1" title="Creates a prediction from a cJSON object." alt="" coords="5,35,127,61"/>
-<area shape="rect" id="node2" href="$prediction_8h.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="175,5,327,32"/>
-<area shape="rect" id="node3" href="$prediction_8h.html#a085a8402296bdeab95f54299040e6e0e" title="Returns a string representation of a prediction type from the integer." alt="" coords="185,57,316,98"/>
+<area shape="rect" id="Node000001" title="Creates a prediction from a cJSON object." alt="" coords="5,35,127,60"/>
+<area shape="rect" id="Node000002" href="$prediction_8c.html#a5f5a019c886d5bdf8bf9a3876a5a95bd" title="Returns the integer representation of a prediction type given a name." alt="" coords="175,5,327,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,35,160,30,161,35,127,40"/>
+<area shape="rect" id="Node000003" href="$prediction_8c.html#aef1e7511eb94c9d099a764fa6b1a78d6" title="Returns a string representation of a prediction type from the integer." alt="" coords="185,55,316,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,54,172,61,171,66,127,59"/>
 </map>

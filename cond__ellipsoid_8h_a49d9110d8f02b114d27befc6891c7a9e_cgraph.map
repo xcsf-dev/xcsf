@@ -1,4 +1,5 @@
 <map id="cond_ellipsoid_print" name="cond_ellipsoid_print">
-<area shape="rect" id="node1" title="Prints a hyperellipsoid condition." alt="" coords="5,13,141,39"/>
-<area shape="rect" id="node2" href="$cond__ellipsoid_8c.html#ab5e78cd23f1657136bd7577b0e20861f" title="Returns a json formatted string representation of a hyperellipsoid." alt="" coords="189,5,324,47"/>
+<area shape="rect" id="Node000001" title="Prints a hyperellipsoid condition." alt="" coords="5,13,141,38"/>
+<area shape="rect" id="Node000002" href="$cond__ellipsoid_8c.html#a5eb4a01a405384a00eec5368c5c694d4" title="Returns a json formatted string representation of a hyperellipsoid." alt="" coords="189,5,324,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,23,175,23,175,28,141,28"/>
 </map>

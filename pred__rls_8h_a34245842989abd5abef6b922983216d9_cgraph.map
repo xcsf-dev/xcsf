@@ -1,11 +1,19 @@
 <map id="pred_rls_update" name="pred_rls_update">
-<area shape="rect" id="node1" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="5,81,120,108"/>
-<area shape="rect" id="node2" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="172,5,253,32"/>
-<area shape="rect" id="node3" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="177,56,248,83"/>
-<area shape="rect" id="node4" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="168,107,257,133"/>
-<area shape="rect" id="node9" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="174,157,251,184"/>
-<area shape="rect" id="node5" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="305,31,384,57"/>
-<area shape="rect" id="node6" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="307,81,383,108"/>
-<area shape="rect" id="node7" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="307,132,383,159"/>
-<area shape="rect" id="node8" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="308,183,381,209"/>
+<area shape="rect" id="Node000001" title="Updates an RLS prediction for a given input and truth sample." alt="" coords="5,80,120,105"/>
+<area shape="rect" id="Node000002" href="$blas_8c.html#ad4fa7c98f973bedeaf96fa3757229876" title="Multiplies vector X by the scalar ALPHA and adds it to the vector Y." alt="" coords="172,5,253,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,77,173,35,175,39,91,82"/>
+<area shape="rect" id="Node000003" href="$blas_8c.html#a91a7826d9b40de8174cccb1e0ca53795" title="Computes the dot product of two vectors." alt="" coords="177,55,248,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,80,163,73,164,78,121,86"/>
+<area shape="rect" id="Node000004" href="$blas_8c.html#af641b4337bf32be77f094e40817a55b7" title="Performs the matrix&#45;matrix multiplication: ." alt="" coords="168,104,257,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,99,155,105,154,110,120,104"/>
+<area shape="rect" id="Node000009" href="$blas_8c.html#a59634a37fd370ffc05eb458503c5ab53" title="Scales vector X by the scalar ALPHA and overwrites it with the result." alt="" coords="174,153,251,179"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="91,103,174,145,172,149,88,108"/>
+<area shape="rect" id="Node000005" href="$blas_8c.html#a2a960e3645ec841778e7b85e7bb96e3d" title=" " alt="" coords="305,29,384,55"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="235,101,308,59,310,64,238,106"/>
+<area shape="rect" id="Node000006" href="$blas_8c.html#aa57c04fbd7b97c802c920578b88b658e" title=" " alt="" coords="307,79,383,104"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="257,106,292,99,293,104,258,111"/>
+<area shape="rect" id="Node000007" href="$blas_8c.html#a515bbd20d69faf17bfdbc9387a83779a" title=" " alt="" coords="307,128,383,153"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="258,122,293,129,292,134,257,127"/>
+<area shape="rect" id="Node000008" href="$blas_8c.html#abd0602933738dc1c44f69f27786bc603" title=" " alt="" coords="308,177,381,203"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="239,127,259,138,311,168,308,173,256,143,236,132"/>
 </map>

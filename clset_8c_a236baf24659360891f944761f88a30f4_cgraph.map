@@ -1,7 +1,11 @@
 <map id="clset_kill" name="clset_kill">
-<area shape="rect" id="node1" title="Frees the set and the classifiers." alt="" coords="5,56,79,83"/>
-<area shape="rect" id="node2" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="127,56,188,83"/>
-<area shape="rect" id="node3" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="241,5,310,32"/>
-<area shape="rect" id="node4" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="236,56,315,83"/>
-<area shape="rect" id="node5" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="237,107,313,133"/>
+<area shape="rect" id="Node000001" title="Frees the set and the classifiers." alt="" coords="5,55,79,80"/>
+<area shape="rect" id="Node000002" href="$cl_8c.html#ac45092c0e43651e8eeaa739766e3f069" title="Frees the memory used by a classifier." alt="" coords="127,55,188,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,65,113,65,113,70,79,70"/>
+<area shape="rect" id="Node000003" href="$action_8h.html#a81912970283c86f80c5b7a38f1865ebd" title="Frees the memory used by the classifier action." alt="" coords="241,5,310,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,52,230,34,232,39,189,57"/>
+<area shape="rect" id="Node000004" href="$condition_8h.html#a2f342b5e29e020e139112cf99887b4c5" title="Frees the memory used by the classifier condition." alt="" coords="236,55,315,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="188,65,222,65,222,70,188,70"/>
+<area shape="rect" id="Node000005" href="$prediction_8h.html#af19eafd52548ede9b90594c8b8949098" title="Frees the memory used by the classifier prediction." alt="" coords="237,104,313,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="189,78,232,96,230,101,187,82"/>
 </map>
