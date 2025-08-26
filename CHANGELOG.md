@@ -1,5 +1,7 @@
 # Changelog
 
+## Version 1.4.8 (Aug 26, 2025)
+
 Changes:
 *   Add checks for array contiguity ([#199](https://github.com/xcsf-dev/xcsf/pull/199))
 *   Add `clean` parameter to wipe existing population to `json_read` ([#202](https://github.com/xcsf-dev/xcsf/pull/202))
