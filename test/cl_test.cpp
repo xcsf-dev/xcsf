@@ -17,7 +17,7 @@
  * @file cl_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023--2024.
+ * @date 2023--2025.
  * @brief Classifier tests.
  */
 
@@ -35,11 +35,6 @@ extern "C" {
 #include <stdlib.h>
 #include <string.h>
 }
-
-const double x[5] = { 0.8455260670, 0.7566081103, 0.3125093674, 0.3449376898,
-                      0.3677518467 };
-
-const double y[1] = { 0.9 };
 
 TEST_CASE("CL")
 {

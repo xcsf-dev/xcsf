@@ -7,6 +7,7 @@ Changes:
 *   Fix Python `json_read` crashing when the new population is empty ([#205](https://github.com/xcsf-dev/xcsf/pull/205))
 *   Reduce `max_trials` in Python tests for speed ([#206](https://github.com/xcsf-dev/xcsf/pull/206))
 *   Update Python packaging: move `setup.cfg` metadata to `pyproject.toml` ([#207](https://github.com/xcsf-dev/xcsf/pull/207))
+*   Fix macOS building with AppleClang ([#210](https://github.com/xcsf-dev/xcsf/pull/210))
 
 ## Version 1.4.7 (Aug 19, 2024)
 
