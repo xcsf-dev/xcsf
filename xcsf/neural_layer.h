@@ -222,7 +222,6 @@ layer_mutate(struct Layer *l)
  * @brief Resizes a layer using the previous layer's inputs
  * @param [in] l The layer to mutate.
  * @param [in] prev The layer prior to the one being mutated.
- * @return Whether any alterations were made.
  */
 static inline void
 layer_resize(struct Layer *l, const struct Layer *prev)

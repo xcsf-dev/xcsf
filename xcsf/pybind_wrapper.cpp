@@ -941,6 +941,7 @@ class XCS
     /**
      * @brief Reads classifiers from a JSON file and adds to the population.
      * @param [in] filename Name of the input file.
+     * @param [in] clean Whether to wipe existing population before insertion.
      */
     void
     json_read(const std::string &filename, const bool clean)
