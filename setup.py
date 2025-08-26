@@ -72,8 +72,6 @@ class CMakeBuild(build_ext):
         build_args = [ "--config", "Release" ]
 
         if platform.system() == "Darwin":
-            cmake_args += ["-DCMAKE_C_COMPILER=gcc-12"]  # Force GCC for CI
-            cmake_args += ["-DCMAKE_CXX_COMPILER=g++-12"]
             openmp_root = self._get_openmp_root()
             if openmp_root:
                 cmake_args += ["-DOpenMP_ROOT=" + openmp_root]
