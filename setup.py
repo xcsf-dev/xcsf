@@ -77,7 +77,12 @@ class CMakeBuild(build_ext):
         if platform.system() == "Darwin":
             openmp_root = self._get_openmp_root()
             if openmp_root:
-                cmake_args.append(f"-DOpenMP_ROOT={openmp_root}")
+                cmake_prefix_path = os.environ.get("CMAKE_PREFIX_PATH", "")
+                if cmake_prefix_path:
+                    cmake_prefix_path = f"{openmp_root}{os.pathsep}{cmake_prefix_path}"
+                else:
+                    cmake_prefix_path = openmp_root
+                cmake_args.append(f"-DCMAKE_PREFIX_PATH={cmake_prefix_path}")
 
         if platform.system() == "Windows":
             cmake_args += ["-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=" + extdir]
