@@ -1,5 +1,8 @@
 # Changelog
 
+Changes:
+*   Fix constant prediction early stopping rollback ([#214](https://github.com/xcsf-dev/xcsf/pull/214))
+
 ## Version 1.4.8 (Aug 26, 2025)
 
 Changes:

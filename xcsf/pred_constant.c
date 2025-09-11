@@ -46,9 +46,7 @@ void
 pred_constant_copy(const struct XCSF *xcsf, struct Cl *dest,
                    const struct Cl *src)
 {
-    (void) xcsf;
-    (void) dest;
-    (void) src;
+    memcpy(dest->prediction, src->prediction, sizeof(double) * xcsf->y_dim);
 }
 
 /**
