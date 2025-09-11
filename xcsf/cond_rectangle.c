@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2023.
+ * @date 2019--2025.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -120,6 +120,8 @@ cond_rectangle_cover(const struct XCSF *xcsf, const struct Cl *c,
             const double r2 = rand_uniform(xcsf->cond->spread_min, spread_max);
             cond->b1[i] = x[i] - (r1 * 0.5);
             cond->b2[i] = x[i] + (r2 * 0.5);
+            cond->b1[i] = clamp(cond->b1[i], xcsf->cond->min, xcsf->cond->max);
+            cond->b2[i] = clamp(cond->b2[i], xcsf->cond->min, xcsf->cond->max);
         }
     }
 }
