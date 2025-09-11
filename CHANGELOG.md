@@ -1,5 +1,7 @@
 # Changelog
 
+## Version 1.4.10 (Sep 11, 2025)
+
 Changes:
 *   Restrict unordered bound hyperrectangle conditions within min/max during covering ([#215](https://github.com/xcsf-dev/xcsf/pull/215))
 
