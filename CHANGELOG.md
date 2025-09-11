@@ -1,5 +1,7 @@
 # Changelog
 
+## Version 1.4.9 (Sep 11, 2025)
+
 Changes:
 *   Fix constant prediction early stopping rollback ([#214](https://github.com/xcsf-dev/xcsf/pull/214))
 
