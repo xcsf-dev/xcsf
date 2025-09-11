@@ -38,12 +38,10 @@ extern "C" {
  */
 class Callback
 {
-  public:
+public:
     virtual ~Callback() {}
 
-    virtual bool
-    run(struct XCSF *xcsf, py::dict metrics) = 0;
+    virtual bool run(struct XCSF * xcsf, py::dict metrics) = 0;
 
-    virtual void
-    finish(struct XCSF *xcsf) = 0;
+    virtual void finish(struct XCSF * xcsf) = 0;
 };
