@@ -14,6 +14,7 @@
 [![PyPI package](https://img.shields.io/pypi/v/xcsf.svg)](https://pypi.org/project/xcsf)
 [![Python versions](https://img.shields.io/pypi/pyversions/xcsf.svg)](https://pypi.org/project/xcsf)
 [![Downloads](https://static.pepy.tech/personalized-badge/xcsf?period=month&units=international_system&left_color=black&right_color=orange&left_text=PyPI%20downloads%20per%20month)](https://pepy.tech/project/xcsf)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xcsf-dev/xcsf)
 
 An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library. XCSF is an accuracy-based [online](https://en.wikipedia.org/wiki/Online_machine_learning) [evolutionary](https://en.wikipedia.org/wiki/Evolutionary_computation) [machine learning](https://en.wikipedia.org/wiki/Machine_learning) system with locally approximating functions that compute classifier payoff prediction directly from the input state. It can be seen as a generalisation of XCS where the prediction is a scalar value. XCSF attempts to find solutions that are accurate and maximally general over the global input space, similar to most machine learning techniques. However, it maintains the additional power to adaptively subdivide the input space into simpler local approximations.
 
