@@ -41,7 +41,7 @@ extern "C" {
  */
 class EarlyStoppingCallback : public Callback
 {
-public:
+  public:
     /**
      * @brief Constructs a new early stopping callback.
      * @param [in] monitor Name of the metric to monitor: {"train", "val"}.
@@ -82,7 +82,8 @@ public:
      * @brief Stores best XCSF population in memory.
      * @param [in] xcsf The XCSF data structure.
      */
-    void store(struct XCSF * xcsf)
+    void
+    store(struct XCSF *xcsf)
     {
         do_restore = true;
         xcsf_store_pset(xcsf);
@@ -99,7 +100,8 @@ public:
      * @brief Retrieves best XCSF population in memory.
      * @param [in] xcsf The XCSF data structure.
      */
-    void retrieve(struct XCSF * xcsf)
+    void
+    retrieve(struct XCSF *xcsf)
     {
         do_restore = false;
         xcsf_retrieve_pset(xcsf);
@@ -119,7 +121,8 @@ public:
      * @param [in] metrics Dictionary of performance metrics.
      * @return whether early stopping criteria has been met.
      */
-    bool run(struct XCSF * xcsf, py::dict metrics) override
+    bool
+    run(struct XCSF *xcsf, py::dict metrics) override
     {
         py::list data = metrics[monitor];
         py::list trials = metrics["trials"];
@@ -153,14 +156,15 @@ public:
      * @brief Executes any tasks at the end of fitting.
      * @param [in] xcsf The XCSF data structure.
      */
-    void finish(struct XCSF * xcsf) override
+    void
+    finish(struct XCSF *xcsf) override
     {
         if (restore && do_restore) {
             retrieve(xcsf);
         }
     }
 
-private:
+  private:
     py::str monitor; //!< Name of the metric to monitor
     int patience; //!< Stop training after this many trials with no improvement
     bool restore; //!< Whether to restore the best population
