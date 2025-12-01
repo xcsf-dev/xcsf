@@ -41,7 +41,7 @@ extern "C" {
  */
 class CheckpointCallback : public Callback
 {
-public:
+  public:
     /**
      * @brief Constructs a new checkpoint callback.
      * @param [in] monitor Name of the metric to monitor: {"train", "val"}.
@@ -74,7 +74,8 @@ public:
      * @brief Saves the state of XCSF.
      * @param [in] xcsf The XCSF data structure.
      */
-    void save(struct XCSF * xcsf)
+    void
+    save(struct XCSF *xcsf)
     {
         xcsf_save(xcsf, filename.c_str());
         std::ostringstream status;
@@ -89,7 +90,8 @@ public:
      * @param [in] metrics Dictionary of performance metrics.
      * @return Whether to terminate training.
      */
-    bool run(struct XCSF * xcsf, py::dict metrics) override
+    bool
+    run(struct XCSF *xcsf, py::dict metrics) override
     {
         py::list data = metrics[monitor];
         py::list trials = metrics["trials"];
@@ -111,14 +113,15 @@ public:
      * @brief Executes any tasks at the end of fitting.
      * @param [in] xcsf The XCSF data structure.
      */
-    void finish(struct XCSF * xcsf) override
+    void
+    finish(struct XCSF *xcsf) override
     {
         if (!save_best_only) {
             save(xcsf);
         }
     }
 
-private:
+  private:
     py::str monitor; //!< Name of the metric to monitor
     std::string filename; //!< Name of the file to save XCSF
     bool save_best_only; //!< Whether to only save the best population
