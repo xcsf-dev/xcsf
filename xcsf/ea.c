@@ -17,7 +17,7 @@
  * @file ea.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Evolutionary algorithm functions.
  */
 
@@ -147,7 +147,21 @@ ea_select_rw(const struct XCSF *xcsf, const struct Set *set,
 }
 
 /**
+ * @brief Probability a classifier with numerosity num is selected.
+ * @param [in] num Numerosity of the classifier.
+ * @param [in] tau Tournament size (selection probability per copy).
+ * @return Selection probability: 1 - (1-tau)^num.
+ */
+static double
+p_num_tau(const int num, const double tau)
+{
+    return 1 - pow(1 - tau, (double) num);
+}
+
+/**
  * @brief Selects a classifier from the set via tournament.
+ * @details Uses Algorithm 4 in Lanzi (2026)
+ * "On the implementation of tournament selection in XCS".
  * @param [in] xcsf The XCSF data structure.
  * @param [in] set The set to select from.
  * @return A pointer to the selected classifier.
@@ -155,18 +169,23 @@ ea_select_rw(const struct XCSF *xcsf, const struct Set *set,
 static struct Cl *
 ea_select_tournament(const struct XCSF *xcsf, const struct Set *set)
 {
-    struct Cl *winner = NULL;
-    while (winner == NULL) {
+    const double tau = xcsf->ea->select_size;
+    struct Cl *clb = NULL;
+    while (clb == NULL) {
+        double maxf = 0;
         const struct Clist *iter = set->list;
         while (iter != NULL) {
-            if ((rand_uniform(0, 1) < xcsf->ea->select_size) &&
-                (winner == NULL || iter->cl->fit > winner->fit)) {
-                winner = iter->cl;
+            const double f = iter->cl->fit / iter->cl->num;
+            const int num = iter->cl->num;
+            if ((clb == NULL || f > maxf) &&
+                rand_uniform(0, 1) < p_num_tau(num, tau)) {
+                clb = iter->cl;
+                maxf = f;
             }
             iter = iter->next;
         }
     }
-    return winner;
+    return clb;
 }
 
 /**
