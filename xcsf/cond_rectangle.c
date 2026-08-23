@@ -17,7 +17,7 @@
  * @file cond_rectangle.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2025.
+ * @date 2019--2026.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -26,12 +26,12 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of hyperrectangle mutation rates
+#define N_MU 2 //!< Number of hyperrectangle mutation rates
 
 /**
  * @brief Self-adaptation method for mutating hyperrectangles.
  */
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL, SAM_LOG_NORMAL };
 
 /**
  * @brief Creates and initialises a hyperrectangle condition.
@@ -56,7 +56,12 @@ cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
         }
     }
     new->mu = malloc(sizeof(double) * N_MU);
-    sam_init(new->mu, N_MU, MU_TYPE);
+    if (xcsf->cond->sam) { // self-adaptive mutation
+        sam_init(new->mu, N_MU, MU_TYPE);
+    } else { // constant mutation rate
+        new->mu[0] = xcsf->cond->p_mu;
+        new->mu[1] = xcsf->cond->mu;
+    }
     c->cond = new;
 }
 
@@ -225,23 +230,38 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
     const struct CondRectangle *cond = c->cond;
     double *b1 = cond->b1;
     double *b2 = cond->b2;
-    sam_adapt(cond->mu, N_MU, MU_TYPE);
+
+    if (xcsf->cond->sam) {
+        sam_adapt(cond->mu, N_MU, MU_TYPE);
+    }
+
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double orig = b1[i];
-        b1[i] += rand_normal(0, cond->mu[0]);
-        b1[i] = clamp(b1[i], xcsf->cond->min, xcsf->cond->max);
-        if (orig != b1[i]) {
-            changed = true;
-        }
-        orig = b2[i];
-        b2[i] += rand_normal(0, cond->mu[0]);
-        if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
-            b2[i] = fmax(DBL_EPSILON, b2[i]);
-        } else {
-            b2[i] = clamp(b2[i], xcsf->cond->min, xcsf->cond->max);
-        }
-        if (orig != b2[i]) {
-            changed = true;
+        if (rand_uniform(0, 1) < cond->mu[0]) {
+            double orig = b1[i];
+            if (rand_uniform(0, 1) < 0.5) {
+                b1[i] += rand_uniform(0, cond->mu[1]);
+            } else {
+                b1[i] -= rand_uniform(0, cond->mu[1]);
+            }
+            b1[i] = clamp(b1[i], xcsf->cond->min, xcsf->cond->max);
+            if (orig != b1[i]) {
+                changed = true;
+            }
+
+            orig = b2[i];
+            if (rand_uniform(0, 1) < 0.5) {
+                b2[i] += rand_uniform(0, cond->mu[1]);
+            } else {
+                b2[i] -= rand_uniform(0, cond->mu[1]);
+            }
+            if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+                b2[i] = fmax(DBL_EPSILON, b2[i]);
+            } else {
+                b2[i] = clamp(b2[i], xcsf->cond->min, xcsf->cond->max);
+            }
+            if (orig != b2[i]) {
+                changed = true;
+            }
         }
     }
     return changed;

@@ -17,7 +17,7 @@
  * @file condition.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Interface for classifier conditions.
  */
 
@@ -64,6 +64,9 @@ struct ArgsCond {
     double min; //!< Minimum value expected from inputs
     double p_dontcare; //!< Don't care probability
     double spread_min; //!< Minimum initial spread
+    double p_mu; //!< Probability of mutation occurring
+    double mu; //!< Mutation rate
+    bool sam; //!< Whether to self-adapt p_mu and mu
     int bits; //!< Bits per float to binarise inputs
     struct ArgsLayer *largs; //!< Linked-list of layer parameters
     struct ArgsDGP *dargs; //!< DGP parameters
@@ -337,6 +340,15 @@ cond_param_set_max(struct XCSF *xcsf, const double a);
 
 void
 cond_param_set_p_dontcare(struct XCSF *xcsf, const double a);
+
+void
+cond_param_set_mu(struct XCSF *xcsf, const double a);
+
+void
+cond_param_set_p_mu(struct XCSF *xcsf, const double a);
+
+void
+cond_param_set_sam(struct XCSF *xcsf, const bool a);
 
 void
 cond_param_set_spread_min(struct XCSF *xcsf, const double a);

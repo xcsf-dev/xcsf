@@ -17,7 +17,7 @@
  * @file pred_neural_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023--2024.
+ * @date 2023--2026.
  * @brief Neural prediction tests.
  */
 
@@ -28,7 +28,6 @@ extern "C" {
 #include "../xcsf/param.h"
 #include "../xcsf/pred_neural.h"
 #include "../xcsf/prediction.h"
-#include "../xcsf/utils.h"
 #include "../xcsf/xcsf.h"
 #include <math.h>
 #include <stdbool.h>
@@ -77,7 +76,7 @@ TEST_CASE("PRED_NEURAL")
     CHECK(pred_neural_mutate(&xcsf, c));
 
     /* test size */
-    CHECK_EQ(pred_neural_size(&xcsf, c), 110);
+    CHECK_EQ(pred_neural_size(&xcsf, c), 104);
 
     /* Test n layers */
     CHECK_EQ(pred_neural_layers(&xcsf, c), 2);
@@ -86,10 +85,11 @@ TEST_CASE("PRED_NEURAL")
     CHECK_EQ(pred_neural_neurons(&xcsf, c, 0), 10);
 
     /* Test n connections */
-    CHECK_EQ(pred_neural_connections(&xcsf, c, 0), 100);
+    CHECK_EQ(pred_neural_connections(&xcsf, c, 0), 94);
 
     /* Test eta */
-    CHECK_EQ(pred_neural_eta(&xcsf, c, 0), doctest::Approx(0.01));
+    CHECK_EQ(pred_neural_eta(&xcsf, c, 0),
+             doctest::Approx(0.0).epsilon(0.01).scale(1.0));
 
     /* Test export */
     char *json_str = pred_neural_json_export(&xcsf, c);

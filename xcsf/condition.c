@@ -17,10 +17,11 @@
  * @file condition.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Interface for classifier conditions.
  */
 
+#include "condition.h"
 #include "cond_dgp.h"
 #include "cond_dummy.h"
 #include "cond_ellipsoid.h"
@@ -30,7 +31,6 @@
 #include "cond_ternary.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
-#include "utils.h"
 
 /**
  * @brief Sets a classifier's condition functions to the implementations.
@@ -170,6 +170,9 @@ cond_param_defaults(struct XCSF *xcsf)
     cond_param_set_min(xcsf, 0);
     cond_param_set_max(xcsf, 1);
     cond_param_set_spread_min(xcsf, 0.1);
+    cond_param_set_sam(xcsf, true);
+    cond_param_set_p_mu(xcsf, 0.04);
+    cond_param_set_mu(xcsf, 0.1);
     cond_ternary_param_defaults(xcsf);
     cond_neural_param_defaults(xcsf);
     cond_dgp_param_defaults(xcsf);
@@ -190,6 +193,9 @@ cond_param_json_export_csr(const struct XCSF *xcsf)
     cJSON_AddNumberToObject(json, "min", cond->min);
     cJSON_AddNumberToObject(json, "max", cond->max);
     cJSON_AddNumberToObject(json, "spread_min", cond->spread_min);
+    cJSON_AddNumberToObject(json, "p_mu", cond->p_mu);
+    cJSON_AddNumberToObject(json, "mu", cond->mu);
+    cJSON_AddBoolToObject(json, "sam", cond->sam);
     char *string = cJSON_Print(json);
     cJSON_Delete(json);
     return string;
@@ -216,6 +222,16 @@ cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json)
         } else if (strncmp(iter->string, "spread_min\0", 11) == 0 &&
                    cJSON_IsNumber(iter)) {
             cond_param_set_spread_min(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "p_mu\0", 5) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_p_mu(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "mu\0", 3) == 0 &&
+                   cJSON_IsNumber(iter)) {
+            cond_param_set_mu(xcsf, iter->valuedouble);
+        } else if (strncmp(iter->string, "sam\0", 4) == 0 &&
+                   cJSON_IsBool(iter)) {
+            const bool sam = (iter->type == cJSON_True);
+            cond_param_set_sam(xcsf, sam);
         } else {
             return iter->string;
         }
@@ -326,6 +342,9 @@ cond_param_save(const struct XCSF *xcsf, FILE *fp)
     s += fwrite(&cond->max, sizeof(double), 1, fp);
     s += fwrite(&cond->spread_min, sizeof(double), 1, fp);
     s += fwrite(&cond->p_dontcare, sizeof(double), 1, fp);
+    s += fwrite(&cond->p_mu, sizeof(double), 1, fp);
+    s += fwrite(&cond->mu, sizeof(double), 1, fp);
+    s += fwrite(&cond->sam, sizeof(bool), 1, fp);
     s += fwrite(&cond->bits, sizeof(int), 1, fp);
     s += graph_args_save(cond->dargs, fp);
     s += tree_args_save(cond->targs, fp);
@@ -350,6 +369,9 @@ cond_param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&cond->max, sizeof(double), 1, fp);
     s += fread(&cond->spread_min, sizeof(double), 1, fp);
     s += fread(&cond->p_dontcare, sizeof(double), 1, fp);
+    s += fread(&cond->p_mu, sizeof(double), 1, fp);
+    s += fread(&cond->mu, sizeof(double), 1, fp);
+    s += fread(&cond->sam, sizeof(bool), 1, fp);
     s += fread(&cond->bits, sizeof(int), 1, fp);
     s += graph_args_load(cond->dargs, fp);
     s += tree_args_load(cond->targs, fp);
@@ -412,6 +434,40 @@ cond_param_set_p_dontcare(struct XCSF *xcsf, const double a)
     } else {
         xcsf->cond->p_dontcare = a;
     }
+}
+
+void
+cond_param_set_mu(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND MU too small\n");
+        xcsf->cond->mu = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND MU too large\n");
+        xcsf->cond->mu = 1;
+    } else {
+        xcsf->cond->mu = a;
+    }
+}
+
+void
+cond_param_set_p_mu(struct XCSF *xcsf, const double a)
+{
+    if (a < 0) {
+        printf("Warning: tried to set COND P_MU too small\n");
+        xcsf->cond->p_mu = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND P_MU too large\n");
+        xcsf->cond->p_mu = 1;
+    } else {
+        xcsf->cond->p_mu = a;
+    }
+}
+
+void
+cond_param_set_sam(struct XCSF *xcsf, const bool a)
+{
+    xcsf->cond->sam = a;
 }
 
 void

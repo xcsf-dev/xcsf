@@ -1,6 +1,5 @@
-#!/usr/bin/python3
 #
-# Copyright (C) 2024 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2024--2026 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -234,7 +233,7 @@ def test_seeding(data):
             "type": "hyperrectangle_ubr",
             "bound1": np.round(np.random.rand(data.x_dim), 10).tolist(),
             "bound2": np.round(np.random.rand(data.x_dim), 10).tolist(),
-            "mutation": [0.2],
+            "mutation": [0.05, 0.2],
         },
     }
 

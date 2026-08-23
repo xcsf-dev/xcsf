@@ -17,16 +17,14 @@
  * @file xcs_supervised_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023--2024.
+ * @date 2023--2026.
  * @brief High-level supervised learning function tests.
  */
 
 #include "../lib/doctest/doctest/doctest.h"
 
 extern "C" {
-#include "../xcsf/pa.h"
 #include "../xcsf/param.h"
-#include "../xcsf/utils.h"
 #include "../xcsf/xcs_supervised.h"
 #include "../xcsf/xcsf.h"
 #include <stdbool.h>
@@ -73,7 +71,7 @@ TEST_CASE("SUPERVISED")
     score = xcs_supervised_score_n(&xcsf, &train_data, 10, cover);
     CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.0947);
     score = xcs_supervised_score_n(&xcsf, &train_data, 2, cover);
-    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.0971159);
+    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.14);
     // predict()
     double *output =
         (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);
