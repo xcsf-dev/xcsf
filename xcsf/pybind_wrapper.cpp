@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2020--2024.
+ * @date 2020--2026.
  * @brief Python library wrapper functions.
  */
 
@@ -26,7 +26,6 @@
     #define _hypot hypot
 #endif
 
-#include <chrono>
 #include <cstdio>
 #include <fstream>
 #include <iomanip>
@@ -36,18 +35,13 @@
 #include <pybind11/stl.h>
 #include <sstream>
 #include <string>
-#include <vector>
 
 namespace py = pybind11;
 
 extern "C" {
-#include "action.h"
 #include "clset.h"
 #include "clset_neural.h"
-#include "condition.h"
-#include "ea.h"
 #include "param.h"
-#include "prediction.h"
 #include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
@@ -817,7 +811,7 @@ class XCS
      * @param [in] prediction Whether to return the prediction.
      * @return String encoded in json format.
      */
-    const char *
+    std::string
     json_export(const bool condition, const bool action, const bool prediction)
     {
         if (xcs.pset.list != NULL) {
@@ -828,14 +822,31 @@ class XCS
     }
 
     /**
+     * @brief Returns a Python dictionary containing the population set.
+     * @param [in] condition Whether to return the condition.
+     * @param [in] action Whether to return the action.
+     * @param [in] prediction Whether to return the prediction.
+     * @return Population set.
+     */
+    py::dict
+    get_pop(const bool condition, const bool action, const bool prediction)
+    {
+        std::string json_str = json_export(condition, action, prediction);
+        py::module_ json_module = py::module_::import("json");
+        py::object parsed_json = json_module.attr("loads")(json_str);
+        py::dict pop(parsed_json);
+        return pop;
+    }
+
+    /**
      * @brief Updates the Python object's parameter dictionary.
      */
     void
     update_params()
     {
         char *json_str = param_json_export(&xcs);
-        py::module json = py::module::import("json");
-        py::object parsed_json = json.attr("loads")(json_str);
+        py::module_ json_module = py::module_::import("json");
+        py::object parsed_json = json_module.attr("loads")(json_str);
         py::dict result(parsed_json);
         params = result;
         // map None types
@@ -881,7 +892,7 @@ class XCS
             }
         }
         // convert dict to JSON and parse parameters
-        py::module json_module = py::module::import("json");
+        py::module_ json_module = py::module_::import("json");
         py::object json_dumps = json_module.attr("dumps")(kwargs_dict);
         std::string json_str = json_dumps.cast<std::string>();
         const char *json_params = json_str.c_str();
@@ -897,19 +908,22 @@ class XCS
     internal_params()
     {
         char *json_str = param_json_export(&xcs);
-        py::module json_module = py::module::import("json");
+        py::module_ json_module = py::module_::import("json");
         py::dict internal_params = json_module.attr("loads")(json_str);
         free(json_str);
         return internal_params;
     }
 
     /**
-     * @brief Creates a classifier from JSON and inserts into the population.
-     * @param [in] json_str JSON formatted string representing a classifier.
+     * @brief Creates a classifier from dict and inserts into the population.
+     * @param [in] classifier Python dictionary representing a classifier.
      */
     void
-    json_insert_cl(const std::string &json_str)
+    insert_cl(const py::dict &classifier)
     {
+        py::module_ json_module = py::module_::import("json");
+        py::object json_dumps = json_module.attr("dumps")(classifier);
+        std::string json_str = json_dumps.cast<std::string>();
         cJSON *json = cJSON_Parse(json_str.c_str());
         utils_json_parse_check(json);
         clset_json_insert_cl(&xcs, json);
@@ -1114,13 +1128,18 @@ PYBIND11_MODULE(xcsf, m)
         .def("get_params", &XCS::get_params, py::arg("deep") = true,
              "Returns a dictionary of parameters and their values.")
         .def("set_params", &XCS::set_params, "Sets parameters.")
-        .def("json_insert_cl", &XCS::json_insert_cl,
-             "Creates a classifier from JSON and inserts into the population.",
-             py::arg("json_str"))
+        .def(
+            "insert_cl", &XCS::insert_cl,
+            "Creates a classifier from a dict and inserts into the population.",
+            py::arg("classifier"))
         .def("json_insert", &XCS::json_insert,
              "Creates classifiers from JSON and inserts into the population.",
              py::arg("json_str"))
         .def("internal_params", &XCS::internal_params, "Gets internal params.")
+        .def("get_pop", &XCS::get_pop,
+             "Returns the current population as a dictionary.",
+             py::arg("condition") = true, py::arg("action") = true,
+             py::arg("prediction") = true)
         .def(py::pickle(
             [](const XCS &obj) { return obj.serialize(); },
             [](const py::bytes &state) { return XCS::deserialize(state); }));

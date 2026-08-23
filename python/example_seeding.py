@@ -48,7 +48,7 @@ classifier = {
         "type": "hyperrectangle_csr",
         "center": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
         "spread": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
-        "mutation": [0.2],  # this parameter still self-adapts
+        "mutation": [0.2, 0.1],  # these parameters still self-adapt
     },
     "action": {"type": "integer", "action": 0, "mutation": [0.28]},
     # prediction is absent and therefore initialised as normal
@@ -84,16 +84,14 @@ xcs = xcsf.XCS(
 # Add the human-designed classifier again, this time manually.
 ##############################################################################
 
-json_str = json.dumps(classifier)  # dictionary to JSON
-
-# The json_insert_cl() function can be used to insert a single new classifier
+# The insert_cl() function can be used to insert a single new classifier
 # into the population. The new classifier is initialised with a random
 # condition, action, prediction, and then any supplied properties overwrite
 # these values. This means that all properties are optional. If the population
 # set numerosity exceeds xcs.POP_SIZE after inserting the rule, the standard
 # roulette wheel deletion mechanism will be invoked to maintain the population
 # limit.
-xcs.json_insert_cl(json_str)  # insert in [P]
+xcs.insert_cl(classifier)  # insert in [P]
 
 ##############################################################################
 
