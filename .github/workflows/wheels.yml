@@ -19,9 +19,6 @@ jobs:
         include:
           # manylinux builds
           - os: ubuntu-latest
-            python: "cp39"
-            platform: manylinux_x86_64
-          - os: ubuntu-latest
             python: "cp310"
             platform: manylinux_x86_64
           - os: ubuntu-latest
@@ -35,13 +32,13 @@ jobs:
             platform: manylinux_x86_64
           - os: ubuntu-latest
             python: "cp314"
+            platform: manylinux_x86_64
+          - os: ubuntu-latest
+            python: "cp315"
             platform: manylinux_x86_64
 
           # MacOS builds - intel
           - os: macos-13
-            python: "cp39"
-            platform: macosx_x86_64
-          - os: macos-13
             python: "cp310"
             platform: macosx_x86_64
           - os: macos-13
@@ -55,13 +52,13 @@ jobs:
             platform: macosx_x86_64
           - os: macos-13
             python: "cp314"
+            platform: macosx_x86_64
+          - os: macos-13
+            python: "cp315"
             platform: macosx_x86_64
 
           # MacOS arm64
           - os: macos-14
-            python: "cp39"
-            platform: macosx_arm64
-          - os: macos-14
             python: "cp310"
             platform: macosx_arm64
           - os: macos-14
@@ -75,13 +72,13 @@ jobs:
             platform: macosx_arm64
           - os: macos-14
             python: "cp314"
+            platform: macosx_arm64
+          - os: macos-14
+            python: "cp315"
             platform: macosx_arm64
 
           # Windows builds
           - os: windows-latest
-            python: "cp39"
-            platform: win_amd64
-          - os: windows-latest
             python: "cp310"
             platform: win_amd64
           - os: windows-latest
@@ -95,6 +92,9 @@ jobs:
             platform: win_amd64
           - os: windows-latest
             python: "cp314"
+            platform: win_amd64
+          - os: windows-latest
+            python: "cp315"
             platform: win_amd64
 
     steps:
@@ -114,7 +114,7 @@ jobs:
           fi
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v3.4.0
+        uses: pypa/cibuildwheel@v4.2.0
         env:
           CIBW_BUILD: ${{ matrix.python }}-${{ matrix.platform }}
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
