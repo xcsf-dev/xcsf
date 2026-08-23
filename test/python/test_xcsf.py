@@ -308,7 +308,7 @@ def _compare_dicts(d1, d2, path=""):
         elif isinstance(v1, list) and isinstance(v2, list):
             if len(v1) != len(v2):
                 diffs.append((subpath, f"List length differs: {len(v1)} != {len(v2)}"))
-            for i, (x, y) in enumerate(zip(v1, v2)):
+            for i, (x, y) in enumerate(zip(v1, v2, strict=False)):
                 diffs.extend(_compare_dicts({0: x}, {0: y}, f"{subpath}[{i}]"))
         elif isinstance(v1, numbers.Real) and isinstance(v2, numbers.Real):
             if not np.isclose(v1, v2, atol=1e-10, rtol=0.0):
@@ -354,7 +354,7 @@ def _test_pop_replace(
     if len(list1) != len(list2):
         return False
     unequal = False
-    for cl1, cl2 in zip(list1, list2):
+    for cl1, cl2 in zip(list1, list2, strict=False):
         # If there is any difference, …
         if _compare_dicts(cl1, cl2):
             unequal = True
