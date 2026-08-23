@@ -257,8 +257,7 @@ def test_seeding(data):
     )
 
     # add human-designed classifier again, this time manually
-    clj: str = json.dumps(classifier)  # dictionary to JSON
-    xcs.json_insert_cl(clj)
+    xcs.insert_cl(classifier)
 
     # get current population
     pop: list[dict] = json.loads(xcs.json())["classifiers"]
