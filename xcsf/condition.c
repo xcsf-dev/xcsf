@@ -230,7 +230,7 @@ cond_param_json_import_csr(struct XCSF *xcsf, cJSON *json)
             cond_param_set_mu(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "sam\0", 4) == 0 &&
                    cJSON_IsBool(iter)) {
-            const bool sam = true ? iter->type == cJSON_True : false;
+            const bool sam = (iter->type == cJSON_True);
             cond_param_set_sam(xcsf, sam);
         } else {
             return iter->string;
@@ -442,6 +442,9 @@ cond_param_set_mu(struct XCSF *xcsf, const double a)
     if (a < 0) {
         printf("Warning: tried to set COND MU too small\n");
         xcsf->cond->mu = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND MU too large\n");
+        xcsf->cond->mu = 1;
     } else {
         xcsf->cond->mu = a;
     }
@@ -453,6 +456,9 @@ cond_param_set_p_mu(struct XCSF *xcsf, const double a)
     if (a < 0) {
         printf("Warning: tried to set COND P_MU too small\n");
         xcsf->cond->p_mu = 0;
+    } else if (a > 1) {
+        printf("Warning: tried to set COND P_MU too large\n");
+        xcsf->cond->p_mu = 1;
     } else {
         xcsf->cond->p_mu = a;
     }

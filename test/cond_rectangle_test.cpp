@@ -104,7 +104,7 @@ TEST_CASE("COND_RECTANGLE_CSR")
     struct CondRectangle *dest_cond = (struct CondRectangle *) c2->cond;
     CHECK(check_array_eq(dest_cond->b1, src_cond->b1, xcsf.x_dim));
     CHECK(check_array_eq(dest_cond->b2, src_cond->b2, xcsf.x_dim));
-    CHECK(check_array_eq(dest_cond->mu, src_cond->mu, 1));
+    CHECK(check_array_eq(dest_cond->mu, src_cond->mu, 2));
 
     /* test size */
     CHECK_EQ(cond_rectangle_size(&xcsf, c1), xcsf.x_dim);
@@ -120,7 +120,7 @@ TEST_CASE("COND_RECTANGLE_CSR")
     struct CondRectangle *new_cond = (struct CondRectangle *) new_cl->cond;
     CHECK(check_array_eq(new_cond->b1, orig_cond->b1, xcsf.x_dim));
     CHECK(check_array_eq(new_cond->b2, orig_cond->b2, xcsf.x_dim));
-    CHECK(check_array_eq(new_cond->mu, orig_cond->mu, 1));
+    CHECK(check_array_eq(new_cond->mu, orig_cond->mu, 2));
 
     /* test mutation */
     CHECK(cond_rectangle_mutate(&xcsf, c1));
