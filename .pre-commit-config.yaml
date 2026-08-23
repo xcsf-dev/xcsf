@@ -35,6 +35,8 @@ repos:
     rev: v2.4.3
     hooks:
       - id: codespell
+        additional_dependencies: [tomli]
+        args: ["--toml", "pyproject.toml"]
         exclude: >
             (?x)^(
                 .*\.txt|
