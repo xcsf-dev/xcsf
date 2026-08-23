@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+*   Fix: correct tournament selection to account for classifier numerosity ([#235](https://github.com/xcsf-dev/xcsf/pull/235))
+
 ## Version 1.4.10 (Sep 11, 2025)
 
 Changes:
