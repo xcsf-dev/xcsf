@@ -17,7 +17,7 @@
  * @file cond_rectangle_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2024.
+ * @date 2020--2026.
  * @brief Hyperrectangle condition tests.
  */
 
@@ -27,11 +27,11 @@ extern "C" {
 #include "../xcsf/cl.h"
 #include "../xcsf/cond_rectangle.h"
 #include "../xcsf/condition.h"
+#include "../xcsf/ea.h"
 #include "../xcsf/param.h"
 #include "../xcsf/utils.h"
 #include "../xcsf/xcsf.h"
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 }
@@ -46,6 +46,7 @@ TEST_CASE("COND_RECTANGLE_CSR")
     cond_param_set_min(&xcsf, 0);
     cond_param_set_max(&xcsf, 1);
     cond_param_set_spread_min(&xcsf, 1);
+    ea_param_set_p_crossover(&xcsf, 1);
 
     struct Cl *c1 = (struct Cl *) malloc(sizeof(struct Cl));
     cl_init(&xcsf, c1, 1, 1);

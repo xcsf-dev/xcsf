@@ -41,7 +41,10 @@
             "eta": 0,
             "min": 0,
             "max": 1,
-            "spread_min": 0.1
+            "spread_min": 0.1,
+            "p_mu": 0.04,
+            "mu": 0.1,
+            "sam": false
         }
     },
     "prediction": {

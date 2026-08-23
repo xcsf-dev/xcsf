@@ -1,6 +1,5 @@
-#!/usr/bin/python3
 #
-# Copyright (C) 2019--2023 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2019--2026 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,10 +18,8 @@
 """
 This example demonstrates XCSF (single-step) reinforcement learning applied to
 the real-multiplexer problem. Classifiers are composed of hyperrectangle
-conditions, linear least squares predictions, and integer actions.
+conditions, linear (recursive least squares) predictions, and integer actions.
 """
-
-from __future__ import annotations
 
 import json
 import random
@@ -120,6 +117,8 @@ MAX_PAYOFF: float = mux.max_payoff
 # Initialise XCSF
 ###################
 
+MAX_POP: int = 5000
+
 xcs: xcsf.XCS = xcsf.XCS(
     x_dim=X_DIM,
     y_dim=1,
@@ -132,14 +131,15 @@ xcs: xcsf.XCS = xcsf.XCS(
     init_fitness=0.01,
     m_probation=10000,
     nu=5,
-    omp_num_threads=12,
+    omp_num_threads=20,
     perf_trials=1000,
     pop_init=False,
-    pop_size=5000,
+    pop_size=MAX_POP,
     random_state=1,
     set_subsumption=True,
     theta_del=20,
     theta_sub=100,
+    loss_func="mse",
     ea={
         "select_type": "tournament",
         "select_size": 0.4,
@@ -160,15 +160,13 @@ xcs: xcsf.XCS = xcsf.XCS(
             "min": 0.0,
             "max": 1.0,
             "spread_min": 1.0,
+            "p_mu": 0.04,  # probability of mutation occurring per bound
+            "mu": 0.1,  # maximum size of uniformly random mutation applied
+            "sam": False,  # whether to self-adapt the above mutation rates
         },
     },
     prediction={
-        "type": "nlms_linear",
-        "args": {
-            "eta": 1.0,
-            "eta_min": 0.0001,
-            "evolve_eta": True,
-        },
+        "type": "rls_linear",
     },
 )
 
@@ -242,6 +240,7 @@ run_experiment()
 plt.figure(figsize=(10, 6))
 plt.plot(trials, performance, label="Performance")
 plt.plot(trials, error, label="System error")
+plt.plot(trials, psize / MAX_POP, label="Macro-classifiers")
 plt.grid(linestyle="dotted", linewidth=1)
 plt.title(f"{mux.n_bits}-bit Real Multiplexer", fontsize=14)
 plt.xlabel("Trials", fontsize=12)
