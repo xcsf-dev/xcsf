@@ -38,22 +38,22 @@ jobs:
             platform: manylinux_x86_64
 
           # MacOS builds - intel
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp310"
             platform: macosx_x86_64
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp311"
             platform: macosx_x86_64
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp312"
             platform: macosx_x86_64
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp313"
             platform: macosx_x86_64
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp314"
             platform: macosx_x86_64
-          - os: macos-13
+          - os: macos-15-intel
             python: "cp315"
             platform: macosx_x86_64
 
@@ -110,6 +110,8 @@ jobs:
           if [[ "${{ matrix.os }}" == "macos-13" ]]; then
             echo "MACOSX_DEPLOYMENT_TARGET=13.0" >> $GITHUB_ENV
           elif [[ "${{ matrix.os }}" == "macos-14" ]]; then
+            echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
+          elif [[ "${{ matrix.os }}" == "macos-15-intel" ]]; then
             echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV
           fi
 
