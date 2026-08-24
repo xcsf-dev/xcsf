@@ -159,9 +159,9 @@ xcs: xcsf.XCS = xcsf.XCS(
         "args": {
             "min": 0.0,
             "max": 1.0,
-            "spread_min": 1.0,
+            "spread_min": 0.5,
             "p_mu": 0.04,  # probability of mutation occurring per bound
-            "mu": 0.1,  # maximum size of uniformly random mutation applied
+            "mu": 0.1,  # standard deviation of random normal mutation added
             "sam": False,  # whether to self-adapt the above mutation rates
         },
     },

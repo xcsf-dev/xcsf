@@ -17,7 +17,7 @@
  * @file cond_ellipsoid.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2026.
  * @brief Hyperellipsoid condition functions.
  */
 
@@ -26,12 +26,12 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of hyperellipsoid mutation rates
+#define N_MU 2 //!< Number of hyperellipsoid mutation rates
 
 /**
  * @brief Self-adaptation method for mutating hyperellipsoids.
  */
-static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL };
+static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL, SAM_LOG_NORMAL };
 
 /**
  * @brief Returns the relative distance to a hyperellipsoid.
@@ -73,7 +73,12 @@ cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c)
         new->center[i] = rand_uniform(xcsf->cond->min, xcsf->cond->max);
         new->spread[i] = rand_uniform(xcsf->cond->spread_min, spread_max);
     }
-    sam_init(new->mu, N_MU, MU_TYPE);
+    if (xcsf->cond->sam) { // self-adaptive mutation
+        sam_init(new->mu, N_MU, MU_TYPE);
+    } else { // constant mutation rate
+        new->mu[0] = xcsf->cond->p_mu;
+        new->mu[1] = xcsf->cond->mu;
+    }
     c->cond = new;
 }
 
@@ -212,19 +217,26 @@ cond_ellipsoid_mutate(const struct XCSF *xcsf, const struct Cl *c)
     const struct CondEllipsoid *cond = c->cond;
     double *center = cond->center;
     double *spread = cond->spread;
-    sam_adapt(cond->mu, N_MU, MU_TYPE);
+
+    if (xcsf->cond->sam) {
+        sam_adapt(cond->mu, N_MU, MU_TYPE);
+    }
+
     for (int i = 0; i < xcsf->x_dim; ++i) {
-        double orig = center[i];
-        center[i] += rand_normal(0, cond->mu[0]);
-        center[i] = clamp(center[i], xcsf->cond->min, xcsf->cond->max);
-        if (orig != center[i]) {
-            changed = true;
-        }
-        orig = spread[i];
-        spread[i] += rand_normal(0, cond->mu[0]);
-        spread[i] = fmax(DBL_EPSILON, spread[i]);
-        if (orig != spread[i]) {
-            changed = true;
+        if (rand_uniform(0, 1) < cond->mu[0]) {
+            double orig = center[i];
+            center[i] += rand_normal(0, cond->mu[1]);
+            center[i] = clamp(center[i], xcsf->cond->min, xcsf->cond->max);
+            if (orig != center[i]) {
+                changed = true;
+            }
+
+            orig = spread[i];
+            spread[i] += rand_normal(0, cond->mu[1]);
+            spread[i] = fmax(DBL_EPSILON, spread[i]);
+            if (orig != spread[i]) {
+                changed = true;
+            }
         }
     }
     return changed;
