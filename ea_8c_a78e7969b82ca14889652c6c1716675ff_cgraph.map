@@ -6,7 +6,9 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="84,65,144,65,144,70,84,70"/>
 <area shape="rect" id="Node000005" href="$ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4" title="Selects a classifier from the set via tournament." alt="" coords="132,104,283,129"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="85,77,152,97,151,102,84,82"/>
-<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="331,80,428,105"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,72,317,81,317,86,256,77"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="283,103,317,99,318,104,283,109"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="331,55,428,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,65,317,65,317,70,257,70"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="252,101,320,81,322,86,253,107"/>
+<area shape="rect" id="Node000006" href="$ea_8c.html#a8e776ce9d7cb25bb04a60d069c86606d" title="Probability a classifier with numerosity num is selected." alt="" coords="336,104,423,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="283,114,322,114,322,119,283,119"/>
 </map>

@@ -6,7 +6,10 @@ var structArgsCond =
     [ "largs", "structArgsCond.html#af17e1a084a52d6848d44abfc3cd01087", null ],
     [ "max", "structArgsCond.html#af935385e699f9c22009a223f95b6565b", null ],
     [ "min", "structArgsCond.html#a0655165a4c7f517c3c60017493d36220", null ],
+    [ "mu", "structArgsCond.html#a20f58d6daca1a271f0ad3120f18b7d98", null ],
     [ "p_dontcare", "structArgsCond.html#a25ddfb3336b1905a3a7c978e664b9447", null ],
+    [ "p_mu", "structArgsCond.html#a03a48e49523d68b460717d58e8b4ab26", null ],
+    [ "sam", "structArgsCond.html#a5f8cdf2f6d541fb7cec52f187c81edf2", null ],
     [ "spread_min", "structArgsCond.html#ae8e330aa2496a35b54edb9b3b4c26dfb", null ],
     [ "targs", "structArgsCond.html#a4fefa87aa379206d8f6074989140a674", null ],
     [ "type", "structArgsCond.html#a53b6721780450d08f63c0099f10d2297", null ]

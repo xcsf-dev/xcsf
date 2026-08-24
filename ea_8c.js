@@ -23,5 +23,6 @@ var ea_8c =
     [ "ea_select_tournament", "ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4", null ],
     [ "ea_subsume", "ea_8c.html#ac3134366cd64189d6386a3cf014987b7", null ],
     [ "ea_type_as_int", "ea_8c.html#aa0505eb5ed3eb60094e9aa48bec5c02f", null ],
-    [ "ea_type_as_string", "ea_8c.html#af6093a84bc749f8a81a716f91f300028", null ]
+    [ "ea_type_as_string", "ea_8c.html#af6093a84bc749f8a81a716f91f300028", null ],
+    [ "p_num_tau", "ea_8c.html#a8e776ce9d7cb25bb04a60d069c86606d", null ]
 ];

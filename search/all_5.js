@@ -26,7 +26,7 @@ var searchData=
   ['ea_5fselect_5foptions_23',['EA_SELECT_OPTIONS',['../ea_8h.html#a620effec94d6cf2078b5699f662ca71f',1,'ea.h']]],
   ['ea_5fselect_5froulette_24',['EA_SELECT_ROULETTE',['../ea_8h.html#aeb166d481b9c61c177c155402335e4e2',1,'ea.h']]],
   ['ea_5fselect_5frw_25',['ea_select_rw',['../ea_8c.html#ad60a68edf77c6a3736f2d826bcbcb414',1,'ea.c']]],
-  ['ea_5fselect_5ftournament_26',['ea_select_tournament',['../ea_8h.html#a3e45cbb20be181c5186ed716880823af',1,'EA_SELECT_TOURNAMENT:&#160;ea.h'],['../ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4',1,'ea_select_tournament(const struct XCSF *xcsf, const struct Set *set):&#160;ea.c']]],
+  ['ea_5fselect_5ftournament_26',['ea_select_tournament',['../ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4',1,'ea_select_tournament(const struct XCSF *xcsf, const struct Set *set):&#160;ea.c'],['../ea_8h.html#a3e45cbb20be181c5186ed716880823af',1,'EA_SELECT_TOURNAMENT:&#160;ea.h']]],
   ['ea_5fstring_5froulette_27',['EA_STRING_ROULETTE',['../ea_8h.html#a81931ef27fd4a19cecfe937bed753d6a',1,'ea.h']]],
   ['ea_5fstring_5ftournament_28',['EA_STRING_TOURNAMENT',['../ea_8h.html#a6095cfec96dd8c2f2e6a005470794b4e',1,'ea.h']]],
   ['ea_5fsubsume_29',['ea_subsume',['../ea_8c.html#ac3134366cd64189d6386a3cf014987b7',1,'ea.c']]],

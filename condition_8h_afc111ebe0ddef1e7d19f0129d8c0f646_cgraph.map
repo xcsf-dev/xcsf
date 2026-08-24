@@ -6,10 +6,10 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="100,627,285,423,289,426,104,630"/>
 <area shape="rect" id="Node000017" href="$cond__neural_8c.html#af20411cd96e7b9fd459a69a4da6a3d7c" title="Sets the neural network parameters from a cJSON object." alt="" coords="233,621,399,661"/>
 <area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="172,639,219,639,219,644,172,644"/>
-<area shape="rect" id="Node000031" href="$condition_8c.html#a3183ca49067fec06ce5a06acd298bef9" title="Sets the center&#45;spread parameters from a cJSON object." alt="" coords="220,801,412,826"/>
-<area shape="poly" id="edge30_Node000001_Node000031" title=" " alt="" coords="109,652,288,790,285,794,105,656"/>
-<area shape="rect" id="Node000036" href="$cond__ternary_8c.html#aa77071d571c2ab9b4c318e73efb77ca1" title="Sets the ternary parameters from a cJSON object." alt="" coords="246,941,386,981"/>
-<area shape="poly" id="edge35_Node000001_Node000036" title=" " alt="" coords="100,653,222,836,292,929,288,932,218,839,96,656"/>
+<area shape="rect" id="Node000031" href="$condition_8c.html#a3183ca49067fec06ce5a06acd298bef9" title="Sets the center&#45;spread parameters from a cJSON object." alt="" coords="220,875,412,901"/>
+<area shape="poly" id="edge30_Node000001_Node000031" title=" " alt="" coords="104,652,296,863,292,867,100,656"/>
+<area shape="rect" id="Node000039" href="$cond__ternary_8c.html#aa77071d571c2ab9b4c318e73efb77ca1" title="Sets the ternary parameters from a cJSON object." alt="" coords="246,1089,386,1129"/>
+<area shape="poly" id="edge38_Node000001_Node000039" title=" " alt="" coords="99,653,301,1076,297,1078,94,655"/>
 <area shape="rect" id="Node000003" href="$dgp_8c.html#a249d71f924000750fb224b1a992d0427" title="Sets the DGP graph parameters from a cJSON object." alt="" coords="476,119,636,145"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="364,209,511,148,513,153,366,214"/>
 <area shape="rect" id="Node000004" href="$dgp_8c.html#aed1478bc3f88ad1f133a130dca8609d6" title=" " alt="" coords="712,5,879,45"/>
@@ -63,15 +63,21 @@
 <area shape="rect" id="Node000030" href="$neural__layer_8c.html#ad1b7188119d0d96791ee0d87c105896a" title="Returns a whether a layer type expects images as input." alt="" coords="943,881,1097,906"/>
 <area shape="poly" id="edge29_Node000029_Node000030" title=" " alt="" coords="863,891,929,891,929,896,863,896"/>
 <area shape="rect" id="Node000032" href="$condition_8c.html#afba6bf151b5efdac267a5acea6ec6f98" title=" " alt="" coords="485,751,627,777"/>
-<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="378,798,480,777,481,782,379,803"/>
+<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="330,873,384,830,420,806,459,786,477,778,479,783,461,790,423,811,387,835,333,877"/>
 <area shape="rect" id="Node000033" href="$condition_8c.html#a96145ee4b72dff5896f1d441501f788b" title=" " alt="" coords="481,801,631,826"/>
-<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="412,811,467,811,467,816,412,816"/>
+<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="350,873,459,835,487,827,488,832,461,840,351,878"/>
 <area shape="rect" id="Node000034" href="$condition_8c.html#a76bc79f6e7f0ad3c034ef9c66b987dfd" title=" " alt="" coords="483,850,629,875"/>
-<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="379,823,481,845,480,850,378,829"/>
-<area shape="rect" id="Node000035" href="$condition_8c.html#a508893aeed24ea2c0eab380f49b05f8b" title=" " alt="" coords="460,899,652,925"/>
-<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="340,824,394,854,461,884,487,893,485,898,459,889,392,858,338,829"/>
-<area shape="rect" id="Node000037" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="483,949,629,974"/>
-<area shape="poly" id="edge36_Node000036_Node000037" title=" " alt="" coords="387,959,469,959,469,964,387,964"/>
-<area shape="rect" id="Node000038" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="461,998,651,1023"/>
-<area shape="poly" id="edge37_Node000036_Node000038" title=" " alt="" coords="387,973,481,993,479,998,386,978"/>
+<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="412,875,469,869,470,874,412,881"/>
+<area shape="rect" id="Node000035" href="$condition_8c.html#aa8fc5c4ed13a43cfc295e66c9d1ef175" title=" " alt="" coords="485,899,627,925"/>
+<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="412,895,471,901,471,906,412,900"/>
+<area shape="rect" id="Node000036" href="$condition_8c.html#aa1c7cc2fe3622079f56f4aa822aa4567" title=" " alt="" coords="477,949,635,974"/>
+<area shape="poly" id="edge35_Node000031_Node000036" title=" " alt="" coords="354,898,461,933,492,943,491,948,459,939,353,903"/>
+<area shape="rect" id="Node000037" href="$condition_8c.html#a5be18d5696ede2ac15242a5b969b815b" title=" " alt="" coords="481,998,631,1023"/>
+<area shape="poly" id="edge36_Node000031_Node000037" title=" " alt="" coords="334,899,388,940,424,963,461,983,483,992,481,996,459,988,421,968,385,944,331,903"/>
+<area shape="rect" id="Node000038" href="$condition_8c.html#a508893aeed24ea2c0eab380f49b05f8b" title=" " alt="" coords="460,1047,652,1073"/>
+<area shape="poly" id="edge37_Node000031_Node000038" title=" " alt="" coords="328,899,380,963,418,1001,461,1032,477,1040,475,1045,459,1037,414,1005,376,967,324,902"/>
+<area shape="rect" id="Node000040" href="$condition_8c.html#a6d08714de7bb2d395de2a8171635afac" title=" " alt="" coords="483,1097,629,1122"/>
+<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="387,1107,469,1107,469,1112,387,1112"/>
+<area shape="rect" id="Node000041" href="$condition_8c.html#a95e3f93f8f4d82e7a6f5ef3b7a6a71ef" title=" " alt="" coords="461,1146,651,1171"/>
+<area shape="poly" id="edge40_Node000039_Node000041" title=" " alt="" coords="387,1121,481,1141,479,1146,386,1126"/>
 </map>

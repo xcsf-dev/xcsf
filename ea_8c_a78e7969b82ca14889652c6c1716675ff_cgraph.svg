@@ -75,8 +75,8 @@
 <g id="Node000004" class="node">
 <title>Node4</title>
 <g id="a_Node000004"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
-<polygon fill="white" stroke="#666666" points="317,-37 244,-37 244,-18 317,-18 317,-37"/>
-<text text-anchor="middle" x="280.5" y="-25" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
+<polygon fill="white" stroke="#666666" points="317,-56 244,-56 244,-37 317,-37 317,-56"/>
+<text text-anchor="middle" x="280.5" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>
 </g>
 </g>
@@ -84,17 +84,35 @@
 <g id="edge3_Node000003_Node000004" class="edge">
 <title>Node3&#45;&gt;Node4</title>
 <g id="a_edge3_Node000003_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M188.55,-41.11C202.62,-39 218.9,-36.57 233.77,-34.34"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="234.42,-37.78 243.8,-32.84 233.39,-30.86 234.42,-37.78"/>
+<path fill="none" stroke="#63b8ff" d="M188.55,-46.5C202.62,-46.5 218.9,-46.5 233.77,-46.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="233.8,-50 243.8,-46.5 233.8,-43 233.8,-50"/>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
-<g id="edge5_Node000005_Node000004" class="edge">
+<g id="edge6_Node000005_Node000004" class="edge">
 <title>Node5&#45;&gt;Node4</title>
-<g id="a_edge5_Node000005_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M208.2,-17.4C216.83,-18.62 225.65,-19.87 234.01,-21.05"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="233.55,-24.52 243.94,-22.46 234.53,-17.59 233.55,-24.52"/>
+<g id="a_edge6_Node000005_Node000004"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M185.21,-19.03C200.93,-23.61 219.99,-29.16 236.84,-34.07"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="235.88,-37.44 246.46,-36.88 237.84,-30.72 235.88,-37.44"/>
+</a>
+</g>
+</g>
+<!-- Node6 -->
+<g id="Node000006" class="node">
+<title>Node6</title>
+<g id="a_Node000006"><a xlink:href="ea_8c.html#a8e776ce9d7cb25bb04a60d069c86606d" target="_top" xlink:title="Probability a classifier with numerosity num is selected.">
+<polygon fill="white" stroke="#666666" points="313,-19 248,-19 248,0 313,0 313,-19"/>
+<text text-anchor="middle" x="280.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">p_num_tau</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5_Node000005_Node000006" class="edge">
+<title>Node5&#45;&gt;Node6</title>
+<g id="a_edge5_Node000005_Node000006"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M208.2,-9.5C218.08,-9.5 228.22,-9.5 237.63,-9.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="237.9,-13 247.9,-9.5 237.9,-6 237.9,-13"/>
 </a>
 </g>
 </g>

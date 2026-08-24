@@ -4,18 +4,21 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="831,36,767,25,768,20,832,30"/>
 <area shape="rect" id="Node000003" href="$clset_8c.html#a499695ab2ce0f39d1791da495a4c2897" title="Returns a json formatted string representation of a classifier set." alt="" coords="673,55,797,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="832,56,798,61,797,56,831,51"/>
-<area shape="rect" id="Node000004" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="543,29,625,55"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="659,57,625,51,626,46,660,52"/>
-<area shape="rect" id="Node000008" href="$classXCS.html#abbe6889ae982372a11de5a53d80dea93" title="Returns a JSON formatted string representing the population set." alt="" coords="369,80,495,105"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="660,76,495,90,495,85,659,71"/>
-<area shape="rect" id="Node000005" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="377,29,487,55"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="529,45,488,45,488,39,529,39"/>
-<area shape="rect" id="Node000006" href="$classXCS.html#a9feecf1cfbc0910bd334031105732952" title="Prints the current population." alt="" coords="205,29,320,55"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="363,45,320,45,320,39,363,39"/>
-<area shape="rect" id="Node000007" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,80,156,105"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="204,61,128,82,127,77,202,56"/>
-<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="356,95,156,95,156,90,356,90"/>
-<area shape="rect" id="Node000009" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="204,131,321,156"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="376,112,307,133,305,128,375,107"/>
-<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="202,129,127,108,128,103,204,124"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#a724354141b3185c19ac6f3fb7920308b" title="Prints the classifiers in the set." alt="" coords="543,17,625,43"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="670,54,625,43,626,38,671,49"/>
+<area shape="rect" id="Node000008" href="$classXCS.html#a867c0ca8113bf9d0d6a05cca403b166f" title="Returns a JSON formatted string representing the population set." alt="" coords="369,105,495,131"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="660,82,496,110,495,105,660,77"/>
+<area shape="rect" id="Node000005" href="$xcsf_8c.html#ae18311260dd4c51978ef361f6f14e8c0" title="Prints the current XCSF population." alt="" coords="377,15,487,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="529,32,487,31,488,26,529,26"/>
+<area shape="rect" id="Node000006" href="$classXCS.html#a9feecf1cfbc0910bd334031105732952" title="Prints the current population." alt="" coords="205,11,320,36"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="363,28,320,27,320,22,363,23"/>
+<area shape="rect" id="Node000007" href="$pybind__wrapper_8cpp.html#a172daba0778fe2bd38d723d5f52a23d5" title=" " alt="" coords="5,87,156,112"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="220,44,113,89,111,84,218,39"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="355,107,321,103,236,99,157,100,157,94,236,94,322,98,356,102"/>
+<area shape="rect" id="Node000009" href="$classXCS.html#aa2ac9da892d1d5061c45bf6b79e2b097" title="Returns a Python dictionary containing the population set." alt="" coords="211,112,315,137"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="356,124,315,125,315,120,355,118"/>
+<area shape="rect" id="Node000010" href="$classXCS.html#a589dc6f43e28dcf5ad4edd505e30a531" title="Writes the current population set to a file in JSON." alt="" coords="204,161,321,187"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="381,138,303,164,301,159,379,133"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="197,118,156,112,157,107,197,113"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="217,158,111,114,113,110,219,154"/>
 </map>

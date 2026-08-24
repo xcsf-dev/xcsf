@@ -32,7 +32,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XCSF<span id="projectnumber">&#160;1.4.8</span>
+   <div id="projectname">XCSF<span id="projectnumber">&#160;1.5.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -121,7 +121,7 @@ Include dependency graph for cond_ellipsoid.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a7ad8e86a318f2d3d354e0a4e5bc23b30" id="r_a7ad8e86a318f2d3d354e0a4e5bc23b30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__ellipsoid_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="memitem:a7ad8e86a318f2d3d354e0a4e5bc23b30" id="r_a7ad8e86a318f2d3d354e0a4e5bc23b30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__ellipsoid_8c.html#a7ad8e86a318f2d3d354e0a4e5bc23b30">N_MU</a>&#160;&#160;&#160;2</td></tr>
 <tr class="memdesc:a7ad8e86a318f2d3d354e0a4e5bc23b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of hyperellipsoid mutation rates.  <br /></td></tr>
 <tr class="separator:a7ad8e86a318f2d3d354e0a4e5bc23b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -178,15 +178,15 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a14b87797f90f846715640f4980cb6b9b" id="r_a14b87797f90f846715640f4980cb6b9b"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__ellipsoid_8c.html#a14b87797f90f846715640f4980cb6b9b">MU_TYPE</a> [(1)] = { (0) }</td></tr>
-<tr class="memdesc:a14b87797f90f846715640f4980cb6b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Self-adaptation method for mutating hyperellipsoids.  <br /></td></tr>
-<tr class="separator:a14b87797f90f846715640f4980cb6b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f36e6328068a742895cebd19b08fa35" id="r_a5f36e6328068a742895cebd19b08fa35"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond__ellipsoid_8c.html#a5f36e6328068a742895cebd19b08fa35">MU_TYPE</a> [2] = { (0) , (0) }</td></tr>
+<tr class="memdesc:a5f36e6328068a742895cebd19b08fa35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Self-adaptation method for mutating hyperellipsoids.  <br /></td></tr>
+<tr class="separator:a5f36e6328068a742895cebd19b08fa35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Hyperellipsoid condition functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span class="obfuscator">.nosp@m.</span>n@gm<span class="obfuscator">.nosp@m.</span>ail.c<span class="obfuscator">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2019&ndash;2021. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019&ndash;2026. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -197,7 +197,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define N_MU&#160;&#160;&#160;(1)</td>
+          <td class="memname">#define N_MU&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -251,7 +251,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00103">103</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00108">108</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 
@@ -299,7 +299,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00124">124</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00129">129</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 <div class="dynheader">
@@ -353,7 +353,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00177">177</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00182">182</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 <div class="dynheader">
@@ -419,7 +419,7 @@ Here is the call graph for this function:</div>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00241">cond_ellipsoid_general()</a>, and <a class="el" href="cond__ellipsoid_8c_source.html#l00163">cond_ellipsoid_match()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00253">cond_ellipsoid_general()</a>, and <a class="el" href="cond__ellipsoid_8c_source.html#l00168">cond_ellipsoid_match()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -463,7 +463,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00086">86</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00091">91</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 
@@ -512,7 +512,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the hyperellipsoid condition of c1 is more general than c2. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00241">241</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00253">253</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00046">cond_ellipsoid_dist()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 <div class="dynheader">
@@ -605,11 +605,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00341">341</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00353">353</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00274">cond_ellipsoid_print()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00286">cond_ellipsoid_print()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -660,7 +660,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00364">364</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00376">376</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, <a class="el" href="sam_8c_source.html#l00100">sam_json_import()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 <div class="dynheader">
@@ -714,7 +714,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements read. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00320">320</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00332">332</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, and <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>.</p>
 
@@ -763,7 +763,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the hyperellipsoid condition matches the input. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00163">163</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00168">168</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8c_source.html#l00046">cond_ellipsoid_dist()</a>.</p>
 <div class="dynheader">
@@ -810,13 +810,13 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether any alterations were made. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00209">209</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00214">214</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="utils_8h_source.html#l00060">clamp()</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
+<p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="utils_8h_source.html#l00060">clamp()</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00034">MU_TYPE</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, <a class="el" href="utils_8c_source.html#l00087">rand_normal()</a>, <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>, <a class="el" href="sam_8c_source.html#l00068">sam_adapt()</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="cond__ellipsoid_8c_ac6e825c20a547534a5c804e2a8259dab_cgraph.svg" width="608" height="188"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="cond__ellipsoid_8c_ac6e825c20a547534a5c804e2a8259dab_cgraph.svg" width="608" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -856,9 +856,9 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00274">274</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00286">286</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cond__ellipsoid_8c_source.html#l00341">cond_ellipsoid_json_export()</a>.</p>
+<p class="reference">References <a class="el" href="cond__ellipsoid_8c_source.html#l00353">cond_ellipsoid_json_export()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -910,7 +910,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00302">302</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00314">314</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>, <a class="el" href="cond__ellipsoid_8h_source.html#l00035">CondEllipsoid::mu</a>, <a class="el" href="cond__ellipsoid_8c_source.html#l00029">N_MU</a>, and <a class="el" href="cond__ellipsoid_8h_source.html#l00034">CondEllipsoid::spread</a>.</p>
 
@@ -952,7 +952,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the input dimension. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00288">288</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00300">300</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 </div>
 </div>
@@ -1005,15 +1005,15 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00143">143</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00148">148</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
 <p class="reference">References <a class="el" href="cond__ellipsoid_8h_source.html#l00033">CondEllipsoid::center</a>, and <a class="el" href="xcsf_8h_source.html#l00049">Cl::cond</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a14b87797f90f846715640f4980cb6b9b" name="a14b87797f90f846715640f4980cb6b9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14b87797f90f846715640f4980cb6b9b">&#9670;&#160;</a></span>MU_TYPE</h2>
+<a id="a5f36e6328068a742895cebd19b08fa35" name="a5f36e6328068a742895cebd19b08fa35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f36e6328068a742895cebd19b08fa35">&#9670;&#160;</a></span>MU_TYPE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1022,7 +1022,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int MU_TYPE[(1)] = { (0) }</td>
+          <td class="memname">const int MU_TYPE[2] = { (0) , (0) }</td>
         </tr>
       </table>
   </td>
@@ -1036,7 +1036,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="cond__ellipsoid_8c_source.html#l00034">34</a> of file <a class="el" href="cond__ellipsoid_8c_source.html">cond_ellipsoid.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00065">cond_ellipsoid_init()</a>, and <a class="el" href="cond__ellipsoid_8c_source.html#l00209">cond_ellipsoid_mutate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cond__ellipsoid_8c_source.html#l00065">cond_ellipsoid_init()</a>, and <a class="el" href="cond__ellipsoid_8c_source.html#l00214">cond_ellipsoid_mutate()</a>.</p>
 
 </div>
 </div>

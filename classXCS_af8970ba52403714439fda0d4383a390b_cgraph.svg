@@ -107,19 +107,19 @@
 </a>
 </g>
 </g>
-<!-- Node61 -->
-<g id="Node000061" class="node">
-<title>Node61</title>
-<g id="a_Node000061"><a xlink:href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c" target="_top" xlink:title="Returns the highest value in the prediction array.">
+<!-- Node62 -->
+<g id="Node000062" class="node">
+<title>Node62</title>
+<g id="a_Node000062"><a xlink:href="pa_8c.html#a02c46d587d23074fddbf23c118ecbd0c" target="_top" xlink:title="Returns the highest value in the prediction array.">
 <polygon fill="white" stroke="#666666" points="291,-112 222,-112 222,-93 291,-93 291,-112"/>
 <text text-anchor="middle" x="256.5" y="-100" font-family="Helvetica,sans-Serif" font-size="10.00">pa_best_val</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node61 -->
-<g id="edge72_Node000002_Node000061" class="edge">
-<title>Node2&#45;&gt;Node61</title>
-<g id="a_edge72_Node000002_Node000061"><a xlink:title=" ">
+<!-- Node2&#45;&gt;Node62 -->
+<g id="edge73_Node000002_Node000062" class="edge">
+<title>Node2&#45;&gt;Node62</title>
+<g id="a_edge73_Node000002_Node000062"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M149.94,-595.72C156.54,-551.3 185.25,-364.18 222,-213.5 229.95,-180.9 241.75,-143.68 249.02,-121.69"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="252.34,-122.8 252.19,-112.2 245.7,-120.58 252.34,-122.8"/>
 </a>
@@ -345,8 +345,8 @@
 <g id="Node000014" class="node">
 <title>Node14</title>
 <g id="a_Node000014"><a xlink:href="action_8h.html#a7ac7036a6ec0ef8bc76f38ba5d30579d" target="_top" xlink:title="Returns whether the action of classifier c1 is more general than c2.">
-<polygon fill="white" stroke="#666666" points="827.5,-630 760.5,-630 760.5,-611 827.5,-611 827.5,-630"/>
-<text text-anchor="middle" x="794" y="-618" font-family="Helvetica,sans-Serif" font-size="10.00">act_general</text>
+<polygon fill="white" stroke="#666666" points="827.5,-667 760.5,-667 760.5,-648 827.5,-648 827.5,-667"/>
+<text text-anchor="middle" x="794" y="-655" font-family="Helvetica,sans-Serif" font-size="10.00">act_general</text>
 </a>
 </g>
 </g>
@@ -354,8 +354,8 @@
 <g id="edge13_Node000013_Node000014" class="edge">
 <title>Node13&#45;&gt;Node14</title>
 <g id="a_edge13_Node000013_Node000014"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M688.02,-634.55C706.27,-632.11 730.02,-628.93 750.31,-626.21"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="750.8,-629.68 760.25,-624.88 749.87,-622.74 750.8,-629.68"/>
+<path fill="none" stroke="#63b8ff" d="M688.02,-642.67C706.27,-645.25 730.02,-648.6 750.31,-651.47"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="749.86,-654.94 760.25,-652.87 750.84,-648.01 749.86,-654.94"/>
 </a>
 </g>
 </g>
@@ -363,8 +363,8 @@
 <g id="Node000015" class="node">
 <title>Node15</title>
 <g id="a_Node000015"><a xlink:href="condition_8h.html#a6a257a1407c9394b7def57701188422d" target="_top" xlink:title="Returns whether classifier c1 has a condition more general than c2.">
-<polygon fill="white" stroke="#666666" points="831,-667 757,-667 757,-648 831,-648 831,-667"/>
-<text text-anchor="middle" x="794" y="-655" font-family="Helvetica,sans-Serif" font-size="10.00">cond_general</text>
+<polygon fill="white" stroke="#666666" points="831,-630 757,-630 757,-611 831,-611 831,-630"/>
+<text text-anchor="middle" x="794" y="-618" font-family="Helvetica,sans-Serif" font-size="10.00">cond_general</text>
 </a>
 </g>
 </g>
@@ -372,8 +372,8 @@
 <g id="edge14_Node000013_Node000015" class="edge">
 <title>Node13&#45;&gt;Node15</title>
 <g id="a_edge14_Node000013_Node000015"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M688.02,-642.67C705.27,-645.11 727.42,-648.24 746.93,-650.99"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="746.45,-654.46 756.84,-652.39 747.43,-647.53 746.45,-654.46"/>
+<path fill="none" stroke="#63b8ff" d="M688.02,-634.55C705.27,-632.24 727.42,-629.28 746.93,-626.67"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="747.4,-630.13 756.84,-625.34 746.47,-623.2 747.4,-630.13"/>
 </a>
 </g>
 </g>
@@ -544,8 +544,8 @@
 <g id="Node000050" class="node">
 <title>Node50</title>
 <g id="a_Node000050"><a xlink:href="ea_8c.html#a2a3b0de53f9d67b5025957b59b8fc9a3" target="_top" xlink:title="Adds offspring to the population.">
-<polygon fill="white" stroke="#666666" points="400.5,-520 352.5,-520 352.5,-501 400.5,-501 400.5,-520"/>
-<text text-anchor="middle" x="376.5" y="-508" font-family="Helvetica,sans-Serif" font-size="10.00">ea_add</text>
+<polygon fill="white" stroke="#666666" points="400.5,-519 352.5,-519 352.5,-500 400.5,-500 400.5,-519"/>
+<text text-anchor="middle" x="376.5" y="-507" font-family="Helvetica,sans-Serif" font-size="10.00">ea_add</text>
 </a>
 </g>
 </g>
@@ -553,8 +553,8 @@
 <g id="edge52_Node000021_Node000050" class="edge">
 <title>Node21&#45;&gt;Node50</title>
 <g id="a_edge52_Node000021_Node000050"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M260.11,-241.37C268.11,-270.99 293.79,-361.41 327,-431.5 337.27,-453.18 352.03,-476.4 362.56,-492.01"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="359.95,-494.4 368.49,-500.67 365.73,-490.44 359.95,-494.4"/>
+<path fill="none" stroke="#63b8ff" d="M259.24,-241.13C265.2,-272.61 286.68,-374.66 327,-449.5 335.49,-465.25 348.32,-480.9 358.66,-492.27"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="356.25,-494.82 365.64,-499.72 361.36,-490.03 356.25,-494.82"/>
 </a>
 </g>
 </g>
@@ -859,8 +859,8 @@
 <g id="Node000042" class="node">
 <title>Node42</title>
 <g id="a_Node000042"><a xlink:href="cl_8c.html#a281f748c300892281088a51455c6657b" target="_top" xlink:title="Returns the size of a classifier&#39;s condition.">
-<polygon fill="white" stroke="#666666" points="831,-324 757,-324 757,-305 831,-305 831,-324"/>
-<text text-anchor="middle" x="794" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00">cl_cond_size</text>
+<polygon fill="white" stroke="#666666" points="831,-287 757,-287 757,-268 831,-268 831,-287"/>
+<text text-anchor="middle" x="794" y="-275" font-family="Helvetica,sans-Serif" font-size="10.00">cl_cond_size</text>
 </a>
 </g>
 </g>
@@ -868,8 +868,8 @@
 <g id="edge44_Node000041_Node000042" class="edge">
 <title>Node41&#45;&gt;Node42</title>
 <g id="a_edge44_Node000041_Node000042"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M693.14,-287.03C709.95,-291.65 730.35,-297.27 748.32,-302.21"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="747.44,-305.6 758.01,-304.88 749.3,-298.85 747.44,-305.6"/>
+<path fill="none" stroke="#63b8ff" d="M707.06,-277.5C719.87,-277.5 733.67,-277.5 746.38,-277.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="746.76,-281 756.76,-277.5 746.76,-274 746.76,-281"/>
 </a>
 </g>
 </g>
@@ -877,8 +877,8 @@
 <g id="Node000044" class="node">
 <title>Node44</title>
 <g id="a_Node000044"><a xlink:href="cl_8c.html#ae083f9dc65912cf983795d134006e236" target="_top" xlink:title="Returns the deletion vote of a classifier.">
-<polygon fill="white" stroke="#666666" points="827,-287 761,-287 761,-268 827,-268 827,-287"/>
-<text text-anchor="middle" x="794" y="-275" font-family="Helvetica,sans-Serif" font-size="10.00">cl_del_vote</text>
+<polygon fill="white" stroke="#666666" points="827,-250 761,-250 761,-231 827,-231 827,-250"/>
+<text text-anchor="middle" x="794" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00">cl_del_vote</text>
 </a>
 </g>
 </g>
@@ -886,8 +886,8 @@
 <g id="edge46_Node000041_Node000044" class="edge">
 <title>Node41&#45;&gt;Node44</title>
 <g id="a_edge46_Node000041_Node000044"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M707.06,-277.5C721.33,-277.5 736.82,-277.5 750.67,-277.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="750.89,-281 760.89,-277.5 750.89,-274 750.89,-281"/>
+<path fill="none" stroke="#63b8ff" d="M693.14,-267.97C710.82,-263.11 732.47,-257.15 751.09,-252.03"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="752.08,-255.39 760.79,-249.36 750.22,-248.64 752.08,-255.39"/>
 </a>
 </g>
 </g>
@@ -895,8 +895,8 @@
 <g id="Node000045" class="node">
 <title>Node45</title>
 <g id="a_Node000045"><a xlink:href="cl_8c.html#a038173dbbcd18ef6820dfb07e7ea0d39" target="_top" xlink:title="Returns the size of a classifier&#39;s prediction.">
-<polygon fill="white" stroke="#666666" points="829.5,-250 758.5,-250 758.5,-231 829.5,-231 829.5,-250"/>
-<text text-anchor="middle" x="794" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00">cl_pred_size</text>
+<polygon fill="white" stroke="#666666" points="829.5,-324 758.5,-324 758.5,-305 829.5,-305 829.5,-324"/>
+<text text-anchor="middle" x="794" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00">cl_pred_size</text>
 </a>
 </g>
 </g>
@@ -904,8 +904,8 @@
 <g id="edge47_Node000041_Node000045" class="edge">
 <title>Node41&#45;&gt;Node45</title>
 <g id="a_edge47_Node000041_Node000045"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M693.14,-267.97C710.08,-263.31 730.67,-257.65 748.74,-252.68"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="749.77,-256.02 758.48,-250 747.91,-249.27 749.77,-256.02"/>
+<path fill="none" stroke="#63b8ff" d="M693.14,-287.03C710.08,-291.69 730.67,-297.35 748.74,-302.32"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="747.91,-305.73 758.48,-305 749.77,-298.98 747.91,-305.73"/>
 </a>
 </g>
 </g>
@@ -931,8 +931,8 @@
 <g id="Node000048" class="node">
 <title>Node48</title>
 <g id="a_Node000048"><a xlink:href="utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" target="_top" xlink:title="Returns a uniform random float [min,max].">
-<polygon fill="white" stroke="#666666" points="830.5,-445 757.5,-445 757.5,-426 830.5,-426 830.5,-445"/>
-<text text-anchor="middle" x="794" y="-433" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
+<polygon fill="white" stroke="#666666" points="830.5,-426 757.5,-426 757.5,-407 830.5,-407 830.5,-426"/>
+<text text-anchor="middle" x="794" y="-414" font-family="Helvetica,sans-Serif" font-size="10.00">rand_uniform</text>
 </a>
 </g>
 </g>
@@ -940,8 +940,8 @@
 <g id="edge50_Node000041_Node000048" class="edge">
 <title>Node41&#45;&gt;Node48</title>
 <g id="a_edge50_Node000041_Node000048"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M704.11,-287.03C709.53,-289.49 714.66,-292.6 719,-296.5 748.88,-323.4 735.63,-344.27 755,-379.5 762.34,-392.85 772,-407.05 779.74,-417.81"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="776.96,-419.94 785.7,-425.94 782.61,-415.8 776.96,-419.94"/>
+<path fill="none" stroke="#63b8ff" d="M704.11,-287.03C709.53,-289.49 714.66,-292.6 719,-296.5 748.88,-323.4 732.16,-346.4 755,-379.5 760.07,-386.85 766.76,-393.95 773.11,-399.92"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="771.04,-402.77 780.82,-406.83 775.71,-397.55 771.04,-402.77"/>
 </a>
 </g>
 </g>
@@ -949,8 +949,8 @@
 <g id="Node000043" class="node">
 <title>Node43</title>
 <g id="a_Node000043"><a xlink:href="condition_8h.html#ab5392bcc5c6bee45ac2612c7c560be5c" target="_top" xlink:title="Returns the size of the classifier condition.">
-<polygon fill="white" stroke="#666666" points="930,-324 869,-324 869,-305 930,-305 930,-324"/>
-<text text-anchor="middle" x="899.5" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00">cond_size</text>
+<polygon fill="white" stroke="#666666" points="930,-287 869,-287 869,-268 930,-268 930,-287"/>
+<text text-anchor="middle" x="899.5" y="-275" font-family="Helvetica,sans-Serif" font-size="10.00">cond_size</text>
 </a>
 </g>
 </g>
@@ -958,8 +958,8 @@
 <g id="edge45_Node000042_Node000043" class="edge">
 <title>Node42&#45;&gt;Node43</title>
 <g id="a_edge45_Node000042_Node000043"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M831.2,-314.5C840.18,-314.5 849.85,-314.5 858.98,-314.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="858.99,-318 868.99,-314.5 858.99,-311 858.99,-318"/>
+<path fill="none" stroke="#63b8ff" d="M831.2,-277.5C840.18,-277.5 849.85,-277.5 858.98,-277.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="858.99,-281 868.99,-277.5 858.99,-274 858.99,-281"/>
 </a>
 </g>
 </g>
@@ -967,8 +967,8 @@
 <g id="Node000046" class="node">
 <title>Node46</title>
 <g id="a_Node000046"><a xlink:href="prediction_8h.html#a0ac1eb269367fc7adb967e3cb4b2db50" target="_top" xlink:title="Returns the size of the classifier prediction.">
-<polygon fill="white" stroke="#666666" points="929,-250 870,-250 870,-231 929,-231 929,-250"/>
-<text text-anchor="middle" x="899.5" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00">pred_size</text>
+<polygon fill="white" stroke="#666666" points="929,-324 870,-324 870,-305 929,-305 929,-324"/>
+<text text-anchor="middle" x="899.5" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00">pred_size</text>
 </a>
 </g>
 </g>
@@ -976,8 +976,8 @@
 <g id="edge48_Node000045_Node000046" class="edge">
 <title>Node45&#45;&gt;Node46</title>
 <g id="a_edge48_Node000045_Node000046"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M829.75,-240.5C839.33,-240.5 849.77,-240.5 859.57,-240.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="859.87,-244 869.87,-240.5 859.87,-237 859.87,-244"/>
+<path fill="none" stroke="#63b8ff" d="M829.75,-314.5C839.33,-314.5 849.77,-314.5 859.57,-314.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="859.87,-318 869.87,-314.5 859.87,-311 859.87,-318"/>
 </a>
 </g>
 </g>
@@ -985,8 +985,8 @@
 <g id="edge57_Node000050_Node000004" class="edge">
 <title>Node50&#45;&gt;Node4</title>
 <g id="a_edge57_Node000050_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M400.81,-515.01C448.74,-524.29 558.82,-545.59 617.69,-556.99"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="617.23,-560.46 627.71,-558.93 618.56,-553.59 617.23,-560.46"/>
+<path fill="none" stroke="#63b8ff" d="M400.81,-514.09C448.74,-523.54 558.82,-545.24 617.69,-556.85"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="617.23,-560.32 627.71,-558.83 618.58,-553.46 617.23,-560.32"/>
 </a>
 </g>
 </g>
@@ -1003,8 +1003,8 @@
 <g id="edge53_Node000050_Node000051" class="edge">
 <title>Node50&#45;&gt;Node51</title>
 <g id="a_edge53_Node000050_Node000051"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M400.58,-510.42C435.25,-510.46 502.79,-511.17 560,-515.5 581.49,-517.13 605.54,-520.12 624.26,-522.7"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="623.94,-526.19 634.33,-524.13 624.92,-519.26 623.94,-526.19"/>
+<path fill="none" stroke="#63b8ff" d="M400.58,-509.59C435.25,-509.87 502.8,-511.01 560,-515.5 581.49,-517.19 605.54,-520.17 624.26,-522.75"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="623.94,-526.24 634.33,-524.16 624.91,-519.3 623.94,-526.24"/>
 </a>
 </g>
 </g>
@@ -1021,8 +1021,8 @@
 <g id="edge58_Node000050_Node000055" class="edge">
 <title>Node50&#45;&gt;Node55</title>
 <g id="a_edge58_Node000050_Node000055"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M399.68,-520.04C421.17,-529.29 454,-543.41 478.26,-553.85"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="477.18,-557.19 487.75,-557.93 479.95,-550.76 477.18,-557.19"/>
+<path fill="none" stroke="#63b8ff" d="M399.38,-519.08C421.05,-528.56 454.45,-543.18 478.88,-553.88"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="477.52,-557.1 488.09,-557.91 480.33,-550.69 477.52,-557.1"/>
 </a>
 </g>
 </g>
@@ -1138,8 +1138,8 @@
 <g id="edge64_Node000056_Node000048" class="edge">
 <title>Node56&#45;&gt;Node48</title>
 <g id="a_edge64_Node000056_Node000048"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M694.36,-480.96C702.55,-478.47 711.15,-475.6 719,-472.5 735.39,-466.02 753.07,-457.26 767.03,-449.88"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="768.89,-452.86 776.05,-445.04 765.58,-446.69 768.89,-452.86"/>
+<path fill="none" stroke="#63b8ff" d="M700.7,-480.99C707.06,-478.7 713.37,-475.9 719,-472.5 738.63,-460.62 736.48,-449.04 755,-435.5 757.08,-433.98 759.31,-432.51 761.6,-431.12"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="763.52,-434.06 770.57,-426.15 760.12,-427.94 763.52,-434.06"/>
 </a>
 </g>
 </g>
@@ -1156,8 +1156,8 @@
 <g id="Node000059" class="node">
 <title>Node59</title>
 <g id="a_Node000059"><a xlink:href="ea_8c.html#ad60a68edf77c6a3736f2d826bcbcb414" target="_top" xlink:title="Selects a classifier from the set via roulette wheel.">
-<polygon fill="white" stroke="#666666" points="694.5,-463 620.5,-463 620.5,-444 694.5,-444 694.5,-463"/>
-<text text-anchor="middle" x="657.5" y="-451" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_rw</text>
+<polygon fill="white" stroke="#666666" points="694.5,-426 620.5,-426 620.5,-407 694.5,-407 694.5,-426"/>
+<text text-anchor="middle" x="657.5" y="-414" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_rw</text>
 </a>
 </g>
 </g>
@@ -1165,8 +1165,8 @@
 <g id="edge68_Node000058_Node000059" class="edge">
 <title>Node58&#45;&gt;Node59</title>
 <g id="a_edge68_Node000058_Node000059"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M540.55,-453.5C560.38,-453.5 587.24,-453.5 610.12,-453.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="610.31,-457 620.31,-453.5 610.31,-450 610.31,-457"/>
+<path fill="none" stroke="#63b8ff" d="M540.55,-446.19C560.47,-441.09 587.48,-434.17 610.43,-428.3"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="611.49,-431.64 620.31,-425.77 609.75,-424.86 611.49,-431.64"/>
 </a>
 </g>
 </g>
@@ -1174,8 +1174,8 @@
 <g id="Node000060" class="node">
 <title>Node60</title>
 <g id="a_Node000060"><a xlink:href="ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4" target="_top" xlink:title="Selects a classifier from the set via tournament.">
-<polygon fill="white" stroke="#666666" points="714,-426 601,-426 601,-407 714,-407 714,-426"/>
-<text text-anchor="middle" x="657.5" y="-414" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_tournament</text>
+<polygon fill="white" stroke="#666666" points="714,-463 601,-463 601,-444 714,-444 714,-463"/>
+<text text-anchor="middle" x="657.5" y="-451" font-family="Helvetica,sans-Serif" font-size="10.00">ea_select_tournament</text>
 </a>
 </g>
 </g>
@@ -1183,8 +1183,8 @@
 <g id="edge70_Node000058_Node000060" class="edge">
 <title>Node58&#45;&gt;Node60</title>
 <g id="a_edge70_Node000058_Node000060"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M540.55,-446.19C560.18,-441.16 586.71,-434.37 609.43,-428.55"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="610.42,-431.91 619.24,-426.04 608.68,-425.13 610.42,-431.91"/>
+<path fill="none" stroke="#63b8ff" d="M540.55,-453.5C554.92,-453.5 572.98,-453.5 590.55,-453.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="590.8,-457 600.8,-453.5 590.8,-450 590.8,-457"/>
 </a>
 </g>
 </g>
@@ -1192,33 +1192,51 @@
 <g id="edge69_Node000059_Node000048" class="edge">
 <title>Node59&#45;&gt;Node48</title>
 <g id="a_edge69_Node000059_Node000048"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M694.54,-448.68C710.65,-446.52 729.83,-443.95 746.97,-441.66"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="747.88,-445.07 757.32,-440.27 746.95,-438.13 747.88,-445.07"/>
+<path fill="none" stroke="#63b8ff" d="M694.54,-416.5C710.65,-416.5 729.83,-416.5 746.97,-416.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="747.32,-420 757.32,-416.5 747.32,-413 747.32,-420"/>
 </a>
 </g>
 </g>
 <!-- Node60&#45;&gt;Node48 -->
-<g id="edge71_Node000060_Node000048" class="edge">
+<g id="edge72_Node000060_Node000048" class="edge">
 <title>Node60&#45;&gt;Node48</title>
-<g id="a_edge71_Node000060_Node000048"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M714.37,-424.39C725.42,-425.95 736.89,-427.57 747.54,-429.08"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="747.07,-432.55 757.47,-430.48 748.05,-425.62 747.07,-432.55"/>
+<g id="a_edge72_Node000060_Node000048"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M693.14,-443.97C709.95,-439.35 730.35,-433.73 748.32,-428.79"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="749.3,-432.15 758.01,-426.12 747.44,-425.4 749.3,-432.15"/>
 </a>
 </g>
 </g>
-<!-- Node62 -->
-<g id="Node000062" class="node">
-<title>Node62</title>
-<g id="a_Node000062"><a xlink:href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274" target="_top" xlink:title="Returns the index of the largest element in vector X.">
+<!-- Node61 -->
+<g id="Node000061" class="node">
+<title>Node61</title>
+<g id="a_Node000061"><a xlink:href="ea_8c.html#a8e776ce9d7cb25bb04a60d069c86606d" target="_top" xlink:title="Probability a classifier with numerosity num is selected.">
+<polygon fill="white" stroke="#666666" points="826.5,-463 761.5,-463 761.5,-444 826.5,-444 826.5,-463"/>
+<text text-anchor="middle" x="794" y="-451" font-family="Helvetica,sans-Serif" font-size="10.00">p_num_tau</text>
+</a>
+</g>
+</g>
+<!-- Node60&#45;&gt;Node61 -->
+<g id="edge71_Node000060_Node000061" class="edge">
+<title>Node60&#45;&gt;Node61</title>
+<g id="a_edge71_Node000060_Node000061"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M714.37,-453.5C726.64,-453.5 739.43,-453.5 751.04,-453.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="751.32,-457 761.32,-453.5 751.32,-450 751.32,-457"/>
+</a>
+</g>
+</g>
+<!-- Node63 -->
+<g id="Node000063" class="node">
+<title>Node63</title>
+<g id="a_Node000063"><a xlink:href="utils_8h.html#ae85373ce85c9be81cf1456fb58478274" target="_top" xlink:title="Returns the index of the largest element in vector X.">
 <polygon fill="white" stroke="#666666" points="401,-19 352,-19 352,0 401,0 401,-19"/>
 <text text-anchor="middle" x="376.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">argmax</text>
 </a>
 </g>
 </g>
-<!-- Node61&#45;&gt;Node62 -->
-<g id="edge73_Node000061_Node000062" class="edge">
-<title>Node61&#45;&gt;Node62</title>
-<g id="a_edge73_Node000061_Node000062"><a xlink:title=" ">
+<!-- Node62&#45;&gt;Node63 -->
+<g id="edge74_Node000062_Node000063" class="edge">
+<title>Node62&#45;&gt;Node63</title>
+<g id="a_edge74_Node000062_Node000063"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M264.09,-92.86C275.3,-77.13 299.55,-45.85 327,-27.5 331.67,-24.38 336.94,-21.71 342.26,-19.46"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="343.64,-22.68 351.74,-15.84 341.15,-16.14 343.64,-22.68"/>
 </a>

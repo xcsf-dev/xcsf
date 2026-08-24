@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classXCS.html#abbe6889ae982372a11de5a53d80dea93" target="_top" xlink:title="Returns a JSON formatted string representing the population set.">
+<g id="a_Node000002"><a xlink:href="classXCS.html#a867c0ca8113bf9d0d6a05cca403b166f" target="_top" xlink:title="Returns a JSON formatted string representing the population set.">
 <polygon fill="white" stroke="#666666" points="218,-74 124,-74 124,-55 218,-55 218,-74"/>
 <text text-anchor="middle" x="171" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">XCS::json_export</text>
 </a>

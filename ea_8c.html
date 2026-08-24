@@ -32,7 +32,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">XCSF<span id="projectnumber">&#160;1.4.8</span>
+   <div id="projectname">XCSF<span id="projectnumber">&#160;1.5.1</span>
    </div>
    <div id="projectbrief">XCSF learning classifier system</div>
   </td>
@@ -131,6 +131,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad60a68edf77c6a3736f2d826bcbcb414" id="r_ad60a68edf77c6a3736f2d826bcbcb414"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structCl.html">Cl</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8c.html#ad60a68edf77c6a3736f2d826bcbcb414">ea_select_rw</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structSet.html">Set</a> *set, const double fit_sum)</td></tr>
 <tr class="memdesc:ad60a68edf77c6a3736f2d826bcbcb414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects a classifier from the set via roulette wheel.  <br /></td></tr>
 <tr class="separator:ad60a68edf77c6a3736f2d826bcbcb414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e776ce9d7cb25bb04a60d069c86606d" id="r_a8e776ce9d7cb25bb04a60d069c86606d"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8c.html#a8e776ce9d7cb25bb04a60d069c86606d">p_num_tau</a> (const int num, const double tau)</td></tr>
+<tr class="memdesc:a8e776ce9d7cb25bb04a60d069c86606d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability a classifier with numerosity num is selected.  <br /></td></tr>
+<tr class="separator:a8e776ce9d7cb25bb04a60d069c86606d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1743ee39699ad7f9f1cecc6042cbe4" id="r_a1f1743ee39699ad7f9f1cecc6042cbe4"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structCl.html">Cl</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ea_8c.html#a1f1743ee39699ad7f9f1cecc6042cbe4">ea_select_tournament</a> (const struct <a class="el" href="structXCSF.html">XCSF</a> *xcsf, const struct <a class="el" href="structSet.html">Set</a> *set)</td></tr>
 <tr class="memdesc:a1f1743ee39699ad7f9f1cecc6042cbe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects a classifier from the set via tournament.  <br /></td></tr>
 <tr class="separator:a1f1743ee39699ad7f9f1cecc6042cbe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,7 +189,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Evolutionary algorithm functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Richard Preen <a href="#" onclick="location.href='mai'+'lto:'+'rpr'+'ee'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">rpree<span class="obfuscator">.nosp@m.</span>n@gm<span class="obfuscator">.nosp@m.</span>ail.c<span class="obfuscator">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>The Authors. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2015&ndash;2023. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2015&ndash;2026. </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -225,15 +228,15 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00199">199</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00218">218</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="cl_8c_source.html#l00063">cl_copy()</a>, <a class="el" href="cl_8c_source.html#l00381">cl_crossover()</a>, <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00362">cl_mutate()</a>, <a class="el" href="clset_8c_source.html#l00562">clset_mean_time()</a>, <a class="el" href="clset_8c_source.html#l00340">clset_pset_enforce_limit()</a>, <a class="el" href="clset_8c_source.html#l00530">clset_set_times()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00039">ea_init_offspring()</a>, <a class="el" href="ea_8c_source.html#l00180">ea_select()</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>, and <a class="el" href="xcsf_8h_source.html#l00057">Cl::time</a>.</p>
+<p class="reference">References <a class="el" href="cl_8c_source.html#l00063">cl_copy()</a>, <a class="el" href="cl_8c_source.html#l00381">cl_crossover()</a>, <a class="el" href="cl_8c_source.html#l00040">cl_init()</a>, <a class="el" href="cl_8c_source.html#l00362">cl_mutate()</a>, <a class="el" href="clset_8c_source.html#l00562">clset_mean_time()</a>, <a class="el" href="clset_8c_source.html#l00340">clset_pset_enforce_limit()</a>, <a class="el" href="clset_8c_source.html#l00530">clset_set_times()</a>, <a class="el" href="ea_8c_source.html#l00113">ea_add()</a>, <a class="el" href="ea_8c_source.html#l00039">ea_init_offspring()</a>, <a class="el" href="ea_8c_source.html#l00199">ea_select()</a>, <a class="el" href="xcsf_8h_source.html#l00056">Cl::size</a>, <a class="el" href="xcsf_8h_source.html#l00078">Set::size</a>, and <a class="el" href="xcsf_8h_source.html#l00057">Cl::time</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="xcs__rl_8c_source.html#l00192">xcs_rl_update()</a>, and <a class="el" href="xcs__supervised_8c_source.html#l00059">xcs_supervised_trial()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_a295cd56f77428d1fa2555df1ce363cdd_cgraph.svg" width="882" height="976"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_a295cd56f77428d1fa2555df1ce363cdd_cgraph.svg" width="882" height="1019"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -325,7 +328,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="cl_8c_source.html#l00223">cl_free()</a>, <a class="el" href="clset_8c_source.html#l00423">clset_add()</a>, <a class="el" href="ea_8c_source.html#l00067">ea_subsume()</a>, and <a class="el" href="xcsf_8h_source.html#l00054">Cl::num</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00218">ea()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -414,7 +417,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00052">Cl::err</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::fit</a>, and <a class="el" href="xcsf_8h_source.html#l00054">Cl::num</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00218">ea()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -447,9 +450,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00237">237</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00256">256</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8c_source.html#l00448">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00458">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00438">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00428">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00475">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00408">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00482">ea_param_set_select_type()</a>, <a class="el" href="ea_8c_source.html#l00468">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00418">ea_param_set_theta()</a>, and <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>.</p>
+<p class="reference">References <a class="el" href="ea_8c_source.html#l00467">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00477">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00457">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00447">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00494">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00427">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00501">ea_param_set_select_type()</a>, <a class="el" href="ea_8c_source.html#l00487">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00437">ea_param_set_theta()</a>, and <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00045">param_init()</a>.</p>
 <div class="dynheader">
@@ -490,9 +493,9 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String encoded in json format. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00256">256</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00275">275</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8h_source.html#l00030">EA_SELECT_TOURNAMENT</a>, and <a class="el" href="ea_8c_source.html#l00376">ea_type_as_string()</a>.</p>
+<p class="reference">References <a class="el" href="ea_8h_source.html#l00030">EA_SELECT_TOURNAMENT</a>, and <a class="el" href="ea_8c_source.html#l00395">ea_type_as_string()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00113">param_json_export()</a>.</p>
 <div class="dynheader">
@@ -543,9 +546,9 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00282">282</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00301">301</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="utils_8h_source.html#l00134">catch_error()</a>, <a class="el" href="ea_8c_source.html#l00448">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00458">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00438">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00428">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00475">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00408">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00468">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00418">ea_param_set_theta()</a>, <a class="el" href="ea_8c_source.html#l00492">ea_param_set_type_string()</a>, <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, and <a class="el" href="ea_8h_source.html#l00035">EA_SELECT_OPTIONS</a>.</p>
+<p class="reference">References <a class="el" href="utils_8h_source.html#l00134">catch_error()</a>, <a class="el" href="ea_8c_source.html#l00467">ea_param_set_err_reduc()</a>, <a class="el" href="ea_8c_source.html#l00477">ea_param_set_fit_reduc()</a>, <a class="el" href="ea_8c_source.html#l00457">ea_param_set_lambda()</a>, <a class="el" href="ea_8c_source.html#l00447">ea_param_set_p_crossover()</a>, <a class="el" href="ea_8c_source.html#l00494">ea_param_set_pred_reset()</a>, <a class="el" href="ea_8c_source.html#l00427">ea_param_set_select_size()</a>, <a class="el" href="ea_8c_source.html#l00487">ea_param_set_subsumption()</a>, <a class="el" href="ea_8c_source.html#l00437">ea_param_set_theta()</a>, <a class="el" href="ea_8c_source.html#l00511">ea_param_set_type_string()</a>, <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, and <a class="el" href="ea_8h_source.html#l00035">EA_SELECT_OPTIONS</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00437">param_json_import()</a>.</p>
 <div class="dynheader">
@@ -597,7 +600,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00355">355</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00374">374</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00548">param_load()</a>.</p>
 <div class="dynheader">
@@ -644,7 +647,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of elements written. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00333">333</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00352">352</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="param_8c_source.html#l00495">param_save()</a>.</p>
 <div class="dynheader">
@@ -681,9 +684,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00448">448</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00467">467</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -718,9 +721,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00458">458</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00477">477</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -755,9 +758,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00438">438</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00457">457</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -792,9 +795,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00428">428</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00447">447</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -829,9 +832,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00475">475</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00494">494</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -866,9 +869,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00408">408</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00427">427</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -903,11 +906,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00482">482</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00501">501</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00030">EA_SELECT_TOURNAMENT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -942,9 +945,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00468">468</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00487">487</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -979,9 +982,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00418">418</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00437">437</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00237">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_defaults()</a>, and <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1016,11 +1019,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00492">492</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00511">511</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, and <a class="el" href="ea_8c_source.html#l00394">ea_type_as_int()</a>.</p>
+<p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, and <a class="el" href="ea_8c_source.html#l00413">ea_type_as_int()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00282">ea_param_json_import()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00301">ea_param_json_import()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1091,11 +1094,11 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00180">180</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00199">199</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="clset_8c_source.html#l00545">clset_total_fit()</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8c_source.html#l00135">ea_select_rw()</a>, and <a class="el" href="ea_8c_source.html#l00156">ea_select_tournament()</a>.</p>
+<p class="reference">References <a class="el" href="clset_8c_source.html#l00545">clset_total_fit()</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8c_source.html#l00135">ea_select_rw()</a>, and <a class="el" href="ea_8c_source.html#l00170">ea_select_tournament()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00218">ea()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1164,7 +1167,7 @@ Here is the caller graph for this function:</div>
 
 <p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00180">ea_select()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea_select()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1213,7 +1216,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Selects a classifier from the set via tournament. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Uses Algorithm 4 in Lanzi (2026) "On the implementation of tournament selection in XCS". </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">xcsf</td><td>The <a class="el" href="structXCSF.html" title="XCSF data structure.">XCSF</a> data structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">set</td><td>The set to select from. </td></tr>
@@ -1222,15 +1225,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the selected classifier. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00156">156</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00170">170</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
-<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
+<p class="reference">References <a class="el" href="xcsf_8h_source.html#l00069">Clist::cl</a>, <a class="el" href="xcsf_8h_source.html#l00053">Cl::fit</a>, <a class="el" href="xcsf_8h_source.html#l00077">Set::list</a>, <a class="el" href="xcsf_8h_source.html#l00070">Clist::next</a>, <a class="el" href="xcsf_8h_source.html#l00054">Cl::num</a>, <a class="el" href="ea_8c_source.html#l00156">p_num_tau()</a>, and <a class="el" href="utils_8c_source.html#l00062">rand_uniform()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00180">ea_select()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00199">ea_select()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_a1f1743ee39699ad7f9f1cecc6042cbe4_cgraph.svg" width="307" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_a1f1743ee39699ad7f9f1cecc6042cbe4_cgraph.svg" width="307" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1347,11 +1350,11 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Integer representing the EA type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00394">394</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00413">413</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">References <a class="el" href="ea_8h_source.html#l00028">EA_SELECT_INVALID</a>, <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8h_source.html#l00030">EA_SELECT_TOURNAMENT</a>, <a class="el" href="ea_8h_source.html#l00032">EA_STRING_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00033">EA_STRING_TOURNAMENT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00492">ea_param_set_type_string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00511">ea_param_set_type_string()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1385,15 +1388,70 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String representing the name of the EA select type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00376">376</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00395">395</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
 
 <p class="reference">References <a class="el" href="ea_8h_source.html#l00029">EA_SELECT_ROULETTE</a>, <a class="el" href="ea_8h_source.html#l00030">EA_SELECT_TOURNAMENT</a>, <a class="el" href="ea_8h_source.html#l00032">EA_STRING_ROULETTE</a>, and <a class="el" href="ea_8h_source.html#l00033">EA_STRING_TOURNAMENT</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00256">ea_param_json_export()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00275">ea_param_json_export()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_af6093a84bc749f8a81a716f91f300028_icgraph.svg" width="1428" height="287"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a8e776ce9d7cb25bb04a60d069c86606d" name="a8e776ce9d7cb25bb04a60d069c86606d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e776ce9d7cb25bb04a60d069c86606d">&#9670;&#160;</a></span>p_num_tau()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double p_num_tau </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>tau</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Probability a classifier with numerosity num is selected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>Numerosity of the classifier. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tau</td><td>Tournament size (selection probability per copy). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Selection probability: 1 - (1-tau)^num. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ea_8c_source.html#l00156">156</a> of file <a class="el" href="ea_8c_source.html">ea.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ea_8c_source.html#l00170">ea_select_tournament()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ea_8c_a8e776ce9d7cb25bb04a60d069c86606d_icgraph.svg" width="1464" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

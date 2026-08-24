@@ -1,7 +1,7 @@
 var searchData=
 [
   ['i_0',['i',['../structLayer.html#a8933d801709cbf65d6c148b420dcc9b4',1,'Layer']]],
-  ['im2col_1',['im2col',['../image_8c.html#a33557bb05f10824eef9cc5775ac17c0d',1,'im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col):&#160;image.c'],['../image_8h.html#a33557bb05f10824eef9cc5775ac17c0d',1,'im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col):&#160;image.c']]],
+  ['im2col_1',['im2col',['../image_8h.html#a33557bb05f10824eef9cc5775ac17c0d',1,'im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col):&#160;image.c'],['../image_8c.html#a33557bb05f10824eef9cc5775ac17c0d',1,'im2col(const double *data_im, const int channels, const int height, const int width, const int ksize, const int stride, const int pad, double *data_col):&#160;image.c']]],
   ['im2col_5fget_5fpixel_2',['im2col_get_pixel',['../image_8c.html#a35b83d0e813d0341ce6e237a42412cda',1,'image.c']]],
   ['image_2ec_3',['image.c',['../image_8c.html',1,'']]],
   ['image_2eh_4',['image.h',['../image_8h.html',1,'']]],
@@ -14,5 +14,6 @@ var searchData=
   ['initial_5fstate_11',['initial_state',['../structGraph.html#a64737ae0b4418a86552a4d8f89d2c765',1,'Graph']]],
   ['input_12',['Input',['../structInput.html',1,'']]],
   ['input_5flayer_13',['input_layer',['../structLayer.html#a0e2138ac6687239a2e86d6fdb43e98b2',1,'Layer']]],
-  ['internal_5fparams_14',['internal_params',['../classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8',1,'XCS']]]
+  ['insert_5fcl_14',['insert_cl',['../classXCS.html#afbbbd1b0ebdd9f013cc419e5867c2d1e',1,'XCS']]],
+  ['internal_5fparams_15',['internal_params',['../classXCS.html#a2f70d3a3365697faaa1cf120a6485ba8',1,'XCS']]]
 ];

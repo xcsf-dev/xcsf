@@ -1,5 +1,7 @@
 <map id="cond_rectangle_cover" name="cond_rectangle_cover">
-<area shape="rect" id="Node000001" title="Generates a hyperrectangle that matches the current input." alt="" coords="5,5,155,31"/>
-<area shape="rect" id="Node000002" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="203,5,300,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,15,189,15,189,21,155,21"/>
+<area shape="rect" id="Node000001" title="Generates a hyperrectangle that matches the current input." alt="" coords="5,31,155,56"/>
+<area shape="rect" id="Node000002" href="$utils_8h.html#a234dd9ca33bcf1fba3e675bc900abc88" title="Returns a float clamped within the specified range." alt="" coords="223,5,280,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,30,209,22,209,27,155,35"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a972761ba8f47a6c3e7396a7c685158fc" title="Returns a uniform random float [min,max]." alt="" coords="203,55,300,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,51,190,56,189,61,154,56"/>
 </map>

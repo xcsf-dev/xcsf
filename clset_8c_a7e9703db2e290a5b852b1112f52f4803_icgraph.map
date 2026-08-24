@@ -1,17 +1,17 @@
 <map id="clset_pset_never_match" name="clset_pset_never_match">
-<area shape="rect" id="Node000001" title="Finds a rule in the population that never matches an input." alt="" coords="1871,194,2035,219"/>
-<area shape="rect" id="Node000002" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="1716,194,1823,219"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1857,209,1823,209,1823,204,1857,204"/>
-<area shape="rect" id="Node000003" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="1536,187,1668,227"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1702,209,1668,209,1668,204,1702,204"/>
-<area shape="rect" id="Node000004" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="1375,131,1464,157"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1530,185,1456,159,1458,154,1531,180"/>
-<area shape="rect" id="Node000022" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1351,523,1488,549"/>
-<area shape="poly" id="edge28_Node000003_Node000022" title=" " alt="" coords="1585,240,1430,524,1425,522,1581,238"/>
+<area shape="rect" id="Node000001" title="Finds a rule in the population that never matches an input." alt="" coords="1852,194,2016,219"/>
+<area shape="rect" id="Node000002" href="$clset_8c.html#a106a72afb7785af1d1b639736a6340be" title="Deletes a single classifier from the population set." alt="" coords="1697,194,1804,219"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1838,209,1804,209,1804,204,1838,204"/>
+<area shape="rect" id="Node000003" href="$clset_8c.html#a5e05b1d84c921f8f83e90d636b2f59fd" title="Enforces the maximum population size limit." alt="" coords="1517,187,1649,227"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1684,209,1650,209,1650,204,1684,204"/>
+<area shape="rect" id="Node000004" href="$clset_8c.html#aa1b7f7f1ccebf6e4e030333304fe3f51" title="Ensures all possible actions are covered by the match set." alt="" coords="1356,131,1445,157"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1511,185,1438,159,1439,154,1513,180"/>
+<area shape="rect" id="Node000022" href="$clset_8c.html#af6dd68a382ba6513d94925542da41f38" title="Creates a classifier from cJSON and inserts in the population set." alt="" coords="1332,523,1469,549"/>
+<area shape="poly" id="edge28_Node000003_Node000022" title=" " alt="" coords="1567,240,1411,524,1407,522,1562,238"/>
 <area shape="rect" id="Node000033" href="$ea_8c.html#a295cd56f77428d1fa2555df1ce363cdd" title="Executes the evolutionary algorithm (EA)." alt="" coords="1030,194,1069,219"/>
-<area shape="poly" id="edge45_Node000003_Node000033" title=" " alt="" coords="1522,209,1069,209,1069,204,1522,204"/>
+<area shape="poly" id="edge45_Node000003_Node000033" title=" " alt="" coords="1503,209,1069,209,1069,204,1503,204"/>
 <area shape="rect" id="Node000005" href="$clset_8c.html#ad49ee472743937e1cfdd58cc41fcaead" title="Constructs the match set &#45; forward propagates conditions and actions." alt="" coords="1003,102,1096,127"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1361,142,1096,121,1097,116,1361,137"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1342,142,1096,121,1097,116,1343,137"/>
 <area shape="rect" id="Node000006" href="$xcs__rl_8c.html#a6501735ba3cba5c77c1b8ad0aad0b26a" title="Selects an action to perform in a reinforcement learning problem." alt="" coords="808,98,920,123"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="989,116,920,115,920,109,989,111"/>
 <area shape="rect" id="Node000012" href="$xcs__rl_8c.html#a391abf9bd2540ff284f822b30899c438" title="Creates and updates an action set for a given (state, action, reward)." alt="" coords="629,47,703,73"/>
@@ -51,14 +51,14 @@
 <area shape="poly" id="edge25_Node000019_Node000021" title=" " alt="" coords="600,247,507,223,508,218,601,242"/>
 <area shape="poly" id="edge24_Node000020_Node000008" title=" " alt="" coords="218,280,206,288,171,316,139,347,94,400,90,396,135,343,167,312,202,283,215,276"/>
 <area shape="poly" id="edge26_Node000021_Node000020" title=" " alt="" coords="394,227,310,249,309,244,393,222"/>
-<area shape="rect" id="Node000023" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="1173,523,1293,549"/>
-<area shape="poly" id="edge29_Node000022_Node000023" title=" " alt="" coords="1337,539,1294,539,1294,533,1337,533"/>
-<area shape="rect" id="Node000032" href="$classXCS.html#a61361120dbba1dba3ca49b53ded91edb" title="Creates a classifier from JSON and inserts into the population." alt="" coords="1164,623,1303,649"/>
-<area shape="poly" id="edge43_Node000022_Node000032" title=" " alt="" coords="1384,558,1259,626,1257,621,1381,553"/>
+<area shape="rect" id="Node000023" href="$clset_8c.html#a9092b6e9d9b731be1bd9a4303992fd43" title="Creates classifiers from JSON and inserts into the population." alt="" coords="1164,523,1284,549"/>
+<area shape="poly" id="edge29_Node000022_Node000023" title=" " alt="" coords="1318,539,1284,539,1284,533,1318,533"/>
+<area shape="rect" id="Node000032" href="$classXCS.html#afbbbd1b0ebdd9f013cc419e5867c2d1e" title="Creates a classifier from dict and inserts into the population." alt="" coords="1171,623,1277,649"/>
+<area shape="poly" id="edge43_Node000022_Node000032" title=" " alt="" coords="1366,558,1249,626,1246,621,1364,554"/>
 <area shape="rect" id="Node000024" href="$clset_8c.html#ab1609ae417c14c50f3322c3ed818db6b" title=" " alt="" coords="983,549,1116,574"/>
-<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="1160,549,1117,555,1116,550,1159,544"/>
+<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="1151,549,1117,554,1116,549,1150,544"/>
 <area shape="rect" id="Node000030" href="$classXCS.html#af888b891afb66fbe06ba4919ef16adf9" title="Creates classifiers from JSON and inserts into the population." alt="" coords="395,499,516,525"/>
-<area shape="poly" id="edge39_Node000023_Node000030" title=" " alt="" coords="1159,537,516,517,516,511,1159,531"/>
+<area shape="poly" id="edge39_Node000023_Node000030" title=" " alt="" coords="1150,537,516,517,516,511,1150,531"/>
 <area shape="rect" id="Node000025" href="$clset_8c.html#a0dc2a4754c73df72a73b31c09cd50003" title="Initialises a new population of random classifiers." alt="" coords="811,549,917,574"/>
 <area shape="poly" id="edge31_Node000024_Node000025" title=" " alt="" coords="969,564,918,564,918,559,969,559"/>
 <area shape="rect" id="Node000026" href="$xcsf_8c.html#ae4718dd9f579b8730e25a1a13a385d6a" title="Initialises XCSF with an empty population." alt="" coords="631,549,701,574"/>
@@ -76,7 +76,7 @@
 <area shape="rect" id="Node000031" href="$classXCS.html#ad7aade3a334222e010b571f5c7a6bc43" title="Reads classifiers from a JSON file and adds to the population." alt="" coords="207,447,321,473"/>
 <area shape="poly" id="edge40_Node000030_Node000031" title=" " alt="" coords="394,498,311,475,312,470,395,493"/>
 <area shape="poly" id="edge41_Node000031_Node000008" title=" " alt="" coords="202,446,128,426,130,421,204,441"/>
-<area shape="poly" id="edge44_Node000032_Node000008" title=" " alt="" coords="1151,648,1017,659,865,664,454,664,380,665,321,663,293,658,265,649,235,634,202,613,178,592,156,568,121,514,97,462,83,425,88,423,102,460,125,511,160,564,181,588,206,609,238,629,267,644,295,653,322,658,380,660,454,659,865,659,1017,653,1150,642"/>
+<area shape="poly" id="edge44_Node000032_Node000008" title=" " alt="" coords="1157,646,1022,658,865,664,454,664,380,665,321,663,293,658,265,649,235,634,202,613,178,592,156,568,121,514,97,462,83,425,88,423,102,460,125,511,160,564,181,588,206,609,238,629,267,644,295,653,322,658,380,660,454,659,865,659,1022,653,1156,641"/>
 <area shape="poly" id="edge51_Node000033_Node000014" title=" " alt="" coords="1016,210,935,211,935,206,1016,205"/>
 <area shape="rect" id="Node000034" href="$xcs__rl_8c.html#a5e5ba8c28646690f0b1c51aae7f6aa78" title="Provides reinforcement to the sets." alt="" coords="813,147,915,173"/>
 <area shape="poly" id="edge46_Node000033_Node000034" title=" " alt="" coords="1016,201,914,175,916,170,1017,196"/>
