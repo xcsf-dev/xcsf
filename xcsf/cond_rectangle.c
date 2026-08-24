@@ -25,7 +25,6 @@
 #include "ea.h"
 #include "sam.h"
 #include "utils.h"
-#include <float.h>
 
 #define N_MU 2 //!< Number of hyperrectangle mutation rates
 
