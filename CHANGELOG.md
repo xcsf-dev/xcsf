@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.5.1 (Aug 24, 2026)
+
+Changes:
+*   CI fix macosx_x86_64 wheel building ([#244](https://github.com/xcsf-dev/xcsf/pull/244))
+
 ## Version 1.5.0 (Aug 24, 2026)
 
 Changes:
