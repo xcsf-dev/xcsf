@@ -48,7 +48,7 @@ TEST_CASE("SUPERVISED")
 
     double y[5] = { 0.1, 0.2, 0.3, 0.4, 0.5 };
 
-    double expected[5] = { 0.2802, 0.3113, 0.2859, 0.4632, 0.3952 };
+    double expected[5] = { 0.23, 0.27, 0.29, 0.46, 0.37 };
 
     struct XCSF xcsf;
     param_init(&xcsf, x_dim, y_dim, 1);
@@ -67,11 +67,11 @@ TEST_CASE("SUPERVISED")
     xcs_supervised_fit(&xcsf, &train_data, NULL, true, 0, 100);
     // score()
     double score = xcs_supervised_score(&xcsf, &train_data, cover);
-    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.0947);
+    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.078);
     score = xcs_supervised_score_n(&xcsf, &train_data, 10, cover);
-    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.0947);
+    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.078);
     score = xcs_supervised_score_n(&xcsf, &train_data, 2, cover);
-    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.14);
+    CHECK_EQ(doctest::Approx(score).epsilon(0.01), 0.1);
     // predict()
     double *output =
         (double *) malloc(sizeof(double) * n_samples * xcsf.pa_size);

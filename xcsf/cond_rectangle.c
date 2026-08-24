@@ -143,11 +143,19 @@ cond_rectangle_update(const struct XCSF *xcsf, const struct Cl *c,
                       const double *x, const double *y)
 {
     (void) y;
-    if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR &&
-        xcsf->cond->eta > 0) {
+    if (xcsf->cond->eta > 0) {
         const struct CondRectangle *cond = c->cond;
-        for (int i = 0; i < xcsf->x_dim; ++i) {
-            cond->b1[i] += xcsf->cond->eta * (x[i] - cond->b1[i]);
+        if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
+            for (int i = 0; i < xcsf->x_dim; ++i) {
+                cond->b1[i] += xcsf->cond->eta * (x[i] - cond->b1[i]);
+            }
+        } else { // ubr
+            for (int i = 0; i < xcsf->x_dim; ++i) {
+                const double center = (cond->b1[i] + cond->b2[i]) * 0.5;
+                const double update = (x[i] - center) * 0.5 * xcsf->cond->eta;
+                cond->b1[i] += update;
+                cond->b2[i] += update;
+            }
         }
     }
 }
@@ -237,23 +245,17 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
 
     for (int i = 0; i < xcsf->x_dim; ++i) {
         if (rand_uniform(0, 1) < cond->mu[0]) {
+            // first bound (or center)
             double orig = b1[i];
-            if (rand_uniform(0, 1) < 0.5) {
-                b1[i] += rand_uniform(0, cond->mu[1]);
-            } else {
-                b1[i] -= rand_uniform(0, cond->mu[1]);
-            }
+            b1[i] += rand_normal(0, cond->mu[1]);
             b1[i] = clamp(b1[i], xcsf->cond->min, xcsf->cond->max);
             if (orig != b1[i]) {
                 changed = true;
             }
 
+            // second bound (or spread)
             orig = b2[i];
-            if (rand_uniform(0, 1) < 0.5) {
-                b2[i] += rand_uniform(0, cond->mu[1]);
-            } else {
-                b2[i] -= rand_uniform(0, cond->mu[1]);
-            }
+            b2[i] += rand_normal(0, cond->mu[1]);
             if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
                 b2[i] = fmax(DBL_EPSILON, b2[i]);
             } else {
@@ -264,6 +266,7 @@ cond_rectangle_mutate(const struct XCSF *xcsf, const struct Cl *c)
             }
         }
     }
+
     return changed;
 }
 
