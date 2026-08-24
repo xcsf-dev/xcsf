@@ -4,7 +4,7 @@
 
 Changes:
 *   Fix: correct tournament selection to account for classifier numerosity ([#235](https://github.com/xcsf-dev/xcsf/pull/235))
-*   Feat: use traditional mutation scheme for hyperrectangles ([#236](https://github.com/xcsf-dev/xcsf/pull/236))
+*   Feat: add a per-bound mutation probability `p_mu: float` for hyperrectangles and hyperellipsoids which results in better macro-classifier compression and enable self-adaptive mutation to be optional for these conditions via `sam: bool` ([#236](https://github.com/xcsf-dev/xcsf/pull/236), [#243](https://github.com/xcsf-dev/xcsf/pull/243))
 *   CI: add support for Python 3.15 ([#237](https://github.com/xcsf-dev/xcsf/pull/237))
 *   Feat: Python insert human-made classifiers and get current pop as dicts instead of JSON strings ([#238](https://github.com/xcsf-dev/xcsf/pull/238))
 *   Chore: bump cJSON to v1.7.19, doctest to v2.5.3, pybind11 to v3.1.0 ([#241](https://github.com/xcsf-dev/xcsf/pull/241))
