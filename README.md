@@ -6,7 +6,6 @@
 [![Windows Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/windows_build.yml?branch=master&logo=windows&logoColor=white&style=flat&label=Windows)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Windows+build%22)
 [![Latest Version](https://img.shields.io/github/v/release/xcsf-dev/xcsf?style=flat)](https://github.com/xcsf-dev/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
-[![Codacy](https://app.codacy.com/project/badge/Grade/986386c6706c4bcd833445150b053b06)](https://app.codacy.com/gh/xcsf-dev/xcsf/dashboard)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/xcsf-dev/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/xcsf-dev/xcsf)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=xcsf-dev_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=xcsf-dev_xcsf)
 [![codecov](https://codecov.io/gh/xcsf-dev/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/xcsf-dev/xcsf)
