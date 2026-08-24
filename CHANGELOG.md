@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.5.0 (TBC)
+## Version 1.5.0 (Aug 24, 2026)
 
 Changes:
 *   Fix: correct tournament selection to account for classifier numerosity ([#235](https://github.com/xcsf-dev/xcsf/pull/235))

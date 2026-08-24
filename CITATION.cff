@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: XCSF
 version: 1.5.0
 doi:
-date-released:
+date-released: 2026-08-24
 license: GPL-3.0
 repository-code: https://github.com/xcsf-dev/xcsf
 languages:
