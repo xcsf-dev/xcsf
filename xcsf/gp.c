@@ -17,7 +17,7 @@
  * @file gp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief An implementation of GP trees based upon TinyGP.
  * @see Poli, Langdon, and McPhee (2008) "A Field Guide to Genetic Programming"
  */
@@ -26,20 +26,20 @@
 #include "sam.h"
 #include "utils.h"
 
-#define GP_NUM_FUNC (4) //!< Number of selectable GP functions
-#define ADD (0) //!< Addition function
-#define SUB (1) //!< Subtraction function
-#define MUL (2) //!< Multiplication function
-#define DIV (3) //!< Division function
+#define GP_NUM_FUNC 4 //!< Number of selectable GP functions
+#define ADD 0 //!< Addition function
+#define SUB 1 //!< Subtraction function
+#define MUL 2 //!< Multiplication function
+#define DIV 3 //!< Division function
 
-#define STRING_ADD ("+\0") //!< Addition
-#define STRING_SUB ("-\0") //!< Subtraction
-#define STRING_MUL ("*\0") //!< Multiplication
-#define STRING_DIV ("/\0") //!< Division
+#define STRING_ADD "+\0" //!< Addition
+#define STRING_SUB "-\0" //!< Subtraction
+#define STRING_MUL "*\0" //!< Multiplication
+#define STRING_DIV "/\0" //!< Division
 
-#define N_MU (1) //!< Number of tree-GP mutation rates
-#define RET_MIN (-1000) //!< Minimum tree return value
-#define RET_MAX (1000) //!< Maximum tree return value
+#define N_MU 1 //!< Number of tree-GP mutation rates
+#define RET_MIN -1000 //!< Minimum tree return value
+#define RET_MAX 1000 //!< Maximum tree return value
 
 /**
  * @brief Self-adaptation method for mutating GP trees.
@@ -313,9 +313,11 @@ tree_copy(struct GPTree *dest, const struct GPTree *src)
  * @brief Performs sub-tree crossover.
  * @param [in] p1 The first GP tree to perform crossover.
  * @param [in] p2 The second GP tree to perform crossover.
+ * @param [in] args Tree GP parameters.
  */
 void
-tree_crossover(struct GPTree *p1, struct GPTree *p2)
+tree_crossover(struct GPTree *p1, struct GPTree *p2,
+               const struct ArgsGPTree *args)
 {
     const int len1 = p1->len;
     const int len2 = p2->len;
@@ -324,12 +326,17 @@ tree_crossover(struct GPTree *p1, struct GPTree *p2)
     const int start2 = rand_uniform_int(0, len2);
     const int end2 = tree_traverse(p2->tree, start2);
     const int nlen1 = start1 + (end2 - start2) + (len1 - end1);
+    const int nlen2 = start2 + (end1 - start1) + (len2 - end2);
+
+    if (nlen1 > args->max_len || nlen2 > args->max_len) {
+        return;
+    }
+
     int *new1 = malloc(sizeof(int) * nlen1);
     memcpy(&new1[0], &p1->tree[0], sizeof(int) * start1);
     memcpy(&new1[start1], &p2->tree[start2], sizeof(int) * (end2 - start2));
     memcpy(&new1[start1 + (end2 - start2)], &p1->tree[end1],
            sizeof(int) * (len1 - end1));
-    const int nlen2 = start2 + (end1 - start1) + (len2 - end2);
     int *new2 = malloc(sizeof(int) * nlen2);
     memcpy(&new2[0], &p2->tree[0], sizeof(int) * start2);
     memcpy(&new2[start2], &p1->tree[start1], sizeof(int) * (end1 - start1));

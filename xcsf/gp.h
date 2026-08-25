@@ -17,7 +17,7 @@
  * @file gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief An implementation of GP trees based upon TinyGP.
  */
 
@@ -34,7 +34,7 @@ struct ArgsGPTree {
     int n_inputs; //!< Number of inputs
     int n_constants; //!< Number of constants available
     int init_depth; //!< Initial depth
-    int max_len; //!< Maximum initial length
+    int max_len; //!< Maximum length
     double *constants; //!< Constants available for GP trees
 };
 
@@ -71,7 +71,8 @@ double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);
 
 void
-tree_crossover(struct GPTree *p1, struct GPTree *p2);
+tree_crossover(struct GPTree *p1, struct GPTree *p2,
+               const struct ArgsGPTree *args);
 
 bool
 tree_mutate(struct GPTree *gp, const struct ArgsGPTree *args);
