@@ -148,8 +148,7 @@ cond_gp_crossover(const struct XCSF *xcsf, const struct Cl *c1,
     struct CondGP *cond1 = c1->cond;
     struct CondGP *cond2 = c2->cond;
     if (rand_uniform(0, 1) < xcsf->ea->p_crossover) {
-        tree_crossover(&cond1->gp, &cond2->gp, xcsf->cond->targs);
-        return true;
+        return tree_crossover(&cond1->gp, &cond2->gp, xcsf->cond->targs);
     }
     return false;
 }

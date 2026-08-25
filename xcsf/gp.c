@@ -315,7 +315,7 @@ tree_copy(struct GPTree *dest, const struct GPTree *src)
  * @param [in] p2 The second GP tree to perform crossover.
  * @param [in] args Tree GP parameters.
  */
-void
+bool
 tree_crossover(struct GPTree *p1, struct GPTree *p2,
                const struct ArgsGPTree *args)
 {
@@ -329,7 +329,7 @@ tree_crossover(struct GPTree *p1, struct GPTree *p2,
     const int nlen2 = start2 + (end1 - start1) + (len2 - end2);
 
     if (nlen1 > args->max_len || nlen2 > args->max_len) {
-        return;
+        return false;
     }
 
     int *new1 = malloc(sizeof(int) * nlen1);
@@ -348,6 +348,7 @@ tree_crossover(struct GPTree *p1, struct GPTree *p2,
     p2->tree = new2;
     p1->len = tree_traverse(p1->tree, 0);
     p2->len = tree_traverse(p2->tree, 0);
+    return true;
 }
 
 /**

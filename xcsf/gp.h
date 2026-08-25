@@ -70,7 +70,7 @@ tree_json_import(struct GPTree *gp, const struct ArgsGPTree *args,
 double
 tree_eval(struct GPTree *gp, const struct ArgsGPTree *args, const double *x);
 
-void
+bool
 tree_crossover(struct GPTree *p1, struct GPTree *p2,
                const struct ArgsGPTree *args);
 
