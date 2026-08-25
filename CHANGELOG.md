@@ -1,9 +1,14 @@
 # Changelog
 
+## Unreleased
+
+Changes:
+*   Feat: enforce maximum evolved tree-GP size with `max_len` instead of just the initial size ([#245](https://github.com/xcsf-dev/xcsf/pull/245))
+
 ## Version 1.5.1 (Aug 24, 2026)
 
 Changes:
-*   CI fix macosx_x86_64 wheel building ([#244](https://github.com/xcsf-dev/xcsf/pull/244))
+*   CI: fix macosx_x86_64 wheel building ([#244](https://github.com/xcsf-dev/xcsf/pull/244))
 
 ## Version 1.5.0 (Aug 24, 2026)
 

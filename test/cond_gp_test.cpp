@@ -17,7 +17,7 @@
  * @file cond_gp_test.cpp
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023--2024.
+ * @date 2023--2026.
  * @brief GP condition tests.
  */
 
@@ -113,6 +113,10 @@ TEST_CASE("COND_GP")
 
     // check trees are different
     CHECK(!check_array_eq_int(dest_cond->gp.tree, src_cond->gp.tree, n));
+
+    /* Test max_len enforced during crossover */
+    tree_param_set_max_len(targs, 2);
+    CHECK(!cond_gp_crossover(&xcsf, c1, c2));
 
     /* Smoke test export */
     char *json_str = cond_gp_json_export(&xcsf, c1);
