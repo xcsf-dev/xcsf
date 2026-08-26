@@ -4,6 +4,7 @@
 
 Changes:
 *   Feat: enforce maximum evolved tree-GP size with `max_len` instead of just the initial size ([#245](https://github.com/xcsf-dev/xcsf/pull/245))
+*   Fix: add cartpole example normalisation and fix truncation reward ([#246](https://github.com/xcsf-dev/xcsf/pull/246))
 
 ## Version 1.5.1 (Aug 24, 2026)
 
