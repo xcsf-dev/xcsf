@@ -1,6 +1,5 @@
-#!/usr/bin/python3
 #
-# Copyright (C) 2020--2023 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2020--2026 Richard Preen <rpreen@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,8 +24,6 @@ $ pip install gymnasium[classic-control]
 Note: These hyperparameters do not result in consistently optimal performance.
 """
 
-from __future__ import annotations
-
 import json
 import random
 from collections import deque
@@ -44,9 +41,37 @@ np.random.seed(RANDOM_STATE)
 # Initialise OpenAI Gym problem environment
 ############################################
 
+
+class CartPoleNormalisation(gym.ObservationWrapper):
+    """Normalise CartPole-v1 observations linearly to [0, 1].
+
+    Explicit domain bounds:
+        - Cart Position: [-2.4, 2.4]
+        - Cart Velocity: [-2.0, 2.0]
+        - Pole Angle: [-0.2095, 0.2095]
+        - Pole Angular Velocity: [-4.0, 4.0]
+    """
+
+    def __init__(self, env: gym.Env) -> None:
+        """Initialise CartPole normalisation."""
+        super().__init__(env)
+        self.l = np.array([-2.4, -2.0, -0.2095, -4.0], dtype=np.float32)
+        self.u = np.array([2.4, 2.0, 0.2095, 4.0], dtype=np.float32)
+        self.observation_space = gym.spaces.Box(
+            low=0.0, high=1.0, shape=env.observation_space.shape, dtype=np.float32
+        )
+
+    def observation(self, obs: np.ndarray) -> np.ndarray:
+        """Return normalised observation."""
+        norm_obs = (obs - self.l) / (self.u - self.l)
+        return np.clip(norm_obs, 0.0, 1.0)
+
+
 env = gym.make("CartPole-v1", render_mode="rgb_array")
+env = CartPoleNormalisation(env)
 env.reset(seed=RANDOM_STATE)
 
+MAX_STEPS: int = int(env.spec.max_episode_steps)
 X_DIM: int = int(env.observation_space.shape[0])
 N_ACTIONS: int = int(env.action_space.n)
 
@@ -58,7 +83,7 @@ xcs = xcsf.XCS(
     x_dim=X_DIM,
     y_dim=N_ACTIONS,
     n_actions=1,
-    omp_num_threads=12,
+    omp_num_threads=20,
     random_state=RANDOM_STATE,
     pop_init=False,
     max_trials=1,  # one trial per fit()
@@ -67,6 +92,8 @@ xcs = xcsf.XCS(
     e0=0.001,
     alpha=1,
     beta=0.05,
+    nu=5,
+    loss_func="mse",
     ea={
         "select_type": "roulette",
         "theta_ea": 100,
@@ -97,10 +124,10 @@ xcs = xcsf.XCS(
     },
 )
 
-GAMMA: float = 0.95  # discount rate for delayed reward
+GAMMA: float = 0.99  # discount rate for delayed reward
 epsilon: float = 1  # initial probability of exploring
-EPSILON_MIN: float = 0.1  # the minimum exploration rate
-EPSILON_DECAY: float = 0.98  # the decay of exploration after each batch replay
+EPSILON_MIN: float = 0.05  # the minimum exploration rate
+EPSILON_DECAY: float = 0.99  # the decay of exploration after each batch replay
 REPLAY_TIME: int = 1  # perform replay update every n episodes
 
 print(json.dumps(xcs.internal_params(), indent=4))
@@ -120,11 +147,12 @@ def replay(replay_size: int = 5000) -> None:
     """Performs experience replay updates."""
     batch_size: int = min(len(memory), replay_size)
     batch = random.sample(memory, batch_size)
-    for state, action, reward, next_state, done in batch:
+    for state, action, reward, next_state, terminated in batch:
         y_target = reward
-        if not done:
+        if not terminated:
             prediction_array = xcs.predict(next_state.reshape(1, -1))[0]
             y_target += GAMMA * np.max(prediction_array)
+
         target = xcs.predict(state.reshape(1, -1))[0]
         target[action] = y_target
         xcs.fit(
@@ -150,11 +178,10 @@ def episode() -> tuple[float, int]:
     while True:
         action = egreedy_action(state)
         next_state, reward, terminated, truncated, _ = env.step(action)
-        done = terminated or truncated
         episode_steps += 1
         episode_score += reward
-        memory.append((state, action, reward, next_state, done))
-        if done:
+        memory.append((state, action, reward, next_state, terminated))
+        if terminated or truncated:
             break
         state = next_state
     return episode_score, episode_steps
@@ -175,9 +202,12 @@ for ep in range(MAX_EPISODES):
         f"episodes={ep} "
         f"steps={total_steps} "
         f"score={mean_score:.2f} "
-        f"epsilon={epsilon:.5f} "
-        f"error={xcs.error():.5f} "
-        f"msize={xcs.mset_size():.2f}"
+        f"epsilon={epsilon:.3f} "
+        f"error={xcs.error():.3f} "
+        f"iter={xcs.time():.0f} "
+        f"psize={xcs.pset_size():.0f} "
+        f"msize={xcs.mset_size():.0f} "
+        f"mfrac={xcs.mfrac():.2f}"
     )
     # is the problem solved?
     if ep > N and mean_score > env.spec.reward_threshold:
