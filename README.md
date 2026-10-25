@@ -25,12 +25,11 @@ Fit y = sin(2πx) using local linear models:
 
 ```python
 import numpy as np
-
 import xcsf
 
 
 def f(x):
-    return np.sin(2 * np.pi * x)  # target function
+    return np.sin(2 * np.pi * x)
 
 
 rng = np.random.default_rng(1)
@@ -40,14 +39,14 @@ X_test = np.linspace(0, 1, 200).reshape(-1, 1)
 xcs = xcsf.XCS(
     x_dim=1,
     y_dim=1,
-    n_actions=1,  # 1 = supervised learning
+    n_actions=1,
     pop_size=500,
     max_trials=20000,
     random_state=1,
     loss_func="mse",
-    e0=0.0001,  # target MSE
-    alpha=1,  # recommended for regression
-    prediction={"type": "rls_linear"},  # local linear models
+    e0=0.0001,
+    alpha=1,
+    prediction={"type": "rls_linear"},
 )
 
 xcs.fit(X_train, f(X_train), verbose=False)
