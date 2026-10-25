@@ -6,18 +6,14 @@
 [![Windows Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/windows_build.yml?branch=master&logo=windows&logoColor=white&style=flat&label=Windows)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Windows+build%22)
 [![Latest Version](https://img.shields.io/github/v/release/xcsf-dev/xcsf?style=flat)](https://github.com/xcsf-dev/xcsf/releases)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
-[![CodeFactor](https://img.shields.io/codefactor/grade/github/xcsf-dev/xcsf?logo=codefactor&style=flat)](https://www.codefactor.io/repository/github/xcsf-dev/xcsf)
-[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=xcsf-dev_xcsf&metric=alert_status)](https://sonarcloud.io/dashboard?id=xcsf-dev_xcsf)
-[![codecov](https://codecov.io/gh/xcsf-dev/xcsf/branch/master/graph/badge.svg?token=3bfaTvmJ8d)](https://codecov.io/gh/xcsf-dev/xcsf)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=xcsf-dev_xcsf&metric=ncloc)](https://sonarcloud.io/dashboard?id=xcsf-dev_xcsf)
+
 [![PyPI package](https://img.shields.io/pypi/v/xcsf.svg)](https://pypi.org/project/xcsf)
 [![Python versions](https://img.shields.io/pypi/pyversions/xcsf.svg)](https://pypi.org/project/xcsf)
-[![Downloads](https://static.pepy.tech/personalized-badge/xcsf?period=month&units=international_system&left_color=black&right_color=orange&left_text=PyPI%20downloads%20per%20month)](https://pepy.tech/project/xcsf)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xcsf-dev/xcsf)
 
-XCSF is an accuracy-based [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) for [online](https://en.wikipedia.org/wiki/Online_machine_learning) [supervised](https://en.wikipedia.org/wiki/Supervised_learning) and [reinforcement](https://en.wikipedia.org/wiki/Reinforcement_learning) learning. Rather than fitting a single global model, it uses an [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_computation) to design a population of [rules](https://en.wikipedia.org/wiki/Rule-based_machine_learning), each of which matches a region of the input space and predicts with its own simple model (for example, a [linear regression](https://en.wikipedia.org/wiki/Linear_regression) or a small [neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning))).
+XCSF is an accuracy-based [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) for online supervised and reinforcement learning. Rather than fitting a single global model, it uses an evolutionary algorithm to design a population of rules, each of which matches a region of the input space and predicts with its own simple model (for example, a linear regression or a small neural network).
 
-This repository provides a C implementation that can be built as a stand-alone binary or used as a Python library with a [scikit-learn](https://scikit-learn.org)-style interface. See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for features, build instructions, and usage.
+This repository provides a C implementation that can be built as a stand-alone binary or used as a Python library with a scikit-learn-style interface. See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for features, build instructions, and usage.
 
 ## Quick start
 
