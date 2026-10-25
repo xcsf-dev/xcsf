@@ -62,7 +62,7 @@ xcs.fit(X_train, f(X_train), verbose=False)
 print(f"Test MSE: {xcs.score(X_test, f(X_test)):.1e}")  # ~3.1e-05
 ```
 
-For more Python examples, see the [`python`](https://github.com/xcsf-dev/xcsf/tree/master/python) folder, which contains scripts and the equivalent [Jupyter notebooks](https://github.com/xcsf-dev/xcsf/tree/master/python/notebooks).
+For more Python examples, see the [`python`](https://github.com/xcsf-dev/xcsf/tree/master/python) folder, which contains scripts and the equivalent [notebooks](https://github.com/xcsf-dev/xcsf/tree/master/python/notebooks).
 
 ## Contributing
 
