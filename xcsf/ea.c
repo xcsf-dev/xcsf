@@ -305,39 +305,39 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
             cJSON_IsString(iter)) {
             if (ea_param_set_type_string(xcsf, iter->valuestring) ==
                 EA_SELECT_INVALID) {
-                printf("Invalid EA SELECT_TYPE: %s\n", iter->valuestring);
-                printf("Options: {%s}\n", EA_SELECT_OPTIONS);
-                exit(EXIT_FAILURE);
+                xcsf_set_error(xcsf, XCSF_ERROR,
+                               "Invalid EA SELECT_TYPE: %s\nOptions: {%s}\n",
+                               iter->valuestring, EA_SELECT_OPTIONS);
             }
         } else if (strncmp(iter->string, "select_size\0", 12) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_select_size(xcsf, iter->valuedouble));
+            ea_param_set_select_size(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "theta_ea\0", 9) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_theta(xcsf, iter->valuedouble));
+            ea_param_set_theta(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "lambda\0", 7) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_lambda(xcsf, iter->valueint));
+            ea_param_set_lambda(xcsf, iter->valueint);
         } else if (strncmp(iter->string, "p_crossover\0", 12) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_p_crossover(xcsf, iter->valuedouble));
+            ea_param_set_p_crossover(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "err_reduc\0", 10) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_err_reduc(xcsf, iter->valuedouble));
+            ea_param_set_err_reduc(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "fit_reduc\0", 10) == 0 &&
                    cJSON_IsNumber(iter)) {
-            catch_error(ea_param_set_fit_reduc(xcsf, iter->valuedouble));
+            ea_param_set_fit_reduc(xcsf, iter->valuedouble);
         } else if (strncmp(iter->string, "subsumption\0", 12) == 0 &&
                    cJSON_IsBool(iter)) {
             const bool sub = true ? iter->type == cJSON_True : false;
-            catch_error(ea_param_set_subsumption(xcsf, sub));
+            ea_param_set_subsumption(xcsf, sub);
         } else if (strncmp(iter->string, "pred_reset\0", 11) == 0 &&
                    cJSON_IsBool(iter)) {
             const bool reset = true ? iter->type == cJSON_True : false;
-            catch_error(ea_param_set_pred_reset(xcsf, reset));
+            ea_param_set_pred_reset(xcsf, reset);
         } else {
-            printf("Error importing EA parameter %s\n", iter->string);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, XCSF_ERROR,
+                           "Error importing EA parameter %s\n", iter->string);
         }
     }
 }

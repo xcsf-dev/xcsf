@@ -17,11 +17,24 @@
  * @file pybind_utils.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2023.
+ * @date 2023--2026.
  * @brief Utilities for Python library.
  */
 
 #pragma once
+
+#include <chrono>
+#include <cstdio>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+
+extern "C" {
+#include "xcsf.h"
+}
 
 /**
  * @brief Returns a formatted string for displaying time.
@@ -41,4 +54,22 @@ get_timestamp()
     std::ostringstream oss;
     oss << buffer << '.' << std::setfill('0') << std::setw(3) << ms.count();
     return oss.str();
+}
+
+static void
+check_status(struct XCSF *xcsf)
+{
+    if (xcsf->status == XCSF_OK) {
+        return;
+    }
+
+    const std::string msg(xcsf->err_msg);
+    const int code = xcsf->status;
+
+    switch (code) {
+        case XCSF_ERROR:
+            throw std::invalid_argument(msg);
+        default:
+            throw std::runtime_error(msg);
+    }
 }

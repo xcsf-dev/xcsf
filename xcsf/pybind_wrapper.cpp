@@ -897,6 +897,7 @@ class XCS
         std::string json_str = json_dumps.cast<std::string>();
         const char *json_params = json_str.c_str();
         param_json_import(&xcs, json_params);
+        check_status(&xcs);
         return *this;
     }
 

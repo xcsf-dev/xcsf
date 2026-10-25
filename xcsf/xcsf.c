@@ -17,13 +17,12 @@
  * @file xcsf.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2020.
+ * @date 2015--2026.
  * @brief System-level functions for initialising, saving, loading, etc.
  */
 
 #include "cl.h"
 #include "clset.h"
-#include "cond_neural.h"
 #include "loss.h"
 #include "pa.h"
 #include "param.h"
@@ -219,4 +218,53 @@ xcsf_retrieve_pset(struct XCSF *xcsf)
     clset_kill(xcsf, &xcsf->pset);
     xcsf->pset = xcsf->prev_pset;
     clset_init(&xcsf->prev_pset);
+}
+
+/**
+ * @brief Clear XCSF error codes.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+xcsf_clear_error(struct XCSF *xcsf)
+{
+    xcsf->status = XCSF_OK;
+    xcsf->err_msg[0] = '\0';
+}
+
+/**
+ * @brief Set XCSF error message.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] code The XCSF error code.
+ * @param [in] fmt The XCSF error message.
+ */
+void
+xcsf_set_error(struct XCSF *xcsf, const enum xcsf_status code, const char *fmt,
+               ...)
+{
+#ifdef PARALLEL
+    #pragma omp critical(xcsf_error)
+#endif
+    {
+        if (xcsf->status == XCSF_OK) { // first error wins
+            xcsf->status = code;
+            va_list args;
+            va_start(args, fmt);
+            vsnprintf(xcsf->err_msg, sizeof(xcsf->err_msg), fmt, args);
+            va_end(args);
+        }
+    }
+}
+
+/**
+ * @brief Checks XCSF error status.
+ * @param [in] xcsf The XCSF data structure.
+ */
+void
+xcsf_check_status(struct XCSF *xcsf)
+{
+    if (xcsf->status == XCSF_OK) {
+        return;
+    }
+    printf("%s", xcsf->err_msg);
+    exit(EXIT_FAILURE);
 }

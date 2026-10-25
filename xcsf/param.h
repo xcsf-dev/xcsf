@@ -17,7 +17,7 @@
  * @file param.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -26,9 +26,9 @@
 #include "loss.h"
 #include "xcsf.h"
 
-#define PARAM_INVALID (-1) //!< Code for invalid parameter
-#define PARAM_NOT_FOUND (0) //!< Code for unable to find parameter
-#define PARAM_FOUND (1) //!< Code for a found parameter
+#define PARAM_INVALID -1 //!< Code for invalid parameter
+#define PARAM_NOT_FOUND 0 //!< Code for unable to find parameter
+#define PARAM_FOUND 1 //!< Code for a found parameter
 
 char *
 param_json_export(const struct XCSF *xcsf);
@@ -54,92 +54,92 @@ param_save(const struct XCSF *xcsf, FILE *fp);
 
 /* setters */
 
-const char *
+void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_random_state(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_population_file(struct XCSF *xcsf, const char *a);
 
-const char *
+void
 param_set_pop_init(struct XCSF *xcsf, const bool a);
 
-const char *
+void
 param_set_max_trials(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_perf_trials(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_pop_size(struct XCSF *xcsf, const int a);
 
-int
+void
 param_set_loss_func_string(struct XCSF *xcsf, const char *a);
 
 void
 param_set_loss_func(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_stateful(struct XCSF *xcsf, const bool a);
 
-const char *
+void
 param_set_compaction(struct XCSF *xcsf, const bool a);
 
-const char *
+void
 param_set_huber_delta(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_gamma(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_teletransportation(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_p_explore(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_alpha(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_beta(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_delta(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_e0(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_init_error(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_init_fitness(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_nu(struct XCSF *xcsf, const double a);
 
-const char *
+void
 param_set_theta_del(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_m_probation(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_set_subsumption(struct XCSF *xcsf, const bool a);
 
-const char *
+void
 param_set_theta_sub(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_x_dim(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_explore(struct XCSF *xcsf, const bool a);
 
-const char *
+void
 param_set_y_dim(struct XCSF *xcsf, const int a);
 
-const char *
+void
 param_set_n_actions(struct XCSF *xcsf, const int a);
