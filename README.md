@@ -36,8 +36,10 @@ import numpy as np
 
 import xcsf
 
+
 def f(x):
     return np.sin(2 * np.pi * x)  # target function
+
 
 rng = np.random.default_rng(1)
 X_train = rng.random((1000, 1))
