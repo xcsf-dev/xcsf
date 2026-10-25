@@ -7,8 +7,6 @@
 [![Windows Build](https://img.shields.io/github/actions/workflow/status/xcsf-dev/xcsf/windows_build.yml?branch=master&logo=windows&logoColor=white&style=flat&label=Windows)](https://github.com/xcsf-dev/xcsf/actions?query=workflow%3A%22Windows+build%22)
 [![DOI](https://zenodo.org/badge/28035841.svg)](https://zenodo.org/badge/latestdoi/28035841)
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xcsf-dev/xcsf)
-
 XCSF is an accuracy-based [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) for online supervised and reinforcement learning. Rather than fitting a single global model, it uses an evolutionary algorithm to design a population of rules, each of which matches a region of the input space and predicts with its own simple model (for example, a linear regression or a small neural network).
 
 This repository provides a C implementation that can be built as a stand-alone binary or used as a Python library with a scikit-learn-style interface. See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for features, build instructions, and usage.
