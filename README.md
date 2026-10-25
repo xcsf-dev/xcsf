@@ -15,6 +15,47 @@
 [![Downloads](https://static.pepy.tech/personalized-badge/xcsf?period=month&units=international_system&left_color=black&right_color=orange&left_text=PyPI%20downloads%20per%20month)](https://pepy.tech/project/xcsf)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/xcsf-dev/xcsf)
 
-An implementation of the XCSF [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) that can be built as a stand-alone binary or as a Python library. XCSF is an accuracy-based [online](https://en.wikipedia.org/wiki/Online_machine_learning) [evolutionary](https://en.wikipedia.org/wiki/Evolutionary_computation) [machine learning](https://en.wikipedia.org/wiki/Machine_learning) system with locally approximating functions that compute classifier payoff prediction directly from the input state. It can be seen as a generalisation of XCS where the prediction is a scalar value. XCSF attempts to find solutions that are accurate and maximally general over the global input space, similar to most machine learning techniques. However, it maintains the additional power to adaptively subdivide the input space into simpler local approximations.
+XCSF is an accuracy-based [learning classifier system](https://en.wikipedia.org/wiki/Learning_classifier_system) for [online](https://en.wikipedia.org/wiki/Online_machine_learning) [supervised](https://en.wikipedia.org/wiki/Supervised_learning) and [reinforcement](https://en.wikipedia.org/wiki/Reinforcement_learning) learning. Rather than fitting a single global model, it uses an [evolutionary algorithm](https://en.wikipedia.org/wiki/Evolutionary_computation) to design a population of [rules](https://en.wikipedia.org/wiki/Rule-based_machine_learning), each of which matches a region of the input space and predicts with its own simple model (for example, a [linear regression](https://en.wikipedia.org/wiki/Linear_regression) or a small [neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning))).
 
-See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for details on features, how to build, run, and use as a Python library.
+This repository provides a C implementation that can be built as a stand-alone binary or used as a Python library with a [scikit-learn](https://scikit-learn.org)-style interface. See the project [wiki](https://github.com/xcsf-dev/xcsf/wiki) for features, build instructions, and usage.
+
+## Quick start
+
+### Installation
+
+```shell
+pip install xcsf
+```
+
+### Minimal example
+
+Fit y = sin(2πx) using local linear models:
+
+```python
+import numpy as np
+
+import xcsf
+
+def f(x):
+    return np.sin(2 * np.pi * x)  # target function
+
+rng = np.random.default_rng(1)
+X_train = rng.random((1000, 1))
+X_test = np.linspace(0, 1, 200).reshape(-1, 1)
+
+xcs = xcsf.XCS(
+    x_dim=1,
+    y_dim=1,
+    n_actions=1,  # 1 = supervised learning
+    pop_size=500,
+    max_trials=20000,
+    random_state=1,
+    loss_func="mse",
+    e0=0.0001,  # target MSE
+    alpha=1,  # recommended for regression
+    prediction={"type": "rls_linear"},  # local linear models
+)
+
+xcs.fit(X_train, f(X_train), verbose=False)
+print(f"Test MSE: {xcs.score(X_test, f(X_test)):.1e}")  # ~3.1e-05
+```
