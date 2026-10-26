@@ -45,6 +45,7 @@ void
 param_init(struct XCSF *xcsf, const int x_dim, const int y_dim,
            const int n_actions)
 {
+    xcsf_clear_error(xcsf);
     xcsf->time = 0;
     xcsf->error = xcsf->E0;
     xcsf->mset_size = 0;
@@ -196,46 +197,41 @@ param_json_import_general(struct XCSF *xcsf, const cJSON *json)
         return true;
     } else if (strncmp(json->string, "x_dim\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_x_dim(xcsf, json->valueint));
+        param_set_x_dim(xcsf, json->valueint);
     } else if (strncmp(json->string, "y_dim\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_y_dim(xcsf, json->valueint));
+        param_set_y_dim(xcsf, json->valueint);
     } else if (strncmp(json->string, "n_actions\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_n_actions(xcsf, json->valueint));
+        param_set_n_actions(xcsf, json->valueint);
     } else if (strncmp(json->string, "omp_num_threads\0", 16) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_omp_num_threads(xcsf, json->valueint));
+        param_set_omp_num_threads(xcsf, json->valueint);
     } else if (strncmp(json->string, "random_state\0", 13) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_random_state(xcsf, json->valueint));
+        param_set_random_state(xcsf, json->valueint);
     } else if (strncmp(json->string, "population_file\0", 16) == 0 &&
                cJSON_IsString(json)) {
-        catch_error(param_set_population_file(xcsf, json->valuestring));
+        param_set_population_file(xcsf, json->valuestring);
     } else if (strncmp(json->string, "pop_size\0", 9) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_pop_size(xcsf, json->valueint));
+        param_set_pop_size(xcsf, json->valueint);
     } else if (strncmp(json->string, "max_trials\0", 11) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_max_trials(xcsf, json->valueint));
+        param_set_max_trials(xcsf, json->valueint);
     } else if (strncmp(json->string, "pop_init\0", 9) == 0 &&
                cJSON_IsBool(json)) {
         const bool init = true ? json->type == cJSON_True : false;
-        catch_error(param_set_pop_init(xcsf, init));
+        param_set_pop_init(xcsf, init);
     } else if (strncmp(json->string, "perf_trials\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_perf_trials(xcsf, json->valueint));
+        param_set_perf_trials(xcsf, json->valueint);
     } else if (strncmp(json->string, "loss_func\0", 10) == 0 &&
                cJSON_IsString(json)) {
-        if (param_set_loss_func_string(xcsf, json->valuestring) ==
-            PARAM_INVALID) {
-            printf("Invalid loss function: %s\n", json->valuestring);
-            printf("Options: {%s}\n", LOSS_OPTIONS);
-            exit(EXIT_FAILURE);
-        }
+        param_set_loss_func_string(xcsf, json->valuestring);
     } else if (strncmp(json->string, "huber_delta\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_huber_delta(xcsf, json->valuedouble));
+        param_set_huber_delta(xcsf, json->valuedouble);
     } else {
         return false;
     }
@@ -254,13 +250,13 @@ param_json_import_multi(struct XCSF *xcsf, const cJSON *json)
 {
     if (strncmp(json->string, "teletransportation\0", 19) == 0 &&
         cJSON_IsNumber(json)) {
-        catch_error(param_set_teletransportation(xcsf, json->valueint));
+        param_set_teletransportation(xcsf, json->valueint);
     } else if (strncmp(json->string, "gamma\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_gamma(xcsf, json->valuedouble));
+        param_set_gamma(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "p_explore\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_p_explore(xcsf, json->valuedouble));
+        param_set_p_explore(xcsf, json->valuedouble);
     } else {
         return false;
     }
@@ -280,10 +276,10 @@ param_json_import_subsump(struct XCSF *xcsf, const cJSON *json)
     if (strncmp(json->string, "set_subsumption\0", 16) == 0 &&
         cJSON_IsBool(json)) {
         const bool sub = true ? json->type == cJSON_True : false;
-        catch_error(param_set_set_subsumption(xcsf, sub));
+        param_set_set_subsumption(xcsf, sub);
     } else if (strncmp(json->string, "theta_sub\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_theta_sub(xcsf, json->valueint));
+        param_set_theta_sub(xcsf, json->valueint);
     } else {
         return false;
     }
@@ -301,37 +297,37 @@ static bool
 param_json_import_cl_general(struct XCSF *xcsf, const cJSON *json)
 {
     if (strncmp(json->string, "alpha\0", 6) == 0 && cJSON_IsNumber(json)) {
-        catch_error(param_set_alpha(xcsf, json->valuedouble));
+        param_set_alpha(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "beta\0", 5) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_beta(xcsf, json->valuedouble));
+        param_set_beta(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "delta\0", 6) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_delta(xcsf, json->valuedouble));
+        param_set_delta(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "nu\0", 3) == 0 && cJSON_IsNumber(json)) {
-        catch_error(param_set_nu(xcsf, json->valuedouble));
+        param_set_nu(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "theta_del\0", 10) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_theta_del(xcsf, json->valueint));
+        param_set_theta_del(xcsf, json->valueint);
     } else if (strncmp(json->string, "init_fitness\0", 13) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_init_fitness(xcsf, json->valuedouble));
+        param_set_init_fitness(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "init_error\0", 11) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_init_error(xcsf, json->valuedouble));
+        param_set_init_error(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "e0\0", 3) == 0 && cJSON_IsNumber(json)) {
-        catch_error(param_set_e0(xcsf, json->valuedouble));
+        param_set_e0(xcsf, json->valuedouble);
     } else if (strncmp(json->string, "m_probation\0", 12) == 0 &&
                cJSON_IsNumber(json)) {
-        catch_error(param_set_m_probation(xcsf, json->valueint));
+        param_set_m_probation(xcsf, json->valueint);
     } else if (strncmp(json->string, "stateful\0", 9) == 0 &&
                cJSON_IsBool(json)) {
         const bool stateful = true ? json->type == cJSON_True : false;
-        catch_error(param_set_stateful(xcsf, stateful));
+        param_set_stateful(xcsf, stateful);
     } else if (strncmp(json->string, "compaction\0", 11) == 0 &&
                cJSON_IsBool(json)) {
         const bool compact = true ? json->type == cJSON_True : false;
-        catch_error(param_set_compaction(xcsf, compact));
+        param_set_compaction(xcsf, compact);
     } else {
         return false;
     }
@@ -437,7 +433,7 @@ void
 param_json_import(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    utils_json_parse_check(json);
+    param_json_parse_check(xcsf, json);
     for (cJSON *iter = json->child; iter != NULL; iter = iter->next) {
         if (param_json_import_general(xcsf, iter)) {
             continue;
@@ -467,8 +463,10 @@ param_json_import(struct XCSF *xcsf, const char *json_str)
             param_json_import_prediction(xcsf, iter);
             continue;
         }
-        printf("Error: unable to import parameter: %s\n", iter->string);
-        exit(EXIT_FAILURE);
+
+        xcsf_set_error(xcsf, XCSF_ERROR,
+                       "Error: unable to import parameter: %s\n", iter->string);
+        return;
     }
     cJSON_Delete(json);
 }
@@ -602,28 +600,47 @@ param_load(struct XCSF *xcsf, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Checks whether JSON parsed correctly.
+ * @pre cJSON_Parse() called on the cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+param_json_parse_check(struct XCSF *xcsf, const cJSON *json)
+{
+    if (json == NULL) {
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL) {
+            xcsf_set_error(xcsf, XCSF_ERROR,
+                           "Error reading JSON, error before: %s\n", error_ptr);
+        } else {
+            xcsf_set_error(xcsf, XCSF_ERROR, "Error reading JSON\n");
+        }
+    }
+}
+
 /* setters */
 
 /**
  * @brief Sets the number of OMP threads.
  * @param [in] xcsf The XCSF data structure.
  * @param [in] a The number of threads.
- * @return NULL if successful; or an error message.
  */
-const char *
+void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 {
     if (a < 1 || a > 1000) {
-        return "Invalid OMP_NUM_THREADS. Range: [1,1000]";
-    }
-    xcsf->OMP_NUM_THREADS = a;
+        xcsf_set_error(xcsf, XCSF_ERROR, "omp_num_threads must be: [1,1000]");
+    } else {
+        xcsf->OMP_NUM_THREADS = a;
 #ifdef PARALLEL
-    omp_set_num_threads(xcsf->OMP_NUM_THREADS);
+        omp_set_num_threads(xcsf->OMP_NUM_THREADS);
 #endif
-    return NULL;
+    }
 }
 
-const char *
+void
 param_set_random_state(struct XCSF *xcsf, const int a)
 {
     xcsf->RANDOM_STATE = a;
@@ -632,274 +649,270 @@ param_set_random_state(struct XCSF *xcsf, const int a)
     } else {
         rand_init_seed(a);
     }
-    return NULL;
 }
 
-const char *
+void
 param_set_population_file(struct XCSF *xcsf, const char *a)
 {
     free(xcsf->population_file);
     size_t length = strnlen(a, sizeof(char) * MAX_LEN) + 1;
     xcsf->population_file = malloc(sizeof(char) * length);
     strncpy(xcsf->population_file, a, length);
-    return NULL;
 }
 
-const char *
+void
 param_set_pop_init(struct XCSF *xcsf, const bool a)
 {
     xcsf->POP_INIT = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "MAX_TRIALS must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "max_trials must be > 0");
+    } else {
+        xcsf->MAX_TRIALS = a;
     }
-    xcsf->MAX_TRIALS = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_perf_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "PERF_TRIALS must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "perf_trials must be > 0");
+    } else {
+        xcsf->PERF_TRIALS = a;
     }
-    xcsf->PERF_TRIALS = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "POP_SIZE must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "pop_size must be > 0");
+    } else {
+        xcsf->POP_SIZE = a;
     }
-    xcsf->POP_SIZE = a;
-    return NULL;
 }
 
-int
+void
 param_set_loss_func_string(struct XCSF *xcsf, const char *a)
 {
     const int loss = loss_type_as_int(a);
     if (loss != LOSS_INVALID) {
         xcsf->LOSS_FUNC = loss;
         if (loss_set_func(xcsf) != LOSS_INVALID) {
-            return PARAM_FOUND;
+            return;
         }
     }
-    return PARAM_INVALID;
+    xcsf_set_error(xcsf, XCSF_ERROR,
+                   "Invalid loss function: %s\nOptions: {%s}\n", a,
+                   LOSS_OPTIONS);
 }
 
 void
 param_set_loss_func(struct XCSF *xcsf, const int a)
 {
     if (a < 0 || a >= LOSS_NUM) {
-        printf("param_set_loss_func(): invalid LOSS_FUNC: %d\n", a);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, XCSF_ERROR,
+                       "param_set_loss_func(): invalid loss_func: %d\n", a);
+    } else {
+        xcsf->LOSS_FUNC = a;
+        loss_set_func(xcsf);
     }
-    xcsf->LOSS_FUNC = a;
-    loss_set_func(xcsf);
 }
 
-const char *
+void
 param_set_stateful(struct XCSF *xcsf, const bool a)
 {
     xcsf->STATEFUL = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_compaction(struct XCSF *xcsf, const bool a)
 {
     xcsf->COMPACTION = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_huber_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        return "HUBER_DELTA must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "huber_delta must be >= 0");
+    } else {
+        xcsf->HUBER_DELTA = a;
     }
-    xcsf->HUBER_DELTA = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        return "Invalid GAMMA. Range: [0,1]";
+        xcsf_set_error(xcsf, XCSF_ERROR, "gamma must be: [0,1]");
+    } else {
+        xcsf->GAMMA = a;
     }
-    xcsf->GAMMA = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_teletransportation(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "TELETRANSPORTATION must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "teletransportation must be > 0");
+    } else {
+        xcsf->TELETRANSPORTATION = a;
     }
-    xcsf->TELETRANSPORTATION = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        return "Invalid P_EXPLORE. Range: [0,1]";
+        xcsf_set_error(xcsf, XCSF_ERROR, "p_explore must be: [0,1]");
+    } else {
+        xcsf->P_EXPLORE = a;
     }
-    xcsf->P_EXPLORE = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        return "Invalid ALPHA. Range: [0,1]";
+        xcsf_set_error(xcsf, XCSF_ERROR, "alpha must be: [0,1]");
+    } else {
+        xcsf->ALPHA = a;
     }
-    xcsf->ALPHA = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        return "Invalid BETA. Range: [0,1]";
+        xcsf_set_error(xcsf, XCSF_ERROR, "beta must be: [0,1]");
+    } else {
+        xcsf->BETA = a;
     }
-    xcsf->BETA = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        return "Invalid DELTA. Range: [0,1]";
+        xcsf_set_error(xcsf, XCSF_ERROR, "delta must be: [0,1]");
+    } else {
+        xcsf->DELTA = a;
     }
-    xcsf->DELTA = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_e0(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        return "E0 must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "e0 must be >= 0");
+    } else {
+        xcsf->E0 = a;
     }
-    xcsf->E0 = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_init_error(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        return "INIT_ERROR must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "init_error must be >= 0");
+    } else {
+        xcsf->INIT_ERROR = a;
     }
-    xcsf->INIT_ERROR = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_init_fitness(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        return "INIT_FITNESS must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "init_fitness must be >= 0");
+    } else {
+        xcsf->INIT_FITNESS = a;
     }
-    xcsf->INIT_FITNESS = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_nu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        return "NU must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "nu must be >= 0");
+    } else {
+        xcsf->NU = a;
     }
-    xcsf->NU = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_theta_del(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        return "THETA_DEL must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "theta_del must be >= 0");
+    } else {
+        xcsf->THETA_DEL = a;
     }
-    xcsf->THETA_DEL = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_m_probation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        return "M_PROBATION must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "m_probation must be >= 0");
+    } else {
+        xcsf->M_PROBATION = a;
     }
-    xcsf->M_PROBATION = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_set_subsumption(struct XCSF *xcsf, const bool a)
 {
     xcsf->SET_SUBSUMPTION = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_theta_sub(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        return "THETA_SUB must be >= 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "theta_sub must be >= 0");
+    } else {
+        xcsf->THETA_SUB = a;
     }
-    xcsf->THETA_SUB = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_x_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "x_dim must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "x_dim must be > 0");
+    } else {
+        xcsf->x_dim = a;
     }
-    xcsf->x_dim = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_explore(struct XCSF *xcsf, const bool a)
 {
     xcsf->explore = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_y_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "y_dim must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "y_dim must be > 0");
+    } else {
+        xcsf->y_dim = a;
     }
-    xcsf->y_dim = a;
-    return NULL;
 }
 
-const char *
+void
 param_set_n_actions(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        return "n_actions must be > 0";
+        xcsf_set_error(xcsf, XCSF_ERROR, "n_actions must be > 0");
+    } else {
+        xcsf->n_actions = a;
     }
-    xcsf->n_actions = a;
-    return NULL;
 }

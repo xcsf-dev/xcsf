@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -45,9 +45,6 @@ rand_init(void);
 
 void
 rand_init_seed(const uint32_t seed);
-
-void
-utils_json_parse_check(const cJSON *json);
 
 /**
  * @brief Returns a float clamped within the specified range.
@@ -123,19 +120,6 @@ float_to_binary(const double f, char *binary, const int bits)
             binary[bits - 1 - i] = (a % 2) + '0';
             a /= 2;
         }
-    }
-}
-
-/**
- * @brief Catches parameter value errors.
- * @param [in] ret String return type from JSON import.
- */
-static inline void
-catch_error(const char *ret)
-{
-    if (ret != NULL) {
-        printf("%s\n", ret);
-        exit(EXIT_FAILURE);
     }
 }
 

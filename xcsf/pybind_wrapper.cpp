@@ -142,6 +142,7 @@ class XCS
     load(const char *filename)
     {
         size_t s = xcsf_load(&xcs, filename);
+        check_status(&xcs);
         update_params();
         return s;
     }
@@ -880,10 +881,6 @@ class XCS
     set_params(py::kwargs kwargs)
     {
         py::dict kwargs_dict(kwargs);
-        // update external params dict
-        for (const auto &item : kwargs_dict) {
-            params[item.first] = item.second;
-        }
         // map None types
         if (kwargs_dict.contains("random_state")) {
             py::object rs = kwargs["random_state"];
@@ -895,8 +892,12 @@ class XCS
         py::module_ json_module = py::module_::import("json");
         py::object json_dumps = json_module.attr("dumps")(kwargs_dict);
         std::string json_str = json_dumps.cast<std::string>();
-        const char *json_params = json_str.c_str();
-        param_json_import(&xcs, json_params);
+        param_json_import(&xcs, json_str.c_str());
+        check_status(&xcs); // throws exception for invalid inputs
+        // update external params dict
+        for (const auto &item : kwargs) {
+            params[item.first] = item.second;
+        }
         return *this;
     }
 
@@ -925,7 +926,7 @@ class XCS
         py::object json_dumps = json_module.attr("dumps")(classifier);
         std::string json_str = json_dumps.cast<std::string>();
         cJSON *json = cJSON_Parse(json_str.c_str());
-        utils_json_parse_check(json);
+        param_json_parse_check(&xcs, json);
         clset_json_insert_cl(&xcs, json);
         cJSON_Delete(json);
     }
@@ -938,6 +939,7 @@ class XCS
     json_insert(const std::string &json_str)
     {
         clset_json_insert(&xcs, json_str.c_str());
+        check_status(&xcs); // throws exception for invalid inputs
     }
 
     /**

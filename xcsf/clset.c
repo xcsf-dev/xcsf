@@ -17,15 +17,16 @@
  * @file clset.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Functions operating on sets of classifiers.
  */
 
 #include "clset.h"
 #include "cl.h"
+#include "param.h"
 #include "utils.h"
 
-#define MAX_COVER (1000000) //!< Maximum number of covering attempts
+#define MAX_COVER 1000000 //!< Maximum number of covering attempts
 
 /**
  * @brief Finds a rule in the population that never matches an input.
@@ -796,7 +797,12 @@ void
 clset_json_insert(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    utils_json_parse_check(json);
+
+    param_json_parse_check(xcsf, json);
+    if (xcsf->status != XCSF_OK) {
+        return;
+    }
+
     if (json->child != NULL && cJSON_IsArray(json->child)) {
         cJSON *tail = json->child->child; // insert inverted for consistency
         if (tail != NULL) {
