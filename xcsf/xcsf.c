@@ -118,8 +118,9 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
     }
     FILE *fp = fopen(filename, "rb");
     if (fp == 0) {
-        printf("Error loading file: %s. %s.\n", filename, strerror(errno));
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, XCSF_ERROR, "Error loading file: %s. %s.\n",
+                       filename, strerror(errno));
+        return 0;
     }
     size_t s = 0;
     int major = 0;

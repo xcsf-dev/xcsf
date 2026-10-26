@@ -433,7 +433,7 @@ void
 param_json_import(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    utils_json_parse_check(json);
+    param_json_parse_check(xcsf, json);
     for (cJSON *iter = json->child; iter != NULL; iter = iter->next) {
         if (param_json_import_general(xcsf, iter)) {
             continue;
@@ -600,6 +600,26 @@ param_load(struct XCSF *xcsf, FILE *fp)
     return s;
 }
 
+/**
+ * @brief Checks whether JSON parsed correctly.
+ * @pre cJSON_Parse() called on the cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+param_json_parse_check(struct XCSF *xcsf, const cJSON *json)
+{
+    if (json == NULL) {
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL) {
+            xcsf_set_error(xcsf, XCSF_ERROR,
+                           "Error reading JSON, error before: %s\n", error_ptr);
+        } else {
+            xcsf_set_error(xcsf, XCSF_ERROR, "Error reading JSON\n");
+        }
+    }
+}
+
 /* setters */
 
 /**
@@ -611,8 +631,7 @@ void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 {
     if (a < 1 || a > 1000) {
-        xcsf_set_error(xcsf, XCSF_ERROR,
-                       "Invalid OMP_NUM_THREADS. Range: [1,1000]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "omp_num_threads must be: [1,1000]");
     } else {
         xcsf->OMP_NUM_THREADS = a;
 #ifdef PARALLEL
@@ -651,7 +670,7 @@ void
 param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "MAX_TRIALS must be > 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "max_trials must be > 0");
     } else {
         xcsf->MAX_TRIALS = a;
     }
@@ -661,7 +680,7 @@ void
 param_set_perf_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "PERF_TRIALS must be > 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "perf_trials must be > 0");
     } else {
         xcsf->PERF_TRIALS = a;
     }
@@ -671,7 +690,7 @@ void
 param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "POP_SIZE must be > 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "pop_size must be > 0");
     } else {
         xcsf->POP_SIZE = a;
     }
@@ -697,7 +716,7 @@ param_set_loss_func(struct XCSF *xcsf, const int a)
 {
     if (a < 0 || a >= LOSS_NUM) {
         xcsf_set_error(xcsf, XCSF_ERROR,
-                       "param_set_loss_func(): invalid LOSS_FUNC: %d\n", a);
+                       "param_set_loss_func(): invalid loss_func: %d\n", a);
     } else {
         xcsf->LOSS_FUNC = a;
         loss_set_func(xcsf);
@@ -720,7 +739,7 @@ void
 param_set_huber_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "HUBER_DELTA must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "huber_delta must be >= 0");
     } else {
         xcsf->HUBER_DELTA = a;
     }
@@ -730,7 +749,7 @@ void
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid GAMMA. Range: [0,1]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "gamma must be: [0,1]");
     } else {
         xcsf->GAMMA = a;
     }
@@ -740,7 +759,7 @@ void
 param_set_teletransportation(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "TELETRANSPORTATION must be > 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "teletransportation must be > 0");
     } else {
         xcsf->TELETRANSPORTATION = a;
     }
@@ -750,7 +769,7 @@ void
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid P_EXPLORE. Range: [0,1]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "p_explore must be: [0,1]");
     } else {
         xcsf->P_EXPLORE = a;
     }
@@ -760,7 +779,7 @@ void
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid ALPHA. Range: [0,1]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "alpha must be: [0,1]");
     } else {
         xcsf->ALPHA = a;
     }
@@ -770,7 +789,7 @@ void
 param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid BETA. Range: [0,1]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "beta must be: [0,1]");
     } else {
         xcsf->BETA = a;
     }
@@ -780,7 +799,7 @@ void
 param_set_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid DELTA. Range: [0,1]");
+        xcsf_set_error(xcsf, XCSF_ERROR, "delta must be: [0,1]");
     } else {
         xcsf->DELTA = a;
     }
@@ -790,7 +809,7 @@ void
 param_set_e0(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "E0 must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "e0 must be >= 0");
     } else {
         xcsf->E0 = a;
     }
@@ -800,7 +819,7 @@ void
 param_set_init_error(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "INIT_ERROR must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "init_error must be >= 0");
     } else {
         xcsf->INIT_ERROR = a;
     }
@@ -810,7 +829,7 @@ void
 param_set_init_fitness(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "INIT_FITNESS must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "init_fitness must be >= 0");
     } else {
         xcsf->INIT_FITNESS = a;
     }
@@ -820,7 +839,7 @@ void
 param_set_nu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "NU must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "nu must be >= 0");
     } else {
         xcsf->NU = a;
     }
@@ -830,7 +849,7 @@ void
 param_set_theta_del(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "THETA_DEL must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "theta_del must be >= 0");
     } else {
         xcsf->THETA_DEL = a;
     }
@@ -840,7 +859,7 @@ void
 param_set_m_probation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "M_PROBATION must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "m_probation must be >= 0");
     } else {
         xcsf->M_PROBATION = a;
     }
@@ -856,7 +875,7 @@ void
 param_set_theta_sub(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "THETA_SUB must be >= 0");
+        xcsf_set_error(xcsf, XCSF_ERROR, "theta_sub must be >= 0");
     } else {
         xcsf->THETA_SUB = a;
     }

@@ -449,7 +449,7 @@ cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cl_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     s += fread(&c->err, sizeof(double), 1, fp);

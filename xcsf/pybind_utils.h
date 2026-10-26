@@ -65,6 +65,7 @@ check_status(struct XCSF *xcsf)
 
     const std::string msg(xcsf->err_msg);
     const int code = xcsf->status;
+    xcsf_clear_error(xcsf);
 
     switch (code) {
         case XCSF_ERROR:

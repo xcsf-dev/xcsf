@@ -17,7 +17,7 @@
  * @file cl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief Functions operating on classifiers.
  */
 
@@ -65,7 +65,7 @@ double
 cl_pred_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cl_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 size_t
 cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
