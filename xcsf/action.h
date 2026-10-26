@@ -17,7 +17,7 @@
  * @file action.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Interface for classifier actions.
  */
 
@@ -25,12 +25,12 @@
 
 #include "xcsf.h"
 
-#define ACT_TYPE_INVALID (-1) //!< Error code for invalid actions
-#define ACT_TYPE_INTEGER (0) //!< Action type integer
-#define ACT_TYPE_NEURAL (1) //!< Action type neural network
+#define ACT_TYPE_INVALID -1 //!< Error code for invalid actions
+#define ACT_TYPE_INTEGER 0 //!< Action type integer
+#define ACT_TYPE_NEURAL 1 //!< Action type neural network
 
-#define ACT_STRING_INTEGER ("integer\0") //!< Integer
-#define ACT_STRING_NEURAL ("neural\0") //!< Neural
+#define ACT_STRING_INTEGER "integer\0" //!< Integer
+#define ACT_STRING_NEURAL "neural\0" //!< Neural
 
 #define ACT_TYPE_OPTIONS "integer, neural"
 
@@ -43,7 +43,7 @@ struct ArgsAct {
 };
 
 void
-action_set(const struct XCSF *xcsf, struct Cl *c);
+action_set(struct XCSF *xcsf, struct Cl *c);
 
 const char *
 action_type_as_string(const int type);
@@ -86,7 +86,7 @@ struct ActVtbl {
     void (*act_impl_cover)(const struct XCSF *xcsf, const struct Cl *c,
                            const double *x, const int action);
     void (*act_impl_free)(const struct XCSF *xcsf, const struct Cl *c);
-    void (*act_impl_init)(const struct XCSF *xcsf, struct Cl *c);
+    void (*act_impl_init)(struct XCSF *xcsf, struct Cl *c);
     void (*act_impl_print)(const struct XCSF *xcsf, const struct Cl *c);
     void (*act_impl_update)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x, const double *y);
@@ -94,7 +94,7 @@ struct ActVtbl {
                             FILE *fp);
     size_t (*act_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*act_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
-    void (*act_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+    void (*act_impl_json_import)(struct XCSF *xcsf, struct Cl *c,
                                  const cJSON *json);
 };
 
@@ -218,7 +218,7 @@ act_free(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c The classifier whose action is to be initialised.
  */
 static inline void
-act_init(const struct XCSF *xcsf, struct Cl *c)
+act_init(struct XCSF *xcsf, struct Cl *c)
 {
     (*c->act_vptr->act_impl_init)(xcsf, c);
 }
@@ -267,20 +267,24 @@ act_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 static inline void
-act_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+act_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "type");
     if (item == NULL || !cJSON_IsString(item)) {
-        printf("action_json_import(): missing type\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "action_json_import(): missing type\n");
+        return;
     }
+
     const char *type = item->valuestring;
     if (action_type_as_int(type) != xcsf->act->type) {
-        printf("action_json_import(): mismatched type\n");
-        printf("XCSF type = %s, but imported type = %s\n",
-               action_type_as_string(xcsf->act->type), type);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "action_json_import(): mismatched type\n"
+                       "XCSF type = %s, but imported type = %s\n",
+                       action_type_as_string(xcsf->act->type), type);
+        return;
     }
+
     (*c->act_vptr->act_impl_json_import)(xcsf, c, json);
 }
 

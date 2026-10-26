@@ -305,7 +305,7 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
             cJSON_IsString(iter)) {
             if (ea_param_set_type_string(xcsf, iter->valuestring) ==
                 EA_SELECT_INVALID) {
-                xcsf_set_error(xcsf, XCSF_ERROR,
+                xcsf_set_error(xcsf, STATUS_ERROR,
                                "Invalid EA SELECT_TYPE: %s\nOptions: {%s}\n",
                                iter->valuestring, EA_SELECT_OPTIONS);
             }
@@ -336,7 +336,7 @@ ea_param_json_import(struct XCSF *xcsf, cJSON *json)
             const bool reset = true ? iter->type == cJSON_True : false;
             ea_param_set_pred_reset(xcsf, reset);
         } else {
-            xcsf_set_error(xcsf, XCSF_ERROR,
+            xcsf_set_error(xcsf, STATUS_ERROR,
                            "Error importing EA parameter %s\n", iter->string);
         }
     }

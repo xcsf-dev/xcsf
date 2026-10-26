@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -98,22 +98,4 @@ rand_normal(const double mu, const double sigma)
     const double z0 = sqrt(-2 * log(u1)) * cos(two_pi * u2);
     z1 = sqrt(-2 * log(u1)) * sin(two_pi * u2);
     return z0 * sigma + mu;
-}
-
-/**
- * @brief Checks whether JSON parsed correctly.
- * @pre cJSON_Parse() called on the cJSON object.
- * @param [in] json cJSON object.
- */
-void
-utils_json_parse_check(const cJSON *json)
-{
-    if (json == NULL) {
-        printf("Error reading JSON\n");
-        const char *error_ptr = cJSON_GetErrorPtr();
-        if (error_ptr != NULL) {
-            printf("Error before: %s\n", error_ptr);
-        }
-        exit(EXIT_FAILURE);
-    }
 }

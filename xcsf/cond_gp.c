@@ -31,7 +31,7 @@
  * @param [in] c The classifier whose condition is to be initialised.
  */
 void
-cond_gp_init(const struct XCSF *xcsf, struct Cl *c)
+cond_gp_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondGP *new = malloc(sizeof(struct CondGP));
     tree_rand(&new->gp, xcsf->cond->targs);
@@ -221,7 +221,7 @@ cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_gp_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     struct CondGP *new = malloc(sizeof(struct CondGP));
@@ -302,13 +302,14 @@ cond_gp_param_defaults(struct XCSF *xcsf)
  * @param [in] json cJSON object.
  */
 void
-cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cond_gp_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "tree");
     if (item == NULL) {
-        printf("Import error: missing tree\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing tree\n");
+        return;
     }
+
     struct CondGP *cond = c->cond;
     tree_json_import(&cond->gp, xcsf->cond->targs, item);
 }

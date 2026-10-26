@@ -59,15 +59,16 @@ get_timestamp()
 static void
 check_status(struct XCSF *xcsf)
 {
-    if (xcsf->status == XCSF_OK) {
+    if (xcsf->status == STATUS_OK) {
         return;
     }
 
     const std::string msg(xcsf->err_msg);
     const int code = xcsf->status;
+    xcsf_clear_error(xcsf);
 
     switch (code) {
-        case XCSF_ERROR:
+        case STATUS_ERROR:
             throw std::invalid_argument(msg);
         default:
             throw std::runtime_error(msg);

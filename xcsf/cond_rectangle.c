@@ -39,7 +39,7 @@ static const int MU_TYPE[N_MU] = { SAM_LOG_NORMAL, SAM_LOG_NORMAL };
  * @param [in] c Classifier whose condition is to be initialised.
  */
 void
-cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c)
+cond_rectangle_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
     new->b1 = malloc(sizeof(double) * xcsf->x_dim);
@@ -359,7 +359,7 @@ cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_rectangle_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     struct CondRectangle *new = malloc(sizeof(struct CondRectangle));
@@ -409,16 +409,17 @@ cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
-                           const cJSON *json)
+cond_rectangle_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     struct CondRectangle *cond = c->cond;
     bool csr = false;
     if (xcsf->cond->type == COND_TYPE_HYPERRECTANGLE_CSR) {
         csr = true;
     }
+
     const char *b1_name = csr ? "center" : "bound1";
     const char *b2_name = csr ? "spread" : "bound2";
+
     const cJSON *item = cJSON_GetObjectItem(json, b1_name);
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
@@ -427,10 +428,12 @@ cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
                 cond->b1[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: %s length mismatch\n", b1_name);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: %s length mismatch\n", b1_name);
+            return;
         }
     }
+
     item = cJSON_GetObjectItem(json, b2_name);
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
@@ -439,9 +442,11 @@ cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
                 cond->b2[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: %s length mismatch\n", b2_name);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: %s length mismatch\n", b2_name);
+            return;
         }
     }
+
     sam_json_import(cond->mu, N_MU, json);
 }

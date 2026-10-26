@@ -17,7 +17,7 @@
  * @file pred_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Multi-layer perceptron neural network prediction functions.
  */
 
@@ -104,8 +104,7 @@ char *
 pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-pred_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json);
+pred_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Multi-layer perceptron neural network prediction implemented

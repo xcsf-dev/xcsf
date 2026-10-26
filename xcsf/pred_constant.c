@@ -17,12 +17,11 @@
  * @file pred_constant.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief Piece-wise constant prediction functions.
  */
 
 #include "pred_constant.h"
-#include "utils.h"
 
 /**
  * @brief Dummy function since constant predictions have no data structure.
@@ -214,8 +213,7 @@ pred_constant_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c,
-                          const cJSON *json)
+pred_constant_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "prediction");
     if (item != NULL && cJSON_IsArray(item)) {
@@ -225,8 +223,9 @@ pred_constant_json_import(const struct XCSF *xcsf, struct Cl *c,
                 c->prediction[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: prediction length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: prediction length mismatch\n");
+            return;
         }
     }
 }

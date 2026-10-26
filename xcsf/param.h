@@ -37,6 +37,9 @@ void
 param_json_import(struct XCSF *xcsf, const char *json_str);
 
 void
+param_json_parse_check(struct XCSF *xcsf, const cJSON *json);
+
+void
 param_free(struct XCSF *xcsf);
 
 void

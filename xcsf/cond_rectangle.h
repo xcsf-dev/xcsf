@@ -17,7 +17,7 @@
  * @file cond_rectangle.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2026.
  * @brief Hyperrectangle condition functions.
  */
 
@@ -62,7 +62,7 @@ void
 cond_rectangle_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_rectangle_init(const struct XCSF *xcsf, struct Cl *c);
+cond_rectangle_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_rectangle_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -78,14 +78,13 @@ size_t
 cond_rectangle_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_rectangle_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_rectangle_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 cond_rectangle_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_rectangle_json_import(const struct XCSF *xcsf, struct Cl *c,
-                           const cJSON *json);
+cond_rectangle_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Hyperrectangle condition implemented functions.

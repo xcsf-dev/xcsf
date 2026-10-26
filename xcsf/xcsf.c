@@ -86,13 +86,15 @@ xcsf_print_pset(const struct XCSF *xcsf, const bool print_cond,
  * @return The total number of elements written.
  */
 size_t
-xcsf_save(const struct XCSF *xcsf, const char *filename)
+xcsf_save(struct XCSF *xcsf, const char *filename)
 {
     FILE *fp = fopen(filename, "wb");
     if (fp == 0) {
-        printf("Error saving file: %s. %s.\n", filename, strerror(errno));
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error saving file: %s. %s.\n",
+                       filename, strerror(errno));
+        return 0;
     }
+
     size_t s = 0;
     s += fwrite(&VERSION_MAJOR, sizeof(int), 1, fp);
     s += fwrite(&VERSION_MINOR, sizeof(int), 1, fp);
@@ -116,11 +118,14 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
         clset_kill(xcsf, &xcsf->pset);
         clset_init(&xcsf->pset);
     }
+
     FILE *fp = fopen(filename, "rb");
     if (fp == 0) {
-        printf("Error loading file: %s. %s.\n", filename, strerror(errno));
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error loading file: %s. %s.\n",
+                       filename, strerror(errno));
+        return 0;
     }
+
     size_t s = 0;
     int major = 0;
     int minor = 0;
@@ -128,13 +133,17 @@ xcsf_load(struct XCSF *xcsf, const char *filename)
     s += fread(&major, sizeof(int), 1, fp);
     s += fread(&minor, sizeof(int), 1, fp);
     s += fread(&build, sizeof(int), 1, fp);
+
     if (major != VERSION_MAJOR || minor != VERSION_MINOR) {
-        printf("Error loading file: %s. Version mismatch. ", filename);
-        printf("This version: %d.%d\n", VERSION_MAJOR, VERSION_MINOR);
-        printf("Loaded version: %d.%d\n", major, minor);
         fclose(fp);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Error loading file: %s. Version mismatch. "
+                       "This version: %d.%d\n"
+                       "Loaded version: %d.%d\n",
+                       filename, VERSION_MAJOR, VERSION_MINOR, major, minor);
+        return 0;
     }
+
     s += param_load(xcsf, fp);
     s += clset_pset_load(xcsf, fp);
     fclose(fp);
@@ -227,7 +236,7 @@ xcsf_retrieve_pset(struct XCSF *xcsf)
 void
 xcsf_clear_error(struct XCSF *xcsf)
 {
-    xcsf->status = XCSF_OK;
+    xcsf->status = STATUS_OK;
     xcsf->err_msg[0] = '\0';
 }
 
@@ -245,7 +254,7 @@ xcsf_set_error(struct XCSF *xcsf, const enum xcsf_status code, const char *fmt,
     #pragma omp critical(xcsf_error)
 #endif
     {
-        if (xcsf->status == XCSF_OK) { // first error wins
+        if (xcsf->status == STATUS_OK) { // first error wins
             xcsf->status = code;
             va_list args;
             va_start(args, fmt);
@@ -262,9 +271,8 @@ xcsf_set_error(struct XCSF *xcsf, const enum xcsf_status code, const char *fmt,
 void
 xcsf_check_status(struct XCSF *xcsf)
 {
-    if (xcsf->status == XCSF_OK) {
-        return;
+    if (xcsf->status != STATUS_OK) {
+        printf("%s", xcsf->err_msg);
+        exit(EXIT_FAILURE);
     }
-    printf("%s", xcsf->err_msg);
-    exit(EXIT_FAILURE);
 }

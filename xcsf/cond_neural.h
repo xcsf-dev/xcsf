@@ -17,7 +17,7 @@
  * @file cond_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -67,7 +67,7 @@ void
 cond_neural_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_neural_init(const struct XCSF *xcsf, struct Cl *c);
+cond_neural_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_neural_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -83,7 +83,7 @@ size_t
 cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_neural_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 int
 cond_neural_neurons(const struct XCSF *xcsf, const struct Cl *c, int layer);
@@ -98,8 +98,7 @@ char *
 cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json);
+cond_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Multi-layer perceptron neural network condition implemented functions.

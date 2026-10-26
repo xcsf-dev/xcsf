@@ -17,7 +17,7 @@
  * @file rule_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2026.
  * @brief Neural network rule (condition + action) functions.
  */
 
@@ -28,22 +28,25 @@
 #include "neural_layer_lstm.h"
 #include "neural_layer_recurrent.h"
 #include "utils.h"
+#include "xcsf.h"
 
 /* CONDITION FUNCTIONS */
 
 void
-rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c)
+rule_neural_cond_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
     neural_create(&new->net, xcsf->cond->largs);
     const int expected = (int) fmax(1, ceil(log2(xcsf->n_actions))) + 1;
     if (new->net.n_outputs != expected) {
-        printf("rule_neural_init(): n_outputs(%d) != expected(%d)\n",
-               new->net.n_outputs, expected);
-        printf("neural rules output binary actions + 1 matching neuron\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(
+            xcsf, STATUS_ERROR,
+            "rule_neural_init(): n_outputs(%d) != expected(%d)\n"
+            "neural rules output binary actions + 1 matching neuron\n",
+            new->net.n_outputs, expected);
+    } else {
+        c->cond = new;
     }
-    c->cond = new;
 }
 
 void
@@ -151,7 +154,7 @@ rule_neural_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 size_t
-rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+rule_neural_cond_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     struct RuleNeural *new = malloc(sizeof(struct RuleNeural));
@@ -178,14 +181,14 @@ rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 void
-rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
-                             const cJSON *json)
+rule_neural_cond_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "network");
     if (item == NULL) {
-        printf("Import error: missing network\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing network\n");
+        return;
     }
+
     struct RuleNeural *cond = c->cond;
     neural_json_import(&cond->net, xcsf->cond->largs, item);
 }
@@ -193,7 +196,7 @@ rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
 /* ACTION FUNCTIONS */
 
 void
-rule_neural_act_init(const struct XCSF *xcsf, struct Cl *c)
+rule_neural_act_init(struct XCSF *xcsf, struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -320,8 +323,7 @@ rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 void
-rule_neural_act_json_import(const struct XCSF *xcsf, struct Cl *c,
-                            const cJSON *json)
+rule_neural_act_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     (void) c;

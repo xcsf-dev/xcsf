@@ -17,7 +17,7 @@
  * @file sam.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief Self-adaptive mutation functions.
  */
 
@@ -25,7 +25,7 @@
 #include "utils.h"
 
 #define MU_EPSILON 0.0005 //!< smallest mutation rate allowable
-#define N_RATES (10) //!< number of mutation rates for rate selection adaptation
+#define N_RATES 10 //!< number of mutation rates for rate selection adaptation
 
 /**
  * @brief Values for rate selection adaptation.

@@ -18,7 +18,7 @@
  * @author Richard Preen <rpreen@gmail.com>
  * @author David Pätzel
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Utility functions for random number handling, etc.
  */
 
@@ -45,9 +45,6 @@ rand_init(void);
 
 void
 rand_init_seed(const uint32_t seed);
-
-void
-utils_json_parse_check(const cJSON *json);
 
 /**
  * @brief Returns a float clamped within the specified range.

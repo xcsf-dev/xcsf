@@ -17,13 +17,12 @@
  * @file pred_rls.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Recursive least mean squares prediction functions.
  */
 
 #include "pred_rls.h"
 #include "blas.h"
-#include "utils.h"
 
 /**
  * @brief Initialises an RLS prediction.
@@ -296,7 +295,7 @@ pred_rls_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+pred_rls_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct PredRLS *pred = c->pred;
@@ -308,8 +307,9 @@ pred_rls_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
                 pred->weights[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: weight length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: weight length mismatch\n");
+            return;
         }
     }
 }

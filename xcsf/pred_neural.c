@@ -17,7 +17,7 @@
  * @file pred_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Multi-layer perceptron neural network prediction functions.
  */
 
@@ -411,14 +411,14 @@ pred_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json)
+pred_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "network");
     if (item == NULL) {
-        printf("Import error: missing network\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing network\n");
+        return;
     }
+
     struct PredNeural *pred = c->pred;
     neural_json_import(&pred->net, xcsf->pred->largs, item);
 }

@@ -17,7 +17,7 @@
  * @file param.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Functions for setting and printing parameters.
  */
 
@@ -344,23 +344,34 @@ param_json_import_action(struct XCSF *xcsf, cJSON *json)
 {
     cJSON *token = cJSON_GetObjectItem(json, "type");
     if (token == NULL) {
-        printf("No action type has been specified: cannot set params\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(
+            xcsf, STATUS_ERROR,
+            "No action type has been specified: cannot set params\n");
+        return;
     }
-    if (!cJSON_IsString(token) ||
-        action_param_set_type_string(xcsf, token->valuestring) ==
-            ACT_TYPE_INVALID) {
-        printf("Invalid action type\n");
-        printf("Options: {%s}\n", ACT_TYPE_OPTIONS);
-        exit(EXIT_FAILURE);
+
+    if (!cJSON_IsString(token)) {
+        xcsf_set_error(xcsf, STATUS_ERROR, "Action type must be a string\n");
+        return;
     }
+
+    if (action_param_set_type_string(xcsf, token->valuestring) ==
+        ACT_TYPE_INVALID) {
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Invalid action type\nOptions: {%s}\n",
+                       ACT_TYPE_OPTIONS);
+        return;
+    }
+
     token = cJSON_GetObjectItem(json, "args");
-    if (token != NULL) {
-        const char *ret = action_param_json_import(xcsf, token);
-        if (ret != NULL) {
-            printf("Invalid action parameter %s\n", ret);
-            exit(EXIT_FAILURE);
-        }
+    if (token == NULL) {
+        return; // args are optional
+    }
+
+    const char *ret = action_param_json_import(xcsf, token);
+    if (ret != NULL) {
+        xcsf_set_error(xcsf, STATUS_ERROR, "Invalid action parameter %s\n",
+                       ret);
     }
 }
 
@@ -374,23 +385,34 @@ param_json_import_condition(struct XCSF *xcsf, cJSON *json)
 {
     cJSON *token = cJSON_GetObjectItem(json, "type");
     if (token == NULL) {
-        printf("No condition type has been specified: cannot set params\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(
+            xcsf, STATUS_ERROR,
+            "No condition type has been specified: cannot set params\n");
+        return;
     }
-    if (!cJSON_IsString(token) ||
-        cond_param_set_type_string(xcsf, token->valuestring) ==
-            COND_TYPE_INVALID) {
-        printf("Invalid condition type\n");
-        printf("Options: {%s}\n", COND_TYPE_OPTIONS);
-        exit(EXIT_FAILURE);
+
+    if (!cJSON_IsString(token)) {
+        xcsf_set_error(xcsf, STATUS_ERROR, "Condition type must be a string\n");
+        return;
     }
+
+    if (cond_param_set_type_string(xcsf, token->valuestring) ==
+        COND_TYPE_INVALID) {
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Invalid condition type\nOptions: {%s}\n",
+                       COND_TYPE_OPTIONS);
+        return;
+    }
+
     token = cJSON_GetObjectItem(json, "args");
-    if (token != NULL) {
-        const char *ret = cond_param_json_import(xcsf, token);
-        if (ret != NULL) {
-            printf("Invalid condition parameter %s\n", ret);
-            exit(EXIT_FAILURE);
-        }
+    if (token == NULL) {
+        return; // args are optional
+    }
+
+    const char *ret = cond_param_json_import(xcsf, token);
+    if (ret != NULL) {
+        xcsf_set_error(xcsf, STATUS_ERROR, "Invalid condition parameter %s\n",
+                       ret);
     }
 }
 
@@ -404,23 +426,35 @@ param_json_import_prediction(struct XCSF *xcsf, cJSON *json)
 {
     cJSON *token = cJSON_GetObjectItem(json, "type");
     if (token == NULL) {
-        printf("No prediction type has been specified: cannot set params\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(
+            xcsf, STATUS_ERROR,
+            "No prediction type has been specified: cannot set params\n");
+        return;
     }
-    if (!cJSON_IsString(token) ||
-        pred_param_set_type_string(xcsf, token->valuestring) ==
-            PRED_TYPE_INVALID) {
-        printf("Invalid prediction type\n");
-        printf("Options: {%s}\n", PRED_TYPE_OPTIONS);
-        exit(EXIT_FAILURE);
+
+    if (!cJSON_IsString(token)) {
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Prediction type must be a string\n");
+        return;
     }
+
+    if (pred_param_set_type_string(xcsf, token->valuestring) ==
+        PRED_TYPE_INVALID) {
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Invalid prediction type\nOptions: {%s}\n",
+                       PRED_TYPE_OPTIONS);
+        return;
+    }
+
     token = cJSON_GetObjectItem(json, "args");
-    if (token != NULL) {
-        const char *ret = pred_param_json_import(xcsf, token);
-        if (ret != NULL) {
-            printf("Invalid prediction parameter %s\n", ret);
-            exit(EXIT_FAILURE);
-        }
+    if (token == NULL) {
+        return; // args are optional
+    }
+
+    const char *ret = pred_param_json_import(xcsf, token);
+    if (ret != NULL) {
+        xcsf_set_error(xcsf, STATUS_ERROR, "Invalid prediction parameter %s\n",
+                       ret);
     }
 }
 
@@ -433,41 +467,39 @@ void
 param_json_import(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    utils_json_parse_check(json);
+    param_json_parse_check(xcsf, json);
+    if (json == NULL) {
+        return;
+    }
+
     for (cJSON *iter = json->child; iter != NULL; iter = iter->next) {
-        if (param_json_import_general(xcsf, iter)) {
-            continue;
+        if (xcsf->status != STATUS_OK) {
+            break;
         }
-        if (param_json_import_multi(xcsf, iter)) {
-            continue;
-        }
-        if (param_json_import_subsump(xcsf, iter)) {
-            continue;
-        }
-        if (param_json_import_cl_general(xcsf, iter)) {
-            continue;
-        }
-        if (strncmp(iter->string, "ea\0", 3) == 0) {
-            ea_param_json_import(xcsf, iter->child);
-            continue;
-        }
-        if (strncmp(iter->string, "action\0", 7) == 0) {
-            param_json_import_action(xcsf, iter);
-            continue;
-        }
-        if (strncmp(iter->string, "condition\0", 10) == 0) {
-            param_json_import_condition(xcsf, iter);
-            continue;
-        }
-        if (strncmp(iter->string, "prediction\0", 11) == 0) {
-            param_json_import_prediction(xcsf, iter);
+
+        if (param_json_import_general(xcsf, iter) ||
+            param_json_import_multi(xcsf, iter) ||
+            param_json_import_subsump(xcsf, iter) ||
+            param_json_import_cl_general(xcsf, iter)) {
             continue;
         }
 
-        xcsf_set_error(xcsf, XCSF_ERROR,
-                       "Error: unable to import parameter: %s\n", iter->string);
-        return;
+        if (strncmp(iter->string, "ea\0", 3) == 0) {
+            ea_param_json_import(xcsf, iter->child);
+        } else if (strncmp(iter->string, "action\0", 7) == 0) {
+            param_json_import_action(xcsf, iter);
+        } else if (strncmp(iter->string, "condition\0", 10) == 0) {
+            param_json_import_condition(xcsf, iter);
+        } else if (strncmp(iter->string, "prediction\0", 11) == 0) {
+            param_json_import_prediction(xcsf, iter);
+        } else {
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Error: unable to import parameter: %s\n",
+                           iter->string);
+            break;
+        }
     }
+
     cJSON_Delete(json);
 }
 
@@ -549,9 +581,10 @@ param_load(struct XCSF *xcsf, FILE *fp)
     size_t len = 0;
     s += fread(&len, sizeof(size_t), 1, fp);
     if (len < 1) {
-        printf("param_load(): error len < 1\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "param_load(): error len < 1\n");
+        return 0;
     }
+
     free(xcsf->population_file);
     xcsf->population_file = malloc(sizeof(char) * len);
     s += fread(xcsf->population_file, sizeof(char), len, fp);
@@ -564,10 +597,12 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->x_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->y_dim, sizeof(int), 1, fp);
     s += fread(&xcsf->n_actions, sizeof(int), 1, fp);
+
     if (xcsf->x_dim < 1 || xcsf->y_dim < 1 || xcsf->n_actions < 1) {
-        printf("param_load(): read error\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "param_load(): read error\n");
+        return 0;
     }
+
     s += fread(&xcsf->OMP_NUM_THREADS, sizeof(int), 1, fp);
     s += fread(&xcsf->RANDOM_STATE, sizeof(int), 1, fp);
     s += fread(&xcsf->POP_INIT, sizeof(bool), 1, fp);
@@ -592,12 +627,33 @@ param_load(struct XCSF *xcsf, FILE *fp)
     s += fread(&xcsf->M_PROBATION, sizeof(int), 1, fp);
     s += fread(&xcsf->STATEFUL, sizeof(bool), 1, fp);
     s += fread(&xcsf->COMPACTION, sizeof(bool), 1, fp);
+
     s += ea_param_load(xcsf, fp);
     s += action_param_load(xcsf, fp);
     s += cond_param_load(xcsf, fp);
     s += pred_param_load(xcsf, fp);
     loss_set_func(xcsf);
     return s;
+}
+
+/**
+ * @brief Checks whether JSON parsed correctly.
+ * @pre cJSON_Parse() called on the cJSON object.
+ * @param [in] xcsf The XCSF data structure.
+ * @param [in] json cJSON object.
+ */
+void
+param_json_parse_check(struct XCSF *xcsf, const cJSON *json)
+{
+    if (json == NULL) {
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL) {
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Error reading JSON, error before: %s\n", error_ptr);
+        } else {
+            xcsf_set_error(xcsf, STATUS_ERROR, "Error reading JSON\n");
+        }
+    }
 }
 
 /* setters */
@@ -611,8 +667,7 @@ void
 param_set_omp_num_threads(struct XCSF *xcsf, const int a)
 {
     if (a < 1 || a > 1000) {
-        xcsf_set_error(xcsf, XCSF_ERROR,
-                       "Invalid OMP_NUM_THREADS. Range: [1,1000]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "omp_num_threads must be: [1,1000]");
     } else {
         xcsf->OMP_NUM_THREADS = a;
 #ifdef PARALLEL
@@ -636,9 +691,10 @@ void
 param_set_population_file(struct XCSF *xcsf, const char *a)
 {
     free(xcsf->population_file);
-    size_t length = strnlen(a, sizeof(char) * MAX_LEN) + 1;
-    xcsf->population_file = malloc(sizeof(char) * length);
-    strncpy(xcsf->population_file, a, length);
+    const size_t length = strnlen(a, MAX_LEN) + 1;
+    xcsf->population_file = malloc(length);
+    memcpy(xcsf->population_file, a, length - 1);
+    xcsf->population_file[length - 1] = '\0';
 }
 
 void
@@ -651,7 +707,7 @@ void
 param_set_max_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "MAX_TRIALS must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "max_trials must be > 0");
     } else {
         xcsf->MAX_TRIALS = a;
     }
@@ -661,7 +717,7 @@ void
 param_set_perf_trials(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "PERF_TRIALS must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "perf_trials must be > 0");
     } else {
         xcsf->PERF_TRIALS = a;
     }
@@ -671,7 +727,7 @@ void
 param_set_pop_size(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "POP_SIZE must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "pop_size must be > 0");
     } else {
         xcsf->POP_SIZE = a;
     }
@@ -687,7 +743,7 @@ param_set_loss_func_string(struct XCSF *xcsf, const char *a)
             return;
         }
     }
-    xcsf_set_error(xcsf, XCSF_ERROR,
+    xcsf_set_error(xcsf, STATUS_ERROR,
                    "Invalid loss function: %s\nOptions: {%s}\n", a,
                    LOSS_OPTIONS);
 }
@@ -696,8 +752,8 @@ void
 param_set_loss_func(struct XCSF *xcsf, const int a)
 {
     if (a < 0 || a >= LOSS_NUM) {
-        xcsf_set_error(xcsf, XCSF_ERROR,
-                       "param_set_loss_func(): invalid LOSS_FUNC: %d\n", a);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "param_set_loss_func(): invalid loss_func: %d\n", a);
     } else {
         xcsf->LOSS_FUNC = a;
         loss_set_func(xcsf);
@@ -720,7 +776,7 @@ void
 param_set_huber_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "HUBER_DELTA must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "huber_delta must be >= 0");
     } else {
         xcsf->HUBER_DELTA = a;
     }
@@ -730,7 +786,7 @@ void
 param_set_gamma(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid GAMMA. Range: [0,1]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "gamma must be: [0,1]");
     } else {
         xcsf->GAMMA = a;
     }
@@ -740,7 +796,7 @@ void
 param_set_teletransportation(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "TELETRANSPORTATION must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "teletransportation must be > 0");
     } else {
         xcsf->TELETRANSPORTATION = a;
     }
@@ -750,7 +806,7 @@ void
 param_set_p_explore(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid P_EXPLORE. Range: [0,1]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "p_explore must be: [0,1]");
     } else {
         xcsf->P_EXPLORE = a;
     }
@@ -760,7 +816,7 @@ void
 param_set_alpha(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid ALPHA. Range: [0,1]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "alpha must be: [0,1]");
     } else {
         xcsf->ALPHA = a;
     }
@@ -770,7 +826,7 @@ void
 param_set_beta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid BETA. Range: [0,1]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "beta must be: [0,1]");
     } else {
         xcsf->BETA = a;
     }
@@ -780,7 +836,7 @@ void
 param_set_delta(struct XCSF *xcsf, const double a)
 {
     if (a < 0 || a > 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "Invalid DELTA. Range: [0,1]");
+        xcsf_set_error(xcsf, STATUS_ERROR, "delta must be: [0,1]");
     } else {
         xcsf->DELTA = a;
     }
@@ -790,7 +846,7 @@ void
 param_set_e0(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "E0 must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "e0 must be >= 0");
     } else {
         xcsf->E0 = a;
     }
@@ -800,7 +856,7 @@ void
 param_set_init_error(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "INIT_ERROR must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "init_error must be >= 0");
     } else {
         xcsf->INIT_ERROR = a;
     }
@@ -810,7 +866,7 @@ void
 param_set_init_fitness(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "INIT_FITNESS must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "init_fitness must be >= 0");
     } else {
         xcsf->INIT_FITNESS = a;
     }
@@ -820,7 +876,7 @@ void
 param_set_nu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "NU must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "nu must be >= 0");
     } else {
         xcsf->NU = a;
     }
@@ -830,7 +886,7 @@ void
 param_set_theta_del(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "THETA_DEL must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "theta_del must be >= 0");
     } else {
         xcsf->THETA_DEL = a;
     }
@@ -840,7 +896,7 @@ void
 param_set_m_probation(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "M_PROBATION must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "m_probation must be >= 0");
     } else {
         xcsf->M_PROBATION = a;
     }
@@ -856,7 +912,7 @@ void
 param_set_theta_sub(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "THETA_SUB must be >= 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "theta_sub must be >= 0");
     } else {
         xcsf->THETA_SUB = a;
     }
@@ -866,7 +922,7 @@ void
 param_set_x_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "x_dim must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "x_dim must be > 0");
     } else {
         xcsf->x_dim = a;
     }
@@ -882,7 +938,7 @@ void
 param_set_y_dim(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "y_dim must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "y_dim must be > 0");
     } else {
         xcsf->y_dim = a;
     }
@@ -892,7 +948,7 @@ void
 param_set_n_actions(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        xcsf_set_error(xcsf, XCSF_ERROR, "n_actions must be > 0");
+        xcsf_set_error(xcsf, STATUS_ERROR, "n_actions must be > 0");
     } else {
         xcsf->n_actions = a;
     }

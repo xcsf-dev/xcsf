@@ -17,7 +17,7 @@
  * @file cl.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief Functions operating on classifiers.
  */
 
@@ -65,7 +65,7 @@ double
 cl_pred_size(const struct XCSF *xcsf, const struct Cl *c);
 
 size_t
-cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cl_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 size_t
 cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
@@ -74,8 +74,7 @@ void
 cl_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src);
 
 void
-cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
-         const int action);
+cl_cover(struct XCSF *xcsf, struct Cl *c, const double *x, const int action);
 
 void
 cl_free(const struct XCSF *xcsf, struct Cl *c);
@@ -92,7 +91,7 @@ cl_print(const struct XCSF *xcsf, const struct Cl *c, const bool print_cond,
          const bool print_act, const bool print_pred);
 
 void
-cl_rand(const struct XCSF *xcsf, struct Cl *c);
+cl_rand(struct XCSF *xcsf, struct Cl *c);
 
 void
 cl_update(const struct XCSF *xcsf, struct Cl *c, const double *x,
@@ -108,4 +107,4 @@ cl_json_export(const struct XCSF *xcsf, const struct Cl *c,
                const bool return_pred);
 
 void
-cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
+cl_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);

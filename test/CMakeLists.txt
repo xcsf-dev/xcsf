@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2020--2023 Richard Preen <rpreen@gmail.com>
+# Copyright (C) 2020--2026 Richard Preen <rpreen@gmail.com>
 #
 # Copyright (C) 2021 David Pätzel
 #
@@ -42,6 +42,7 @@ set(XCSF_TESTS
     neural_layer_test.cpp
     neural_test.cpp
     pa_test.cpp
+    param_test.cpp
     pred_constant_test.cpp
     pred_neural_test.cpp
     pred_nlms_test.cpp
@@ -59,8 +60,9 @@ target_link_libraries(tests xcs)
 
 add_test(NAME xcsf COMMAND tests)
 
-add_custom_command(
-  TARGET tests
+add_custom_target(
+  run_unit_tests ALL
   COMMENT "Running tests..."
-  POST_BUILD
-  COMMAND tests)
+  COMMAND tests
+  DEPENDS tests
+  USES_TERMINAL)

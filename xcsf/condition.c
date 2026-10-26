@@ -38,7 +38,7 @@
  * @param [in] c The classifier to set.
  */
 void
-condition_set(const struct XCSF *xcsf, struct Cl *c)
+condition_set(struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->cond->type) {
         case COND_TYPE_DUMMY:
@@ -72,8 +72,9 @@ condition_set(const struct XCSF *xcsf, struct Cl *c)
             c->act_vptr = &rule_neural_act_vtbl;
             break;
         default:
-            printf("Invalid condition type specified: %d\n", xcsf->cond->type);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Invalid condition type specified: %d\n",
+                           xcsf->cond->type);
     }
 }
 
@@ -319,8 +320,8 @@ cond_param_json_import(struct XCSF *xcsf, cJSON *json)
             ret = cond_neural_param_json_import(xcsf, json->child);
             break;
         default:
-            printf("cond_param_json_import(): unknown type.\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "cond_param_json_import(): unknown type.\n");
     }
     return ret;
 }
@@ -400,11 +401,9 @@ void
 cond_param_set_eta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND ETA too small\n");
-        xcsf->cond->eta = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND ETA too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set COND ETA too large\n");
-        xcsf->cond->eta = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND ETA too large\n");
     } else {
         xcsf->cond->eta = a;
     }
@@ -426,11 +425,11 @@ void
 cond_param_set_p_dontcare(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND P_DONTCARE too small\n");
-        xcsf->cond->p_dontcare = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Error: COND P_DONTCARE too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set COND P_DONTCARE too large\n");
-        xcsf->cond->p_dontcare = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Error: COND P_DONTCARE too large\n");
     } else {
         xcsf->cond->p_dontcare = a;
     }
@@ -440,11 +439,9 @@ void
 cond_param_set_mu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND MU too small\n");
-        xcsf->cond->mu = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND MU too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set COND MU too large\n");
-        xcsf->cond->mu = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND MU too large\n");
     } else {
         xcsf->cond->mu = a;
     }
@@ -454,11 +451,9 @@ void
 cond_param_set_p_mu(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND P_MU too small\n");
-        xcsf->cond->p_mu = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND P_MU too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set COND P_MU too large\n");
-        xcsf->cond->p_mu = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND P_MU too large\n");
     } else {
         xcsf->cond->p_mu = a;
     }
@@ -474,8 +469,8 @@ void
 cond_param_set_spread_min(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND SPREAD_MIN too small\n");
-        xcsf->cond->spread_min = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "Error: COND SPREAD_MIN too small\n");
     } else {
         xcsf->cond->spread_min = a;
     }
@@ -485,8 +480,7 @@ void
 cond_param_set_bits(struct XCSF *xcsf, const int a)
 {
     if (a < 1) {
-        printf("Warning: tried to set COND BITS too small\n");
-        xcsf->cond->bits = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND BITS too small\n");
     } else {
         xcsf->cond->bits = a;
     }
@@ -506,8 +500,7 @@ void
 cond_param_set_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        printf("Warning: tried to set COND TYPE too small\n");
-        xcsf->cond->type = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: COND TYPE too small\n");
     } else {
         xcsf->cond->type = a;
     }

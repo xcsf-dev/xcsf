@@ -17,7 +17,7 @@
  * @file cond_dgp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Dynamical GP graph condition functions.
  */
 
@@ -67,7 +67,7 @@ void
 cond_dgp_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_dgp_init(const struct XCSF *xcsf, struct Cl *c);
+cond_dgp_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_dgp_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -83,13 +83,13 @@ size_t
 cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_dgp_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_dgp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
+cond_dgp_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Dynamical GP graph condition implemented functions.

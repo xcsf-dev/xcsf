@@ -17,7 +17,7 @@
  * @file prediction.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Interface for classifier predictions.
  */
 
@@ -25,20 +25,20 @@
 
 #include "xcsf.h"
 
-#define PRED_TYPE_INVALID (-1) //!< Error code for invalid prediction
-#define PRED_TYPE_CONSTANT (0) //!< Prediction type constant
-#define PRED_TYPE_NLMS_LINEAR (1) //!< Prediction type linear nlms
-#define PRED_TYPE_NLMS_QUADRATIC (2) //!< Prediction type quadratic nlms
-#define PRED_TYPE_RLS_LINEAR (3) //!< Prediction type linear rls
-#define PRED_TYPE_RLS_QUADRATIC (4) //!< Prediction type quadratic rls
-#define PRED_TYPE_NEURAL (5) //!< Prediction type neural
+#define PRED_TYPE_INVALID -1 //!< Error code for invalid prediction
+#define PRED_TYPE_CONSTANT 0 //!< Prediction type constant
+#define PRED_TYPE_NLMS_LINEAR 1 //!< Prediction type linear nlms
+#define PRED_TYPE_NLMS_QUADRATIC 2 //!< Prediction type quadratic nlms
+#define PRED_TYPE_RLS_LINEAR 3 //!< Prediction type linear rls
+#define PRED_TYPE_RLS_QUADRATIC 4 //!< Prediction type quadratic rls
+#define PRED_TYPE_NEURAL 5 //!< Prediction type neural
 
-#define PRED_STRING_CONSTANT ("constant\0") //!< Constant
-#define PRED_STRING_NLMS_LINEAR ("nlms_linear\0") //!< Linear nlms
-#define PRED_STRING_NLMS_QUADRATIC ("nlms_quadratic\0") //!< Quadratic nlms
-#define PRED_STRING_RLS_LINEAR ("rls_linear\0") //!< Linear rls
-#define PRED_STRING_RLS_QUADRATIC ("rls_quadratic\0") //!< Quadratic rls
-#define PRED_STRING_NEURAL ("neural\0") //!< Neural
+#define PRED_STRING_CONSTANT "constant\0" //!< Constant
+#define PRED_STRING_NLMS_LINEAR "nlms_linear\0" //!< Linear nlms
+#define PRED_STRING_NLMS_QUADRATIC "nlms_quadratic\0" //!< Quadratic nlms
+#define PRED_STRING_RLS_LINEAR "rls_linear\0" //!< Linear rls
+#define PRED_STRING_RLS_QUADRATIC "rls_quadratic\0" //!< Quadratic rls
+#define PRED_STRING_NEURAL "neural\0" //!< Neural
 
 #define PRED_TYPE_OPTIONS                                                      \
     "constant, nlms_linear, nlms_quadratic, rls_linear, rls_quadratic, "       \
@@ -87,7 +87,7 @@ pred_transform_input(const struct XCSF *xcsf, const double *x, const double X0,
                      double *tmp_input);
 
 void
-prediction_set(const struct XCSF *xcsf, struct Cl *c);
+prediction_set(struct XCSF *xcsf, struct Cl *c);
 
 /**
  * @brief Prediction interface data structure.
@@ -111,7 +111,7 @@ struct PredVtbl {
                              FILE *fp);
     size_t (*pred_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*pred_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
-    void (*pred_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+    void (*pred_impl_json_import)(struct XCSF *xcsf, struct Cl *c,
                                   const cJSON *json);
 };
 
@@ -270,20 +270,24 @@ pred_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 static inline void
-pred_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+pred_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "type");
     if (item == NULL || !cJSON_IsString(item)) {
-        printf("pred_json_import(): missing type\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "pred_json_import(): missing type\n");
+        return;
     }
+
     const char *type = item->valuestring;
     if (prediction_type_as_int(type) != xcsf->pred->type) {
-        printf("pred_json_import(): mismatched type\n");
-        printf("XCSF type = %s, but imported type = %s\n",
-               prediction_type_as_string(xcsf->pred->type), type);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "pred_json_import(): mismatched type\n"
+                       "XCSF type = %s, but imported type = %s\n",
+                       prediction_type_as_string(xcsf->pred->type), type);
+        return;
     }
+
     (*c->pred_vptr->pred_impl_json_import)(xcsf, c, json);
 }
 

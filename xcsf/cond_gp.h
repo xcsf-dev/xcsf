@@ -17,7 +17,7 @@
  * @file cond_gp.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Tree GP condition functions.
  */
 
@@ -67,7 +67,7 @@ void
 cond_gp_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_init(const struct XCSF *xcsf, struct Cl *c);
+cond_gp_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_gp_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -83,13 +83,13 @@ size_t
 cond_gp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_gp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_gp_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 cond_gp_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_gp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json);
+cond_gp_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Tree GP condition implemented functions.

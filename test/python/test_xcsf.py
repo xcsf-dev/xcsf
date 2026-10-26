@@ -17,8 +17,6 @@
 
 """XCSF Python tests."""
 
-from __future__ import annotations
-
 import json
 import numbers
 import os
@@ -144,7 +142,12 @@ def test_deterministic_prediction(data, prediction):
     )
 
     # fit model
-    xcs.fit(data.x_train, data.y_train, validation_data=(data.x_val, data.y_val))
+    xcs.fit(
+        data.x_train,
+        data.y_train,
+        validation_data=(data.x_val, data.y_val),
+        verbose=False,
+    )
 
     # get predictions
     a: np.ndarray = xcs.predict(data.x_test)
@@ -181,7 +184,12 @@ def test_serialization(data, condition, prediction):
     )
 
     # fit model
-    xcs1.fit(data.x_train, data.y_train, validation_data=(data.x_val, data.y_val))
+    xcs1.fit(
+        data.x_train,
+        data.y_train,
+        validation_data=(data.x_val, data.y_val),
+        verbose=False,
+    )
 
     # save with pickle
     with open(PKL_FILENAME, "wb") as fp:
@@ -272,7 +280,7 @@ def test_seeding(data):
     # fit a single sample
     X1 = data.x_train[0].reshape(1, -1)
     y1 = data.y_train[0].reshape(1, -1)
-    xcs.fit(X1, y1, warm_start=True)
+    xcs.fit(X1, y1, warm_start=True, verbose=False)
 
     # get updated population
     new_pop: list[dict] = json.loads(xcs.json())["classifiers"]
@@ -288,6 +296,43 @@ def test_seeding(data):
     # clean up
     if os.path.exists(POP_FILENAME):
         os.remove(POP_FILENAME)
+
+
+@pytest.mark.parametrize(
+    ("classifier", "match"),
+    [
+        ({"prediction": {"type": "blah"}}, "mismatched"),
+        ({"condition": {"type": "blah"}}, "mismatched"),
+        (
+            {
+                "condition": {
+                    "type": "hyperrectangle_ubr",
+                    "bound1": np.round(np.random.rand(5), 1).tolist(),
+                }
+            },
+            "mismatch",
+        ),
+    ],
+)
+def test_seeding_mismatch(classifier, match):
+    """Test population seeding with mismatched classifiers."""
+    with open(POP_FILENAME, "w", encoding="utf-8") as file:
+        pset = {"classifiers": [classifier]}
+        json.dump(pset, file)
+
+    with pytest.raises(ValueError, match=match):
+        _ = xcsf.XCS(
+            x_dim=2,
+            y_dim=2,
+            n_actions=1,
+            random_state=SEED,
+            population_file=POP_FILENAME,
+            max_trials=1,
+            pop_init=False,
+            action={"type": "integer"},
+            condition={"type": "hyperrectangle_ubr"},
+            prediction={"type": "nlms_linear"},
+        )
 
 
 def _compare_dicts(d1, d2, path=""):
