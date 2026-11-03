@@ -17,7 +17,7 @@
  * @file cl.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Functions operating on classifiers.
  */
 
@@ -25,9 +25,7 @@
 #include "action.h"
 #include "condition.h"
 #include "ea.h"
-#include "loss.h"
 #include "prediction.h"
-#include "utils.h"
 
 /**
  * @brief Initialises a new classifier - but not condition, action, prediction.
@@ -110,8 +108,7 @@ cl_init_copy(const struct XCSF *xcsf, struct Cl *dest, const struct Cl *src)
  * @param [in] action The action to cover.
  */
 void
-cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
-         const int action)
+cl_cover(struct XCSF *xcsf, struct Cl *c, const double *x, const int action)
 {
     cl_rand(xcsf, c);
     cond_cover(xcsf, c, x);
@@ -126,7 +123,7 @@ cl_cover(const struct XCSF *xcsf, struct Cl *c, const double *x,
  * @param [in] c The classifier being randomly initialised.
  */
 void
-cl_rand(const struct XCSF *xcsf, struct Cl *c)
+cl_rand(struct XCSF *xcsf, struct Cl *c)
 {
     action_set(xcsf, c);
     prediction_set(xcsf, c);
@@ -449,7 +446,7 @@ cl_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cl_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cl_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     s += fread(&c->err, sizeof(double), 1, fp);
@@ -574,22 +571,27 @@ cl_json_import_properties(struct Cl *c, const cJSON *json)
  * @param [in] json cJSON object.
  */
 static void
-cl_json_import_current(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cl_json_import_current(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "current_match");
     if (item != NULL && cJSON_IsBool(item)) {
         c->m = true ? item->type == cJSON_True : false;
     }
+
     item = cJSON_GetObjectItem(json, "current_action");
     if (item != NULL && cJSON_IsNumber(item)) {
         c->action = item->valueint;
     }
+
     item = cJSON_GetObjectItem(json, "current_prediction");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) != xcsf->y_dim) {
-            printf("Import error: current prediction length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(
+                xcsf, STATUS_ERROR,
+                "Import error: current prediction length mismatch\n");
+            return;
         }
+
         for (int i = 0; i < xcsf->y_dim; ++i) {
             const cJSON *item_i = cJSON_GetArrayItem(item, i);
             c->prediction[i] = item_i->valuedouble;
@@ -605,7 +607,7 @@ cl_json_import_current(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
  * @param [in] json cJSON object.
  */
 void
-cl_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cl_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     cl_init(xcsf, c, xcsf->pset.num, xcsf->time);
     cl_rand(xcsf, c);

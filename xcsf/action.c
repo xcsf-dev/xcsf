@@ -17,14 +17,13 @@
  * @file action.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2022.
+ * @date 2015--2026.
  * @brief Interface for classifier actions.
  */
 
 #include "action.h"
 #include "act_integer.h"
 #include "act_neural.h"
-#include "utils.h"
 
 /**
  * @brief Sets a classifier's action functions to the implementations.
@@ -32,7 +31,7 @@
  * @param [in] c The classifier to set.
  */
 void
-action_set(const struct XCSF *xcsf, struct Cl *c)
+action_set(struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->act->type) {
         case ACT_TYPE_INTEGER:
@@ -42,8 +41,9 @@ action_set(const struct XCSF *xcsf, struct Cl *c)
             c->act_vptr = &act_neural_vtbl;
             break;
         default:
-            printf("Invalid action type specified: %d\n", xcsf->act->type);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Invalid action type specified: %d\n",
+                           xcsf->act->type);
     }
 }
 
@@ -138,8 +138,8 @@ action_param_json_import(struct XCSF *xcsf, cJSON *json)
             ret = act_neural_param_json_import(xcsf, json->child);
             break;
         default:
-            printf("action_param_json_import(): unknown type.\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "action_param_json_import(): unknown type.\n");
     }
     return ret;
 }
@@ -202,8 +202,7 @@ void
 action_param_set_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        printf("Warning: tried to set ACT TYPE too small\n");
-        xcsf->act->type = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: ACT TYPE too small\n");
     } else {
         xcsf->act->type = a;
     }

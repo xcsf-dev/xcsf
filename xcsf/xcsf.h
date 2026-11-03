@@ -29,6 +29,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <math.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -38,6 +39,8 @@
 static const int VERSION_MAJOR = 1; //!< XCSF major version number
 static const int VERSION_MINOR = 5; //!< XCSF minor version number
 static const int VERSION_BUILD = 1; //!< XCSF build version number
+
+enum xcsf_status { STATUS_OK = 0, STATUS_ERROR = 1 }; //!< XCSF status codes
 
 /**
  * @brief Classifier data structure.
@@ -138,6 +141,8 @@ struct XCSF {
     bool STATEFUL; //!< Whether classifiers should retain state across trials
     bool COMPACTION; //!< if sys err < E0: largest of 2 roulette spins deleted
     char *population_file; //!< Name of a JSON file containing an initial pop
+    char err_msg[256]; //!< Error message
+    int status; //!< First error that occurred, STATUS_OK otherwise
 };
 
 /**
@@ -155,7 +160,7 @@ size_t
 xcsf_load(struct XCSF *xcsf, const char *filename);
 
 size_t
-xcsf_save(const struct XCSF *xcsf, const char *filename);
+xcsf_save(struct XCSF *xcsf, const char *filename);
 
 void
 xcsf_free(struct XCSF *xcsf);
@@ -178,3 +183,13 @@ xcsf_retrieve_pset(struct XCSF *xcsf);
 
 void
 xcsf_store_pset(struct XCSF *xcsf);
+
+void
+xcsf_clear_error(struct XCSF *xcsf);
+
+void
+xcsf_set_error(struct XCSF *xcsf, const enum xcsf_status code, const char *fmt,
+               ...);
+
+void
+xcsf_check_status(struct XCSF *xcsf);

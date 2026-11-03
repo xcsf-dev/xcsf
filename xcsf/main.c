@@ -21,12 +21,9 @@
  * @brief Main function for stand-alone binary execution.
  */
 
-#include "clset.h"
 #include "config.h"
 #include "env_csv.h"
-#include "pa.h"
 #include "param.h"
-#include "utils.h"
 #include "xcs_rl.h"
 #include "xcs_supervised.h"
 #include "xcsf.h"
@@ -46,6 +43,7 @@ main(int argc, char **argv)
     } else {
         config_read(xcsf, "default.json");
     }
+    xcsf_check_status(xcsf);
     xcsf_init(xcsf); // initialise XCSF
     if (argc == 5) { // reload state of a previous experiment
         const size_t s = xcsf_load(xcsf, argv[4]);

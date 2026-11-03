@@ -17,7 +17,7 @@
  * @file cond_ternary.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2026.
  * @brief Ternary condition functions.
  */
 
@@ -72,7 +72,7 @@ void
 cond_ternary_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_init(const struct XCSF *xcsf, struct Cl *c);
+cond_ternary_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_ternary_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -88,14 +88,13 @@ size_t
 cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_ternary_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c,
-                         const cJSON *json);
+cond_ternary_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Ternary condition implemented functions.

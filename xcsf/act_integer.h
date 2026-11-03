@@ -17,7 +17,7 @@
  * @file act_integer.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2026.
  * @brief integer action functions.
  */
 
@@ -61,7 +61,7 @@ void
 act_integer_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_integer_init(const struct XCSF *xcsf, struct Cl *c);
+act_integer_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 act_integer_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -80,8 +80,7 @@ char *
 act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_integer_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json);
+act_integer_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Integer action implemented functions.

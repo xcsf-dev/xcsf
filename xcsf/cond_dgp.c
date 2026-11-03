@@ -17,13 +17,11 @@
  * @file cond_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Dynamical GP graph condition functions.
  */
 
 #include "cond_dgp.h"
-#include "sam.h"
-#include "utils.h"
 
 /**
  * @brief Creates and initialises a dynamical GP graph condition.
@@ -31,7 +29,7 @@
  * @param [in] c The classifier whose condition is to be initialised.
  */
 void
-cond_dgp_init(const struct XCSF *xcsf, struct Cl *c)
+cond_dgp_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondDGP *new = malloc(sizeof(struct CondDGP));
     graph_init(&new->dgp, xcsf->cond->dargs);
@@ -219,7 +217,7 @@ cond_dgp_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_dgp_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_dgp_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     struct CondDGP *new = malloc(sizeof(struct CondDGP));
@@ -257,13 +255,14 @@ cond_dgp_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_dgp_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cond_dgp_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "graph");
     if (item == NULL) {
-        printf("Import error: missing graph\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing graph\n");
+        return;
     }
+
     struct CondDGP *cond = c->cond;
     graph_free(&cond->dgp);
     graph_json_import(&cond->dgp, xcsf->cond->dargs, item);

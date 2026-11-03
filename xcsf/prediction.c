@@ -33,7 +33,7 @@
  * @param [in] c The classifier to set.
  */
 void
-prediction_set(const struct XCSF *xcsf, struct Cl *c)
+prediction_set(struct XCSF *xcsf, struct Cl *c)
 {
     switch (xcsf->pred->type) {
         case PRED_TYPE_CONSTANT:
@@ -51,8 +51,9 @@ prediction_set(const struct XCSF *xcsf, struct Cl *c)
             c->pred_vptr = &pred_neural_vtbl;
             break;
         default:
-            printf("prediction_set(): invalid type: %d\n", xcsf->pred->type);
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "prediction_set(): invalid type: %d\n",
+                           xcsf->pred->type);
     }
 }
 
@@ -194,8 +195,8 @@ pred_param_json_import(struct XCSF *xcsf, cJSON *json)
             ret = pred_neural_param_json_import(xcsf, json->child);
             break;
         default:
-            printf("pred_param_json_import(): unknown type.\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "pred_param_json_import(): unknown type.\n");
     }
     return ret;
 }
@@ -291,11 +292,9 @@ void
 pred_param_set_eta(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set PRED ETA too small\n");
-        xcsf->pred->eta = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: PRED ETA too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set PRED ETA too large\n");
-        xcsf->pred->eta = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: PRED ETA too large\n");
     } else {
         xcsf->pred->eta = a;
     }
@@ -305,11 +304,9 @@ void
 pred_param_set_eta_min(struct XCSF *xcsf, const double a)
 {
     if (a < 0) {
-        printf("Warning: tried to set PRED ETA_MIN too small\n");
-        xcsf->pred->eta_min = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: PRED ETA_MIN too small\n");
     } else if (a > 1) {
-        printf("Warning: tried to set PRED ETA_MIN too large\n");
-        xcsf->pred->eta_min = 1;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: PRED ETA_MIN too large\n");
     } else {
         xcsf->pred->eta_min = a;
     }
@@ -343,8 +340,7 @@ void
 pred_param_set_type(struct XCSF *xcsf, const int a)
 {
     if (a < 0) {
-        printf("Warning: tried to set PRED TYPE too small\n");
-        xcsf->pred->type = 0;
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error: PRED TYPE too small\n");
     } else {
         xcsf->pred->type = a;
     }

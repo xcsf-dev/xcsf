@@ -17,7 +17,7 @@
  * @file cond_ternary.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2026.
  * @brief Ternary condition functions.
  * @details Binarises inputs.
  */
@@ -27,8 +27,8 @@
 #include "sam.h"
 #include "utils.h"
 
-#define DONT_CARE ('#') //!< Don't care symbol
-#define N_MU (1) //!< Number of ternary mutation rates
+#define DONT_CARE '#' //!< Don't care symbol
+#define N_MU 1 //!< Number of ternary mutation rates
 
 /**
  * @brief Self-adaptation method for mutating ternary conditions.
@@ -61,7 +61,7 @@ cond_ternary_rand(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c The classifier whose condition is to be initialised.
  */
 void
-cond_ternary_init(const struct XCSF *xcsf, struct Cl *c)
+cond_ternary_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondTernary *new = malloc(sizeof(struct CondTernary));
     new->length = xcsf->x_dim * xcsf->cond->bits;
@@ -308,17 +308,18 @@ cond_ternary_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_ternary_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_ternary_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     struct CondTernary *new = malloc(sizeof(struct CondTernary));
+
     new->length = 0;
     s += fread(&new->length, sizeof(int), 1, fp);
     if (new->length < 1) {
-        printf("cond_ternary_load(): read error\n");
-        new->length = 1;
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "cond_ternary_load(): read error\n");
+        return 0;
     }
+
     new->string = malloc(sizeof(char) * new->length);
     s += fread(new->string, sizeof(char), new->length, fp);
     new->tmp_input = malloc(sizeof(char) * xcsf->cond->bits);
@@ -359,8 +360,7 @@ cond_ternary_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c,
-                         const cJSON *json)
+cond_ternary_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct CondTernary *cond = c->cond;
@@ -369,8 +369,9 @@ cond_ternary_json_import(const struct XCSF *xcsf, struct Cl *c,
         for (int i = 0; i < cond->length; ++i) {
             const char bit = item->valuestring[i];
             if (bit == '\0') {
-                printf("Import error: string terminated early\n");
-                exit(EXIT_FAILURE);
+                xcsf_set_error(xcsf, STATUS_ERROR,
+                               "Import error: string terminated early\n");
+                return;
             }
             cond->string[i] = bit;
         }

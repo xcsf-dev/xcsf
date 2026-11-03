@@ -25,30 +25,30 @@
 
 #include "xcsf.h"
 
-#define COND_TYPE_INVALID (-1) //!< Error code for invalid condition
-#define COND_TYPE_DUMMY (0) //!< Condition type dummy
-#define COND_TYPE_HYPERRECTANGLE_CSR (1) //!< Condition type CSR hyperrectangle
-#define COND_TYPE_HYPERRECTANGLE_UBR (2) //!< Condition type UBR hyperrectangle
-#define COND_TYPE_HYPERELLIPSOID (3) //!< Condition type hyperellipsoid
-#define COND_TYPE_NEURAL (4) //!< Condition type neural network
-#define COND_TYPE_GP (5) //!< Condition type tree GP
-#define COND_TYPE_DGP (6) //!< Condition type DGP
-#define COND_TYPE_TERNARY (7) //!< Condition type ternary
-#define RULE_TYPE_DGP (11) //!< Condition type and action type DGP
-#define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
-#define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
+#define COND_TYPE_INVALID -1 //!< Error code for invalid condition
+#define COND_TYPE_DUMMY 0 //!< Condition type dummy
+#define COND_TYPE_HYPERRECTANGLE_CSR 1 //!< Condition type CSR hyperrectangle
+#define COND_TYPE_HYPERRECTANGLE_UBR 2 //!< Condition type UBR hyperrectangle
+#define COND_TYPE_HYPERELLIPSOID 3 //!< Condition type hyperellipsoid
+#define COND_TYPE_NEURAL 4 //!< Condition type neural network
+#define COND_TYPE_GP 5 //!< Condition type tree GP
+#define COND_TYPE_DGP 6 //!< Condition type DGP
+#define COND_TYPE_TERNARY 7 //!< Condition type ternary
+#define RULE_TYPE_DGP 11 //!< Condition type and action type DGP
+#define RULE_TYPE_NEURAL 12 //!< Condition type and action type neural
+#define RULE_TYPE_NETWORK 13 //!< Condition type and prediction type neural
 
-#define COND_STRING_DUMMY ("dummy\0") //!< Dummy
-#define COND_STRING_HYPERRECTANGLE_CSR ("hyperrectangle_csr\0") //!< CSR
-#define COND_STRING_HYPERRECTANGLE_UBR ("hyperrectangle_ubr\0") //!< UBR
-#define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
-#define COND_STRING_NEURAL ("neural\0") //!< Neural
-#define COND_STRING_GP ("tree_gp\0") //!< Tree GP
-#define COND_STRING_DGP ("dgp\0") //!< DGP
-#define COND_STRING_TERNARY ("ternary\0") //!< Ternary
-#define COND_STRING_RULE_DGP ("rule_dgp\0") //!< Rule DGP
-#define COND_STRING_RULE_NEURAL ("rule_neural\0") //!< Rule neural
-#define COND_STRING_RULE_NETWORK ("rule_network\0") //!< Rule network
+#define COND_STRING_DUMMY "dummy\0" //!< Dummy
+#define COND_STRING_HYPERRECTANGLE_CSR "hyperrectangle_csr\0" //!< CSR
+#define COND_STRING_HYPERRECTANGLE_UBR "hyperrectangle_ubr\0" //!< UBR
+#define COND_STRING_HYPERELLIPSOID "hyperellipsoid\0" //!< Hyperellipsoid
+#define COND_STRING_NEURAL "neural\0" //!< Neural
+#define COND_STRING_GP "tree_gp\0" //!< Tree GP
+#define COND_STRING_DGP "dgp\0" //!< DGP
+#define COND_STRING_TERNARY "ternary\0" //!< Ternary
+#define COND_STRING_RULE_DGP "rule_dgp\0" //!< Rule DGP
+#define COND_STRING_RULE_NEURAL "rule_neural\0" //!< Rule neural
+#define COND_STRING_RULE_NETWORK "rule_network\0" //!< Rule network
 
 #define COND_TYPE_OPTIONS                                                      \
     "dummy, hyperrectangle_csr, hyperrectangle_ubr, hyperellipsoid, neural, "  \
@@ -74,7 +74,7 @@ struct ArgsCond {
 };
 
 void
-condition_set(const struct XCSF *xcsf, struct Cl *c);
+condition_set(struct XCSF *xcsf, struct Cl *c);
 
 const char *
 condition_type_as_string(const int type);
@@ -117,16 +117,16 @@ struct CondVtbl {
     void (*cond_impl_cover)(const struct XCSF *xcsf, const struct Cl *c,
                             const double *x);
     void (*cond_impl_free)(const struct XCSF *xcsf, const struct Cl *c);
-    void (*cond_impl_init)(const struct XCSF *xcsf, struct Cl *c);
+    void (*cond_impl_init)(struct XCSF *xcsf, struct Cl *c);
     void (*cond_impl_print)(const struct XCSF *xcsf, const struct Cl *c);
     void (*cond_impl_update)(const struct XCSF *xcsf, const struct Cl *c,
                              const double *x, const double *y);
     double (*cond_impl_size)(const struct XCSF *xcsf, const struct Cl *c);
     size_t (*cond_impl_save)(const struct XCSF *xcsf, const struct Cl *c,
                              FILE *fp);
-    size_t (*cond_impl_load)(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+    size_t (*cond_impl_load)(struct XCSF *xcsf, struct Cl *c, FILE *fp);
     char *(*cond_impl_json_export)(const struct XCSF *xcsf, const struct Cl *c);
-    void (*cond_impl_json_import)(const struct XCSF *xcsf, struct Cl *c,
+    void (*cond_impl_json_import)(struct XCSF *xcsf, struct Cl *c,
                                   const cJSON *json);
 };
 
@@ -151,7 +151,7 @@ cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 static inline size_t
-cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     return (*c->cond_vptr->cond_impl_load)(xcsf, c, fp);
 }
@@ -275,7 +275,7 @@ cond_free(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c The classifier whose condition is to be initialised.
  */
 static inline void
-cond_init(const struct XCSF *xcsf, struct Cl *c)
+cond_init(struct XCSF *xcsf, struct Cl *c)
 {
     (*c->cond_vptr->cond_impl_init)(xcsf, c);
 }
@@ -310,20 +310,24 @@ cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 static inline void
-cond_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cond_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "type");
     if (item == NULL || !cJSON_IsString(item)) {
-        printf("cond_json_import(): missing type\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "cond_json_import(): missing type\n");
+        return;
     }
+
     const char *type = item->valuestring;
     if (condition_type_as_int(type) != xcsf->cond->type) {
-        printf("cond_json_import(): mismatched type\n");
-        printf("XCSF type = %s, but imported type = %s\n",
-               condition_type_as_string(xcsf->cond->type), type);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "cond_json_import(): mismatched type\n"
+                       "XCSF type = %s, but imported type = %s\n",
+                       condition_type_as_string(xcsf->cond->type), type);
+        return;
     }
+
     (*c->cond_vptr->cond_impl_json_import)(xcsf, c, json);
 }
 

@@ -17,7 +17,7 @@
  * @file rule_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2026.
  * @brief Neural network rule (condition + action) functions.
  */
 
@@ -62,7 +62,7 @@ void
 rule_neural_cond_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_neural_cond_init(const struct XCSF *xcsf, struct Cl *c);
+rule_neural_cond_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 rule_neural_cond_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -78,13 +78,13 @@ size_t
 rule_neural_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-rule_neural_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+rule_neural_cond_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 rule_neural_cond_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_neural_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
+rule_neural_cond_json_import(struct XCSF *xcsf, struct Cl *c,
                              const cJSON *json);
 
 /**
@@ -128,7 +128,7 @@ void
 rule_neural_act_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_neural_act_init(const struct XCSF *xcsf, struct Cl *c);
+rule_neural_act_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 rule_neural_act_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -147,8 +147,7 @@ char *
 rule_neural_act_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-rule_neural_act_json_import(const struct XCSF *xcsf, struct Cl *c,
-                            const cJSON *json);
+rule_neural_act_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Neural network rule action implemented functions.

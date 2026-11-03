@@ -128,9 +128,10 @@ xcs_rl_init_trial(struct XCSF *xcsf)
     xcsf->prev_reward = 0;
     xcsf->prev_pred = 0;
     if (xcsf->x_dim < 1) { // memory allocation guard
-        printf("xcs_rl_init_trial(): error x_dim less than 1\n");
         xcsf->x_dim = 1;
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR,
+                       "xcs_rl_init_trial(): error x_dim less than 1\n");
+        return;
     }
     xcsf->prev_state = malloc(sizeof(double) * xcsf->x_dim);
     clset_init(&xcsf->prev_aset);

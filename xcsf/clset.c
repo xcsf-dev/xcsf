@@ -17,15 +17,16 @@
  * @file clset.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Functions operating on sets of classifiers.
  */
 
 #include "clset.h"
 #include "cl.h"
+#include "param.h"
 #include "utils.h"
 
-#define MAX_COVER (1000000) //!< Maximum number of covering attempts
+#define MAX_COVER 1000000 //!< Maximum number of covering attempts
 
 /**
  * @brief Finds a rule in the population that never matches an input.
@@ -189,6 +190,9 @@ clset_cover(struct XCSF *xcsf, const double *x)
         }
         ++attempts;
         if (attempts > MAX_COVER) {
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Error: max covering attempts (%d) exceeded\n",
+                           MAX_COVER);
             printf("Error: max covering attempts (%d) exceeded\n", MAX_COVER);
             exit(EXIT_FAILURE);
         }
@@ -282,21 +286,26 @@ clset_load_pop_file(struct XCSF *xcsf)
 {
     FILE *f = fopen(xcsf->population_file, "rt");
     if (f == NULL) {
-        printf("Error opening JSON file: %s\n", xcsf->population_file);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error opening JSON file: %s\n",
+                       xcsf->population_file);
+        return;
     }
+
     fseek(f, 0, SEEK_END);
     const long len = 1 + ftell(f);
     fseek(f, 0, SEEK_SET);
     char *json_buffer = malloc(sizeof(char) * len);
     const size_t s = fread(json_buffer, sizeof(char), len - 1, f);
     fclose(f);
-    json_buffer[len - 1] = '\0';
+
     if (s == 0) {
-        printf("Error opening JSON file: %s\n", xcsf->population_file);
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Error opening JSON file: %s\n",
+                       xcsf->population_file);
+    } else {
+        json_buffer[len - 1] = '\0';
+        clset_json_insert(xcsf, json_buffer);
     }
-    clset_json_insert(xcsf, json_buffer);
+
     free(json_buffer);
 }
 
@@ -310,7 +319,8 @@ clset_pset_init(struct XCSF *xcsf)
     if (strncmp(xcsf->population_file, "\0", 1) != 0) {
         clset_load_pop_file(xcsf);
     }
-    if (xcsf->POP_INIT) {
+
+    if (xcsf->POP_INIT && xcsf->status == STATUS_OK) {
         while (xcsf->pset.num < xcsf->POP_SIZE) {
             struct Cl *new = malloc(sizeof(struct Cl));
             cl_init(xcsf, new, xcsf->POP_SIZE, 0);
@@ -781,10 +791,12 @@ clset_json_insert_cl(struct XCSF *xcsf, const cJSON *json)
 {
     struct Cl *new = malloc(sizeof(struct Cl));
     cl_json_import(xcsf, new, json);
-    clset_add(&xcsf->pset, new);
-    clset_init(&xcsf->kset);
-    clset_pset_enforce_limit(xcsf);
-    clset_kill(xcsf, &xcsf->kset);
+    if (xcsf->status == STATUS_OK) {
+        clset_add(&xcsf->pset, new);
+        clset_init(&xcsf->kset);
+        clset_pset_enforce_limit(xcsf);
+        clset_kill(xcsf, &xcsf->kset);
+    }
 }
 
 /**
@@ -796,7 +808,12 @@ void
 clset_json_insert(struct XCSF *xcsf, const char *json_str)
 {
     cJSON *json = cJSON_Parse(json_str);
-    utils_json_parse_check(json);
+
+    param_json_parse_check(xcsf, json);
+    if (xcsf->status != STATUS_OK) {
+        return;
+    }
+
     if (json->child != NULL && cJSON_IsArray(json->child)) {
         cJSON *tail = json->child->child; // insert inverted for consistency
         if (tail != NULL) {

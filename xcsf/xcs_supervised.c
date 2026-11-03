@@ -17,14 +17,13 @@
  * @file xcs_supervised.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2024.
+ * @date 2015--2026.
  * @brief Supervised regression learning functions.
  */
 
 #include "xcs_supervised.h"
 #include "clset.h"
 #include "ea.h"
-#include "loss.h"
 #include "pa.h"
 #include "param.h"
 #include "perf.h"

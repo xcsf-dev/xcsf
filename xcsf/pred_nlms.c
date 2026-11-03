@@ -17,7 +17,7 @@
  * @file pred_nlms.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2023.
+ * @date 2015--2026.
  * @brief Normalised least mean squares prediction functions.
  */
 
@@ -26,7 +26,7 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of self-adaptive mutation rates
+#define N_MU 1 //!< Number of self-adaptive mutation rates
 
 /**
  * @brief Self-adaptation method for mutating NLMS predictions.
@@ -287,10 +287,11 @@ pred_nlms_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-pred_nlms_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+pred_nlms_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct PredNLMS *pred = c->pred;
+
     const cJSON *item = cJSON_GetObjectItem(json, "weights");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == pred->n_weights) {
@@ -299,14 +300,17 @@ pred_nlms_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
                 pred->weights[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: weight length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: weight length mismatch\n");
+            return;
         }
     }
+
     item = cJSON_GetObjectItem(json, "eta");
     if (item != NULL && cJSON_IsNumber(item)) {
         pred->eta = item->valuedouble;
     }
+
     sam_json_import(pred->mu, N_MU, json);
 }
 

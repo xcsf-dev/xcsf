@@ -17,7 +17,7 @@
  * @file act_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2022.
+ * @date 2020--2026.
  * @brief Neural network action functions.
  */
 
@@ -41,7 +41,7 @@
  * @param [in] c The classifier whose action is to be initialised.
  */
 void
-act_neural_init(const struct XCSF *xcsf, struct Cl *c)
+act_neural_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct ActNeural *new = malloc(sizeof(struct ActNeural));
     neural_create(&new->net, xcsf->act->largs);
@@ -251,13 +251,14 @@ act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-act_neural_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+act_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "network");
     if (item == NULL) {
-        printf("Import error: missing network\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing network\n");
+        return;
     }
+
     struct ActNeural *act = c->act;
     neural_json_import(&act->net, xcsf->act->largs, item);
 }
@@ -311,6 +312,7 @@ act_neural_param_json_import(struct XCSF *xcsf, cJSON *json)
         larg->n_inputs = xcsf->x_dim;
         char *ret = layer_args_json_import(larg, iter->child);
         if (ret != NULL) {
+            layer_args_free(&larg);
             return ret;
         }
         if (xcsf->act->largs == NULL) {

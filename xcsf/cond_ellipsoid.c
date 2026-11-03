@@ -62,7 +62,7 @@ cond_ellipsoid_dist(const struct XCSF *xcsf, const struct Cl *c,
  * @param [in] c Classifier whose condition is to be initialised.
  */
 void
-cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c)
+cond_ellipsoid_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondEllipsoid *new = malloc(sizeof(struct CondEllipsoid));
     new->center = malloc(sizeof(double) * xcsf->x_dim);
@@ -329,7 +329,7 @@ cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_ellipsoid_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     size_t s = 0;
     struct CondEllipsoid *new = malloc(sizeof(struct CondEllipsoid));
@@ -373,10 +373,10 @@ cond_ellipsoid_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
-                           const cJSON *json)
+cond_ellipsoid_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     struct CondEllipsoid *cond = c->cond;
+
     const cJSON *item = cJSON_GetObjectItem(json, "center");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
@@ -385,10 +385,12 @@ cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
                 cond->center[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: center length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: center length mismatch\n");
+            return;
         }
     }
+
     item = cJSON_GetObjectItem(json, "spread");
     if (item != NULL && cJSON_IsArray(item)) {
         if (cJSON_GetArraySize(item) == xcsf->x_dim) {
@@ -397,9 +399,11 @@ cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
                 cond->spread[i] = item_i->valuedouble;
             }
         } else {
-            printf("Import error: spread length mismatch\n");
-            exit(EXIT_FAILURE);
+            xcsf_set_error(xcsf, STATUS_ERROR,
+                           "Import error: spread length mismatch\n");
+            return;
         }
     }
+
     sam_json_import(cond->mu, N_MU, json);
 }

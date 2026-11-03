@@ -17,12 +17,11 @@
  * @file cond_dummy.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2026.
  * @brief Always-matching dummy condition functions.
  */
 
 #include "cond_dummy.h"
-#include "utils.h"
 
 /**
  * @brief Dummy initialisation function.
@@ -30,7 +29,7 @@
  * @param [in] c Classifier whose condition is to be initialised.
  */
 void
-cond_dummy_init(const struct XCSF *xcsf, struct Cl *c)
+cond_dummy_init(struct XCSF *xcsf, struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -208,7 +207,7 @@ cond_dummy_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return 0.
  */
 size_t
-cond_dummy_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_dummy_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     (void) c;
@@ -241,7 +240,7 @@ cond_dummy_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_dummy_json_import(const struct XCSF *xcsf, struct Cl *c, const cJSON *json)
+cond_dummy_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     (void) c;

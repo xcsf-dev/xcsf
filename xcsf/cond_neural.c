@@ -17,7 +17,7 @@
  * @file cond_neural.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2016--2022.
+ * @date 2016--2026.
  * @brief Multi-layer perceptron neural network condition functions.
  */
 
@@ -39,7 +39,7 @@
  * @param [in] c The classifier whose condition is to be initialised.
  */
 void
-cond_neural_init(const struct XCSF *xcsf, struct Cl *c)
+cond_neural_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
     neural_create(&new->net, xcsf->cond->largs);
@@ -225,7 +225,7 @@ cond_neural_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
  * @return The number of elements read.
  */
 size_t
-cond_neural_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+cond_neural_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     (void) xcsf;
     struct CondNeural *new = malloc(sizeof(struct CondNeural));
@@ -331,14 +331,14 @@ cond_neural_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-cond_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json)
+cond_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "network");
     if (item == NULL) {
-        printf("Import error: missing network\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing network\n");
+        return;
     }
+
     struct CondNeural *cond = c->cond;
     neural_json_import(&cond->net, xcsf->cond->largs, item);
 }

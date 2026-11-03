@@ -82,6 +82,7 @@ class XCS
     {
         reset();
         xcsf_init(&xcs);
+        check_status(&xcs);
     }
 
     /**
@@ -93,6 +94,7 @@ class XCS
         reset();
         set_params(kwargs);
         xcsf_init(&xcs);
+        check_status(&xcs);
     }
 
     /**
@@ -142,6 +144,7 @@ class XCS
     load(const char *filename)
     {
         size_t s = xcsf_load(&xcs, filename);
+        check_status(&xcs);
         update_params();
         return s;
     }
@@ -505,6 +508,7 @@ class XCS
         if (!warm_start) { // re-initialise XCSF as necessary
             xcsf_free(&xcs);
             xcsf_init(&xcs);
+            check_status(&xcs);
         }
         load_input(train_data, X_train, y_train);
         load_validation_data(kwargs);
@@ -641,7 +645,7 @@ class XCS
      * @return The pickled XCSF.
      */
     py::bytes
-    serialize() const
+    serialize()
     {
         // Write XCSF to a temporary binary file
         const char *filename = "_tmp_pickle.bin";
@@ -880,10 +884,6 @@ class XCS
     set_params(py::kwargs kwargs)
     {
         py::dict kwargs_dict(kwargs);
-        // update external params dict
-        for (const auto &item : kwargs_dict) {
-            params[item.first] = item.second;
-        }
         // map None types
         if (kwargs_dict.contains("random_state")) {
             py::object rs = kwargs["random_state"];
@@ -895,8 +895,12 @@ class XCS
         py::module_ json_module = py::module_::import("json");
         py::object json_dumps = json_module.attr("dumps")(kwargs_dict);
         std::string json_str = json_dumps.cast<std::string>();
-        const char *json_params = json_str.c_str();
-        param_json_import(&xcs, json_params);
+        param_json_import(&xcs, json_str.c_str());
+        check_status(&xcs); // throws exception for invalid inputs
+        // update external params dict
+        for (const auto &item : kwargs) {
+            params[item.first] = item.second;
+        }
         return *this;
     }
 
@@ -925,9 +929,10 @@ class XCS
         py::object json_dumps = json_module.attr("dumps")(classifier);
         std::string json_str = json_dumps.cast<std::string>();
         cJSON *json = cJSON_Parse(json_str.c_str());
-        utils_json_parse_check(json);
+        param_json_parse_check(&xcs, json);
         clset_json_insert_cl(&xcs, json);
         cJSON_Delete(json);
+        check_status(&xcs);
     }
 
     /**
@@ -938,6 +943,7 @@ class XCS
     json_insert(const std::string &json_str)
     {
         clset_json_insert(&xcs, json_str.c_str());
+        check_status(&xcs); // throws exception for invalid inputs
     }
 
     /**
@@ -1141,6 +1147,6 @@ PYBIND11_MODULE(xcsf, m)
              py::arg("condition") = true, py::arg("action") = true,
              py::arg("prediction") = true)
         .def(py::pickle(
-            [](const XCS &obj) { return obj.serialize(); },
+            [](XCS &obj) { return obj.serialize(); },
             [](const py::bytes &state) { return XCS::deserialize(state); }));
 }

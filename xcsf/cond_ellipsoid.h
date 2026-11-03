@@ -17,7 +17,7 @@
  * @file cond_ellipsoid.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2021.
+ * @date 2019--2026.
  * @brief Hyperellipsoid condition functions.
  */
 
@@ -62,7 +62,7 @@ void
 cond_ellipsoid_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ellipsoid_init(const struct XCSF *xcsf, struct Cl *c);
+cond_ellipsoid_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 cond_ellipsoid_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -78,14 +78,13 @@ size_t
 cond_ellipsoid_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp);
 
 size_t
-cond_ellipsoid_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp);
+cond_ellipsoid_load(struct XCSF *xcsf, struct Cl *c, FILE *fp);
 
 char *
 cond_ellipsoid_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-cond_ellipsoid_json_import(const struct XCSF *xcsf, struct Cl *c,
-                           const cJSON *json);
+cond_ellipsoid_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief Hyperellipsoid condition implemented functions.

@@ -17,7 +17,7 @@
  * @file rule_dgp.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2019--2022.
+ * @date 2019--2026.
  * @brief Dynamical GP graph rule (condition + action) functions.
  */
 
@@ -27,7 +27,7 @@
 /* CONDITION FUNCTIONS */
 
 void
-rule_dgp_cond_init(const struct XCSF *xcsf, struct Cl *c)
+rule_dgp_cond_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct RuleDGP *new = malloc(sizeof(struct RuleDGP));
     new->n_outputs = (int) fmax(1, ceil(log2(xcsf->n_actions)));
@@ -142,7 +142,7 @@ rule_dgp_cond_save(const struct XCSF *xcsf, const struct Cl *c, FILE *fp)
 }
 
 size_t
-rule_dgp_cond_load(const struct XCSF *xcsf, struct Cl *c, FILE *fp)
+rule_dgp_cond_load(struct XCSF *xcsf, struct Cl *c, FILE *fp)
 {
     struct RuleDGP *new = malloc(sizeof(struct RuleDGP));
     size_t s = graph_load(&new->dgp, fp);
@@ -168,14 +168,14 @@ rule_dgp_cond_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 void
-rule_dgp_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
-                          const cJSON *json)
+rule_dgp_cond_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     const cJSON *item = cJSON_GetObjectItem(json, "graph");
     if (item == NULL) {
-        printf("Import error: missing graph\n");
-        exit(EXIT_FAILURE);
+        xcsf_set_error(xcsf, STATUS_ERROR, "Import error: missing graph\n");
+        return;
     }
+
     struct RuleDGP *cond = c->cond;
     graph_free(&cond->dgp);
     graph_json_import(&cond->dgp, xcsf->cond->dargs, item);
@@ -184,7 +184,7 @@ rule_dgp_cond_json_import(const struct XCSF *xcsf, struct Cl *c,
 /* ACTION FUNCTIONS */
 
 void
-rule_dgp_act_init(const struct XCSF *xcsf, struct Cl *c)
+rule_dgp_act_init(struct XCSF *xcsf, struct Cl *c)
 {
     (void) xcsf;
     (void) c;
@@ -311,8 +311,7 @@ rule_dgp_act_json_export(const struct XCSF *xcsf, const struct Cl *c)
 }
 
 void
-rule_dgp_act_json_import(const struct XCSF *xcsf, struct Cl *c,
-                         const cJSON *json)
+rule_dgp_act_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     (void) c;

@@ -17,7 +17,7 @@
  * @file act_neural.h
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2020--2022.
+ * @date 2020--2026.
  * @brief Neural network action functions.
  */
 
@@ -68,7 +68,7 @@ void
 act_neural_free(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_neural_init(const struct XCSF *xcsf, struct Cl *c);
+act_neural_init(struct XCSF *xcsf, struct Cl *c);
 
 void
 act_neural_print(const struct XCSF *xcsf, const struct Cl *c);
@@ -87,8 +87,7 @@ char *
 act_neural_json_export(const struct XCSF *xcsf, const struct Cl *c);
 
 void
-act_neural_json_import(const struct XCSF *xcsf, struct Cl *c,
-                       const cJSON *json);
+act_neural_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json);
 
 /**
  * @brief neural action implemented functions.

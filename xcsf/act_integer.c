@@ -17,7 +17,7 @@
  * @file act_integer.c
  * @author Richard Preen <rpreen@gmail.com>
  * @copyright The Authors.
- * @date 2015--2021.
+ * @date 2015--2026.
  * @brief integer action functions.
  */
 
@@ -25,7 +25,7 @@
 #include "sam.h"
 #include "utils.h"
 
-#define N_MU (1) //!< Number of integer action mutation rates
+#define N_MU 1 //!< Number of integer action mutation rates
 
 /**
  * @brief Self-adaptation method for mutating integer actions.
@@ -175,7 +175,7 @@ act_integer_free(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] c The classifier whose action is to be initialised.
  */
 void
-act_integer_init(const struct XCSF *xcsf, struct Cl *c)
+act_integer_init(struct XCSF *xcsf, struct Cl *c)
 {
     struct ActInteger *new = malloc(sizeof(struct ActInteger));
     new->mu = malloc(sizeof(double) * N_MU);
@@ -267,8 +267,7 @@ act_integer_json_export(const struct XCSF *xcsf, const struct Cl *c)
  * @param [in] json cJSON object.
  */
 void
-act_integer_json_import(const struct XCSF *xcsf, struct Cl *c,
-                        const cJSON *json)
+act_integer_json_import(struct XCSF *xcsf, struct Cl *c, const cJSON *json)
 {
     (void) xcsf;
     struct ActInteger *act = c->act;
